@@ -1,0 +1,118 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="return_goods_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="end_time"/>
+                            </div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">单据类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="bill_type" id="order_type" onchange="show_sales_channels(this.value)" >
+							<option value="">全部</option>
+							<option value="D">销售退货单</option>
+							<option value="O">维修退货单</option>
+							</select>
+						
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="order_type" id="order_type" onchange="show_sales_channels(this.value)" >
+							<option value="">全部</option>
+							<option value="1">线上退货</option>
+							<option value="2">线下退货</option>
+							</select>
+						
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订单渠道：</label>
+						<select class="form-control" tabindex="1" name="department_id" id="department_id">
+							<option value="">全部</option>
+							<%foreach from=$sales_channels_idData key=key item=p %>
+								<option value="<%$p.id%>" ><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<div class="btn-group">
+		<button data-title="月盘点详情报表"  title="" name="查看明细" data-url="index.php?mod=report&con=ReturnGoodsReport&act=index_second" onclick="return_goods_list(this);" class="btn btn-sm red">
+			查看明细 <i class="fa fa-bar-chart-o"></i>
+		</button>
+		</div>
+		<!-- <div class="btn-group">
+			<button data-title="导出退货率统计" list-id="279470" title="" name="导出退货率统计" data-url="index.php?mod=report&con=ReturnGoodsReport&act=export_cxv_index" onclick="export_cxv_index(this);" class="btn btn-sm blue">
+				下载报表 <i class="fa fa-bar-chart-o"></i>
+			</button>
+		</div> -->
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="return_goods_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function show_sales_channels(order_type){
+	$.getJSON('index.php?mod=report&con=ReturnGoodsReport&act=get_all_onoffline_channels&order_type='+order_type,function(ret){
+		var department_id_html='<option value="0">全部</option>';
+		$.each(ret,function(i,item){
+			department_id_html+='<option value="'+item.id+'">'+item.channel_name+'</option>';
+		});
+		$('#department_id').html(department_id_html);
+	});
+}
+<!--
+	<%include file="js/return_goods_list.js"%>
+//-->
+</script>

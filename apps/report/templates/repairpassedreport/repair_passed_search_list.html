@@ -1,0 +1,130 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>制单日期</th>
+			<th>总质检数</th>
+			<th>质检通过数</th>
+			<th>质检未过数</th>
+			<th>维修良品率</th>
+			<th>维修不良品率</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr data-id="repairpassedreport-index_second" start_time="<%$d.acount_date%>" end_time="<%$d.acount_date%>" repair_factory="<%$args.repair_factory%>" frequency="<%$args.frequency%>"  re_type="<%$args.re_type%>"   repair_act="<%$args.repair_act%>" qc_status="<%$args.qc_status%>" data-title="维护良品率详情">
+			<td><%$d.dotime%></td>
+			<td><%$d.qc_time_sum%></td>
+			<td><%$d.cnt%></td>
+			<td><%$d.not_checked_qc_num%></td>
+			<td><%$d.passed_percent%>%</td>
+			<td><%$d.not_passed_percent%>%</td>
+		</tr>
+	<%/foreach%>
+	<%if $tongji %>
+	<tr data-title="维护良品率详情">
+			<td>总数</td>
+			<td><%$tongji.qc_time_sum%></td>
+			<td><%$tongji.cnt%></td>
+			<td><%$tongji.not_checked_qc_num%></td>
+			<td><%$tongji.passed_percent%>%</td>
+			<td><%$tongji.not_passed_percent%>%</td>
+	</tr>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+function show_repair_second(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var repair_factory = tObj[0].getAttribute("repair_factory");
+	var frequency = tObj[0].getAttribute("frequency");
+	var re_type = tObj[0].getAttribute("re_type");
+	var repair_act = tObj[0].getAttribute("repair_act");
+	var qc_status=tObj[0].getAttribute("qc_status");
+	var con=params['con'].toLowerCase();
+	var act=params['act'].toLowerCase();
+	var prefix = con+'-'+act;
+	var _id = tObj[0].getAttribute("data-id");
+	var id =_id;
+	url+='&start_time='+start_time+'&end_time='+end_time+'&repair_factory='+repair_factory+'&frequency='+frequency+'&re_type='+re_type+'&repair_act='+repair_act+'&qc_status='+qc_status;
+	//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.substr(1);
+		if (href==prefix)
+		{
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+	//url+="&acount_date="+acount_date;
+	
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

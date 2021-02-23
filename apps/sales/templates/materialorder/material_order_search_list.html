@@ -1,0 +1,59 @@
+ <div class="table-scrollable"> 
+ <!--<div class="flip-scroll">-->
+	<table class="table table-bordered table-striped table-hover flip-content" width='100%'>
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>订单编号</th>					
+				<th>销售渠道</th>
+				<th>销售公司</th>
+				<%if $show_detail==1%>
+				<th>货品编号</th>
+				<th>货品名称</th>	
+				<th>申请数量</th>				
+				<%/if%>						
+				<th>创建时间</th>
+				<th>创建人</th>				
+				<th>审核时间</th>
+				<th>审核人</th>
+				<th>单据备注</th>
+				<th>单据状态</th>				
+				<th>公司类型</th>
+
+			</tr>
+		</thead>
+	
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="material_bill_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+				<td><%$key+1%></td>
+				<td><%$d.bill_no%></td>						
+				<td><%$d.channel_name|default:'/'%></td>
+				<td><%$d.company_name|default:'/'%></td>
+				<%if $show_detail==1%>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%$d.goods_num%></td>				
+				<%/if%>					
+				<td><%$d.create_time%></td>
+				<td><%$d.create_user%></td>			
+				<td><%$d.check_time%></td>
+				<td><%$d.check_user%></td>
+				<td><%$d.bill_note%></td>
+				<td><%$dd->getEnum("material.bill_status",$d.bill_status)%></td>				
+				<td><%$dd->getEnum("company.company_type",$d.company_type)|default:'/'%></td>
+				
+
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

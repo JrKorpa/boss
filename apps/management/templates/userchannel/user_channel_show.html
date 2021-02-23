@@ -1,0 +1,76 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<th>用户</th>
+					<td><%$data.real_name%>(<%$data.account%>)</td>
+					<th>渠道</th>
+					<td><%$data.channel_name%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>权限信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+		<div class="row">
+			<div class="col-sm-12" id="user_channel_permission_search_list">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#user_channel_permission_menu_list" data-toggle="tab" onclick="util.cust(this,user_channel_permission_menu_add);" data-url="index.php?mod=management&con=UserChannel&act=listMenu" name="菜单权限" title="菜单权限" data-title="菜单权限">菜单</a></li>
+
+					<li><a href="#user_channel_permission_opr_list" data-toggle="tab" onclick="util.cust(this,user_channel_permission_opr_add);" data-url="index.php?mod=management&con=UserChannel&act=listOpr" name="操作权限" title="操作权限" data-title="操作权限">操作</a></li>
+
+					<li><a href="#user_channel_permission_button_list" data-toggle="tab" onclick="util.cust(this,user_channel_permission_button_add);" data-url="index.php?mod=management&con=UserChannel&act=listButton" name="列表按钮权限" title="列表按钮权限" data-title="列表按钮权限">列表按钮</a></li>
+
+					<li><a href="#user_channel_permission_view_button_list" data-toggle="tab" onclick="util.cust(this,user_channel_permission_button_view_add);" data-url="index.php?mod=management&con=UserChannel&act=listViewButton" name="详情按钮权限" title="详情按钮权限" data-title="详情按钮权限">详情按钮</a></li>
+
+					<li><a href="#user_channel_permission_rel_list" data-toggle="tab" onclick="util.cust(this,user_channel_permission_rel_add);" data-url="index.php?mod=management&con=UserChannel&act=listRel" name="明细权限" title="明细权限" data-title="明细权限">明细权限</a></li>
+
+					<li><a href="#user_channel_permission_rel_button" data-toggle="tab" onclick="util.cust(this,user_channel_permission_rel_button_add);" data-url="index.php?mod=management&con=UserChannel&act=listRelButton" name="明细按钮" title="明细按钮" data-title="明细按钮">明细按钮</a></li>
+
+					<li><a href="#user_channel_permission_rel_opr" data-toggle="tab" onclick="util.cust(this,user_channel_permission_rel_opr_add);" data-url="index.php?mod=management&con=UserChannel&act=listRelOpr" name="明细操作" title="明细操作" data-title="明细操作">明细操作</a></li>
+
+					<li><a href="#user_channel_permission_scope" data-toggle="tab" onclick="util.cust(this,user_channel_permission_scope_add);" data-url="index.php?mod=management&con=UserChannel&act=listScope" name="属性控制" title="属性控制" data-title="属性控制">属性控制</a></li>
+
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="user_channel_permission_menu_list">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_opr_list">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_button_list">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_view_button_list">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_rel_list">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_rel_button">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_rel_opr">暂无信息</div>
+					<div class="tab-pane" id="user_channel_permission_scope">暂无信息</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_channel_show.js"%>
+//-->
+</script>

@@ -1,0 +1,55 @@
+
+ <div class="flip-scroll">
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>石包</th>
+                <th>每卡采购价格(元)</th>
+                <th>供应商</th>
+                <th>规格</th>
+                <th>颜色</th>
+                <th>净度</th>
+                <th>切工</th>
+                <th>对称</th>
+                <th>抛光</th>
+                <th>荧光</th>
+                <th>状态</th>
+                <th>失效日期</th>
+                <th>失效原因</th>
+                <th>失效操作人员</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="dia_query_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+                <td><%$d.dia_package%></td>
+                <td><%$d.purchase_price%></td>
+                <td><%$d.sup_name%></td>
+                <td><%$d.specification%></td>
+                <td><%$d.color%></td>
+                <td><%$d.neatness%></td>
+                <td><%$d.cut%></td>
+                <td><%$d.symmetry%></td>
+                <td><%$d.polishing%></td>
+                <td><%$d.fluorescence%></td>
+                <td><%$dd->getEnum('dia.status',$d.status)%></td>
+                <td><%$d.lose_efficacy_time%></td>
+                <td><%$d.lose_efficacy_cause%></td>
+                <td><%$d.lose_efficacy_user%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

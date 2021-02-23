@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打印婚博会明细</title>
+<style type="text/css">
+
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:700px;margin:50px auto;}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{ border:1px #666 dashed;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; font-weight:bold;}
+
+</style>
+<style media="print">
+
+	.Noprint{display:none;} 
+
+</style>
+<script type="text/javascript">
+    
+
+        
+	function preview() {
+		bdhtml = window.document.body.innerHTML;
+		sprnstr = "<!--startprint-->";
+		eprnstr = "<!--endprint-->";
+		prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+		prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+		window.document.body.innerHTML = prnhtml;
+		window.print();
+	}
+
+</script>
+</head>
+<body>
+<!--startprint-->
+<div class="wrap">
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    	<tr>
+			<td >
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="16%">单号：<span style="border-bottom:1px #000 solid;">&nbsp;&nbsp;<%$data.bill_no%>&nbsp;&nbsp;</span></td>
+                <td width="16%">品类：<span style="border-bottom:1px #000 solid;">&nbsp;&nbsp;<%$data.cat_type%>&nbsp;&nbsp;</span></td>
+                <td width="16%">数量：<span style="border-bottom:1px #000 solid;">&nbsp;&nbsp;<%$data.goods_num%>&nbsp;&nbsp;</span></td>
+                
+                <td width="18%">数量确认__________</td>
+                <td width="19%">明细确认__________</td>
+		<td>库管签字_________</td>
+              </tr>
+              <tr>
+                <td colspan="3">补货明细______________________________________________</td>
+				
+                <td>数量确认__________</td>
+                <td>明细确认__________</td>
+		<td>库管签字_________</td>
+              </tr>
+              <tr>
+                <td colspan="4">盘亏明细______________________________________________________________</td>
+                <td colspan="2">责任人签名_____________________________</td>
+                
+              </tr>
+              <tr>
+                <td colspan="4">盘盈明细______________________________________________________________</td>
+                <td colspan="2">库管签名_______________________________</td>
+              </tr>
+            </table>
+		  </td>
+		</tr>
+		<tr>
+			<td>
+			注意事项：<br/>
+			1、请核对清楚实际收到货品的数量、货号、款号及证书号。 若发现与转仓单有差别请及时找库管核实确认。<br/>
+			2、收货时请将货品装入小袋，并核对清楚证书号再将货品装袋。<br/>
+			3、销售人员之间借货时请出借人员核实借货人身份，并清楚记录货号、证书号及借货人签名（需要能看清楚）。</td>
+		</tr>
+		
+    </table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>货号</td>
+				<td>款号</td>
+				<td>证书号</td>		
+				<td class="tRight">主成<br/>色重</td>
+				<td class="tRight">主石<br/>粒数</td>
+				<td class="tRight">主石<br/>重</td>
+				<td class="tRight">数量</td>
+				<td class="tRight">副石<br/>粒数</td>
+				<td class="tRight">副石<br/>重</td>
+				
+				
+				<td>名称</td>
+				<!--<td class="tRight">价格</td>-->
+			</tr>
+		</thead>
+		<tbody>
+                <%foreach from=$goods_info key=key item=item%>
+        	
+			<tr>
+				<td><%$item.goods_id%></td>
+				<td><%$item.goods_sn%></td>
+				<td><%$item.zhengshuhao%></td>			
+				<td class="tRight"><%$item.jinzhong%></td>
+				<td class="tRight"><%$item.zhushilishu%></td>
+				<td class="tRight"><%$item.zuanshidaxiao%></td>
+				<td class="tRight">1</td>
+				<td class="tRight"><%$item.fushilishu%></td>
+				<td class="tRight"><%$item.fushizhong%></td>
+				<td><%$item.goods_name%></td>
+				<!--<td class="tRight"><$item.xianzaixiaoshou></td>-->
+			</tr>
+                <%/foreach%>
+		</tbody>		
+	</table>
+	<!--endprint-->
+	<br/><br/>
+	<div style="text-align:center;">
+		<input type="button" class="Noprint" value="打&nbsp;印" onclick="preview()" >
+	</div>
+</div>
+
+</body>
+</html>

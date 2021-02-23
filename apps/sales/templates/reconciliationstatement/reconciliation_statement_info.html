@@ -1,0 +1,30 @@
+<div class="portlet box green" style="margin-top: 5px;">
+    <div class="portlet-body form">
+        <form action="#" method="post" class="horizontal-form" id="reconciliation_statement_info" enctype="multipart/form-data">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">请选择要上传的文件：<span class="required">*</span></label>
+                            <input type="file" name="order_sn" class="form-control" value="" />
+                        </div>
+                    </div>
+				<div>
+            </div>
+            <div class="clear"></div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 上传</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<!-- 明细 end -->
+<script type="text/javascript">
+<%include file="js/reconciliation_statement_info.js"%>
+</script>

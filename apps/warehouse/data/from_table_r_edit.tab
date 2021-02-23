@@ -1,0 +1,116 @@
+id = #from_table_data_r_edit;
+
+[title]
+0 = "货号";
+1 = "款号";
+2 = "主成色重";
+3 = "主石重";
+4 = "证书号";
+5 = "工费";
+6 = "零售价";
+7 = "实价";
+8= "手寸";
+9= "长度";
+10= "主成色";
+11= "主石"
+
+11= "主石";
+12= "主石粒数";
+13= "副石";
+14= "副石粒数";
+15= "副石重";
+16= "总重";
+17= "净度";
+18= "颜色";
+19= "名称";
+
+
+
+[columns_0]
+type = numeric;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+editor = select;
+readOnly = true;
+
+[columns_3]
+type = numeric;
+format = 0,0;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = text;
+readOnly = true;
+
+[columns_8]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_9]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+
+[columns_10]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+
+[columns_11]
+type = text;
+readOnly = true;
+
+[columns_12]
+type = text;
+readOnly = true;
+
+[columns_13]
+type = text;
+readOnly = true;
+
+[columns_14]
+type = text;
+readOnly = true;
+
+[columns_15]
+type = numeric;
+format = 0,0.000;
+readOnly = true;
+
+
+[columns_16]
+type = numeric;
+format = 0,0.000;
+readOnly = true;
+
+
+[columns_17]
+type = text;
+readOnly = true;
+
+[columns_18]
+type = text;
+readOnly = true;
+
+[columns_19]
+type = text;
+readOnly = true;

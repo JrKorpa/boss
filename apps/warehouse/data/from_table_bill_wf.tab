@@ -1,0 +1,76 @@
+id = #from_table_data_bill_wf;
+
+[title]
+0 = "货号";
+1 = "款号";
+2 = "主成色重";
+3 = "主石粒数";
+4 = "零售价";
+5 = "零售价小计";
+6 = "副石粒数";
+7 = "副石重";
+8 = "颜色";
+9 = "净度";
+10 = "证书号";
+11 = "货品名称";
+
+[label]
+0 = "goods_id";
+1 = "goods_sn";
+2 = "goods_sn";
+3 = "put_in_type";
+4 = "zhushiyanse";
+5 = "zhushilishu";
+6 = "zuanshidaxiao";
+7 = "fushilishu";
+8 = "fushizhong";
+9 = "yanse";
+10 = "jingdu";
+11 = "zhengshuhao";
+
+[columns_0]
+type = text;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+type = text;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = text;
+readOnly = true;
+
+[columns_8]
+type = text;
+readOnly = true;
+
+[columns_9]
+type = text;
+readOnly = true;
+
+[columns_10]
+type = text;
+readOnly = true;
+
+[columns_11]
+type = text;
+readOnly = true;

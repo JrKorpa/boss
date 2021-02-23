@@ -1,0 +1,29 @@
+<div class="portlet-body">
+	<!-- 表格1 -->
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<th>操作</th>
+				<th>操作备注</th>
+				<th>操作人</th>
+				<th>操作时间</th>
+			</tr>
+			<%foreach from=$list item=opra %>
+			<tr>
+				<td><%$dd->getEnum('buchan_fac_opra',$opra.opra_action)%></td>
+				<td><%$opra.opra_info%></td>
+				<td><%$opra.opra_uname%></td>
+				<td><%$opra.opra_time%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

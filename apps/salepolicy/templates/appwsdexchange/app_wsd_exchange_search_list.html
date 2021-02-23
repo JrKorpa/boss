@@ -1,0 +1,35 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>万事达卡号</th>
+                <th>顾客姓名</th>
+                <th>手机号</th>
+                <th>销售顾问</th>
+                <th>销售渠道</th>
+                <th>预约状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="app_wsd_exchange_list_<%$d.wsd_id%>" data-title="<%$d.wsd_id%>">
+				<td><%$d.wsd_code%></td>
+                <td><%$d.wsd_name%></td>
+                <td><%$d.wsd_mobile%></td>
+                <td><%$d.wsd_user%></td>
+                <td><%$d.wsd_department_name%></td>
+                <td><%if $d.wsd_is_bespoke == 2%>已预约<%else%>未预约<%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

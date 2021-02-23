@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>单号</th>
+			<th>状态</th>
+			<th>货总数</th>
+			<th>货总金额</th>
+			<th>供应商</th>
+			<th>出货单号</th>
+			<th>制单人</th>
+			<th>审核人</th>
+			<th>制单时间</th>
+			<th>审核时间</th>
+			<th>备注(返修原因)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="defective_product_list_<%$d.id%>" data-title="单号<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$dd->getEnum('bl_status',$d.status)%></td>
+			<td><%$d.num%></td>
+			<td><%$d.total%></td>
+			<td><%$d.prc_name%></td>
+			<td><%$d.ship_num%></td>
+			<td><%$d.make_name%></td>
+			<td><%$d.check_name%></td>
+			<td><%$d.make_time%></td>
+			<td><%$d.check_time %></td>
+			<td><%$d.note %></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

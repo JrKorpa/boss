@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第三方抓单备注工具(复制功能请用ie浏览器)</title>
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+</head>
+
+<body>
+<div class="page">
+	<div style="width:100%; height:30px; line-height:30px; text-align:center">
+    	请输入淘宝订单：<input type="text" name="out_order_sn" id="out_order_sn" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" /><br/>
+    </div>
+	<div id="allline">
+        <div class="line">
+            <div class="typebox">
+                新产品线：
+                <select name="productline" onchange="showtbl(this)">
+                    <option value="h" selected="selected">黄金饰品</option>
+                    <option value="b">铂金</option>
+                    <option value="k">K金</option>
+                    <option value="dz">钻石(单钻)</option>
+                    <option value="qz">钻石(群镶钻)</option>
+                    <option value="p">裸钻定制、彩钻、定金链接</option>
+                </select>
+                &nbsp;&nbsp;产品类型：
+                <select name="producttype" onchange="showtbl(this)">
+                    <option value="戒指" selected="selected">戒指</option>
+                    <option value="项链">项链</option>
+                    <option value="吊坠">吊坠</option>
+                    <option value="耳钉">耳钉</option>
+                    <option value="手镯手链">手镯手链</option>
+                </select><br/>
+            </div>
+            <div class="name">
+            	客服姓名：
+                <select name="kf_name" style="width:100px;">
+                	<option value="无">无</option>
+                    <option value="孙雪城">孙雪城</option>
+                    <option value="刘娟">刘娟</option>
+                    <option value="林伟锋">林伟锋</option>
+                    <option value="胡俊杰">胡俊杰</option>
+                    <option value="彭凤">彭凤</option>
+                    <option value="温海花">温海花</option>
+                    <option value="陈扬扬">陈扬扬</option>
+                    <option value="谭晶">谭晶</option>
+                    <option value="周小燕">周小燕</option>
+                    <option value="甘璐">甘璐</option>
+                    <option value="黄赏娥">黄赏娥</option>
+                    <option value="甘万丽">甘万丽</option>
+                    <option value="陈楚蓉">陈楚蓉</option>
+                    <option value="黄清城">黄清城</option>
+                    <option value="陈作为">陈作为</option>
+                    <option value="陈玲俐">陈玲俐</option>
+                    <option value="龚惠玲">龚惠玲</option>
+                    <option value="何玉霞">何玉霞</option>
+                    <option value="苏丹丹">苏丹丹</option>
+                    <option value="亢思迪">亢思迪</option>
+                    <option value="谭艳华">谭艳华</option>
+                    <option value="李璐">李璐</option>
+                    <option value="张鑫">张鑫</option>
+                    <option value="廖刚明">廖刚明</option>
+                    <option value="侯艳琼">侯艳琼</option>
+                    <option value="辛娟">辛娟</option>
+                    <option value="刘桥林">刘桥林</option>
+                    <option value="黎慧慧">黎慧慧</option>
+                    <option value="黄勤强">黄勤强</option> 
+                </select><br/>
+            </div>
+            <div class="type1">
+                
+                <div class="dzjz">   
+                </div>
+                赠品款号：<input type="text" name="goods_sn" />&nbsp;多个赠品请以/分开<br/>
+                订单备注：<textarea name="remark"></textarea>
+            </div>
+            
+            <div class="type2">
+                <div class="qzjz">
+                </div>
+                商品材质：
+                <select name="caizhi">
+                    <option value=""></option>
+                    <option value="18K">18K</option>
+                    <option value="PT950">PT950</option>
+                    <option value="9K">9K</option>
+                    <option value="足金">足金</option>
+                    <option value="足金1">足金1</option>
+                    <option value="S925">S925</option>
+                    <option value="千足银">千足银</option>
+                    <option value="S990">S990</option>
+                    <option value="10K">10K</option>
+                    <option value="其它">其它</option>
+                    <option value="无">无</option>
+                    <option value="千足金银">千足金银</option>
+                    <option value="飓风">飓风</option>
+                </select><br/>
+                材质颜色：
+                <select name="caizhi_ys">
+                    <option value=""></option>
+                    <option value="白">白</option>
+                    <option value="黄">黄</option>
+                    <option value="玫瑰金">玫瑰金</option>
+                    <option value="分色">分色</option>
+                    <option value="黄白">黄白</option>
+                    <option value="玫瑰白">玫瑰白</option>
+                    <option value="彩金">彩金</option>
+                    <option value="玫瑰黄">玫瑰黄</option>
+                    <option value="大红">大红</option>
+                </select><br />
+                主钻大小：
+                <input type="text" name="zuzuan_dx" id="zuzuan_dx" />ct&nbsp;  如：0.2ct<br />
+                副钻大小：
+                <input type="text" name="fuzuan_dx" id="fuzuan_dx" />ct/
+                <input type="text" name="fuzuan_ls" id="fuzuan_ls" />p&nbsp 如：0.1ct/10p;
+                <br />
+                钻石颜色：
+                <select  name="stone_color" style="width:100px">
+                    <option value="白色">白色</option>
+                    <option value="DE">DE</option>
+                    <option value="FG">FG</option>
+                    <option value="H">H</option>
+                    <option value="I-J">I-J</option>
+                    <option value="F-G">K-L</option>
+                </select><br />
+                主石净度：
+                <select name="jingdu" style="width:100px">
+                    <option value="FL">FL</option>
+                    <option value="IF">IF</option>
+                    <option value="VVS">VVS</option>
+                    <option value="VS">VS</option>
+                    <option value="SI">SI</option>
+                    <option value="I">I</option>
+                    <option value="P">P</option>
+                    <option value="不分级净度">不分级净度</option>
+                </select><br />
+                赠品款号：
+                <input type="text" name="goods_sn" id="goods_sn" />&nbsp;多个赠品请以/分开<br/>
+                订单备注：
+                <textarea name="remark" id="remark"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <input type="button" value="生成订单备注" class="btn" onclick="createmark()" data-clipboard-target="remarkbox" id="copy" />
+    <input type="button" value="追加商品" class="btn" onclick="addtable()" />
+    <div id="remarkbox"></div>
+</div>
+</body>
+</html>

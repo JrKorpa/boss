@@ -1,0 +1,97 @@
+
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="defective_product_add">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="新增" readonly="true" value="新增">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="t_name" class="form-control"  readonly="true" value="<%$smarty.session.userName%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">审核人：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+							<label class="control-label">供应商：</label>
+							<select class="select2_category form-control" tabindex="1" name="prc_id">
+							<option value="">请选择</option>
+							<%foreach from=$Processor_list key=k item=value%>
+								<option value="<%$value.id%>|<%$value.name%>"><%$value.code%> | <%$value.name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">出货单号：<span style="color:red;">*</span></label>
+						<input type="text" name="ship_num" class="form-control" placeholder="请输入"  value="">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货总数：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货总金额：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">备注：<span style="color:red;">*</span></label>
+						<input type="text" name="note" id = 'note' class="form-control" placeholder="请输入"  value="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">上传详情：（注：需要上传csv文件）<span>&nbsp;&nbsp;<a href="index.php?mod=purchase&con=DefectiveProduct&act=downcsv" style="color:blue;">下载模板</a></span></label>
+						<input type="file" name="buliangdata" class="form-control" placeholder="请输入" readonly="true" value="">
+					</div>
+				</div>
+			<div class="clear"></div>
+		</div>
+		<!--<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div class="table-scrollable" id="defec_pro_from_table_data"></div>
+			<div class="pager"></div>
+		</div>
+		-->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/defective_product_add.js"%>
+//-->
+</script>

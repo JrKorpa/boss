@@ -1,0 +1,38 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="purchase_info_send_to_factory">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">工厂：</label>
+						<select class="select2_category form-control" tabindex="1" name="factory_id">
+							<%if !empty($factory_list.data)%>
+							<%foreach from=$factory_list.data item=l%>
+							<%if !empty($l.opra_uname)%>
+							<option value="<%$l.id%>:<%$l.name%>"><%$l.name%>&nbsp;|&nbsp;跟单人:<%$l.opra_uname|default:'未分配'%></option>
+							<%/if%>
+							<%/foreach%>
+							<%else%>
+							<option value="">请选择</option>
+							<%/if%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="style_ids" value="<%$style_ids%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<%include file="js/send_to_factory.js"%>
+</script>

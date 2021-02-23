@@ -1,0 +1,18 @@
+
+<div style="width:34mm;  border:1px solid #ccc; background:#FFF; margin:0px 0px 0px 4px; padding:0px; font-size:2.5mm;font-family:'微软雅黑'">
+  <span style="display: block;text-align:center;font-family:'宋体'"><img src="http://bardcode.kela.cn/index.php?code_sn=<%$d.id%>" width='110' height='20' /></span>
+	<div style='text-align:center;'>
+		<%if $d.order_class == 1%>线上<%elseif $d.order_class == 2%>线下<%else%><%/if%>&nbsp;&nbsp;<span style="font-size:1.4em"><%$d.id%>&nbsp;<%$subStrMaintainType%>&nbsp;<%if $d.after_sale == 1 %>售后<%/if%></span>
+	</div>
+	<div style="text-align:center;"><%$d.order_sn%></div>
+	<div style="padding-bottom:5px;">
+		<%if $d.goods_id%>
+		货号:<%$d.goods_id%><br />
+		<%/if%>
+		客户姓名:<%$d.consignee%>
+	</div>
+	属性:<%$d.zuanshidaxiao%>ct/<%$d.zhuchengse%>/<%$d.shoucun%>#<br />
+	维修项:<%$d.repair_act%><br/>
+	备注:<%$d.remark%>
+</div>
+

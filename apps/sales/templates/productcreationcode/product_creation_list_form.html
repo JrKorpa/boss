@@ -1,0 +1,119 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="gift_goods_search_form_gs">
+			<div class="form-body">
+				<div class="row">
+                  <div class="col-sm-3">
+                    	<div class="form-group">
+                            <label class="control-label">销售渠道：</label>
+                            <select class="select2_category form-control" name="department_id" tabindex="1">
+                                <option value="" >请选择</option>
+                                <%foreach from=$channelList key=key item=value%>
+                                    <option value="<%$value.id%>" ><%$value.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                  </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">创建人：</label>
+                        <input type="text" name="create_user" class="form-control" placeholder="" value="" />
+                    </div>
+                </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                               <label class="control-label">订单号：</label>
+                     		   <input type="text" name="order_sn" class="form-control" placeholder="" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                       <div class="form-group">
+                           <label class="control-label">款式来源渠道：</label>
+                            <select class="select2_category form-control" name="department_id_from" tabindex="1">
+                                    <option value="" >请选择</option>
+                                <%foreach from=$channelList key=key item=value%>
+                                    <option value="<%$value.id%>" ><%$value.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                       </div>
+                   </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">成品定制码：</label>
+                     	    <input type="text" name="id" class="form-control" placeholder="" value="" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                             <label class="control-label">销售顾问：</label>
+                     	    <input type="text" name="sale_user" class="form-control" placeholder="" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">使用状态：</label>
+                            <select class="select2_category form-control" name="status" tabindex="1">
+                                    <option value="0" >未使用</option>
+                                    <option value="1" >已使用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  
+                </div>
+                
+            </div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="gift_goods_search_list_gs"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_createion_list_goods_list.js"%>
+//-->
+</script>

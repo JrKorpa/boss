@@ -1,0 +1,92 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>            
+            <th colspan="8">进店人数管理</th>
+            <th colspan="8">进店销售额管理</th>
+        </tr>
+        <tr>
+            <th>来源<br/>分类</th>
+            <th>客户<br/>来源</th>
+            <th>黄金实际成单数</th>
+            <th>黄金实际成交客户数<br/>（不含换购）</th>
+            <th>黄金换购人数</th>
+            <th>黄金成交率</th>
+            <th>非黄金实际成单数</th>
+            <th>非黄金实际成交客户数<br/>（不含换购）</th>
+            <th>非黄金换购人数</th>
+            <th>非黄金成交率</th>
+
+            <th>黄金总业绩</th>
+            <th>黄金总业绩<br/>（不含换购）</th>
+            <th>黄金客单价</th>
+            <th>黄金客单价<br/>（不含换购）</th>
+            <th>非黄金总业绩</th>
+            <th>非黄金总业绩<br/>（不含换购）</th>
+            <th>非黄金客单价</th>
+            <th>非黄金客单价<br/>（不含换购）</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$data item=sourcearr key=fenlei%>
+            <%foreach from=$sourcearr item=tydinfo key=row%>
+                <tr>
+                    <%if $row<1 %>
+                    <td style="vertical-align:middle" rowspan="<%$sourcearr|@count%>">
+                    <!--渠道/负责人--><%$types[$fenlei]%></td>
+                    <%/if%>
+                    <td><!--各渠道合计--><%if isset($ctinfo[$tydinfo.customer_source_id])%><%$ctinfo[$tydinfo.customer_source_id]%><%else%><%$tydinfo.source_name%><%/if%></td>
+                    <td><%$tydinfo.gold_num%></td>
+                    <td><%$tydinfo.gold_num_hg%></td>
+                    <td><%$tydinfo.gold_not_hg_num%></td>
+                    <td><%$tydinfo.gold_chengjiaolv%>%</td>
+                    <td><%$tydinfo.no_gold_num%></td>
+                    <td><%$tydinfo.no_gold_num_hg%></td>
+                    <td><%$tydinfo.no_gold_not_hg_num%></td>
+                    <td><%$tydinfo.no_gold_chengjiaolv%>%</td>
+
+                    <td><%$tydinfo.gold_performance_total%></td>
+                    <td><%$tydinfo.gold_performance_total_hg%></td>
+                    <td><%$tydinfo.gold_kedanjia%></td>
+                    <td><%$tydinfo.gold_kedanjia_not_hg%></td>
+                    <td><%$tydinfo.no_gold_performance_total%></td>
+                    <td><%$tydinfo.no_gold_performance_total_hg%></td>
+                    <td><%$tydinfo.no_gold_kedanjia%></td>
+                    <td><%$tydinfo.no_gold_kedanjia_not_hg%></td>
+                </tr>
+            <%/foreach%>
+        <%/foreach%>
+        <tr>
+            <td style="vertical-align:middle" rowspan="<%$sourcearr|@count%>">合计：</td>
+            <td></td>
+            <td><%$all_total.gold_num%></td>
+            <td><%$all_total.gold_num_hg%></td>
+            <td><%$all_total.gold_not_hg_num%></td>
+            <td><%$all_total.gold_chengjiaolv%>%</td>
+            <td><%$all_total.no_gold_num%></td>
+            <td><%$all_total.no_gold_num_hg%></td>
+            <td><%$all_total.no_gold_not_hg_num%></td>
+            <td><%$all_total.no_gold_chengjiaolv%>%</td>
+
+            <td><%$all_total.gold_performance_total%></td>
+            <td><%$all_total.gold_performance_total_hg%></td>
+            <td><%$all_total.gold_kedanjia%></td>
+            <td><%$all_total.gold_kedanjia_not_hg%></td>
+            <td><%$all_total.no_gold_performance_total%></td>
+            <td><%$all_total.no_gold_performance_total_hg%></td>
+            <td><%$all_total.no_gold_kedanjia%></td>
+            <td><%$all_total.no_gold_kedanjia_not_hg%></td>
+        </tr>
+        </tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

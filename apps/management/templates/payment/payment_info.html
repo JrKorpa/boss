@@ -1,0 +1,167 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="payment_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">支付名称：</label>
+                        <input type="text" name="pay_name" class="form-control" placeholder="请输入" value="<%$view->get_pay_name()%>" maxlength="50"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">拼音名称：</label>
+                        <input type="text" name="pay_code" class="form-control" placeholder="请输入" onkeyup="value=value.toUpperCase()" value="<%$view->get_pay_code()%>" maxlength="50" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">手续费：</label>
+                        <input type="text" name="pay_fee" class="form-control" placeholder="请输入" value="<%$view->get_pay_fee()%>" maxlength="13" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">使用范围：</label>
+                        <div class="checkbox-list">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="Checkbox1" name="is_online" value="1"
+                                <%if $view->get_is_online() == 1%>checked="checked"<%/if%>>线上
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="Checkbox2" name="is_offline" value="1"
+                                <%if $view->get_is_offline() == 1%>checked="checked"<%/if%>>线下
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+               <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">使用方式：</label>
+                        <div class="checkbox-list">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="Checkbox3" name="is_order" value="1"
+                                <%if $view->get_is_order() == 1%>checked="checked"<%/if%>>订购
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="Checkbox4" name="is_balance" value="1"
+                                <%if $view->get_is_balance() == 1%>checked="checked"<%/if%>>结算
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">启用：</label>
+						<div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_enabled" <%if $view->get_is_enabled()==$value.name or ($view->get_is_enabled()=="" and $k==0)%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+						</div>
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">批发零售：</label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("payment.ispfls") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_pfls" <%if $view->get_is_pfls()==$value.name%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">备案开关：</label>
+						<div class="radio-list">
+						    <label class="radio-inline">
+							<input type="radio" name="is_beian"<%if $view->get_is_beian()==0%> checked="checked"<%/if%> value="0"> 关闭
+                            </label>
+							<label class="radio-inline">
+							<input type="radio" name="is_beian"<%if $view->get_is_beian()==1%> checked="checked"<%/if%> value="1"> 开启
+                            </label>                        
+						</div>
+                    </div>
+				</div>
+                <!--<div class="col-sm-3">
+					<div class="form-group">
+                        <label class="control-label">货到付款：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_cod" <%if $view->get_is_cod()==$value.name or ($view->get_is_cod()=="" and $k==0)%>
+								checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+                    </div>
+				</div>
+                <div class="col-sm-3">
+					<div class="form-group">
+                        <label class="control-label">网络支付：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_web" <%if $view->get_is_web()==$value.name or ($view->get_is_web()=="" and $k==0)%>
+								checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否显示：</label>
+ 						<div class="radio-list">
+						   <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_display" <%if $view->get_is_display()==$value.name or ($view->get_is_display()=="" and $k==0)%>
+								checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+                </div>-->
+			</div>
+			<div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">配置项：</label>
+                        <textarea class="form-control" name="pay_config" rows="3"><%$view->get_pay_config()%></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">描述：</label>
+                        <textarea class="form-control" name="pay_desc" rows="3"><%$view->get_pay_desc()%></textarea>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$view->get_id()%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+		</div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file="js/payment_info.js"%>
+//-->
+</script>

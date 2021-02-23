@@ -1,0 +1,103 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form">
+			<div class="form-body">
+				<button class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">离开<i class="fa fa-mail-reply"></i></button>
+			</div>
+		<!-- 表单内容 -->
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_1">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 取消全部收款</button>
+			</div>
+		</form>
+		<%if $smarty.session.userName eq 'admin'%>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_2">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" value="2" class="btn btn-sm green"><i class="fa fa-search"></i> 取消全部退款</button>
+			</div>
+		</form>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_3">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 取消申请关闭</button>
+			</div>
+		</form>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_4">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 已付款转为支付订金状态</button>
+			</div>
+		</form>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_5">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 已审核改为未审核状态</button>
+			</div>
+		</form>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_6">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 发货状态改为允许发货</button>
+			</div>
+		</form>
+		<%/if%>
+		<%if $smarty.const.SYS_SCOPE eq 'boss'%>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_7">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 未付款转为财务备案</button>
+			</div>
+		</form>
+		<%/if%>
+		<%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+		<%if $user_company_id eq '58'%>
+		<form action="#" class="form-inline" role="form" method="post" id="order_info_modfiy_info_7">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 未付款转为财务备案</button>
+			</div>
+		</form>
+		<%/if%>
+		<%/if%>
+
+
+
+		<!-- END FORM-->
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/order_info_modfiy_info.js"%>
+//-->
+</script>

@@ -1,0 +1,30 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="sign_p_bill_form">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">签入仓库：</label>
+						<select class="select2_category form-control" name="to_warehouse" id="to_warehouse" tabindex="1" >
+							<option value=""></option>
+							<%foreach from=$warehouse item=c%>
+							<option value="<%$c.id%>|<%$c.name%>"> <%$c.code%> | <%$c.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+	<%include file="js/sign_p_bill.js"%>
+</script>

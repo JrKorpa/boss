@@ -1,0 +1,91 @@
+<div class="table-toolbar">
+	<div class="table-toolbar">
+	<button class="btn btn-sm yellow" data-title="应付申请" list-id="141" title="应付申请单提交" name="审核" data-url="index.php?mod=finance&con=PayApply&act=checkCon" onclick="util.cust(this,checkCon);">
+	审核  <i class="fa fa-sign-in"></i>
+	</button>
+	<button class="btn btn-sm red" data-title="应付申请" list-id="141" title="应付申请单取消" name="驳回" data-url="index.php?mod=finance&con=PayApply&act=reCon" onclick="util.cust(this,reCon);">
+驳回  <i class="fa fa-trash-o"></i>
+	</button>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>应付申请单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>单号</b></td>
+					<td><%$info['pay_apply_number']|default:''%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('app_pay_apply.status',$info['status'])%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$info['make_name']|default:''%></td>
+					<td><b>制单时间</b></td>
+					<td><%$info['make_time']|default:''%></td>
+				</tr>
+				<tr>
+					<td><b>审核人</b></td>
+					<td><%$info['check_name']|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$info['check_time']|default:''%></td>
+				</tr>
+				<tr>
+					<td><b>数量：</b></td>
+					<td><%$info['amount']|default:''%></td>
+					<td><b>应付金额：</b></td>
+					<td><%$info['total_cope']|default:''%></td>
+				</tr>
+				<tr>
+					<td><b>供应商</b></td>
+					<td><%$info['prc_name']|default:''%></td>
+					<td><b>应付类型</b></td>
+					<td><%$dd->getEnum('app_pay_should.pay_type', $info['pay_type'])%></td>
+				</tr>
+				<tr>
+					<td><b>发票号</b></td>
+					<td><%$info['fapiao']|default:''%></td>
+					<td><b></b></td>
+					<td>
+						<a href="?mod=finance&con=PayApply&act=downData&id=<%$info['apply_id']%>">下载申请明细列表</a></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>应付申请单明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="pay_apply_show_list<%$info['apply_id']%>">
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_show_info.js"%>
+	<%include file="js/app_apply_sub.js"%>
+//-->
+</script>

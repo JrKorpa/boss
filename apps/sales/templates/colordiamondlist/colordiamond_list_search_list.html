@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>产品编码</th>
+			<th>石重</th>
+			<th>形状</th>
+			<th>颜色</th>
+			<th>颜色分级</th>
+			<th>净度</th>
+			<th>证书类型</th>
+			<th>证书号</th>
+			<th>BDD价</th>
+			<th>供应商</th>
+			<th>库房</th>
+			<!--<th>所在地</th>-->
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_diamond_color_list_<%$d.id%>" data-title="<%$d.goods_sn%>">
+			<td align="center"><%if isset($d.goods_sn)%><%$d.goods_sn%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.carat)%><%$d.carat%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.shape)%><%$d.shape%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.color_grade)%><%$d.color_grade%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.price)%><%$d.price%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.from_ad)%><%$d.from_ad%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.warehouse)%><%$d.warehouse%><%else%><%/if%></td>
+			<!--<td align="center"><%if isset($d.warehouse)%><%$d.warehouse%><%else%>期货<%/if%></td>-->
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,133 @@
+<?php
+
+function boss_on_refresh_order($data, $db) {
+
+	if (empty($data) || !isset($data['order_id'])) return false;
+	
+	$order_id = intval(trim($data['order_id']));
+	if ($order_id <= 2617377) return;
+		
+	refresh_order($db, $order_id);
+}
+
+function zhanting_on_refresh_order($data, $db) {
+	if (empty($data) || !isset($data['order_id'])) return false;
+	
+	$order_id = intval(trim($data['order_id']));
+	if ($order_id <= 35472) return;
+		
+	refresh_order($db, $order_id);
+}
+
+function refresh_order($db, $order_id) {
+	// 查询订单数据，如果订单无效，或申请关闭，或正在退款退货，或已删除，或已配货发货，则不再修改订单信息
+	$order_info = $db->getRow("select * from base_order_info where id ={$order_id}");
+	if (empty($order_info) || $order_info['order_status'] != '2' || $order_info['apply_close'] != '0' || $order_info['apply_return'] != '1' || $order_info['is_delete'] != '0' || ($order_info['delivery_status'] = 5 && $order_info['send_good_status'] > 1)) {
+		return false;
+	}
+		
+	echo 'start processing order:'.$order_id.PHP_EOL;
+	// 现货期货
+	$db->exec("update base_order_info a
+	set a.is_xianhuo = (case a.is_xianhuo when 0 then 1 when 1 then 0 end)
+	where a.id = '{$order_id}' and a.order_status = 2 and a.is_delete = 0 and a.apply_close = 0 and a.apply_return = 1 and ((a.is_xianhuo = 1 and exists(SELECT 1 from app_order_details d where d.is_stock_goods = 0 and d.order_id = a.id and d.is_return = 0)) or (a.is_xianhuo = 0 and not exists(SELECT 1 from app_order_details d where d.is_stock_goods = 0 and d.order_id = a.id and d.is_return = 0)));");
+		
+	// 布产状态
+	$db->exec("update app_order_details d inner join kela_supplier.product_info p on d.bc_id = p.id set d.buchan_status = p.`status` where d.order_id = '{$order_id}' and d.is_stock_goods = 0 and p.`status` != d.buchan_status;
+	update base_order_info i inner JOIN
+	(
+		select order_id, min(buchan_status) as buchan from app_order_details 
+		where is_stock_goods = 0 and is_return = 0
+		where order_id = {$order_id}
+	) d on d.order_id = i.id
+	set i.buchan_status = (case when d.buchan in (10, 1) then 1 when d.buchan in (2,3) then 2 when d.buchan in (4,7) then 3 when d.buchan = 9 then 4 when d.buchan = 11 then 5 else i.buchan_status end)
+	where i.id ={$order_id};");
+		
+	//赠品及销账标志
+	$db->exec(
+	"update app_order_details d inner join gift_goods s on d.goods_sn = s.goods_number and s.`status` = 1 
+	set d.is_zp = (case when d.is_stock_goods = 1 and d.goods_price = d.favorable_price and d.favorable_status = 3 then 1 else 0 end), 
+	d.is_finance = (case when d.is_stock_goods = 1 and d.goods_price = d.favorable_price and d.favorable_status = 3 then s.is_xz else 2 end)
+	where d.order_id = {$order_id} and d.is_return = 0;
+
+	update base_order_info i inner join 
+	(
+		select order_id, min(case when is_zp is null then 0 when LENGTH(is_zp) = 0 then 0 else is_zp end) as all_is_zp from app_order_details where is_return = 0 where order_id ={$order_id}
+	) g on g.order_id = i.id
+	set i.is_zp = g.all_is_zp
+	where i.id ={$order_id} and i.is_zp != g.all_is_zp;");
+
+	// 重复点款记录
+	$db->exec(
+	"DELETE p from finance.app_order_pay_action p INNER JOIN 
+	(
+		select order_sn, min(pay_id) as min_id, max(`STATUS`) as max_status, order_amount, deposit, remark, pay_type, balance, pay_time, order_consignee, department, opter_name, system_flg, is_type, out_order_sn from finance.app_order_pay_action
+		where `order_id` = {$order_id} and `is_type` = 1 and `status` != 4
+		group by order_sn, order_amount, deposit, remark, pay_type, balance, pay_time, order_consignee, department, opter_name, system_flg, is_type, out_order_sn
+		HAVING(count(1) > 1)
+	) g on g.order_sn = p.order_sn and g.order_amount=p.order_amount and g.deposit=p.deposit and g.remark=p.remark and g.pay_type=p.pay_type and g.balance=p.balance and g.pay_time=p.pay_time and g.order_consignee =p.order_consignee and g.department=p.department and g.opter_name=p.opter_name and g.system_flg=p.system_flg and g.is_type=p.is_type and g.out_order_sn=p.out_order_sn
+	where (g.max_status = 1 and p.pay_id > g.min_id) or (g.max_status > 1 and p.`status` < g.max_status);");
+
+	// 订单金额
+	/*
+	$db->exec(
+	"update app_order_account ac inner join 
+	(
+		SELECT 
+			i.id, i.order_sn, 
+			d.goods_price, 
+			d.favorable_price ,
+			IFNULL(f.deposit, 0) as deposit ,
+			(IFNULL(d.goods_price,0)-IFNULL(d.favorable_price,0)-IFNULL(d.refund_goods_price,0)+IFNULL(d.refund_favor_price,0)-IFNULL(a.coupon_price,0)+IFNULL(a.shipping_fee,0)-IFNULL(g.spec_return_amount,0)) as order_amount,
+			IFNULL(g.real_return_amount, 0) as real_return_amount,
+		  (IFNULL(d.goods_price,0)-IFNULL(d.favorable_price,0)-IFNULL(d.refund_goods_price,0)+IFNULL(d.refund_favor_price,0)-IFNULL(a.coupon_price,0)+IFNULL(a.shipping_fee,0)-IFNULL(g.spec_return_amount,0)-IFNULL(f.deposit,0)+IFNULL(g.real_return_amount,0)) as real_money_unpaid
+		from base_order_info i 
+		left JOIN
+		(
+			SELECT order_id, SUM(case when check_status >=4 then real_return_amount else 0 end) as real_return_amount, sum(case when return_by = 2 and check_status >= 4 then real_return_amount else 0 end) as spec_return_amount from app_return_goods where order_id = {$order_id} and check_status > 0
+		) g on g.order_id = i.id
+		left JOIN
+		(
+			select order_id, sum(deposit) as deposit from finance.app_order_pay_action
+			where order_id = {$order_id} and is_type = 1 and `status` != 4
+		) f on f.order_id = i.id
+		left JOIN (
+			SELECT order_id, sum(goods_price) as goods_price, sum(case when is_return = 1 then goods_price else 0 end) as refund_goods_price, sum(case when favorable_status = 3 then favorable_price else 0 end) as favorable_price, sum(case when is_return = 1 and favorable_status = 3 then favorable_price else 0 end) as refund_favor_price from app_order_details where order_id = {$order_id}
+		) d on d.order_id = i.id
+		inner JOIN app_order_account a on a.order_id = i.id
+		where i.id = {$order_id} and (
+			a.goods_amount != IFNULL(d.goods_price,0) or a.favorable_price != IFNULL(d.favorable_price,0) or a.money_paid != IFNULL(f.deposit,0) 
+			or a.order_amount != (IFNULL(d.goods_price,0)-IFNULL(d.favorable_price,0)-IFNULL(d.refund_goods_price,0)+IFNULL(d.refund_favor_price,0)-IFNULL(a.coupon_price,0)+IFNULL(a.shipping_fee,0)-IFNULL(g.spec_return_amount,0))
+			or a.goods_return_price != IFNULL(g.real_return_amount,0)
+			or a.money_unpaid != (IFNULL(d.goods_price,0)-IFNULL(d.favorable_price,0)-IFNULL(d.refund_goods_price,0)+IFNULL(d.refund_favor_price,0)-IFNULL(a.coupon_price,0)+IFNULL(a.shipping_fee,0)-IFNULL(g.spec_return_amount,0)-IFNULL(f.deposit,0)+IFNULL(g.real_return_amount,0))
+		) and (IFNULL(d.goods_price,0)-IFNULL(d.favorable_price,0)-IFNULL(d.refund_goods_price,0)+IFNULL(d.refund_favor_price,0)-IFNULL(a.coupon_price,0)+IFNULL(a.shipping_fee,0)-IFNULL(g.spec_return_amount,0)) >= 0 
+	) g on g.id = ac.order_id
+	set ac.order_amount = ifnull(g.order_amount,0), ac.goods_amount = ifnull(g.goods_price,0), ac.favorable_price = ifnull(g.favorable_price,0), ac.money_paid = ifnull(g.deposit,0), ac.goods_return_price = ifnull(g.real_return_amount,0), ac.money_unpaid = (case when g.real_money_unpaid <0 then 0 else g.real_money_unpaid end);
+
+	update base_order_info o inner JOIN (
+		SELECT a.order_id, (case when a.money_unpaid=0 then 3 when a.money_paid = 0 and a.money_unpaid > 0 then 1 else 2 end) as real_pay_status from app_order_account a 
+		where a.order_id = {$order_id} 
+	) g on g.order_id = o.id 
+	set o.order_pay_status = g.real_pay_status
+	where o.id = {$order_id} and o.order_pay_status < g.real_pay_status;");
+	*/
+	$db->exec(
+	"update base_order_info o inner JOIN (
+		SELECT a.order_id, (case when a.money_unpaid=0 then 3 when a.money_paid = 0 and a.money_unpaid > 0 then 1 else 2 end) as real_pay_status from app_order_account a 
+		where a.order_id = {$order_id} 
+	) g on g.order_id = o.id 
+	set o.order_pay_status = g.real_pay_status
+	where o.id = {$order_id} and o.order_pay_status < g.real_pay_status;");
+		
+	// 配货状态
+	$db->exec("update base_order_info set delivery_status = 2 where id={$order_id} and delivery_status = 1 and (order_pay_status = 3 or order_pay_status = 4) and (is_xianhuo = 1 or buchan_status in (4, 5));");
+	
+	// 证书类型
+	$db->exec(
+	"update app_order_details a left join front.diamond_info_all d on a.zhengshuhao = d.cert_id and ifnull(d.cert_id, '') <> ''
+left join warehouse_shipping.warehouse_goods g on g.goods_id = IF(IFNULL(a.goods_id,'') = '',a.ext_goods_sn,a.goods_id)
+set a.cert = IF(IFNULL(g.zhengshuleibie,'') = '',d.cert, g.zhengshuleibie), a.goods_type = (case when a.cat_type in (17, 19) or a.product_type in (6, 17, 29) then 'lz' else a.goods_type end)
+where a.order_id = {$order_id} and (((ifnull(d.cert, '') <> '' or ifnull(g.zhengshuleibie, '') <> '') and a.cert <> IF(IFNULL(g.zhengshuleibie,'') = '',d.cert, g.zhengshuleibie)) or a.goods_type <> (case when a.cat_type in (17, 19) or a.product_type in (6, 17, 29) then 'lz' else a.goods_type end));");
+}
+
+?>

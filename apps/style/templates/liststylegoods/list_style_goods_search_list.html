@@ -1,0 +1,107 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#list_style_goods_search_list .checkboxes" /></th>
+                <th>款号</th>
+                <th>商品编号</th>
+				<th>是否快速定制</th>
+                <th>主石重</th>
+                <th>主石数</th>
+                <th>副石1重</th>
+                <th>副石1数</th>
+                <th>副石2重</th>
+                <th>副石2数</th>
+                <th>副石3重</th>
+                <th>副石3数</th>
+                <th>其他副石成本价</th>
+                <th>材质</th>
+                <th>材质颜色</th>
+                <th>材质金重</th>
+                <th>金重上公差</th>
+                <th>金重下公差</th>
+                <th>镶口</th>
+                <th>手寸</th>
+                <th>材质费</th>
+                <th>超石工费</th>
+                <th>表面工艺费</th>
+                <!--<th>金托工费</th>-->
+                <!--<th>表面工艺处理工费</th>-->
+                <!--<th>副石镶石费</th>-->
+                <!--<th>指圈</th>-->
+                <th>定制成本</th>
+                <th>状态</th>
+                <th>镶口可定制公司</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach from=$page_list.data key=key item=d%>
+            <tr data-id="rel_style_attribute_list_<%$d.goods_id%>" data-title="<%$d.goods_id%>">
+                <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.goods_id%>" /></td>
+                <td><%$d.style_sn%></td>
+                <td><%$d.goods_sn%></td>
+				<td style=" text-align:center"><%if $d.is_quick_diy==1%>是<%else%>否<%/if%></td>
+                <td><%$d.zhushizhong%></td>
+                <td><%$d.zhushi_num%></td>
+                <td><%$d.fushizhong1%></td>
+                <td><%$d.fushi_num1%></td>
+                <td><%$d.fushizhong2%></td>
+                <td><%$d.fushi_num2%></td>
+                <td><%$d.fushizhong3%></td>
+                <td><%$d.fushi_num3%></td>
+                <td><%$d.fushi_chengbenjia_other|default:'0.00'%></td>
+                <td><%$d.caizhitype|default:'----'%></td>
+                <td><%$d.pcolor|default:'----'%></td>
+                <td><%$d.weight%></td>
+                <td><%$d.jincha_shang%></td>
+                <td><%$d.jincha_xia%></td>
+                <td><%$d.xiangkou%></td>
+                <td><%$d.shoucun%></td>
+                <td><%$d.caizhifee|default:'----'%></td>
+                <td><%$d.chaoshifee|default:'----'%></td>
+                <td><%$d.biaomiangongyifee|default:'----'%></td>
+                <td><%$d.dingzhichengben%></td>
+                <td style="color: <%if $d.is_ok==1%>green<%else%>red<%/if%>"><%if $d.is_ok==1%>上架<%else%>下架<%/if%></td>
+                <td><%$d.xiangkou_company_type%></td>
+            </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<%$pa%>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#list_style_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+    test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+    }
+  });
+}
+
+// table 复选框全选
+$('#list_style_goods_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+    var checked = $(this).is(":checked");
+    $(set).each(function () {
+        if (checked) {
+            $(this).attr("checked", true);
+            $(this).parents('tr').addClass("active");
+        } else {
+            $(this).attr("checked", false);
+            $(this).parents('tr').removeClass("active");
+        }                    
+    });
+    $.uniform.update(set);
+});
+$('#list_style_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+    $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

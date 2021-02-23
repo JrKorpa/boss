@@ -1,0 +1,40 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>部门名称</td>
+					<td><%$view->get_name()%></td>
+				</tr>
+				<tr>
+					<td>部门编码</td>
+					<td><%$view->get_code()%></td>
+				</tr>
+				<tr>
+					<td>上级部门</td>
+					<td><%if $view->get_parent_id()%><a href="javascript:;" class="tab-con-a" data-title="<%$view->getParentName($view->get_parent_id())%>" data-url="index.php?mod=management&con=Department&act=show&id=<%$view->get_parent_id()%>"  data-id="department-<%$view->get_parent_id()%>"><%$view->getParentName($view->get_parent_id())%></a><%else%>顶级<%/if%>
+					</td>
+				</tr>
+
+				<tr>
+					<td>描述</td>
+					<td><%$view->get_note()%></td>
+				</tr>	
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

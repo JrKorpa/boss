@@ -1,0 +1,43 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="point_code_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<!--<label class="control-label">销售渠道：</label>
+						<input type="text" name="channels_id" class="form-control" placeholder="请输入" value="" maxlength="50"/>-->
+						<label class="control-label">销售渠道：</label>
+						<select class="form-control" tabindex="1" name="channels_id">
+							<option value="">请选择</option>
+							<%foreach from=$channels key=key item=p %>
+							<option value="<%$p.id%>"<%if $p.id==$def_id%>selected="selected"<%/if%>><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<!--<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">积分码：</label>
+						<input type="text" name="point_code" class="form-control" placeholder="请输入" value="" maxlength="50"/>
+					</div>
+				</div>-->
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="type" value="<%$type%>"/>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file="js/point_code_info.js"%>
+//-->
+</script>

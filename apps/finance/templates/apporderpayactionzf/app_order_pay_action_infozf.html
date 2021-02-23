@@ -1,0 +1,102 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_pay_action_info">
+        <div  id="app_order_pay_action_info_addbox">
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>支付方式
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse"></a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">定金收据号：</label>
+                                <input type="text" name="deposit_sn[]" onblur="checkpaytype222(this)" class="form-control" placeholder="无定金收据,请留空" value="" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"><span style="color: red">*</span>支付金额：</label>
+                                <input type="text" name="order_deposit[]" class="form-control" placeholder="" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"><span style="color: red">*</span>支付时间：</label>
+                                <div data-date-viewmode="years" data-date-format="yyyy-dd-mm" class="input-group input-medium date date-picker" data-date-end-date="+0d">
+                                    <input type="text" readonly="" name="pay_time[]" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn default"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">选择日期</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label"><span style="color: red">*</span>支付类型：</label>
+                                <select class="form-control" tabindex="1" name="pay_type[]">
+                                    <option value=""></option>
+                                    <%foreach from=$paymentList item=d%>
+                                    <option value="<%$d.id%>"><%$d.pay_name%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="is_div" style="display: none">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">卡号：</label><span style="color:red">只能输入一个卡号</span>
+                                    <input type="text" maxlength="30" name="card_no[]" class="form-control" placeholder="" value="" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">刷卡凭证：</label>
+                                    <input type="text" name="card_voucher[]" class="form-control" placeholder="" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="is_div_end" style="display: none">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"><span style="color:red">*</span>转单流水号：</label>
+                                    <input type="text" maxlength="30" name="zhuandan_no[]" class="form-control" placeholder="" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">操作备注：</label>
+                                <textarea class="form-control" rows="3" name="action_note[]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info"> 应付: ￥<%$data.money_unpaid%>元</div>
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="order_id" value="<%$order_id%>" />
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="button" class="btn btn-primary" onclick=""><i class="fa fa-plus"></i> 添加支付方式</button>
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                <!--<button type="button" class="btn yellow" onclick="addPayMethod()"><i class="fa fa-check"></i> 添加支付方式</button>-->
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_order_pay_action_info.js" %>
+//-->
+</script>

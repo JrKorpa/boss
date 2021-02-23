@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>单据类型</th>
+			<th>单据类型名称</th>
+			<th>单据类型字母标识</th>
+			<th>是否启用</th>
+			<th>添加人</th>
+			<th>添加时间</th>
+			<th>操作ip</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_list_<%$d.id%>" data-title="<%$d.type_name%>">
+			<td  align="center"><%$d.id%></td>
+			<td  align="center"> <%if $d.in_out==1%>出库<%else%>入库<%/if%></td>
+			<td  align="center"><%$d.type_name%></td>
+			<td align="center"><%$d.type_SN%></td>
+			<td  align="center"><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+			<td  align="center"> <%$d.opra_name%></td>
+			<td  align="center"><%$d.opra_time%></td>
+			<td align="center">
+			<%$d.opra_ip %>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

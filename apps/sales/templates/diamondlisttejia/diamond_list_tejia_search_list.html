@@ -1,0 +1,51 @@
+<div class="flip-scroll">
+		<b>当前所在地区：<font color="green"><%$city%></font></b>   
+</div>
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>		    
+			<th style="text-align:center">钻重</th>
+            <th style="text-align:center">形状</th>
+            <th style="text-align:center">颜色</th>
+            <th style="text-align:center">净度</th>
+            <th style="text-align:center">切工</th>
+			<th style="text-align:center">对称</th>
+			<th style="text-align:center">抛光</th>
+			<th style="text-align:center">荧光</th>
+            <th style="text-align:center">证书类型</th>
+            <!--<th style="text-align:center">BDD价</th>-->
+			<th style="text-align:center">特价</th>
+			<th style="text-align:center">城市</th>  
+			<th style="text-align:center">活动</th>       
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr data-id="diamond_list_list_<%$d.goods_id%>" data-title="<%$d.goods_sn%>">		    
+		    <td style="text-align:center"><%if isset($d.carat)%><%$d.carat%>CT<%else%>--<%/if%></td>
+            <td style="text-align:center"><%$dd->getEnum("shape",$d.shape)|default:'--'%></td>
+            <td style="text-align:center"><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+            <td style="text-align:center"><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+            <td style="text-align:center"><%if isset($d.cut)%><%$d.cut%><%else%><%/if%></td>  
+			<td style="text-align:center"><%if isset($d.symmetry)%><%$d.symmetry%><%else%><%/if%></td>  
+			<td style="text-align:center"><%if isset($d.polish)%><%$d.polish%><%else%><%/if%></td>  
+			<td style="text-align:center"><%if isset($d.fluorescence) && $d.show_fluorescence==1%><%$d.fluorescence%><%else%>--<%/if%></td>  
+            <td style="text-align:center" class="js_show_cert" cert_type="<%$d.cert|default:''%>" cert_id="<%$d.cert_id|default:''%>"><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>          
+           <!--<td style="text-align:center"><%if !empty($d.shop_price)%><%$d.shop_price%><%else%><div align="center">--</div><%/if%></td>-->
+		   <td style="text-align:center"><%if !empty($d.special_price)%><%$d.special_price%><%else%><div align="center">--</div><%/if%></td>
+		   <td style="text-align:center"><%if isset($d.city)%><%$d.city%><%else%><div align="center">--</div><%/if%></td>
+		   <td style="text-align:center"><%if !empty($d.title)%><%$d.title%><%else%>--<%/if%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+	$(".js_show_cert").dblclick(function(){
+	   util.xalert("<font style='font-size:13px;'>证书类型："  +$(this).attr("cert_type") + "<br\>" + "证 书 号：" + $(this).attr("cert_id")+"</font>");
+	});
+//-->
+</script>

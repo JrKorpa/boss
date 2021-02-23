@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>按钮</th>
+			<th>按钮提示</th>
+			<th>请求地址</th>
+			<th>所属文件</th>
+			<th>排序(倒序)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="button_list_<%$d.id%>" data-title="<%$d.label%>">
+			<td><%$d.id%></td>
+			<td>
+				<button class="btn btn-sm <%$d.classname%>">
+				<%$d.label%> <i class="fa <%$d.iconname%>"></i>
+				</button>
+			</td>
+			<td><%$d.tips%></td>
+			<td><%$d.data_url%></td>
+			<td><%$d.control_name%><%if $d.control_code%>(<%$d.control_code%>)<%/if%></td>
+			<td><%$d.display_order%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

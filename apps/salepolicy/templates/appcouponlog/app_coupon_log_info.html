@@ -1,0 +1,32 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_coupon_type_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">优惠类型名称：</label>
+                        <input type="text" name="type_name" class="form-control" value="<%$view->get_type_name()%>" maxlength="20">
+					</div>
+				</div>
+
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_coupon_type_info.js"%>
+//-->
+</script>

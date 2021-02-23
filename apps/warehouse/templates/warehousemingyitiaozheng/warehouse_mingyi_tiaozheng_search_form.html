@@ -1,0 +1,128 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_mingyi_tiaozheng_search_form">
+			<div class="form-body">
+				<div class="row">
+                                    <div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">货号：</label>
+							<input type="text" name="goods_id" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品类型：</label>
+							<select class="form-control" tabindex="1" name="type">
+								<option value="">请选择</option>
+								<%foreach from=$huopintype item=d key=k%>
+								<option value="<%$k%>"><%$d%></option>
+								<%/foreach%>
+							</select>						
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">调价说明：</label>
+							<select class="form-control" tabindex="1" name="shuoming">
+							<option value="">请选择</option>
+								<%foreach from=$dd->getEnumArray("mingyitiaozheng") item=d key=k%>
+								<option value="<%$d.name%>"><%$d.label%></option>
+								<%/foreach%>
+							</select>						
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label>
+							<select class="form-control" tabindex="1" name="status">
+							<option value="">请选择</option>
+								<%foreach from=$dd->getEnumArray("cgtiaozheng.status") item=d key=k%>
+								<option value="<%$d.name%>"><%$d.label%></option>
+								<%/foreach%>
+							</select>						
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单人：</label>
+							<input type="text" name="addname" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核人：</label>
+							<input type="checkname" name="checkname" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+								<input type="text" class="form-control" name="addtime_s" value="" />
+								<span class="input-group-addon">至</span>
+								<input type="text" class="form-control" name="addtime_e" value="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+								<input type="text" class="form-control" name="checktime_s" value="" />
+								<span class="input-group-addon">至</span>
+								<input type="text" class="form-control" name="checktime_e" value="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="warehouse_mingyi_tiaozheng_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_mingyi_tiaozheng_list.js"%>
+//-->
+</script>

@@ -1,0 +1,42 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="re_buchan_info">
+		<div class="form-body">
+		   <div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">布产号：</label>
+						  <%foreach from=$ids key=k item=val%>
+                                <input type="checkbox" name="_ids[]" value="<%$val%>" checked="checked"><%$smarty.const.BCD_PREFIX%><%$val%> &nbsp;&nbsp;
+						 <%/foreach%>	
+					</div>
+				</div>
+		   </div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">布产类型：</label>
+						<input type='radio' name = 'buchan_type' value='1'/>重新布产
+						<font color='blue'>【布产单已出厂,工厂需重新接单生产】</font>&nbsp;&nbsp
+						<input type='radio' name = 'buchan_type' value='2'/>继续生产
+						<font color='blue'>【布产单已出厂,工厂无需重新接单,需重新生产】</font>&nbsp;&nbsp
+						<input type='radio' name = 'buchan_type' value='3'/>缺货转生产
+						<font color='blue'>【布产单不需布产，缺货转生产】</font>
+					</div>
+				</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/re_buchan.js"%>
+//-->
+</script>

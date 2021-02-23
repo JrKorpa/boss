@@ -1,0 +1,31 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form">
+			<div class="form-body">
+				<button class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">离开<i class="fa fa-mail-reply"></i></button>
+			</div>
+		<!-- 表单内容 -->
+		<form action="#" class="form-inline" role="form" method="post" id="batch_criterion_xilie" enctype="multipart/form-data">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label" for="name">上传文件：</label>
+                    <input type="file" class="form-control" name="fileinfo_xilie"/>
+                </div>
+                <button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 提交文件</button>
+                <button type="button" class="btn green xzmb"><i class="fa fa-check"></i> 下载模版</button>
+            </div>
+		</form>
+        
+		<!-- END FORM-->
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/batch_criterion_xilie.js"%>
+//-->
+</script>

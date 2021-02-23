@@ -1,0 +1,48 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>维修号</th>
+			<th>订单号</th>
+			<th>布产号</th>
+			<th>工厂</th>
+			<th>货号</th>
+			<th>维修类型</th>
+			<!-- <th>质检问题原因</th> -->
+			<th>备注</th>
+			<th>操作人</th>
+			<th>质检状态</th>
+			<th>最后操作时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr data-id="repairpassedreport-index_second"   data-title="维护良品率详情">
+			<td><%$d.id%></td>
+			<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="<%$d.order_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+			<td><%if $d.rec_id%>
+			<a href="javascript:;" data-title="<%$d.rec_id%>" data-id="productinfo-<%$d.bc_id%>" class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.bc_id%>"><%$d.rec_id%></a>
+			<%/if%>
+			</td>
+			<td><%$d.factory_name%></td>
+			<td><%$d.goods_id%></td>
+			<td><%if $d.re_type eq 1%>新货维修<%elseif $d.re_type eq 2%>售后维修<%elseif $d.re_type eq 3%>店面维修<%elseif $d.re_type eq 5%>库房维修<%else%>其它<%/if%></td>
+			<!-- <td>%$d.passed_percent%%</td> -->
+			<td><%$d.content%></td>
+			<td><%$d.opera_name%></td>
+			<td><%$d.pass_status%></td>
+			<!-- <td>%if $d.status eq 5 or $d.status eq 6%通过%else%未过%/if%</td> -->
+			<td><%$d.opera_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

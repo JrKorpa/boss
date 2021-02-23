@@ -1,0 +1,37 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>统计日期</th>
+				<th>工厂/采购人</th>
+                <th>布产单</th>
+                <th>等钻开始时间</th>
+                <th>等钻结束时间</th>
+                <th>预计等钻结束时间</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+			<tr>
+				<td><%$d.dotime%></td>
+				<td><%$d.prc_name%>/<%$d.opra_uname%></td>
+                <td ><a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="<%$d.id%>" class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.id%>"><%$d.bc_sn%></a>
+				</td>
+                <td><%$d.wait_dia_starttime%></td>
+                <td><%$d.wait_dia_endtime%></td>
+                <td><%$d.wait_dia_finishtime%></td>
+			</tr>
+		<%/foreach%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

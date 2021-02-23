@@ -1,0 +1,64 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#goodsprice_salepolicy_search_list .checkboxes" /></th>            <th style="text-align:center">ID</th>  
+                <th style="text-align:center">款式编号</th>           
+                <th style="text-align:center">销售渠道</th>
+                <th style="text-align:center">加价率</th>
+				<th style="text-align:center">固定值</th>
+                <th style="text-align:center">添加时间</th>               
+            </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$page_list.data item=d%>
+            <tr data-id="goodsprice_salepolicy_search_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td style="width:15px"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id%></td>
+				<td align="center"><%$d.style_sn%></td>				                
+                <td align="center"><%$d.channel_name%></td>
+                <td align="center"><%$d.jiajialv%></td>
+                <td align="center"><%$d.sta_value%></td>               
+                <td align="center"><%$d.create_time%></td>
+            </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#goodsprice_salepolicy_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#goodsprice_salepolicy_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#goodsprice_salepolicy_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

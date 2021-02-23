@@ -1,0 +1,83 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_pay_apply_info" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						新增
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<%$smarty.session.userName%>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<input type="text" name="make_time" id="make_time" disabled class="form-control" placeholder="" value="<%$smarty.now|date_format:"%Y-%m-%d"%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">供货商/结算商：</label>
+						<select class="select2_category form-control" name="prc_id" id="prc_id" tabindex="1">
+							<option value="" selected="selected"></option>
+							<%foreach from=$view->get_process_list() item=t key=k %>
+							<option value="<%$t.p_id%>" <%if $view->get_prc_id()==$t.p_id%>selected="selected"<%/if%>><%$t.p_name%></option>	
+							<%/foreach%>	
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">应付类型：</label>
+                        <select class="select2_category form-control" id="type" name="type">
+                            <option value="" selected="selected"></option>
+                            <option value="1">代销借货</option>
+                            <option value="2">成品采购</option>
+                            <option value="3">石包采购</option>
+                        </select>
+					</div>
+				</div>	
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">发票号：</label>
+						<input type="text" name="fapiao" id="fapiao" class="form-control" placeholder="" value="" />
+					</div>
+				</div>				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">数据：</label>
+                        <input type="file" name="data" id="data" />
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<a href="javascript:;" onclick="app_pay_apply_goods_download_mo_info()">下载数据格式</a>
+					</div>
+				</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="apply_id" value="<%$view->get_apply_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_pay_apply_info.js"%>
+//-->
+</script>

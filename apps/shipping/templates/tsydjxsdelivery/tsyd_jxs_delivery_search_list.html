@@ -1,0 +1,101 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content" >
+			<tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#tsyd_jxs_delivery_search_list .checkboxes" /></th>
+				<th>单据编号</th>
+                <th>单据类型</th>
+                <th>状态</th>
+                <th>货品数量</th>
+                <th><a href="javascript:void(0)" class="sort_wholesale">批发客户</a></th>
+                <th>出库公司</th>
+                <th>制单人</th>
+                <th><a href="javascript:void(0)" class="sort_create_time">制单时间</a></th>
+				<th>打印人</th>
+				<th>打印时间</th>
+				<th>是否打印</th>
+                <th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="tsyd_jxs_delivery_search_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><input type="checkbox" class="checkboxes group-checkable" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.bill_no%></td>
+                <td>批发销售单</td>
+                <td>已保存</td>
+                <td><%$d.goods_num%></td>
+                <td><%$d.wholesale_name%></td>
+                <td><%$d.to_company_name%></td>
+                <td><%$d.create_user%></td>
+                <td><%$d.create_time%></td>
+				<td><%$d.print_user|default:"--"%></td>
+				<td><%$d.print_time|default:"--"%></td>
+				<td><%if empty($d.print_time)%>否<%else%>是<%/if%></td>
+                <td><%$d.bill_note%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    //复选框组美化
+    var test = $("#tsyd_jxs_delivery_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+        if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#tsyd_jxs_delivery_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }                    
+        });
+        $.uniform.update(set);
+    });
+    $('#tsyd_jxs_delivery_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+	$('#tsyd_jxs_delivery_search_list .sort_wholesale').click(function(){
+	      var orderby = $("#tsyd_jxs_delivery_search_form input[name='sort_wholesale']").val();
+		  if(orderby == "asc"){
+		      orderby = "desc"; 
+		  }else{
+		      orderby = "asc"; 
+		  }
+	      $("#tsyd_jxs_delivery_search_form input[name='sort_wholesale']").val(orderby);
+		  $("#tsyd_jxs_delivery_search_form").submit();
+	
+	});
+	
+	$('#tsyd_jxs_delivery_search_list .sort_create_time').click(function(){
+	      var orderby = $("#tsyd_jxs_delivery_search_form input[name='sort_create_time']").val();
+		  if(orderby == "asc"){
+		      orderby = "desc"; 
+		  }else{
+		      orderby = "asc"; 
+		  }
+	      $("#tsyd_jxs_delivery_search_form input[name='sort_create_time']").val(orderby);
+		  $("#tsyd_jxs_delivery_search_form").submit();
+	
+	});
+	
+//-->
+</script>

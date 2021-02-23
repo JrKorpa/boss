@@ -1,0 +1,60 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>回访列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>	
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_bespoke_info_withuserdo">
+		</div>
+        <div class="table-toolbar">					
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tbody>
+				<tr>
+					<td colspan=5>
+						<div style="height:160px; overflow:scroll;" id="lv">  
+
+						</div>
+					</td>
+				</tr>
+                <tr>
+                    <td>第<b><span name="Hf" value=""></span></b>次回访 操作备注：</td>
+                    <td colspan=4><textarea class="form-control" name="remark" rows="2"></textarea></td>
+                </tr>
+				<tr>
+                    <td>预约到店时间：</td>
+					<td class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+						<input type="text" name="bespoke_inshop_time" value="<%$view->get_bespoke_inshop_time()%>" class="form-control" readonly />
+						<span class="input-group-btn">
+						<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+						</span>
+					</td>
+                    <td colspan=3>
+					
+					<button type="button" class="btn green" val="1"><i class="fa fa-check"></i>回访</button><input type="hidden" name="bespoke_id" value="<%$view->get_bespoke_id()%>" /></td>
+                </tr>
+            </tbody>
+			</table>
+        </div>
+        <div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_bespoke_info_withuserdo.js"%>
+	<%include file="js/app_bespoke_info_info.js"%>
+//-->
+</script>

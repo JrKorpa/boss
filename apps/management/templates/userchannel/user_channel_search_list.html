@@ -1,0 +1,60 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><input type="checkbox" class="group-checkable" data-set="#user_channel_search_list .checkboxes" /></th>
+			<th>序号</th>
+			<th>用户</th>
+			<th>渠道名称</th>
+			<th>渠道编码</th>
+			<th>部门权限</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="user_channel_list_<%$d.id%>" data-title="渠道授权">
+			<td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.account%>(<%$d.real_name%>)</td>
+			<td align="center"><%$d.channel_name%></td>
+			<td align="center"><%$d.channel_code%></td>
+			<td align="center"><%$dd->getEnum('user_channel.power',$d.power)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+	//复选框组美化
+	var test = $("#user_channel_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+	if (test.size() > 0) {
+	    test.each(function () {
+	    if ($(this).parents(".checker").size() == 0) {
+	        $(this).show();
+	        $(this).uniform();
+	    }
+	  });
+	}
+
+	// table 复选框全选
+	$('#user_channel_search_list .group-checkable').change(function () {
+	  var set = $(this).attr("data-set");
+	    var checked = $(this).is(":checked");
+	    $(set).each(function () {
+	        if (checked) {
+	            $(this).attr("checked", true);
+	            $(this).parents('tr').addClass("active");
+	        } else {
+	            $(this).attr("checked", false);
+	            $(this).parents('tr').removeClass("active");
+	        }                    
+	    });
+	    $.uniform.update(set);
+	});
+	$('#user_channel_search_list').on('change', 'tbody tr .checkboxes', function(){
+	    $(this).parents('tr').toggleClass("active");
+	});	
+//-->
+</script>

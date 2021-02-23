@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+body,td { font-size:13px; line-height:20px; padding:5px; font-weight:bold}
+</style>
+<style type="text/css" media="print">
+.Noprint { DISPLAY: none;}
+</style>
+<!--<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>-->
+</head>
+<body>
+<div class="Noprint">
+	<input type="button" value="打印" onclick="window.print();" style="width:120px; height:30px; font-size:20px; font-weight:bold" /><br/><br/>
+</div>
+<table cellspacing="0" style="border-collapse:collapse;" cellpadding="0" border="1" width="100%">
+	<thead class="flip-content">
+		<tr>
+			<th>SKU</th>
+			<th>货号</th>
+			<th style="width:50%">商品名称</th>			
+			<th>尺码</th>	
+			<th>商品数量</th>				
+		</tr>
+	</thead>
+   <tbody>	
+	<%foreach from=$data.goods_list item=d%>
+			<tr >			
+				<td><%$d.barcode%></td>
+                <td><%$d.art_no%></td>
+				<td><%$d.product_name%></td>
+				<td><%$d.size%></td>
+				<td><%$d.amount%></td>				    
+			</tr>
+	<%/foreach%>
+	<tr >			
+       <td colspan="4"></td>
+	   <td>共<%$data.goods_total%>件</td>				    
+	</tr>
+	<tr >			
+		<td colspan="2">快递单号：<%$data.delivery_no%></td>
+		<td></td>
+		<td colspan="2">入库单号：<%$data.storage_no%></td>				    
+	</tr>
+	<tr >			
+		<td colspan="2">PO单号：<%$data.po_no%></td>
+		<td colspan="3"></td>				    
+	</tr>
+	</tbody>
+</table>
+<!--endprint-->
+</body>
+</html>

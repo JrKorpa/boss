@@ -1,0 +1,197 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="user_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">员工编号：</label>
+						<input type="text" name="code" class="form-control" autocomplete="off" placeholder="选填" value="<%$view->get_code()%>" maxlength="10" onKeyup="value=value.replace(/[^a-z\d]/gi,'').toUpperCase();" onBlur="value=value.replace(/[^a-z\d]/gi,'').toUpperCase();" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">姓名：<span class="required">*</span></label>
+						<input type="text" name="real_name" class="form-control" placeholder="必填"  value="<%$view->get_real_name()%>" maxlength="20" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">性别：<span class="required">*</span></label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("gender") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="gender" <%if $view->get_gender()==$value.name or ($view->get_gender()=="" and $k==0)%>
+								 checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">身份证号：</label>
+						<input type="text" name="icd" class="form-control" placeholder="选填" onBlur="value=value.replace(/[^x\d]/g,'');" value="<%$view->get_icd()%>" maxlength="18" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">登录帐号：<span class="required">*</span></label>
+						<input type="text" name="account" autocomplete="off" class="form-control" placeholder="必填" value="<%$view->get_account()%>" maxlength="20" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">密码：</label>
+						<input onfocus="this.type='password'" name="password" autocomplete="off" class="form-control" placeholder="请输入" maxlength="50" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">类型：<span class="required">*</span></label>
+						<select class="select2_category form-control" name="user_type" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("user.user_type") item=value%>
+								<option value="<%$value.name%>" <%if $value.name==$view->get_user_type()%>selected="selected"<%/if%>
+								><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">特殊身份：</label>
+						<div class="checkbox-list">
+							<label class="checkbox-inline">
+								<input type="checkbox" name="is_warehouse_keeper" value="1" <%if $view->get_is_warehouse_keeper()==1%>checked<%/if%> <%if empty($view->get_id())%>checked<%/if%> /> 库管
+							</label>
+							<label class="checkbox-inline">
+								<input type="checkbox" name="is_channel_keeper" value="1" <%if $view->get_is_channel_keeper()==1%>checked<%/if%> <%if empty($view->get_id())%>checked<%/if%> /> 渠道操作员
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">邮箱：<span class="required">*</span></label>
+						<input type="text" name="email" class="form-control" placeholder="必填" value="<%$view->get_email()%>" maxlength="60" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">手机：<span class="required">*</span></label>
+						<input type="text" name="mobile" class="form-control" placeholder="必填" onBlur="value=value.replace(/[^\d]/g,'');" value="<%$view->get_mobile()%>" maxlength="11" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">QQ：</label>
+						<input type="text" name="qq" class="form-control" placeholder="选填" onBlur="value=value.replace(/[^\d]/g,'');" value="<%$view->get_qq()%>" maxlength="20" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">生日：</label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="birthday" value="<%if $view->get_birthday() == '0000-00-00'%><%else%><%$view->get_birthday()%><%/if%>" class="form-control" readonly="">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">入职时间：</label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="join_date" value="<%if $view->get_join_date() == '0000-00-00'%><%else%><%$view->get_join_date()%><%/if%>" class="form-control" readonly="">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">电话：</label>
+						<input type="text" name="phone" class="form-control" placeholder="选填" onBlur="value=value.replace(/[^\d\-\(\)]/g,'');" value="<%$view->get_phone()%>" maxlength="20" />
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">住址：</label>
+						<input type="text" name="address" class="form-control" placeholder="选填" value="<%$view->get_address()%>" maxlength="100" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">用户角色：<span class="required">*</span></label>
+						<select class="select2_category form-control" name="role_id" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$role_arr key=key item=val%>
+								  <%if $view->get_role_id()==$val.id%>
+                                  <option value="<%$val.id%>" selected="selected"><%$val.label%></option>
+								  <%else%>
+								  <option value="<%$val.id%>"><%$val.label%></option>
+								  <%/if%>
+                                <%/foreach%>
+						</select>
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否实习期：</label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("internship") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="internship" <%if $view->get_internship()==$value.name or ($view->get_internship()=="" and $k==0)%>
+                                 checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">转正时间：</label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="trun_date" value="<%if $view->get_trun_date() == '0000-00-00'%><%else%><%$view->get_trun_date()%><%/if%>" class="form-control" readonly="">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">所在拥有公司：</label>
+						<select class="form-control select2_sample1" tabindex="1" name="company_ids[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$company_all key=key item=val%>
+								  <%if !empty($user_company) && in_array($val.id,$user_company)%>
+                                  <option value="<%$val.id%>" selected="selected"><%$val.company_name%></option>
+								  <%else%>
+								  <option value="<%$val.id%>"><%$val.company_name%></option>
+								  <%/if%>
+                                <%/foreach%>
+                       </select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_info.js"%>
+//-->
+</script>

@@ -1,0 +1,59 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_apply_bills_adjust">
+
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">结算商：</label>
+						<select class="form-control" tabindex="1" name="supplier_id" disabled>
+							<%foreach from=$view->get_supplier() item=s%>
+							<option value="<%$s.id%>" <%if $view->get_supplier_id() == $s.id%>selected<%/if%>><%$s.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付申请单号：</label>
+						<input type="text" name="apply_no" class="form-control" value="<%$view->get_apply_no()%>" disabled/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付金额：</label>
+						<div class="input-group">
+							<span class="input-group-btn "><button class="btn default" type="button">&yen;</button></span>
+							<input type="text" name="pay_total" class="form-control" placeholder="请输入"  value="<%$view->get_pay_total()%>" readonly/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">调整金额：</label>
+						<div class="input-group">
+							<span class="input-group-btn "><button class="btn default" type="button">&yen;</button></span>
+							<input type="text" name="adjust_total" class="form-control" placeholder="请输入"  value=""/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-4 col-md-6">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				<span type="colse" class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+	<!--
+	<%include file="js/app_apply_bills_adjust.js"%>
+	//-->
+</script>

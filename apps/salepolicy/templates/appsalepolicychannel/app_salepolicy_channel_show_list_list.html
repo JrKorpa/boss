@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>渠道</th>
+			<th>等级</th>
+			<th>创建时间</th>
+			<th>创建人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>状态</th>
+			<th>是否删除</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$data.data key=k item=g %>
+		<tr data-id="app_salepolicy_channel_show_list_<%$g.id%>" data-title="<%$g.id%>">
+			<td><%$g.id%></td>
+			<td><%$channelList[$g['channel']]%></td>
+			<td><%$g.channel_level%></td>
+			<td><%$g.create_time%></td>
+			<td><%$g.create_user%></td>
+			<td><%$g.check_time%></td>
+			<td><%$g.check_user%></td>
+			<td><%if $g.status=='1'%>保存<%/if%><%if $g.status=='2'%>申请<%/if%><%if $g.status=='3'%>审核通过<%/if%><%if $g.status=='4'%>驳回<%/if%><%if $g.status=='5'%>取消<%/if%></td>
+			<td><%if $g.is_delete=='1'%>未删除<%/if%><%if $g.is_delete=='2'%>已删除<%/if%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+//-->
+</script>

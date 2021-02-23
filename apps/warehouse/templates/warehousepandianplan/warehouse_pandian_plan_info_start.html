@@ -1,0 +1,151 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>盘点库存
+		</div>
+		<div class="tools">
+		</div>
+	</div>
+	<style>
+		.tabel_th{width:140px;max-width:145px;}
+		.table_td{width:200px;max-width:300px;}
+	</style>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<div class="btn-group">
+			<%if $view->get_status() == 1%>
+				<button class="btn red" style="width:215px;" onclick="util.cust(this, nextBox);" data-url="index.php?mod=warehouse&con=WarehousePandianPlan&act=edit&tab_id=178&id=<%$view->get_id()%>">此柜位盘点完成.进入下一柜位</button>
+			<%/if%>
+			<%if $view->get_status() == 2%>
+				<button class="btn red" style="width:215px;">当前盘点单已经盘点完成</button>
+			<%/if%>
+			<%if $view->get_status() == 3%>
+				<button class="btn red" style="width:215px;">当前盘点单已经通过审核</button>
+			<%/if%>
+
+			<%if $view->get_status() == 4%>
+				<button class="btn red" style="width:215px;">当前盘点单已经取消</button>
+			<%/if%>
+
+			</div>
+		</div>
+
+		<!-- 表单内容 -->
+		<form action="#" method="post" class="horizontal-form" id="warehouse_pandian_plan_info_start">
+			<div class="form-body">
+				<table id="ship_freight_order_info_table1" class="table table-bordered table-striped table-hover flip-content">
+				<tbody>
+					<tr>
+						<td class="tabel_th">单号:</td>
+						<td class="table_td">
+							<%$view->get_id()%>
+						</td>
+						<td class="tabel_th">日期:</td>
+						<td class="table_td">
+							<%$view->get_opt_date()%>
+						</td>
+						<td class="tabel_th">状态:</td>
+						<td class="table_td">
+						<%$dd->getEnum('warehouse.pandian_plan' , $view->get_status())%>
+						</td>
+						<td class="tabel_th">制单人:</td>
+						<td class="table_td"><%$view->get_opt_admin()%></td>
+						<td class="tabel_th">审核人:</td>
+						<td class="table_td"><%$view->get_verify_admin()%></td>
+					</tr>
+					<tr>
+						<td class="tabel_th">预估盘点数:</td>
+						<td class="table_td">
+							<!--<%$view->get_all_num()%>-->
+							 <%$yuguNum%>
+						</td>
+						<td class="tabel_th">已盘点数:</td>
+						<td class="table_td">
+							<%$view->get_nomal() + $view->get_overage()%>
+						</td>
+						<td class="tabel_th">未盘点数:</td>
+						<td class="table_td">
+							<%$view->get_loss()%>
+						</td>
+						<td class="tabel_th">错误率:</td>
+						<td class="table_td">
+							<%round((1-($view->get_nomal())/($view->get_nomal() + $view->get_overage()))*100, 2)%>%
+						</td>
+						<td class="tabel_th">审核时间:</td>
+						<td class="table_td"><%$view->get_verify_date()%></td>
+					</tr>
+					<tr>
+						<td>备注：</td>
+						<td colspan="9">
+							<%$view->get_info()%>
+						</td>
+					</tr>
+					<tr>
+						<td  style='text-align:right;'>
+							正常产品：
+						</td>
+						<td colspan="">
+							<%$view->get_nomal()%>
+						</td>
+						<td  style='text-align:right;'>
+							盘盈产品:
+						</td>
+						<td colspan="">
+							<%$view->get_overage()%>
+						</td>
+						<td  style='text-align:right;'>
+							盘亏产品:
+						</td>
+						<td >
+							<%$view->get_loss()%>
+						</td>
+						<td colspan='4'>
+							<div style="color:red;"><%$userName%> 已盘点数：<span id="num"><%$num%></span></div>
+						</td>
+						
+					</tr>
+					<tr>
+						<td colspan="10" style='text-align:center;color:red;font-size:25px;'>
+							<%$guiwei%>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+		<%if $view->get_status() == 1 && $is_last==0%>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货号：</label><span style='color:red;'>*</span>
+							<input type='text' name='goods_id' class="form-control" placeholder="请输入货号" />
+						</div>
+					</div>
+				</div>
+				<div id='show_tishi' style='font-size: 14px;'></div>
+			</div>
+			<!-- 搜索按钮 -->
+
+				<div class="form-actions fluid">
+					<div class="col-md-offset-3 col-md-9">
+						<input type="hidden" name="id" value="<%$view->get_id()%>" /><!-- 周盘点单ID -->
+						<input type="hidden" name="box_sn" value="<%$guiwei%>" /><!-- 当前盘点柜位号 -->
+                        <input type="hidden" name="affirm" value="0" /><!-- 当前盘点柜位号 -->
+
+						<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+						<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+						<button type="reset" class="btn default">重置</button>
+						<button type="submit" class="btn green"><i class="fa fa-check"></i> 盘点</button>
+					</div>
+				</div>
+			<%/if%>
+
+		</form>
+
+		<!-- END FORM-->
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_pandian_plan_info_start.js"%>
+//-->
+</script>

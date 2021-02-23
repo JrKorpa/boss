@@ -1,0 +1,162 @@
+<table class="PageNext" cellspacing="0" cellpadding="1" width="100%" border="0">
+    <tbody>
+        <tr>
+            <td>
+            <table style="margin-bottom: 10px; border-bottom: #000 2px solid" cellspacing="0" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td width="14%" ><img alt="" border="0" src="public/img/logo3.jpg" /></td>
+						<td valign="right" width="60%"></td>
+                        <td valign="right" width="26%"> <img alt="" border="0" src="public/img/tsyd_logo.png" /> </td>
+			<td align="right" style="padding-right:30px;">
+				<img src="http://bardcode.kela.cn/index.php?code_sn=<%$bill_info.bill_no%>" style="float:right;" width="200">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+            <table style="line-height: 20px;" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+			<tr>
+			    <td ></td>
+				<td ><div align="left">备注: <%$g.details_remark|default:'无'%></div></td>
+				
+				<td align="right" class="wori" >配送方式：<%if $bill_info.distribution_type == 2%><%$bill_info.express_id%><%else%>配送到体验店<%/if%></td>
+				 <td align="right"> </td>
+			</tr>
+			<tr>
+				<td align="left" colspan="2" valign="center" >
+                                    
+				</td>
+				<td align="right" class="wori" >
+				
+				</td>
+				<td align="right" >
+                <b>配送类型：<%$bill_info.wholesale_name|default:''%></b>
+                </td>
+        		</tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+				<tr align="center">
+					<td>序号</td>
+					<td>商品名称<!-- 商品名称--></td>
+					<td>数量<!--数量--></td>
+					<td>款号</td>
+					<td>柜号</td>
+					<td>图</td>
+					<td scope="col"><div align="center">商品描述</div></td>
+				</tr>
+				<%if !empty($goods_list)%>
+					<%foreach from=$goods_list item=g key=it%>
+					<tr>
+						<td width="20px">&nbsp;<b style="font-size:20px"><%$it+1%></b></td>
+						<td width="100px">&nbsp;<%$g.goods_name%><!--商品名称.--> </td>
+						<td align="center" style="border:0px"><%$g.goods_count%>&nbsp;<!-- 数量 --></td>
+						<td align="center" style="border:0px">&nbsp;<%$g.goods_sn%><br/>
+						<img src="http://bardcode.kela.cn/index.php?code_sn=<%$g.goods_sn%>" width="120" height="60" /><!--款号--><br/>
+						<%if $g.bind_goods == 1%>						
+						已绑定商品
+						<br/>
+						<%if $g.warehouse=="金条库" || $g.warehouse=="投资金条库"%>
+						<img src="http://bardcode.kela.cn/index.php?code_sn=<%$g.goods_id%>" width="120" height="60" />
+						<%/if%>
+						<%else%>
+						无绑定商品
+						<%/if%>
+						</td>
+						<td align="center" style="border:0px"><b style="font-size:20px">
+						</b><!-- 柜号 -->
+						<%if $g.bind_goods == 1%>
+						<%$g.goods_id|default:''%><br/>
+						<%$g.box_id%>
+						<%/if%>
+						</td>
+						<td width="120px" align="center">
+						    <%if $g.is_zp%>
+                                 <img src="<%$g.goods_img%>" width="100px" height="100px" >
+						    <%else%><img src="<%$g.goods_img%>" width="200px" height="200px" ><%/if%>
+							
+						</td>
+						<td>
+							<div align="left">
+								<%if $g.is_zp%>
+								    <%if !empty($g.cart)%>
+									   钻石：<%$g.cart%><br/>
+									<%/if%>   
+									<%if !empty($g.yanse)%>
+                                          颜色：<%$g.yanse%><br/>
+                                    <%/if%> 
+									<%if !empty($g.clarity)%>
+                                          净度:<%$g.clarity%><br/>
+                                    <%/if%>
+									<%if !empty($g.caizhi)%>
+                                          金料:<%$g.caizhi%><br/>
+                                    <%/if%>
+									<%if !empty($g.jinse)%>
+                                          金色:<%$g.jinse%><br/>
+                                    <%/if%>
+									<%if !empty($g.zhiquan)%>
+                                          指圈：<%$g.zhiquan|default:'——'%>                                          
+                                    <%/if%>                                                    
+									<%if !empty($g.kezi)%>
+                                          刻字：<%$g.kezi|default:'——'%><br/>
+                                    <%/if%>
+ 									<%if !empty($g.jinzhong)%>
+                                          金重：<%$g.jinzhong|default:'——'%><br/>
+                                    <%/if%>                                       
+									款式分类：<%$g.cat_type_name|default:'——'%><br/>                                                                  
+								<%else%>
+									钻石：<%$g.cart%><br/>
+	                                                                颜色：<%$g.color%><br/>
+									净度：<%$g.clarity%><br/>
+									证书号：<%$g.zhengshuhao|default:'——'%></div>
+	                                                                金料： <%$g.caizhi%><br/>
+	                                                                金色：<%$g.jinse%><br/>
+									指圈：<%$g.zhiquan|default:'——'%><%if $g.is_stock_goods &&  $g.shoucun && $g.zhiquan!=$g.shoucun%>(由<%$g.shoucun%>改为<%$g.zhiquan%>)<%/if%><br/>
+									刻字：<%$g.kezi|default:'——'%><br/>
+									金重：<%$g.jinzhong|default:'——'%><br/>
+									款式分类：<%$g.cat_type_name|default:'——'%><br/>
+								<%/if%>
+							</div>
+								
+						</td>
+					</tr>
+					<tr>
+						<td colspan="8"><div align="right">售卖方式: <%$dd->getEnum('processor.is_alone',$g.is_alone)%></div></td>
+					</tr>
+					<tr>
+						<td colspan="8" style="font-size:28px; font-weight:bold; padding:20px"><%$bill_info.bill_no%></td>
+					</tr>
+					<%/foreach%>
+				<%else%>
+					<tr>
+						<td colspan='8' align='center' style='color:red;font-size:20px;'>该配货单没有单据明细</td>
+					</tr>
+				<%/if%>
+                            </tbody>
+                        </table>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            </td>
+        </tr> 
+    </tbody>
+</table>

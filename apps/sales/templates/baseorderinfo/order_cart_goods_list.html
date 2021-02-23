@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th style="text-align: center;">款号</th>
+            <th style="text-align: center;">数量</th>
+            <th style="text-align: center;">价格</th>
+            <th style="text-align: center;">优惠</th>
+            <th style="text-align: center;">是否现货</th>
+        </tr>
+    </thead>
+	<%foreach from=$cart_list item=d%>
+	<tr  data-id="order_list_<%$d.id%>" data-title="<%$d.id%>">
+		<td  align="center"><%$d.goods_sn%></td>
+		<td  align="center"><%$d.goods_count%></td>
+		<td  align="center"><%$d.goods_price%></td>
+		<td  align="center"><%$d.favorable_price%></td>
+		<td  align="center"><%if $d.is_stock_goods == 1%>现货<%else%>期货<%/if%></td>
+	</tr>
+	<%/foreach%>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>
+

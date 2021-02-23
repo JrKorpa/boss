@@ -1,0 +1,29 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_pay_action_info_sure">
+        <div class="form-body">
+            <div class="row">
+                
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9"><p>确定订单已付全款</p></div>
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="order_id" value="<%$order_id%>" />
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+                <span class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                <!--<button type="button" class="btn yellow" onclick="addPayMethod()"><i class="fa fa-check"></i> 添加支付方式</button>-->
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_order_pay_action_info_sure.js" %>
+//-->
+</script>

@@ -1,0 +1,72 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="base_order_info_search_form2">
+			<div class="form-body">
+				<div class="row">
+		           <div class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label">货号：</label>
+							<input type="text" id="express_order_sn" name="goods_id" class="form-control" placeholder="请输入"/>
+							<input type="hidden" name="order_sn" value="<%$order_sn%>"/>
+							<input type="hidden" name="goods_num" value="<%$goods_num%>"/>
+							<input type="hidden" name="goods_id_list" value="<%$goods_id_list%>"/>
+						</div>
+		            </div>    
+				</div>
+
+										
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check2"></i> 下一步</button>
+					<button type="button" class="btn green" id="next_send_goods" onclick="send_goods(<%$order_sn%>)"><i class="fa fa-check2"></i> 打单发货</button>
+			
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+
+		<div class="table-toolbar">
+		
+		</div>
+
+		<div id="base_order_info_search_list"></div>
+		<%$list_div%>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	<%include file="js/base_order_info_list.js"%>
+
+</script>

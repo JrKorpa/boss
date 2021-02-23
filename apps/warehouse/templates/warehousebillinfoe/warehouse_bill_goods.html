@@ -1,0 +1,47 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>货号</th>
+			<th>入库方式</th>
+			<th>是否结价</th>
+			<th>款号</th>
+			<th>主成色重</th>
+			<th>主石颗数</th>
+			<th>主石重</th>
+			<%if $isViewChengbenjia%><th>成本价</th>
+			<th>退货价</th><%/if%>
+			
+			<th>副石颗数</th>
+			<th>副石重</th>
+			<th>颜色</th>
+			<th>净度</th>
+			<th>证书号</th>
+			<th>名称</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+		<tr data-id="" data-title="">
+			<td><%$k+1%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.put_in_type%></td>
+			<td><%$d.jiejia%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.jinzhong%></td>
+			<td><%$d.zhushilishu%></td>
+			<td><%$d.zuanshidaxiao%></td>
+			<%if $isViewChengbenjia%><td><%$d.sale_price%></td>
+			<td><%$d.shijia%></td><%/if%>
+		
+			<td><%$d.fushilishu%></td>
+			<td><%$d.fushizhong%></td>
+			<td><%$d.yanse%></td>
+			<td><%$d.jingdu%></td>
+			<td><%$d.zhengshuhao%></td>
+			<td><%$d.goods_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

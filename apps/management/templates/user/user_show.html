@@ -1,0 +1,175 @@
+<style type="text/css">
+	dl {margin:0;padding:0;}
+</style>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+                <div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<div class="row">
+			<div class="usual col-sm-12" id="user_info_tab">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#user_info_tab_1" data-toggle="tab" title="基本信息">基本信息</a></li>
+					<li><a href="#user_info_tab_2" data-toggle="tab" title="任职信息">任职信息</a></li>
+					<li><a href="#user_info_tab_3" data-toggle="tab" title="所属组">所属组</a></li>
+					<li><a href="#user_info_tab_4" data-toggle="tab" title="所属角色">所属角色</a></li>
+					<li><a href="#user_info_tab_5" onclick="util.cust(this,show_user_power);" data-toggle="tab" title="拥有权限">拥有权限</a></li>
+                                        <li><a href="#user_info_tab_6" data-toggle="tab" title="管控仓库">管控仓库</a></li>
+                                        <li><a href="#user_info_tab_7" data-toggle="tab" title="管控渠道">管控渠道</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="user_info_tab_1">
+						<div class="flip-scroll">
+							<table class="table table-bordered table-striped table-hover flip-content">
+								<tr>
+									<th>员工编号</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>身份证号</th>
+									<th>账户</th>
+									<th>类型</th>
+								</tr>
+
+								<tr>
+									<td><%$data.info.code%>&nbsp;</td>
+									<td><%$data.info.real_name%>&nbsp;</td>
+									<td><%$dd->getEnum("gender",$data.info.gender)%>&nbsp;</td>
+									<td><%$data.info.icd|default:'无'%></td>
+									<td><%$data.info.account|default:'无'%></td>
+									<td><%$dd->getEnum("user.user_type",$data.info.user_type)%>&nbsp;</td>
+								</tr>
+								<tr>
+									<th>库管</th>
+									<th>渠道操作员</th>
+									<th>邮箱</th>
+									<th>手机</th>
+									<th>QQ</th>
+									<th>生日</th>
+								</tr>
+								<tr>
+									<td><%if $data.info.is_warehouse_keeper%>是<%else%>否<%/if%></td>
+									<td><%if $data.info.is_channel_keeper%>是<%else%>否<%/if%></td>
+									<td><%$data.info.email|default:'无'%></td>
+									<td><%$data.info.mobile|default:'无'%></td>
+									<td><%$data.info.qq|default:'无'%></td>
+									<td><%$data.info.birthday|default:'无'%></td>
+								</tr>
+								<tr>
+									<th>入职时间</th>
+									<th>电话</th>
+									<th colspan="4">住址</th>
+								</tr>
+								<tr>
+									<td><%$data.info.join_date|default:'无'%></td>
+									<td><%$data.info.phone|default:'无'%></td>
+									<td colspan="4"><%$data.info.address|default:'无'%></td>
+								</tr>
+								<tr>
+									<th>当前所在公司</th>
+									<th colspan="5">所拥有的公司列表</th>
+								</tr>
+								<tr>
+									<td><%$data.info.company_name|default:'无'%></td>
+									<td colspan="5"><%$data.info.has_company|default:'无'%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<div class="tab-pane" id="user_info_tab_2">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<%foreach from=$data.organization item=value%>
+							<tr>
+								<th>部门</th>
+								<td><%$value.name%></td>
+								<th>职位</th>
+								<td><%if $value.position%><%$dd->getEnum("position",$value.position)%><%else%>无<%/if%></td>
+								<th>职级</th>
+								<td><%if $value.level%><%$dd->getEnum("position_level",$value.level)%><%else%>无<%/if%></td>
+							</tr>
+							<%foreachelse%>
+							<tr>
+								<td colspan="3">无</td>
+
+							</tr>
+							<%/foreach%>
+						</table>
+					</div>
+
+					<div class="tab-pane" id="user_info_tab_3">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<%foreach from=$data.group key=k item=value%>
+							<tr>
+								<td><%$k+1%>.<%$value.name%></td>
+							</tr>
+							<%foreachelse%>
+							<tr>
+								<td>无</td>
+							</tr>
+							<%/foreach%>
+						</table>
+					</div>
+
+					<div class="tab-pane" id="user_info_tab_4">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<%foreach from=$data.role key=k item=value%>
+							<tr>
+								<td><%$k+1%>.<%$value.label%></td>
+							</tr>
+							<%foreachelse%>
+							<tr>
+								<td>无</td>
+							</tr>
+							<%/foreach%>
+						</table>
+					</div>
+
+					<div class="tab-pane" id="user_info_tab_5"></div>
+                                        <div class="tab-pane" id="user_info_tab_6">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<%foreach from=$data.house key=k item=value%>
+							<tr>
+								<td><%$k+1%>.<%$value.name%> <a href="javascript:;" class="tab-con-a" data-title="仓库授权" data-url="index.php?mod=management&con=UserWarehouse&act=show&id=<%$value.rel_id%>"  data-id="userwarehouse-<%$value.rel_id%>">查看权限</a></td>
+							</tr>
+							<%foreachelse%>
+							<tr>
+								<td>无</td>
+							</tr>
+							<%/foreach%>
+						</table>
+					</div>
+					<div class="tab-pane" id="user_info_tab_7">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<%foreach from=$data.channel key=k item=value%>
+							<tr>
+								<td><%$k+1%>.<%$value.channel_name%> <a href="javascript:;" class="tab-con-a" data-title="渠道授权" data-url="index.php?mod=management&con=UserChannel&act=show&id=<%$value.id%>"  data-id="userchannel-<%$value.id%>">查看权限</a></td>
+							</tr>
+							<%foreachelse%>
+							<tr>
+								<td>无</td>
+							</tr>
+							<%/foreach%>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/user_show.js"%>
+//-->
+</script>

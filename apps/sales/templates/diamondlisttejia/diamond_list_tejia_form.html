@@ -1,0 +1,84 @@
+<!--搜索开始-->
+<link rel="stylesheet" href="public/js/jRange/jquery.range.css"/>
+<script src="public/js/jRange/jquery.range.js" type="text/javascript"></script>
+<div class="portlet box green" style="display:none">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="diamond_list_tejia_search_form">
+            <div class="form-body">
+				
+				<div class="row"> 
+				    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">所在地区：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$citylist item=val%>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="city" value="<%$val.city%>" class="toggle"> <%$val.city%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div> 
+			</div>
+		</div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>地区特价钻活动搜索
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+		<div class="btn-group">
+			<button class="btn btn-sm green" onclick="util.confirm(this);" data-url="index.php?mod=sales&amp;con=DiamondListTejia&amp;act=addCart" name="加入购物车" title="加入购物车" list-id="292" data-title="裸钻4C快捷搜索">加入购物车</button>
+		</div>&nbsp;
+         <div class="btn-group">
+			<button class="btn btn-sm blue" onclick="$('#diamond_list_tejia_search_form').submit();" data-url="" name="搜索" title="搜索" list-id="296" data-title="">
+				搜索 <i class="fa fa-search"></i>
+			</button>
+		</div>
+		<div class="btn-group">
+			<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" list-id="296" data-title="">
+				离开 <i class="fa fa-mail-reply"></i>
+			</button>
+		</div>
+
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="diamond_list_tejia_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/diamond_list_tejia_search_list.js"%>
+//-->
+</script>

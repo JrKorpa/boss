@@ -1,0 +1,38 @@
+<div class="portlet-body">
+		<div class="table-toolbar">
+		</div>
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>赠品款号</th>
+                <th>内容</th>
+				<th>操作人</th>
+				<th>操作时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="app_order_action_list_<%$d.action_id%>" data-title="<%$d.action_id%>">
+            <td><%$d.id%></td>
+				<td><%$d.zp_sn%></td>
+				<td><%$d.content%></td>
+				<td><%$d.create_name%></td>
+				<td><%$d.create_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+    <%$pa%>
+	</div>
+<script type="text/javascript">
+    <!--
+    //分页
+    util.setItem('listDIV','base_action_info_search_list');
+    function app_order_action_search_page(url){
+        util.page(url);
+    }
+
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,91 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="stone_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">单号：</label>
+                        <input type="text" name="" class="form-control" placeholder="" value=""  readOnly="true" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">供应商：</label>
+                        <span style='color:red;'>*</span>
+                        <select class="form-control" tabindex="1" name="prc_id">
+                            <option value=""></option>
+                            <%foreach from=$get_processors_id key=k item=value%>
+                            <option <%if $view->get_prc_id() == $value.id%>selected<%/if%> value="<%$value.id%>|<%$value.name%>"><%$value.name%></option>
+                            <%/foreach%>
+                        </select>   
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">添加人：</label>
+                        <input type="text" name="" class="form-control" placeholder="<%$smarty.session.userName%>" value=""  readOnly="true" />
+                    </div>
+                </div>  
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">添加时间：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="create_time" value="<%if $view->get_create_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_create_time()%><%/if%>" class="form-control" >
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核人：</label>
+                        <input type="text" name="" class="form-control" placeholder="" value="<%$view->get_check_user()%>" readOnly="true" />
+                    </div>
+                </div> 
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核时间：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="check_time" value="<%if $view->get_check_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_check_time()%><%/if%>" class="form-control" >
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <input type="text" name="" class="form-control" placeholder="新增" value="<%$dd->getEnum("diabill.status",$view->get_status())%>"  readOnly="true"/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">备注：</label>
+                        <input type="text" name="info" class="form-control" placeholder="" value="<%$view->get_remark()%>" />
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/stone_info.js"%>
+//-->
+</script>

@@ -1,0 +1,60 @@
+
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>批量配货
+		</div>
+		<!-- <div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div> -->
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="" method="post" class="horizontal-form" id="distribution_push">
+			<div class="form-body">
+				<div class="row">
+					<div  class="col-sm-12">
+						<div>
+							<label class="control-label" style="vertical-align:top">订单号：(不同订单号请按<b style="color:red;">回车</b>间隔)</label>
+						</div>
+						<div class="form-group" id='gs'>
+							<!--<input type="text" id="tags_11" name="orderids" class="form-control tags" placeholder="请输入" value=""/>-->
+							<textarea  id="tags_11" name="orderids" rows="5" cols="50"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default ">重置</button>
+					<button type="submit" class="btn red"><i class="fa fa-check"></i> 开始配货</button>
+				</div>
+			</div>
+		</form>
+	<!-- END FORM-->
+	</div>
+</div>
+<script type="text/javascript">
+
+	<%include file="js/distribution_info.js"%>
+
+
+</script>
+
+<style type="text/css">
+	<%include file="js/jquery.tagsinput.css"%>
+	.tagreds{
+			 background: #FBD8DB !important;
+			 color: #90111A !important;
+		 }
+	.tagreens{
+		background: #A5D24A !important;
+		color: #ffffff !important;
+	}
+	.tagblues{
+		background: #1570A6 !important;
+		color: #ffffff !important;
+	}
+</style>

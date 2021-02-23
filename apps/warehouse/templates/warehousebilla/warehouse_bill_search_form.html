@@ -1,0 +1,335 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title" id="searchform">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="expand"><!-- class=expand 默认搜索框打开。collapse 默认合上 -->
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body form" <%if $args.block==1 %>style="display:none"<%/if%>>
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_bill_search_form1">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据单号：</label>
+							<input type="text" name="bill_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据类型：</label>
+							<select class="form-control" tabindex="1" name="bill_type">
+							<option value=""></option>
+							<%foreach from=$view->getBillType() key=k item=value%>
+							<option value="<%$k%>" <%if $args.bill_type == $k %>selected<%/if%>><%$k%> | <%$value%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label>
+							<select class="form-control" tabindex="1" name="bill_status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("warehouse.bill_status") key=k item=value%>
+							<option value="<%$value.name%>" <%if $args.bill_status == $value.name %>selected<%/if%>><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">出库公司：</label>
+							<select class="form-control" tabindex="1" name="from_company_id">
+								<option></option>
+								<%foreach from=$view->getCompany() item=c %>
+								<option value="<%$c.id%>"> <%$c.company_sn%> | <%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                        
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库公司：</label>
+							<select class="form-control" tabindex="1" name="to_company_id">
+								<option></option>
+								<%foreach from=$view->getCompany() item=c%>
+								<option value="<%$c.id%>"> <%$c.company_sn%> | <%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库仓库：</label><!--getWarehouse-->
+							<select class="form-control" tabindex="1" name="to_warehouse_id">
+								<option></option>
+								<%foreach from=$view->getWarehouse() item=w%>
+								<option value="<%$w.id%>"> <%$w.code%> | <%$w.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">供应商：</label>
+							<select class="form-control" tabindex="1" name="processors">
+								<option></option>
+								<%foreach from=$pro_list item=c %>
+								<option value="<%$c.id%>"> <%$c.id%></option><!--name-->
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+							<label class="control-label">结算方式：</label>
+							<select tabindex="-1" name="account_type" class="select2_category form-control select2-offscreen">
+								<option value=""></option>
+								<option value="1">记账</option>
+                                <option value="2">已付款</option>
+                			</select>
+					    </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+							<label class="control-label">入库方式：</label>
+							<select class="form-control" tabindex="1" name="put_in_type">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray("warehouse.put_in_type") key=k item=value%>
+								<option value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+							</select>
+					    </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+							<label class="control-label">模号：</label>
+							<input type="text" name="mohao" class="form-control" placeholder="请输入"/>
+					    </div>
+                                        </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">商品货号：</label>
+							<input type="text" name="goods_id" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="goods_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单人：</label>
+							<input type="text" name="create_user" class="form-control" placeholder="请输入制单人" value="<%$args.create_user%>"/>
+						</div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="time_end">
+							</div>
+						</div>
+					</div>
+
+
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="check_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="check_time_end">
+							</div>
+						</div>
+					</div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">送货单号：</label>
+                            <input type="text" name="send_goods_sn" class="form-control" placeholder=""/>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">备注：</label>
+							<input type="text" name="bill_note" class="form-control" placeholder=""/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" onclick="closeSearch()" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" onclick="download1()"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="warehouse_bill_search_list1">
+		
+<%if $args.block==1 %>		   
+				<%if empty($is_goods_id) && empty($is_goods_sn)%>
+				<div class="table-scrollable">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+						<tr>
+							<th>单据编号</th>
+							<th>单据类型</th>
+							<th>状态</th>
+							<th>货品数量</th>
+							<th>订单号</th>
+							<th>出库公司</th>
+							<th>入库公司</th>
+							<th>入库仓</th>
+							<th>供应商</th>
+							<th>成本价</th>
+							<th>销售价</th>
+							<th>送货单号</th>
+							<th>制单人</th>
+							<th>制单时间</th>
+							<th>审核人</th>
+							<th>审核时间</th>
+							<th>备注</th>
+						</tr>
+					</thead>
+					<tbody>
+					<%foreach from=$page_list.data item=d%>
+						<tr data-id="purchase_type_list_<%$d.id%>" id="<%$d.id%>" data-type="<%$d.bill_type%>" data-title="<%$d.bill_no%>" >
+							<td><%$d.bill_no%></td>
+							<td><%$view->getBillType($d.bill_type)%></td>
+							<td><%$dd->getEnum('warehouse.bill_status',$d.bill_status)%></td>
+							<td><%$d.goods_num%></td>
+							<td> <a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+							<td><%$d.from_company_name|default:'--'%></td>
+							<td><%$d.to_company_name|default:'--'%></td>
+							<td><%$d.to_warehouse_name|default:'--'%></td>
+							<td><%$d.pro_id|default:'--'%></td><!--pro_name-->
+							<td><%$d.goods_total|default:'--'%></td>
+							<td><%$d.shijia|default:'--'%></td>
+							<td><%$d.send_goods_sn|default:'--'%></td>
+							<td><%$d.create_user|default:'--'%></td>
+							<td><%$d.create_time|default:'--'%></td>
+							<td><%$d.check_user|default:'--'%></td>
+							<td><%$d.check_time|default:'--'%></td>
+							<td><%$d.bill_note|default:'--'%></td>
+						</tr>
+					<%/foreach%>
+					</tbody>
+				</table>
+				</div>
+				<div class="pager">
+				<%$pa%>
+				</div>
+				<%else%>
+				<div class="table-scrollable">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+					<tr>
+						<th>单据类型</th>
+						<th>单据号码</th>
+						<th>状态</th>
+						<th>货号</th>
+						<th>款号</th>
+						<th>货品名称</th>
+						<th>数量</th>
+						<th>成本价</th>
+						<th>销售价</th>
+						<th>出库公司</th>
+						<th>入库公司</th>
+						<th>入库仓</th>
+						<th>制单人</th>
+						<th>制单时间</th>
+						<th>审核人</th>
+						<th>审核时间</th>
+						<th>备注</th>
+					</tr>
+					</thead>
+					<tbody>
+					<%foreach from=$page_list.data item=d%>
+					<tr data-id="purchase_type_list_<%$d.bill_id%>" data-type="<%$d.bill_type%>" data-title="<%$d.bill_no%>" >
+						<td><%$view->getBillType($d.bill_type)%></td>
+						<td><%$d.bill_no%></td>
+						<td><%$dd->getEnum('warehouse.bill_status',$d.bill_status)%></td>
+						<td><%$d.goods_id%></td>
+						<td><%$d.goods_sn%></td>
+						<td><%$d.goods_name%></td>
+						<td><%$d.num%></td>
+						<td><%$d.sale_price%></td>
+						<td><%$d.shijia%></td>
+						<td><%$d.from_company_name|default:'--'%></td>
+						<td><%$d.to_company_name|default:'--'%></td>
+						<td><%$d.to_warehouse_name|default:'--'%></td>
+						<td><%$d.create_user|default:'--'%></td>
+						<td><%$d.create_time|default:'--'%></td>
+						<td><%$d.check_user|default:'--'%></td>
+						<td><%$d.check_time|default:'--'%></td>
+						<td><%$d.bill_note|default:'--'%></td>
+					</tr>
+					<%/foreach%>
+					</tbody>
+				</table>
+				</div>
+				<div class="pager">
+				<%$pa%>
+				</div>
+				
+				<%/if%>
+				<script type="text/javascript">
+				<!--
+					util.hover();
+				//-->
+				</script>
+			<%/if%>	
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_list.js"%>
+//-->
+</script>

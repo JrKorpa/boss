@@ -1,0 +1,138 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="material_goods_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">款式编号：</label><span style="color:red;">*</span>
+						<input type="text" name="style_sn" class="form-control"  <%if isset($tab_id)%>disabled="disabled"<%/if%>  placeholder="请输入" value="<%$view->get_style_sn()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">款式名称：</label>
+						<input type="text" name="style_name" class="form-control" placeholder="根据款号带出" disabled="disabled" value="<%$view->get_style_name()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品编号：</label><span style="color:red;">*</span>
+						<input type="text" name="goods_sn" class="form-control" placeholder="系统自动生成" disabled="disabled" value="<%$view->get_goods_sn()%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">	
+				 <div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label" >货品类型：</label><span style="color:red;">*</span>
+							<select class="form-control" name="goods_type">
+								<%foreach from=$dd->getEnumArray("material.goods_type") key=k item=value%>
+								<option value="<%$value.name%>" <%if $value.name==$view->get_goods_type()%>selected="selected"<%/if%>
+								><%$value.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品名称：</label>
+						<input type="text" name="goods_name" class="form-control" placeholder="请输入" value="<%$view->get_goods_name()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品规格：</label>
+						<input type="text" name="goods_spec" class="form-control" placeholder="请输入" value="<%$view->get_goods_spec()%>" />
+					</div>
+				</div>
+				</div>
+			<div class="row">
+			    <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">材质：</label>
+						<input type="text" name="caizhi" class="form-control" placeholder="请输入" value="<%$view->get_caizhi()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">起订量：</label><span style="color:red;">*</span>
+						<input type="text" name="min_qty" class="form-control" placeholder="请输入" value="<%$view->get_min_qty()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">装箱量：</label><span style="color:red;">*</span>
+						<input type="text" name="pack_qty" class="form-control" placeholder="请输入" value="<%$view->get_pack_qty()%>" />
+					</div>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">分类1：</label>
+						<input type="text" name="catetory1" class="form-control" placeholder="请输入" value="<%$view->get_catetory1()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">分类2：</label>
+						<input type="text" name="catetory2" class="form-control" placeholder="请输入" value="<%$view->get_catetory2()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">分类3：</label>
+						<input type="text" name="catetory3" class="form-control" placeholder="请输入" value="<%$view->get_catetory3()%>" />
+					</div>
+				</div>
+    		</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">单位：</label>
+						<input type="text" name="unit" class="form-control" placeholder="请输入" value="<%$view->get_unit()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品加价率：</label>
+						<input type="text" name="goods_jiajialv" class="form-control" placeholder="请输入" value="<%$view->get_goods_jiajialv()%>" />
+					</div>
+				</div>				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">指定销售价：</label>
+						<input type="text" name="goods_sale_price" class="form-control" placeholder="请输入" value="<%$view->get_goods_sale_price()%>" />
+					</div>
+				</div>				
+			</div>
+			<div class="row">
+			    <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<textarea class="form-control" name="remark" placeholder="请输入"><%$view->get_remark()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/material_goods_info.js"%>
+//-->
+</script>

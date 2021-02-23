@@ -1,0 +1,80 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead>
+        <th  style="text-align:left;">全选&nbsp;<input type="checkbox" class="group-checkable" data-set="#processor_in_account_search_list .checkboxes" /></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </thead>
+        <tbody>
+            <%foreach from=$page_list item=d %>
+            <tr data-id="processor_in_account_list_<%$d.bill_no%>" data-title="<%$d.bill_no%>">
+                <td align="center"><input class="checkboxes"  type="checkbox" title="此复选框作用于财物审核" name="_ids[]"  value="<%$d.bill_no%>" /></td>
+                <td width="20%" colspan="2" >                   
+        	    <a  href="javascript:;" class="tab-con-a" data-title="<%$d.bill_no%>" data-id="<%$d.id%>" data-url="index.php?mod=warehouse&con=WarehouseBillInfo<%$d.bill_type%>&act=show&id=<%$d.id%>" ><%$d.bill_no%></a>
+                </td>
+                <td width="20%" >入库方式:<%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%></td>
+                <td width="20%" >时间:<%$d.create_time%></td>
+                <td width="23%" >成本总金额：<%$d.chengbenjia%></td>
+                <td width="23%" >实际支付总金额：<%$d.chengbenjia%></td>
+                <td>
+                    <!--<span style="color:#f00">{if $item.cha > 1}差额：{$item.cha|string_format:'%.2f'}{/if}</span>
+                    <span id="fin_check_span_{$key}">{if $item.fin_status == 1}已审核{else}<input type="button" class="button_yy" value="审核" onclick="fin_check('{$item.order_id}', '{$key}')" />{/if}</span>
+                    -->
+                    <span><%if $d.fin_check_status==2%>已审核<%else%>未审核<%/if%></span>
+                </td>
+            </tr>
+           <%foreach from=$d.bill item=item%>
+            <tr data-id="processor_in_account_list_<%$d.bill_no%>" data-title="<%$d.bill_no%>">
+                <td width="10%" ><%if item==0%>支付渠道<%/if%></td>
+                <td ><%$item.pro_name%></td>
+                <td ><%if $item.pay_method==1%>记账<%else%>已付款<%/if%></td>
+                <td ><%$item.amount%></td>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+            </tr>	
+            <%/foreach%>
+          <%/foreach%>
+        </tbody>
+    
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#processor_in_account_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#processor_in_account_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}
+	});
+	$.uniform.update(set);
+});
+$('#processor_in_account_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

@@ -1,0 +1,81 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>应付单号</td>
+					<td><%$view->get_balance_no()%></td>
+					<td>结算商</td>
+					<td><%$view->get_supplier_name()%></td>
+					<td>制单人</td>
+					<td><%$view->get_create_name()%></td>
+					<td>制单时间</td>
+					<td><%date('Y-m-d H:i:s',$view->get_create_time())%></td>
+				</tr>
+				<tr>
+					<td>付款类型:</td>
+					<td><%$view->get_pay_type()%></td>
+					<td>应付金额：</td>
+					<td style="background:#c7c7c8">&yen;<%$view->get_total_real()%></td>
+					<td>审核人</td>
+					<td><%$view->get_check_name()%></td>
+					<td>审核时间</td>
+					<td>
+						<%if $view->get_check_time()%><%date('Y-m-d H:i:s',$view->get_check_time())%><%/if%>
+					</td>
+				</tr>
+				<tr>
+					<td>数量</td>
+					<td><%count(explode(',',$view->get_apply_array()))%></td>
+					<td>调整金额：</td>
+					<td>&yen;<%$view->get_total_dev()%></td>
+					<td>系统金额：</td>
+					<td>&yen;<%$view->get_total_sys()%></td>
+					<td>审批状态</td>
+					<td><%$view->getBalanceStatus($view->get_balance_status())%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>申请单明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table id="balance_show_detail_list" class="table table-bordered table-striped table-hover flip-content">
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_balance_show.js"%>
+//-->
+</script>

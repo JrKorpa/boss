@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>渠道</th>
+			<th>证书类型</th>
+			<th>最小钻重[含]</th>
+			<th>最大钻重[不含]</th>
+			<th>加价</th>
+			<th>货品状态</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data key=key item=d%>
+		<tr data-id="diachannel_jiajialv_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$key+1%></td>
+			<td><%$channels[$d.channel_id]['channel_name']%></td>
+			<td>
+			  <%foreach from=$certs item=val%>
+                   <%if $d.cert== $val && $val%><%$val%><%/if%>
+              <%/foreach%>
+			</td>
+			<td><%$d.carat_min%></td>
+			<td><%$d.carat_max%></td>
+			<td><%$d.jiajialv%></td>
+			<td><%if $d.good_type==1%>现货<%else%>期货<%/if%></td>
+			<td><%if $d.status==1%>启用<%else%>停用<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

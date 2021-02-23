@@ -1,0 +1,112 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>渠道</th>
+				<th>科目</th>
+				<th>值</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>渠道一部</td>
+				<td>未发货金额</td>
+				<td><%$data['sumSameDate'][0]%></td>
+			</tr>
+			<tr>
+				<td>渠道一部</td>
+				<td>未发货单量</td>
+				<td><%$data['sumSameDate'][1]%></td>
+			</tr>
+			<tr>
+				<td>渠道一部</td>
+				<td>20天以上未发货金额</td>
+				<td><%$data['sumTwentyDate'][0]%></td>
+			</tr>
+			<tr>
+				<td>渠道一部</td>
+				<td>20天以上未发货单量</td>
+				<td><%$data['sumTwentyDate'][1]%></td>
+			</tr>
+			<tr>
+				<td>渠道一部</td>
+				<td>30天以上未发货金额</td>
+				<td><%$data['sumThirtyDate'][0]%></td>
+			</tr>
+			<tr>
+				<td>渠道一部</td>
+				<td>30天以上未发货单量</td>
+				<td><%$data['sumThirtyDate'][1]%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>未发货金额</td>
+				<td><%$data['tMSameDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>未发货单量</td>
+				<td><%$data['tMSameDate'][0]['count']%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>20天以上未发货金额</td>
+				<td><%$data['tMTwentyDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>20天以上未发货单量</td>
+				<td><%$data['tMTwentyDate'][0]['count']%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>30天以上未发货金额</td>
+				<td><%$data['tMThirtyDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>天猫</td>
+				<td>30天以上未发货单量</td>
+				<td><%$data['tMThirtyDate'][0]['count']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>未发货金额</td>
+				<td><%$data['jDSameDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>未发货单量</td>
+				<td><%$data['jDSameDate'][0]['count']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>20天以上未发货金额</td>
+				<td><%$data['jDTwentyDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>20天以上未发货单量</td>
+				<td><%$data['jDTwentyDate'][0]['count']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>30天以上未发货金额</td>
+				<td><%$data['jDThirtyDate'][0]['price']%></td>
+			</tr>
+			<tr>
+				<td>京东</td>
+				<td>30天以上未发货单量</td>
+				<td><%$data['jDThirtyDate'][0]['count']%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

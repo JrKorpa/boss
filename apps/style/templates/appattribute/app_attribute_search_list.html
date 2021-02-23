@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>属性名称</th>
+			<th>属性编码</th>
+			<th>展示方式</th>
+			<th>状态</th>
+			<th>排序序号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_attribute_list_<%$d.attribute_id%>" >
+			<td align="center"><%$d.attribute_id%></td>
+			<td><%$d.attribute_name%></td>
+			<td><%$d.attribute_code%></td>
+			<%assign var=show_id value=$d.show_type%>
+			<td><%$show_type_arr[$show_id]%></td>
+			<td><%$dd->getEnum("is_enabled",$d.attribute_status)%></td>
+			<td><%$d.attribute_sort%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

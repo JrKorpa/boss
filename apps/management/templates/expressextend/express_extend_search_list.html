@@ -1,0 +1,35 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>快递公司</th>
+                <th>暂停收发时间</th>
+                <th>恢复收发时间</th>
+                <th>暂停收发区域</th>
+                <th>添加人</th>
+                <th>添加时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="express_extend_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.express_name%></td>
+                <td><%$d.send_time_end%></td>
+                <td><%$d.send_time_start%></td>
+                <td><%$d.exp_areas_name%></td>
+                <td><%$d.add_user%></td>
+                <td><%$d.add_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

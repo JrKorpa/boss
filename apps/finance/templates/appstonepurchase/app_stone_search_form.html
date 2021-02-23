@@ -1,0 +1,140 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_stone_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">所属公司：</label>
+							<select class="select2_category form-control" name="company" tabindex="1">
+								<option value=""></option>
+								<option value="58">总公司</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">供应商/结算商：</label>
+							<select class="form-control" tabindex="1" name="prc_id">
+								<option value=""></option>
+								<%foreach from=$process_list key=key item=value%>
+								<option value="<%$value.id%>"><%$value.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应付申请状态：</label>
+							<select class="select2_category form-control" name="pay_apply_status" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('app_pay.detail_apply_status') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据类型：</label>
+							<select class="select2_category form-control" name="item_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('PayApply.stone_type') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">流水单号：</label>
+							<input type="text" name="serial_number" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应付申请单号：</label>
+							<input type="text" name="pay_apply_number" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div id="bacheitem" class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据编号：</label>
+                                                        <input type="text" name="item_id" class="form-control" placeholder="双击可批量输入单据编号" ondblclick="bach_search_num(this)">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">纸质单号：</label>
+							<input type="text" name="prc_num" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库制单时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="2012/10/11" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="make_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="make_time_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="2012/10/11" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="check_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="check_time_end">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div id="deal_detail_search_btn" class="col-md-offset-3 col-md-9">
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<span id="stone_export_btn" class="btn blue"><i class="fa fa-folder-open"></i> 导出</span>
+					<button type="reset" class="btn default"><i class="fa fa-undo"></i> 重置</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i><span id="deal_detail_title">应付明细列表</span>
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_stone_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_stone_list.js"%>
+//-->
+</script>

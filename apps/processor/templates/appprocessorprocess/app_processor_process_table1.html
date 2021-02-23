@@ -1,0 +1,12 @@
+<%foreach from=$users item=v%>
+<tr>
+    <td>第<%$v.user_order%>步</td>
+    <td><%$v.real_name%></td>
+    <td>
+        <span class="btn btn-xs red" onclick="del(this)">
+            <i class="fa fa-times">删除</i>
+        </span>
+    </td>
+    <input type="hidden" name="user[]" value="<%$v.user_id%>" from="app_processor_process_info" />
+</tr>
+<%/foreach%>

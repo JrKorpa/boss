@@ -1,0 +1,66 @@
+<div class="form-body">
+	<form action="#" method="post" class="horizontal-form" id="logistics_deli_uu">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">快递单号：</label>
+					<font color="red">*</font>
+					<textarea class="form-control" rows="4" cols="20" name="freight_no" placeholder="可批量输入快递单号 需空格隔开"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">寄件人：</label>
+					<font color="red">*</font>
+					<input type="text" name="sender" class="form-control" placeholder="" onBlur="" value="<%$view->get_consignee()%>" <%if $view->get_id() gt 0%>disabled="false"<%/if%>/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">寄件部门：</label>
+					<font color="red">*</font>
+					<select class="form-control" tabindex="1" name="department" <%if $view->get_id() gt 0%>disabled="false"<%/if%>>
+					<option value=""></option>
+								<%foreach from=$info_dep item=v%>
+								<option value="<%$v.name1%>" <%if $v.name1==$view->get_department()%>selected="selected"<%/if%>><%$v.name%></option>
+								<%/foreach%>
+
+						</select>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递公司：</label>
+						<font color="red">*</font>
+						<select class="form-control" tabindex="1" name="express_id" >
+								<option value=""></option>
+								<%foreach from=$info_express item=c %>
+								<option value="<%$c.id%>" <%if $c.id==$view->get_express_id ()%>selected="selected"<%/if%>><%$c.exp_name%></option>
+								<%/foreach%>
+						</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label class="control-label">发件缘由：</label>
+					<font color="red"></font>
+					<input type="text" name="note" class="form-control" placeholder="" onBlur=""  value="<%$view->get_remark()%>" <%if $view->get_id() gt 0%>disabled="false"<%/if%>/>
+				</div>
+			</div>
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				<input type="hidden" value="<%$view->get_id()%>" name="id">
+				<input type="hidden" value="<%$view->get_order_no()%>" name="order_no">
+			</div>
+		</div>
+	</form>
+</div>
+		<script type="text/javascript">
+			<%include file="js/logistics_batch_delivery_info.js"%>
+		</script>

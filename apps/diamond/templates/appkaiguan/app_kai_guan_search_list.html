@@ -1,0 +1,27 @@
+<form id="form_diamond_switch">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<tbody>
+	<tr>
+	<th>供应商代码</th>
+	<th>开关</th>
+	<th>更新时间</th>
+	<th>操作</th>
+	</tr>
+	<%foreach from=$kaiguanList key=key item=item%>
+		<tr>
+			<td><%$item.title%></td>
+			<td><input type="checkbox" name="from[]" value="<%$item.vendor_id%>" <%if $item.activate==1%>checked<%/if%>>（选中为开启定时抓取）</td>
+            <td><%$item.updated|default:"--"%></td>
+            <td><a href="index.php?mod=diamond&con=AppKaiGuan&act=downLoadExcel&from_ad=<%$item.title%>"><button class="btn btn-sm yellow" name="1" title="导出最新数据" list-id="1" val="" data-title="导出最新数据">
+			导出最新数据 <i class="fa fa-trash-o"></i>
+			</button></a></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</form>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

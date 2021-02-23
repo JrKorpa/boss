@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>供应商</th>
+			<th>费用类型</th>
+			<th>费用</th>
+			<th>状态</th>
+			<th>用户名</th>
+			<th>创建时间</th>
+			<th>停用时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_processor_fee_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.processor_name%></td>
+			<td><%if $d.fee_type=='1'%>材质费<%/if%><%if $d.fee_type=='2'%>超石费用<%/if%><%if $d.fee_type=='3'%>表面工艺<%/if%></td>
+			<td><%$d.price%></td>
+			<td><%if $d.status=='1'%>启用<%/if%><%if $d.status=='2'%>停用<%/if%></td>
+			<td><%$d.check_user %></td>
+			<td><%$d.check_time %></td>
+			<td><%$d.cancel_time %></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

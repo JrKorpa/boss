@@ -1,0 +1,95 @@
+<style type="text/css">
+.checkbuttonNo,.checkbuttonOk {
+	width:auto !important;
+	min-width:90px;
+	margin:5px;
+	height:40px;
+	background:#F7F7F7;
+	float:left;
+	-moz-border-radius:5px !important;
+	-webkit-border-radius:5px !important;
+	border-radius:5px !important;
+	cursor:pointer;
+}
+.checkbuttonNo{
+	border:solid 3px #ccc;
+}
+.checkbuttonOk{
+	border:solid 3px #6699cc;
+}
+	
+.checktext{
+	float:left;
+	width:auto !important;
+	padding-left:8px;
+	line-height:40px;
+	text-align:center;
+}
+
+.checkbuttonNo .triangleNo{
+	display:block;
+	height:0px;
+	width:0px;
+	border:12.5px solid #ccc;
+	border-color:#F7F7F7 #F7F7F7 transparent transparent;
+	border-style:solid solid dashed dashed;
+	float:right;
+}
+.checkbuttonOk .triangleOk{
+	display:block;
+	height:25px;
+	width:25px;
+	float:right;
+	background:url('public/img/checkicon.png');
+}
+.menu_permission_tree a {
+	display:inline-block;
+	margin:4px;
+	padding:6px 10px;
+	text-decoration:none;
+	font:12px Arial;
+	color:#FFF;
+	outline:none;
+	border:1px solid #CCC;
+	background:#22A4C4;
+	-moz-border-radius:10px !important;
+	-webkit-border-radius:10px !important;
+	border-radius:10px !important;
+}
+
+.menu_permission_tree a:hover {
+	color:#FFF;
+	background:#0B718B;
+}
+
+
+#user_permission_rel_opr_info1 {
+	min-height:300px;
+	height:300px;
+	max-height:340px;
+	overflow-y:scroll; 
+	overflow-x:hidden; 
+}
+#user_permission_rel_opr_info1 .row{
+	margin-left:20px;
+}
+
+</style>
+<div class="menu_permission_tree">
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_rel_opr_info_selectall)">全选</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_rel_opr_info_sync)">同步</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_rel_opr_info_save)">授权</a>
+</div>
+<div class="clear"></div>
+<div class="portlet-body" id="user_permission_rel_opr_info1">
+	<%foreach from=$data item=value%>
+		<div class="row">
+			<div title="<%$value.method_name%>" class="checkbutton<%if $value.chk_u%>Ok<%else%>No<%/if%>"><div id="<%$value.id%>" class="checktext"><%if $value.chk_r%><span style="color:red;"><%$value.label%></span><%else%><%$value.label%><%/if%></div><div class="triangle<%if $value.chk_u%>Ok<%else%>No<%/if%>"></div></div>
+		</div>
+	<%/foreach%>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_permission_rel_opr_info.js"%>
+//-->
+</script>

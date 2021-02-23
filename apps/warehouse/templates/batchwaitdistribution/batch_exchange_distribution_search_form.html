@@ -1,0 +1,90 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>天生一对批量配货管理-搜索
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="" method="post" class="horizontal-form" id="batch_exchange_distribution_search_form">
+		    <textarea  name="order_sn_hidden" style="display:none" rows="10" cols="60"></textarea>
+			<div class="form-body" style="padding-bottom:0px">
+				<div class="row">
+					<div  class="col-sm-5">
+						<div>
+							<label class="control-label" style="vertical-align:top">
+							批量录入需要配货(天生一对)的订单号：(不同订单号请按<b style="color:red;">回车</b>换行)
+							</label>
+						</div>
+						<textarea  name="order_sn" rows="10" cols="60"></textarea>
+					</div>
+					<div class="col-sm-6">
+					    <style>.search_logs hr{ margin:3px 0px}</style>
+					    <div>
+							<label class="control-label" style="vertical-align:top">
+							操作日志提示
+							</label>
+						</div>
+					  <div class="search_logs" title="系统日志" style="width:100%; padding:5px; height:175px;border:1px solid #cecece;overflow:scroll">
+					  </div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="submit" class="btn green btn_search"><i class="fa fa-search"></i> 搜索</button>
+					<button type="button" class="btn yellow" onclick="util.closeTab(this);">离开 <i class="fa fa-mail-reply"></i></button>
+				</div>
+			</div>
+		</form>
+	<!-- END FORM-->
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	    <form action="" method="post" class="horizontal-form" id="batch_exchange_distribution_add_form">
+		<div class="table-toolbar">
+			<button type="button" id="batch_wait_destribution_form_btn" class="btn green" form="wait_destribution_form"><i class="fa fa-check"></i> 批量销账</button>
+		</div>		
+		<div class="form-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">出库公司：</label><span style='color:red'>*</span>
+									
+									<select class="select2_category form-control" tabindex="1" id="from_company_id" name="from_company_id" >
+										<option value=""></option>
+										<!-- 如果有深圳分公司的权限，那么列表就会有深圳分公司的列表，默认选中  如果就一个公司选择 默认选中 -->
+										
+									<option value="58|总公司" >总公司</option>
+									<option value="445|BDD深圳分公司" >BDD深圳分公司</option>
+										 	
+										
+									</select>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style='color:red;padding: 5px;font-size: 23px;' id='sudu1' ></div>
+		<div class="flip-scroll" id="batch_exchange_distribution_search_list">
+		
+		</div>
+		<div class="clear"></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	<%include file="js/batch_exchange_distribution_search_form.js"%>
+</script>

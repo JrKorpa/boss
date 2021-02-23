@@ -1,0 +1,46 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>石包</th>
+			<th>总数量(粒)</th>
+			<th>总重量(ct)</th>
+			<th>证书号</th>
+			<th>重量</th>
+			<th>颜色</th>
+			<th>净度</th>
+			<th>切工</th>
+			<th>对称</th>
+			<th>抛光</th>
+			<th>荧光</th>
+			<th>每卡采购价格(元)</th>
+			<th>每卡销售价格(元)</th>
+		</tr>													
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="dia_order_goods_list_<%$d.og_id%>" data-title="<%$d.og_id%>">
+			<td><%$d.og_id%></td>
+			<td><%$d.shibao%></td>
+			<td><%$d.num%></td>
+			<td><%$d.zongzhong%></td>
+			<td><%$d.zhengshuhao|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.zhong|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.yanse|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.jingdu|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.qiegong|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.duichen|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.paoguang|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.yingguang|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.caigouchengben|default:'&nbsp;&nbsp---'%></td>
+			<td><%$d.xiaoshouchengben|default:'&nbsp;&nbsp---'%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

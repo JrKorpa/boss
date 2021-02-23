@@ -1,0 +1,50 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>预约号</th>
+			<th>客户姓名</th>
+			<th>联系电话</th>
+			<th>预约填写人</th>
+			<th>来源</th>
+			<th>接待人</th>
+			<th>到店时间</th>
+			<th>预约时间</th>
+			<th>自动分配</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+                <tr data-id="app_bespoke_old_list_<%$d.bespoke_id%>">
+			<td><a href="javascript:;" class="tab-con-a" data-title="预约详情" data-id="appbespokeold<%$d.bespoke_id%>" data-url="index.php?mod=bespoke&con=AppBespokeOld&act=show&id=<%$d.bespoke_sn%>"><%$d.bespoke_sn%></a></td>
+			<td><%$d.bespoke_man%></td>
+			<td><%$d.mobile%></td>
+			<td><%$d.bespoke_server%></td>
+			<td><%$d.from_ad%></td>
+			<td><%$d.make_order%></td>
+			<td><%$d.shop_time%></td>
+			<td><%$d.add_time%></td>
+			<td>
+                <%if $d.queue_status > 0%><%if $d.isspecial%>否<%else%><font color="#ABBF4A">是</font><%/if%><%/if%>			
+			</td>
+			<td>
+				<%if $d.withuserdo==3%>作废
+				<%elseif $d.withuserdo==1%>
+				<font color="#FF0000">需电话回访</font>
+				<%elseif $d.queue_status==0%>
+				<font color="#FF9900">未到店</font>
+				<%elseif $d.bespok_status==1%> 到店成交
+				<%elseif $d.bespok_status==2%> 到店未成交
+				<%elseif $d.bespok_status==4%> 赠品已领
+				<%/if%>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

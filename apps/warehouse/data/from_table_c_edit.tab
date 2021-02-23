@@ -1,0 +1,79 @@
+id = #from_table_data_c_edit;
+
+[title]
+0 = "货号";
+1 = "货品名称";
+2 = "款号";
+;3 = "货品数量";
+;4 = "材质";
+;5 = "金重";
+3 = "入库方式";
+4 = "净度";
+5 = "证书号";
+6 = "颜色";
+7 = "主石重";
+8= "成本价";
+9= "销售成本价";
+10="主成色重";
+11="主石粒数";
+12="副石重";
+
+
+
+[columns_0]
+type = numeric;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+type = text;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = numeric;
+format = 0.00;
+readOnly = true;
+
+[columns_8]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_9]
+type = numeric;
+format = 0,0.00;
+readOnly = false;
+
+[columns_10]
+type = text;
+readOnly = true;
+
+[columns_11]
+type = numeric;
+format = 0;
+readOnly = true;
+
+[columns_12]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+

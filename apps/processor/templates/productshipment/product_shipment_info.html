@@ -1,0 +1,113 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="product_shipment">
+	<div class="form-body">
+	   <div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					 <label class="control-label">质检结果：</label>
+					<div class="radio-list">
+						&nbsp;&nbsp;<label class="radio-inline">
+							<input type="radio" name="oqc_result" value="1" checked="checked" /> 质检通过
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="oqc_result" value="0" /> 质检未过
+						</label>
+					</div>
+				</div>
+			</div>
+		
+	      </div>
+		<div class="row">
+			<!--
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">工厂出货单号：（只能输入数字、字母、下划线）</label>
+					<input type="text" name="shipment_number" class="form-control" placeholder="请输入工厂出货单号" />
+				</div>
+			</div>
+			-->
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">出货数量：（不能超过布产单总数量）</label>
+					<input type="text" name="num" class="form-control" placeholder="请输入数量" />
+				</div>
+			</div>
+			<%if $from_type==1%>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">报废数量：（不能超过布产单总数量）</label>
+					<input type="text" name="bf_num" class="form-control" placeholder="请输入数量" />
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">报废原因：（报废数量大于0时，报废原因必填）</label>
+					<input type="text" name="reason_scrapped" class="form-control" placeholder="报废原因" />
+				</div>
+			</div>
+			<%/if%>
+		</div>
+		
+		
+	<div class="row">
+	  <div id="oqc_div" style="display:none;">
+		  <%if $from_type==1%>
+		   <div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">质检未过数量：（质检未过数量小于等于剩余出货数量）</label>
+					<input type="text" name="oqc_no_num" class="form-control" placeholder="请输入数量" />
+				</div>
+			</div>
+		   <%/if%>	
+			<div class="col-sm-4">
+				<div class="form-group">
+
+					<label class="control-label">质检未过类型：</label>
+					<select class="form-control" tabindex="1" name="oqc_no_type" id="oqc_no_type"  onchange="change_pro()">
+						<option value=""></option>
+						<%foreach from=$top_menu key=k item=value%>
+						<option value="<%$value.id%>"><%$value.cat_name%></option>
+						<%/foreach%>
+					</select>
+					<label class="control-label">未过原因：（如未过原因不能满足业务需求，请联系相关人员添加。）</label>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">未过原因：</label>
+					<select class="form-control" tabindex="1" name="oqc_no_reason" id="oqc_no_reason" >
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			
+		 </div>	 
+	    
+	   </div>
+		<div class="row">
+		<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<input type="text" name="info" class="form-control" placeholder="请输入备注" />
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="id" value="<%$id%>" />
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_shipment_info.js"%>
+//-->
+</script>

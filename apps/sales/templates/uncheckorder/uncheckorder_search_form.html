@@ -1,0 +1,149 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="unckeckorder_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="create_user" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <%*	<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订单状态：</label>
+						<select class="form-control" tabindex="1" name="order_status">
+							<option value=""></option>
+							<%foreach from =$dd->getEnumArray("order.order_status") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>*%>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">布产状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="buchan_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("buchan_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">配货状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="delivery_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("sales.delivery_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">发货状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="send_good_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("order.send_good_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+				    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">销售渠道：</label>
+						<select class="form-control" tabindex="1" name="department_id">
+							<option value=""></option>
+							<%foreach from=$sales_channels_idData key=key item=p %>
+								<option value="<%$key%>" ><%$p%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">客户来源：</label>
+                            <select class="form-control" tabindex="1" name="customer_source">
+                                <option value=""></option>
+                                <%foreach from=$customer_source_list key=key item=p%>
+                                <option value="<%$p.id%>"><%$p.source_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">支付状态：</label>
+						<select class="form-control" tabindex="1" name="order_pay_status">
+							<option value=""></option>
+							<%foreach from =$dd->getEnumArray("order.order_pay_status") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+        </div>
+        </form>
+		<!-- END FORM-->
+	</div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="unckeckorder_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/uncheckorder_search_list.js"%>
+//-->
+</script>

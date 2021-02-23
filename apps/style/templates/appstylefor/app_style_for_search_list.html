@@ -1,0 +1,31 @@
+<!--
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>适合对象(按年龄)</th>
+			<th>适合场景(按用途)</th>
+			<th>销售类型</th>
+			<th>设计师</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_style_for_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.style_for_who%></td>
+			<td align="center"><%$d.style_for_use%></td>
+			<td align="center"><%$d.style_for_when%></td>
+			<td align="center"><%$d.style_for_designer%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<%$pa%>
+-->
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

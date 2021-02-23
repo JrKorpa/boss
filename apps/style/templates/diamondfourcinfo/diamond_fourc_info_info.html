@@ -1,0 +1,89 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="diamond_fourc_info_info">
+		<div class="form-body">
+			<div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">主石形状：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="shape">
+                            <option value=""></option>
+                            <%foreach from=$view->getShapeList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_shape()==$key && $view->get_id() != '' %>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">石重区间（分）：<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="stone_min" value="<%$view->get_carat_min()%>" placeholder="请输入"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" value="<%$view->get_carat_max()%>" name="stone_max" class="form-control" placeholder="请输入"/>
+                                </div>
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">颜色：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="color">
+                            <option value=""></option>
+                            <%foreach from=$view->getColorList() key=key item=val%>
+                            <option value="<%$val%>" <%if $view->get_color()==$val && $view->get_id() != '' %>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+			</div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">净度：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="clarity">
+                            <option value=""></option>
+                            <%foreach from=$view->getClarityList() key=key item=val%>
+                            <option value="<%$val%>" <%if $view->get_clarity()==$val && $view->get_id() != '' %>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">证书类型：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="cert">
+                            <option value=""></option>
+                            <%foreach from=$view->getCertList() key=key item=val%>
+                            <option value="<%$val%>" <%if $view->get_cert()==$val && $view->get_id() != '' %>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">价格：<span class="required">*</span></label>
+                        <input type="text" name="price" class="form-control" value="<%$view->get_price()%>" placeholder="请输入"/>
+                    </div>
+                </div>
+            </div> 
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/diamond_fourc_info_info.js"%>
+//-->
+</script>

@@ -1,0 +1,150 @@
+<!-- 切换开始 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="tabbable tabbable-custom boxless">
+            <!-- 切换导航开始 -->
+            <ul class="nav nav-tabs" id="nva-tab">
+                <li class="active">
+                    <a href="#tab-0" data-toggle="tab">首页</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="tab-content">
+                <div class="tab-pane active" id="tab-0">
+                    <div class="row-fluid">
+                        <h3 class="page-title" style="padding-left:20px;">欢迎使用<%$smarty.const.SYS_NAME%> <small>(建议使用谷歌浏览器)</small></h3>
+                        <%if $smarty.const.SYS_NAME eq '51BOSS运营管理系统'  %>
+                            
+                        <%else%>                        
+                        <!--<div class="breadcrumb">店面问题响应支持钉钉群：“直营店面系统支持”、“经销商店面系统支持”。</div>
+						<div class="breadcrumb">开通折扣权限和修改订单信息请联系：陈伟伟。</div>
+						<div class="breadcrumb">系统操作帮助请见
+                            <a href="http://pan.baidu.com/s/1mix3ibe" target="_blank">《门店常见问题解答》</a>（提取密码21k2）或
+                            <a href="http://pan.baidu.com/s/1miG0bWW" target="_blank">《销售系统帮助文档》</a>（提取密码4cfq）或
+                            <a href="http://pan.baidu.com/s/1kVPVz3T " target="_blank">《销售系统操作视频》</a>（提取密码f7ju）。
+                        </div>
+						<div class="breadcrumb">为了让店面问题得到更及时有效处理，确保事事有人管，问题有人负责解决。总部相关作业支持人员联系方式如下：
+                        <hr>
+                        <table class="table table-bordered table-striped table-hover flip-content">
+                            <thead class="flip-content">
+                                <tr>
+                                    <th>作业</th>
+                                    <th>部门</th>
+                                    <th>支持人</th>
+                                    <th>后备</th>
+                                    <th>上级</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-id="" data-title="">
+                                    <td>直营店货品上下架及价格维护</td>
+                                    <td>直营店</td>
+                                    <td>蔡志勇(13430999925)</td>
+                                    <td>黄旭玲(13538105865)</td>
+                                    <td>钟志标(13713866277)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>经销商店的货品上下架及价格维护; 批发销售单未审核，导致无法签收</td>
+                                    <td>经销商</td>
+                                    <td>吴琼亮(13667834697)<br/>方炜华(15013728388)</td>
+                                    <td>谢佳漫(13602479290)<br/>李观凤(13710409771)</td>
+                                    <td>钟志标(13713866277)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>裸石库数据维护,上下架、可销售及价格维护</td>
+                                    <td>订钻部</td>
+                                    <td>邓吉欣(15007878017)<br/>李章瑜(18270731466)</td>
+                                    <td>黎　珊(18698845010)</td>
+                                    <td>袁　娟(18588207625)<br/>黎海总(18688977747)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>款式库数据维护,可定制款式维护</td>
+                                    <td>生产部</td>
+                                    <td>吴惠琦(14707895439)</td>
+                                    <td>刘晶钰(15914186869)<br/></td>
+                                    <td>王晓蓉(13425116094)<br/>谢引英总(13714619322)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>无款起版生产</td>
+                                    <td>生产部</td>
+                                    <td>周　灿(15999661734)</td>
+                                    <td>李佳欢(18791757238)</td>
+                                    <td>王清香(15919714291)<br/>谢引英总(13714619322)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>修改布产信息</td>
+                                    <td>生产部</td>
+                                    <td>陈惠芬(15875426247)</td>
+                                    <td>翁茉兰(13711641824)</td>
+                                    <td>王清香(15919714291)<br/>谢引英总(13714619322)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>操作出厂</td>
+                                    <td>生产部</td>
+                                    <td>翁茉兰(13711641824)</td>
+                                    <td>陈惠芬(15875426247)</td>
+                                    <td>王清香(15919714291)<br/>谢引英总(13714619322)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>系统操作重复性咨询及答疑</td>
+                                    <td>销售部</td>
+                                    <td>段　君(15810251077)</td>
+                                    <td>技术部支持同事</td>
+                                    <td></td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>系统权限问题</td>
+                                    <td>技术部</td>
+                                    <td>苏思男(13509655543)</td>
+                                    <td>刘　姣(13612854285)</td>
+                                    <td>颜伟文总(13022009519)</td>
+                                </tr>
+                                <tr data-id="" data-title="">
+                                    <td>系统异常故障问题支持</td>
+                                    <td>技术部</td>
+                                    <td>李儒宗(13538002612)<br/>何小威(15897563663)<br/>高　朋(15989407534)</td>
+                                    <td>运营：罗传荣(13332928921)<br/>全小云(13928785710)<br/>汪文刚(13686828071)</td>
+                                    <td>颜伟文总(13022009519)</td>
+                                </tr>
+                                <%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+                                    <tr data-id="" data-title="">
+                                        <td>售后服务标准</td>
+                                        <td colspan='4'><a href="./public/售后服务标准.docx">售后服务标准.docx</a></td>
+                                    </tr>
+                                <%/if%>
+                                <tr data-id="" data-title="">
+                                    <th colspan='5'>常用表格下载</th>
+                                </tr> 
+                                <%foreach from=$file_list item=f%>
+                                    <tr data-id="" data-title="">
+                                    <td></td>
+                                    <td colspan='4'><a href='./public/table_file/<%$f%>'><%$f%></a></td>
+                                    </tr> 
+                                <%/foreach%>                                   
+                            </tbody>
+                        </table>
+                        <hr>
+                        </div>-->
+                        <%/if%>     
+                    </div>
+                    <div class="row-fluid">
+                        <%if !empty($smarty.session.bespoke_todo_count)%>
+                        <strong class="breadcrumb">您有<%$smarty.session.bespoke_todo_count%>个未处理预约。
+                            <a onclick="new_tab(61, '待处理预约', $(this).attr('href'));return false;"
+                                href="/index.php?mod=bespoke&amp;con=AppBespokeInfo&amp;act=index&amp;todoBes=1">请及时处理！！！</a>
+                        </strong>
+                        <%/if%>
+                    </div>
+                </div>
+            </div>
+            <!-- 切换内容结束 -->
+        </div>
+    </div>
+</div>
+<!-- 切换结束 -->
+<%if $first_login_show_sale_data==1%>
+ <script type="text/javascript">
+<!--
+    util._pop('index.php?mod=management&con=main&act=first_login_show_sale_data');
+//-->
+</script>
+<%/if%>

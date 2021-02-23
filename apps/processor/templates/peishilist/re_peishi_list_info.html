@@ -1,0 +1,46 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="re_peishi_list_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">配石状态：<span class="required">*</span></label>
+						<select class="form-control" tabindex="1" name="peishi_status">
+						<option value="0">未操作</option>
+						</select>
+					</div>
+				</div>		
+			</div>
+			<div class="row">
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">修改原因：<span class="required">*</span></label>
+						<textarea class="form-control" name="remark"></textarea>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<%foreach from=$ids key=k item=id%>
+					<input type="hidden" name="_ids[]" value="<%$id%>" />					
+				<%/foreach%>
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+
+	<%include file="js/re_peishi_list_info.js"%>
+//-->
+</script>

@@ -1,0 +1,115 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="base_style_info_edit_goods_content">
+        <div class="form-body">   
+				
+			<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group">
+					<label class="control-label">商品描述：</label>
+					 <script id="goods_content" name="goods_content" type="text/plain" style="width:1100px;height:200px;"><%$view->get_goods_content()%></script>
+				</div>
+            </div>
+			</div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_style_id()%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript" charset="utf-8" src="public/ueditor/ueditor.config.js?t=1"></script>
+<script type="text/javascript" charset="utf-8" src="public/ueditor/ueditor.all.js?t=1"></script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="public/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+<!--
+var ue = UE.getEditor('goods_content');
+$import("public/js/select2/select2.min.js", function() {
+
+    var Obj = function() {
+	    var formId = 'base_style_info_edit_goods_content';
+        var initElements = function() {
+			
+        };
+        //表单验证和提交
+        var handleForm = function() {
+            var url = 'index.php?mod=style&con=BaseStyleInfo&act=updateStyleContent';
+            var options1 = {
+                url: url,
+                error: function()
+                {
+                    alert('请求超时，请检查链接');
+                },
+                beforeSubmit: function(frm, jq, op) {
+                    $('body').modalmanager('loading');//进度条和遮罩
+                },
+                success: function(data) {
+                    if (data.success == 1) {
+                        $('.modal-scrollable').trigger('click');//关闭遮罩
+                        util.xalert("保存成功!");
+                        util.page(util.getItem('url'));                        
+                    } else {
+                        $('body').modalmanager('removeLoading');//关闭进度条
+                        alert(data.error ? data.error : (data ? data : '程序异常'));
+                    }
+                },
+                error:function() {
+                    $('.modal-scrollable').trigger('click');
+                    alert("数据加载失败");
+                }
+            };
+
+            $('#'+formId).validate({
+                errorElement: 'span', //default input error message container
+                errorClass: 'help-block', // default input error message class
+                focusInvalid: false, // do not focus the last invalid input
+                rules: {                    
+					goods_content: {
+                       required: true,
+                    },                    
+                },
+                messages: {                   
+					goods_content: {
+                        required: '内容不能为空',
+                    }					
+                },
+                highlight: function(element) { // hightlight error inputs
+                    $(element)
+                            .closest('.form-group').addClass('has-error'); // set error class to the control group
+                    //$(element).focus();
+                },
+                success: function(label) {
+                    label.closest('.form-group').removeClass('has-error');
+                    label.remove();
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element.closest('.form-control'));
+                },
+                submitHandler: function(form) {
+                    $("#"+formId).ajaxSubmit(options1);
+                }
+            });
+            
+        };
+        var initData = function() {
+             
+        };
+        return {
+            init: function() {
+                initElements();//处理表单元素
+                handleForm();//处理表单验证和提交
+                initData();//处理表单重置和其他特殊情况
+            }
+        }
+    }();
+    Obj.init();
+});
+//-->
+</script>

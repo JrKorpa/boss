@@ -1,0 +1,70 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="base_hunbohui_info_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">活动名称：</label>
+						<select class="form-control" tabindex="1" name="from_ad">
+							<option value=""></option>
+                            <%foreach from=$CustomerSourcesData key=key item=p%>
+                            <option value="<%$p.source_code%>" <%if $p.source_code==$view->get_from_ad()%>selected="selected"<%/if%>><%$p.source_name%></option>
+                            <%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">可录单部门：</label>
+						<select class="form-control" tabindex="1" name="department">
+							<option value=""></option>
+                            <%foreach from=$channellist key=key item=p%>
+                            <option value="<%$p.id%>" <%if $p.id==$view->get_department()%>selected="selected"<%/if%>><%$p.channel_name%></option>
+                            <%/foreach%>
+						</select>
+					</div>
+				</div>
+					<div class="col-sm-3">
+                        <div class="form-group">	
+                            <label class="control-label">允许录单时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$view->get_start_time()%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$view->get_end_time()%>" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">活动举行时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="active_start_time" value="<%$view->get_active_start_time()%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="active_end_time" value="<%$view->get_active_end_time()%>" />
+                            </div>
+                        </div>
+                    </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="from_adHtml" value="<%$view->get_name()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_hunbohui_info_info.js"%>
+//-->
+</script>

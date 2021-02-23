@@ -1,0 +1,132 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="defective_product_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单号：</label>
+							<input type="text" name="id" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">出货单号：</label>
+							<input type="text" name="ship_num" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产单号：</label>
+							<input type="text" name="bc_sn" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单人：</label>
+							<input type="text" name="make_name" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单时间：</label>
+                            <div class="input-group date-picker  input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control" placeholder="请选择" name="make_time_min" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" placeholder="请选择"  name="make_time_max" value="" />
+                            </div>
+                        </div>
+					</div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">审核时间：</label>
+                            <div class="input-group date-picker input-daterange">
+                                <input type="text" class="form-control" name="check_time_min" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="check_time_max" value="" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核人：</label>
+							<input type="text" name="check_name" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">供应商：</label>
+							<select class="select2_category form-control" tabindex="1" name="prc_id">
+							<option value="">请选择</option>
+							<%foreach from=$Processor_list key=k item=value%>
+								<option value="<%$value.id%>"><%$value.code%> | <%$value.name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label>
+							<select class="select2_category form-control" tabindex="1" name="status">
+							<option value="">请选择</option>
+							<%foreach from=$dd->getEnumArray("bl_status") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					<input type="hidden" id = 'is_dowload' name="is_dowload" value="0">
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" id="dowload" class="btn green"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="defective_product_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/defective_product_search_list.js"%>
+//-->
+</script>

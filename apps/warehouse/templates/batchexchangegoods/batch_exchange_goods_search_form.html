@@ -1,0 +1,69 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单批量换货管理-搜索
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="" method="post" class="horizontal-form" id="batch_exchange_goods_search_form">
+		    <textarea  name="order_sn_hidden" style="display:none" rows="10" cols="60"></textarea>
+			<div class="form-body" style="padding-bottom:0px">
+				<div class="row">
+					<div  class="col-sm-5">
+						<div>
+							<label class="control-label" style="vertical-align:top">
+							批量录入需要换货的订单号：(不同订单号请按<b style="color:red;">回车</b>换行)
+							</label>
+						</div>
+						<textarea  name="order_sn" rows="10" cols="60"></textarea>
+					</div>
+					<div class="col-sm-6">
+					    <style>.search_logs hr{ margin:3px 0px}</style>
+					    <div>
+							<label class="control-label" style="vertical-align:top">
+							操作日志提示
+							</label>
+						</div>
+					  <div class="search_logs" title="系统日志" style="width:100%; height:175px;padding:5px;border:1px solid #cecece;overflow:scroll">
+					  </div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="submit" class="btn green btn_search"><i class="fa fa-search"></i> 搜索</button>
+					<button type="button" class="btn yellow" onclick="util.closeTab(this);">离开 <i class="fa fa-mail-reply"></i></button>
+				</div>
+			</div>
+		</form>
+	<!-- END FORM-->
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	    <form action="" method="post" class="horizontal-form" id="batch_exchange_goods_add_form">
+		<div class="table-toolbar">
+			<button type="submit" class="btn btn-sm green">批量换货 <i class="fa fa-exchange"></i></button>
+		</div>		
+		<div class="flip-scroll" id="batch_exchange_goods_search_list">
+		
+		</div>
+		<div class="clear"></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	<%include file="js/batch_exchange_goods_search_form.js"%>
+</script>

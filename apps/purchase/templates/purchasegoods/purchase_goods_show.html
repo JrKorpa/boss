@@ -1,0 +1,42 @@
+<div class="portlet-body">
+	<!-- 表格1 -->
+	<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content" style="width:35%;">
+			<%if $is_style == 1%>
+			<tr>
+				<td>款号</td>
+				<td><%$view->get_style_sn()%></td>
+			</tr>
+			<%else%>
+			<tr>
+				<td>产品线</td>
+				<td><%$view->get_product_name($view->get_product_type_id())%></td>
+			</tr>
+			<tr>
+				<td>款式分类</td>
+				<td><%$view->get_cat_name($view->get_cat_type_id())%></td>
+			</tr>
+			<%/if%>
+			<tr>
+				<td>数量</td>
+				<td><%$view->get_num()%></td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td><%$view->get_info()%></td>
+			</tr>
+			
+			<%foreach from=$attrArr key=k item=value%>
+			<tr>
+				<td><%$value.name%></td>
+				<td><%$value.value%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

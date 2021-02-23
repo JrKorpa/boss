@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>供应商名称</th>
+			<th>操作类型</th>
+			<th>操作内容</th>
+			<th>操作人</th>
+			<th>操作时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_processor_operation_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.name%></td>
+			<td align="center"><%$d.status%></td>
+			<td align="center"><%$d.operation_content%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

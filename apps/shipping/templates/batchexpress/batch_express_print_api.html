@@ -1,0 +1,603 @@
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+/*
+.table_box{table-layout: fixed;text-align:center;}
+ body{background-color: #ffffff;padding: 0px;margin: 0px;text-align:left;font-family: "微软雅黑";font-size: 18px;}
+.display_no{display:none;}
+.print{width: 100%;padding:25px 25px 50px;overflow:hidden;position:absolute;right:10px;top:10px;}
+.print button{float: right;height: 28px;padding:4px 20px; margin:0 10px}
+b{font-size:27px;} */
+ /* body{background-color: #ffffff;padding: 0px;margin: 0px;text-align:left;font-family: "微软雅黑";font-size: 18px;} */
+.print{width: 100%;padding:25px 25px 50px;overflow:hidden;position:absolute;right:10px;top:10px;}
+.print button{float: right;height: 28px;padding:4px 20px; margin:0 10px}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-after: always;}
+<%if ($express_id==40||$express_id==180)%>
+	*{padding:0;margin:0;list-style: none;font-family: "黑体";font-size:14px;}
+	ul{padding:0;margin:0;}
+	.main{width:98%;margin:0px auto;border:1px solid red;}
+	.bdb{border-bottom: 1px solid #ccc;}
+	.bdr{border-right: 1px solid #ccc;}
+	.main>div{overflow: hidden;width: 100%; /*display: flex;align-items: center;justify-content: center;*/}
+	.logo{width:100%;font-weight: bold;}
+	.top2{padding: 3px 3px;border-bottom: 1px solid #ccc;box-sizing:border-box;}
+    .top2 .boxr{width:25%;height:100%;float:right;font-size:10pt;border-left: 1px solid #ccc}
+	.top3 .topa, .top4 .topa, .top5 .topa,.top6 .topa,.top9 .topa,.top10 .topa{width:6%;height:90%;text-align:center;display:inline-block;border-right: 1px solid #ccc;font-size:12px;box-sizing: border-box;}
+	
+	.top3 .topb{width:90%;display:inline-block;font-size:36pt;vertical-align: top;line-height: 14mm;}
+	.top4 .topb{width:90%;display:inline-block;font-size:9pt;font-weight: bold;vertical-align: top;}
+	.top5 .topb{width:90%;display:inline-block;font-size:7pt;font-weight: bold;vertical-align: top;-webkit-transform-origin-x: 0;transform: scale(0.82);word-break:keep-all;}
+	
+	.top6 .boxl{width:81%;height:100%;float: left;}
+	.top6 .boxl .boxa{height:10mm;overflow: hidden;box-sizing:border-box;}
+	.top6 .boxl .boxa ul li{float:left;padding:0;margin:0;}
+	.top6 .boxl .boxa ul li span{display:block;font-size: 10px;line-height:12px; -webkit-transform-origin-x: 0;transform: scale(0.8);word-break:keep-all; }	
+	.top6 .boxl .boxa ul li.li1{width:40%;}
+	.top6 .boxl .boxa ul li.li2{width:20%;}
+	.top6 .boxl .boxa ul li.li3{width:96% !important;}
+	.top6 .boxl .boxb{height:12mm;display: flex;align-items: center;overflow: hidden;width:100%;}
+	.top6 .boxl .boxb .topb{display: inline-block;width:50%;font-size:8pt;vertical-align: top;height:12mm;box-sizing:border-box;}
+	.top6 .boxl .boxb .topc{display: inline-block;width:40%;font-size: 8pt;vertical-align: top;
+	  -webkit-transform-origin-x: 0;transform: scale(0.8);}
+	.top6 .boxr{width:18%;height:100%;float:right;font-size:8pt;}
+	
+	.top8 .boxr{width:20%;height:100%;float:left;border-right: 1px solid #ccc;padding-top:1mm;}
+	.top9 .topb,.top10 .topb{width:90%;display:inline-block;font-size:6pt;vertical-align: top;}
+	.main .top11{min-height: 50px;font-size:8pt;}
+	
+	/*.main{width: 100mm;}*/
+	.logo{height: 10mm;}
+	.top2{height: 13mm;padding-left:5mm;}
+	.top3{height: 14mm;}
+	.top4{height: 17mm;}
+	.top5{height: 8mm;}
+	.top6{height: 21mm;}
+	
+	.top8{height: 16mm;padding-top:2mm;padding-left:5mm;box-sizing:border-box;}
+	.top9{height: 13mm;}
+	.top10{height: 13mm;}
+	.top11{height: 8mm;}
+<%/if%>
+
+
+<%if ($express_id==4||$express_id==18)%>
+  *{padding:0;margin:0;list-style: none;font-family: "黑体";font-size:14px;}
+  ul{padding:0;margin:0;}
+  .main{width:98%;margin:0px auto;border:1px solid red;}
+  .bdb{border-bottom: 1px solid #ccc;}
+  .bdr{border-right: 1px solid #ccc;}
+  .main>div{overflow: hidden;width: 100%; /*display: flex;align-items: center;justify-content: center;*/}
+  .logo{width:100%;font-weight: bold;vertical-align: top;-webkit-transform-origin-x: 0;transform: scale(0.82);word-break:keep-all;}
+  .top2{padding: 3px 3px;border-bottom: 1px solid #ccc;box-sizing:border-box;}
+    .top2 .boxr{width:25%;height:100%;float:right;font-size:10pt;border-left: 1px solid #ccc}
+  .top3 .topa, .top4 .topa, .top5 .topa,.top6 .topa,.top9 .topa,.top10 .topa{width:6%;height:90%;text-align:center;display:inline-block;border-right: 1px solid #ccc;font-size:12px;box-sizing: border-box;}
+  
+  .top3 .topb{width:90%;display:inline-block;font-size:36pt;vertical-align: top;line-height: 14mm;}
+    
+    .top4 .topa{width:6%;height:90%;text-align:center;display:inline-block;border-right: 1px solid #ccc;font-size:18pt;box-sizing: border-box;}    
+  .top4 .topb{width:80%;display:inline-block;font-size:9pt;font-weight: bold;vertical-align: top;}
+    
+  .top5 .topb{width:90%;display:inline-block;font-size:7pt;font-weight: bold;vertical-align: top;-webkit-transform-origin-x: 0;transform: scale(0.82);word-break:keep-all;}
+  
+  .top6 .boxl{width:100%;height:100%;float: left;}
+  .top6 .boxl .boxa{height:10mm;overflow: hidden;box-sizing:border-box;}
+  .top6 .boxl .boxa ul li{float:left;padding:0;margin:0;}
+  .top6 .boxl .boxa ul li span{display:block;font-size: 10px;line-height:12px; -webkit-transform-origin-x: 0;transform: scale(0.8);word-break:keep-all; } 
+  .top6 .boxl .boxa ul li.li1{width:40%;}
+  .top6 .boxl .boxa ul li.li2{width:20%;}
+  .top6 .boxl .boxa ul li.li3{width:96% !important;}
+  .top6 .boxl .boxb{height:12mm;display: flex;align-items: center;overflow: hidden;width:100%;}
+  .top6 .boxl .boxb .topb{display: inline-block;width:50%;font-size:8pt;vertical-align: top;height:12mm;box-sizing:border-box;}
+  .top6 .boxl .boxb .topc{display: inline-block;width:40%;font-size: 8pt;vertical-align: top;
+    -webkit-transform-origin-x: 0;transform: scale(0.8);}
+  .top6 .boxr{width:18%;height:100%;float:right;font-size:8pt;}
+  
+  .top8 .topa{width:40%;height:100%;float:left;border-right: 1px solid #ccc;padding-top:1mm;}
+    .top8 .topb{width:30%;height:100%;float:left;border-right: 1px solid #ccc;padding-top:1mm;}
+    .top8 .topc{width:20%;height:100%;float:left;padding-top:1mm;}       
+  .top9 .topb,.top10 .topb{width:90%;display:inline-block;font-size:6pt;vertical-align: top;}
+  .main .top11{min-height: 50px;font-size:8pt;}
+  
+  /*.main{width: 100mm;}*/
+  .logo{height: 10mm;}
+  .top2{height: 13mm;padding-left:5mm;}
+  .top3{height: 14mm;}
+  .top4{height: 17mm;}
+  .top5{height: 12mm;}
+  .top6{height: 16mm;}
+  
+  .top8{height: 32mm;padding-top:1mm;padding-left:1mm;border-top: 2px solid #ccc;box-sizing:border-box;}
+
+  .top11{height: 2mm;}
+
+<%/if%>
+
+
+<%if (!empty($express_id)&&($express_id==19))%>
+        *{padding:0;margin:0;box-sizing: border-box;font-family: "黑体";}
+        .fl{float: left;}
+        .fr{float:right;}
+        .bdb{border-bottom: 1px solid #ccc;}
+        .bdr{border-right: 1px solid #ccc;}
+        .bdl{border-left: 1px solid #ccc;}
+        .clear{clear: both;}
+
+        .main{width:100mm;height:auto;border:1mm solid #3a3535;box-sizing:border-box;margin:0px auto;overflow: hidden;}
+
+        .box1{width:100%;height:9mm;}
+        .box1_a{width:30mm;height:100%;}
+        .box1_b{width:24mm;height:100%;font-size: 12pt;text-align: right;line-height: 9mm;}
+
+        .box2{width:100%;height:15mm;font-size: 24pt;text-align: center;line-height: 15mm;font-weight: bold;}
+
+        .box3{width:100%;height:10mm;}
+        .box3_a{width:74mm;height:100%;font-size: 16pt;text-align: center;line-height:10mm;}
+        .box3_b{width:24mm;height:100%;font-size: 5pt;text-align: center;line-height:10mm;}
+
+        .box4{}
+        .box4_w1{width:5mm;}
+        .box4_a{width:100%;height:18mm;padding-top:3mm;}
+        .box4_b{width:100%;height:12mm;padding-top:1mm;}
+        .box4_w2{width:69mm;}
+        .box4_c{width:100%;height:18mm;padding:5px;font-size: 8pt;;}
+        .box4_d{width:100%;height:12mm;padding:0 5px;font-size: 6pt;}
+        .box4_w3{width:24mm;}
+        .box4_e{width:100%;height:5mm;font-size: 5pt;text-align: center;}
+        .box4_f{width:100%;height:25mm;font-size: 5pt;}
+
+        .box5{width:100%;height:25mm;text-align:center;}
+
+        .box6{width:100%;height:19mm;}
+        .box6_a{width:54mm;height:100%;font-size: 6pt;}
+        .box6_b{width:44mm;height:100%;font-size: 8pt;}
+
+        .line{width:100%;height:0;border-bottom: 1mm solid #3a3535;}
+        .box7{width:100%;height:14mm;}
+        .box7_a{width:30mm;height:100%;padding-top:5px;padding-left:5px;}
+        .box7_b{width:68mm;height:100%;text-align: center;padding-top:3px;}
+
+        .box8{width:100%;height:12mm;}
+        .box8_a{width:5mm;height:100%;}
+        .box8_b{width:93mm;height:100%;font-size: 8pt;}
+
+        .box9{width:100%;height:12mm;}
+        .box9_a{width:5mm;height:100%;}
+        .box9_b{width:93mm;height:100%;font-size: 8pt;}
+
+        .box10{width:100%;height:30mm;}
+        .box10_a{width:74mm;height:100%;font-size: 8pt;}
+        .box10_b{width:24mm;height:100%;font-size: 16pt;text-align: center;padding-top:15mm;}
+  
+<%/if%>
+</style>
+</head>
+<body id="print">
+<!--打印区 start-->
+<div class="print">
+  <button id="shipfreght_print_close">关闭</button>
+  <button id="shipfreght_print_btn">打&nbsp;印</button>
+</div>
+<!--打印区 end-->
+<%if (($express_id==40||$express_id==180)&&!empty($express['list']))%>
+<%foreach from=$express['data'] key=k item=v%>
+	<!-- 新顺丰快递模板  -->
+	<div class="main">
+	    <div class="logo bdb">
+	        
+	    </div>
+	    <div class="top2 bdb" >
+	       <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"   width="150px" height="45px">
+	        <div class="boxr">
+	        顺丰次日
+	        </div>	       
+	    </div>
+	    <div class="top3 bdb">
+	        <div class="topa">目<br/>的<br/>地</div>
+	        <div class="topb">
+	             <%$v.destcode %>
+	        </div>
+	    </div>
+	    <div class="top4 bdb">
+	        <div class="topa">收<br/>件<br/>人</div>
+	        <div class="topb">
+	           <%$v.d_company %> &nbsp;&nbsp; <%$v.d_tel %></br>
+         	   <span><%$v.d_address%></span>
+	        </div>
+	    </div>
+	    <div class="top5 bdb">
+	        <div class="topa">寄<br/>件<br/>人</div>
+	        <div class="topb">
+	        <%$smarty.const.EXPRESS_J_CONTACT%> <%$smarty.const.EXPRESS_J_TEL %><br><%$smarty.const.EXPRESS_J_ADDRESS%>
+	        </div>
+	    </div>
+	    <div class="top6 bdb">
+	        <div class="boxl bdr">
+	            <div class="boxa bdb">
+	                <ul><!-- 声明价值 保价费用 包装费用 定时推送 第三方地区 全部删除 -->
+	                    <li class="li1"><span>付款方式:<%if ($express_id==18)%>到方付<%else%>寄方月结<%/if%></span></li>
+	                    <li class="li2"><span>计费重量:</span></li>                    
+	                    <li class="li2"><span>运费:</span></li>                    
+	                    <li class="li2"><span>费用合计:</span></li>
+	                    <li class="li3"><span><%if ($express_id!=18) %>月结账号:<%$smarty.const.EXPRESS_SF_YUEJIEZHANGHAO%><%/if%></span> </li>
+	                    <li class="li1"><span>件数:</span></li>
+	                </ul>
+	            </div>
+	            <div class="boxb">
+	                <div class="topa ">拖<br/>寄<br/>物</div>
+	                <div class="topb bdr"><%$smarty.const.EXPRESS_GOODS_NAME%></div>
+	                <div class="topc ">
+	                	收件员:</br>
+	         			寄件日期:</br>
+	         			派件员:</br>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="boxr">
+			签名：
+	        </div>
+	    </div>
+	
+	    <div class="top8 bdb">
+	        <div class="boxr">
+	         <img src="./public/img/SFLOGO.png" height="20px">
+	         <img src="./public/img/95338.png" height="20px">
+	        </div>	    	
+			 <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="150px" height="45px">
+	    </div>
+	    <div class="top9 bdb">
+	        <div class="topa">寄<br/>件<br/>人</div>
+	        <div class="topb">
+	           <%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;&nbsp;<%$smarty.const.EXPRESS_J_TEL %></br>
+	       	   <span> <%$smarty.const.EXPRESS_J_ADDRESS%></span>
+	        </div>
+	    </div>
+	    <div class="top10 bdb">
+	        <div class="topa">收<br/>件<br/>人</div>
+	        <div class="topb">
+	           <%$v.d_company %> &nbsp;&nbsp; <%$v.d_tel %></br>
+         	   <span><%$v.d_address%></span>
+	        </div>
+	    </div>
+	    <div class="top11 ">
+		    备注 :&nbsp;&nbsp; <%$smarty.const.EXPRESS_SF_REMARK%>
+	    </div>
+	</div>
+<div class="PageNext"></div>
+<%/foreach%>
+<%/if%>
+
+
+
+
+
+
+
+<%if (($express_id==4||$express_id==18)&&!empty($express['list']))%>
+<%foreach from=$express['data'] key=k item=v%>
+  <!-- 新顺丰快递模板  -->
+<div class="main">
+    <div class="logo bdb">
+        <center>打印时间<br><%date("Y-m-d H:i")%></center>
+    </div>
+    <div class="top2 bdb" >
+       <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"   width="250px" height="45px">
+        <div class="boxr">
+      
+           <%if $v.detail.proCode=='T1' || $v.detail.proCode=='T2' || $v.detail.proCode=='T4' || $v.detail.proCode=='T6' || $v.detail.proCode=='T8' || $v.detail.proCode=='T9' %>  
+              <img src='/public/img/bg/<%$v.detail.proCode%>.png' height='40' width='40'/> 
+           <%/if%>
+ 
+        </div>       
+    </div>
+    <div class="top3 bdb">
+        <div class="topa">&nbsp;</div>
+        <div class="topb">
+            <%$v.detail.destRouteLabel %>
+        </div>
+    </div>
+    <div class="top4 bdb">
+        <div class="topa">收</div>
+        <div class="topb">
+             <%$v.d_company %> &nbsp;&nbsp; <%$v.d_tel %></br>
+             <span><%$v.d_address%></span>
+     
+        </div>
+       
+    </div>
+    <div class="top8 bdb">
+        <div class="topa">
+             <div style="width:'100%';box-sizing:border-box;">
+               <%if ($express_id==18)%>到方付<%else%>寄方月结<%/if%> 
+             </div>
+             <div style="width:'100%';font-size:40pt;vertical-align: top;border-top: 1px solid #ccc;overflow: hidden;box-sizing:border-box;"><%$v.detail.codingMapping %></div>
+             <div style="width:'100%';font-size:24pt;vertical-align: top;border-top: 1px solid #ccc;"><%$v.detail.sourceTransferCode %></div>
+        </div>    
+        <div class="topb" style="float:left">  
+        <img src="http://bardcode.kela.cn/qrcode.php?code=<%$v.detail.twoDimensionCode%>"   width="120px" height="120px">
+        </div>
+         <div class="" style="    font-size: 25pt;width: 9%;float:left;height: 100%;border-right: 1px solid #ccc;">
+            已验视
+        </div>
+        <div class="topc" style="float:left">
+            <div style="    text-align: center;font-size: 40pt;"><%$v.detail.abFlag %>&nbsp;</div>
+            <div style="text-align: center;border-top:1px solid;    font-size: 30pt; "><%$v.detail.codingMappingOut%></div>
+
+        </div>
+    </div>
+
+    <div class="top5 bdb">
+        <div class="topa">寄</div>
+        <div class="topb">
+        <%$smarty.const.EXPRESS_J_CONTACT%> <%$smarty.const.EXPRESS_J_TEL %><%$smarty.const.EXPRESS_J_ADDRESS%>
+        </div>
+    </div>
+    <div class="top6 bdb">
+        <div class="boxl bdr">
+           
+                <ul><!-- 声明价值 保价费用 包装费用 定时推送 第三方地区 全部删除 -->
+                    <li class="li1"><span>增值服务：</span></li>
+                    
+                    <li class="li3"><span>托寄物:饰品</span> </li>
+                    <li class="li1" style="display: inline-block;"><span>计费重量:</span></li>
+                    <li class="li2"style=" padding-left: 20px;   display: inline-block;"><span>实际重量:</span></li>
+                    <li class="li2"style="  padding-left: 20px;  display: inline-block;"><span>费用合计:</span></li>
+                </ul>
+           
+        </div>
+       
+    </div>
+
+
+ 
+    <div class="top11 ">
+            备注:<%$smarty.const.EXPRESS_SF_REMARK%>
+     
+    </div>
+</div>
+<div class="PageNext"></div>
+<%/foreach%>
+<%/if%>
+
+
+
+
+<%if (($express_id==19)&&!empty($express['list']))%>
+<%foreach from=$express['data'] key=k item=v%>
+    <div class="main">
+        <div class="box1 bdb">
+            <div class="box1_a fl "></div>
+            <div class="box1_b fr ">标准面单</div>
+        </div>
+        <div class="box2 bdb ">
+            <%$v.datoubi %>
+        </div>
+        <div class="box3 bdb">
+            <div class="box3_a fl bdr "><%$v.destcode%></div>
+            <div class="box3_b fr "><%date("Y-m-d")%></div>
+        </div>
+        <div class="box4 bdb">
+            <div class="box4_w1 bdb fl">
+                <div class="box4_a bdb ">收件</div>
+                <div class="box4_b ">寄件</div>
+            </div>
+            <div class="box4_w2 bdb fl">
+                <div class="box4_c bdl bdb ">
+                    <p><%$v.d_company %>  <%$v.d_tel %></p>
+                    <p><%$v.d_address%></p>
+                </div>
+                <div class="box4_d bdl ">
+                    <p><%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;<%$smarty.const.EXPRESS_J_TEL %></p>
+                    <p><%$smarty.const.EXPRESS_J_ADDRESS%></p>
+                </div>
+            </div>
+            <div class="box4_w3 bdb fr">
+                <div class="box4_e bdl bdb ">服务</div>
+                <div class="box4_f bdl ">
+                    <p>代收金额:</p>
+                    <p>预约配送:</p>
+                    <p></p>
+                    <p>声明价值:</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="box5 bdb ">
+            <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="250px" height="80px">
+        </div>
+        <div class="box6 bdb">
+            <div class="box6_a fl bdr ">快件送达收件人地址,经收件人或收件人(寄件人)允许的代收人签字,视为送达。您的签字代表您已验收此包裹,并已确认商品信息无误,包装完好,没有划痕，破损等表面质量问题</div>
+            <div class="box6_b fr ">签收人：</div>
+        </div>
+        <div class="line"></div>
+        <div class="box7 bdb">
+            <div class="box7_a fl bdr "></div>
+            <div class="box7_b fr ">
+              <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="180px" height="50px">
+            </div>
+        </div>
+        <div class="box8 bdb">
+            <div class="box8_a fl bdr ">收件</div>
+            <div class="box8_b fr ">
+                <p><%$v.d_company %>  <%$v.d_tel%></p>
+                <p><%$v.d_address%></p>
+            </div>
+        </div>
+        <div class="box9 bdb">
+            <div class="box9_a fl bdr ">寄件</div>
+            <div class="box9_b fr ">
+                <p><%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;<%$smarty.const.EXPRESS_J_TEL %></p>
+                <p><%$smarty.const.EXPRESS_J_ADDRESS%></p>
+            </div>
+        </div>
+        <div class="box10 bdb">
+          <div class="box10_a  fl bdr ">
+           产品:<%$smarty.const.EXPRESS_GOODS_NAME%><br>
+           备注:<%$smarty.const.EXPRESS_SF_REMARK%></div>
+          <div class="box10_b  fr ">已验视</div>
+        </div>
+    </div>
+<div class="PageNext"></div>
+<%/foreach%>
+<%/if%>
+
+
+</body>
+</html>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+/* function _changePrintStatus(){
+	var id = '<%$id|default:0%>';
+	$.post('index.php?mod=shipping&con=BatchExpress&act=changePrintStatus&status=1&id='+id,'',function(ret){
+		if(ret.success == 1){
+			window.print();
+		}else{
+		   if(ret.error){
+			   alert(ret.error);
+		   }else{
+		       alert(ret.toString());
+		   }
+		}
+	})
+} */
+
+
+
+/**
+ * 创建快递单打印内容
+ */
+ /* function _create_shipping_print(config_lable)
+{
+<!--{/literal}-->
+   //创建快递单
+ var print_bg = _create_print_bg();
+
+  //创建文本
+<!--{literal}-->
+  var lable = config_lable.split("||,||");
+
+  if (lable.length <= 0)
+  {
+    return false; //未设置打印内容
+  }
+
+  for (var i = 0; i < lable.length; i++)
+  {
+    //获取标签参数
+    var text = lable[i].split(",");
+    if (text.length <= 0 || text[0] == null || typeof(text[0]) == "undefined" || text[0] == '')
+    {
+      continue;
+    }
+
+    text[4] -= 10;
+    text[5] -= 10;
+
+    _create_text_box(print_bg, text[0], text[1], text[2], text[3], text[4], text[5]);
+  }
+}
+
+/**
+ * 创建快递单背景
+ */
+/*function _create_print_bg()
+{
+  var print_bg = document.createElement('div');
+  print_bg.setAttribute('id', 'print_bg[]');
+  var print = document.getElementById('print');
+  print.appendChild(print_bg);
+  $("#print").append("<div style='page-break-after: always;clear:both'></div>");
+  //测试打印效果
+<!--{/literal}-->
+  //设置快递单样式
+  print_bg.style.width = '{$express.print_bg_size.width}px';
+  print_bg.style.height = '{$express.print_bg_size.height}px';
+  //print_bg.style.zIndex = 1;
+  print_bg.style.border = "solid 1px #FFF";
+  print_bg.style.padding = "0";
+  print_bg.style.position = "relative";
+  print_bg.style.margin = "0";
+<!--{literal}-->
+  return print_bg;
+}*/
+/**
+ * 创建快递单背景
+ */
+/*function _create_print_bg()
+{
+  var print_bg = document.createElement('div');
+
+  print_bg.setAttribute('id', 'print_bg');
+
+  var print = document.getElementById('print');
+
+  print.appendChild(print_bg);
+  $("#print").append("<div style='page-break-after: always;clear:both'></div>");
+  //测试打印效果
+  //print_bg.style.background = '{$shipping.print_bg}';
+<!--{/literal}-->
+  //设置快递单样式
+  print_bg.style.width = '{$express.print_bg_size.width}px';
+  print_bg.style.height = '{$express.print_bg_size.height}px';
+  print_bg.style.zIndex = 1;
+  print_bg.style.border = "solid 1px #FFF";
+  print_bg.style.padding = "0";
+  print_bg.style.position = "relative";
+  print_bg.style.margin = "0";
+<!--{literal}-->
+  return print_bg;
+}*/
+
+/**
+ * 创建快递单文本
+ */
+/*function _create_text_box(print_bg, id, text_content, text_width, text_height, x, y)
+{//alert(id + '|' + text_content + '|' + text_width + '|' + text_height + '|' + x + '|' + y);
+  var text_box = document.createElement('div');
+
+  //设置属性
+  text_box.setAttribute('id', id);
+
+  print_bg.appendChild(text_box);
+
+  //设置样式
+  text_box.style.width = text_width + "px";
+  text_box.style.height = text_height + "px";
+  text_box.style.border = "0";
+  text_box.style.padding = "0";
+  text_box.style.margin = "0 auto";
+
+  text_box.style.position = "absolute";
+  text_box.style.top = y + "px";
+  text_box.style.left = x + "px";
+
+  text_box.style.wordBreak = 'break-all'; //内容自动换行 严格断字
+  text_box.style.textAlign = 'left';
+  if(id=="t_order_amount" || id == "t_pigeon")
+  {
+  	text_box.style.fontWeight = "bold";
+  	text_box.style.fontSize = "20px";
+  }
+  else
+  text_box.style.fontSize = "14px";
+
+
+  //赋值
+  text_box.innerHTML = text_content;
+
+  return true;
+} */
+$('#shipfreght_print_close').click(function(){
+  window.close();
+});
+$('#shipfreght_print_btn').click(function(){
+  $(".print").hide();
+  window.print();
+});
+
+$(function(){
+  $('#shipfreght_print_btn').click();
+})
+
+</script>

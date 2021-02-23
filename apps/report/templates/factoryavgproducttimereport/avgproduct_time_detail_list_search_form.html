@@ -1,0 +1,161 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="factory_avg_detail_list_search_form" onsubmit="factory_avg_detail_list_search_form_post()">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">日期范围：</label>
+							 <div class="input-group input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+									<input type="text" class="form-control date-picker" id="start_time" name="start_time" value="<%$smarty.now|date_format:"%Y-%m-01"%>" />
+									<span class="input-group-addon">to</span>
+									<input type="text" class="form-control date-picker" id="end_time"  name="end_time" value="<%$smarty.now|date_format:"%Y-%m-%d"%>" />
+							   </div>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" class="form-control" name="style_sn" value="" id="style_sn" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">工厂：</label>
+							<select name='prc_ids[]' tabindex="1" class="form-control"  multiple>
+							<option value=""></option>
+								<%foreach from=$process key=key item=p%>
+									<option value="<%$p.id%>"><%$p.name%></option>
+								<%/foreach%>
+								</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">跟单人：</label>
+							<select class="form-control" tabindex="1" name="opra_unames[]" multiple>
+								<option value=""></option>
+								<%foreach from=$user_list item=v%>
+								<option value="<%$v.opra_uname%>"><%$v.opra_uname%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="from_type" id="from_type">
+								<option value=""></option>
+								<option value="1">采购单</option>
+								<option value="2">订单</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">钻石类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="diamond_type" id="diamond_type" >
+								<option value=""></option>
+								<option value="1">期货钻</option>
+								<option value="2">现货钻</option>
+							</select>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">起版类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="qiban_type" id="qiban_type" >
+								<option value="-1">全部</option>
+								<%foreach from=$dd->getEnumArray('qiban_type') key=k item=value%>
+								<option value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+					  <div class="form-group">
+							<label class="control-label">款式系列：</label><span style='color:red;'></span>
+							 <select class="select2_category form-control" name="xilie_ids[]" tabindex="1" multiple>
+							<%foreach from=$xilieArr key=key item=z%>
+								<option value="<%$z.id%>"><%$z.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">款式类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="style_type" id="diamond_type" >
+								<option value=""></option>
+								<option value="1">简单款</option>
+								<option value="2">豪华款</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+			
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<button data-title="工厂超期率报表" list-id="27921" title="" name="查看明细" data-url="index.php?mod=report&con=FactoryAvgProductTimeReport&act=last_detail_list" onclick="util.cust(this,show_avg_last_detail_list);" class="btn btn-sm red">
+					查看明细 <i class="fa fa-bar-chart-o"></i>
+				</button>
+			</div> 
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="factory_avg_detail_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function factory_avg_detail_list_search_form_post(){
+	$('#factory_avg_detail_list_search_form #is_post').val('1');
+}
+<!--
+	<%include file="js/factory_avg_detail_list.js"%>
+//-->
+</script>

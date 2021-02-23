@@ -1,0 +1,63 @@
+<%if $error ==1%>
+		<%$content%>
+<%else%>
+
+<%if $dabao_data%>
+
+<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">销售政策</th>
+			<th style="text-align: center;">策略名称</th>
+			<th style="text-align: center;">政策类型</th>
+			<th style="text-align: center;">货号</th>
+			<th style="text-align: center;">销售价</th>
+			<th style="text-align: center;">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		
+			<%foreach from=$dabao_data key=p_key item=p_val%>
+				<%foreach from=$p_val key=t_key item=t_val%>
+					<%foreach from=$t_val key=g_key item=d%>
+					<tr data-id="order_product_goods_list_<%$d.goods_id%>" data-title="<%$d.goods_id%>">
+					   <td align="center"><%$d.policy_name%></td>
+					   <td align="center"><%$d.together_name%></td>
+					   <td align="center">打包政策</td>
+					   <td align="center"><%$d.goods_id%></td>
+					   <td align="center"><%$d.sale_price%></td>
+					   <td align="center"><a >加入购物车</a></td>
+					</tr>
+					<%/foreach%>
+				<%/foreach%>
+			<%/foreach%>
+		</tbody>
+	</table>
+<%/if%>
+
+<%if $putong_data%>
+
+<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">销售政策</th>
+			<th style="text-align: center;">政策类型</th>
+			<th style="text-align: center;">货号</th>
+			<th style="text-align: center;">销售价</th>
+		</tr>
+		</thead>
+		<tbody>
+		
+			<%foreach from=$putong_data key=key item=d%>
+			<tr data-id="order_product_goods_list_<%$k%>" data-title="<%$k%>">
+				   <td align="center"><%$d.policy_name%></td>
+				   <td align="center">普通策略</td>
+				   <td align="center"><%$d.goods_id%></td>
+				   <td align="center"><%$d.sale_price%></td>
+			</tr>
+			<%/foreach%>
+		</tbody>
+	</table>
+<%/if%>
+	
+<%/if%>

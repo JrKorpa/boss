@@ -1,0 +1,196 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<form action="#" class="horizontal-form" method="post" id="app_order_detail_info_goods">
+	<div class="form-body">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">货号：</label>
+					<input type="text" name="goods_id" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">名称：</label>
+					<input type="text" name="goods_name" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">款号：</label>
+					<input type="text" name="goods_sn" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">镶口：</label>
+					<input type="text" name="xiangkou" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">证书类型：</label>
+					<select class="form-control" name='cert'>
+						<option value=""></option>
+						<%foreach from=$cert_type key=key item=p %>
+						<option value='<%$key%>'><%$p%></option>
+						<%/foreach%>
+					</select>
+				</div>
+			</div>
+		    <div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">证书号：</label>
+					<input type="text" name="zhengshuhao" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			
+		    <div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">主石单颗重：</label>
+					<input type="text" name="cart" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">主石粒数：</label>
+					<input type="text" name="zhushi_num" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">净度：</label>
+						<select class="form-control" name='clarity' id='clarity'>
+							<option value=""></option>
+							<%foreach from=$clarity key=key item=p %>
+							<option value='<%$key%>'>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">颜色：</label>
+					<select class="form-control" name='color' id='color'>
+						<option value=""></option>
+						<%foreach from=$color key=key item=p %>
+						<option value='<%$key%>'>
+						<%$p%>
+						</option>
+						<%/foreach%>
+					</select>
+				</div>
+			</div>		    
+			<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">材质：</label>
+						<select class="form-control" name='caizhi'>
+							<option value=""></option>
+							<%foreach from=$caizhi key=key item=p %>
+							<option value='<%$key%>'>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+			 </div>
+			<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">金色：</label>
+						<select class="form-control" name='jinse' id='jinse'>
+							<option value=""></option>
+							<%foreach from=$jinse key=key item=p %>
+							<option value='<%$key%>'>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+			  </div>
+			  
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">金重：</label>
+					<input type="text" name="jinzhong" class="form-control" placeholder="请输入"  value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">指圈：</label>
+					<input type="text" name="zhiquan" class="form-control" placeholder="请输入" value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">镶嵌要求：</label>
+						<select class="form-control" name='xiangqian' id='xiangqian'>
+							<option value=""></option>
+							<%foreach from=$xiangqian key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['xiangqian']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>			
+					</div>
+			  </div> 
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">表面工艺：</label>
+					<select class="form-control" name='face_work' id='face_work'>
+						<option value=""></option>
+						<%foreach from=$face_work key=key item=p %>
+						<option value='<%$key%>'>
+						<%$p%>
+						</option>
+						<%/foreach%>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">刻字：</label>
+						<div style="height:auto;">
+						<div id="order_detail_kezi_out_div" style="height: auto; width:200px; padding:4px 10px;"></div>
+						<textarea class="emotion" cols="40" rows="1" style="font-size: 13px; width:208px;" name="kezi" id="kezi"></textarea>
+						<br />
+						<input class="btn blue" id="order_detail_face" type="button" value="选择刻字图案" />
+						<input class="btn green" id="analytic" type="button" value="显示效果" onClick="order_detil_kezi_out()" />
+						<br />
+						
+					</div>
+					<br/>
+					</div>	
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">成交价：</label>
+					<input type="text" name="chengjiaojia" class="form-control" placeholder="请输入" value=""/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<textarea name="info" class="form-control"></textarea>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="order_id"  value="<%$order_id%>"/>
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+</form>
+
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_details_info_goods.js"%>
+//-->
+</script>

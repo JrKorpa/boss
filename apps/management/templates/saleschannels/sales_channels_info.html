@@ -1,0 +1,128 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="sales_channels_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">渠道名称：</label>
+						<input type="text" name="channel_name" class="form-control" placeholder="请输入" value="<%$view->get_channel_name()%>" maxlength="50"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">渠道编码：</label>
+						<input type="text" name="channel_code" class="form-control" placeholder="请输入" value="<%$view->get_channel_code()%>" readOnly maxlength="100" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">一级分类：</label>
+						<select class="select2_category form-control" name="channel_class" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("sales_channels_class") item=value%>
+							<option value="<%$value.name%>" <%if $value.name==$view->get_channel_class()%>selected="selected"<%/if%>
+							><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				</div>
+			<div class="row">
+				<div class="col-sm-4" id="channel_type">
+					<div class="form-group">
+						<label class="control-label">二级分类：</label>
+						<select class="select2_category form-control" name="channel_type" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("sales_channels_type") item=value%>
+							<option value="<%$value.name%>" <%if $value.name==$view->get_channel_type()%>selected="selected"<%/if%>
+							><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">渠道归属：</label>
+						<select class="form-control" tabindex="1" name="channel_own_id">
+							<option value=''></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">所属公司：</label>
+						<select class="select2_category form-control" name="company_id" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$companys item=v%>
+                            <option value="<%$v.id%>" <%if $v.id==$view->get_company_id()%>selected="selected"<%/if%>><%$v.company_name%></option>
+                            <%/foreach%>
+						</select>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">联系人：</label>
+						<input type="text" name="channel_man" class="form-control" placeholder="请输入" value="<%$view->get_channel_man()%>"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">联系人邮箱：</label>
+						<input type="text" name="channel_email" class="form-control" placeholder="请输入" value="<%$view->get_channel_email()%>"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">联系人手机：</label>
+						<input type="text" name="channel_phone" class="form-control" placeholder="请输入" value="<%$view->get_channel_phone()%>"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">二维码：</label>
+						<input type="file" name="qrcode" class="form-control" placeholder="请输入" value=""/>
+						<br/>
+						<img src="<%if $view->get_qrcode()%><%$view->get_qrcode()%><%else%>public/img/QR.jpg<%/if%>" width="100" height="100">
+						
+					</div>
+				</div>
+				 <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">是否在天生一对官网显示：</label>
+                       <input type="checkbox" id="is_tsyd" name="is_tsyd" value=1  placeholder="" <%if $view->get_is_tsyd()==1%>checked="checked"<%else%><%/if%>/>
+                    </div>
+                </div>
+				<div class="col-sm-4" <%if $view->get_is_tsyd()==0%>style="display:none;"<%/if%> id="wholesale_id">
+					<div class="form-group">
+						<label class="control-label">批发客户：</label>
+						<select class="select2_wholesale form-control" name="wholesale_id" tabindex="1">
+							<option value="0">请选择</option>
+							<%foreach from=$JxcWholesaleArr item=v%>
+                            <option value="<%$v.wholesale_id%>" <%if $v.wholesale_id==$view->get_wholesale_id()%>selected="selected"<%/if%>><%$v.wholesale_name%></option>
+                            <%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/sales_channels_info.js"%>
+//-->
+</script>

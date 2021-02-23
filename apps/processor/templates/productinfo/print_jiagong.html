@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+
+<style type="text/css" media="print">
+.Noprint { DISPLAY: none;}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-before: always;}
+</style>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+
+<script>
+function printorder(){
+    $(".Noprint,.kela_close").hide();
+	window.print();
+}
+</script>
+</head>
+<body>
+<div class="Noprint">
+<input type="button" value="打印订单" onclick="printorder()"style="width:100px; height:30px; font-size:20px; font-weight:bold" />
+</div>
+<%if !empty($data_arr)%>
+<%foreach from=$data_arr key=k item=row%>
+<table cellspacing="0" cellpadding="1" width="100%" border="0" <%if $k!=0%>class="PageNext"<%/if%>>
+    <tbody>
+        <tr>
+            <td>
+            <table style=" margin-bottom: 15px; border-bottom: #000 2px solid" cellspacing="0" width="100%" border="0">
+                <tbody>
+				   <%if $row.isTsyd==1%>
+                    <tr>
+                        <td  valign="middle" align="right" width="60%">
+                        <h1 style="padding-left: 15px; padding-top: 10px">
+						首饰加工流水单<%$row.data.bc_sn|default:''%></h1></td>
+						<td width="40%"><p style="color:red;padding-left:30px;">天生一对加盟商订单，注意事项如下：<br/>
+						1、生产商品需要刻天生一对的LOGO；<br/>
+						2、工厂出货单请标识天生一对以便识别；<br/>
+						3、库房收货打标请用天生一对特有标签
+						</p></td>
+                    </tr>
+					<%else%>
+					<tr>
+                        <td colspan=2 valign="middle" align="center" width="89%">
+                        <h1 style="padding-left: 15px; padding-top: 10px">
+						首饰加工流水单<%$row.data.bc_sn|default:''%></h1></td>
+						
+                    </tr>
+					<%/if%>
+                    <tr>
+                    	<td align="left">布产号：&nbsp;&nbsp;<img src="http://bardcode.kela.cn/index.php?code_sn=<%$row.data.bc_sn|default:''%>" width="100" height="60">布产组<span style="color:red; font-size:60px;">类</span>   &nbsp;&nbsp;<span style="color:red;">是否快速定制: <%if $row.data.is_quick_diy==1%>是<%else%>否<%/if%></span>
+                        <span>&nbsp;标准金重参考范围:<%$row.data.biaozhun_jinzhong_min%>-<%$row.data.biaozhun_jinzhong_max%></span>
+                        </td>
+
+                        <td align="right">订单号：&nbsp;&nbsp;<img src="http://bardcode.kela.cn/index.php?code_sn=<%$row.data.p_sn|default:''%>"  width="150" height="60"></td>
+                    </tr>
+                </tbody>
+            </table></td>
+        </tr>
+        <tr>
+            <td><strong>货品类型：&nbsp;</strong><%$row.data.bc_style|default:''%></td>
+        </tr>
+        <tr>
+            <td>
+            <table style="font-size: 13px;line-height: 20px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>客户：<%$row.data.consignee|default:''%>&nbsp;<!-- 姓名 --></td>
+                        <td>操作人：<%$row.data.opra_uname|default:''%></td>
+						<td>接单：<%$row.data.factory_name|default:''%>&nbsp;&nbsp;&nbsp;&nbsp;版号：<%$row.data.factory_sn|default:''%></td>
+                    </tr>
+                    <tr>
+                        <td>布产备注：<%$row.data.info|default:''%></td>
+                        <td>售卖方式：<%$dd->getEnum('processor.is_alone',$row.data.is_alone)%></td>
+                        <td>采购备注：<%$row.data.caigou_info|default:''%></td>
+                        <td>特别要求：<%if isset($row.atrrdata.special)%> <%$row.atrrdata.special|default:''%><%/if%></td>
+                    </tr>
+                    <tr>
+                        <td>布产时间：&nbsp;<%$row.data.add_time|default:'0000-00-00 00:00:00'%></td>
+                        <td>预计出厂时间：&nbsp;<%$row.data.esmt_time|default:'0000-00-00 00:00:00'%></td>
+						<td>接单时间：&nbsp;<%$row.data.order_time|default:'0000-00-00 00:00:00'%></td>
+                    </tr>
+
+                </tbody>
+            </table>            </td>
+        </tr>
+        <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="line-height: 20px; font-size: 12px;border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+                            <tr align="center">
+                            		<td width="20%">表面工艺</td>
+                                    <td width="15%">厂家编号(模号)</td>
+                                    <td width="65%">产品图片</td>
+                            </tr>
+                            <tr align="center">
+                            		<td align="center"><%if isset($row.atrrdata.face_work)%><img src="public/img/<%$img_type[$row['atrrdata']['face_work']]|default:''%>.jpg" alt="" width="150" height="120" >
+                                        <br/><%$row.atrrdata.face_work|default:''%><%/if%></td>
+                                    <td><%$row.data.factory_sn|default:'11'%></td>
+                                    <td><img src="<%$row['data']['goods_img']|default:''%>" height="120px" ></td>
+                            </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="line-height: 20px;font-size: 12px; border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+                                <tr align="center">
+                                    <td width="8%">款号</td>
+                                    <td width="10%">品名</td>
+                                    <td scope="col" width=""><div align="center">钻石信息</div></td>
+                                    <td scope="col" width="10%"><div align="center">款式信息</div></td>
+                                    <td scope="col" width="2%"><div align="center">数量</div></td>
+                                    <td scope="col" width="8%"><div align="center">产品需求</div></td>
+                                    <td scope="col" width="6%"><div align="center">金料</div></td>
+                                    <td scope="col" width="3%"><div align="center">金色</div></td>
+                                    <td scope="col" width="3%"><div align="center">金重</div></td>
+                                    <td scope="col" width="3%"><div align="center">指圈</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石1重</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石1数</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石2重</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石2数</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石3重</div></td>
+                                    <td scope="col" width="3%"><div align="center">副石3数</div></td>
+                                    <td scope="col" width="10%"><div align="center">刻字</div></td>
+									<%if $row.isTsyd==1%>
+									<td scope="col" width="19%"><div align="center">品牌</div></td><%/if%>
+                            </tr>
+
+                                <tr>
+                                <%if $row.data.from_type==2%>    
+                                    <td >&nbsp;<%$row.data.style_sn|default:''%><!--款号--></td>
+                                    <td>&nbsp;<%$row.data.goods_name|default:''%></td>
+                                    <td>
+                                        <!-- 重量：<%$atrrdata.cart|default:''%><br/> -->
+                                        颜色：<%$row.atrrdata.color|default:''%><br/>
+                                        净度：<%$row.atrrdata.clarity|default:''%><br/>
+                                        证书号：<%$row.atrrdata.zhengshuhao|default:''%><br />
+                                        钻石大小：<%if isset($row.atrrdata.cart)%><%$row.atrrdata.cart|default:''%><%else if isset($row.atrrdata.diamond_size)%><%$row.atrrdata.diamond_size%><%/if%><br />
+                                        镶口：<%$row.atrrdata.xiangkou|default:''%><br/>
+                                        证书类型：<%$row.atrrdata.cert|default:''%>   
+                                    </td>
+                                    <td>
+                                        爪钉形状：<%$row.style_attr.style_zhuaxz|default:''%></td>
+                                    <td><div align="left">&nbsp;<%$row.data.num|default:'N'%></div></td>
+                                    <td><div align="cneter">&nbsp;<%$row.data.xiangqian|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.caizhi|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.jinse|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.jinzhong|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.zhiquan|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total1|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num1|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total2|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num2|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total3|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num3|default:'N'%></div></td>
+                                    <td valign="top"><div align="center" style="width:90%;border:0;color:#000;font-weight:bold;" ><%$row.atrrdata.kezi|default:''%></div></td>
+									<%if $row.isTsyd==1%>
+									<td><img src="public/img/tsyd_logo.png"/>
+									</td>
+                                    <%/if%> 
+                                 <%else%>
+                                    <td >&nbsp;<%$row.data.style_sn|default:''%><!--款号--></td>
+                                    <td>&nbsp;<%$row.data.goods_name|default:''%></td>
+                                    <td>
+                                        <!-- 重量：<%$atrrdata.cart|default:''%><br/> -->
+                                        颜色：<%$row.atrrdata.color|default:''%><br/>
+                                        净度：<%$row.atrrdata.jingdu|default:''%><br/>
+                                        证书号：<%$row.atrrdata.zhengshuhao|default:''%><br />
+                                        钻石大小：<%$row.atrrdata.cart%><br />
+                                        镶口：<%$row.atrrdata.xiangkou|default:''%></td>
+                                    <td>
+                                        爪钉形状：<%$row.style_attr.style_zhuaxz|default:''%></td>
+                                    <td><div align="left">&nbsp;<%$row.data.num|default:'N'%></div></td>
+                                    <td><div align="cneter">&nbsp;<%$row.data.xiangqian|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.caizhi|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.jinse|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.jinzhong|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.zhiquan|default:''%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total1|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num1|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total2|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num2|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_zhong_total3|default:'N'%></div></td>
+                                    <td><div align="left">&nbsp;<%$row.atrrdata.fushi_num3|default:'N'%></div></td>
+                                    <td valign="top"><div align="center" style="width:90%;border:0;color:#000;font-weight:bold;" ><%$row.atrrdata.kezi|default:''%></div></td>
+                                    <%if $row.isTsyd==1%>
+									<td><img src="public/img/tsyd_logo.png"/>
+									</td>
+                                    <%/if%> 
+                                 <%/if%>   
+                               </tr>
+                            </tbody>
+                        </table></td>
+                    </tr>
+            </table></td>
+        </tr>
+
+         <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="line-height: 20px;font-size:12px;border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+                                <tr align="center">
+                                    <td colspan="2" align="left">执模部、姓名：</td>
+                                    <td colspan="2" align="left">镶石部、姓名：</td>
+                                    <td colspan="2" align="left">抛光部、姓名：</td>
+                            </tr>
+
+                            <tr>
+                                <td >发货件数：</td>
+                                <td>重量：</td>
+                                <td>发货件数：</td>
+                                <td>重量：</td>
+                                <td>发货件数：</td>
+                                <td>重量：</td>
+                           </tr>
+                           <tr>
+                                <td>收获件数：</td>
+                                <td>重量：</td>
+                                <td>收获件数：</td>
+                                <td>重量：</td>
+                                <td>收获件数：</td>
+                                <td>重量：</td>
+                           </tr>
+                           <tr>
+                                <td >报废件数：</td>
+                                <td>重量：</td>
+                                <td>报废件数：</td>
+                                <td>重量：</td>
+                                <td>报废件数：</td>
+                                <td>重量：</td>
+                           </tr>
+                          </tbody>
+                        </table></td>
+                    </tr>
+            </table></td>
+                    <tr>
+                        <td>
+                           <table style="line-height: 20px;font-size:12px;border:0px" width="100%" border="1">
+                                <tr>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+        </tr>
+    </tbody>
+</table>
+<%/foreach%>
+<%/if%>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>角色名称</th>
+			<th>角色编码</th>
+			<th>描述</th>
+			<th>系统内置</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="role_list_<%$d.id%>" data-title="<%$d.label%>">
+			<td><%$d.id%></td>
+			<td><%$d.label%></td>
+			<td><%$d.code%></td>
+			<td><%$d.note%></td>
+			<td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

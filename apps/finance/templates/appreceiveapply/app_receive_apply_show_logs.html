@@ -1,0 +1,32 @@
+<!--3detail start-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>日志信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.relReload(this);" data-url="index.php?mod=finance&con=AppReceiveOperatLog&act=search" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="receive_operat_log_search_list"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--3detail end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_receive_apply_show_logs.js"%>
+//-->
+</script>

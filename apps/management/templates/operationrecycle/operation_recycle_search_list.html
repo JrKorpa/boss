@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>显示标识</th>
+			<th>方法名称</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="operation_recycle_list_<%$d.id%>" data-title="<%$d.label%>">
+			<td><%$d.id%></td>
+			<td><%$d.label%></td>
+			<td><%$d.method_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

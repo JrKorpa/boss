@@ -1,0 +1,96 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+        <tr>
+            <th>货号</th>
+            <th>款号</th>
+            <th>所在仓库</th>
+            <th>材质/颜色</th>
+            <th>金重</th>
+            <th>主石单颗重</th>
+			<th>主石粒数</th>
+			<th>镶口</th>
+            <th>手寸</th>
+            <th>名称</th>
+            <th>状态</th>
+            <th>维修状态</th>
+            <th>价格</th>
+            <th>主石颜色</th>
+            <th>主石净度</th>
+            <th>主石切工</th>
+            <th>主石规格</th>
+            <th>主石形状</th>
+            <th>主石粒数</th>
+            <th>副石1</th>
+            <th>副石1粒数</th>
+            <th>副石1重</th>
+            <th>副石2</th>
+            <th>副石2粒数</th>
+            <th>副石2重</th>
+            <th>模号</th>
+            <th>证书类型</th>
+			<th>证书号</th>
+            <th>金饰类型</th>
+            <th>金托类型</th>
+            <th>结价</th>
+            <th>数量</th>
+            <th>是否绑定</th>
+            <th>所在公司</th>
+            <th>入库方式</th>
+            <th>产品线</th>
+            <th>款式分类</th>
+            <th>金耗</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$data item=d%>
+        <tr data-id="goods_list_<%$d.id%>" data-title="<%$d.goods_id%>">
+            <td><%$d.goods_id%></td>
+            <td><%$d.goods_sn%></td>
+            <td><%$d.warehouse%></td>
+            <td><%$d.caizhi%></td>
+            <td><%$d.jinzhong%></td>
+            <td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhushilishu%></td>
+			<td><%$d.jietuoxiangkou%></td>
+            <td><%$d.shoucun%></td>
+            <td><%$d.goods_name%></td>
+            <td><%$dd->getEnum('warehouse.goods_status',$d.is_on_sale)%></td>
+            <td><%if $d.weixiu_status%><%$dd->getEnum('warehouse.weixiu_status',$d.weixiu_status)%><%else%>--<%/if%></td>
+            <td><!--成本价：<%$d.chengbenjia%><br/>-->名义价：<%$d.mingyichengben%></td>
+            <td><%$d.zhushiyanse%></td>
+            <td><%$d.zhushijingdu%></td>
+            <td><%$d.zhushiqiegong%></td>
+            <td><%$d.zhushiguige%></td>
+            <td><%$d.zhushixingzhuang%></td>
+            <td><%$d.fushi%></td>
+            <td><%$d.fushilishu%></td>
+            <td><%$d.fushizhong%></td>
+            <td><%$d.zhushilishu%></td>
+            <td><%$d.shi2%></td>
+            <td><%$d.shi2lishu%></td>
+            <td><%$d.shi2zhong%></td>
+            <td><%$d.mo_sn%></td>
+            <td><%$d.zhengshuleibie%></td>
+			<td><%$d.zhengshuhao%></td>
+            <td><%$d.ziyin%></td>
+            <td><%$dd->getEnum('warehouse_goods.tuo_type',$d.tuo_type)%></td>
+            <td><%if $d.jiejia==1%>未结价<%else%>已结价<%/if%></td>
+            <td><%$d.num%></td>
+            <td><%if $d.order_goods_id%><a href="javascript:;" class="tab-con-a" data-title="订单详情" data-id="订单详情" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_goods_id=<%$d.order_goods_id%>">绑定</a><%else%>未绑定<%/if%></td>
+            <td><%$d.company%></td>
+            <td><%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%></td>
+            <td><%$d.product_type%></td>
+            <td><%$d.cat_type%></td>
+            <td><%$d.jinhao%></td>
+        </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+    <%$pa%>
+</div>
+<script>
+util.hover();
+</script>

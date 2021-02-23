@@ -1,0 +1,109 @@
+<div class="portlet-body">
+	<div class="table-toolbar">
+		<%$bar%>
+	</div>
+	<!-- 表格1 -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>应付申请信息
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="flip-scroll">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<td width="10%">申请单号:</td>
+						<td width="30%"><%$view->get_apply_no()%></td>
+						<td width="10%">结算商:</td>
+						<td width="10%"><%$view->get_supplier_name($view->get_supplier_id())%></td>
+						<td width="10%">应付类型:</td>
+						<td width="10%">
+							<%$dict->getEnum('app_pay_should.pay_type',$view->get_pay_type())%>
+						</td>
+						<td width="10%">单据状态:</td>
+						<td width="10%">
+							<%$dict->getEnum('app_pay_should.status',$view->get_bills_type())%>
+						</td>
+					</tr>
+					<tr>
+						<td>发票号码：</td>
+						<td><%$view->get_invoice_no()%></td>
+						<td>应付金额：</td>
+						<td><%$view->get_pay_total()%></td>
+						<td>应付单号:</td>
+						<td><%$view->get_pay_number()%></td>
+						<td>制单人：</td>
+						<td><%$view->get_create_name()%></td>
+					</tr>
+				</table>
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<td width="10%">制单人：</td>
+						<td width="15%"><%$view->get_create_name()%></td>
+						<td width="10%">制单时间：</td>
+						<td width="15%"><%date('Y-m-d H:i:s',$view->get_create_time())%></td>
+						<td width="10%">提交人：</td>
+						<td width="15%"><%$view->get_check_name()%></td>
+						<td width="10%">提交时间：</td>
+						<td>
+							<%if $view->get_check_time()%><%date('Y-m-d H:i:s',$view->get_check_time())%><%/if%>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>明细列表
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+				<tr>
+					<th>流水单号</th>
+					<th>应付类型</th>
+					<th>货号</th>
+					<th>结算商</th>
+					<th>供应商单号</th>
+					<th>入库审核时间</th>
+					<th>应付金额</th>
+				</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$detail_arr item=s%>
+				<tr data-id="app_apply_bills_list_<%$s.id%>">
+					<td align="center"><%$s.serial_number%></td>
+					<td align="center">
+						<%$dict->getEnum('app_pay_should.pay_type',$s.detail_type)%>
+					</td>
+					<td align="center"><%$s.goods_no%></td>
+					<td align="center"><%$s.supplier_name%></td>
+					<td align="center"><%$s.supplier_order%></td>
+					<td align="center"><%$s.check_time%></td>
+					<td align="center"><%$s.amount_total%></td>
+				</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_bills_show.js"%>
+//-->
+</script>

@@ -1,0 +1,27 @@
+<!-- 表格1 -->
+<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<th>OQC是否通过</th>
+				<th>OQC备注</th>
+				<th>OQC质检人</th>
+				<th>OQC质检时间</th>
+			</tr>
+			<%foreach from=$list item=oqc %>
+			<tr>
+				<td><%if $oqc.oqc_result%>质检通过<%else%>质检未过<%/if%>&nbsp;&nbsp;<%$dd->getEnum('OQC_reason',$oqc.oqc_reason)%></td>
+				<td><%$oqc.oqc_info%></td>
+				<td><%$oqc.opra_uname%></td>
+				<td><%$oqc.opra_time%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

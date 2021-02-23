@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>最小值</th>
+			<th>最大值</th>
+			<th>价格</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d name=foo%>
+		<tr data-id="app_style_baoxianfee_list_<%$d.id%>" >
+			<td><%$d.min%>ct</td>
+			<td><%$d.max%>ct</td>
+			<td><%$d.price%></td>
+			<td><%$dd->getEnum("style.app_style_baoxianfee",$d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

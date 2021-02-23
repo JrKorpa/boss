@@ -1,0 +1,41 @@
+<div class="row" id="style_attribute">
+<%foreach from=$style_attr key=k item=value%>
+<div class="col-sm-3">
+	<div class="form-group">
+		<label class="control-label"><%$value.attribute_name%>：</label>
+		<%if $value.show_type == 1%><!--文本框-->
+		<input type="text" name="<%$value.attribute_code%>[]" class="form-control" placeholder="请输入"/>
+		<%/if%>
+		
+		
+		<%if $value.show_type == 2%><!--单选-->
+			<div class="radio-list">
+			<%foreach from=$value.value key=kk item=item%>
+			<label class="radio-inline">
+			<input type="radio" value="<%$item%>" name="<%$value.attribute_code%>[]" <%if $kk == 0%>checked="checked"<%/if%>><%$item%>
+			</label>
+			<%/foreach%>
+			</div>
+		<%/if%>
+		
+		<%if $value.show_type == 3 || $value.show_type == 4 %><!--复选和下拉-->
+			<select class="select2_category form-control" tabindex="1" name="<%$value.attribute_code%>[]">
+				<option value="无">无</option>
+				<%foreach from=$value.value item=item%>
+				<option value="<%$item%>"><%$item%></option>
+				<%/foreach%>
+			</select>
+		<%/if%>
+		<input type="hidden" name="<%$value.attribute_code%>[]" value="<%$value.attribute_name%>"/>
+		<input type="hidden" name="<%$value.attribute_code%>[]" value="<%$value.is_require%>"/>
+	</div>
+	
+</div>
+<%/foreach%>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_style_attribute.js"%>
+//-->
+</script>

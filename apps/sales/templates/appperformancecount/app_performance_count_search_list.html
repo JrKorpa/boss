@@ -1,0 +1,199 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    <tr>
+    	<td>
+        	第一次付款时间：
+        </td>
+        <td colspan="9">
+            [ <i><%$start_time%></i> ] 到 [ <i><%$end_time%></i> ]；
+        </td>
+    </tr>
+	<tr bgcolor="#ECECEC">
+		<td>
+            <b>总业绩：</b><%$orderTongji['performance_count']%>
+        </td>
+        <td>
+            订单总数：<%$orderTongji['order_num']%>
+        </td>
+        <td>
+            <b>实际成交客户数：</b><%$orderTongji['suc_order_num']%>
+        </td>
+        <td>
+            实际成交客户数（<i>不含换购</i>）：<%$orderTongji['hb_order_num']%>
+        </td>
+        <td>
+            <b>赠品客户数：</b><%$orderTongji['zp_suc_order_num']%>
+        </td>
+        <td>
+            订单商品总金额：<%$orderTongji['order_goods_sum_amount']%>
+        </td>
+        <td>
+            <b>订单总金额：</b><%$orderTongji['order_sum_amount']%>
+        </td>
+        <td>
+            已付金额：<%$orderTongji['order_sum_paid']%>
+        </td>	
+        <td>
+            应收尾款：<%$orderTongji['order_sum_unpaid']%>
+        </td>
+        <td colspan="5">
+            实退金额：<%$orderTongji['order_real_return_price']%>
+        </td>
+	</tr>
+    <tr>
+        <td>
+            裸石销售件数：<%$lsdata['num']%>
+        </td>
+        <td>
+            裸石销售金额：<%$lsdata['amount']%>
+        </td>
+        <td>
+            裸石件数占比：<u><%$lsdata['allnum']%></u>
+        </td>
+        <td>
+            裸石金额占比：<u><%$lsdata['allmount']%></u>
+        </td>
+        <td colspan="2">
+            当期实退商品总金额：<%$returngoods%>
+        </td>
+        <td bgcolor="#ECECEC" colspan="8" rowspan="3">
+            当期发货订单商品<br/>总金额（<i>回款</i>）：<%$orderTongji['order_send_goods_sum_amount']%>
+        </td>
+	</tr>
+    <tr bgcolor="#ECECEC">
+        <td>
+            成品销售件数：<%$flsdata['num']%>
+        </td>
+    	<td>
+            成品销售金额：<%$flsdata['amount']%>
+        </td>
+        <td>
+            成品件数占比：<u><%$flsdata['allnum']%></u>
+        </td>
+        <td>
+            成品金额占比：<u><%$flsdata['allmount']%></u>
+    	</td>
+        <td colspan="2" rowspan="2">
+            当期实退金额（<i>退款不退货</i>）：<%$returnprice%>
+        </td>
+        
+	</tr>
+    
+    <tr>
+        <td>
+            天生一对销售件数：<%$tsyddata['num']%>
+        </td>
+        <td>
+            天生一对销售金额：<%$tsyddata['amount']%>
+        </td>
+        <td>
+            星耀销售件数：<%$xydata['num']%>
+        </td>
+        <td>
+            星耀销售金额：<%$xydata['amount']%>
+        </td>
+	</tr>
+    <tr bgcolor="#ECECEC">
+        <td colspan="2">
+            <b>黄金总业绩：</b><%$gold_info['gold_performance_total']%>
+        </td>
+        <td>
+            黄金实际成交客户数：<%$gold_info['gold_num']%>
+        </td>
+        <td>
+            黄金实际成交客户数（<i>不含换购</i>）：<%$gold_info['gold_num_hg']%>
+        </td>
+        <td colspan="2">
+            黄金当期实退商品总金额：<%$gold_info['gold_now_return_goods_total']%>
+        </td>
+        <td>
+            黄金当期实退金额（<i>退款不退货</i>）：<%$gold_info['gold_now_return_real_total']%>
+        </td>
+        <td colspan="7">
+            黄金当期发货订单商品总金额（<i>回款</i>）：<%$gold_info['gold_allsendgoodsmoney']%>
+        </td>
+    </tr>
+    <tr >
+        <td bgcolor="#ECECEC" colspan="2" rowspan='2'>
+            <b>非黄金总业绩：</b><%$gold_info['no_gold_performance_total']%>
+        </td>
+        <td>
+            非黄金实际成交客户数：<%$gold_info['no_gold_num']%>
+        </td>
+        <td>
+            非黄金实际成交客户数（<i>不含换购</i>）：<%$gold_info['no_gold_num_hg']%>
+        </td>
+        <td colspan="2" rowspan="2">
+            非黄金当期实退商品总金额：<%$gold_info['no_gold_now_return_goods_total']%>
+        </td>
+        <td rowspan="2">
+            非黄金当期实退金额（<i>退款不退货</i>）：<%$gold_info['no_gold_now_return_real_total']%>
+        </td>
+        <td rowspan="2" colspan="6">
+            非黄金当期发货订单商品总金额（<i>回款</i>）：<%$gold_info['no_gold_allsendgoodsmoney']%>
+        </td>
+    </tr>
+    <tr bgcolor="#ECECEC">
+        <td>
+            非黄金成品销售件数：<%$gold_info['no_gold_sale_cp_num']%>
+        </td>
+        <td>
+            非黄金件数占比：<u><%$gold_info['no_gold_num_percentage']%>%</u>
+        </td>
+    </tr>
+    <tr bgcolor="#ECECEC">
+            <td colspan="14" style="color: red">
+            	总业绩 = 订单商品总金额<%$orderTongji['order_goods_sum_amount']%> - 当期实退商品总金额<%$returngoods%> - 当期实退金额（<i>退款不退货</i>）<%$returnprice%> + 当期先退款不退货，然后又退货之实退金额（<i>退款不退货</i>）<%$plusreturnprice%>；
+            </td>
+    </tr>
+    <tr>
+			<th>订单号码</th>
+			<th>订单属性</th>
+			<th>销售顾问</th>
+			<th>下单时间</th>
+			<th>客户姓名</th>
+			<th>订单金额</th>
+			<th>已付金额</th>
+            <th>应收尾款</th>
+            <th>实退金额</th>
+            <th>客户来源</th>
+            <th>是否赠品单</th>
+			<th>跟单人</th>
+			<th>推荐人</th>
+			<th>备注信息</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$orderData item=d%>
+		<tr data-id="order_list_><%$d.id%>" data-title="<%$d.order_sn%>" id='<%$d.id%>'>
+            <td align="center">
+                <a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a>
+            </td>
+            <td align="center">
+                <%if !$d.is_xianhuo%>定制<%else%>销售<%/if%>
+            </td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time|date_format:'%Y-%m-%d'%></td>
+			<td align="center"><%$d.consignee%></td>
+			<td align="center"><%$d.order_amount%></td>
+			<td align="center"><%$d.money_paid%></td>
+			<td align="center"><%$d.money_unpaid%>
+            <td align="center"><%$d.real_return_price%></td>
+			<td align="center"><%$d.source_name%></td>
+            <td align="center">
+                <%if $d.is_zp>0%>是<%else%>否<%/if%>
+            </td>
+			<td align="center"><%$d.genzong%></td>
+			<td align="center"><%$d.recommended%></td>
+			<td align="center"><%$d.order_remark%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

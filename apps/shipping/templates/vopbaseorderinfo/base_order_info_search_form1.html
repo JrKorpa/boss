@@ -1,0 +1,162 @@
+<!--搜索开始-->
+<div id="search_form1">
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="base_order_info_search_form1">
+			<div class="form-body">
+				<div class="row">
+		           <div class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" id="express_order_sn" name="order_sn" class="form-control" placeholder="请输入"/><font color="red"><%$error_warnning%></font>
+						</div>
+		            </div>    
+				</div>										
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check2"></i> 下一步</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<script type="text/javascript">
+
+
+function foc(){
+	//alert('test');
+    $('#base_order_info_search_form1 input[name="order_sn"]').focus();
+}
+
+
+//匿名回调
+$import(function(){
+	util.setItem('orl','index.php?mod=shipping&con=VopBaseOrderInfo&act=search1');//设定刷新的初始url
+	util.setItem('formID','base_order_info_search_form1');//设定搜索表单id
+	util.setItem('listDIV','search_form1');//设定列表数据容器id
+
+	//匿名函数+闭包
+	var obj = function(){
+		
+		var initElements = function(){};
+		
+		var handleForm = function(){
+			//util.search();
+			//util.search_open();			
+            search_next();    
+		};
+		
+		var initData = function(){
+			setTimeout('foc()',500);
+			//util.closeForm(util.getItem("formID"));			
+			//base_order_info_search_page(util.getItem("orl"));			
+		}
+		return {
+			init:function(){
+				initElements();//处理搜索表单元素和重置
+				handleForm();//处理表单验证和提交
+				initData();//处理默认数据
+			}
+		}	
+	}();
+
+	obj.init();
+    
+});
+
+
+
+function search_next(_key){
+	if (typeof _key=='undefined')
+	{
+		var _key='';
+	}
+	else
+	{
+		_key=parseInt(_key);
+	}
+	var options1 = {
+		url:util.getItem("orl"+_key),
+		target:'#'+util.getItem("listDIV"+_key),
+		error:function ()
+		{
+			util.error("请求超时");
+			return false;
+		},
+		beforeSubmit:function(frm,jq,op){
+			//$('body').modalmanager('loading');
+			var jsondata = {};
+			var _url = '';
+                        var flag=false;
+                        var tmp = [];
+                        var name='';
+			$(frm).each(function(i,e){ 
+                                if(e.name.indexOf('[]')>0)
+                                {
+                                        flag = true;
+                                        var tt = e.name.substr(0,e.name.length-2);
+                                        if(name==''){
+                                                name = tt;
+                                                tmp.push(e.value);
+                                        }
+                                        else if(name==tt)
+                                        {
+                                                tmp.push(e.value);        
+                                        }
+                                        else
+                                        {
+                                                jsondata[name]=tmp;
+                                                tmp=[];
+                                                name=tt;
+                                                tmp.push(e.value);
+                                        }      
+                                }
+                                else
+                                {
+                                        if(flag){
+                                                flag=false;
+                                                jsondata[name]=tmp;
+                                                tmp=[];
+                                        }
+                                        jsondata[e.name] = e.value;
+                                }
+				_url+="&"+e.name+"="+e.value;
+			});
+
+			util.setItem("data"+_key,JSON.stringify(jsondata));
+			_url = _url.replace(/\n/g,' ');
+			util.setItem("url"+_key,util.getItem("orl"+_key)+_url);
+		},
+		success: function(data) {
+			if(data.trim()==''){
+				//alert(data.trim());
+				//foc();
+				util.retrieveReload(this);
+			}
+			//$('body').modalmanager('removeLoading');
+			//$('.modal-scrollable').trigger('click');
+			//util.closeForm(util.getItem("formID"+_key));
+		}
+	};
+
+	$("#"+util.getItem("formID"+_key)).ajaxForm(options1);
+}
+  
+
+</script>
+</div>

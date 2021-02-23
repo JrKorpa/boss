@@ -1,0 +1,48 @@
+ <div class="table-scrollable"> 
+ <!--<div class="flip-scroll">-->
+	
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">		    
+			<tr>
+				<th>序号</th>
+				<th>图片</th>
+				<th>商品编码</th>
+				<th>商品类型</th>
+				<th>商品名称</th>
+				<th>单位</th>				
+				<th>申请数量</th>
+				<th>预计销售价</th>					
+				<th>金额</th>
+				<th>备注</th>
+			</tr>
+		</thead>		
+		<tbody>
+		<%foreach from=$page_list.data key=key item=g%>
+			<tr data-id="material_order_goods_list_<%$g.id%>" data-title="<%$g.id%>">
+				<td><%$key+1%></td>
+				<td><%if !empty($g.style_img)%><a title="<%$g.goods_sn%>" href="<%$g.style_img%>" class="fancyboximg"> 
+			<img width="90" height="90" src="<%$g.style_img%>"></a><%else%>无图片<%/if%></td>
+				<td><%$g.goods_sn%></td>
+				<td><%$dd->getEnum("material.goods_type",$g.goods_type)%></td>
+				<td><%$g.goods_name%></td>	
+				<td><%$g.unit%></td>
+				<td><%$g.goods_num%></td>
+				<td><%$g.goods_price%></td>					
+				<td><%$g.goods_price*$g.goods_num%></td>
+				<td><%$g.remark%></td>	
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+	
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.setItem('url','index.php?mod=sales&con=MaterialOrder&act=searchOrderGoods&_id='+getID().split('-').pop());
+
+//-->
+</script>

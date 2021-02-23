@@ -1,0 +1,609 @@
+id = #from_table_data_l;
+
+[title]
+0 = "货号";
+1 = "款号";
+2 = "模号";
+3 = "饰品分类";
+4 = "款式分类";
+5 = "主成色";
+6 = "主成色重";
+7 = "金耗";
+8 = "主成色重计价";
+9 = "主成色买入单价";
+10= "主成色买入成本";
+
+11 = "主成色计价单价";
+12 = "主石";
+13 = "主石粒数";
+14 = "主石重";
+15 = "主石重计价";
+16 = "主石颜色";
+17 = "主石净度";
+18 = "主石买入单价";
+19 = "主石买入成本";
+20 = "主石计价单价";
+21= "主石切工";
+
+22 = "主石形状";
+23 = "主石包号";
+24 = "主石规格";
+25 = "副石";
+26 = "副石粒数";
+27 = "副石重";
+28 = "副石重计价";
+29 = "副石颜色";
+30 = "副石净度";
+31 = "副石买入单价";
+32= "副石买入成本";
+
+33 = "副石计价单价";
+34 = "副石形状";
+35 = "副石包号";
+36 = "副石规格";
+37 = "总重";
+38 = "买入工费单价";
+39 = "买入工费";
+40 = "计价工费";
+41 = "手寸";
+42 = "字印";
+43= "单件成本";
+
+44 = "配件成本";
+45 = "其他成本";
+46 = "成本价";
+47 = "计价成本";
+48 = "加价率";
+49 = "最新零售价";
+50 = "品牌";
+51 = "裸钻证书类型";
+52 = "长度";
+53 = "GEMX证书号";
+54 = "证书号";
+55= "颜色";
+
+
+56 = "净度";
+57 = "配件数量";
+58 = "国际证书";
+59 = "证书类别";
+60 = "名称";
+61 = "订单号";
+62 = "石2";
+63 = "石2粒数";
+64 = "石2重";
+65 = "石2重计价";
+66 = "石2买入单价";
+67= "石2买入成本";
+68= "石2计价单价";
+69= "切工";
+70= "抛光";
+71= "对称";
+72= "荧光";
+73= "布产号";
+74= "销售成本";
+75= "钻石折扣";
+76= "证书2";
+77= "裸钻国际报价";
+78= "工厂成本";
+79= "成品|空托";
+
+80= "戒托实际镶口";
+81= "主石条码";
+82= "(主石)彩站颜色分级";
+83= "供应商货品条码";
+84= "配件金重";
+
+85= "石2包号";
+86= "副石3";
+87= "副石3粒数";
+88= "副石3重";
+89= "副石3总计价";
+90= "副石3买入单价";
+91= "副石3买入成本";
+92= "副石3计价单价";
+93= "石3包号";
+
+;货号
+[columns_0]
+type = text;
+readOnly = true;
+
+;款号
+[columns_1]
+type = text;
+readOnly = true;
+
+;模号
+[columns_2]
+type = text;
+readOnly = true;
+
+;饰品分类
+[columns_3]
+type = text;
+readOnly = true;
+
+;款式分类
+[columns_4]
+type = text;
+readOnly = true;
+
+;主成色
+[columns_5]
+type = text;
+readOnly = true;
+
+;主成色重
+[columns_6]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;金耗
+[columns_7]
+type = text;
+readOnly = true;
+
+;主成色重计价
+[columns_8]
+type = text;
+readOnly = true;
+
+;主成色买入单价
+[columns_9]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主成色买入成本
+[columns_10]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主成色计价单价
+[columns_11]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石
+[columns_12]
+type = text;
+readOnly = true;
+
+;主石粒数
+[columns_13]
+type = text;
+readOnly = true;
+
+;主石重
+[columns_14]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石重计价
+[columns_15]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石颜色
+[columns_16]
+type = text;
+readOnly = true;
+
+;主石净度
+[columns_17]
+type = text;
+readOnly = true;
+
+;主石买入单价
+[columns_18]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石买入成本
+[columns_19]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石计价单价
+[columns_20]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;主石切工
+[columns_21]
+type = text;
+readOnly = true;
+
+;主石形状
+[columns_22]
+type = text;
+readOnly = true;
+
+;主石包号
+[columns_23]
+type = text;
+readOnly = true;
+
+;主石规格
+[columns_24]
+type = text;
+readOnly = true;
+
+;副石
+[columns_25]
+type = text;
+readOnly = true;
+
+;副石粒数
+[columns_26]
+type = text;
+readOnly = true;
+
+;副石重
+[columns_27]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;副石重计价
+[columns_28]
+type = text;
+readOnly = true;
+
+;副石颜色
+[columns_29]
+type = text;
+readOnly = true;
+
+;副石净度
+[columns_30]
+type = text;
+readOnly = true;
+
+;副石买入单价
+[columns_31]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;副石买入成本
+[columns_32]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;副石计价单价
+[columns_33]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;副石形状
+[columns_34]
+type = text;
+readOnly = true;
+
+;副石包号
+[columns_35]
+type = text;
+readOnly = true;
+
+;副石规格
+[columns_36]
+type = text;
+readOnly = true;
+
+;总重
+[columns_37]
+type = text;
+readOnly = true;
+
+;买入工费单价
+[columns_38]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;买入工费
+[columns_39]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;计价工费
+[columns_40]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;手寸
+[columns_41]
+type = text;
+readOnly = true;
+
+;字印
+[columns_42]
+type = text;
+readOnly = true;
+
+;单件成本
+[columns_43]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;配件成本
+[columns_44]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;其他成本
+[columns_45]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;成本价
+[columns_46]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;计价成本
+[columns_47]
+type = text;
+readOnly = true;
+
+;加价率
+[columns_48]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;最新零售价
+[columns_49]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;品牌
+[columns_50]
+type = text;
+readOnly = true;
+
+;裸钻证书类型
+[columns_51]
+type = text;
+readOnly = true;
+
+;长度
+[columns_52]
+type = text;
+readOnly = true;
+
+;GEMX证书号
+[columns_53]
+type = text;
+readOnly = true;
+
+;证书号
+[columns_54]
+type = text;
+readOnly = true;
+
+;颜色
+[columns_55]
+type = text;
+readOnly = true;
+
+;净度
+[columns_56]
+type = text;
+readOnly = true;
+
+;配件数量
+[columns_57]
+type = text;
+readOnly = true;
+
+;国际证书
+[columns_58]
+type = text;
+readOnly = true;
+
+;证书类型
+[columns_59]
+type = text;
+readOnly = true;
+
+
+;名称
+[columns_60]
+type = text;
+readOnly = true;
+
+;订单号
+[columns_61]
+type = text;
+readOnly = true;
+
+;石2
+[columns_62]
+type = text;
+readOnly = true;
+
+;石2粒数
+[columns_63]
+type = text;
+readOnly = true;
+
+;石2重
+[columns_64]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;副石重计价
+[columns_65]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;石2买入单价
+[columns_66]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;石2买入成本
+[columns_67]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;石2计价单价
+[columns_68]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+;切工
+[columns_69]
+type = text;
+readOnly = true;
+
+;抛光
+[columns_70]
+type = text;
+readOnly = true;
+
+;对称
+[columns_71]
+type = text;
+readOnly = true;
+
+;荧光
+[columns_72]
+type = text;
+readOnly = true;
+
+;布产号
+[columns_73]
+type = text;
+readOnly = true;
+
+
+;销售成本
+[columns_74]
+type = text;
+readOnly = true;
+
+
+;钻石折扣
+[columns_75]
+type = text;
+readOnly = true;
+
+
+;证书2
+[columns_76]
+type = text;
+readOnly = true;
+
+
+;裸钻国际报价
+[columns_77]
+type = text;
+readOnly = true;
+
+
+;工厂成本
+[columns_78]
+type = text;
+readOnly = true;
+
+
+;成品|空托
+[columns_79]
+type = text;
+readOnly = true;
+
+;戒托实际镶口
+[columns_80]
+type = text;
+readOnly = true;
+
+;主石条码
+[columns_81]
+type = text;
+readOnly = true;
+
+;(主石)彩站颜色分级
+[columns_82]
+type = text;
+readOnly = true;
+
+;供应商货品条码
+[columns_83]
+type = text;
+readOnly = true;
+
+;配件金重
+[columns_85]
+type = text;
+readOnly = true;
+
+;石2包号
+[columns_86]
+type = text;
+readOnly = true;
+
+;副石3
+[columns_87]
+type = text;
+readOnly = true;
+
+;副石3粒数
+[columns_88]
+type = text;
+readOnly = true;
+
+;副石3重
+[columns_89]
+type = text;
+readOnly = true;
+
+;副石3总计价
+[columns_90]
+type = text;
+readOnly = true;
+
+;副石3买入单价
+[columns_91]
+type = text;
+readOnly = true;
+
+;副石3买入成本
+[columns_92]
+type = text;
+readOnly = true;
+
+;副石3计价单价
+[columns_93]
+type = text;
+readOnly = true;
+
+;石3包号
+[columns_94]
+type = text;
+readOnly = true;

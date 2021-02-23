@@ -1,0 +1,36 @@
+<!-- 表格1 -->
+<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<th>当前状态</th>
+				<th>备注</th>
+				<th>操作人</th>
+				<th>操作时间</th>
+			</tr>
+			<%foreach from=$list item=d %>
+			<tr>
+				<td><%$dd->getEnum('receipt.detail_status',$d.status)%></td>
+				<td><%$d.remark%></td>
+				<td><%$d.uname%></td>
+				<td><%$d.time%></td>
+			</tr>
+			<%/foreach%>
+			
+			<%foreach from=$bc_log item=d %>
+			<tr>
+				<td><%$dd->getEnum('buchan_status',$d.status)%></td>
+				<td><%$d.remark%></td>
+				<td><%$d.uname%></td>
+				<td><%$d.time%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

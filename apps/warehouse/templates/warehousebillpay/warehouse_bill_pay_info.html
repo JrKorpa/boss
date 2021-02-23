@@ -1,0 +1,92 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_bill_pay1">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">结算商：</label>
+						<select class="form-control" tabindex="1" name="pro_id">
+						<option value=""></option>
+							<%foreach from=$pro_list key=k item=value%>
+							<%if $value.code != 362 %>
+							<option value="<%$value.id%>|<%$value.name%>" 
+							<%if $view->get_pro_id() == $value.id || $view_bill->get_pro_id()  == $value.id 
+							%>selected="selected"<%/if%>
+							>
+							<%$value.code%> | <%$value.id%></option><!--name-->
+							<%/if%>
+							<%/foreach%>
+							
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">支付内容：</label>
+						<select class="form-control" tabindex="1" name="pay_content">
+						<option value=""></option>
+							<%foreach from=$dd->getEnumArray('warehouse.pay_content') key=k item=value%>
+							<option value="<%$value.name%>"
+							<%if $view->get_pay_content() == $value.name || 
+							$cat_type == $value.name
+							%>selected="selected"<%/if%>
+							><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">结算方式：</label>
+						<select class="form-control" tabindex="1" name="pay_method">
+							<!-- <option value="1">记账</option> -->
+						 <option value=""></option>
+							<%foreach from=$dd->getEnumArray('warehouse.pay_method') key=k item=value%>
+							<option value="<%$value.name%>" <%if 
+							$view->get_pay_method() == $value.name || $value.name == 1
+							%>selected="selected"<%/if%>><%$value.label%></option>
+							<%/foreach%> 
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">含税金：</label>
+						<select class="form-control" tabindex="1" name="tax">
+							<!-- <option value="2">含</option> -->
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('warehouse.pay_tax') key=k item=value%>
+							<option value="<%$value.name%>" <%if $view->get_tax() == $value.name || $value.name == 2
+							%>selected="selected"<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">金额：</label>
+						<input type="text" name="amount" class="form-control" placeholder="请输入"  value="<%if $view->get_amount() %><%$view->get_amount()%><%/if%><%if $chengbenjias %><%$chengbenjias%><%/if%>" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="bill_id" value="<%$bill_id%>" />
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_pay.js"%>
+//-->
+</script>

@@ -1,0 +1,51 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="product_fqc_conf_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">分类名称：</label>
+						<input type="text" name="cat_name" class="form-control" placeholder="请输入" onBlur="value=value.replace(/[ -~]/g,'')" maxlength="50" value="<%$view->get_cat_name()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">上级分类：</label>
+                         <select class="select2_category form-control" tabindex="1" name="parent_id">
+							<option value=""></option>
+							<%foreach from=$view->getOrderTree() item=p %>
+							<%if $p.parent_id == 0%>
+							<option value="<%$p.id%>" <%if $view->get_parent_id()==$p.id%>selected="selected"<%/if%>><%$p.tname%></option>
+							<%else%>
+							<option disabled value="<%$p.id%>" <%if $view->get_parent_id()==$p.id%>selected="selected"<%/if%>><%$p.tname%></option>
+							<%/if%>
+							<%/foreach%>
+						</select>
+                                              
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_fqc_conf_info.js"%>
+//-->
+</script>

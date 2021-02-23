@@ -1,0 +1,41 @@
+<h1 style='color:red;font-size:25px'>这里是技术人员专用,其他人不要<span style='font-size:55px'>乱搞</span>。。。。。</h1>
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_bill_d_add_goods">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售退货单号：</label>
+						<input type="text" name="bill_no" class="form-control" placeholder="销售退货单号" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货号：</label>
+						<input type="text" name="goods_id" class="form-control" placeholder="请输入货号" value=""/>
+					</div>
+				</div>	
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">退货金额：</label>
+						<input type="text" name="tuihuojia" class="form-control" placeholder="退货金额" value=""/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_d_add_goods.js"%>
+//-->
+</script>

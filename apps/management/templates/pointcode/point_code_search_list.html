@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>渠道</th>
+			<th>积分码</th>
+			<th>使用权限</th>
+			<th>使用状态</th>
+			<th>订单号</th>
+			<th>使用人</th>
+			<th>创建人</th>
+			<th>创建时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="sales_channels_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.channel_name%></td>
+			<td><%$d.point_code%> </td>
+			<td><%$d.use_proportion%>%</td>
+			<td><%if $d.status eq '1'%>已使用<%else%>未使用<%/if%></td>
+			<td><%$d.order_sn%></td>
+			<td><%$d.use_people_name%></td>
+			<td><%$d.created_name%></td>
+			<td><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

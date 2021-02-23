@@ -1,0 +1,30 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="import_peishi_form">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">配石文件：<span class="required">*</span></label>
+						<input type="file" class="form-control" name="file" value=""/>
+						<a href="index.php?mod=processor&con=PeishiList&act=downPeishiTpl">批量配石excel模板下载</a>
+					</div>
+				</div>		
+			</div>			
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 导入</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+
+	<%include file="js/import_peishi.js"%>
+//-->
+</script>

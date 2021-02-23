@@ -1,0 +1,37 @@
+<div class="form-body">
+	<table class="table table-bordered table-striped table-hover flip-content display" cellspacing="0" width="100%">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>销售渠道</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data item=d%>
+			<tr data-id="user_warehouse_left_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td align="center"><%$d.id%></td>
+				<td align="center"><%$d.channel_name%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="clear"></div>
+<style type="text/css">
+	.yangfuyou {
+		width:150px;float:right;
+	}
+	.yangfy {
+		border: 1px solid #e5e5e5;
+		background-color: #fff;
+		background-image: none;
+		filter: none;
+		height: 34px;
+		padding: 3px 0 0px 12px;
+	}
+</style>
+<script type="text/javascript">
+<!--
+	<%include file="js/rel_channel_pay_left.js"%>
+//-->
+</script>

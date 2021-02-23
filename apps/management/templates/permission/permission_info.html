@@ -1,0 +1,60 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="permission_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">权限名称：</label>
+						<input type="text" name="name" class="form-control" placeholder="请输入" onBlur="value=value.replace(/[ -~]/g,'')" value="<%$view->get_name()%>" maxlength="50" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">编码：</label>
+						<input type="text" name="code" class="form-control" placeholder="请输入" onBlur="value=value.toUpperCase();" value="<%$view->get_code()%>" maxlength="50" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">资源类型：</label>
+						<select class="form-control" tabindex="1" name="type">
+							<option value=""></option>
+							<%foreach from=$view->getTypeOption() item=value%>
+							<option value="<%$value.id%>" <%if $value.id==$view->get_type()%>selected<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">目标资源：</label>
+						<select class="form-control" tabindex="1" name="resource_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">描述：</label>
+						<textarea rows="5" name="note" class="form-control" placeholder="请输入" maxlength="255"><%$view->get_desc()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/permission_info.js"%>
+//-->
+</script>

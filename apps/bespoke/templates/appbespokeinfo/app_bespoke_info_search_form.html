@@ -1,0 +1,250 @@
+<!--搜索开始-->
+<%if isset($smarty.session.bespoke.customer)%>
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>您正在服务的用户:<a href="javascript:;" data-title="<%$smarty.session.bespoke.customer%>" data-id="2085" title="<%$smarty.session.bespoke.customer%>" name="<%$smarty.session.bespoke.customer%>" data-url="/index.php?mod=bespoke&con=AppBespokeInfo&act=finish_Bespoke_box&bespoke_id=<%$smarty.session.bespoke.bespoke_id%>" onclick="util.add(this)" class="btn btn-sm">
+                    <%$smarty.session.bespoke.customer%>
+                </a>
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+	</div>
+</div>
+<%/if%>
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_bespoke_info_search_form">
+			<div class="form-body">
+				<div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">每页显示：</label>
+                            <input type="text" name="PageSize" class="form-control" placeholder="请输入数字" onkeyup="value=value.replace(/[^\d]/g,'')"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">预约号：</label>
+                            <input type="text" name="bespoke_sn" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">销售渠道：</label>
+							<select class="select2_category form-control" tabindex="1" name="department_id">
+								<option value=""></option>
+                                <%foreach from=$allSalesChannelsData key=k item=p%>
+                                <option value="<%$k%>"><%$p%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">预约状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="bespoke_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("bespoke_status") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">到店状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="re_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("goshop_status") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">成交状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="deal_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("app_bespoke_info.deal_status") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">回访状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="hf_status">
+								<option value=""></option>
+                                <option value="0">未回访</option>
+                                <option value="1">已回访</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">客户来源：</label>
+							<select class="select2_category form-control" tabindex="1" name="customer_source_id">
+								<option value=""></option>
+                                <%foreach from=$CustomerSourcesData key=k item=p%>
+                                <option value="<%$k%>"><%$p%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">客户手机：</label>
+							<input type="text" name="customer_mobile" class="form-control" onkeyup="value=value.toUpperCase()" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">客户姓名：</label>
+							<input type="text" name="customer" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">接待人：</label>
+							<input type="text" name="accecipt_man" class="form-control" value="" placeholder="请输入" />
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">接待状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="queue_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("bespoke.queue_status") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">分配状态：</label>
+                            <div class="radio-list">
+                                <input type="radio" name="fenpei_sn" value=1> 已分配
+                                <input type="radio" name="fenpei_sn" value=2> 未分配
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="make_order" class="form-control" value="" placeholder="请输入" />
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">预约添加时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="start_time" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">实际到店时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="real_inshop_time_start" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="real_inshop_time_end" value="" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">预约到店时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="bespoke_inshop_time_start" value="<%$today%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="bespoke_inshop_time_end" value="<%$today%>" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">推荐人会员编号：</label>
+                            <input type="text" name="recommender_sn" class="form-control" value="" placeholder="请输入" />
+                        </div>
+                    </div>                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">查看我的待处理预约：</label>
+                            <div class="input-group ">
+                                <input type="radio" name="todo" value="0" <%if $todoBes==0 %>checked<%/if%>>否
+                                <input type="radio" name="todo" value="1" <%if $todoBes==1 %>checked<%/if%>
+                                title="选择是，查看属于我的、到店日期截至明天的、一个月内未到店的、有效预约">是
+                            </div>
+                        </div>
+                    </div>
+
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="yincang" value="<%$tomorrow%>">
+					<input type="hidden" name="jintian" value="<%$today%>">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green" id="today" name='a_time' value="today"><i class="fa fa-check"></i> 搜索</button>
+					<button type="submit" class="btn green" id="tomorrow" name='a_time' value="tomorrow"><i class="fa fa-check"></i> 明天到店顾客</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<%$bar%>		
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_bespoke_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_bespoke_info_list.js"%>
+//-->
+</script>

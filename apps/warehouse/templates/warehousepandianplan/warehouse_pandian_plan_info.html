@@ -1,0 +1,45 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_pandian_plan_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">抽验仓：</label><span style='color:red;'>*</span>
+						<select class="select2_category form-control" name="type" tabindex="1">
+							<option value=""></option>
+							<option value="1">线上</option>
+							<option value="2">线下</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<textarea class="form-control" name="info" rows="1" id='info'></textarea>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_pandian_plan_info.js"%>
+//-->
+</script>

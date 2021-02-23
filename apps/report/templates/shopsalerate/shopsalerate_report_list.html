@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th></th><th></th>
+            <%foreach from=$monthesData item=obj key=key%>
+            <th colspan='2'><%$key%></th>
+            <%/foreach%>
+        </tr>
+        <tr>
+            <th>部门</th><th>开业日期</th>
+            <%foreach from=$monthesData item=obj key=key%>
+            <th>成品指标%</th><th>转化率指标%</th>
+            <%/foreach%>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $shops<1%>
+        <tr>
+        	<td colspan="16" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$shops item=obj key=key%>
+        <tr>
+            <td><%$obj.shop_name%></td>
+            <td><%$obj.start_shop_time%></td>
+            <%foreach from=$monthesData item=item key=key%>
+                <td>
+                <%if isset($item['total_amounts'][$obj.id]) && $item['total_amounts'][$obj.id]>0 %>
+                    <%round(100*$item['cp_amounts'][$obj.id]/$item['total_amounts'][$obj.id], 2)%>
+                <%/if%>
+                </td>
+                <td>
+                <%if isset($item['re_counts'][$obj.id]) && $item['re_counts'][$obj.id]>0 %>
+                    <%round(100*$item['deal_counts'][$obj.id]/$item['re_counts'][$obj.id], 2)%>
+                <%/if%>
+                </td>
+            <%/foreach%>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

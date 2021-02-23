@@ -1,0 +1,63 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_receive_should_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label"><span style="color: red">*</span>收款帐号：</label>
+                        <select class="form-control" tabindex="1" name="bank_name">
+                            <option value=""></option>
+                            <%foreach from=$bankName item=b key=k%>
+                            <option value='<%$k%>'><%$b%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label"><span style="color: red">*</span>银行交易流水号：</label>
+                        <input type="text" name="bank_serial_number" class="form-control" value="" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label"><span style="color: red">*</span>财务收款时间：</label>
+                        <div data-date-viewmode="years" data-date-format="yyyy-dd-mm" class="input-group input-medium date date-picker">
+                            <input type="text" readonly="" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" name="pay_time" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn default"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label"><span style="color: red">*</span>收款金额：</label>
+                        <input type="text" name="total" class="form-control" value="" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">剩余金额：￥<%$total%>元</label>
+						<input type='hidden' name='syje' value='<%$total%>' id='syje'/>	
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="should_id" value="<%$view->get_should_id()%>" />
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_receive_should_info.js" %>
+//-->
+</script>

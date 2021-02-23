@@ -1,0 +1,15 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+<tr>
+	<td  class="flip-content">操作人</td>
+	<td  class="flip-content">操作时间</td>
+	<td  class="flip-content">操作内容</td>
+</tr>
+<%foreach from=$page_list.data key=k item=value %>
+<tr>
+	<td  class="flip-content"><%$value.user_name%></td>
+	<td  class="flip-content"><%$value.date_time%></td>
+	<td  class="flip-content"><%$value.content%></td>
+</tr>
+<%/foreach%>
+</table>
+<%$pa%>

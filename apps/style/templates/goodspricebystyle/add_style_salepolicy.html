@@ -1,0 +1,56 @@
+<div class="portlet-body"> 
+	<!-- 表格1 -->
+	<form action="" method="post" class="horizontal-form" id="add_style_salepolicy">
+		<div class="table-scrollable">
+        <table class="table table-bordered  table-hover flip-content">
+	  
+				   <tr>
+						<td align="center" style="width:100px;">销售渠道<br/>
+						<input type="checkbox" class="checkAll" value="1" />
+						</td>
+						<td colspan="6">
+						<div style="display:block;height:450px;width:100%;overflow:scroll">
+						<%foreach from=$channellist key=key1 item=sublist %>
+						  <%$key1%>:
+						  <%foreach from=$sublist key=key2 item=p %>
+						  <input type="checkbox" name="channel_ids[]" id="channel_ids[<%$key1%><%$key2%>]" value="<%$p.id%>"/>
+                          <label for="channel_ids[<%$key1%><%$key2%>]"><%$p.channel_name%></label>	
+						  <%if $key2!=0 && $key2%9==0%><br/><%/if%>					  
+						  <%/foreach%>
+						  <%if $key==0 || $key2%9!=0%><br/><%/if%>	
+						<%/foreach%>
+						</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" style="width:100px;">加价率</td>
+						<td style="width:200px;"><input class="form-control input-small" type='text' name='jiajialv' placeholder="请输入" value=''></td>
+						<td align="center" style="width:100px;">固定值</td>
+						<td style="width:200px;"><input class="form-control input-small" type='text' name='sta_value' placeholder="请输入" value=''></td>
+					    <td colspan="3">&nbsp;</td>
+				    </tr>				
+			</table>
+      </div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="_ids" value="<%$_ids%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+	</form>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+$("#add_style_salepolicy .checkAll").click(function(){
+       if($(this).attr('checked')){
+	       $(this).parent().parent().find("td input[name='channel_ids[]']").attr("checked","checked");
+	   }else{
+	       $(this).parent().parent().find("td input[name='channel_ids[]']").attr("checked",false);
+	   }
+});
+<!--
+	<%include file="js/add_style_salepolicy.js"%>
+//-->
+</script>

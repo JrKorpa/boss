@@ -1,0 +1,117 @@
+<div class="portlet-body form"> 
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="goods_check_info">
+	     <%foreach from=$ids key=k item=id%>
+              <input name="_ids[]" type="hidden" value="<%$id%>"/>
+         <%/foreach%>
+		<%if !empty($order_has_invoice)%><h4 style="color:red">订单<%$order_has_invoice%>已存在发票，需要冲掉</h4><%/if%>
+		<div class="form-body">		    
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">审核状态：<span style='color:red;'>*</span></label>
+						<div class="radio-list">
+							<label class="radio-inline">
+								<input type="radio" name="goods_status" value="1" />
+								审核通过</label>
+							<label class="radio-inline">
+								<input type="radio" name="goods_status" value="2" />
+								审核驳回 <br/></label>    
+						</div>	
+				    </div>	
+					<div class="form-group">
+					 <label class="control-label">是否生成销售退货单：<span style='color:red;'>*</span></label>	
+					     <div class="radio-list">
+					       
+							<label class="radio-inline">
+								<input type="radio" name="is_create_billd" value="1" />
+								是</label>
+							<label class="radio-inline">
+								<input type="radio" name="is_create_billd" value="2" />
+								否 <br/></label>    
+						</div>
+					</div>							
+					<div class="form-group" style=" margin-top:15px">
+						<label class="control-label">库管部门意见：</label><span style='color:red;'>*</span>
+						<textarea class="form-control" style="height:120px" id="goods_res" name="goods_res" rows="3"></textarea>
+					</div>
+				</div>                
+                <div id="companyBox"<%if $is_have_bills<>1%> style="display: none"<%/if%>>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">公司：</label><span style='color:red;'>*</span>
+                        <select class="select2_category form-control" name="company_id" tabindex="1" >
+                            <option value=""></option>
+                            <%foreach from=$companylist key=cid item=company_name%>
+                                <option value="<%$cid%>" <%if $cid==$from_company_id%>selected="selected"<%/if%>><%$company_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">仓库：</label><span style='color:red;'>*</span>
+                        <select class="select2_category form-control" name="warehouse_id" tabindex="1">
+						     <option value=""></option>
+                             <%foreach from=$to_warehouse_list item=value%>							    
+                                <option value="<%$value.id%>"<%if count($to_warehouse_list)==1%>selected<%/if%>><%$value.code%> | <%$value.name%> </option>
+                             <%/foreach%>                           
+                        </select>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">调拨单调入仓(总公司)：</label><span style='color:red;'>*</span>
+                        <select class="select2_category form-control" disabled="disabled" name="m_warehouse_id" tabindex="1">
+                            <option value=""></option>
+                            <%foreach from=$m_warehouse_list item=value%>
+                                <option value="<%$value.id%>" ><%$value.code%> | <%$value.name%> </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <%if !empty($bill_s_info)%>
+					<div class="col-sm-3">
+						<div id="t_goods" class="form-group">
+							<label class="control-label">生成退货单的货品：<span style="color:red;">（以下为已销售货品从S单读取）</span></label>
+							<div class="radio-list" style="width:100%;padding:5px;height:<%if empty($companylist)%>190px<%else%>120px<%/if%>;border:1px solid #cecece;overflow:scroll">
+								<%foreach from=$bill_s_info item=t%>
+								   <label><input type="radio" name="t_goods_id" value="<%$t.goods_id%>" /><%$t.goods_id%>（<%$t.goods_name%>）<br/></label>
+								<%/foreach%>
+							</div>
+						</div>
+					</div>	
+                <%/if%>
+            </div>
+			
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label"><span style='color:red;'><b>销售退货单金额：</b>（退货金额默认为订单明细中实际支付金额）</label></span>
+						<div class="radio-list" style="width:100%; padding:5px;height:<%if empty($companylist)%>190px<%else%>120px<%/if%>;border:1px solid #cecece;overflow:scroll">
+						     <%foreach from=$returnPriceArr key=order_sn item=p%>
+                                <%$p.id%> | <%$p.order_sn%>(<b style="color:green"><%$p.price%>元</b>)<br/>
+                             <%/foreach%>
+						<%$returnPrice|default:''%>
+						</div>
+                    </div>
+                </div>
+				
+				
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="return_id" value="<%$id%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM--> 
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/goods_check_info.js"%>
+//-->
+</script>

@@ -1,0 +1,87 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>单据详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+                    <td>单据编号</td>
+                    <td><%$view->get_id()%></td>
+                    <td>无账修退流水号</td>
+                    <td></td>
+                    <td>单据状态</td>
+                    <td><%$dd->getEnum('noaccount.bill_status',$view->get_bill_status())%></td>
+                </tr>   
+                <tr>
+                    <td>单据类型</td>
+                    <td><%$view->get_bill_type()%></td>
+                    <td>创建用户</td>
+                    <td><%$view->get_create_user()%></td>
+                    <td>创建时间</td>
+                    <td><%$view->get_create_time()%></td>
+                </tr>
+                <tr>
+                    <td>入库公司名称</td>
+                    <td><%$view->get_from_company_name()|default:'--'%></td>
+                    <td>入库仓库名称</td>
+                    <td><%$view->get_from_warehouse_name()|default:'--'%></td>
+                    <td>出库公司名称</td>
+                    <td><%$view->get_out_company_name()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>出库仓库名称</td>
+                    <td><%$view->get_out_warehouse_name()|default:'--'%></td>
+                    <td>审核时间</td>
+                    <td><%$view->get_check_time()|default:'--'%></td>
+                    <td>审核用户</td>
+                    <td><%$view->get_check_user()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>快递公司</td>
+                    <td><%$view->get_to_customer_id()|default:'--'%></td>
+                    <td>快递单号</td>
+                    <td><%$view->get_express_sn()|default:'--'%></td>
+                    <td>备注</td>
+                    <td><%$view->get_remark()|default:'--'%></td>
+                </tr>	
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>单据明细详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格 -->
+        <div class="flip-scroll" id="virtual_bill_goods_search_list">
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/virtual_bill_goods_show.js"%>
+//-->
+</script>

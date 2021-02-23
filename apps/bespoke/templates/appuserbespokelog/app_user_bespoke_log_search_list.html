@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>预约ID</th>
+			<th>操作人</th>
+			<th>操作时间</th>
+			<th>操作IP</th>
+			<th>备注信息</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_user_bespoke_log_list_<%$d.log_id %>" data-title="日志详情">
+			<td><%$d.log_id%></td>
+			<td><a data-url="index.php?mod=bespoke&con=AppBespokeInfo&act=show&id=<%$d.bespoke_id%>" data-id="<%$d.bespoke_id%>" data-title="预约详情" class="tab-con-a" href="javascript:;"><%$d.bespoke_id%></a></td>
+			<td><%$d.create_user%></td>
+			<td><%$d.create_time%></td>
+			<td><%$d.IP%></td>
+			<td><%$d.remark%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

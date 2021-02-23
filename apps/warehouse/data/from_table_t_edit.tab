@@ -1,0 +1,62 @@
+id = #from_table_data_t_edit;
+
+[title]
+0 = "货号";
+1 = "货品名称";
+2 = "货品款式";
+3 = "货品数量";
+4 = "材质";
+5 = "金重";
+6 = "颜色";
+7 = "钻石大小";
+8= "成本价";
+9="名义价";
+10= "销售价"
+
+[columns_0]
+type = numeric;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+editor = select;
+selectOptions = ["款式1", "款式2", "款式3", "款式4", "款式5"];
+readOnly = true;
+
+[columns_3]
+type = numeric;
+format = 0,0;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = text;
+readOnly = true;
+
+
+[columns_8]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_9]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_10]
+type = numeric;
+format = 0,0.00;

@@ -1,0 +1,86 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#wait_distribution_search_list .checkboxes" /></th>
+			<th style="text-align:center;">订单号</th>
+
+			<th style="text-align:center;">客户来源</th>
+			<th style="text-align:center;">客户姓名</th>
+			<th style="text-align:center;">销售渠道</th>
+			<th style="text-align:center;">配货地址</th> 
+
+			<th style="text-align:center;">订单商品总金额</th>
+			<th style="text-align:center;">制单人</th>
+			<th style="text-align:center;">制单时间</th>
+			<th style="text-align:center;">配送状态</th>
+			<th style="text-align:center;">录单来源</th>
+			<th style="text-align:center;">维修状态</th>
+			<th style="text-align:center;">打印提货单</th>
+			<th style="text-align:center;">最后一次操作时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%if isset($page_list.data) && !empty($page_list.data)%>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="wait_distrbution_list_<%$d.id%>" data-sn="<%$d.order_sn%>" delivery-status="<%$d.delivery_status%>" order-peihuo-status="">
+			<td align="center"><input class="checkboxes"  type="checkbox" title="此复选框作用于打印提货单" name="_ids[]" value="<%$d.order_sn%>" /></td>
+			<td align="center"><a href="javascript:;" class="tab-con-a" data-sn="<%$d.order_sn%>" data-id="<%$d.order_sn%>" data-title="订单详情" data-url="index.php?
+mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+
+			<td align="center"><%if isset($CustomerSourcesList[$d.customer_source_id])%><%$CustomerSourcesList[$d.customer_source_id]%><%else%> - - <%/if%></td>
+			<td align="center"><%$d.consignee%></td>
+			<td align="center"><%$saleschannels[$d.department_id]%></td>
+
+			<td align="center"><%if $d.distribution_type != 2%><%$d.shop_name%><%else%>总部<%/if%></td>
+			<td align="center"><%$d.order_amount|default:0%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time%></td>
+			<td align="center"><%$dd->getEnum('sales.delivery_status', $d.delivery_status)%></td>
+			<td align="center"><%$d.referer%></td>
+			<td align="center"><%$d.th_weixiu%></td>
+			<td align="center"><%$dd->getEnum('confirm', $d.is_print_tihuo)%></td>
+			<td align="center"><%$d.last_time%></td>
+		</tr>
+	<%/foreach%>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#wait_distribution_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#wait_distribution_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}
+	});
+	$.uniform.update(set);
+});
+$('#wait_distribution_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

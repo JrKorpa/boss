@@ -1,0 +1,28 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>名称</th>
+			<th>编码</th>
+			<th>值</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data key=key item=d%>
+		<tr data-id="app_shop_config_list_<%$d.id%>" data-title="配置管理">
+			<td><%$d.id%></td>
+			<td><%$d.name%></td>
+			<td><%$d.code%></td>
+			<td><%$d.value%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

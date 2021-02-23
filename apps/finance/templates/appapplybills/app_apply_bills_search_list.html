@@ -1,0 +1,55 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" /></th>
+			<th>应付申请单号</th>
+			<th>发票号</th>
+			<th>应付类型</th>
+			<th>应付金额</th>
+			<th>调整金额</th>
+			<th>申请金额</th>
+			<th>结算商</th>
+			<th>申请状态</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>付款单号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_bills_list_<%$d.id%>" data-title="<%$d.apply_no%>">
+			<td align="center">
+				<%if $d.bills_type==1 %>
+				<input type="checkbox" name="_ids[]" value="<%$d.id%>" />
+				<%/if%>
+			</td>
+			<td align="center"><%$d.apply_no%></td>
+			<td align="center"><%$d.invoice_no%></td>
+			<td align="center">
+				<%foreach from=$dict->getEnumArray('app_pay_should.pay_type') item=t%>
+				<%if $t.name == $d.pay_type%><%$t.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center"><%$d.pay_total%></td>
+			<td align="center"><%$d.adjust_total%></td>
+			<td align="center" style="color:red"><%$d.apply_total%></td>
+			<td align="center">
+				<%$view->get_supplier_name($d.supplier_id)%>
+			</td>
+			<td align="center">
+				<%$view->getBillsType($d.bills_type)%>
+			</td>
+			<td align="center"><%$d.create_name%></td>
+			<td align="center"><%date('Y-m-d',$d.create_time)%></td>
+			<td align="center"><%$d.pay_number%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//-->
+</script>

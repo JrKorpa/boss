@@ -1,0 +1,18 @@
+<div class="flip-scroll">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="width:150px">时间</th>
+			<th>操作描述</th>			
+		</tr>
+	</thead>
+   <tbody>	
+	<%foreach from=$data.traces item=d%>
+			<tr >			
+				<td><%$d.transport_time%></td>
+                <td><%$d.transport_detail%></td>				
+			</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>

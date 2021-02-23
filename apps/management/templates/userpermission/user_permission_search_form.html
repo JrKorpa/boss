@@ -1,0 +1,92 @@
+<style type="text/css">
+#user_permission_search_list ul.nav-tabs a {
+	display:block;
+	padding:5px;
+	margin:0;
+	text-align:center;
+	border:1px solid #CCC;
+	border-bottom:0;
+	background:#FFF;
+}
+#user_permission_search_list ul.nav-tabs li {
+	width:80px !important;
+}
+</style>
+
+<div class="row">
+	<div class="col-sm-3">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>待授权用户信息
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+
+			<div class="portlet-body form" id="user_permission_user_search_form">
+				<div class="form-body">
+					<label class="control-label">检索用户：</label>
+					<input type="text" name="name" class="form-control" placeholder="请输入账号/姓名" onblur="user_permission_check_user(this)">
+					<input type="hidden" name="user_id">
+					<span style="color:red;display:inline-block;margin-top:5px;">仅能检索用户类型比自己低的用户！！！</span>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>权限信息
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+
+			<div class="portlet-body">
+				<div class="row">
+					<div class="col-sm-12" id="user_permission_search_list">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#user_permission_menu_list" data-toggle="tab" onclick="util.cust(this,user_permission_menu_add);" data-url="index.php?mod=management&con=UserPermission&act=listMenu" name="菜单权限" title="菜单权限" data-title="菜单权限">菜单</a></li>
+
+							<li><a href="#user_permission_opr_list" data-toggle="tab" onclick="util.cust(this,user_permission_opr_add);" data-url="index.php?mod=management&con=UserPermission&act=listOpr" name="操作权限" title="操作权限" data-title="操作权限">操作</a></li>
+
+							<li><a href="#user_permission_button_list" data-toggle="tab" onclick="util.cust(this,user_permission_button_add);" data-url="index.php?mod=management&con=UserPermission&act=listButton" name="列表按钮权限" title="列表按钮权限" data-title="列表按钮权限">列表按钮</a></li>
+							<li><a href="#user_permission_view_button_list" data-toggle="tab" onclick="util.cust(this,user_permission_view_button_add);" data-url="index.php?mod=management&con=UserPermission&act=listViewButton" name="详情按钮权限" title="详情按钮权限" data-title="详情按钮权限">详情按钮</a></li>
+							<li><a href="#user_permission_rel_list" data-toggle="tab" onclick="util.cust(this,user_permission_rel_add);" data-url="index.php?mod=management&con=UserPermission&act=listRel" name="明细权限" title="明细权限" data-title="明细权限">明细权限</a></li>
+							<li><a href="#user_permission_rel_button" data-toggle="tab" onclick="util.cust(this,user_permission_rel_button_add);" data-url="index.php?mod=management&con=UserPermission&act=listRelButton" name="明细按钮" title="明细按钮" data-title="明细按钮">明细按钮</a></li>
+							<li><a href="#user_permission_rel_opr" data-toggle="tab" onclick="util.cust(this,user_permission_rel_opr_add);" data-url="index.php?mod=management&con=UserPermission&act=listRelOpr" name="明细操作" title="明细操作" data-title="明细操作">明细操作</a></li>
+
+							<li><a href="#user_permission_scope" data-toggle="tab" onclick="util.cust(this,user_permission_scope_add);" data-url="index.php?mod=management&con=UserPermission&act=listScope" name="属性控制" title="属性控制" data-title="属性控制">属性控制</a></li>
+
+							<li><a href="#user_permission_copy_list" data-toggle="tab" onclick="util.cust(this,user_permission_copy_add);" data-url="index.php?mod=management&con=UserPermission&act=listCopy" name="权限复制" title="权限复制" data-title="权限复制">权限复制</a></li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="user_permission_menu_list">暂无信息</div>
+							<div class="tab-pane" id="user_permission_opr_list">暂无信息</div>
+							<div class="tab-pane" id="user_permission_button_list">暂无信息</div>
+							<div class="tab-pane" id="user_permission_view_button_list">暂无信息</div>
+							<div class="tab-pane" id="user_permission_rel_list">暂无信息</div>
+							<div class="tab-pane" id="user_permission_rel_button">暂无信息</div>
+							<div class="tab-pane" id="user_permission_rel_opr">暂无信息</div>
+							<div class="tab-pane" id="user_permission_scope">暂无信息</div>
+							<div class="tab-pane" id="user_permission_copy_list">暂无信息</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_permission_list.js"%>
+//-->
+</script>

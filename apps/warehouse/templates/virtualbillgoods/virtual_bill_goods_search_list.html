@@ -1,0 +1,56 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>无账修退流水号</th>
+                <th>业务类型（退货/维修）</th>
+                <th>订单号</th>
+                <th>货号</th>
+                <th>款号</th>
+                <th>主成色</th>
+                <th>金重</th>
+                <th>金托类型</th>
+                <th>产品线</th>
+                <th>款式分类</th>
+                <th>指圈</th>
+                <th>证书号</th>
+                <th>主石重</th>
+                <th>主石粒数</th>
+                <th>副石重</th>
+                <th>副石粒数</th>
+                <th>零售价</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="virtual_bill_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.virtual_id|default:'--'%></td>
+                <td><%$dd->getEnum('warehouse.business_type',$d.business_type)|default:'--'%></td>
+                <td><%$d.order_sn|default:'--'%></td>
+                <td><%$d.goods_id|default:'--'%></td>
+                <td><%$d.style_sn|default:'--'%></td>
+                <td><%$d.ingredient_color|default:'--'%></td>
+                <td><%$d.gold_weight|default:'--'%></td>
+                <td><%$dd->getEnum('warehouse_goods.tuo_type',$d.torr_type)|default:'--'%></td>
+                <td><%$d.product_line|default:'--'%></td>
+                <td><%$d.style_type|default:'--'%></td>
+                <td><%$d.finger_circle|default:'--'%></td>
+                <td><%$d.credential_num|default:'--'%></td>
+                <td><%$d.main_stone_weight|default:'--'%></td>
+                <td><%$d.main_stone_num|default:'--'%></td>
+                <td><%$d.deputy_stone_weight|default:'--'%></td>
+                <td><%$d.deputy_stone_num|default:'--'%></td>
+                <td><%$d.resale_price|default:'--'%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

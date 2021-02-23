@@ -1,0 +1,83 @@
+<input type="hidden" name="style_sn" value="<%$style_sn%>"/>
+<div id="goodsprice_by_style_price_edit" class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			<th style="text-align:center"><input type="checkbox" class="group-checkable" data-set=".classIds" /></th>
+			<th style="text-align:center">序号</th>
+			<th style="text-align:center">销售价格</th>
+			<%if $is_gold >0%>
+			<th style="text-align:center">黄金库存</th>
+			<%/if%>
+			<th style="text-align:center"><input class="group-checkable" type="checkbox" data-set=".classPrice" />商品状态</th>
+			
+			<%foreach from=$attr_title_list item=title key=key%>
+			<th style="text-align:center"><%$title%></th>
+			<%/foreach%>	
+			</tr>
+		</thead>
+		<tbody id="register_express_form">
+		<%assign var=i value=1%>
+		<%foreach from=$attr_data_list item=d key=key%>
+			<tr data-id="register_express_form_<%$d.id%>" data-title="">
+			    <td style="text-align:center">
+				<%if $d.status%>
+				<input class="checkboxes classIds" type="checkbox" name="_ids[]" value="<%$d.id%>" />
+				<%/if%>
+				</td>
+			    <td style="text-align:center"><%$i++%></td>
+				<td style="width:60px"><input type="text" name="price_list[<%$d.id%>]" value="<%$d.kela_price%>" <%if $is_golds != true %> readonly="readonly"<%/if%> style="width:60px"/></td>
+				<%if $is_gold >0%>
+				<td style="width:50px"><input type="text" name="stock_list[<%$d.id%>]" value="<%$d.goods_stock|default:0%>" style="width:50px"/></td>
+				<%/if%>
+				<td style="width:90px"><input class="checkboxes classPrice" type="checkbox" id="status_list[<%$d.id%>]" name="status_list[<%$d.id%>]"<%if $d.status%> checked="checked"<%/if%> value="1" /><label for="status_list[<%$d.id%>]">上架</label></td>	
+				<%foreach from=$d.data item=attr%>			
+				<td style="text-align:center"><%$attr%></td>
+				<%/foreach%>	
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+   /* var test = $("#goodsprice_by_style_price_edit input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }*/
+    // table 复选框全选
+    $('#goodsprice_by_style_price_edit .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+		if(checked){
+		     $(set).attr("checked", true);
+		}else{
+		     $(set).attr("checked", false);
+		}
+		/*
+        $(set).each(function () {
+            if (checked) {			    
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+		*/
+    });
+    $('#goodsprice_by_style_price_edit').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

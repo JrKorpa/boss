@@ -1,0 +1,89 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="diamond_jiajialv_info">
+		<div class="form-body">
+			<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">最小钻重：</label>
+							<input type="text" name="carat_min" class="form-control" placeholder="最小钻重" value="<%$view->get_carat_min()%>" />
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">最大钻重：</label>
+							<input type="text" name="carat_max" class="form-control" placeholder="最大钻重" value="<%$view->get_carat_max()%>" />
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">加价：</label>
+							<input type="text" name="jiajialv" class="form-control" placeholder="加价" value="<%$view->get_jiajialv()%>" />
+						</div>
+					</div>
+				</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>
+						<select class="form-control" tabindex="1" name="cert">
+                            <option value=""></option>
+                            <%foreach from=$diamondview->getCertList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_cert()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品状态：</label>
+						<div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" name="good_type" checked="checked" <%if $view->get_good_type()=='1' %>checked="checked"<%/if%> value="1" /> 现货
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="good_type" <%if $view->get_good_type()=='2' %>checked="checked"<%/if%> value="2" /> 期货
+                            </label>
+                        </div>
+					</div>
+				</div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">来源：</label>
+                        <select class="form-control" tabindex="1" name="from_ad">
+                            <option value=""></option>
+                            <%foreach from=$from_ad key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_from_ad()== $key && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+
+			</div>
+
+
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/diamond_jiajialv_info.js"%>
+//-->
+</script>

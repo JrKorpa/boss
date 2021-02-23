@@ -1,0 +1,130 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="purchase_info_add">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">采购分类：</label>
+						<select class="select2_category form-control" tabindex="1" name="t_id">
+							<option></option>
+							<%foreach from=$type_list key=k item=l %>
+							<option value="<%$l.id%>"  <%if $view->get_t_id()==$l.id%> selected="selected"<%/if%> ><%$l.t_name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">采购方式：</label>
+						<select class="select2_category form-control" tabindex="1" name="put_in_type">
+							<option></option>
+							<%foreach from=$dd->getEnumArray("warehouse.put_in_type") key=k item=value%>
+							<option value="<%$value.name%>" <%if $view->get_put_in_type()==$value.name%>selected="selected"<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<%if $is_style%>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">是否需要布产：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_tofactory" <%if $view->get_is_tofactory()==$value.name or ($view->get_is_tofactory()=="" and $k==0)%>
+								 checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+				<%/if%>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">采购申请费用：</label>
+						<input type="text" name="purchase_fee" maxlength="8" class="form-control" value="<%$view->get_purchase_fee()%>" />
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="p_status" class="form-control" readonly value="新增" />
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="make_uname" class="form-control" readonly value="<%if $view->get_make_uname()%><%$view->get_make_uname()%><%else%><%$smarty.session.userName%><%/if%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+                <%if $is_style%>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+                        <select class="select2_category form-control" tabindex="1" name="channel_id[]" multiple>
+                            <option value=""></option>
+                            <%foreach from=$allshop item=value%>
+                                <%if !empty($channel_ids) && in_array($value.id,$channel_ids)%>
+                                    <option value="<%$value.id%>" selected="selected"><%$value.channel_name%></option>
+                                <%else%>
+                                    <option value="<%$value.id%>"><%$value.channel_name%></option>
+                                <%/if%>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">是否允许占用备货名额：</label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_zhanyong" <%if $view->get_is_zhanyong()==$value.name or ($view->get_is_zhanyong()=="" and $k==0)%>
+                                 checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                <%/if%>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<input type="text" name="p_info" class="form-control" value="<%$view->get_p_info()%>" />
+					</div>
+				</div>
+			</div>
+			<%if $is_style%>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">上传文件：</label>
+                        <input type="file" name="batch_goods_add" class="form-control" placeholder="请选择文件" />
+                        <span><a href="index.php?mod=purchase&con=PurchaseGoods&act=downPurcaseCSV&pur_id=0">下载采购款式数据格式</a></span>
+                    </div>
+                </div>
+            </div>
+            <%/if%>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="is_style" value="<%$is_style%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_info_add.js"%>
+//-->
+</script>

@@ -1,0 +1,50 @@
+
+<div class="portlet-body">
+		<div class="table-toolbar">
+		</div>
+        <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>操作内容</th>
+				<th>操作人</th>
+				<th>订单审核状态</th>
+				<th>支付状态</th>
+				<th>发货状态</th>
+				<th>操作时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="app_order_action_list_<%$d.action_id%>" data-title="<%$d.action_id%>">
+				<td><%count($page_list.data)-$key%></td>
+				<td style="width: 800px;word-break: break-all;white-space: normal;"><%$d.remark%></td>
+				<td><%$d.create_user%></td>
+				<td><%$dd->getEnum("order.order_status",$d.order_status)%></td>
+				<td><%$dd->getEnum("order.order_pay_status",$d.pay_status)%></td>
+				<td><%$dd->getEnum('order.send_good_status',$d.shipping_status)%></td>
+				<td><%$d.create_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+    </div>
+    <%$pa%>
+	</div>
+
+<script type="text/javascript">
+	<!--
+	//分页
+	<%if $appol==1%>
+		util.setItem('listDIV','app_old_order_search');
+	<%else%>
+		util.setItem('listDIV','base_action_info_search_list');
+	<%/if%>
+	function app_order_action_search_page(url){
+		util.page(url);
+	}
+
+	util.hover();
+//-->
+</script>

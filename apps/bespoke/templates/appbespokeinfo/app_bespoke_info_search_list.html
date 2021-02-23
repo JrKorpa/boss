@@ -1,0 +1,89 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+            <th><input type="checkbox" class="group-checkable" data-set="#app_bespoke_info_search_list .checkboxes" /></th>
+			<th>预约号</th>
+			<th>销售渠道</th>
+			<th>客户来源</th>
+			<th>客户姓名</th>
+			<th>客户手机号</th>
+			<th>推荐接待人</th>
+			<th>预约创建时间</th>
+			<th>预约到店时间</th>
+			<th>实际到店时间</th>
+            <th>制单人</th>
+			<th>接待人</th>
+			<th>接待状态</th>
+			<th>回访状态</th>
+			<th>预约状态</th>
+			<th>到店状态</th>
+			<th>成交状态</th>
+            <th>推荐人会员编号</th>
+			<th>推荐人姓名</th>			
+			<th>预约备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_bespoke_info_list_<%$d.bespoke_id %>" data-title="预约详情">
+            <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.bespoke_id%>" /></td>
+			<td><a href="javascript:;" class="tab-con-a" data-title="预约详情" data-id="appbespokeinfo-<%$d.bespoke_id%>" data-url="index.php?mod=bespoke&con=AppBespokeInfo&act=show&id=<%$d.bespoke_id%>"><%$d.bespoke_sn%></a></td>
+			<td><%if isset($allSalesChannelsData[$d.department_id])%><%$allSalesChannelsData[$d.department_id]%><%else%><%/if%></td>
+			<td><%if isset($CustomerSourcesData[$d.customer_source_id])%><%$CustomerSourcesData[$d.customer_source_id]%><%else%><%/if%></td>
+			<td><%if isset($d.customer)%><%$d.customer%><%else%><%/if%></td>
+			<td><%if isset($d.customer_mobile)%><%$d.customer_mobile%><%else%><%/if%></td>
+			<td><%$d.recommend_accecipt_man%></td>
+			<td><%if isset($d.create_time)%><%$d.create_time%><%else%><%/if%></td>
+			<td><%if isset($d.bespoke_inshop_time)%><%$d.bespoke_inshop_time%><%else%><%/if%></td>
+            <td><%if isset($d.real_inshop_time)%><%$d.real_inshop_time%><%else%><%/if%></td>
+            <td><%if isset($d.make_order)%><%$d.make_order%><%else%><%/if%></td>
+			<td><%if isset($d.accecipt_man)%><%$d.accecipt_man%><%else%><%/if%></td>
+			<td><%$dd->getEnum("bespoke.queue_status",$d.queue_status)%></td>
+            <td><%if $d.withuserdo>0%>已回访<%else%><span style="color: red;">未回访</span><%/if%></td>
+			<td><%$dd->getEnum("bespoke_status",$d.bespoke_status)%></td>
+			<td><%$dd->getEnum("goshop_status",$d.re_status)%></td>
+			<td><%$dd->getEnum("app_bespoke_info.deal_status",$d.deal_status)%></td>
+			<td><%$d.recommender_sn%></td>
+			<td><%$d.recommender_name%></td>
+			<td><%if isset($d.remark)%><%$d.remark%><%else%><%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+	// 美化复选框
+    var test = $("#app_bespoke_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+      test.each(function () {
+        if ($(this).parents(".checker").size() == 0) {
+          $(this).show();
+          $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#app_bespoke_info_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+          var checked = $(this).is(":checked");
+          $(set).each(function () {
+              if (checked) {
+                  $(this).attr("checked", true);
+                  $(this).parents('tr').addClass("active");
+              } else {
+                  $(this).attr("checked", false);
+                  $(this).parents('tr').removeClass("active");
+              }
+          });
+          $.uniform.update(set);
+      });
+      $('#app_bespoke_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+      $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

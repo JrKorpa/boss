@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>日期</th>
+			<th>仓库</th>
+			<th>总库存数</th>
+			<th>上架货品数</th>
+			<th>未上柜货品数</th>
+			<th>超3天未上柜货品数</th>
+			<th>总价</th>
+			<th>差价</th>
+			<th>超3天差价</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_pandian_plan_list_<%$d.dt%>" data-title="<%$d.id%>" dotime_string="<%$d.dt%>" cangku="<%$d.wh_name%>">
+			<td><%$d.dt%></td>
+			<td><%$d.wh_name%></td>
+			<td><%$d.total_num%></td>
+			<td><%$d.total_num-$d.cab_num%></td>
+			<td><%$d.cab_num%></td>
+			<td><%$d.threeday_cab_num%></td>
+			<td><%$d.all_price%></td>
+			<td><%$d.diff_price%></td>
+			<td><%$d.threeday_diff_price%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

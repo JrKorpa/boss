@@ -1,0 +1,163 @@
+<%if !empty($info)%>
+<div class="flip-scroll">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <tr>
+            <td  class="flip-content">订单编号：<a href="javascript:;" class="tab-con-a" data-title="<%$info.order_sn%>" data-id="BaseOrderInfo-<%$info.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$info.id%>"><%$info.order_sn%></a></td>
+            <td  class="flip-content">会员用户：<%$userInfo.member_name%></td>
+            <td  class="flip-content">收款方：<%if $hidden%><%$smodel->getChannelOwnNameById($info.department_id)%><%else%>存档<%/if%></td>
+            <td  class="flip-content">订单来源：<%$cmodel->getCustomerSourceNameById($info.customer_source_id)%></td>
+        </tr>
+        <tr>
+        <td  class="flip-content">制单人：<%$info.create_user%></td>
+        <td  class="flip-content">制单时间：<%$info.create_time%></td>
+        <td  class="flip-content">审核人：<%$info.check_user%></td>
+        <td  class="flip-content">审核时间：<%$info.check_time%></td>
+    </tr>
+        <tr>
+            <td  class="flip-content">订单状态：<%if $hidden%><%if $info.is_delete==0%>有效<%else%>删除<%/if%><%else%>存档<%/if%></td>
+            <td  class="flip-content">审核状态：<%if $hidden%><%$dd->getEnum('order.order_status',$info.order_status)%><%else%>存档<%/if%></td>
+            <td  class="flip-content">支付状态：<%if $hidden%><%$dd->getEnum('order.order_pay_status',$info.order_pay_status)%><%else%>存档<%/if%></td>
+            <td  class="flip-content">商品总额：<%$info.goods_amount%></td>
+        </tr>
+        <tr>
+            <td  class="flip-content">未付金额：<%if $hidden%><%$info.money_unpaid%><%else%><%$info.order_amount%><%/if%></td>
+            <td  class="flip-content">快递费：<%$info.shipping_fee%></td>
+            <td  class="flip-content">订单总金额：<%$info.order_amount%></td>
+            <td  class="flip-content">已付金额：<%if $hidden%><%$info.money_paid%><%else%>0.00<%/if%></td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <textarea disabled class="form-control" name="order_remark" rows="2"><%$info.order_remark%></textarea>
+            </td>
+        </tr>
+        <%if $is_close%>
+        <tr>
+            <div class='alert alert-info'>订单已申请关闭或关闭！</div>
+        </tr>
+        <%/if%>
+        </tr>
+        <%if $fapiaoinfo==array() || $hidden == false%>
+        <tr>
+            <div class='alert alert-info'>很抱歉,未查到该订单发票相关信息！</div>
+        </tr>
+        <%else%>
+        <table class="table table-bordered table-striped table-hover flip-content">
+            <thead class="flip-content">
+            <tr>
+                <th style="text-align: center;">发票抬头</th>
+                <th style="text-align: center;">发票号</th>
+                <th style="text-align: center;">电子邮箱</th>
+                <th style="text-align: center;">纳税人识别号</th>
+                <th style="text-align: center;">发票金额</th>
+				<th style="text-align: center;">发票状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%foreach from=$invoiceList key=key item=d%>
+            <tr data-id="app_order_invoice_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td align="center"><%$d.invoice_title%></td>
+                <td align="center"><%$d.invoice_num%></td>
+                <!--<td align="center"><%if $d.zuofeitishi==1%><span style="color: red;"><%$d.invoice_num%>已作废</span><%else%><%$d.invoice_num%><%/if%></td>-->
+                <td align="center"><%$d.invoice_email%></td>
+                <td align="center"><%$d.taxpayer_sn%></td>
+                <td align="center"><%$d.invoice_amount%></td>
+                <td align="center"><%if $d.invoice_status != ''%><%$dd->getEnum('invoice.status',$d.invoice_status)%><%else%>未开发票<%/if%></td>
+            </tr>
+            <%/foreach%>
+            </tbody>
+        </table>
+
+        <tr>
+            <td colspan="4">
+                <%if ($fapiaoinfo[0]['zuofeitishi']==1 or $fapiaoinfo[0]['invoice_num']=='') && !$is_close%>
+                <form action="#" class="form-inline" role="form" method="post" id="order_invoice_from">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label" for="name">发票号：</label>
+                            <input type="text" class="form-control" name="invoice_sn" placeholder="请输入发票号"/>
+                        </div>
+                        <button type="button" onclick="submitInvoiceSn()" class="btn btn-sm green"><i class="fa fa-search"></i>填写</button>
+                    </div>
+                    <input name="order_id" type='hidden' value="<%$info.id%>" />
+                    <input name="order_sn" type='hidden' value="<%$info.order_sn%>" />
+                </form>
+                <%/if%>
+                <%/if%>
+            </td>
+        </tr>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>订单日志
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group" >
+
+            </div>
+		</div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="base_action_info_search_listed">
+
+        </div>
+		<div class="clear"></div>
+    </div>
+</div>
+    </table>
+</div>
+<script>
+    function submitInvoiceSn(){
+        var url = "index.php?mod=finance&con=OrderInvoice&act=setInvoiceNum";
+        var order_id =$('#order_invoice_from input[name=order_id]').val();
+        var invoice_num =$('#order_invoice_from input[name=invoice_sn]').val();
+        var order_sn =$('#order_invoice_from input[name=order_sn]').val();
+        if(invoice_num==''){
+            util.xalert('请填写发票号！');
+            $('#order_invoice_from input[name=invoice_sn]').focus();
+            return false;
+        }
+        var data = {order_id:order_id,invoice_num:invoice_num,order_sn:order_sn};
+        $.post(url,data,function(data){
+            if(data.success==1){
+                //util.xalert('发票号码填写成功',function(){
+                    //成功之后刷新当前页签
+                    $('#order_invoice_search_form button[type=button]').trigger('click');
+                //});
+            }else{
+                util.xalert(data.error);
+            }
+            return false;
+        });
+        return false;
+    }
+        
+    //回车提交
+    $('#order_invoice_from input').keypress(function (e) {
+        if (e.which == 13) {
+            return submitInvoiceSn();
+            //$('#order_invoice_from button[type=button]').trigger('click');
+        }
+    });
+    
+    
+    //默认发票号获取焦点
+    $(function(){
+        var a = '<%$fapiaoinfo[0]["zuofeitishi"]%>';
+        var b = '<%$fapiaoinfo[0]["invoice_num"]%>';
+        if(!(a==1 || b=='')){
+            $('#order_invoice_search_form input[name=order_no]').val('');
+            $('#order_invoice_search_form input[name=order_no]').focus();
+        }else{
+            $('#order_invoice_from input[name=invoice_sn]').focus();
+        }
+    })
+    
+</script>
+<%else%>
+        <div class='alert alert-info' style="display: block !important;width:100% !important; ">很抱歉,未查到该订单相关信息！</div>
+<%/if%>

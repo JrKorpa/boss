@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打印清单</title>
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: 宋体;
+	font-size: 13px;
+}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-after: always;}
+-->
+</style>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    printorder_follow('');
+function printorder_follow(exp_id_list){
+	var id = '<%$id|default:0%>';
+	$.get('index.php?mod=shipping&con=ShipParcel&act=changePrintStatus&status=1&id='+id,'',function(ret){
+		if(ret.success == 1){
+			window.print();
+		}else{
+			alert("更改打印状态程序异常");
+		}
+	})
+}
+function UpdatePrintStatus(){
+	var id = '<%$ids|default:0%>';
+	$.get('index.php?mod=shipping&con=ShipParcel&act=changePrintStatus&status=1&id='+id,'',function(ret){
+		if(ret.success == 1){
+			window.print();
+		}else{
+			alert("更改打印状态程序异常");
+		}
+	})
+}
+</script>
+</head>
+<body>
+<%if $is_muti neq 1%>
+<div style="height:50px;">
+<input type="button" value="打印订单" onclick="printorder_follow('')" style="width:100px; height:30px; font-size:20px; font-weight:bold; cursor:pointer;" />
+</div>
+<div style="width:95%; margin:0 auto;" align="center">
+<table border="1" cellpadding="0" cellspacing="0" width="100%" align="center" style="border-collapse: collapse; border-color: rgb(0, 0, 0);">
+	<tr>
+		<td colspan="8" align="center" height="30">GP商贸有限公司 快递包裹清单</td>
+	</tr>
+
+	<tr>
+		<td  height="" align="center" width="5%">序号</td>
+		<td align="center" width="8%">调拨单号</td>
+		<td align="center" width="10%">订单号</td>
+		<td align="center" width="10%">入库公司</td>
+		<td align="center" width="10%">客户姓名</td>
+		<td align="center" width="26%">商品名称</td>
+		<td align="center" width="10%">数量</td>
+	</tr>
+	<%foreach from = $data key=key item=d%>
+	<tr>
+		<td height="25" align="center"><%$key+1%></td>
+		<td>&nbsp;<%$d.zhuancang_sn%></td>
+		<td>&nbsp;<%$d.order_sn%></td>
+		<td align="center"><!-- 入库公司 -->
+		<%if isset($d.to_warehouse_id) && isset( $warehouseList[$d.to_warehouse_id] )%>
+			<%$warehouseList[$d.to_warehouse_id]%>
+			<%else%>
+			<%$d.shouhuoren%>
+		<%/if%>
+		</td>
+		<td align="center"><%$d.consignee%></td>
+		<td style="padding-left:10px;"><%if $d.order_sn=='' && $d.zhuancang_sn!=''%>货品<%else%><%$d.goods_name%><%/if%></td>
+		<td align="center"><%$d.num%></td>
+	</tr>
+	<%/foreach%>
+		<tr>
+		<td colspan="8" align="center"  height="20"><%$info.express_id%>单号: <%$info.express_sn%></td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td height="30">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><strong style="font-size:80px; line-height:60px;"><%$info.company_id%></strong></td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr align="right"><!-- 订单操作员以及订单打印的日期 -->
+        <td  height="50">打印时间：<%$time%></td>
+    </tr>
+</table>
+</div>
+<%else%>
+<div style="height:50px;">
+<input type="button" value="打印订单" onclick="UpdatePrintStatus()" style="width:100px; height:30px; font-size:20px; font-weight:bold; cursor:pointer;" />
+</div>
+<%foreach from=$muti item=v%>
+<div style="width:95%; margin:0 auto;" align="center">
+<table border="1" cellpadding="0" cellspacing="0" width="100%" align="center" style="border-collapse: collapse; border-color: rgb(0, 0, 0);">
+	<tr>
+		<td colspan="8" align="center" height="30">GP商贸有限公司 快递包裹清单</td>
+	</tr>
+
+	<tr>
+		<td  height="" align="center" width="5%">序号</td>
+		<td align="center" width="8%">调拨单号</td>
+		<td align="center" width="10%">订单号</td>
+		<td align="center" width="10%">入库公司</td>
+		<td align="center" width="10%">客户姓名</td>
+		<td align="center" width="26%">商品名称</td>
+		<td align="center" width="10%">数量</td>
+	</tr>
+	<%foreach from = $v.data key=key item=d%>
+	<tr>
+		<td height="25" align="center"><%$key+1%></td>
+		<td>&nbsp;<%$d.zhuancang_sn%></td>
+		<td>&nbsp;<%$d.order_sn%></td>
+		<td align="center"><!-- 入库公司 -->
+		<%if isset($d.to_warehouse_id) && isset( $v.warehouseList[$d.to_warehouse_id] )%>
+			<%$v.warehouseList[$d.to_warehouse_id]%>
+		<%/if%>
+		</td>
+		<td align="center"><%$d.consignee%></td>
+		<td style="padding-left:10px;"><%if $d.order_sn=='' && $d.zhuancang_sn!=''%>货品<%else%><%$d.goods_name%><%/if%></td>
+		<td align="center"><%$d.num%></td>
+	</tr>
+	<%/foreach%>
+		<tr>
+		<td colspan="8" align="center"  height="20"><%$v.info.express_id%>单号: <%$v.info.express_sn%></td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr>
+		<td height="30">&nbsp;</td>
+	</tr>
+	<tr>
+		<td><strong style="font-size:80px; line-height:60px;"><%$v.info.company_id%></strong></td>
+	</tr>
+</table>
+<table class="PageNext" cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tr align="right"><!-- 订单操作员以及订单打印的日期 -->
+        <td  height="50">打印时间：<%$v.time%></td>
+    </tr>
+</table>
+</div>
+<%/foreach%>
+<%/if%>
+</body>
+</html>

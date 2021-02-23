@@ -1,0 +1,159 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.retrieveEdit(this)" data-url="/index.php?mod=bespoke&con=AppBespokeInfo&act=edit&id=<%$view->get_bespoke_id()%>&mem_id=<%$view->get_mem_id()%>" name="编辑预约信息" title="编辑预约信息" data-id="<%$view->get_bespoke_id()%>" data-title="编辑预约信息">
+                    编辑 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.retrieveEdit(this);" data-url="/index.php?mod=bespoke&con=AppBespokeInfo&act=modvisit&id=<%$view->get_bespoke_id()%>" name="已回访" title="已回访" data-id="<%$view->get_bespoke_id()%>" data-title="预约管理">已回访 <i class="fa fa-edit"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.add(this)" data-url="/index.php?mod=bespoke&con=AppUserBespokeLog&act=add&bespoke_id=<%$view->get_bespoke_id()%>&mem_id=<%$view->get_mem_id()%>" name="添加沟通日志" title="顾客信息" data-id="<%$view->get_bespoke_id()%>" data-title="顾客信息">
+                    添加沟通日志 <i class="fa fa-plus"></i>
+                </button>
+            </div>		
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.newEmptyTab(this);" data-url="/index.php?mod=bespoke&con=BaseMemberInfo&act=showUrl" name="顾客信息" title="顾客信息" data-id="<%$view->get_mem_id()%>" data-title="顾客信息">
+                    顾客信息 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新" data-title="">
+                    刷新 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+                    离开 <i class="fa fa-angle-double-left"></i> 
+                </button>
+            </div>			
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td  class="flip-content">部门</td>
+                    <td><%$sales_channels_idData[$view->get_department_id()]%></td>
+                </tr>
+
+                <tr>
+                    <td  class="flip-content">预约号</td>
+                    <td><%$view->get_bespoke_sn()%></td>
+                </tr>
+
+
+                <tr>
+                    <td  class="flip-content">来源</td>
+                    <td><%$view->getSouceName()%></td>
+                </tr>
+
+
+                <tr>
+                    <td class="flip-content">客户姓名</td>
+                    <td><%$view->get_customer()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">客户手机</td>
+                    <td><%$view->get_customer_mobile()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">客户email</td>
+                    <td><%$view->get_customer_email()%></td>
+                </tr>
+                <!--<tr>
+                    <td  class="flip-content">客户地址</td>
+                    <td><%$view->get_customer_address()%></td>
+                </tr>-->
+                <tr>
+                    <td  class="flip-content">预约时间</td>
+                    <td><%$view->get_create_time()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">预约到店时间</td>
+                    <td><%$view->get_bespoke_inshop_time()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">实际到店时间</td>
+                    <td><%$view->get_real_inshop_time()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">制单人</td>
+                    <td><%$view->get_make_order()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">接待人</td>
+                    <td><%$view->get_accecipt_man()%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">预约备注</td>
+                    <td><%$view->get_remark()%></td>
+                </tr>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>操作日志
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <!-- 表格1 -->
+            <div class="btn-group">
+                <button class="btn btn-sm btn-info" onclick="util.add(this);" data-url="/index.php?mod=bespoke&con=AppBespokeActionLog&act=add&bespoke_id=<%$view->get_bespoke_id()%>&bespoke_status=<%$view->get_bespoke_status()%>" name="添加备注" title="添加备注" data-id="" data-title="添加备注">
+                    添加备注 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="flip-scroll">
+		  <div class="table-scrollable">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td class="flip-content">ID</td>
+                    <td class="flip-content">操作人</td>
+                    <td class="flip-content">操作状态</td>
+                    <td class="flip-content">操作IP</td>
+                    <td class="flip-content">操作时间</td>
+                    <td class="flip-content">备注</td>
+                </tr>
+                <%foreach from=$actionLog key=key item=value%>
+                <tr>
+                    <td class="flip-content"><%$value['action_id']%></td>
+                    <td class="flip-content"><%$value['create_user']%></td>
+                    <td class="flip-content"><%$bespokeStatus[$value['bespoke_status']]%></td>
+                    <td class="flip-content"><%$value['IP']%></td>
+                    <td class="flip-content"><%$value['create_time']%></td>
+                    <td class="flip-content"><%$value['remark']%></td>
+                </tr>
+                <%foreachelse%>
+                <tr>
+                    <td colspan="4" class="flip-content">无操作日志</td>
+                </tr>
+                <%/foreach%>
+            </table>
+          </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

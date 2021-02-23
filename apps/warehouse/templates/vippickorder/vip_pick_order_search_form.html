@@ -1,0 +1,171 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="vip_pick_order_search_form">
+			<div class="form-body">
+				<div class="row">
+				 
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">拣货单号：</label>
+							<input type="text" name="pick_no" class="form-control" placeholder="多个拣货单号，请用空格或逗号隔开"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">PO单编号：</label>
+							<input type="text" name="po_no" class="form-control" placeholder="多个PO单号，请用空格或逗号隔开"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">SKU码：</label>
+							<input type="text" name="barcode" class="form-control" placeholder="多个SKU码，请用空格或逗号隔开"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">BOSS订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="多个订单号，请用空格或逗号隔开"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">仓库：</label>
+							<select class="form-control" name="warehouse">						
+								<option value=""></option>
+								<%foreach from=$pickDetailsView->getWarehouseList() key=key item=val%>
+								<option value="<%$val.code%>"><%$val.name%></option>
+								<%/foreach%>
+					       </select>	
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">是否已制出仓单：</label>
+							<select class="form-control" name="is_create_delivery">						
+								<option value=""></option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+					        </select>	
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">VIP送货状态：</label>
+							<select class="form-control" name="out_flag">						
+								<option value=""></option>
+								<option value="1">已出仓</option>
+								<option value="0"  selected>未出仓</option>
+					        </select>	
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单创建时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="st_create_time">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="et_create_time">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">BOSS订单发货状态：</label>
+							<select class="form-control" tabindex="1" name="send_good_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("order.send_good_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">BOSS订单状态：</label>
+							<select class="form-control" tabindex="1" name="order_status">
+								<option value=""></option>
+								<%foreach from =$dd->getEnumArray("order.order_status") item=value%>
+								<option value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+						    </select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">打印提货单：</label>
+							<select class="form-control" name="is_print_tihuo">						
+								<option value=""></option>
+								<option value="1">已打印</option>
+								<option value="0">未打印</option>
+					        </select>	
+						</div>
+					</div>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">商品类型：</label>
+							<select class="form-control" name="is_stock_goods">						
+								<option value=""></option>
+								<option value="1">现货</option>
+								<option value="0">期货</option>
+					        </select>	
+						</div>
+					</div>					
+                   <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">每页显示：</label>
+							<input type="text" name="page_size" class="form-control" value="30"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="vip_pick_order_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/vip_pick_order_search_list.js"%>
+//-->
+</script>

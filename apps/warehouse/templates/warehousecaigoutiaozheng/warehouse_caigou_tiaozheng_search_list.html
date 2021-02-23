@@ -1,0 +1,97 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><input type="checkbox" class="group-checkable" data-set="#warehouse_caigou_tiaozheng_search_list .checkboxes" /></th>
+			<th>序号</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>货品类型</th>
+			<th>石重</th>
+			<th>色级</th>
+			<th>净度</th>
+			<th>切工</th>
+			<th>货品位置</th>
+			<th>供应商</th>
+			<th>货品状态</th>
+			<th>原始采购成本</th>
+			<th>改前采购成本</th>
+			<th>改后采购成本</th>
+			<th>调整价差</th>
+			<th>调价说明</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>备注</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_caigou_tiaozheng_list_<%$d.id%>" data-title="">
+			<td><%if $d.status==1 %><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /><%/if%></td>
+			<td><%$d.id%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$huopintype[$d.type]%></td>
+			<td><%$d.shizhong%></td>
+			<td><%$d.yanse%></td>
+			<td><%$d.jingdu%></td>
+			<td><%$d.qiegong%></td>
+			<td><%$d.warehouse%></td>
+			<td><%if isset($supplierList[$d.supplier_id])%><%$supplierList[$d.supplier_id]%><%/if%></td>
+			<td><%$dd->getEnum("warehouse.goods_status",$d.is_on_sale)%></td>
+			<td><%$d.yuanshichengbenjia%></td>
+			<td><%$d.xianzaichengben_old%></td>
+			<td><%$d.xianzaichengben_new%></td>
+			<td><font color="red"><%if $d.xianzaichengben_new-$d.xianzaichengben_old>0%>+<%$d.xianzaichengben_new-$d.xianzaichengben_old|default:'&nbsp;'%><%else%><%$d.xianzaichengben_new-$d.xianzaichengben_old|default:'&nbsp;'%><%/if%></td>
+			<td><%$dd->getEnum("caigou.tiaojiashuoming",$d.shuoming)%></font></td>
+			<td><%$d.addname%></td>
+			<td><%$d.addtime%></td>
+			<td><%$d.checkname%></td>
+			<td><%$d.checktime%></td>
+			<td><%$d.info%></td>
+			<td><%$dd->getEnum("cgtiaozheng.status",$d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#warehouse_caigou_tiaozheng_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#warehouse_caigou_tiaozheng_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#warehouse_caigou_tiaozheng_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+	var search_condition = '<%$search_condition%>';
+
+	function batdownload(){
+		
+		location.href = "index.php?mod=warehouse&con=WarehouseCaigouTiaozheng&act=download&search_condition="+search_condition;
+	}
+</script>

@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style='text-align:center;'>序号</th>
+			<th style='text-align:center;'>货号</th>
+			<th style='text-align:center;'>货品名称</th>
+			<th style='text-align:center;'>货品款式</th>
+			<th style='text-align:center;'>数量</th>
+			<th style='text-align:center;'>盘点仓库</th>
+			<th style='text-align:center;'>所属仓库</th>
+			<th style='text-align:center;'>盘点状态</th>
+			<th style='text-align:center;'>实际柜位</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+		<tr data-id="" data-title="">
+			<td style='text-align:center;'><%$k+1%></td>
+			<td style='text-align:center;'><%$d.goods_id%></td>
+			<td style='text-align:center;'><%$d.goods_name%></td>
+			<td style='text-align:center;'><%$d.goods_sn%></td>
+			<td style='text-align:center;'><%$d.num%></td>
+			<td style='text-align:center;'><%$to_warehouse_name%></td>
+			<td style='text-align:center;'><%$view->GetWarehouseName($d.warehouse_id)%></td>
+			<td style='text-align:center;'><%$dd->getEnum('warehouse.goods_pandian' , $d.pandian_status)%></td>
+			<td style='text-align:center;'><%$d.guiwei%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

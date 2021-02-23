@@ -1,0 +1,43 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>订单号</th>
+                <th>外部订单号</th>
+                <th>制单人</th>
+                <th>制单时间</th>
+                <th>订单状态</th>
+                <th>布产状态</th>
+                <th>配货状态</th>
+                <th>销售渠道</th>
+                <th>占用备货名额</th>
+                <th>采购单号</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="purchase_order_info_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.id%>"><%$d.order_sn%></a></td>
+                <td><%$d.out_order_sn%></td>
+                <td><%$d.create_user%></td>
+                <td><%$d.create_time%></td>
+                <td><%$dd->getEnum('order.order_status',$d.order_status)%></td>
+                <td><%$d.buchan_status%></td>
+                <td><%$dd->getEnum('sales.delivery_status',$d.delivery_status)%> </td>
+                <td><%$d.dep_name%></td>
+                <td>1</td>
+                <td><%$d.p_sn%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,382 @@
+<div class="portlet box blue" id="product_info_show_page_t">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>布产单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		<%$bar%>            <%if $ist != 0%><div style="float:right;margin-right:65px;color:red;font-size:24px;">订单异常:<%if $ist == 1%>订单申请关闭<%elseif $ist == 2%>订单已关闭<%elseif $ist == 3%>订单有进行中的退货申请<%elseif $ist == 4%>订单有已完成的退货申请<%/if%></div><%/if%>
+	
+	
+		</div>
+		<!-- 表格1 -->
+		<div class="col-sm-6">
+			<table class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td style="width:130px"><b>布产单号</b></td>
+					<td><%$view->get_bc_sn()%> </td>
+				</tr>
+				<tr>
+					<td><b>采购单号/订单号</b></td>
+					<td><%if $view->get_from_type()==2%><a href="javascript:;" class="tab-con-a" data-title="<%$view->get_p_sn()%>" data-id="baseorderinfo-<%$view->get_p_sn()%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$view->get_p_sn()%>"><%$view->get_p_sn()%></a><%else%><%$view->get_p_sn()%><%/if%></td>
+				</tr>
+				<tr>
+					<td><b>是否快速定制</b></td>
+					<td><div style="background-color:#0066FF;width:35px;margin-right:10px;padding:5px 10px;color:#FFFFFF;float:left"><b><%if $view->get_is_quick_diy()==1%>是<%else%>否<%/if%></b></div>
+					</td>
+				</tr>
+                <%if $from_type == 2%>
+                <tr>
+                    <td><b>线上线下</b></td>
+                    <td><%$channel_class%></td>
+                </tr>
+                <%/if%>
+				<tr>
+					<td><b>布产状态</b></td>
+					<td style="color:#4b8df8"><%$dd->getEnum('buchan_status',$view->get_status())%>
+						【布产次数<%$view->get_buchan_times()%>】
+					</td>
+				</tr>
+
+				<tr>
+					<td><b>生产状态</b></td>
+					<td><%$dd->getEnum('buchan_fac_opra',$view->get_buchan_fac_opra())%></td>
+				</tr>
+				<tr>
+					<td><b>维修状态</b></td>
+					<td><%if $view->get_weixiu_status()%><%$dd->getEnum('weixiu.status',$view->get_weixiu_status())%><%if $view->get_weixiu_status()==5||$view->get_weixiu_status()==6 || $view->get_weixiu_status()==7%><span>&nbsp;&nbsp; <a href="javascript:;"
+					data-id="apporderweixiu_xx-0" list-id="128" class="tab-con-a"data-title="添加:维修订单"  data-url="index.php?mod=repairorder&con=AppOrderWeixiu&act=add&bc_id=<%$view->get_bc_sn()%>&order_detail_id=<%$view->get_p_id()%>&tab_id=128">点击维修</a></span><%/if%><%else%>未维修<span>&nbsp;&nbsp; <a href="javascript:;" class="tab-con-a"data-title="添加:维修订单"  data-id="apporderweixiu_xx-0" list-id="128"data-url="index.php?mod=repairorder&con=AppOrderWeixiu&act=add&bc_id=<%$view->get_bc_sn()%>&order_detail_id=<%$view->get_p_id()%>&tab_id=128">点击维修</a></span><%/if%></td>
+				</tr>
+				<tr>
+					<td><b>分配工厂</b></td>
+					<td><%$view->get_prc_id()%></td><!--get_prc_name-->
+				</tr>
+				<tr>
+					<td><b>跟单人</b></td>
+					<td></td><!--<%$view->get_opra_uname()%>-->
+				</tr>
+                                <tr>
+                                    <td><b>客户姓名</b>
+                                    <td><%$consignee%></td>
+                                </tr>
+				<tr>
+					<td><b>标准出厂时间</b></td>
+					<td style="color:#4b8df8"><%$view->get_esmt_time()%></td>
+				</tr>
+				<tr>
+					<td><b>工厂交货时间</b></td>
+					<td><%$view->get_rece_time()%></td>
+				</tr>
+				<tr>
+					<td><b>起版类型</b></td>
+					<td><%$dd->getEnum('qiban_type',$view->get_qiban_type())%></td>
+				</tr>
+				<tr>
+					<td><b>款号</b></td>
+					<td><%$view->get_style_sn()%></td>
+				</tr>
+				<%if $from_type==2%>
+				<tr>
+					<td><b>绑定货号</b></td>
+					<td><%if empty($bind_goods_id)%>未绑定<%else%><%$bind_goods_id%><%/if%></td>
+				</tr>
+				<%/if%>
+				<tr>
+                    <td><b>售卖方式</b></td>
+                    <td><%$dd->getEnum('processor.is_alone',$view->get_is_alone())%></td>
+                </tr>
+				<tr>
+                    <td><b>镶嵌要求</b></td>
+                    <td><%$view->get_xiangqian()%></td>
+                </tr>
+                <tr>
+                    <td><b>布产类型</b></td>
+                    <td><%$view->get_bc_style()%></td>
+                </tr>
+				<tr>
+					<td><b>数量</b></td>
+					<td><%$view->get_num()%></td>
+				</tr>
+				<tr>
+					<td><b>钻石类型</b></td>
+					<td>
+						<%if $view->get_diamond_type() ==2%>期货钻<%else%>现货钻<%/if%>
+						<%if $view->get_diamond_type() != $view->get_origin_dia_type() && $view->get_diamond_type() !=0 && $view->get_origin_dia_type() !=0 %>&nbsp&nbsp原钻石类型：
+							<%if $view->get_origin_dia_type() ==2%>期货钻<%else%>现货钻<%/if%>
+						<%/if%>
+					</td>
+				</tr>
+				<tr>
+					<td><b>分配工厂时间</b></td>
+					<td><%$view->get_to_factory_time()%></td>
+				</tr>
+				<tr>
+					<td><b>等钻开始时间</b></td>
+					<td><%$view->get_wait_dia_starttime()%></td>
+				</tr>
+				<tr>
+					<td><b>实际等钻结束时间</b></td>
+					<td><%$view->get_wait_dia_endtime()%></td>
+				</tr>
+				<tr>
+					<td><b>预计等钻完成时间</b></td>
+					<td><%$view->get_wait_dia_finishtime()%></td>
+				</tr>
+				<tr>
+					<td><b>OQC质检通过时间</b></td>
+					<td><%$view->get_oqc_pass_time()%></td>
+				</tr>
+
+	<%foreach from=$view->get_attr() key=k item=val %>
+		<%if $val.name!='镶嵌要求' %>
+			<tr>
+				<td><b><%$val.name%></b></td>
+				<td><%$val.value%>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%if $val.code=='zhengshuhao' && !empty($productInfo4C.peishi_status)%>
+				<a href="javascript:" onclick="util._pop($(this).attr('data-url'));" data-url="index.php?mod=processor&con=ProductInfoFourC&act=show&id=<%$view->get_id()%>">4C配钻记录</a>
+				<%/if%>
+				</td>
+			</tr>
+	   <%/if%>
+	<%/foreach%>
+				<tr>
+					<td><b>爪钉形状</b></td>
+					<td><%$style_attr.style_zhuaxz%></td>
+				</tr>
+                <tr>
+					<td><b>布产备注</b></td>
+					<td><%$view->get_info()%></td>
+				</tr>
+				 <tr>
+					<td><b>采购/订单备注</b></td>
+					<td><%$view->get_caigou_info()%></td>
+				</tr>
+				<%if !empty($productInfo4C)%>
+				 <tr>
+					<td><b>采购成本</b></td>
+					<td><%$productInfo4C.price%></td>
+				</tr>
+				<tr>
+					<td><b>采购折扣</b></td>
+					<td><%$productInfo4C.discount%></td>
+				</tr>
+				<%/if%>
+				<%if $referer !=''%>
+				<tr>
+					<td><b>订单录单来源</b></td>
+					<td><%$referer%></td>
+				</tr>
+			   <%/if%>	
+			 </table>
+		</div>
+		<div class="col-sm-6">
+			<!-- 布产图片 -->
+			<%$gallery_html%>
+			
+		</div>
+		<div class="col-sm-4" style=" margin-left:90px">
+		    <b style="color:red">组合镶嵌的布产单，工厂不需接单生产新托</b>
+			<table class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td style="width:130px"><b>是否组合镶嵌</b></td>
+					<td><%if $view->get_is_combine()%>是<%else%>否<%/if%></td>
+				</tr>
+				<tr>	
+					<td><b>组合镶嵌现货托</b></td><td><%$view->get_combine_goods_id()%></td>
+				</tr>
+			</table>
+			</div>	
+
+		<div class="col-sm-4" style=" margin-left:90px">
+		    <b style="color:red">金重参考</b>
+			<table class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td style="width:150px"><b>标准金重参考范围:(g)</b></td>
+					<td><%$view->get_biaozhun_jinzhong_min()%>  -  <%$view->get_biaozhun_jinzhong_max()%></td>
+				</tr>
+				<tr>
+					<td style="width:150px"><b>历史金重参考范围:(g)</b></td>
+					<td><%$view->get_lishi_jinzhong_min()%>  -  <%$view->get_lishi_jinzhong_max()%></td>
+				</tr>
+			</table>
+			<!--<table class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td style="width:130px"><b>副石1总重/粒数</b></td>
+					<td id="styleFushi1"></td>
+				</tr>
+				<tr>
+					<td style="width:130px"><b>副石2总重/粒数</b></td>
+					<td id="styleFushi2"></td>
+				</tr>
+				<tr>
+					<td style="width:130px"><b>副石3总重/粒数</b></td>
+					<td id="styleFushi3"></td>
+				</tr>
+			</table>-->
+			</div>				
+		<div class="col-sm-4" style=" margin-left:90px">
+		    <b style="color:red">入库信息</b>
+			<table id="in_warehouse_info" class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td style="width:150px"><b>入库单号</b></td>
+					<td style="width:150px"><b>数量</b></td>
+				</tr>
+			</table>
+			</div>				
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>操作日志
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+		</div>
+		<!-- 表格 -->
+		<div id="ClothProductionTrackingLog_search_list">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>工厂流水
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<th>操作</th>
+				<th>操作备注</th>
+				<th>操作人</th>
+				<th>操作时间</th>
+			</tr>
+			<%foreach from=$fac_opra_list item=opra %>
+			<tr>
+				<td><%$dd->getEnum('buchan_fac_opra',$opra.opra_action)%></td>
+				<td><%$opra.opra_info%></td>
+				<td><%$opra.opra_uname%></td>
+				<td><%$opra.opra_time%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>OQC质检情况
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<th>OQC是否通过</th>
+				<th>通过数量</th>
+				<th>未过数量</th>
+				<th>报废数量</th>
+				<th>OQC备注</th>
+				<th>OQC质检人</th>
+				<th>OQC质检时间</th>
+				<th>布产次数</th>
+			</tr>
+			<%foreach from=$oqc_opra_list item=oqc %>
+			<tr>
+				<td><%if $oqc.oqc_result%>质检通过<%else%>质检未过<%/if%></td>
+				<td><%$oqc.oqc_num%></td>
+				<td><%$oqc.oqc_bf_num%></td>
+				<td><%$oqc.oqc_no_num%></td>
+				<td><%$oqc.oqc_info%></td>
+				<td><%$oqc.opra_uname%></td>
+				<td><%$oqc.opra_time%></td>
+				<td><%$oqc.buchan_times%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>工厂出货明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1-->
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+			    <th>质检结果</th>
+				<th>出货数量</th>
+			    <%if $from_type==1%><th>质检未过数量</th><%/if%>			
+			    <th>质检未过类型</th>
+			    <th>未过原因</th>
+				<%if $from_type==1%><th>报废数量</th><%/if%>
+				<%if $from_type==1%><th>报废原因</th><%/if%>
+				<th>备注</th>
+				<th>操作人</th>
+				<th>操作时间</th>
+			</tr>
+			<%foreach from=$shipment_list item=shpm %>
+			<tr>
+				
+				<td><%$shpm.oqc_result%></td>
+				<td><%$shpm.num%></td>
+			    <%if $from_type==1%><td><%$shpm.oqc_no_num%></td><%/if%>		
+			    <td><%$shpm.oqc_no_type%></td>
+			    <td><%$shpm.oqc_no_reason%></td>
+				<%if $from_type==1%><td><%$shpm.bf_num%></td><%/if%>
+				<%if $from_type==1%><td><%$shpm.reason_scrapped%></td><%/if%>
+				<td><%$shpm.info%></td>
+				<td><%$shpm.opra_uname%></td>
+				<td><%$shpm.opra_time%></td>
+			</tr>
+			<%/foreach%>
+		</table>
+	</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/product_info.js"%>
+        <%include file="js/rel_opra_log.js"%>
+//-->
+</script>

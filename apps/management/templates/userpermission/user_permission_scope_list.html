@@ -1,0 +1,116 @@
+<style type="text/css">
+	.menu_permission_tree a {
+		display:inline-block;
+		margin:4px;
+		padding:6px 10px;
+		text-decoration:none;
+		font:12px Arial;
+		color:#FFF;
+		outline:none;
+		border:1px solid #CCC;
+		background:#22A4C4;
+		-moz-border-radius:10px !important;
+		-webkit-border-radius:10px !important;
+		border-radius:10px !important;
+	}
+
+	.menu_permission_tree a:hover {
+		color:#FFF;
+		background:#0B718B;
+	}
+</style>
+
+<form action="#" method="post" class="form-horizontal" id="user_permission_scope_info">
+<input type="hidden" name="user_id" value="<%$user_id%>" />
+	<div class="menu_permission_tree">
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_expandall)">全部展开</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_collapseall)">全部收起</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set0)">全部无权</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set1)">全部可读</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set2)">全部可写</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_reload)">重置</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_save)">授权</a>
+	</div>
+	<ul style="padding:0; margin:0;list-style-type:none;">
+		<%foreach from=$data key=k item=value%>
+		<%if !empty($value.son) or !empty($value.sub)%>
+		<li class="col-sm-6">
+			<div style="padding:2px; margin:4px; background-color:#EFEFEF; border: 1px #004e82 solid;">
+				<div class="title">
+					<span style="display:inline-block;width:40px;text-align:right;height:30px;line-height:30px;"><%$k+1%>·</span><%$value.name%>
+				</div>
+				<dl style="display:block;padding-left:40px;background-color:#fff;">
+					<dt style="min-width:40px;">属性控制：</dt>
+					<%if !empty($value.son)%>
+					<dd>
+						<table width="100%" class="table">
+							<tbody>
+							<%foreach from=$value.son key=kk item=s%>
+								<tr>
+									<td><%$kk+1%>.<%$s.label%>：</td>
+									<td class="col-sm-6">
+										<select class="form-control" name="s[<%$s.id%>]">
+											<option value=""></option>
+											<%foreach from=$dd->getEnumArray("scope_type") item=l %>
+												<option value="<%$l.name%>" <%if $s.v==$l.name%>selected="selected"<%/if%>><%$l.label%></option>
+											<%/foreach%>
+										</select>
+									</td>
+								</tr>
+							<%/foreach%>
+							</tbody>
+						</table>
+						<div class="clear"></div>
+					</dd>
+					<%/if%>
+
+					<%if !empty($value.sub)%>
+					<%foreach from=$value.sub key=ks item=aa%>
+					<%if !empty($aa.son)%>
+					<dt>明细<%$ks+1%>:<%$aa.name%></dt>
+					<dd>
+						<table width="100%" class="table">
+							<tbody>
+							<%foreach from=$aa.son key=kkk item=ss%>
+								<tr>
+									<td><%$kkk+1%>.<%$ss.label%>：</td>
+									<td class="col-sm-6">
+										<select class="form-control" name="s[<%$ss.id%>]">
+											<option value=""></option>
+											<%foreach from=$dd->getEnumArray("scope_type") item=l %>
+												<option value="<%$l.name%>" <%if $ss.v==$l.name%>selected="selected"<%/if%>><%$l.label%></option>
+											<%/foreach%>
+										</select>
+									</td>
+								</tr>
+							<%/foreach%>
+							</tbody>
+						</table>
+						<div class="clear"></div>
+					</dd>
+					<%/if%>
+					<%/foreach%>
+
+					<%/if%>
+				</dl>
+			</div>
+		</li>
+		<%/if%>
+		<%/foreach%>
+	</ul>
+	<div class="clear"></div>
+	<div class="menu_permission_tree">
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_expandall)">全部展开</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_collapseall)">全部收起</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set0)">全部无权</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set1)">全部可读</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_set2)">全部可写</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_reload)">重置</a>
+		<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_permission_scope_save)">授权</a>
+	</div>
+</form>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_permission_scope_list.js"%>
+//-->
+</script>

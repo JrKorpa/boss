@@ -1,0 +1,133 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="form-body">
+            <div class="flip-scroll">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<td style="text-align: left;"><b>供应商名称：</b></td>
+						<td><%$view->get_name()%></td>
+						<td style="text-align: left;"><b>开通系统：</b></td>
+						<td>
+							<label class="radio-inline">
+								<input type="radio" name="is_open" disabled value="1" <%if $view->get_is_open()==1%> checked="checked"<%/if%> />是
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="is_open" disabled value="0" <%if $view->get_is_open()==0%> checked="checked"<%/if%> />否
+							</label>
+						</td>
+						<td style="text-align: left;"><b>邮箱：</b></td>
+						<td><%$view->get_pro_email()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>营业执照号码：</b></td>
+						<td><%$view->get_business_license()%></td>
+						<td style="text-align: left;"><b>税务登记证号：</b></td>
+						<td><%$view->get_tax_registry_no()%></td>
+						<td style="text-align: left;"><b>经营范围：</b></td>
+						<td><%$view->get_business_scope()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>营业执照地址：</b></td><td colspan="5">
+                        <%if !empty($business_region_data['province_name'])%><%$business_region_data['province_name']%><%/if%>
+                        <%if !empty($business_region_data['area_name'])%><%$business_region_data['area_name']%><%/if%>
+                        <%if !empty($business_region_data['city_name'])%><%$business_region_data['city_name']%><%/if%>
+                        <%$view->get_business_license_address()%>
+					</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>开户行：</b></td>
+						<td><%$view->get_bank_name()%></td>
+						<td style="text-align: left;"><b>户名：</b></td>
+						<td><%$view->get_account_name()%></td>
+						<td style="text-align: left;"><b>账号：</b></td>
+						<td><%$view->get_account()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>取货地址：</b></td><td colspan="5">
+                        <%if !empty($pro_region_data['pro_province_name'])%><%$pro_region_data['pro_province_name']%><%/if%>
+                        <%if !empty($pro_region_data['pro_area_name'])%><%$pro_region_data['pro_area_name']%><%/if%>
+                        <%if !empty($pro_region_data['pro_city_name'])%><%$pro_region_data['pro_city_name']%><%/if%>
+                        <%$view->get_pro_address()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>出货周期：</b></td><td><%$view->get_cycle()%></td>
+                        <td style="text-align: left;"><b>结算方式：</b></td><td>
+                        <%$view->get_pay_type()%></td>
+						<td style="text-align: left;"><b>付款周期：</b></td>
+						<td><%$dict->getEnum('supplier_pay.method',$view->get_balance_type())%>
+							<%if $view->get_balance_type() == 2%><%$view->get_balance_day()%><%/if%>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>增值税发票：</b></td><td><%$view->get_tax_invoice()%></td>
+                        <td style="text-align: left;"><b>税点：</b></td><td><%$view->get_show_point()%></td>
+                        <td style="text-align: left;"><b>采购额度：</b></td><td><%$view->get_purchase_amount()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>公司联系人：</b></td><td><%$view->get_pro_contact()%></td>
+                        <td style="text-align: left;"><b>公司联系人手机：</b></td><td><%$view->get_pro_phone()%></td>
+                        <td style="text-align: left;"><b>公司联系电话：</b></td><td><%$view->get_pro_qq()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>BDD紧急联系人：</b></td><td><%$view->get_contact()%></td>
+                        <td style="text-align: left;"><b>BDD紧急联系人手机：</b></td><td><%$view->get_kela_phone()%></td>
+                        <td style="text-align: left;"><b>BDD紧急联系电话：</b></td><td><%$view->get_kela_qq()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>附件：</b></td>
+						<td colspan="5">
+							<%if $view->get_pact_doc()%><span style="margin-right: 30px"><a href="<%$view->get_pact_doc()%>" target="_blank">合同附件</a></span><%/if%>
+							<%if $view->get_license_jpg()%><span style="margin-right: 30px"><a href="<%$view->get_license_jpg()%>" target="_blank">营业执照附件</a></span><%/if%>
+							<%if $view->get_tax_jpg()%><span style="margin-right: 30px"><a href="<%$view->get_tax_jpg()%>" target="_blank">税务登记证附件</a></span><%/if%>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>其他备注：</b></td><td colspan="5"><%$view->get_info()%></td>
+					</tr>
+				</table>
+			</div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>加工时间
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar1%>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_processor_worktime_list">
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+<!--
+<%include file = "js/app_processor_info_show.js" %>
+//-->
+</script>	

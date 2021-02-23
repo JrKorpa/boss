@@ -1,0 +1,41 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_express_bf">
+        <div class="row">
+           <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">收货人：</label><span style="color:red">*</span>
+                    <input type="text" name="consignee2" class="form-control" placeholder="请输入" value="<%$member_address.consignee2|default:''%>" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">电话：</label></label><span style="color:red">*</span>
+                    <input type="text" name="tel2" class="form-control" placeholder="请输入" value="<%$member_address.tel2|default:''%>" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">收货地址：</label></label><span style="color:red">*</span>
+                    <input id="shop_cfg_info" type="text" name="address2" id="address2" class="form-control" placeholder="请输入" value="<%$member_address.address2|default:''%>" maxlength="60">
+                </div>
+            </div>
+        </div>
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="address_id" value="<%$express_info['id']|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/app_order_express_bf.js"%>
+    //-->
+</script>

@@ -1,0 +1,69 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="sales_channels_person_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+                        <select class="form-control" tabindex="1" name="order_department">
+                            <option value=""></option>
+                            <%foreach from=$sales_channels_idData key=key item=p %>
+                            <option value="<%$p.id%>" <%if $p.id==$def_id%>selected="selected"<%/if%>><%$p.channel_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">销售顾问账号：</label>
+                        <select class="form-control" name="user_name">
+                            <option value=""></option>
+                            <%foreach from=$user_info key=key item=p %>
+                            <option value="<%$p.user_id%>"><%$p.account%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">店面管理权限：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" value="1" name="is_leader" checked="checked" /> 否
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="2" name="is_leader" /> 是
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">是否网销：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" value="1" name="is_netsale" checked="checked" /> 否
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="2" name="is_netsale" /> 是
+                            </label>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/sales_channels_person_info.js"%>
+//-->
+</script>

@@ -1,0 +1,84 @@
+ <div class="portlet-body">
+       <!-- 表格1 -->
+       <div class="table-scrollable">
+           <table class="table table-bordered table-striped table-hover flip-content">
+              <tr>
+                   <td align="center">货号</td>
+                   <td align="center"><%$view->get_goods_id()%></td>
+                   <td align="center">款号</td>
+                   <td align="center"><%$view->get_goods_sn()%></td>
+				   <td align="center">镶口</td>
+                   <td align="center"><%$view->get_xiangkou()%></td>
+              </tr>
+              <tr>
+                   <td align="center">商品名称</td>
+                   <td align="center"><%$view->get_goods_name()%></td>
+                   <td align="center">商品价格</td>
+                   <td align="center"><%$view->get_goods_price()%></td>
+                   <td align="center">商品个数</td>
+                   <td align="center"><%$view->get_goods_count()%></td>
+              </tr>
+              <tr>
+                   <td align="center">石重</td>
+                   <td align="center"><%$view->get_cart()|default:"--"%></td>
+                   <td align="center">切工</td>
+                   <td align="center"><%$view->get_cut()|default:"--"%></td>
+                   <td align="center">净度</td>
+                   <td align="center"><%$view->get_clarity()|default:"--"%></td>
+              </tr>
+              <tr>
+                   <td align="center">颜色</td>
+                   <td align="center"><%$view->get_color()|default:"--"%></td>
+                   <td align="center">证书号</td>
+                   <td align="center"><%$view->get_zhengshuhao()|default:"--"%></td>
+                   <td align="center">材质</td>
+                   <td align="center"><%$view->get_caizhi()|default:"--"%></td>
+              </tr>
+              <tr>
+                 <td align="center">金色</td>
+                 <td align="center"><%$view->get_jinse()|default:"--"%></td>
+                 <td align="center">金重</td>
+                 <td align="center"><%$view->get_jinzhong()|default:"--"%></td>
+                 <td align="center">指圈</td>
+                 <td align="center"><%$goods_detail.zhiquan%><%if  $goods_detail.is_stock_goods && $goods_detail.shoucun && $goods_detail.zhiquan!=$goods_detail.shoucun%>(由<%$goods_detail.shoucun%>改为<%$goods_detail.zhiquan%>)<%/if%></td>
+              </tr>
+              <tr>
+                   <td align="center">刻字</td>
+                   <td align="center"><%$kezi|default:"无刻字"%></td>
+                   <td align="center">表面工艺</td>
+                   <td align="center"><%$view->get_face_work()|default:"--"%></td>
+                   <td align="center">镶嵌要求</td>
+                   <td align="center"><%$view->get_xiangqian()|default:"--"%></td>
+              </tr>
+              <tr>
+                   <td align="center">添加时间</td>
+                   <td align="center"><%$view->get_create_time()|default:"--"%></td>
+                   <td align="center">配货状态</td>
+                   <td align="center"><%if $hidden%><%$dd->getEnum('sales.delivery_status',$view->get_send_good_status())%><%else%>存档<%/if%></td>
+                   <td align="center">布产状态</td>
+                   <td align="center"><%if $hidden%><%$dd->getEnum('buchan_status',$view->get_buchan_status())%><%else%>初始化<%/if%></td>
+              </tr>
+              <tr>
+                   <td align="center">是否现货</td>
+                   <td align="center"><%if $view->get_is_stock_goods()==0%>期货<%else%>现货<%/if%></td>
+                   <td align="center">退货状态</td>
+                   <td align="center"><%if $view->get_is_return()==0%>未退货<%else%>已退货<%/if%></td>
+                   <td align="center">商品类型</td>
+                   <td align="center"><%if $view->get_goods_type()=='lz' || $view->get_goods_type()=='luozuan'%>裸钻<%else%>非裸钻<%/if%></td>
+              </tr>
+              <tr>
+                   <td align="center">单身-项次</td>
+                   <td align="center"><%$view->get_ds_xiangci()|default:"--"%></td>
+                   <td align="center">品号</td>
+                   <td align="center"><%$view->get_pinhao()|default:"--"%></td>
+                   <td align="center">钻石类型</td>
+                   <td align="center"><%if $view->get_dia_type()==2%>期货钻<%elseif $view->get_dia_type()==1%>现货钻<%else%>无<%/if%></td>
+              </tr>
+              <tr>
+                   <td align="center">商品备注</td>
+                   <td colspan="6" align="center"><%$view->get_details_remark()|default:"--"%></td>
+              </tr>
+           </table>
+       </div>
+       <div class="clear"></div>
+ </div>

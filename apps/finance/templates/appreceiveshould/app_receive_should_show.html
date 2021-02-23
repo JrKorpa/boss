@@ -1,0 +1,82 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <%$bar%>
+        </div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>单号</b></td>
+					<td><%$should_info.should_number%></td>
+					<td><b>订单来源</b></td>
+					<td><%$should_info.from_ad%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('pay.ys_status',$should_info.status)%></td>
+					<td><b>总数量</b></td>
+					<td><%$should_info.num%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$should_info.makename%></td>
+					<td><b>制单时间</b></td>
+					<td><%$should_info.maketime%></td>
+					<td><b>审核人</b></td>
+					<td><%$should_info.checkname|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$should_info.checktime|default:'--'%></td>
+				</tr>
+				<tr>
+					<td><b>应收金额</b></td>
+					<td><%$should_info.total|default:'--'%></td>
+					<td colspan="6"><a href="javascript:void(0);">下载明细</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_receive_should_show">
+            <table class="table table-bordered table-striped flip-content">
+                <tr>
+                    <td>应收申请单号</td>
+                    <td>应收金额</td>
+                </tr>
+                <%foreach from=$info key=k item=d%>
+                <tr>
+                    <td><%$d.apply_number%></td>
+                    <td><%$d.total_cope%></td>
+                </tr>
+                <%/foreach%>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_receive_should_show.js" %>
+//-->
+</script>

@@ -1,0 +1,84 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="extra_discount_scope_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">公司：</label>
+                        <select class="select2_category form-control" name="dep_id" tabindex="1">
+                            <option value=""></option>
+                            <%foreach from=$companys item=v%>
+                            <option value="<%$v.id%>|<%$v.company_name%>" <%if $v.id==$view->get_dep_id()%>selected="selected"<%/if%>><%$v.company_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式来源渠道：<span class="required">*</span></label>
+                        <select class="form-control" name="style_channel">
+                            <option value=""></option>
+                            <%foreach from=$view->getSalesChannels() item=vo %>
+                            <option value="<%$vo.id%>|<%$vo.channel_name%>" <%if $view->get_style_channel_id()==$vo.id%>selected<%/if%>><%$vo.channel_name%></option>
+                            <%/foreach%>
+                        </select> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">商品类型：</label>
+                        <select class="select2_category form-control" tabindex="1" name="goods_type">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("extra.goods_type") key=k item=value%>
+                            <option <%if $value.name==$view->get_goods_type()%>selected="selected"<%/if%> value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">折扣范围：</label>
+                        <div class="input-group  input-daterange">
+                            <input type="text" class="form-control" name="discount_floor" value="<%$view->get_discount_floor()%>" />
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control" name="discount_upper" value="<%$view->get_discount_upper()%>" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">提成：</label>
+                        <input type="text" name="push_money" class="form-control" placeholder="请输入" value="<%$view->get_push_money()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">优先级：</label>
+                        <input type="text" name="priority" class="form-control" placeholder="请输入" value="<%$view->get_priority()%>" />
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/extra_discount_scope_info.js"%>
+//-->
+</script>

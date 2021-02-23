@@ -1,0 +1,51 @@
+
+ <div class="flip-scroll">
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>单号</th>
+                <th>供应商</th>
+                <th>工厂</th>
+                <th>价格总计</th>
+                <th>石包号</th>
+                <th>制单人</th>
+                <th>总数量</th>
+                <th>总重量</th>
+                <th>纸质单号</th>
+                <th>制单时间</th>
+                <th>审核时间</th>
+                <th>状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="dia_bill_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+				<td><%$d.id%></td>
+                <td><%$d.bill_no%></td>
+                <td><%$d.processors_name%></td>
+                <td><%$d.factory_name%></td>
+                <td><%$d.price_total%></td>
+                <td></td>
+                <td><%$d.create_user%></td>
+                <td><%$d.num%></td>
+                <td><%$d.weight%></td>
+                <td><%$d.paper_no%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.check_time%></td>
+                <td><%$dd->getEnum('diabill.status',$d.status)%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

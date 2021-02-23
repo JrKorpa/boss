@@ -1,0 +1,438 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title" id="searchform">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="expand">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_goods_report_search_form">
+			<div class="form-body">
+				<div class="row">
+                                    	<div class="col-sm-3" id="bacheitem">
+						<div class="form-group">
+							<label class="control-label">货号：</label>
+<!--							<input type="text" name="goods_id" class="form-control" ondblclick="bach_search_num(this)" placeholder="双击可批量输入货号" />-->
+							<input type="text" name="goods_id" class="form-control" placeholder="可批量输入货号需,号或空格分隔"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="style_sn" class="form-control" placeholder="可批量输入款号需,号或空格分隔" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">维修状态：</label>
+							<select class="form-control" tabindex="1" name="weixiu_status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("warehouse.weixiu_status") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品状态：</label>
+							<select class="form-control" tabindex="1" name="is_on_sale">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('warehouse.goods_status') key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">公司：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="company_id" tabindex="1" >
+								<option value=""></option>
+								<%foreach from=$companylist item=c%>
+									<option value="<%$c.id%>"><%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">仓库：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="warehouse_id" tabindex="1" disabled="disabled">
+								<option value=""></option>
+
+							</select>
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">维修公司：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="weixiu_company_id" tabindex="1" >
+								<option value=""></option>
+								<%foreach from=$companylist item=c%>
+									<option value="<%$c.id%>"><%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">维修仓库：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="weixiu_warehouse_id" tabindex="1" disabled="disabled">
+								<option value=""></option>
+
+							</select>
+						</div>
+					</div>
+
+                                </div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库方式：</label>
+							<select class="form-control" tabindex="1" name="put_in_type">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray("warehouse.put_in_type") key=k item=value%>
+								<option value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">材质：</label>
+							<select class="form-control" tabindex="1" name="caizhi">
+							<option value=""></option>
+							<%foreach from=$caizhi_arr item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">材质颜色：</label>
+							<select class="form-control" tabindex="1" name="jinse">
+							<option value=""></option>
+							<%foreach from=$jinse_arr item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+							</select>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款式分类：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="cat_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$catList item=c%>
+									<option value="<%$c.name%>"><%$c.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">证书号：</label><span style='color:red;'></span>
+							<input type='text' name="zhengshuhao" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+
+				
+					<div class="col-sm-3">
+						<label class="control-label">供应商：</label>
+						<div class="form-group">
+							<select class="select2_category form-control" name="processor" tabindex="1" >
+								<option value=""></option>
+								<%foreach from=$pro_list item=c%>
+								<option value="<%$c.id%>"><%$c.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产号：</label><span style='color:red;'></span>
+							<input type='text' name="buchan" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">是否绑定订单：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="order_goods_ids" tabindex="1">
+								<option value="">全部</option>
+								<option value="1">已绑定</option>
+								<option value="2">未绑定</option>
+							</select>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">指圈号：</label><span style='color:red;'></span>
+							<input type='text' name="shoucun" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+				
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">证书类型：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="zhengshu_type" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$zhengshuleibie item=z%>
+								<option value="<%$z%>"><%$z%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<!--
+					<div class="col-sm-3">
+					<div class="form-group">
+					<label class="control-label">主成色重：</label>
+					<input class="form-control" type="text" style="width:50px;" value="" name="zcsz_begin">－
+					<input class="form-control" type="text" style="width:50px;" value="" name="zcsz_end">
+					</div>
+					</div>-->
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">品牌：</label><span style='color:red;'></span>
+							 <input type="text" name="pinpai" class="form-control" placeholder="可输入收货录入的品牌"/>
+						</div>
+					</div>
+                                    
+                                     <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">裸钻证书类型：</label><span style='color:red;'></span>
+							 <select class="select2_category form-control" name="luozuanzhengshu" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$luozuanzhengshu item=z%>
+								<option value="<%$z%>"><%$z%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                    
+                                     <div class="col-sm-3">
+					  <div class="form-group">
+							<label class="control-label">系列及款式归属：</label><span style='color:red;'></span>
+							 <select class="select2_category form-control" name="xilie_name" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$xilie item=z%>
+								<option value="<%$z%>"><%$z%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                    
+					<!--
+					<div class="col-sm-3">
+					<div class="form-group">
+					<label class="control-label">主成色重：</label>
+					<input class="form-control" type="text" style="width:50px;" value="" name="zcsz_begin">－
+					<input class="form-control" type="text" style="width:50px;" value="" name="zcsz_end">
+					</div>
+					</div>-->
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石颜色：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="zs_color" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$color_arr item=c%>
+								<option value="<%$c%>"><%$c%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">模号：</label><span style='color:red;'></span>
+							<input type='text' name="mohao" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="zhushi" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$zhushi item=z%>
+								<option value="<%$z%>"><%$z%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金托类型：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="jintuo_type" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$dd->getEnumArray('warehouse_goods.tuo_type') item=j%>
+								<option value="<%$j.name%>"><%$j.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">结价：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="jiejia" tabindex="1" >
+								<option value="">全部</option>
+								<option value="0">未结价</option>
+								<option value="1">已结价</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石净度：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="zs_clarity" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$clarty_arr item=c%>
+								<option value="<%$c%>"><%$c%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					</div>
+
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金饰类型：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="jinshi_type" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$jinshi_type item=j%>
+								<option value="<%$j%>"><%$j%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">柜位：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="guiwei" tabindex="1" >
+								<option value="">全部</option>
+								<option value="1">未上柜</option>
+								<option value="2">已上柜</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">产品线：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="chanpinxian" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$chanpinxian item=c%>
+								<option value="<%$c%>"><%$c%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">新产品线：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="chanpinxian1" tabindex="1" >
+								
+								<%foreach from=$chanpinxian1 item=c%>
+								<option value="<%$c.product_type_name%>"><%$c.product_type_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主成色重：</label>
+							<div class="input-group">
+								<input  type="text" class="form-control" width="50px" name="jinzhong_begin">
+								<span class="input-group-addon">to</span>
+								<input  type="text" class="form-control" width="50px" name="jinzhong_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石大小：</label>
+							<div class="input-group">
+								<input  type="text" class="form-control" width="50px" name="zhushi_begin">
+								<span class="input-group-addon">to</span>
+								<input  type="text" class="form-control" width="50px" name="zhushi_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="control-label">库存时间：</label>
+						<div class="input-group date-picker input-daterange">
+							<input type='text' name="kucun_start" class="form-control" placeholder="请输入"/>
+							<span class="input-group-addon">至</span>
+							<input type='text' name="kucun_end" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">新款式分类：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="cat_type1" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$catList item=c%>
+									<option value="<%$c.name%>"><%$c.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" onclick="closeSearchForm()" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" onclick="download()"><i class="fa fa-check"></i> 导出</button>
+					<button type="button" class="btn blue" onclick="hbhdownload()"><i class="fa fa-check"></i> 婚博会专用导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="warehouse_goods_report_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_goods_report_list.js"%>
+//-->
+</script>

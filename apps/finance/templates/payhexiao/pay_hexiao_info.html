@@ -1,0 +1,57 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="pay_hexiao_info" enctype="multipart/form-data">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">订单来源：</label>
+                        <select class="form-control" tabindex="1" name="from_ad">
+                            <option value=""></option>
+                           	<%foreach from=$source_list key=k item=d%>
+							<option value="<%$d.id%>"><%$d.source_name%></option>
+							<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">核销类型：</label>
+                        <select class="form-control" tabindex="1" name="cash_type">
+                            <option value=""></option>
+                          	<%foreach from=$dd->getEnumArray('pay.hx_type') item=value key=key%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">数据：</label>
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="data" />
+                        		<a href="index.php?mod=finance&con=PayHexiao&act=download">下载数据格式</a>
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" value="baocun" class="btn green"><i class="fa fa-check"></i> 保存</button>                
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/pay_hexiao_info.js" %>
+//-->
+</script>

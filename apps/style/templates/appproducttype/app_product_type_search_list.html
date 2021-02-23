@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>产品线名称</th>
+			<th>产品线编码</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data item=d%>
+		<tr data-id="app_product_type_list_<%$d.product_type_id%>" >
+			<td align="center"><%$d.product_type_id%></td>
+			<td><%$d.tree_name%></td>
+			<td><%$d.product_type_code%></td>
+			<td><%$dd->getEnum("is_enabled",$d.product_type_status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

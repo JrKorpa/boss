@@ -1,0 +1,75 @@
+
+<div class="flip-scroll" style="">
+<form action="" method="post" class="horizontal-form" id="app_order_xianhuo_info">
+<table action="" method="post"   class="table table-bordered table-striped flip-content table-condensed">
+	<thead>
+		<tr><th>序号</th>
+		<th>货品款号</th>
+         
+		<th>货品名称</th>
+		<th>石重</th>
+		<th>切工</th>
+		<th>净度</th>
+		<th>颜色</th>
+		<th>证书号</th>
+		<th>材质</th>
+		<th>金色</th>
+		<th>金重</th>
+		<th>指圈</th>
+		<th>数量</th>
+        
+		<th>仓储货号</th>
+	</tr></thead>
+	<tbody>
+	  <%foreach from=$orderdetails item=g key=k %>
+		<tr>
+			<td><%$g.id%></td>
+			<td><%$g.goods_sn%></td>
+		
+			<td><%$g.goods_name%></td>
+			<td><%$g.cart%></td>
+			<td><%$g.cut%></td>
+			<td><%$g.clarity%></td>
+			<td><%$g.color%></td>
+			<td><%$g.zhengshuhao%></td>
+			<td><%$g.caizhi%></td>
+			<td><%$g.jinse%></td>
+			<td><%$g.jinzhong%></td>
+			<td><%$g.zhiquan%></td>
+			<td><%$g.goods_count%></td>
+		
+			
+			<td>
+
+
+					  
+				<input type="text" class="form-control" name="jxh_goods_id[]" value="" onkeypress=" if(event.keyCode==13) { tab_next(this); return false;}" id="0dds">
+		
+				<input type="hidden" class="form-control" name="orderDetailId[]" value="<%$g.id%>">
+					 
+				  
+						<!-- <input type="hidden" class="form-control" name="goods_id_price[]" value='0'/>-->
+			</td>
+		</tr>
+	<%/foreach%>
+	
+
+	</tbody>
+	
+</table>
+<div class="fluid" style="padding-bottom:20px;">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="order_sn" value="<%$order_sn%>"/>
+					<input type="submit" value="转现货" id="app_order_xianhuo"/>
+					<input type="reset" value="重置" id="cloas"/>
+				</div>
+			</div>
+
+</form>
+
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_xianhuo_info.js"%>
+//-->
+</script>

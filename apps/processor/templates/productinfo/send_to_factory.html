@@ -1,0 +1,53 @@
+<div class="table-scrollable" id="product_info_send_to_factory">
+	<table class="table table-bordered table-striped table-hover flip-content" >
+		<thead class="flip-content">
+			<tr>
+				 <th>
+				<input type="checkbox" class="group-checkable" data-set="#product_info_send_to_factory .checkboxes" />全选/取消
+				</th>
+				 <th>布产号</th>
+                 <th>款号</th>
+                 <th>收货人</th>
+                 <th>跟单人</th>
+                 <th>生产状态</th>
+                 <th>接单时间</th>
+                 <th>标准出厂时间</th>
+                 <th>添加时间</th>
+                 <th>最后操作时间</th>
+                 <th>最后操作备注</th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data item=d%>
+			<tr data-id="product_info_send_to_factory_<%$d.id%>" data-title="<%$d.p_sn%>" data-pk='<%$d.id%>'>
+				<td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.id%>"class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.id%>" ><%$d.bc_sn%></a></td>
+                <td><%$d.style_sn%></td>
+                <td><%$d.consignee%></td>
+                <td><%$d.opra_uname%></td>
+                <td><%$dd->getEnum('buchan_fac_opra',$d.buchan_fac_opra)%></td>
+                <td><%$d.order_time|default:'0000-00-00'%></td>
+                <td><%$d.esmt_time%></td>
+                <td><%$d.add_time|default:'0000-00-00 00:00:00'%></td>
+                <td><%$d.edit_time|default:'0000-00-00 00:00:00'%></td>
+                <td><%$d.remark%></td>
+			</tr>
+		<%/foreach%>
+			<tr>
+				<td colspan="11">
+					<div class="table-toolbar">
+						<div class="btn-group">
+							<button class="btn btn-sm purple" data-title="开始生产" list-id="219" title="发送到工厂生产" name="发送到工厂生产" data-url="index.php?mod=processor&con=ProductInfo&act=to_factory_pl" onclick="ProductInfoApiSendToFactory(this);"> 发送到工厂生产<i class="fa fa-edit"></i></button>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+<%include file="js/send_to_factory.js"%>
+util.hover();
+</script>

@@ -1,0 +1,128 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_old_order_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">统计时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="end_time"/>
+                            </div>
+						</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="search_type" id="search_type" onchange="show_zt();">
+							<option value="">选择类型</option>
+							<option value="online_department">网络发货</option>
+							<option value="zhanting">展厅发货</option>
+							</select>
+							
+							<span id="show_department" style="display:none;" >
+							<select style="float:left;" class="select2_category form-control" tabindex="1" name="department_name" id="department_name">
+								<option value="0">全部</option>
+								<option value="银行销售部">银行销售部</option>
+								<option value="B2C销售部">B2C销售部</option>
+								<option value="京东销售部">京东销售部</option>
+								<option value="淘宝销售部">淘宝销售部</option>
+								<option value="官方网站部">官方网站部</option>
+								<option value="微信平台">微信平台</option>
+							</select>
+							</span>
+							<span id="show_zt" style="display:none;">
+							<!--&nbsp;&nbsp;
+								展厅发货类型：-->
+									<select class="select2_category form-control" tabindex="1" name="zt_type" id="zt_type">
+										<option value="0" selected="selected">全部</option>
+										<option value="1">展厅订单</option>
+										<option value="2">展厅整包</option>		
+										</select>
+							</span>
+                        </div>
+                    </div>
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+        </form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+			<button data-title="发货量报表" list-id="271345" title="" name="查看明细" data-url="index.php?mod=report&amp;con=DeliverGoodsReport&amp;act=detail_list" onclick="util.cust(this,show_detail_list);" class="btn btn-sm red">
+				查看明细 <i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div>
+			<!-- <div class="btn-group">
+			<button data-title="导出报表" list-id="479473" title="" name="导出报表" data-url="index.php?mod=report&con=DeliverGoodsReport&act=export_cxv_index" onclick="deliver_goods_export_cxv_index(this);" class="btn btn-sm blue">
+				下载报表 <i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div> -->
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="app_old_order_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function show_zt()
+{
+	var s_t = document.getElementById('search_type').value;
+	
+	if(s_t == 'online_department')//网络
+	{
+		document.getElementById('show_zt').style.display = "none";
+		document.getElementById('show_department').style.display = "";
+	}
+	else if(s_t == 'zhanting')//展厅
+	{
+		document.getElementById('show_zt').style.display = "";
+		document.getElementById('show_department').style.display = "none";
+	}
+	else
+	{
+		document.getElementById('show_zt').style.display = "none";
+		document.getElementById('show_department').style.display = "none";
+	}
+}
+<!--
+	<%include file="js/deliver_goods_list.js"%>
+//-->
+</script>

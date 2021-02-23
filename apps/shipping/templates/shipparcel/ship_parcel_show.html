@@ -1,0 +1,87 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>包裹单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		<!-- 工具条 -->
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>快递单号：</b></td>
+					<td><%$view->get_express_sn()%></td>
+					<td><b>快递公司：</b></td>
+					<td><%if isset( $kuaidi[$view->get_express_id()] )%><%$kuaidi[$view->get_express_id()]%><%else%>——<%/if%></td>
+					<td><b>单据金额：</b></td>
+					<td><%$view->get_amount()%></td>
+					<td><b>总数量：</b></td>
+					<td><%$view->get_num()%></td>
+				</tr>
+				<tr>
+					<td><b>包裹收货方：</b></td>
+					<td><%$view->get_shouhuoren()%></td>
+					<td><b>公司（目标展厅）：</b></td>
+					<td><%$company[$view->get_company_id()]%></td>
+					<td><b>发货状态：</b></td>
+					<td><%$dd->getEnum('order.send_good_status', $view->get_send_status())%></td>
+					<td><b>打印状态：</b></td>
+					<td><%$dd->getEnum('confirm', $view->get_is_print())%></td>
+				</tr>
+				<tr>
+					<td><b>制单时间：</b></td>
+					<td><%$view->get_create_time()%></td>
+					<td><b>制单人：</b></td>
+					<td><%$view->get_create_user()%></td>
+					<td><b>发货时间：</b></td>
+					<td><%$view->get_send_time()%></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>包裹单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+			<%$bar1%>
+		</div>
+
+		<!-- 表格 -->
+		<div id="ship_parcel_detail_search_list">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/ship_parcel_show.js"%>
+//-->
+</script>

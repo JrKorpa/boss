@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>调拨单</title>
+	<style type="text/css">
+*{margin:0;padding:0;}
+body{font:12px/25px "微软雅黑";}
+.tRight{text-align:right;}
+.wrap{width:700px;margin:5px auto;}
+.wrap button{padding: 5px 15px}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+</style>
+	<style media="print">.Noprint{display:none;} </style>
+</head>
+<body>
+	<!--startprint-->
+	<div class="wrap">
+		<div id="print-div" style="text-align:right;">
+			<button id="print_btn" onclick="print_bill();">打 印</button>
+			<button id="print_close" onclick="close_bill();">关 闭</button>
+		</div>
+		<h1>调拨单-汇总表</h1>
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr height="30">
+			<td width="64">现在时间：</td>
+			<td><%$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'%></td>
+			<td width="84">制 单 人：</td>
+			<td><%$data.create_user%></td>
+			<td width="64"> 状 态：</td>
+			<td><%$dd->getEnum('warehouse.bill_status',$data.bill_status)%></td>
+		</tr>
+		<tr>
+			<td> 单 号：</td>
+			<td colspan="3"><%$data.bill_no%><br/><img src='http://bardcode.kela.cn/index.php?code_sn=<%$data.bill_no%>' style='width:360px;height:60px'></td>
+			<td> 日 期：</td>
+			<td><%$data.create_time|date_format:'%Y-%m-%d'%></td>
+		</tr>
+		<tr height="30">
+			<td>出货公司：</td>
+			<td><%$data.from_company_name%></td>
+			<td>数量总计：</td>
+			<td ><%$data.goods_num%></td>
+			<td>审 核 人：</td>
+			<td><%$data.check_user%></td>
+		</tr>
+		<tr height="30">
+			<td>入 库 仓：</td>
+			<td><%$data.to_warehouse_name%></td>
+			<td><%if $smarty.const.SYS_SCOPE eq 'zhanting'%>展厅标签价总计：<%/if%></td>
+            <td><%if $smarty.const.SYS_SCOPE eq 'zhanting'%><%$data.label_price_total%><%/if%></td>
+			<td>参考编号：</td>
+			<td></td>
+		</tr>
+		<tr height="30">
+			<td>备注：</td>
+			<td colspan="1"><%$data.bill_note%></td>
+			<td></td>
+            <td></td>
+            <td>顾客姓名：</td>
+			<td><%$consignee%></td>
+		</tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" style="border:0" width="100%">
+			<tr>
+				<td valign="top">
+					<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+						<tr>
+							<td>主成色</td>
+							<td>重</td>
+						</tr>
+						<%foreach key=key item=item from=$zhuchengsetongji%>
+						<tr>
+							<td>
+								<%$item.caizhi%></td>
+							<td>
+								<%$item.jinzhong|string_format:'%.3f'%></td>
+						</tr>
+						<%/foreach%>
+						<tr>
+							<td>小计</td>
+							<td>
+								<%$zhuchengsezhongxiaoji|string_format:'%.3f'%></td>
+						</tr>
+					</table>
+
+				</td>
+				<td>&nbsp;</td>
+				<td valign="top">
+					<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+						<tr>
+							<td>主石</td>
+							<td>粒数</td>
+							<td>重</td>
+						</tr>
+						<%foreach key=key item=item from=$zhushitongji%>
+						<tr>
+							<td>
+								<%$item.zhushi%></td>
+							<td>
+								<%$item.zhushilishu%></td>
+							<td>
+								<%$item.zuanshidaxiao|string_format:'%.3f'%></td>
+						</tr>
+						<%/foreach%>
+						<tr>
+							<td>小计</td>
+							<td>
+								<%$zhushilishuxiaoji%></td>
+							<td>
+								<%$zhushizhongxiaoji|string_format:'%.3f'%></td>
+						</tr>
+					</table>
+				</td>
+
+				<td>&nbsp;</td>
+				<td valign="top">
+					<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+						<tr>
+							<td>副石</td>
+							<td>粒数</td>
+							<td>重</td>
+						</tr>
+						<%foreach key=key item=item from=$fushitongji%>
+						<tr>
+							<td>
+								<%$item.fushi%></td>
+							<td>
+								<%$item.fushilishu%></td>
+							<td>
+								<%$item.fushizhong|string_format:'%.3f'%></td>
+						</tr>
+						<%/foreach%>
+						<tr>
+							<td>小计</td>
+							<td>
+								<%$fushilishuxiaoji%></td>
+							<td>
+								<%$fushizhongxiaoji|string_format:'%.3f'%></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+function close_bill(){
+  window.close();
+}
+
+function print_bill(){
+	document.getElementById("print-div").style.display="none";
+	window.print();
+}
+</script>
+</html>

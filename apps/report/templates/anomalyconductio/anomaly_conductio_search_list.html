@@ -1,0 +1,45 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>货号</th>
+                <th>所在仓库</th>
+                <th>款号</th>
+                <th>名称</th>
+                <th>所在公司</th>
+                <th>本库库龄</th>
+                <th>单据号码</th>
+                <th>单据状态</th>
+                <th>审核人</th>
+                <th>审核时间</th>
+                <th>制单人</th>
+                <th>制单时间</th>
+                <th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="" data-title="">
+				<td><%$d.goods_id%></td>
+                <td><%$d.warehouse%></td>
+                <td><%$d.goods_sn%></td>
+                <td><%$d.goods_name%></td>
+                <td><%$d.company%></td>
+                <td><%$d.kuling%></td>
+                <td><%$d.bill_no%></td>
+                <td><%$d.bill_status%></td>
+                <td><%$d.check_user%></td>
+                <td><%$d.check_time%></td>
+                <td><%$d.create_user%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.bill_note%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

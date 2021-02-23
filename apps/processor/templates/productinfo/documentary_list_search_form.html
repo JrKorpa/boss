@@ -1,0 +1,352 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="product_info_search_form_gendan">
+		    <input type="hidden" name="opra_uname" value="<%$opra_uname%>"/>
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产单号：</label>
+							<textarea class="form-control"  rows="4" cols="20" name="bc_sn" placeholder="可批量输入布产单号 需空格隔开"></textarea>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">采购单号/订单号：</label>
+							<textarea class="form-control"  rows="4" cols="20" name="p_sn" placeholder="可批量输入采购单号/订单号 需空格隔开"></textarea>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">外部单号：</label>
+                            <textarea class="form-control" rows="4" cols="20" name="p_sn_out" placeholder="可批量输入"></textarea>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="style_sn" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产类型：</label>
+							<select class="form-control" tabindex="1" name="from_type">
+								<option value=""></option>
+								<%foreach from=$user_type key=k item=value%>
+								<option value="<%$k%>"><%$value%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否超期：</label>
+                            <select name='is_extended' class="form-control">
+                                <option value="">--请选择--</option>
+                                <%foreach from=$is_extended item=v key=k %>
+                                <option value="<%$k%>"><%$v%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">客户姓名：</label>
+							<input type="text" name= "consignee" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产状态：</label>
+							<select class="form-control" tabindex="1" name="status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("buchan_status") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品类型：</label>
+							<select class="form-control" tabindex="1" name="bc_style">
+							<option value="">--请选择--</option>
+							<option value="普通件">普通件</option>
+							<option value="加急件">加急件</option>
+							<option value="特急件">特急件</option>
+							</select>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">镶嵌方式：</label>
+    						<select class="form-control" tabindex="1" name="xiangqian">
+    							<option value=""></option>
+    							<%foreach from=$dd->getEnumArray("order.xiangqian") key=key item=p%>
+    								<option value="<%$p.label%>"><%$p.label%></option>
+    							<%/foreach%>
+    						</select>
+						</div>
+					</div>
+				    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">线上线下：</label><span style='color:red;'></span>
+                            <select class="select2_category form-control" name="channel_class" tabindex="1" >
+                                <option value=""></option>
+                                <option value="1">线上</option>
+                                <option value="2">线下</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">销售渠道：</label><span style='color:red;'></span>
+                            <select class="select2_category form-control" name="channel_id" tabindex="1" disabled="disabled">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">客户来源：</label>
+                            <select class="form-control" tabindex="1" name="customer_source_id">
+                                <option value=""></option>
+                                <%foreach from=$customer_source_list key=key item=p%>
+                                    <option value="<%$p.id%>"><%$p.source_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+        			<div class="col-sm-3">
+        			    <div class="form-group">
+        			        <label class="control-label">售卖方式：</label>
+        			        <select class="form-control" tabindex="1" name="is_alone">
+        			            <option value=""></option>
+        			            <%foreach from=$dd->getEnumArray("processor.is_alone") key=key item=p%>
+        			                <option value="<%$p.name%>"><%$p.label%></option>
+        			            <%/foreach%>
+        			        </select>
+        			    </div>
+        			</div>
+        			<div class="col-sm-3">
+        				<div class="form-group">
+        					<label class="control-label">生产状态：<input type="checkbox" name="checkAll" />全选</label>
+        					<select name='buchan_fac_opra[]' tabindex="1" class="form-control"  multiple>
+        						<%foreach from=$dd->getEnumArray("buchan_fac_opra") item=v key=k %>
+        						<option value="<%$v.name%>"><%$v.label%></option>
+        						<%/foreach%>
+        					</select>
+        				</div>
+        			</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">起版类型：</label>
+							<select class="form-control" tabindex="1" name="qiban_type">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray("qiban_type") key=key item=p%>
+									<option value="<%$p.name%>"><%$p.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石类型：</label>
+                            <select class="form-control" tabindex="1" name="diamond_type">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("diamond_type") key=key item=p%>
+                                    <option value="<%$p.name%>"><%$p.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+				</div>
+				<div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">标准出厂时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control" name="esmt_time_start">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="esmt_time_end">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">工厂接单时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control" name="order_time_start">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="order_time_end">
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">分配工厂时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="to_factory_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="to_factory_time_end">
+							</div>
+						</div>
+					</div>
+				   	<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">等钻时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="wait_dia_starttime_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="wait_dia_starttime_end">
+							</div>
+						</div>
+					</div>	
+                </div>
+                <div class="row">	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">预计等钻完成时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="wait_dia_finishtime_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="wait_dia_finishtime_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">实际等钻结束时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="wait_dia_endtime_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="wait_dia_endtime_end">
+							</div>
+						</div>
+					</div>
+			   		<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">OQC质检通过时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="oqc_pass_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="oqc_pass_time_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">工厂交货时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="rece_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="rece_time_end">
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+					<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">录单类型：</label>
+                        <select class="form-control" tabindex="1" name="referer">
+                            <option value=""></option>
+                            <%foreach from =$referers key=key item=value%>
+                            <option value="<%$value%>"><%$value%></option>
+                            <%/foreach%>
+                            <option value="非婚博会">非婚博会</option>
+                        </select>
+                        </div>
+					</div>
+				
+					<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">是否快速定制：</label>
+                        <select class="form-control" tabindex="1" name="is_quick_diy">
+                            <option value=""></option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        </div>
+					</div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">是否组合镶嵌：</label>
+                        <select class="form-control" tabindex="1" name="is_combine">
+                            <option value=""></option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        </div>
+					</div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">组合镶嵌现货托：</label>
+                            <input type="text" class="form-control" name="combine_goods_id" placeholder="请输入货号,多个货号请用逗号或空格隔开">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">每页显示条数：</label>
+                            <input type="text" class="form-control" name="page_size" placeholder="请输入">
+                        </div>
+                    </div>
+				</div>	
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar"><%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="product_info_search_list_gendan">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_info_list_gendan.js"%>
+	<%include file="js/common.js"%>
+//-->
+</script>

@@ -1,0 +1,168 @@
+<div class="tabbable tabbable-custom boxless">
+<div class="table-toolbar">
+<%if $view->get_bill_status() == 1%>
+	<div class="btn-group">
+		<button class="btn btn-sm blue" data-title="取消" list-id="102" title="取消其他出库单" name="取消" data-url="index.php?mod=warehouse&con=WarehouseBillInfoC&act=closeBillInfoC" onclick="util.cust(this,closeBillC);">
+			取消
+			<i class="fa fa-undo"></i>
+		</button>
+	</div>
+<%/if%>
+	<div class="btn-group">
+		<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签">
+			刷新 <i class="fa fa-refresh"></i>
+		</button>
+	</div>
+	<div class="btn-group">
+		<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签">
+			离开 <i class="fa fa-mail-reply"></i>
+		</button>
+	</div>
+</div>
+<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_c_info_edit">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库单信息
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+				<div class="form-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">其他出库单号：</label>
+								<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_bill_no()%>" readonly />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">制单人：</label>
+								<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_create_user()%>" readonly/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">审核人：</label>
+								<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_check_user()%>" readonly/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">成本总计：</label>
+			                    <%if $smarty.const.SYS_SCOPE eq 'boss' %>
+								  <input type="text" name="" class="form-control" placeholder="" value="<%$view->get_goods_total()%>" readonly/>
+								<%/if%>
+			                    <%if $smarty.const.SYS_SCOPE eq 'zhanting' %>
+								 <input type="text" name="" class="form-control" placeholder="" value="<%$view->get_shijia()%>" readonly/>
+								<%/if%>	
+
+
+
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">状态：</label>
+								<input type="text" name="" class="form-control" placeholder="新增" value="<%$dd->getEnum('warehouse.bill_status',$view->get_bill_status())%>" readonly />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">货品数量：</label>
+								<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_goods_num()%>" readonly/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">出库公司：</label>
+								<select class="select2_category form-control" tabindex="1" id="from_company_id_c" name="from_company_id_c_edit" disabled>
+									<option value=""></option>
+									<%foreach from=$company item=value%>
+									<option value="<%$value.id%>|<%$value.company_name%>" <%if $value.id == $view->get_from_company_id()%>selected<%/if%>><%$value.company_sn%> | <%$value.company_name%></option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">加工商：</label>
+								<select class="select2_category form-control" tabindex="1" id="pro_id_c_edit" name="pro_id_c_edit">
+									<option value=""></option>
+									<%foreach from=$pro_list item=value%>
+									<option value="<%$value.id%>|<%$value.name%>" <%if $view->get_pro_id() == $value.id%>selected<%/if%>><%$value.code%> | <%$value.id%></option><!--name-->
+									<%/foreach%>
+								</select>
+							</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">出库类型：</label>
+								<select class="select2_category form-control" tabindex="1" id="chuku_type_edit" name="chuku_type_edit">
+									<option value=""></option>
+									<%foreach from = $dd->getEnumArray('warehouse.chuku_type')  item=value%>
+									<option value="<%$value.name%>" <%if $view->get_tuihuoyuanyin() == $value.name%>selected<%/if%>><%$value.label%></option>
+									<%/foreach%>
+								</select>
+							</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">参考编号：</label>
+								<input type="text" name="order_sn_c_edit" id ="order_sn_c_edit" class="form-control" placeholder="" value="<%$view->get_order_sn()%>"/>
+							</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label">备注信息：</label>
+							<textarea class="form-control" id="bill_note_c_edit" name="bill_note_c_edit" rows="4" maxlength="50" ><%$view->get_bill_note()%></textarea>
+						</div>
+					</div>
+
+					</div>
+				</div>
+				<!-- 搜索按钮 -->
+			<!-- END FORM-->
+		</div>
+	</div>
+	<!--入库单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<div id="batch_copy_goodsid_c_edit" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</div>
+				</div>
+			</div>
+			<p class="text-danger"></p>
+			<div class="" id="from_table_data_c"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+<%if $view->get_bill_status()==1%>
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="<%$view->get_id()%>" form="warehouse_bill_c_info_edit"/>
+		<button type="reset" class="btn default" form="warehouse_bill_c_info_edit">重置</button>
+		<button type="submit" id="from_table_data_btn_c_edit" class="btn green" form="warehouse_bill_c_info_edit"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+<%/if%>
+</form>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_c_info_edit.js"%>
+	<%include file="js/table_data_ed.js"%>
+</script>

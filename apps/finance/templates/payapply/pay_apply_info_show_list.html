@@ -1,0 +1,51 @@
+<table class="table table-bordered table-striped flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>货号/单号</th>
+			<th>系统金额</th>
+			<th>应付金额</th>
+			<th>偏差值</th>
+			<th>偏差说明</th>
+			<th>驳回原因</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$data.data key=k item=item %>
+		<tr>
+			<td><%$item.serial_number%></td>
+			<td><%$item.goods_id%></td>
+			<td><%$item.total%></td>
+			<td><%$item.total_cope%></td>
+			<td><%$item.total_dev%></td>
+			<td>
+			<%if ($apply_status == 1 || $apply_status == 3) && !$show%><!--只有保存和驳回状态，以及有偏差金额的，并且是编辑页，才显示偏差说明，用来制单人选择-->
+			<%if $item.total_dev != 0%>
+			<input type="hidden" name="ids[]" value="<%$item.id%>"/>
+			<select id="direc_<%$item.id%>" name="direc_<%$item.id%>" style="width:160px;">
+				<option value="">请选择...</option>
+				<%foreach from=$dd->getEnumArray('pay_apply.dev_direction') key=key item=value%>
+				<option value="<%$value.name%>"  <%if $item.dev_direction == $value.name%> selected="selected"<%/if%>><%$value.label%></option>
+				<%/foreach%>
+			</select><font color="f00;">(必选)</font>
+			<%/if%>
+			<%else%>
+			<%$dd->getEnum('pay_apply.dev_direction',$item.dev_direction)%><%/if%>
+			</td>
+			<td>
+			<%if $apply_status == 2 && $show%>
+			<input type='text' name='overrule_reason[]' id='<%$item.serial_number%>' value="<%$item.overrule_reason|default:''%>"/>
+			<%else%><%$item.overrule_reason%><%/if%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	$('#detail_body select').select2({
+		placeholder: "请选择",
+		allowClear: true
+	}).change(function(e){
+		$(this).valid();
+	});
+</script>

@@ -1,0 +1,302 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="diamond_info_search_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">商品编码：</label>
+                            <input type="text" name="goods_sn" class="form-control" tabindex="1" placeholder="请输入" value="<%$view->get_goods_sn()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">证书号：</label>
+                            <input type="text" name="cert_id" class="form-control" placeholder="请输入" value="<%$view->get_cert_id()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">证书类型：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getCertList() item=val%>
+                                <label class="btn btn-default<%if $view->get_cert()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="cert[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getColorList() item=val%>
+                                <label class="btn btn-default<%if $view->get_color()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="color[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">切工：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getCutList() item=val%>
+                                <label class="btn btn-default<%if $view->get_cut()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="cut[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getClarityList() item=val%>
+                                <label class="btn btn-default<%if $view->get_clarity()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="clarity[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" >
+                        <div class="form-group">
+                            <label class="control-label">对称：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getSymmetryList() item=val%>
+                                <label class="btn btn-default<%if $view->get_symmetry()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="symmetry[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">抛光：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getPolishList() item=val%>
+                                <label class="btn btn-default<%if $view->get_polish()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="polish[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">形状：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getShapeList() key=key item=val%>
+                                <label class="btn btn-default<%if $view->get_shape()== $key && $val%> active<%/if%>">
+                                    <input type="checkbox" name="shape[]" value="<%$key%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">库房：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="warehouse">
+								<option value=""></option>
+								<%foreach from=$warehouse key=key item=val%>
+								<option value="<%$val%>" <%if $view->get_warehouse()== $val && $val%>selected="selected"<%/if%>><%$key%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">供应商：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="from_ad">
+								<option value=""></option>
+								<%foreach from=$from_ad key=key item=val%>
+								<option value="<%$key%>" <%if $view->get_warehouse()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+								<%/foreach%>
+								<option value="CS">CS</option>
+								<option value="FD">FD</option>
+								<option value="JB">JB</option>
+								<option value="JP">JP</option>
+								<option value="KI">KI</option>
+								<option value="RA">RA</option>
+								<option value="Sunrise">Sunrise</option>
+                                <option value="HA">HA</option>
+                                <option value="Venus">Venus</option>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">货品类型：</label>
+                            <select class="form-control" tabindex="1" name="good_type">
+                                <option value=""></option>
+                                <option value="1">现货</option>
+                                <option value="2">期货</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("style_good_status") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">石重：</label>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="carat_min" value="" placeholder="0.00"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="carat_max" value="" placeholder="0.00"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">BDD价区间：</label>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="kelan_price_min" value="" placeholder="0.00"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="kelan_price_max" value="" placeholder="0.00"/>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">荧光：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getFluorescenceList() item=val%>
+                                <label class="btn btn-default<%if $view->get_fluorescence()== $val && $val%> active<%/if%>">
+                                    <input type="checkbox" name="fluorescence[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">gemx证书号：</label>
+                            <input type="text" name="gemx_zhengshu" class="form-control" placeholder="请输入" value="<%$view->get_gemx_zhengshu()%>" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+				 <div class="col-sm-3">
+                        <div class="form-group" style="margin-top: 27px;">
+                            <label class="control-label">
+                                 <input type="checkbox" value="1" name="gm" id="gm"> 星耀钻石
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" style="margin-top: 27px;">
+                            <label class="control-label">
+                                 <input type="checkbox" value="1" id="ysyd" name="ysyd"> 天生一对
+                            </label>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否活动：</label>
+                            <select class="select2_category form-control" tabindex="1" name="is_active">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("is_active") item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>-->
+                    
+
+				<!--天生一对重量-->
+    				<div class="col-sm-3">
+    					<div class="form-group">
+    						<label class="control-label">天生一对钻重1：</label>
+    						<div class="input-group  input-daterange">
+    							<input class="form-control" type="text" name="s_carats_tsyd1" id="s_carats_tsyd1" placeholder="0.00" onBlur="value=value.replace(/[^\.\d]/g,'');" >
+    							<span class="input-group-addon">to</span>
+    							<input class="form-control" type="text" name="e_carats_tsyd1" id="e_carats_tsyd1" placeholder="0.00" onBlur="value=value.replace(/[^\.\d]/g,'');" >
+    						</div>
+    					</div>
+    				</div>
+    				<!--天生一对重量-->
+    				<div class="col-sm-3">
+    					<div class="form-group">
+    						<label class="control-label">天生一对钻重2：</label>
+    						<div class="input-group  input-daterange">
+    							<input class="form-control" type="text" name="s_carats_tsyd2" id="s_carats_tsyd2" placeholder="0.00" onBlur="value=value.replace(/[^\.\d]/g,'');" >
+    							<span class="input-group-addon">to</span>
+    							<input class="form-control" type="text" name="e_carats_tsyd2" id="e_carats_tsyd2" placeholder="0.00" onBlur="value=value.replace(/[^\.\d]/g,'');" >
+    						</div>
+    					</div>
+    				</div>	
+    			</div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn defaultbtn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+            <%$bar%>  
+        </div>
+        <!-- 表格1 -->
+        <div id="diamond_info_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/diamond_info_list.js" %>
+//-->
+</script>

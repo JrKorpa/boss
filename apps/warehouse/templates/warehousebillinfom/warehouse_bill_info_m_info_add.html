@@ -1,0 +1,155 @@
+<div class="portlet-body">
+	<!-- 工具栏 -->
+		<!-- 表格1 -->
+
+		<!--入库单 start-->
+		<div class="tab-pane active" id="tab_bill_m_0">
+			<div class="portlet box green">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>调拨单
+					</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse"></a>
+					</div>
+				</div>
+			<div class="portlet-body form">
+				<!-- 表单内容 -->
+				<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_m_info">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">出库公司：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="from_company_id" tabindex="1">
+										<option value=""></option>
+										<%foreach from=$from_company item=c%>
+										<option value="<%$c.id%>"><%$c.company_sn%> | <%$c.company_name%></option>
+										<%/foreach%>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">单据编号：</label>
+									<input type="text" name="bill_no" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">货品数量：</label>
+									<input type="text" name="goods_num" id="goods_num" class="form-control" placeholder="0" value="0" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">价格总计：</label>
+									<input type="text" name="mingyijia" id="mingyijia" class="form-control" placeholder="0" value="0" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group select2-ruku">
+									<label class="control-label">入库公司：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="to_company_id" tabindex="1">
+									 	<option value=""></option>
+										<%foreach from=$companylist item=c%>
+											<option value="<%$c.id%>"><%$c.company_sn%> | <%$c.company_name%></option>
+										<%/foreach%>
+										
+									</select> 
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label select2-ck" >入库仓库：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="to_warehouse_id" tabindex="1">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">订单号：</label><span style='color:red;'></span>
+									<input type="text" name="order_sn" class="form-control" placeholder="请输入" value=""/>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">顾客姓名：</label><span style='color:red;'></span>
+									<input type="text" name="consignee" class="form-control" placeholder="请输入" value=""/>
+								</div>
+							</div>
+                            <%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">展厅标签价总计：</label>
+                                    <input type="text" name="label_price_total" id="label_price_total" class="form-control" placeholder="0" value="0" disabled="disabled" />
+                                </div>
+                            </div>
+                            <%/if%>
+							<!-- <div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">快递单号：</label><span style='color:red;'>*</span>
+									<input type="text" name="ship_number" class="form-control" placeholder="请输入" value="" />
+								</div>
+							</div> -->
+
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label">备注：</label>
+									<textarea class="form-control" name="bill_note" rows="4" id='bill_note'></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 搜索按钮 -->
+				</form>
+				<!-- END FORM-->
+			</div>
+			</div>
+		</div>
+		<!--入库单 end -->
+
+		<!-- 明细 start -->
+		<div class="tab-pane " id="tab_bill_m_1">
+			<div class="tab-pane active" id="tab_1">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>调拨明细列表
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse"></a>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<!-- 提示信息 -->
+						<p class="text-danger"></p>
+						<!-- 表格信息 -->
+						<div class="" id="from_table_data_bill_m">
+						</div>
+						<!-- 分页 -->
+						<div  id="Statistics" style="margin-top:8px;font-size:16px;color:red;display:none;"></div>
+						<div class="pager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 明细 end -->
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="" form="warehouse_bill_info_m_info"/>
+		<input type="hidden" name="old_system" value="0" id='old_system'/>
+		<button type="reset" class="btn default" form="warehouse_bill_info_m_info" id='reset'>重置</button>
+		<button type="button" id="from_table_data_info_m_btn" class="btn green" form="warehouse_bill_info_m_info"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+
+		<div class="clear"></div>
+	</div>
+
+<script type="text/javascript">
+	<%include file="js/table_data_ed.js"%>// table插件表头信息
+	<%include file="js/warehouse_bill_info_m_info_add.js"%>
+</script>

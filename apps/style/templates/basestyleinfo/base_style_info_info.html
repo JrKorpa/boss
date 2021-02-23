@@ -1,0 +1,309 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="base_style_info_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <!--<div class="form-group">
+                        <label class="control-label">款式编号：</label>
+                        <input type="text" name="style_sn" class="form-control"  value="<%if $view->get_style_sn()%> <%$view->get_style_sn()%> <%else%>自动生成<%/if%>"  readonly/>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="control-label">款式编号：</label>
+                        <input type="text" name="style_sn" class="form-control"  value="<%$view->get_style_sn()%>" placeholder="款号允许手工输入，如果不输入则自动生成" <%if $view->get_style_id()%>readonly<%/if%>/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式名称：</label>
+                        <input type="text" name="style_name" class="form-control" placeholder="请输入"  value="<%$view->get_style_name()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">产品线：</label>
+						<%if $is_check%>
+							 <%foreach from=$viewproduct->getProductTree(false) item=p %>
+							   <%if $view->get_product_type()==$p.id%>
+							    <input type="text"  class="form-control" value="<%$p.tname%>" readonly/>
+							   <%/if%>
+							<%/foreach%>
+						<%else%>
+							<select class="form-control" tabindex="1" name="product_type">
+                            <option value=""></option>
+                            <%foreach from=$viewproduct->getProductTree(false) item=p %>
+							<option value="<%$p.id%>" <%if $view->get_product_type()==$p.id%>selected="selected"<%/if%>><%$p.tname%></option>
+							<%/foreach%>
+                        </select>
+						<%/if%>
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式分类：</label>
+						<%if $is_check%>
+							 <%foreach from=$viewcat->getCatTree(false) item=p %>
+							   <%if $view->get_style_type()==$p.id%>
+							    <input type="text" name="" class="form-control" value="<%$p.tname%>" readonly/>
+							   <%/if%>
+							<%/foreach%>
+						<%else%>
+							 <select class="form-control" tabindex="1" name="style_type">
+								<option value=""></option>
+								<%foreach from=$viewcat->getCatTree(false) item=p %>
+								<option value="<%$p.id%>" <%if $view->get_style_type()==$p.id%>selected="selected"<%/if%>><%$p.tname%></option>
+								<%/foreach%>
+							</select>
+						<%/if%>
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">畅销度：</label>
+						<!--<%if $is_check%>
+							    <input type="text" name="" class="form-control"  value="<%$dd->getEnum("sell_type",$view->get_sell_type())%>" readonly/>
+						<%else%>
+							  <select class="form-control" tabindex="1" name="sell_type">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray("sell_type") key=k item=v%>
+								<option value="<%$v.name%>" <%if $view->get_sell_type()==$v.name%>selected="selected"<%/if%>><%$v.label%></option>
+								<%/foreach%>
+							</select>
+						<%/if%>-->
+                       <select class="form-control" tabindex="1" name="sell_type">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("sell_type") key=k item=v%>
+                                <option value="<%$v.name%>" <%if $view->get_sell_type()==$v.name%>selected="selected"<%/if%>><%$v.label%></option>
+                                <%/foreach%>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否定制：</label>
+                        <div class="radio-list">
+						<!--<%if $is_check%>
+							    <input type="text" name="" class="form-control"  value="<%$dd->getEnum("confirm",$view->get_is_made())%>" readonly/>
+						<%else%>
+							  <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+								<label class="radio-inline">
+									<input type="radio" name="is_made" <%if $view->get_is_made()==$value.name or ($view->get_is_made()=="" and $k==0)%>
+										   checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+								</label>
+                            <%/foreach%>
+						<%/if%>-->
+                        <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_made" <%if $view->get_is_made()==$value.name or ($view->get_is_made()=="" and $k==0)%>
+                                           checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                                </label>
+                            <%/foreach%>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">搭配套系名称：</label>
+                        <input type="text" name="dapei_goods_sn" class="form-control" placeholder="请输入"  value="<%$view->get_dapei_goods_sn()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否常备款：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" name="changbei_sn" <%if $view->get_changbei_sn()==1 or $view->get_changbei_sn() eq ''%>checked="checked"<%/if%> value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="changbei_sn" <%if $view->get_changbei_sn()==2%>checked="checked"<%/if%> value="2"> 否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否允许绑定已销账：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" name="bang_type" <%if $view->get_bang_type()==1%>checked="checked"<%/if%> value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="bang_type" <%if $view->get_bang_type()==2%>checked="checked"<%/if%> value="2"> 否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式性别<%$view->get_style_sex()%>：</label>
+						<%if $is_check2%>
+							    <input type="text" name="" class="form-control"  value="<%if $view->get_style_sex()==1%>男<%else if  $view->get_style_sex()==2%>女<%else%>中性<%/if%>" readonly/>
+						<%else%>
+							 <select class="form-control" tabindex="1" name="style_sex">
+								<option value=""></option>
+								<option value="1" <%if $view->get_style_sex()==1%>selected="selected"<%/if%>>男</option>
+								<option value="2" <%if $view->get_style_sex()==2%>selected="selected"<%/if%>>女</option>
+								<option value="3" <%if $view->get_style_sex()==3%>selected="selected"<%/if%>>中性</option>
+							</select>
+						<%/if%>
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">系列及款式归属：</label>
+						<select class="form-control" tabindex="1" name="xilie[]" multiple>
+							<%foreach from=$xiliearr item=value%>
+								<option value="<%$value.id%>" <%if  in_array($value.id,$xilie)%>selected<%/if%>><%$value.name%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">市场细分：</label>
+                        <input type="text" name="market_xifen" class="form-control" placeholder="请输入"  value="<%$view->get_market_xifen()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                  <div class="col-sm-3" >
+                    <div class="form-group" style='height:120px;'>
+                        <label class="control-label">是否是赠品：</label>
+                        <div class="radio-list" style='height:20px;'>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_zp" <%if $view->get_is_zp()==2 %>checked="checked"<%/if%> value="2"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_zp" <%if $view->get_is_zp()==1 or $view->get_is_zp() eq ''%>checked="checked"<%/if%> value="1"> 否
+                            </label>
+                        </div>
+
+                        <div class='is_a_zp'  <%if $view->get_is_zp()==1 or $view->get_is_zp() eq ''%>style="display: none;" <%/if%> >
+
+                        <label class="control-label">可销售渠道：</label>
+                        <div class="radio-list" style='height:20px;' >
+                            <label class="radio-inline">
+                                <input type="checkbox" name="sale_way1" <%if $view->get_sale_way()==1 or $view->get_sale_way() eq '' or   $view->get_sale_way()==12%>checked="checked"<%/if%> value="1"> 线上
+                            </label>
+                            <label class="radio-inline">
+                                <input type="checkbox" name="sale_way2" <%if $view->get_sale_way()==2 or $view->get_sale_way()==12%>checked="checked"<%/if%> value="2"> 线下
+                            </label>
+                        </div>
+                        <label class="control-label">是否销账：</label>
+                        <div class="radio-list" style='height:20px;'>
+                           <label class="radio-inline">
+                                <input type="radio" name="is_xz" <%if $view->get_is_xz()==1 or $view->get_is_xz() eq ''%>checked="checked"<%/if%> value="1">否
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_xz"  <%if $view->get_is_xz()==2  %>checked="checked"<%/if%> value="2"> 是
+                            </label>
+                        </div>
+                        <span>赠品售价：<input type='text'  value='<%if $view->get_zp_price()%><%$view->get_zp_price()%><%else%>0.00<%/if%>' name='zp_price'/></span>
+
+                        </div>
+
+                    </div>
+                </div>
+
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否允许下单后改价：</label>
+						<select class="form-control" tabindex="1" name="is_allow_favorable">
+						<option value=""></option>
+                        <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                        <option value="<%$value.name%>" <%if $view->get_is_allow_favorable()==$value.name %> selected="selected"<%/if%>> <%$value.label%></option>
+                        <%/foreach%>
+						</select>
+                    </div>
+                </div>
+
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否是黄金：</label>
+                        <select class="form-control" tabindex="1" name="is_gold">
+						<option value=""></option>
+                        <%foreach from=$is_gold_arr key=k item=value%>
+                        <option value="<%$k%>" <%if $view->get_is_gold()==$k %> selected="selected"<%/if%>> <%$value%></option>
+                        <%/foreach%>
+						</select>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否支持按款销售：</label>
+                         <select class="form-control" tabindex="1" name="is_support_style">
+						 <option value=""></option>
+                        <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                        <option value="<%$value.name%>" <%if $view->get_is_support_style()==$value.name %> selected="selected"<%/if%>> <%$value.label%></option>
+                        <%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">加价率：</label>
+                        <input type="text" class="form-control" name="jiajialv" placeholder="请输入" value="<%$view->get_jiajialv()%>"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">公司类型:</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$dd->getEnumArray("company.company_type") key=k item=value%>
+                                <%if $value.label!='供应商'%>
+                                <label class="btn btn-default <%if in_array($value.name,$company_type)%> active<%/if%>">
+                                    <input type="checkbox" name="company_type[]" value="<%$value.name%>" class="toggle" <%if in_array($value.name,$company_type)%> checked="checked"<%/if%>> <%$value.label%>
+                                </label>
+                                <%/if%>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">记录备注：</label>
+                        <textarea class="form-control" name="style_remark" rows="4"><%$view->get_style_remark()%></textarea>
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_style_id()%>" />
+                <input type="hidden" name="old_style_sn" value="<%$view->get_style_sn()%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+
+	$('.radio-inline input[name=is_zp]').click(function(){
+		if($('.radio-inline input[name=is_zp]').attr('checked')=='checked'){
+			$('.is_a_zp').css('display','block');
+			$('.is_a_zp input[name=is_xz]').attr('disabled',false);
+
+			$('.is_a_zp input[value=1]').attr('disabled',false);
+			$('.is_a_zp input[value=2]').attr('disabled',false);
+			$('.is_a_zp input[name=zp_price]').attr('disabled',false);
+		}else{
+			$('.is_a_zp').css('display','none');
+
+		}
+
+	});
+
+<!--
+    <%include file = "js/base_style_info_info.js" %>
+//-->
+</script>

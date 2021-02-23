@@ -1,0 +1,78 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_processor_info_group">
+        <div class="form-body">
+            <div class="portlet box green">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i><span>当前供应商名称：<%$view->get_name()%></span>
+                    </div>
+                </div>
+                <div class="portlet-body form" style="display: block;">
+                    <div class="form-body row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5" style="min-height:200px">
+                            <div class="form-group">
+                                <label class="control-label">选择供应商：</label>
+                                <select class="form-control" tabindex="1" name="supplier">
+                                <option value=""></option>
+                                    <%foreach from=$view->get_other($view->get_id()) item=u%>
+                                    <option data-id="<%$u.id%>" data-name="<%$u.name%>" data-status="<%$u.status%>" value="<%$u.id%>">
+                                        <%$u.name%>
+                                    </option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">关联供应商：</label>
+                                    <table class="table table-bordered table-striped table-hover flip-content">
+                                        <thead class="flip-content">
+                                        <tr>
+                                            <th>供应商名称</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="processor_supplier_info_tbody">
+                                        <%if !empty($supplier_sum)%>
+                                        <%foreach from=$supplier_sum key=k item=u%>
+                                        <tr>
+                                            <td><%$u.name%></td>
+                                            <td>
+                                                <%if $u.status==1%>启用<%else%>禁用<%/if%>
+                                            </td>
+                                            <td><span class='btn btn-xs red' onclick='del_supplier_group(this)'><i class='fa fa-times'>删除</i></span></td>
+                                            <input type='hidden' name='data[]' value='<%$k%>' from='app_processor_info_group' />
+                                        </tr>
+                                        <%/foreach%>
+                                        <%/if%>
+                                        <input type='hidden' name='data[]' value='<%$view->get_id()%>' from='app_processor_info_group' />
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 搜索按钮 -->
+                    <div class="form-actions fluid">
+                        <div class="col-md-offset-4 col-md-6">
+                            <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                            <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                            <span type="colse" class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+
+<script type="text/javascript">
+    <!--
+    <%include file = "js/app_processor_info_group.js" %>
+    //-->
+</script>

@@ -1,0 +1,43 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_salepolicy_together_goods_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">打包策略名称：</label>
+                        <input type="text" name="name" class="form-control" value="<%$view->get_together_name()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">商品是否可以拆分：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" value="1" <%if $view->get_is_split()==1%>checked="checked"<%/if%> name="is_split">否
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="2" <%if $view->get_is_split()==2%>checked="checked"<%/if%> name="is_split">是
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_salepolicy_together_goods_info.js"%> 
+//-->
+</script>

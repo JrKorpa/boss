@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			  <tr>
+                <th>序号</th>
+                <th>款式编号</th>
+                <th>款式名称</th>
+                <th>产品线</th>
+                <th>款式分类</th>
+                <th>添加时间</th>
+                <th>作废时间</th>
+            </tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+            <tr data-id="base_style_info_search_list_<%$d.style_id%>" data-title="<%$d.style_sn%>">
+                <td align="center"><%$d.style_id%></td>
+                <td align="center">
+                <a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn%>" data-id="basestyleinfo-<%$d.style_id%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$d.style_id%>&rank=1"><%$d.style_sn%></a>
+                </td>
+                <td><%$d.style_name%></td>
+                <td><%$d.product_type%></td>
+                <td><%$d.style_type%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.cancel_time%></td>
+            </tr>
+        <%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

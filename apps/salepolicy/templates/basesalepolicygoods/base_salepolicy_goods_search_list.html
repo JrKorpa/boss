@@ -1,0 +1,107 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#base_salepolicy_goods_search_list .checkboxes"/></th>
+			<th style="text-align: center;">序号</th>
+			<th style="text-align: center;">货号</th>
+			<th style="text-align: center;">款号</th>
+			<th style="text-align: center;">商品名称</th>
+			<th style="text-align: center;">款式分类</th>
+			<th style="text-align: center;">产品线</th>
+            <th style="text-align: center;">是否有销售政策</th>
+			<th style="text-align: center;">名义成本价</th>
+			<th style="text-align: center;">镶口</th>
+			<th style="text-align: center;">手寸</th>
+			<th style="text-align: center;">材质</th>
+			<th style="text-align: center;">材质颜色</th>
+			<th style="text-align: center;">是否期货</th>
+			<th style="text-align: center;">是否上架</th>
+            <th style="text-align: center;">所在公司</th>
+            <th style="text-align: center;">所在仓库</th>
+			<th style="text-align: center;">状态</th>
+			<th style="text-align: center;">添加时间</th>
+		</tr>
+	</thead>
+	<tbody class="kxssp-tbody">
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="base_salepolicy_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+      <td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%if $d.isXianhuo==1%><a href="javascript:void(0);" onclick="util.addNew(this)" data-url="index.php?mod=warehouse&con=WarehouseGoods&act=show&goods_is=<%$d.goods_id%>" data-title="<%$d.goods_id%>" ><%$d.goods_id%></a><%else%><%$d.goods_id%><%/if%></td>
+			<td align="center"><%$d.goods_sn%></td>
+			<td align="center"><%$d.goods_name%></td>
+			<td align="center"><%$d.cat_type_name%></td>
+			<td align="center"><%$d.product_type_name%></td>
+            <td  align="center" class="ksxsp-tddiv"><%if $d.is_policy==1%><sapn style="color: red;z-index:1;">否</sapn><%else%><span <%if $d.is_policy!=1%>class="mo"<%/if%>>是</span><%/if%><div class="xs kxssp-div"></div></td>
+			<td align="center"><%$d.chengbenjia%></td>
+			<td align="center"><%if isset($d.stone)%><%$d.stone%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.finger)%><%$d.finger%><%else%><%/if%></td>
+			<td align="center"><%if isset($Caizhi[$d.caizhi])%><%$Caizhi[$d.caizhi]%><%else%><%/if%></td>
+			<td align="center"><%if isset($Yanse[$d.yanse])%><%$Yanse[$d.yanse]%><%else%><%/if%></td>
+			<td align="center"><%if $d.isXianhuo==1%>现货<%else%>期货<%/if%></td>
+			<td align="center"><%if $d.is_sale==1%>上架<%else%>下架<%/if%></td>
+            <td align="center"><%$d.company%></td>
+            <td align="center"><%$d.warehouse%></td>
+			<td align="center"><%$dd->getEnum("warehouse.goods_status",$d.is_on_sale)%></td>
+			<td align="center"><%$d.add_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+    <%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#base_salepolicy_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#base_salepolicy_goods_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#base_salepolicy_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+$('.mo').hover(function(){
+
+    var tr = $(this).parent().parent();
+    var id = tr.attr('data-title');
+    var tmp = util.getItem('SalepolicyGoodsID-'+id);
+    if(tmp!==null){
+        $('.leftblock').show().html(tmp);
+    }else{
+        $('.leftblock').show().html('<img src="./public/img/loading2.gif">');
+        var url = "index.php?mod=salepolicy&con=BaseSalepolicyGoods&act=getRel";
+        $.post(url,{id:id},function(data){
+            util.setItem('SalepolicyGoodsID-'+id,data);
+            $('.leftblock').show().html(util.getItem('SalepolicyGoodsID-'+id));
+        })
+    }
+},function(){
+        $('.leftblock').hide()
+})
+//-->
+</script>

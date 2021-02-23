@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>地区名称</th>
+			<th>父级名称</th>
+			<th>地区类型</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="region_list_<%$d.region_id%>">
+			<td><%$d.region_id%></td>
+			<td><%$d.region_name%></td>
+			<td><%$d.parent_name%></td>
+			<td><%$dd->getEnum('region.type',$d.region_type)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,47 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>图片</th>
+				<th>款号</th>
+				<th>款式名称</th>
+				<th>工艺</th>
+				<th>钻石重量</th>
+				<th>镶口最小</th>
+				<th>镶口最大</th>
+				<th>约18K金重</th>
+				<th>约Pt950金重</th>
+				<th>18K一对托定制价</th>
+				<th>PT950一对定制托价</th>
+				<th>跳转地址</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="app_style_tsyd_price_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%if $d.pic%><a target="_blank" href="<%$d.pic%>"><img width="80" height="80" src="<%$d.pic%>"></a><%else%>无图片<%/if%></td>
+				<td><%$d.style_sn%></td>
+				<td><%$d.style_name%></td>
+				<td><%$d.work%></td>
+				<td><%$d.carat%></td>
+				<td><%$d.xiangkou_min%></td>
+				<td><%$d.xiangkou_max%></td>
+				<td><%$d.k_weight%></td>
+				<td><%$d.pt_weight%></td>
+				<td><%$d.k_price%></td>
+				<td><%$d.pt_price%></td>
+				<td><%$dd->getEnum("app_style_tsyd_price.jumpto",$d.jumpto)%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

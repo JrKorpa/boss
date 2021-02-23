@@ -1,0 +1,43 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="config_visit_allow_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">用户名</label>
+                        <input type="text" name="user_name" class="form-control" placeholder="请输入"  value="<%$view->get_user_name()%>" <%if $view->get_id()%>disabled<%/if%> />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">系列：</label>
+                        <select class="form-control" tabindex="1" name="xilie[]" multiple>
+                        <option value=""></option>
+                        <%foreach from=$dd->getEnumArray("style.xilie") item=value%>
+                            <option value="<%$value.name%>" <%If in_array($value.name,$xilie)%>selected="selected"<%/if%>><%$value.label%></option>
+                        <%/foreach%>
+                    </select>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <input type="hidden" name="user_name_user" value="<%$view->get_user_name()%>" />
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/config_visit_allow_info.js"%>
+//-->
+</script>

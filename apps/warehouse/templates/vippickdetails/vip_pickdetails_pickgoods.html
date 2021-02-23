@@ -1,0 +1,680 @@
+<style>
+.form-group{ margin-bottom:5px}
+</style>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>捡货操作
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+       <div class="table-toolbar">
+        <%$bar%>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">SKU码：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.barcode|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">VIP货号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.art_no%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">PO单编号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.po_no|default:$pick_info.po_no%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">拣货单号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_info.pick_no|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">送货仓库：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$view->getWarehouseName($pick_info.warehouse)|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">VIP商品名称：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.product_name%>"/>
+				</div>
+			</div>	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">含税价格：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.actual_market_price%>"/>
+				</div>
+			</div>	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">不含税价格：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.actual_unit_price%>"/>
+				</div>
+			</div>	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">尺码：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.size|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">货品总数：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.stock|default:'0'%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">已捡货数：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.boss_pick_num|default:'0'%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">未捡货数：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$pick_details.boss_notpick_num|default:0%>"/>
+				</div>
+			</div>			
+		</div>		
+		<div class="clear"></div>
+	</div>
+</div>
+		<!-- 表格1 -->
+<div>
+<%if $pick_details.boss_pick_status==1%>
+<h3 style="color:red"><%$pick_details.barcode|default:''%>已捡货完成!</h3>
+<%/if%>
+<%if $pick_details.boss_pick_status==0%>
+ <form action="" method="post" class="horizontal-form" id="pickdetails_pickgoods_form">   
+    
+    <div class="row">
+	        <div class="col-sm-10">
+				<div class="form-group">
+					<label class="control-label">配送地址：</label>
+					<select class="form-control" name="address_region">						
+						<option value=""></option>
+						<%foreach from=$view->getAddressList() key=key item=val%>
+						<option value="<%$val.region%>"<%if in_array($pick_info.warehouse,$val.warehouses)%> selected<%/if%>><%$key%>：<%$val.address%>   <%$val.consignee%>   <%$val.tel%>    <%$val.express_name%></option>
+						<%/foreach%>
+					</select>					
+				</div>
+			</div>			
+	</div> 
+    <input type="hidden" name="po_no" value="<%$pick_details.po_no|default:$pick_info.po_no%>" />
+    <input type="hidden" name="pick_no" value="<%$pick_info.pick_no%>" />
+	<input type="hidden" name="art_no" value="<%$pick_details.art_no%>" />
+	<input type="hidden" name="barcode" value="<%$pick_details.barcode%>" />
+	<input type="hidden" name="warehouse" value="<%$pick_info.warehouse%>" />
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th style="text-align:center; width:50px" >序号</th>
+				<th>商品属性</th>				
+			</tr>
+		</thead>
+		<tbody>
+		    <textarea id="goodsHiddenBox" style=" width:0px; height:0px">			    
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货号：</label>
+						<input type="text" name="goods[goods_id][]" class="form-control js_goods_id" tabindex="<%$i%>" />
+					</div>
+				</div>					
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<input type="text" name="goods[style_sn][]" class="form-control js_style_sn" value="" data-tabindex="<%$i%>"/>
+					</div>
+				</div>	
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石单颗重：</label>
+						<input type="text" name="goods[cart][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石粒数：</label>
+						<input type="text" name="goods[zhushi_num][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石颜色：</label>
+						<select class="form-control" name="goods[color][]">						
+							<option value=""></option>
+							<%foreach from=$view->getColorList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石净度：</label>
+						<select class="form-control" name="goods[clarity][]">
+							<option value=""></option>
+							<%foreach from=$view->getClarityList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">镶口：</label>
+						<input type="text" name="goods[xiangkou][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<div class="form-group">
+						<label class="control-label">材质：</label>
+						<select class="form-control" name="goods[caizhi][]">
+							<option value=""></option>
+							<%foreach from=$view->getCaizhiList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<div class="form-group">
+						<label class="control-label">材质颜色：</label>
+						<select class="form-control" name="goods[jinse][]">
+							<option value=""></option>
+							<%foreach from=$view->getJinseList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">指圈：</label>
+						<input type="text" name="goods[zhiquan][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">金重：</label>
+						<input type="text" name="goods[jinzhong][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>
+						<select class="form-control" name="goods[cert][]">
+							<option value=""></option>
+							<%foreach from=$view->getCertList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">证书号：</label>
+						<input type="text" name="goods[zhengshuhao][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">表面工艺：</label>
+                            <select class="form-control" name="goods[face_work][]">
+                                <option value=""></option>
+								<%foreach from=$view->getFaceworkList() key=key item=val%>
+								<option value="<%$val%>"><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+				</div>
+				<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">镶嵌要求：</label>
+                            <select class="form-control" name="goods[xiangqian][]">
+                                <option value=""></option>
+								<%foreach from=$view->getXiangqianList() key=key item=val%>
+								<option value="<%$val%>"><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">刻字内容：</label>
+						<input type="text" name="goods[kezi][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">商品金额：</label>
+						<input type="text" name="goods[goods_price][]" class="form-control" value="0"/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">是否赠品：</label>
+						<select class="form-control" name="goods[is_zp][]">
+                            <option value="0">否</option>	
+							<option value="1">是</option>							
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">商品备注：</label>
+						<input type="text" name="goods[details_remark][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">操作：</label>
+						<button type="button" class="btn btn-sm red js_remove_goods_btn">删除组合商品 <i class="fa fa-trash-o"></i></button>
+					</div>
+				</div>	
+			</textarea>
+		    <%for $i=1 to $pick_page_size%>
+			<tr class="js_tr_<%$i%>">
+			    <td style="text-align:center"><%$i%></td>
+				<td>
+				<div class="row js_list">
+				<input type="hidden" name="goods[parent][]" value="<%$i%>" />
+				<input type="hidden" name="goods[art_no][]" value="<%$pick_details.art_no%>" />
+	            <input type="hidden" name="goods[barcode][]" value="<%$pick_details.barcode%>" />
+				<input type="hidden" name="goods[goods_name][]" value="<%$pick_details.product_name%>"/>
+				<input type="hidden" name="goods[goods_type][]" value="style_goods"/>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货号：</label>
+						<input type="text" name="goods[goods_id][]" class="form-control js_goods_id" tabindex="<%$i%>" />
+					</div>
+				</div>					
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<input type="text" name="goods[style_sn][]" class="form-control js_style_sn" value="" data-tabindex="<%$i%>"/>
+					</div>
+				</div>	
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石单颗重：</label>
+						<input type="text" name="goods[cart][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石粒数：</label>
+						<input type="text" name="goods[zhushi_num][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石颜色：</label>
+						<select class="form-control" name="goods[color][]">						
+							<option value=""></option>
+							<%foreach from=$view->getColorList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">主石净度：</label>
+						<select class="form-control" name="goods[clarity][]">
+							<option value=""></option>
+							<%foreach from=$view->getClarityList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">镶口：</label>
+						<input type="text" name="goods[xiangkou][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<div class="form-group">
+						<label class="control-label">材质：</label>
+						<select class="form-control" name="goods[caizhi][]">
+							<option value=""></option>
+							<%foreach from=$view->getCaizhiList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<div class="form-group">
+						<label class="control-label">材质颜色：</label>
+						<select class="form-control" name="goods[jinse][]">
+							<option value=""></option>
+							<%foreach from=$view->getJinseList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">指圈：</label>
+						<input type="text" name="goods[zhiquan][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">金重：</label>
+						<input type="text" name="goods[jinzhong][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>
+						<select class="form-control" name="goods[cert][]">
+							<option value=""></option>
+							<%foreach from=$view->getCertList() key=key item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">证书号：</label>
+						<input type="text" name="goods[zhengshuhao][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">表面工艺：</label>
+                            <select class="form-control" name="goods[face_work][]">
+                                <option value=""></option>
+								<%foreach from=$view->getFaceworkList() key=key item=val%>
+								<option value="<%$val%>"><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+				</div>
+				<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">镶嵌要求：</label>
+                            <select class="form-control" name="goods[xiangqian][]">
+                                <option value=""></option>
+								<%foreach from=$view->getXiangqianList() key=key item=val%>
+								<option value="<%$val%>"><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">刻字内容：</label>
+						<input type="text" name="goods[kezi][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">商品金额：</label>
+						<input type="text" name="goods[goods_price][]" class="form-control" value="<%$pick_details.actual_market_price%>"/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">是否赠品：</label>
+						<select class="form-control" name="goods[is_zp][]">
+                            <option value="0">否</option>	
+							<option value="1">是</option>							
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">商品备注：</label>
+						<input type="text" name="goods[details_remark][]" class="form-control" value=""/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">操作：</label>
+						<button type="button" class="btn btn-sm green js_add_goods_btn">添加组合商品 <i class="fa fa-plus"></i></button>
+					</div>
+				</div>
+				
+			</div>
+			
+				</td>				
+			</tr>
+			<%/for%>
+		</tbody>
+	</table>
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<button type="reset" class="btn default">重置</button>
+			<button type="button" id="pickGoodsBtn" class="btn green"><i class="fa fa-check"></i> 保存并生成订单</button>
+		</div>
+	</div>
+</form>	
+<%/if%>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<%if $pick_details.boss_pick_status==0%>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品搜索
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<style>.table_dep{color:red;text-align:center;background-color:#ddd;margin:0px 7px;font-size:16px; font-weight:bold}</style>
+		<form action="#" class="horizontal-form" method="post" id="vip_pickdetail_search_goods_form">
+			<div class="form-body">
+				 <div class="row">
+                    <div class="col-sm-3 lz">
+                        <!--订单地址表-->
+                        <div class="form-group">
+                            <label class="control-label">款号：</label>
+                            <input type="text" name="style_sn" class="form-control" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3 lz">
+                        <div class="form-group">
+                            <label class="control-label">主石颜色：</label>
+                            <select class="form-control" tabindex="1" name="color">
+                                <option value=""></option>
+                                <%foreach from=$view->getColorList() key=key item=val %>
+									<option value='<%$val%>'><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 lz">
+                        <div class="form-group">
+                            <label class="control-label">主石净度：</label>
+                            <select class="form-control" tabindex="1" name="clarity">
+                                <option value=""></option>
+                                <%foreach from=$view->getClarityList() key=key item=val %>
+									<option value='<%$val%>'><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 lz">
+                        <!--订单地址表-->
+                        <div class="form-group">
+                            <label class="control-label">证书号：</label>
+                            <input type="text" name="zhengshuhao" class="form-control lz" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">金重：</label>
+                            <div class="input-group">
+                                <input width="50px" type="text" name="jinzhong_min" class="form-control">
+                                <span class="input-group-addon">to</span>
+                                <input width="50px" type="text" name="jinzhong_max" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石大小：</label>
+                            <div class="input-group">
+                                <input width="50px" type="text" name="carat_min" class="form-control">
+                                <span class="input-group-addon">to</span>
+                                <input width="50px" type="text" name="carat_max" class="form-control">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 lz">
+                        <!--订单地址表-->
+                        <div class="form-group">
+                            <label class="control-label">指圈：</label>
+           					 <div class="input-group">
+                                <input width="50px" type="text" name="zhiquan_min" class="form-control">
+                                <span class="input-group-addon">to</span>
+                                <input width="50px" type="text" name="zhiquan_max" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质：</label>
+                            <select class="form-control" tabindex="1" name="caizhi">
+                                <option value=""></option>
+                                <%foreach from=$view->getCaizhiList() key=key item=val %>
+									<option value='<%$val%>'><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质颜色：</label>
+                            <select class="form-control" tabindex="1" name="jinse">
+                                <option value=""></option>
+								<%foreach from=$view->getJinseList() key=key item=val %>
+									<option value='<%$val%>'><%$val%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->	   
+	</div>	
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>商品结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+       <div id="vip_pickdetail_search_goods_list"></div>
+    </div>
+</div>
+<%/if%>
+<%if $pick_details.boss_pick_num>0%>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>已捡货订单列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+       <div id="vip_pickorder_search_goods_list">
+	       <table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+				<tr>			
+					<th>BOSS<br/>货号</th>
+					<th>BOSS<br/>商品名称</th>	
+					<th>BOSS<br/>款号</th>	
+					<th>BOSS<br/>订单号</th>
+					<th>VIP<br/>SKU</th>
+					<th>VIP<br/>尺码</th>
+					<th>VIP<br/>拣货单号</th>	
+					<th>VIP<br/>出仓状态</th>	
+					<th>BOSS<br/>是否赠品</th>
+					<th>BOSS<br/>创建时间</th>				
+				</tr>
+				<%foreach from=$pick_order_list key=key item=d%>
+				<tr>		    
+					<td><%$d.goods_id%></td>
+					<td><%$d.goods_name%></td>
+					<td><%$d.style_sn%></td>	
+					<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.order_id%>"><%$d.order_sn%></a></td>
+					<td><%$d.barcode%></td>	
+					<td><%$d.size%></td>	
+					<td><%$d.pick_no%></td>
+					<td><%$view->getDeliveryStatusName($d.delivery_status)%></td>
+					<td><%if $d.is_zp==1%>是<%else%>否<%/if%></td>
+					<td><%$d.create_time%></td>		
+				</tr>
+				<%/foreach%>
+			</thead>
+		</table>
+	   </div>
+    </div>
+</div>
+<%/if%>
+<script type="text/javascript">
+<!--
+	<%include file="js/vip_pickdetails_pickgoods.js"%>
+<%if $pick_details.boss_pick_status==0%>
+	<%include file="js/vip_pickdetails_search_goods_list.js"%>
+<%/if%>
+//-->
+</script>

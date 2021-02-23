@@ -1,0 +1,81 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>金重(主成色重)</th>
+			<th>主石重</th>
+			<th>证书号</th>
+            <%if $is_show_caigoujia == true%>
+            <%if $show_caigou_price==false || $userType == 1%>
+			<th>采购价</th>
+            <%/if%><%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<th>实价</th><%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<th>批发价</th>
+            <%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<th>差异价</th>
+			<%/if%>
+			<th>手寸</th>
+			<th>长度</th>
+			<th>主成色</th>
+
+			<th>主石</th>
+			<th>主石粒数</th>
+			<th>副石</th>
+			<th>副石粒数</th>
+			<th>副石重</th>
+			<th>总重</th>
+			<th>净度</th>
+			<th>颜色</th>
+			<th>名称</th>
+            <th>出库类型</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+		<tr data-id="" data-title="">
+			<td><%$k+1%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.jinzhong%></td>
+			<td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhengshuhao%></td>
+            <%if $is_show_caigoujia == true%>
+            <%if $show_caigou_price==false || $userType == 1%>
+			<td><%$d.sale_price%></td>
+            <%/if%><%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<td><%$d.shijia%></td>
+            <%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<td><%$d.pifajia%></td>
+            <%/if%>
+            <%if $show_pifajia==false || $userType == 1%>
+			<td><%$d.pifajia-$d.shijia%></td>
+			<%/if%>
+			<td><%$d.shoucun%></td>
+			<td><%$d.changdu%></td>
+			<td><%$d.caizhi%></td>
+
+
+			<td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhushilishu%></td>
+			<td><%$d.fushi%></td>
+			<td><%$d.fushilishu%></td>
+			<td><%$d.fushizhong%></td>
+			<td><%$d.zongzhong%></td>
+			<td><%$d.jingdu%></td>
+			<td><%$d.yanse%></td>
+			<td><%$d.goods_name%></td>
+            <td><%$dd->getEnum('warehouse.out_warehouse_type',$d.out_warehouse_type)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>

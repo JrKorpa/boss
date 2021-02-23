@@ -1,0 +1,117 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="resource_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">显示标识：</label>
+                        <input type="text" name="label" class="form-control" placeholder="请输入" value="<%$view->get_label()%>">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">编码：</label>
+                        <input type="text" name="code" class="form-control" placeholder="请输入" onkeyup="value=value.toUpperCase()" value="<%$view->get_code()%>">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">主表：</label>
+                        <input type="text" name="main_table" class="form-control" placeholder="请输入" value="<%$view->get_main_table()%>">
+                    </div>
+                </div>
+             </div>
+             <div class="row">
+               <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">相关表：</label>
+                        <input type="text" name="user_table" class="form-control" placeholder="请输入" value="<%$view->get_user_table()%>">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">字段：</label>
+                        <input type="text" id="tags_1" name="fields" class="form-control tags" placeholder="请输入" value="<%$view->get_fields()%>">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">外键：</label>
+                        <input type="text" name="foreigh_key" class="form-control" placeholder="请输入" value="<%$view->get_foreigh_key()%>">
+                    </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">是否系统内置：</label>
+                        <div class="radio-list"  style="width:200px;">
+                            <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_system" <%if $view->get_is_system()==$value.name%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">是否启用：</label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_enabled" <%if $view->get_is_enabled()==$value.name%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">备注：</label>
+						<textarea rows="5" name="note" class="form-control" placeholder="请输入"><%$view->get_note()%></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/resource_info.js"%>
+    //-->
+    $(function(){
+        var ComponentsFormTools = function () {
+            var handleTagsInput = function () {
+                if (!jQuery().tagsInput) {
+                    return;
+                }
+                $('#tags_1').tagsInput({
+                    width: 'auto',
+                    'onAddTag': function () {
+                        //alert(1);
+                    },
+                });
+            }
+
+            return {
+                init: function () {
+                    handleTagsInput();
+                }
+            };
+        }();
+        ComponentsFormTools.init();
+    });
+</script>

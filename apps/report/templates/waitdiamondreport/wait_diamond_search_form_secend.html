@@ -1,0 +1,128 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="wait_diamond_search_form_second" onsubmit="wait_diamond_search_form_second_post()">
+			<div class="form-body">
+				<div class="row">
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">日期范围：</label>
+                          <div class="input-group input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control date-picker" name="start_time" value="" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control date-picker" name="start_time" value="" id="start_time"/>
+                           </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">款号：</label>
+                        <input type="text" class="form-control" name="style_sn" value="" id="style_sn"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">工厂：</label>
+                        <select name='prc_ids[]' tabindex="1" class="form-control"  multiple id="prc_ids">
+                        <option value=""></option>
+							<%foreach from=$process key=key item=p%>
+								<option value="<%$p.id%>"><%$p.name%></option>
+							<%/foreach%>
+							</select>
+                    </div>
+                </div>
+                 <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">跟单人：</label>
+                        <select class="form-control" tabindex="1" name="opra_unames[]" multiple id="opra_unames">
+							<option value=""></option>
+							<%foreach from=$user_list item=v%>
+							<option value="<%$v.opra_uname%>"><%$v.opra_uname%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">订单类型：</label>
+                         <select class="form-control select2-offscreen valid" tabindex="-1" name="from_type" id="from_type" >
+							<option value=""></option>
+							<option value="1">采购单</option>
+							<option value="2">订单</option>
+						</select>
+                    </div>
+                </div>
+               
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">每页显示条数</label>
+                        <input type="text" name="page_num" class="form-control" placeholder="请输入" />
+                    </div>
+                </div>
+                
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="wait_diamond_search_list_second"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function wait_diamond_search_form_second_post(){
+	$('#wait_diamond_search_form_second #is_post').val('1');
+}
+var start_time=$('#wait_diamond_search_form_second #start_time').val();
+if(start_time=='') start_time="<%$args.start_time%>";
+var end_time=$('#wait_diamond_search_form_second #end_time').val();
+if(end_time=='') end_time="<%$args.end_time%>";
+var from_type=$('#wait_diamond_search_form_second #from_type').val();
+if(from_type=='') from_type="<%$args.from_type%>";
+var style_sn=$('#wait_diamond_search_form_second #style_sn').val();
+if(style_sn=='') style_sn="<%$args.style_sn%>";
+var prc_ids_string="<%$args.prc_ids_string%>";
+var opra_uname_string="<%$args.opra_uname_string%>";
+<!--
+	<%include file="js/wait_diamond_list_second.js"%>
+//-->
+</script>

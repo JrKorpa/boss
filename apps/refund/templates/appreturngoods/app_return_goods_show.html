@@ -1,0 +1,163 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table class="table table-bordered table-striped flip-content">
+				<tr>
+					<th class="col-sm-3">流水号：</th>
+					<th class="col-sm-3">订单号码：</th>
+					<th class="col-sm-3">申请人：</th>
+					<th class="col-sm-3">申请时间：</th>
+				</tr>
+				<tr>
+					<td><%$view['return_id']%></td>
+					<td><%$view['order_sn']%></td>
+					<td><%$view['apply_user_id']%></td>
+					<td><%$view['apply_time']%></td>
+				</tr>
+				<tr>
+					<th>申请部门：</th>
+					<th>申请商品：</th>
+					<th>申请金额：</th>
+					<th>退款方式：</th>
+				</tr>
+				<tr>
+					<td><%$view['department']%></td>
+					<td><%$view['order_goods_id']%></td>
+					<td><%$view['apply_return_amount']%></td>
+					<td><%if $view['return_type']==1%>转单<%else if $view['return_type']==2%>打卡<%else%>现金<%/if%></td>
+				</tr>
+				<tr>
+					<th colspan="4">客户信息：</th>
+				</tr>
+				<tr>
+					<td colspan="4"><%if $view['return_type']==1%>无<%elseif $view['return_type']==2%>
+                        持卡人姓名:<%$view.consignee%><br />
+                        开户银行:<%$view.bank_name%><br />
+                        银行卡号:<%$view.return_card%><br />
+                        联系方式:<%$view.mobile%>
+                        <%elseif $view['return_type']==3%>收款人：<%$view['consignee']%> 联系方式： <%$view['mobile']%> 客户姓名：<%$view['consignee']%><%/if%>
+                    </td>
+				</tr>
+				<tr>
+					<th colspan="4">客户退货原因：</th>
+				</tr>
+				<tr>
+					<td colspan="4"><%$view['return_res']%></td>
+				</tr>
+			</table>
+      <table class="table table-bordered table-striped flip-content">
+				<tr>
+          <th rowspan="5" class="col-sm-3" style="text-align: right; vertical-align: middle;">业务负责人意见</th>
+					<td>审核状态：<%if $view['leader_status']==1%>审核通过<%else if $view['leader_status']==2%>审核驳回<%else%>未操作<%/if%></td>
+				</tr>
+				<tr>
+					<td colspan="3">意见内容：<%$view['leader_res']%></td>
+				</tr>
+				<tr>
+					<td colspan="3">审核金额：<%$view['apply_return_amount']%></td>
+				</tr>
+				<tr>
+					<td colspan="3">负责人：<%$view['leader_id']%></td>
+				</tr>
+				<tr>
+					<td colspan="3">操作时间：<%$view['leader_time']%></td>
+				</tr>
+				<tr>
+          <th rowspan="4" style="text-align: right; vertical-align: middle;">库管部门意见</td>
+					<td>审核状态：<%if $view.goods_status==1%>审核通过<%elseif $view.goods_status==2%>审核驳回<%elseif $view.goods_status==0%>未确认<%/if%></th>
+				</tr>
+				<tr>
+					<td>意见内容：<%$view['goods_res']%></td>
+				</tr>
+				<tr>
+					<td>负责人：<%$view['goods_comfirm_id']%></td>
+				</tr>
+				<tr>
+					<td>操作时间：<%$view['goods_time']%></td>
+				</tr>
+				<tr>
+          <th rowspan="4" style="text-align: right; vertical-align: middle;">事业部负责人意见</th>
+					<td>审核状态：<%if $view['cto_status']==1%>批准<%else%>未操作<%/if%></td>
+				</tr>
+				<tr>
+					<td>意见内容：<%$view['cto_res']%></td>
+				</tr>
+				<tr>
+					<td>负责人：<%$view['cto_id']%></td>
+				</tr>
+				<tr>
+					<td>操作时间：<%$view['cto_time']%></td>
+				</tr>
+				<tr>
+          <th rowspan="4" style="text-align: right; vertical-align: middle;">现场财务意见</th>
+					<td>审核状态：<%if $view['deparment_finance_status']==1%>同意退款<%else%>未操作<%/if%></td>
+				</tr>
+				<tr>
+					<td>意见内容：<%$view['deparment_finance_res']%></td>
+				</tr>
+				<tr>
+					<td>负责人：<%$view['deparment_finance_id']%></td>
+				</tr>
+				<tr>
+					<td>操作时间：<%$view['deparment_finance_time']%></td>
+				</tr>
+				<tr>
+          <th rowspan="4" style="text-align: right; vertical-align: middle;">财务部意见</th>
+					<td>审核状态：<%if $view['finance_status']==1%>已经退款<%else%>未操作<%/if%></td>
+				</tr>
+				<tr>
+					<td>意见内容：<%$view['finance_res']%></td>
+				</tr>
+				<tr>
+					<td>负责人：<%$view['finance_id']%></td>
+				</tr>
+				<tr>
+					<td>操作时间：<%$view['finance_time']%></td>
+				</tr>
+				<tr>
+          <th rowspan="2" style="text-align: right; vertical-align: middle;">实际退款人操作</th>
+					<td>操作备注：<%$view['pay_res']%></td>
+				</tr>
+                <tr>
+                    <td>上传凭证：<%if $view['pay_attach']%><a href="<%$view['pay_attach']%>">凭证</a><%/if%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+    <div class="table-scrollable">
+      <table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<th class="col-sm-3">操作人</th>
+					<th class="col-sm-3">操作时间</th>
+					<th>操作内容</th>
+				</tr>
+        <%foreach from=$logInfo item=d%>
+				<tr>
+					<td><%$d.even_user%></td>
+					<td><%$d.even_time%></td>
+					<td><%$d.even_content%></td>
+				</tr>
+        <%/foreach%>
+			</table>
+    </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_return_goods_show.js"%>
+//-->
+</script>

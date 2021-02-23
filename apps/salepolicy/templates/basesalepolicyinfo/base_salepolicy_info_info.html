@@ -1,0 +1,245 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="base_salepolicy_info_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售策略名称：<span class="required">*</span></label>
+						<input type="text" name="policy_name" class="form-control" placeholder="请输入"  value="<%$view->get_policy_name()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售策略开始时间：<span class="required">*</span></label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="policy_start_time" value="<%$view->get_policy_start_time()%>" class="form-control" readonly="">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">销售策略结束时间：<span class="required">*</span></label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="policy_end_time" value="<%$view->get_policy_end_time()%>" class="form-control" readonly="">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">固定值：<span class="required">*</span></label>
+						<input type="text" maxlength="6" value="<%$view->get_sta_value()%>" placeholder="请输入" class="form-control" name="sta_value">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">加价率：<span class="required">*</span></label>
+						<input type="text" maxlength="6" value="<%$view->get_jiajia()%>" placeholder="请输入" class="form-control" name="jiajialv">
+					</div>
+				</div>
+
+                <%if $act=='add' %>
+                <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据类型：</label>
+							<select class="form-control" tabindex="1" name="bill_type">
+							<option value=""></option>
+							<%foreach from=$bill_type item=value%>
+							<option value="<%$value.type_SN%>"><%$value.type_SN%> | <%$value.type_name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+                <div class="col-sm-3">
+         
+					<div class="form-group">
+                         
+						<label class="control-label">单据编号：</label>
+                          <input type="checkbox" value="" name="bill_type_select" >如需导入单据货品请勾选
+						<input type="text"  value="" readonly="readonly" placeholder="请输入" class="form-control" name="bill_no">
+					</div>
+				</div>
+                <%/if%>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">镶口范围：</label>
+                        <div class="input-group">
+                            <input  type="text" class="form-control" width="50px" name="range_begin" value="<%$view->get_range_begin()%>">
+                            <span class="input-group-addon">to</span>
+                            <input  type="text" class="form-control" width="50px" name="range_end" value="<%$view->get_range_end()%>">
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">主石范围：</label>
+                        <div class="input-group">
+                            <input  type="text" class="form-control" width="50px" name="zhushi_begin" value="<%$view->get_zhushi_begin()%>">
+                            <span class="input-group-addon">to</span>
+                            <input  type="text" class="form-control" width="50px" name="zhushi_end" value="<%$view->get_zhushi_end()%>">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">产品线：</label>
+                        <select class="form-control" name="chanpinxian" tabindex="1" >
+                            <%foreach from=$chanpinxian item=c key=k%>
+                            <option value="<%$k%>|<%$c%>" <%if $c==$view->get_product_type()%>selected="selected"<%/if%>>
+                            	<%$c%>
+                            </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">系列及归属：</label>
+                        <select class="form-control" name="xilie[]" tabindex="1" multiple>
+                            <%foreach from=$xilieArr item=c key=k%>
+                            <option value="<%$c['label']%>" <%if  in_array($c.label,explode(',',$view->get_xilie()))%>selected<%/if%>><%$c['label']%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                
+                
+				<!--
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">策略类型：<span class="required">*</span></label>
+						<div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" value="1" <%if $view->get_is_together()==1%>checked="checked"<%/if%> name="is_together"> 普通
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="2" <%if $view->get_is_together()==2%>checked="checked"<%/if%> name="is_together"> 打包
+                            </label>
+                        </div>
+					</div>
+				</div>
+                -->
+			</div>
+			<div class="row">
+            	<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">金托类型：</label><span style='color:red;'></span>
+                        <select class="select2_category form-control" name="jintuo_type" tabindex="1" >
+                            <option value="">全部</option>
+                            <%foreach from=$dd->getEnumArray('warehouse_goods.tuo_type') item=j%>
+                            <option value="<%$j.name%>"
+                            <%if $j.name==$view->get_tuo_type()%>selected="selected"<%/if%>><%$j.label%>
+                            </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">货品类型：</label>
+                        <select class="select2_category form-control" name="huopin_type" tabindex="1" >
+                        	<option></option>
+                            <%foreach from=$huopintypes item=v key=key%>
+                            <option value="<%$key%>"
+                            	<%if $key==$view->get_huopin_type()%>selected="selected"<%/if%>><%$v%>
+                            </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式分类：</label>
+                        <select class="select2_category form-control" name="cat_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$catArr item=c%>
+								<option value="<%$c.id%>|<%$c.name%>" 
+                                    <%if $c.name==$view->get_cat_type()%>selected="selected"<%/if%>>
+                                    <%$c.name%>
+                                    </option>
+								<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">裸钻证书类型：</label>
+                        <select class="form-control" name="cert[]" tabindex="1" multiple>
+                            <%foreach from=$certArr item=c key=k%>
+                            <option value="<%$c%>" <%if  in_array($c,explode(',',$view->get_cert()))%>selected<%/if%>><%$c%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-sm-3">
+				    <div class="form-group">
+                    <label class="control-label">主石颜色：</label>
+                        <select class="form-control" name="color[]" tabindex="1" multiple>
+					        <option value=""></option>
+                            <%foreach from=$colorArr item=c key=k%>
+                            <option value="<%$c%>"<%if in_array($c,explode(',',$view->get_color()))%>selected<%/if%>><%$c%></option>
+                            <%/foreach%>
+                        </select>
+					</div>	
+                </div>
+                <div class="col-sm-3">
+ 					<div class="form-group">
+                    <label class="control-label">主石净度：</label>
+                        <select class="form-control" name="clarity[]" tabindex="1" multiple>
+                            <option value=""></option>
+							<%foreach from=$clarityArr item=c key=k%>
+                            <option value="<%$c%>"<%if in_array($c,explode(',',$view->get_clarity()))%>selected<%/if%>><%$c%></option>
+                            <%/foreach%>
+                        </select>
+					</div>	
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="control-label">销售政策是否可以申请优惠：</label>
+                    <input type="checkbox" name="is_favourable" class="form-control" placeholder="" <%if $view->get_is_favourable()==1 or $view->get_is_favourable()==''%>checked="checked"<%else%><%/if%>/>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">是否为默认销售政策：</label>
+                    <input type="checkbox" name="is_default" class="form-control" placeholder="" <%if $view->get_is_default()==1 %>checked="checked"<%else%><%/if%>/>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">是否一口价政策：</label>
+                    <input type="checkbox" name="is_kuanprice" class="form-control" placeholder="" <%if $view->get_is_kuanprice()==1 %>checked="checked"<%else%><%/if%>/>
+                </div>
+            </div>
+            
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">记录备注：</label>
+                        <textarea class="form-control" name="check_remark" rows="4"><%$view->get_check_remark()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="policy_id" value="<%$view->get_policy_id()%>" />
+				<input type="hidden" name="is_together" value="1" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_salepolicy_info_info.js"%>
+//-->
+</script>

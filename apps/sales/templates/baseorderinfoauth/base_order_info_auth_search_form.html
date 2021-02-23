@@ -1,0 +1,69 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="base_order_info_auth_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" id="order_sn" class="form-control" placeholder="逗号或者空格隔开多个订单号批量查询" >
+						</div>
+					</div>	
+					<div  class="col-sm-5">
+						<div class="form-group">
+							<label class="control-label">证书号：</label>
+							<input type="text" name="cert_id" id="cert_id" class="form-control" placeholder="逗号或者空格隔开多个证书号批量查询">
+						</div>
+					</div>	
+				</div>
+			</div>
+			
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="base_order_info_auth_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_order_info_auth_list.js"%>
+//-->
+</script>

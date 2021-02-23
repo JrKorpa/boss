@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="zh-CN" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="zh-CN" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh-CN" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8"/>
+<title>运营管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!--全局强制性风格 -->
+<link rel="stylesheet" type="text/css" href="assets/plugins/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/uniform/css/uniform.default.css" />
+<!--THEME STYLES -->
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-datetimepicker/css/datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/jquery-multi-select/css/multi-select.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/jquery-tags-input/jquery.tagsinput.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2-metronic.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" />
+<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-modal/css/bootstrap-modal.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/style-metronic.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/style-responsive.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/plugins.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/themes/blue.css"  id="style_color"/>
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/style-custom.css" />
+<link rel="shortcut icon" href="assets/img/favicon.png" />
+</head>
+<!--BODY -->
+<body class="page-header-fixed page-sidebar-fixed page-footer-fixed">
+<!-- 头部开始 -->
+<div class="header navbar navbar-fixed-top">
+</div>
+<!-- 头部结束 -->
+<div class="clearfix">
+</div>
+<!--容器 -->
+<div class="page-container">
+	<!--内容-->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- 切换开始 -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tabbable tabbable-custom boxless">
+						<!-- 切换导航开始 -->
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab_1" data-toggle="tab">切换标题1</a>
+								<i class="close"></i><!-- 关闭按钮 -->
+							</li>
+						</ul>
+						<!-- 切换导航结束 -->
+						<!-- 切换内容开始 -->
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab_1">
+								<!-- 内容开始 -->
+								<div class="portlet box green">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-reorder"></i>搜索框
+										</div>
+										<div class="tools">
+											<a href="javascript:;" class="collapse">
+											</a>
+										</div>
+									</div>
+									<div class="portlet-body form">
+										<!-- 表单内容 -->
+										<form action="#" class="horizontal-form">
+											<div class="form-body">
+												<div class="row">
+													<div class="col-sm-6">
+														<!-- 别忘记添加父级 -->
+														<!-- 日期时间从这开始复制 -->
+														<label class="control-label">选择日期时间</label>
+														<div class="form-group">
+															<div class="input-group input-medium date form_datetime" data-date-format="yyyy-dd-mm hh:mm:ss">
+																<input type="text" size="16" readonly class="form-control">
+																<span class="input-group-btn">
+																	<button class="btn default date-reset" type="button"><i class="fa fa-times"></i></button>
+																</span>
+																<span class="input-group-btn">
+																	<button class="btn default date-set" type="button"><i class="fa fa-calendar"></i></button>
+																</span>
+															</div>
+														</div>
+														<!-- 日期时间从这结束 -->
+													</div>
+													<div class="col-sm-6">
+														<!-- 上传按钮从这复制 -->
+														<div class="form-group fileupload-buttonbar">
+															<span class="btn green fileinput-button">
+																<i class="fa fa-plus"></i>
+																<span>
+																	 添加文件...
+																</span>
+																<input type="file" name="files[]" multiple="">
+															</span>
+															<p class="control-label"></p>
+														</div>
+														<!-- 上传按钮从这结束 -->
+														<!-- 下面有上传按钮点击事件 -->
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- END FORM-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 切换结束 -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!--底部 -->
+<div class="footer">
+	<div class="footer-inner">
+		 2007-2014 © GP商贸有限公司.
+	</div>
+	<div class="footer-tools">
+		<span class="go-top">
+			<i class="fa fa-angle-up"></i>
+		</span>
+	</div>
+</div>
+<!--JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!--CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="assets/plugins/respond.min.js"></script>
+<script src="assets/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script type="text/javascript" src="assets/plugins/jquery-1.10.2.min.js" ></script>
+<script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js" ></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script type="text/javascript" src="assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" ></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" ></script>
+<script type="text/javascript" src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery.cokie.min.js"></script>
+<script type="text/javascript" src="assets/plugins/uniform/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="assets/plugins/select2/select2.min.js" ></script>
+<script type="text/javascript" src="assets/plugins/jquery-multi-select/js/jquery.multi-select.js" ></script>
+<script type="text/javascript" src="assets/plugins/jquery-tags-input/jquery.tagsinput.min.js" ></script>
+<script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.js" ></script>
+<script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js" ></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" ></script>
+<script type="text/javascript" src="assets/plugins/bootstrap-modal/js/bootstrap-modal.js" ></script>
+<script type="text/javascript" src="assets/plugins/bootbox/bootbox.min.js" ></script>
+<script src="assets/scripts/core/app.js" ></script>
+<script src="assets/scripts/core/nav-tab-style.js" ></script>
+<script src="assets/scripts/custom/form-samples.js" ></script>
+<script src="assets/scripts/custom/components-pickers.js" ></script>
+<script src="assets/scripts/custom/components-dropdowns.js" ></script>
+<script src="assets/scripts/custom/components-form-tools.js" ></script>
+<script src="assets/scripts/custom/table-managed.js" ></script>
+<script src="assets/scripts/custom/ui-extended-modals.js" ></script>
+<script>
+jQuery(document).ready(function() {    
+  App.init();
+  Nav_tab();
+  FormSamples.init();
+  ComponentsPickers.init();
+  ComponentsDropdowns.init();
+  ComponentsFormTools.init();
+  TableManaged.init();
+  UIExtendedModals.init();
+
+  // 上传按钮点击事件
+  $("input[type=file]").change(function (){
+  	$(this).parents(".fileinput-button").parent(".fileupload-buttonbar").find('p.control-label').text($(this).val());
+  });
+  $("input[type=file]").each(function () {
+    if ($(this).val() == "") { $(this).parents(".fileinput-button").next("control-label").text("未选择文件..."); }
+  });
+  // 上传按钮点击事件结束
+});
+</script>
+</html>

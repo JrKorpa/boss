@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;">序号</th>
+			<th style="text-align:center;">货号</th>
+			<th style="text-align:center;">款号</th>
+			<th style="text-align:center;">仓库</th>
+			<th style="text-align:center;">柜位</th>
+			<th style="text-align:center;">入库时间</th>
+			<th style="text-align:center;">上架时间</th>
+			<th style="text-align:center;">上架操作人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="goods_warehouse_list_<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.good_id%></td>
+			<td align="center"><%$d.goods_sn%></td>
+			<td align="center"><%$view->getWarehouse($d.good_id)|default:'--'%></td>
+			<td align="center"><%$d.box_sn|default:'----'%></td>
+			<td align="center"><%$d.add_time%></td>
+			<td align="center"><%$d.create_time|default:'--'%></td>
+			<td align="center"><%$d.create_user|default:'--'%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

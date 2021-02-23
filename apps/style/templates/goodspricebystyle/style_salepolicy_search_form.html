@@ -1,0 +1,69 @@
+<!--搜索开始-->
+<%if !empty($attr_list)%>
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="style_salepolicy_search_form">
+			<div class="form-body">
+                
+				<div class="row">
+                  <%foreach from=$attr_list item=attr%>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><%$attr.attribute_name%>：</label>
+                            <div class="radio-list">                    
+                                <select class="select2_category form-control" tabindex="1" name="attr[<%$attr.attribute_id%>]">
+                                    <option value=""></option>
+                                    <%foreach from=$attr.attrVal item=val%>
+                                        <option value="<%$val.att_value_id%>"><%$val.att_value_name%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                   <%/foreach%>
+                   <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">销售渠道：</label>
+                            <div class="radio-list">                    
+                                <select class="select2_category form-control" tabindex="1" name="channel">
+                                    <option value="">请选择销售渠道</option>
+                                    <%foreach from=$channellist item=val%>
+                                        <option value="<%$val.id%>"><%$val.channel_name%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                    </div>			
+				</div>             
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+				    <input type="hidden" name="style_sn" value="<%$style_sn%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+
+<script type="text/javascript">
+<!--
+	<%include file="js/style_salepolicy_search_list.js"%>
+//-->
+</script>
+
+<%/if%>

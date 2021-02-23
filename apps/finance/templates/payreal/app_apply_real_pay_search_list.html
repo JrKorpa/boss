@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>实付单号</th>
+			<th>应付单号</th>
+			<th>结算商</th>
+			<th>银行交易流水</th>
+			<th>收款方(户名)</th>
+			<th>收款方(银行)</th>
+			<th>收款方(账号)</th>
+			<th>付款时间</th>
+			<th>实付金额</th>
+			<th>制单人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_real_pay_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.real_number%></td>
+			<td align="center"><%$d.apply_no%></td>
+			<td align="center"><%$d.supplier_name%></td>
+			<td align="center"><%$d.bank_serial%></td>
+			<td align="center"><%$d.account_name%></td>
+			<td align="center"><%$d.bank_name%></td>
+			<td align="center"><%$d.bank_account%></td>
+			<td align="center"><%$d.pay_time%></td>
+			<td align="center"><%$d.pay_total%></td>
+			<td align="center"><%$d.create_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

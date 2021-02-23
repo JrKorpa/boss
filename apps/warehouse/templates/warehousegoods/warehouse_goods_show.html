@@ -1,0 +1,53 @@
+<style>
+    .w_10{width:10%}
+    .w_15{width:15%}
+</style>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>商品详情
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="table-scrollable">
+            <table id="stone_procute_check_table" class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td class="w_10"><b>货号</b></td>
+                    <td class="w_15"><%$view->get_goods_id()%></td>
+                    <td class="w_10"><b>款号</b></td>
+                    <td class="w_15"><%$view->get_goods_sn()%></td>
+                    <td class="w_10"><b>商品名称</b></td>
+                    <td class="w_15"><%$view->get_goods_name()%></td>
+                    <td class="w_10"><b>入库方式</b></td>
+                    <td class="w_15"><%$view->get_put_in_type()%></td>
+                </tr>
+                <tr>
+                    <td class="w_10"><b>所属公司</b></td>
+                    <td class="w_15"><%$view->get_company()%></td>
+                    <td class="w_10"><b>所在仓库</b></td>
+                    <td class="w_15"><%$view->get_warehouse()%></td>
+                    <td class="w_10"><b>材质</b></td>
+                    <td class="w_15"><%$view->get_caizhi()%></td>
+                    <td class="w_10"><b>金重</b></td>
+                    <td class="w_15"><%$view->get_jinzhong()%></td>
+                </tr>
+                <tr>
+                    <td class="w_10"><b>主石</b></td>
+                    <td class="w_15"><%$view->get_zhushi()%></td>
+                    <td class="w_10"><b>证书号</b></td>
+                    <td class="w_15"><%$view->get_zhengshuhao()%></td>
+                    <td class="w_10"><b>手寸</b></td>
+                    <td class="w_15"><%$view->get_shoucun()%></td>
+                    <td class="w_10"><b>总重</b></td>
+                    <td class="w_15"><%$view->get_zongzhong()%></td>
+                </tr>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+

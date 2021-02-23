@@ -1,0 +1,53 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<td colspan="3">订单总金额：<%$all_price%></td>
+		</tr>
+		<tr>
+			<th>序号</th>
+			<th>订单号</th>
+			<th>订单部门</th>
+			<th>客户来源</th>
+			<th>会员名称</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>订单状态</th>
+			<th>订单审核状态</th>
+			<th>订单商品总金额</th>
+			<th>支付状态</th>
+			<th>付款方式</th>		 
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_list_<%$d.id%>" data-title="<%$d.order_sn%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.order_sn%></td>
+			<td align="center"><%$d.order_department%></td>
+			<td align="center"><%$d.order_source%></td>
+			<td align="center"><%$d.user_id%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time%></td>
+			<td align="center">		
+				<%$dd->getEnum('order.order_status',$d.order_status)%>
+			</td>
+			<td align="center">	
+				<%$dd->getEnum('order.check_status',$d.order_check_status)%>
+			</td>
+			<td align="center"><%$d.order_price|default:0%></td>
+			<td align="center">
+				<%$dd->getEnum('order.order_pay_status',$d.order_pay_status)%>
+			</td>
+			<td align="center">
+				<%$dd->getEnum('order.order_pay_type',$d.order_pay_type)%>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

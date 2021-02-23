@@ -1,0 +1,101 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th>证书类型</th>
+            <th>数量</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%$d.cert%></td>
+            <td><%$d.c%></td>
+            <td><button class="btn btn-sm red" name="1" title="删除" list-id="1" val="<%$d.cert%>" data-title="裸钻信息">
+			删除 <i class="fa fa-trash-o"></i>
+			</button></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+    <thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <thead class="flip-content">
+        <tr>
+            <th>来源</th>
+            <th>数量</th>
+			<th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$From_ad item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%if isset($_ad[$d.from_ad])%><%$_ad[$d.from_ad]%><%else%><%/if%></td>
+            <td><%$d.c%></td>
+            <td><button class="btn btn-sm red" name="1" title="删除" list-id="<%if $d.from_ad>'250'%>250<%else%>2<%/if%>" val="<%$d.from_ad%>" data-title="裸钻信息">
+			删除 <i class="fa fa-trash-o"></i>
+			</button></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+    <thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <thead class="flip-content">
+        <tr>
+            <th>形状</th>
+            <th>数量</th>
+			<th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$Shape item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%if isset($Shape_arr[$d.shape])%><%$Shape_arr[$d.shape]%><%else%><%/if%></td>
+            <td><%$d.c%></td>
+            <td><button class="btn btn-sm red" name="1" title="删除" list-id="3" val="<%$d.shape%>" data-title="裸钻信息">
+			删除 <i class="fa fa-trash-o"></i>
+			</button></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+    <thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <thead class="flip-content">
+        <tr>
+            <th>库房</th>
+            <th>数量</th>
+			<th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$Warehouse item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%if isset($d.warehouse_name)%><%$d.warehouse_name%><%else%><%/if%></td>
+            <td><%$d.c%></td>
+            <td><button class="btn btn-sm red" name="1" title="删除" list-id="4" val="<%$d.warehouse%>" data-title="裸钻信息">
+			删除 <i class="fa fa-trash-o"></i>
+			</button></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+<script type="text/javascript">
+<!--
+    util.hover();
+	<%include file = "js/diamond_tongji_show.js" %>
+//-->
+</script>

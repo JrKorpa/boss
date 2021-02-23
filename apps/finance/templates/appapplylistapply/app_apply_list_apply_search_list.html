@@ -1,0 +1,45 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><input type="checkbox" onClick="select_checkbox(this.checked)" /></th>
+			<th>应付申请单号</th>
+			<th>发票号</th>
+			<th>应付类型</th>
+			<th>应付金额</th>
+			<th>供货商/结算商</th>
+			<th>制单时间</th>
+			<th>制单人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>状态</th>
+			<th>应付单号</th>
+			<th>调整原因</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=item%>
+		<tr data-id="app_apply_list_apply_search_list_<%$item.apply_id%>" data-title="<%$item.apply_id%>">
+			<td align="center"><%if $item.status == 5%><input type="checkbox" name="_ids[]" value="<%$item.apply_id%>" /><%/if%></td>
+			<td align="center"><%$item.pay_apply_number%></td>	
+			<td align="center"><%$item.fapiao%></td>
+			<td align="center"><%$payType[$item.pay_type]%></td>
+			<td align="center"><%$item.total_cope%></td>
+			<td align="center"><%$item.prc_name%></td>
+			<td align="center"><%$item.make_time%></td>
+			<td align="center"><%$item.make_name%></td>
+			<td align="center"><%$item.check_time%></td>
+			<td align="center"><%$item.check_name%></td>
+			<td align="center"><%$applyorderdostatus[$item.status]%></td>
+			<td valign="middle" align="center"><%$item.pay_number%></td>
+			<td valign="middle" align="center"><%$item.adj_reason%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//-->
+</script>

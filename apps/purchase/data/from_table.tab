@@ -1,0 +1,220 @@
+id = #from_table_data;
+
+[title]
+0 = "序号";
+1 = "客户名";
+2 = "采购单号";
+3 = "布产号";
+4 = "款号";
+5 = "模号";
+6 = "戒托实际镶口";
+7 = "款式分类";
+8 = "成品/空托";
+9 = "手寸";
+10 = "主成色";
+11 = "毛重";
+12 = "主成色重";
+13 = "金耗";
+14 = "主成色单价";
+15 = "主石";
+16 = "主石粒数";
+17 = "主石重";
+
+18 = "主石颜色";
+19 = "主石净度";
+20 = "主石买入单价";
+21 = "副石(副石类别)";
+22 = "副石粒数";
+23 = "副石重";
+24 = "副石买入单价";
+
+25 = "工费";
+26 = "超石费";
+27 = "其它工费";
+28 = "配件成本";
+29 = "税费";
+30 = "客来石信息";
+
+31 = "证书号";
+32 = "石2(石2类别)";
+33 = "石2粒数";
+34 = "石2重";
+35 = "石2买入单价";
+36 = "石3(石3类别)";
+37 = "石3粒数";
+38 = "石3重";
+39 = "石3买入单价";
+
+40 = "成本价";
+41 = "含税成本价";
+42 = "主副石总重量";
+
+[columns_0]
+type = numeric;
+readOnly = false;
+
+[columns_1]
+type = text;
+
+[columns_2]
+type = text;
+
+[columns_3]
+type = text;
+
+[columns_4]
+type = text;
+
+[columns_5]
+type = text;
+
+[columns_6]
+type = numeric;
+format = 0,0.00;
+
+[columns_7]
+type = text;
+
+[columns_8]
+editor = select;
+selectOptions = [成品, 空托];
+
+;type = autocomplete;
+;source = [成品, 空托];
+;strict = true;
+
+[columns_9]
+type = numeric;
+format = 0,0.0;
+
+[columns_10]
+editor = select;
+selectOptions = ["18K", "PT950"];
+
+[columns_11]
+type = numeric;
+format = 0,0.000;
+
+[columns_12]
+type = numeric;
+format = 0,0.00;
+
+[columns_13]
+type = numeric;
+format = 0,0.00;
+
+[columns_14]
+type = numeric;
+format = 0,0.00;
+
+[columns_15]
+type = text;
+
+
+[columns_16]
+type = numeric;
+format = 0,0;
+
+[columns_17]
+type = numeric;
+format = 0,0.000;
+
+
+[columns_18]
+type = text;
+
+[columns_19]
+type = text;
+
+[columns_20]
+type = numeric;
+format = 0,0.00;
+
+
+[columns_21]
+type = text;
+
+[columns_22]
+type = numeric;
+format = 0,0.00;
+
+[columns_23]
+type = numeric;
+format = 0,0.000;
+
+[columns_24]
+type = numeric;
+format = 0,0.00;
+
+
+[columns_25]
+type = numeric;
+format = 0,0.00;
+
+[columns_26]
+type = numeric;
+format = 0,0.00;
+
+[columns_27]
+type = numeric;
+format = 0,0.00;
+
+[columns_28]
+type = numeric;
+format = 0,0.00;
+
+[columns_29]
+type = numeric;
+format = 0,0.00;
+
+[columns_30]
+type = text;
+
+[columns_31]
+type = text;
+
+[columns_32]
+type = text;
+
+[columns_33]
+type = numeric;
+format = 0,0;
+
+[columns_34]
+type = numeric;
+format = 0,0.000;
+
+[columns_35]
+type = numeric;
+format = 0,0.00;
+
+[columns_36]
+type = text;
+
+
+[columns_37]
+type = numeric;
+format = 0,0;
+
+
+[columns_38]
+type = numeric;
+format = 0,0.00;
+
+[columns_39]
+type = numeric;
+format = 0,0.00;
+
+[columns_41]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_42]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_43]
+type = text;
+readOnly = true;

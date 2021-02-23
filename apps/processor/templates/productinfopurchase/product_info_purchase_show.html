@@ -1,0 +1,80 @@
+<div class="portlet box blue" id="product_info_purchase_show_page">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>布产采购单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>采购单单号</b></td>
+					<td><%$row.p_sn|default:''%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('purchase_status',$row.p_status)%></td>
+				</tr>
+				<tr>
+					<td><b>采购分类</b></td>
+					<td><%$row.t_id|default:''%></td>
+					<td><b>采购方式</b></td>
+					<td><%$dd->getEnum('warehouse.put_in_type',$row.put_in_type)%></td>
+				</tr>
+				<tr>
+					<td><b>采购申请费用</b></td>
+					<td><%$row.purchase_fee|default:'--'%></td>
+					<td><b>总数量</b></td>
+					<td><span id="s_num"><%$row.p_sum|default:'--'%></span></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$row.make_uname|default:'--'%></td>
+					<td><b>制单时间</b></td>
+					<td><%$row.make_time|default:'--'%></td>
+				</tr>
+				<tr>
+					<td><b>审核人</b></td>
+					<td><%$row.check_uname|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$row.check_time|default:''%></td>
+				</tr>
+				<tr>
+					<td><b>备注</b></td>
+					<td colspan="3"><%$row.p_info|default:''%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>采购布产列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+		</div>
+		<!-- 表格 -->
+		<div id="product_info_purchase_info_search_list">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	<%include file="js/product_info_purchase.js"%>
+</script>

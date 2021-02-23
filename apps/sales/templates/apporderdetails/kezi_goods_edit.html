@@ -1,0 +1,10 @@
+<div style="height:auto;">
+	<div id="order_detail_kezi_out_div_goods_edit" style="height: auto; width:200px; padding:4px 10px;"><%if isset($kezi)%><%$kezi%><%else%><%/if%></div>
+    <textarea class="emotion" cols="40" rows="1" style="font-size: 13px; width:208px;" name="kezi" id="kezi" <%if !in_array('kezi',$edits)%>readonly disabled<%/if%>><%$orderdetails["kezi"]|default:""%></textarea>
+	<%if in_array('kezi',$edits)%>
+	<div style="padding-top:5px">
+		<input class="btn blue btn-sm" id="order_detail_face_goods_edit" type="button" value="刻字图案"/>
+		<input class="btn green btn-sm" id="analytic" type="button" value="显示效果" onClick="order_detil_kezi_out_goods_edit()" />
+	</div>
+	<%/if%>
+</div>

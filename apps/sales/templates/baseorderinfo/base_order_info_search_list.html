@@ -1,0 +1,146 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<!--<tr>
+			<td colspan="12">订单总金额：<%$all_price%></td>
+		</tr> -->
+		<tr>
+			<th><input type="checkbox" class="group-checkable" data-set="#base_order_info_search_list .checkboxes" /></th>
+			<th>订单号</th>
+			<th>客户名称</th>
+			<th>电话号码</th>
+			<th>制单人</th>
+            <th>跟单人</th>
+			<th>订单金额</th>
+			<th>已付金额</th>
+			<th>实际退款金额</th>
+			<th>未付金额</th>
+			<th>订单状态</th>
+			<th>支付状态</th>
+			<th>订购类型</th>
+			<th>布产状态</th>
+            <th>配货状态</th>
+            <th>发货状态</th>
+            <th>退款状态</th>
+            <th>订单类型</th>
+            <th>申请关闭</th>
+            <th>推荐人会员编号</th>
+			<th>推荐人姓名</th>
+			<th>制单时间</th>
+			<th>第一次付款时间</th>
+			<th>销售渠道</th>
+            <th>线上线下</th>
+			<th>客户来源</th>
+			<th>录单来源</th>
+			<th>预约单号</th>
+			<th>是否网销</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_list_<%$d.id%>" data-title="<%$d.order_sn%>" id='<%$d.id%>'>
+			<td  align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+            <td align="center">
+                <a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a><br/><%if $d.is_zp==1%>赠品单<%else if $d.order_status==4%>关闭<%else if $d.is_xianhuo==1%>现货单<%else if $d.is_xianhuo==2%><font color="red">未选商品</font><%else if $d.is_xianhuo==0%>期货单<%/if%>
+            </td>
+			<td align="center"><%$d.consignee%></td>
+			<td align="center"><%$d.mobile%></td>
+			<td align="center"><%$d.create_user%></td>
+            <td align="center"><%$d.genzong%></td>
+            <td align="center"><%$d.order_amount%></td>
+            <td align="center"><%if $d.hidden%><%$d.money_paid%><%else%>0.00<%/if%></td>
+            <td align="center"><%if $d.hidden%><%$d.real_return_price%><%else%>0.00<%/if%></td>
+            <td align="center"><%$d.money_unpaid%></td>
+
+			<td align="center">
+                <%if $d.hidden%>
+				<%$dd->getEnum('order.order_status',$d.order_status)%>
+                <%else%>存档<%/if%>
+			</td>
+			<td align="center">
+                <%if $d.hidden%>
+				<%$dd->getEnum('order.order_pay_status',$d.order_pay_status)%>
+                <%else%>存档<%/if%>
+			</td>
+			<td align="center"><%if isset($pay_type[$d.order_pay_type])%><%$pay_type[$d.order_pay_type]%><%else%><%/if%></td>
+			<td align="center">
+            <%if $d.hidden%>
+			<%if isset($buchan_status[$d.buchan_status])%><%$buchan_status[$d.buchan_status]%><%else%><%/if%>
+            <%else%>存档<%/if%>
+			<%if $d['buchaning'] == false %><br><font color="red"><%$d['buchanmsg']%></font><%/if%>
+			</td>
+            <td align="center">
+                <%if $d.hidden%>
+                <%$dd->getEnum('sales.delivery_status',$d.delivery_status)%> 
+                <%else%>存档<%/if%>
+            </td>
+            <td align="center">
+                <%if $d.hidden%>
+                <%$dd->getEnum('order.send_good_status',$d.send_good_status)%>
+                <%else%>存档<%/if%>
+            </td>
+			<td align="center">
+				<%if $d.apply_return==1%>未操作<%else if $d.apply_return==2%>正在退款<%/if%>
+			</td>
+            <td align="center" >
+                <%if $d.is_xianhuo==1%>现货<%else if $d.is_xianhuo==2%><span style="color:red;">未选商品</span><%else%>期货<%/if%>
+            </td>
+
+			<!--<td align="center"><%$d.order_amount|default:0%></td>-->
+			<td align="center"><%if $d.hidden%><%if $d.order_status==4%>已关闭<%else%><%if $d.apply_close==1%>已申请<%else%>未申请<%/if%><%/if%><%else%>未申请<%/if%></td>
+			<td align="center"><%$d.recommender_sn%></td>
+			<td align="center"><%$d.recommended%></td>			
+			<td align="center"><%$d.create_time|date_format:"%Y-%m-%d"%></td>
+			<td align="center"><%if $d.hidden%><%$d.pay_date%><%/if%></td>
+			<td align="center"><%if isset($allSalesChannelsData[$d.department_id])%><%$allSalesChannelsData[$d.department_id]%><%/if%></td>
+            <td align="center"><%if $d.channel_class == 1%>线上<%else if $d.channel_class == 2%>线下<%else%><%/if%></td>
+			<td align="center"><%$d.customer_source_name|default:''%></td>
+			<td align="center"><%$d.referer%></td>
+			<td align="center"><%$d.bespoke_sn%></td>
+			<%if isset($d.person) %>
+			<td align="center"><%if $d.person==1%>是<%else%>否<%/if%></td>
+			<%else%>
+			<td align="center">--</td>
+			<%/if%>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#base_order_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#base_order_info_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#base_order_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

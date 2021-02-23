@@ -1,0 +1,78 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_salepolicy_channel_info">
+		<div class="form-body">
+        	<div class="row">
+            	<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">全部：</label>
+                        <input type="radio" value="2"  name="is_all" checked="checked">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+            		<div class="form-group">
+                        <label class="control-label">经营类型：</label>
+                        <select class="select2_category form-control" name="shop_type" tabindex="1" >
+                            <option value="">全部</option>
+                            <%foreach from=$dd->getEnumArray("shop.type") key=k item=value%>
+                            <option value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-3">
+            		<div class="form-group">
+                    	<label class="control-label">一级分类：</label>
+						<select class="select2_category form-control" name="channel_class" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("sales_channels_class") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+            	<div class="col-sm-3">
+            		<div class="form-group">
+                        <label class="control-label">二级分类：</label>
+						<select class="select2_category form-control" name="channel_type" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("sales_channels_type") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+            		<div class="form-group">
+                        <label class="control-label">渠道：</label>
+                        <select class="select2_category form-control" name="channel_id[]" tabindex="1" multiple>
+                            <option value=""></option>
+                            <%foreach from=$channelList key=key item=value%>
+                            <option value="<%$key%>"><%$value%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+		
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                    <input type="hidden" name="policy_id" value="<%$policy_id%>" />
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                </div>
+            </div>
+        </div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_salepolicy_channel_info.js"%>
+//-->
+</script>

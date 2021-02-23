@@ -1,0 +1,151 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>基本信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			
+		</div>
+		
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>订单号</td>
+					<td><%$data["order_sn"]%><input type="hidden" id="order_sn1" value="<%$data['order_sn']%>" /></td>
+					<td>订单部门</td>
+					<td><%$data["order_source"]%></td>
+					<td>订单状态</td>
+					<td><%$dd->getEnum("order.order_status",$data["order_status"])%></td>
+					<td>发货状态</td>
+					<td><%$dd->getEnum("order.send_good_status",$data["send_good_status"])%></td>
+				</tr>	
+				<tr>
+					<td>制单人</td>
+					<td><%$data["create_user"]%></td>
+					<td>制单时间</td>
+					<td><%$data["create_time"]%></td>
+					<td>支付状态</td>
+					<td><%$dd->getEnum("order.order_pay_status",$data["order_pay_status"])%></td>
+					<td>配货状态</td>
+					<td><%$dd->getEnum("sales.delivery_status",$data["delivery_status"])%></td>
+				</tr>
+				<input type="hidden" id="order_id" value="<%$data["id"]%>">
+				<input type="hidden" id="order_sn_val" value="<%$data["order_sn"]%>">
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			
+		</div>
+		<div class="flip-scroll">
+				<div class="row">
+						<div class="col-sm-2">
+							<div class="form-group">
+							<label class="control-label" for="name">换货原因：</label>
+								<select class="select2_category form-control" tabindex="1" id="change_reason" name="change_reason">
+									<option value="订单问题">订单问题</option>
+									<option value="货品问题">货品问题</option>
+								</select>
+							</div>
+						</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+							<label class="control-label" for="name">更换货号：</label>
+							<input  type="text" class="form-control" name="change_goods_id" id="change_goods_id" placeholder="请输入要替换的货号"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+				<tr>
+					<th align="center">序号</th>
+					<th align="center">货号</th>
+					<th align="center">款号</th>
+					<th align="center">商品名称</th>
+					<th align="center">商品价格</th>
+					<th align="center">石重</th>
+					<th align="center">切工</th>
+					<th align="center">净度</th>
+					<th align="center">颜色</th>
+					<th align="center">证书号</th>
+					<th align="center">材质</th>
+					<th align="center">金色</th>
+					<th align="center">金重</th>
+					<th align="center">指圈</th>
+					<th align="center">刻字</th>
+					<th align="center">表面工艺</th>
+					<th align="center">镶嵌要求</th>
+					<th align="center">数量</th>
+					<th align="center">备注</th>
+				</tr>
+			</thead>
+			<tbody>
+		<!-- 表格1 -->
+			<%foreach from=$goods_data item=d%>
+				<tr data-id="order_goods_list_<%$d.id%>" data-title="" class="exchange_order_goods_list_tr">
+					<td align="center"><input type="radio" value="<%$d.id%>|<%$d.goods_sn%>|<%$d.zhengshuhao%>"  id="details_info" name="details_info"/></td>
+					<td align="center"><%$d.goods_id%></td>
+					<td align="center"><%$d.goods_sn%></td>
+					<td align="center"><%$d.goods_name%></td>
+					<td align="center"><%$d.goods_price%></td>					
+					<td align="center"><%$d.cart%></td>
+					<td align="center"><%$d.cut%></td>
+					<td align="center"><%$d.clarity%></td>
+					<td align="center"><%$d.color%></td>
+					<td align="center"><%$d.zhengshuhao%></td>
+					<td align="center"><%$d.caizhi%></td>
+					<td align="center"><%$d.jinse%></td>
+					<td align="center"><%$d.jinzhong%></td>
+					<td align="center"><%$d.zhiquan%></td>
+					<td align="center"><%$d.kezi%></td>
+					<td align="center"><%$d.face_work%></td>
+					<td align="center"><%$d.xiangqian%></td>
+					<td align="center"><%$d.goods_count%></td>
+					<td align="center"><%$d.details_remark %></td>
+				</tr>
+			<%/foreach%>
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-sm green" onclick="change_goods()" style="width:80px;"><i class="fa fa-search"></i> 换货</button>
+		</div>
+
+		<div class="clear"></div>
+		
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.exchange_order_goods_list_tr').on('click',function(){
+            $(this).find("input[name='details_info']").attr("checked","checked");
+        })
+	})
+
+
+	<%include file="js/exchange_goods_info.js"%>
+	
+</script>

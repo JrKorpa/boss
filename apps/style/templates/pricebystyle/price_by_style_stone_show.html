@@ -1,0 +1,46 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<button class="btn btn-sm dark" title="关闭当前页签">
+				离开 <i class="fa fa-angle-double-left"></i> 
+				</button>
+			</div>
+		</div>
+		<!-- 表格1 -->
+                <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                                <tr>
+                                        <th>序号</th>
+                                        <th>款式信息id</th>
+                                        <th>石头位置类型</th>
+                                        <th>石头类型</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                        <%if $view%>
+                        <%foreach from=$view item=d%>
+                                <tr data-id="rel_style_stone_list_<%$d.id%>">
+                                        <td align="center"><%$d.id%></td>
+                                        <td align="center"><%$d.style_id%></td>
+                                        <td align="center"><%$d.stone_position%></td>
+                                        <td align="center"><%$d.stone_cat%></td>
+                                </tr>
+                        <%/foreach%>
+                        <%else%>
+                                <tr><td colspan="4" style="text-align: center">没有该款式记录</td></tr>
+                        <%/if%>
+                        </tbody>
+                </table>
+		<div class="clear"></div>
+	</div>
+</div>

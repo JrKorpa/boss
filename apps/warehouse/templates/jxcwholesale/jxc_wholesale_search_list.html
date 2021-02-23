@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>客户编号</th>
+				<th>客户名称</th>
+				<th>授信额度</th>
+				<th>日期</th>
+				<th>需要签收</th>
+				<th>签收公司</th>
+				<th>状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="jxc_wholesale_list_<%$d.wholesale_id%>" data-title="<%$d.wholesale_id%>">
+				<td><%$d.wholesale_id%></td>
+				<td><%$d.wholesale_sn%></td>
+				<td><%$d.wholesale_name%></td>
+				<td><%$d.wholesale_credit%></td>
+				<td><%$d.add_time%></td>
+				<td><%if $d.sign_required==1%>是<%else%>否<%/if%></td>
+				<td><%if $d.company_name%><%$d.company_name%><%else%>无<%/if%></td>
+				<td><%if $d.wholesale_status==1%>开启<%else%>关闭<%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

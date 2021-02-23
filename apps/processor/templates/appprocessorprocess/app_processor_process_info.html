@@ -1,0 +1,71 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_processor_process_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">经营范围：</label>
+						<select class="form-control" tabindex="1" name="scope[]" multiple>
+							<option value=""></option>
+							<%foreach from=$scope item=v%>
+							<option value="<%$v.id%>"><%$v.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">申请部门：</label>
+						<select class="select2_category form-control" name="department_id" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$depart->getDeptTree(false) item=p %>
+							<option value="<%$p.id%>"<%if ($view->get_department_id()==$p.id)%>selected="selected" <%/if%>><%$p.tname%></option>
+							<%/foreach%>
+						</select>
+					</div>
+					<div class="form-group">
+						<div class="form-group">
+							<label class="control-label">选择审批人：</label>
+							<select class="form-control" tabindex="1" name="user_id" >
+								<option value=""></option>
+								<%foreach from=$users item=u%>
+								<option value="<%$u.user_id%>"><%$u.real_name%>/<%$u.account%></option>
+								<%/foreach%>
+							</select>
+							<span id="processor_process_select_user" style="color:red"></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label">审批人：</label>
+							<table class="table table-bordered table-striped table-hover flip-content">
+								<tbody id="processor_process_user_tbody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-4 col-md-6">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				<span type="close" class="btn dark"><i class="fa fa-ban"></i> 取消</span>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_processor_process_info.js"%>
+//-->
+</script>

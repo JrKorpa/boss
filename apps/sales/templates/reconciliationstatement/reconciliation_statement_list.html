@@ -1,0 +1,35 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>渠道</th>
+			<th>外部订单号</th>
+			<th>BDD订单号</th>
+			<th>顾客姓名</th>
+			<th>产品信息</th>
+			<th>售价</th>
+			<th>快递公司</th>
+			<th>快递单号</th>
+
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="reconciliation_statement_list_<%$d.id%>" data-title="<%$d.order_sn%>">
+			<td align="center"><%$d.channel%></td>
+			<td align="center"><%$d.out_order_sn%></td>
+			<td align="center"><%$d.order_sn%></td>
+			<td align="center"><%$d.consignee%></td>
+			<td align="center"><%$d.goods_name%></td>
+			<td align="center"><%$d.order_amount%></td>
+			<td align="center"><%$d.express_id%></td>
+			<td align="center"><%$d.freight_no%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

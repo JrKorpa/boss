@@ -1,0 +1,223 @@
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" method="post" class="horizontal-form" id="purchase_qiban_goods_info">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">总价格：</label>
+							<input type="text" name="price" class="form-control"  value="<%$view->get_price()%>" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="kuanhao" class="form-control" value="<%if !empty($view->get_kuanhao())%><%$view->get_kuanhao()%><%else%><%$view->set_gongchang_id(509)%>QIBAN<%/if%>"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">镶口：</label>
+							<input type="text" name="xiangkou" class="form-control" value="<%$view->get_xiangkou()%>" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">手寸：</label>
+							<input type="text" name="shoucun" class="form-control" value="<%$view->get_shoucun()%>" />
+						</div>
+					</div>					
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石单颗重：</label>
+							<input type="text" name="specifi" class="form-control" value="<%$view->get_specifi()%>" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石粒数：</label>
+							<input type="text" name="zhushi_num" class="form-control" value="<%$view->get_zhushi_num()%>" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">工厂：</label>
+							<select class="select2_category form-control" tabindex="1" name="gongchang_info">
+								<option value=""></option>
+								<%foreach from=$view->getSupplierList() item=y%>
+								<option value="<%$y.id%>|<%$y.name%>" <%if $view->get_gongchang_id() == $y.id%>selected<%/if%>><%$y.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">模号：</label>
+							<input type="text" name="fuzhu" class="form-control" value="<%$view->get_fuzhu()%>" />
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">证书号：</label>
+							<input type="text" name="zhengshu" class="form-control" value="<%$view->get_zhengshu()%>" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">证书类型：</label>
+							<select class="select2_category form-control" tabindex="1" name="cert">
+                                <option value=""></option>
+                                <%foreach from=$view->getCertList() item=val%>
+                                <option value="<%$val%>" <%if $view->get_cert() == $val%>selected<%/if%>><%$val%></option>
+                                <%/foreach%>
+                            </select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款式类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="kuan_type">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('purchase.kuan_type') item=y%>
+                                <option value="<%$y.name%>" <%if $view->get_kuan_type() == $y.name%>selected<%/if%>><%$y.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">起版费：</label>
+							<input type="text" name="qibanfei" class="form-control" value="<%$view->get_qibanfei()%>" />
+						</div>
+					</div>
+
+					
+				</div>
+				<div class="row">
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">产品需求：</label>
+							<select class="select2_category form-control" tabindex="1" name="xuqiu">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_xuqiu') item=y%>
+								<option value="<%$y.name%>" <%if $view->get_xuqiu() == $y.name%>selected<%/if%>><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金料：</label>
+							<select class="select2_category form-control" tabindex="1" name="jinliao">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_jinliao') item=y%>
+								<option value="<%$y.name%>" <%if $view->get_jinliao() == $y.name%>selected<%/if%>><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">金色：</label>
+                            <select class="select2_category form-control" tabindex="1" name="jinse">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('purchase.qiban_jinse') item=y%>
+                                <option value="<%$y.name%>" <%if $view->get_jinse() == $y.name%>selected<%/if%>><%$y.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">表面工艺：</label>
+							<select class="select2_category form-control" tabindex="1" name="gongyi">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_gongyi') item=y%>
+								<option value="<%$y.name%>" <%if $view->get_gongyi() == $y.name%>selected<%/if%>><%$y.label%></option>
+								<%/foreach%>
+							</select>
+
+						</div>
+					</div>
+
+					
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石颜色：</label>
+							<select class="select2_category form-control" tabindex="1" name="yanse">
+								<option value=""></option>
+								<%foreach from=$view->getColorList() item=val%>
+								<option value="<%$val%>" <%if $view->get_yanse() == $val%>selected<%/if%>><%$val%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石净度：</label>
+							<select class="select2_category form-control" tabindex="1" name="jingdu">
+								<option value=""></option>
+								<%foreach from=$view->getClarityList() item=val%>
+								<option value="<%$val%>" <%if $view->get_jingdu() == $val%>selected<%/if%>><%$val%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">金重(下限-上限)：</label>
+                                <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="jinzhong_min" value="<%$view->get_jinzhong_min()%>" placeholder="0.00"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="jinzhong_max" value="<%$view->get_jinzhong_max()%>" placeholder="0.00"/>
+                                </div>
+                            </div>
+                   </div>
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">绑定订单：</label>
+							<input type="text" name="order_sn" class="form-control" value="<%$view->get_order_sn()%>" readonly/>
+						</div>
+					</div>
+				   <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">顾客姓名：</label>
+							<input type="text" name="customer" class="form-control" value="<%$view->get_customer()%>" readonly/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">起版信息：</label>
+							<input type="text" name="info" class="form-control" value="<%$view->get_info()%>" />
+						</div>
+					</div>
+                    
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$view->get_id()%>" />
+
+					<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+					<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_qiban_goods_info.js"%>
+//-->
+</script>

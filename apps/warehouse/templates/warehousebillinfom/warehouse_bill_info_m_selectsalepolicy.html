@@ -1,0 +1,90 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_m_selectsalepolicy">
+		<div class="form-body">
+         <div class="row">
+                	<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售政策：</label>
+						<div class="radio-list">
+							<select class="select2_category form-control" name="policy_type" tabindex="1">
+							
+								<option value="default" >默认销售政策</option>
+                                <option value="bill_no" >单据对应销售政策</option>
+						
+						</select>
+
+						</div>
+					</div>
+				</div>
+            </div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售策略名称：<span class="required">*</span></label>
+						<input type="text" name="policy_name" class="form-control" readonly placeholder="请输入"  value="<%$policy_info.policy_name%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售策略开始时间：<span class="required">*</span></label>
+						
+							<input type="text" name="policy_start_time" value="<%$policy_info.policy_start_time%>" class="form-control" readonly>
+							<span class="input-group-btn">
+							
+							</span>
+						
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">销售策略结束时间：<span class="required">*</span></label>
+						
+							<input type="text" name="policy_end_time" value="<%$policy_info.policy_end_time%>" class="form-control" readonly>
+							<span class="input-group-btn">
+							
+							</span>
+						
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">固定值：<span class="required">*</span></label>
+						<input type="text" maxlength="20" value="<%$policy_info.sta_value%>"  readonly placeholder="请输入" class="form-control" name="sta_value">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">加价率：<span class="required">*</span></label>
+						<input type="text" maxlength="20" value="<%$policy_info.jiajia%>" readonly placeholder="请输入" class="form-control" name="jiajialv">
+					</div>
+				</div>
+
+              
+			</div>
+	
+          
+               
+      
+              
+           
+
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="goods_id" value="<%$goods_id%>" />
+                <input type="hidden" name="bill_id" value="<%$bill_id%>" />
+                <input type="hidden" name="policy_goods" value="<%$policy_goods%>" />
+				<input type="hidden" name="is_together" value="1" />
+			
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_info_m_selectsalepolicy.js"%>
+//-->
+</script>

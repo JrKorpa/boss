@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>公司名称</th>
+			<th>联系人</th>
+			<th>联系电话</th>
+			<th>公司类型</th>
+			<%if $smarty.const.SYS_SCOPE=='zhanting'%>			
+            <th>是否省代公司</th>
+			<th>所属省代公司</th>
+			<%/if%>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="company_list_<%$d.id%>" data-title="<%$d.company_name%>">
+			<td><%$d.id%></td>
+			<td><%$d.company_name%></td>
+			<td><%$d.contact%></td>
+			<td><%$d.phone%></td>
+			<td><%$dd->getEnum('company.company_type',$d.company_type)%></td>
+			<%if $smarty.const.SYS_SCOPE=='zhanting'%>			
+			<td><%if $d.is_shengdai==1%>是<%else%>否<%/if%></td>
+            <td><%$d.sd_company_name|default:''%></td>
+			<%/if%>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

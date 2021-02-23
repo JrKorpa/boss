@@ -1,0 +1,198 @@
+<%if $exit_tuikuan == 2 %>
+<div>
+	<font color='red' size='14'>此订单有未完成的退款申请，不能操作</font>
+</div>
+<hr>
+<%/if%>
+
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form" style="">
+		<!-- 表单内容 -->
+		<form action="#" class="form-inline" role="form" method="post" id="xiaozhang_search">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input id="order_sn" type="text" class="form-control" name="order_sn" value='<%$orderInfo.order_sn%>'>
+				</div>
+				<button type="button" class="btn btn-sm green"><i class="fa fa-search"></i> 搜索</button>
+				<div class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">离开<i class="fa fa-mail-reply"></i></div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div style='color:red;padding: 5px;font-size: 23px;' id='sudu' ></div>
+
+<div class="portlet-body">
+	<!-- 工具栏 -->
+	<div class="tab-pane " id="tab_bill_m_1">
+		<div class="tab-pane active" id="tab_1">
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>待配货单详情
+					</div>
+					<div class="tools">
+					<a href="javascript:;" class="collapse"></a>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<p class="text-danger"></p>
+					<div class="flip-scroll" id="order_info">
+
+					<!-- 表单内容 -->
+					<form action="#" method="post" class="horizontal-form" id="wait_destribution_form">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<tbody>
+								<tr class="">
+									<td><b>订单号</b></td>
+									<td><a class="tab-con-a" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$orderInfo.order_sn%>" data-id="baseorderinfo-<%$orderInfo.order_sn%>" data-title="<%$orderInfo.order_sn%>" href="javascript:;"><%$orderInfo.order_sn%></a>
+				<input type="hidden" name='order_sn_hidden' value='<%$orderInfo.order_sn%>'/>
+				<input type="hidden" name='order_id_hidden' value='<%$orderInfo.id%>'/>
+				<input type="hidden" name='order_money' value='<%$orderInfo.order_amount%>'/>
+				<input type="hidden" name='coupon_price' value='<%$orderInfo.coupon_price%>'/>		
+				<input type="hidden" name='delivery_status' value='<%$orderInfo.delivery_status%>'/>
+				<input type="hidden" name='distribution_type' value='<%$orderInfo.distribution_type|default:0%>'/>									
+									</td>
+									<td><b>外部订单号</b></td>
+									<td><%$orderInfo.out_order_sn%></td>
+									<td><b>客户来源</b></td>
+									<td><%$orderInfo.source_name|default:'--'%></td>
+									<td><b>销售渠道</b></td>
+									<td><%$orderInfo.channel_name|default:'--'%></td>
+								</tr>
+								<tr class="">
+									<td><b>会员名称</b></td>
+									<td><%$orderInfo.user_name|default:'--'%></td>
+									<td><b>制单人</b></td>
+									<td><%$orderInfo.create_user%></td>
+									<td colspan=2><b>制单时间</b></td>
+									<td colspan="2"><%$orderInfo.create_time%></td>
+								</tr>
+								<tr class="">
+									<td><b>审核状态</b></td>
+									<td><%$dd->getEnum('order.order_status',$orderInfo.order_status)%></td>
+									<td><b>审核人</b></td>
+									<td><%$orderInfo.check_user%></td>
+                                                                            <td colspan="2"><b>审核时间</b></td>
+									<td colspan="2"><%$orderInfo.check_time%></td>
+								</tr>
+								<tr class="">
+									<td><b>配货状态</b></td>
+									<td style="color:#f00;"><%$dd->getEnum('sales.delivery_status',$orderInfo.delivery_status)%></td>
+									<td><b>订单状态</b></td>
+									<td><%$dd->getEnum('order.is_delete',$orderInfo.is_delete)%></td>
+                                   						 <td colspan="2"><b>支付状态</b></td>
+									<td colspan="2"><%$dd->getEnum('order.order_pay_status',$orderInfo.order_pay_status)%></td>
+								</tr>
+								<tr class="">
+									<td><b>订单商品总金额</b></td>
+									<td><%$orderInfo.order_amount%></td>
+									<td><b>已付款金额</b></td>
+									<td><%$orderInfo.money_paid%></td>
+									<td colspan="2"><b>未付款金额</b></td>
+									<td colspan="2"><%$orderInfo.money_unpaid%></td>
+								</tr>
+								<tr>
+									<td>订单备注</td>
+									<td colspan='7'><%$orderInfo.order_remark%></td>
+
+								</tr>
+							</tbody>
+						</table>
+						<!-- 搜索按钮 -->
+					</form>
+					<!-- END FORM-->
+					</div>
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">出库公司：</label><span style='color:red'>*</span>
+									<%if !empty($company)%>
+									<select class="select2_category form-control" tabindex="1" id="from_company_id" name="from_company_id">
+										<option value=""></option>
+										<!-- 如果有深圳分公司的权限，那么列表就会有深圳分公司的列表，默认选中  如果就一个公司选择 默认选中 -->
+										<%foreach from=$company key=k item=c%>
+										  <%if $orderInfo.channel_name=="淘宝销售部"&&$c.id==58%>
+										  <%else%>
+											<option value="<%$c.w%>" <%if (($c.id == 445) && $c.company_sn == 'KLSZFGS')||($company|@count==1)%>selected<%/if%>><%$c.company_name%></option>
+										  <%/if%>	
+										<%/foreach%>
+									</select>
+									<%else%>
+										<span>您没有“总公司”的销帐权限！</span>
+									<%/if%>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- 明细 start -->
+		<div class="tab-pane " id="tab_bill_m_11">
+			<div class="tab-pane active" id="tab_11">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>明细列表
+						</div>
+					</div>
+					<div class="portlet-body">
+						<p class="text-danger"></p>
+						<div class="flip-scroll" id="wait_order_goods_info_detail">
+						</div>
+						<div class="pager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 明细 end -->
+<%if $exit_tuikuan == 1 %>
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="" form="wait_destribution_form"/>
+		<button type="reset" class="btn default" form="wait_destribution_form" id='reset'>重置</button>
+		<button type="button" id="wait_destribution_form_btn" class="btn green" form="wait_destribution_form"><i class="fa fa-check"></i> 销账</button>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+<%/if%>
+                <!-- 订单日志列表显示 start-->
+                <div class="portlet box blue">
+                <div class="portlet-title">
+                        <div class="caption">
+                                <i class="fa fa-reorder"></i>订单日志
+                        </div>
+                        <div class="tools">
+                                <a href="javascript:;" class="collapse">
+                                </a>
+                        </div>
+                </div>
+                <div class="portlet-body">
+                        <div class="table-toolbar">
+
+                        </div>
+                        <div class="flip-scroll" id="wait_distribution_log_list">
+                       
+                        </div>
+                        <div class="clear"></div>
+                </div>
+                </div>
+                <!-- order loglist end-->
+<script type="text/javascript">
+<!--
+	<%include file="js/wait_distribution_show.js"%>
+//-->
+</script>

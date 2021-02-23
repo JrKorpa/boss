@@ -1,0 +1,50 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>周盘点单号</th>
+			<th>审核时间</th>
+			<th>仓库</th>
+			<th>应盘</th>
+			<th>金额</th>
+			<th>实盘</th>
+			<th>金额</th>
+			<th>正常</th>
+			<th>金额</th>
+			<th>盘盈</th>
+			<th>金额</th>
+			<th>盘亏</th>
+			<th>金额</th>
+			<th>盘点准确率</th>
+			<th>盘亏占比</th>
+			<th>盘盈占比</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_pandian_plan_list_<%$d.id%>" data-title="周盘点详细">
+			<td><%$d.id%></td>
+			<td><%$d.verify_date%></td>
+			<td><%if $d.type == 1%>线上库<%else%>线下库<%/if%></td>
+			<td><%$d.all_num%></td>
+			<td><%$d.all_price|default:0%></td>
+			<td><%$d.real_num%></td>
+			<td><%$d.real_price|default:0%></td>
+			<td><%$d.nomal_num%></td>
+			<td><%$d.nomal_price|default:0%></td>
+			<td><%$d.overage_num%></td>
+			<td><%$d.overage_price|default:0%></td>
+			<td><%$d.loss_num%></td>
+			<td><%$d.loss_price|default:0%></td>
+			<td><%$d.accurate_rate%>%</td>
+			<td><%$d.loss_rate%>%</td>
+			<td><%$d.overage_rate%>%</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

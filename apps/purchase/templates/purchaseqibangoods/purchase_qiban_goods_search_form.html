@@ -1,0 +1,232 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="purchase_qiban_goods_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">起版号：</label>
+							<input type="text" name="addtime" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单：</label>
+							<input type="text" name="order_sn" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">顾客姓名：</label>
+							<input type="text" name="customer" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label>
+							<select class="select2_category form-control" tabindex="1" name="status">
+								<option value="">请选择</option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_status') item=y%>
+								<option value="<%$y.name%>" ><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">价格：</label>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="price_min" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="price_max" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">镶口：</label>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="xiangkou_min" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="xiangkou_max" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">手寸：</label>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="shoucun_min" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="shoucun_max" value="" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">模号：</label>
+							<input type="text" name="fuzhu" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">工厂：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="gongchang">
+								<option value=""></option>
+								<%foreach from=$gys item=y%>
+								<option value="<%$y.name%>"><%$y.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="kuanhao" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">证书号：</label>
+							<input type="text" name="zhengshu" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">产品需求：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="xuqiu">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_xuqiu') item=y%>
+								<option value="<%$y.name%>"><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款式类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="kuan_type">
+                                <option value="">请选择</option>
+                                <%foreach from=$dd->getEnumArray('purchase.kuan_type') item=y%>
+                                <option value="<%$y.name%>"><%$y.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">起版类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="qiban_type">
+                                <option value="">请选择</option>
+                                <option value="有款起版">有款起版</option>
+                                <option value="无款起版">无款起版</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">添加时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control" name="start_time">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time">
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金料：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="jinliao">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_jinliao') item=y%>
+								<option value="<%$y.name%>"><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金色：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="jinse">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_jinse') item=y%>
+								<option value="<%$y.name%>"><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">表面工艺：</label>
+							<select class="form-control select2_sample1" tabindex="1" name="gongyi">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('purchase.qiban_gongyi') item=y%>
+								<option value="<%$y.name%>"><%$y.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">录单人：</label>
+							<input type="text" name="opt" class="form-control"  value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">备注：</label>
+							<input type="text" name="info" class="form-control"  value="" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" class="btn blue" onclick="qiban_download()"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="purchase_qiban_goods_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_qiban_goods_list.js"%>
+//-->
+</script>

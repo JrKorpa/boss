@@ -1,0 +1,92 @@
+<style>
+	.w_10{width:10%}
+	.w_15{width:15%}
+</style>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>石包采购单
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table id="stone_procute_check_table" class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td class="w_10"><b>采购单号</b></td>
+					<td class="w_15"><%$view->get_pro_sn()%></td>
+					<td class="w_10"><b>采购方式</b></td>
+					<td class="w_15"><%$dd->getEnum('warehouse.put_in_type',$view->get_pro_type())%></td>
+					<td class="w_10"><b>采购总量</b></td>
+					<td class="w_15"><%$view->get_pro_ct()%></td>
+					<td class="w_10"><b>采购总金额</b></td>
+					<td class="w_15"><%$view->get_pro_total()%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_create_user()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_create_time()%></td>
+					<td><b>审核状态</b></td>
+					<td>
+						<%if $view->get_check_status()%>
+						<%$dd->getEnum('stone.check_status',$view->get_check_status())%>
+						<%else%>未操作
+						<%/if%>
+					</td>
+					<td><b>备注</b></td>
+					<td><%$view->get_note()%></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>石包采购明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+		</div>
+		<div id="stone_procure_details_search_list" class="table-scrollable">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>操作日志
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="flip-scroll" id="stone_procute_log_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/stone_procure_show.js"%>
+//-->
+</script>

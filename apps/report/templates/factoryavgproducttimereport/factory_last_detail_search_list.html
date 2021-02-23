@@ -1,0 +1,59 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+				<th>工厂名称</th>
+				<th>跟单人</th>
+                <th>布产号</th>
+                <th>款号</th>
+                <th>下单时间</th>
+                <th>工厂质检时间</th>
+                <th>工厂出厂时间</th>
+                <th>节假日时间</th>
+                <th>工厂生产时长</th>
+				<th>起版类型</th>
+				<th>钻石类型</th>
+				<th>款式类型</th>
+                <th>布产单当前状态</th>
+                <th>布产单当前状态备注</th>
+              	</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+				<tr start_time="<%$d.esmt_time%>" end_time="<%$d.esmt_time%>"  opra_uname="<%$d.opra_uname%>" from_type="<%$args.from_type%>" style_sn="<%$args.style_sn%>" data-title="<%$d.id%>工厂超期率">
+					<td><%$d.dotime%></td>
+					<td><%$d.opra_uname%></td>
+					<td><%$d.prc_name%></td>
+	                <td>
+						<a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.id%>" class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.id%>"><%$d.bc_sn%></a>
+					</td>
+	                <td><%$d.style_sn%></td>
+	                <td><%$d.order_time%></td>
+	                <td><%$d.oqc_pass_time%></td>
+	                <td><%$d.rece_time%></td>
+	                <td><%$d.cc_jiejiari%>天</td>
+	                <td><%round($d.cc_day,2)%>天</td>
+					<td><%$d.qiban_type%></td>
+					<td><%$d.diamond_type%></td>
+					<td><%$d.kuan_type%></td>
+	                <td><%if $d.status==1 %>初始化<%elseif $d.status==3 %> 已分配
+	                <%elseif $d.status==4 %> 生产中 <%elseif $d.status==7 %>部分出厂
+	                <%elseif $d.status==9 %> 已出厂<%elseif $d.status==10 %>已取消
+	                <%elseif $d.status==11 %>不需布产 <%else%>其它<%/if%>
+	                </td>
+	                <td><%$d.remark %></td>
+               </tr>
+		<%/foreach%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>姓名</th>
+		<th>性别</th>
+		<th>手机</th>
+		<th>身份证</th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="app_processor_buyer_list_<%$d.id%>" data-title="<%$d.id%>">
+		<td><%$d.taker_name%></td>
+		<td>
+			<%foreach from=$dd->getEnumArray("gender") item=value%>
+			<%if $d.taker_gender==$value.name%><%$value.label%><%/if%>
+			<%/foreach%>
+		</td>
+		<td><%$d.taker_tel%></td>
+		<td><%$d.taker_papers%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

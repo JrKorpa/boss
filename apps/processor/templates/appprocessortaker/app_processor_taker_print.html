@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>委托取货人</title>
+    <script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+    <style type="text/css">
+        html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, del, em, i, img, strong, dl, dt, dd, ol, ul, li, label{ margin: 0; padding: 0; border: 0; outline: 0 }
+        ol, ul, li { list-style: none }
+        h1, h2, h3, h4, h5, h6 { font-size:100% }
+        body { font-size:13px;line-height: 1.5;font-family: "宋体"; color:#000 }
+        img{vertical-align: top}
+        a{color:#9c8573;text-decoration:none;}
+        a:hover{color:#5e2900;}
+        a, a:link {text-decoration: none;}
+        a img { vertical-align: middle; outline:none}
+        i, em { font-style: normal }
+        .wraper{position: relative; width:700px;margin: 0 auto;padding:0 15px}
+        .header{width:100%; overflow: hidden;padding-bottom: 20px}
+        /*.header .logo,.header .data{float: left;}*/
+        .logo{width: 160px;padding-top:22px; text-align: center;}
+        .logo img{width:32px; height:32px;}
+        .logo-t{font-size: 14px;font-weight: bold; line-height: 14px;}
+        .logo-e{font-size: 12px;font-weight: bold; line-height: 16px;}
+        .title{width:100%;font-size:30px;line-height:48px;text-align: center;padding-top: 5px;}
+        .to_supplier{font-size:14px;line-height:22px;}
+        .to_supplier span{font-weight:bolder;padding-bottom: 2px;border-bottom: solid 1px #000;}
+        .cont_text{text-indent:2em;font-size:14px;line-height:38px;margin-top:15px;}
+        .taker_table table{border-collapse:collapse;margin:15px auto;width: 600px;}
+        .taker_table table th,.taker_table table td{border:1px solid gray;padding: 5px;text-align: center;padding:8px;}
+        .note{text-align: center;margin: auto;font-size:18px;line-height:22px;font-weight:bolder}
+        footer{margin:50px 50px 0 0;font-size:14px;line-height:38px;text-align:right;}
+        .content{padding-top: 10px;}
+        .print{width: 100%;padding:25px 25px 50px;overflow:hidden;position:absolute;right:10px;top:10px;}
+        .print button{float: right;height: 28px;padding:4px 20px; margin:0 10px}
+        .clear{clear: both}
+        /***************************************/
+        /*.data p i{padding: 0 0 0 10px;font-size: 12px;}*/
+        /*.box-con i{padding: 0 6px; font-size: 12px;font-weight: normal;}*/
+        /*.footer p i{font-weight: normal;}*/
+    </style>
+</head>
+<body>
+<!--startprint-->
+<div class="wraper">
+    <div class="header">
+        <div class="logo">
+            <img src="public/img/logo_1.png"/>
+            <p class="logo-t">KELA.CN 珂蘭鑽石</p>
+            <p class="logo-e">Angel of love!</p>
+        </div>
+        <div class="title">
+            <h3>提货管控通知函</h3>
+        </div>
+        <div class="print">
+            <button id="processor_taker_print_close">关闭</button>
+            <button id="processor_taker_print_btn">打&nbsp;印</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="to_supplier">
+            至：<span>&nbsp;&nbsp;<%$supplier%>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+        <p class="cont_text">GP商贸有限公司（以下简称“”）即日起，加强提货业务管控，以下员工是同意在贵司提货人员及货品送检人员名单，该员工携带身份证的取货行为视为公司行为。未在本通知函列明的人员到贵司取货或函列人员身份证不符或未加盖取货章的取货行为，一律不认同该项业务的发生，请贵司知悉并予以配合，谢谢！</p>
+        <div class="taker_table">
+            <table>
+                <thead>
+                    <th width="20%">姓名</th>
+                    <th width="20%">性别</th>
+                    <th width="30%">电话</th>
+                    <th width="30%">身份证</th>
+                </thead>
+                <tbody>
+                <%foreach from=$taker item=t%>
+                    <tr>
+                        <td><%$t.taker_name%></td>
+                        <td><%if $t.taker_gender == 0%>男
+                            <%else%>女
+                            <%/if%>
+                        </td>
+                        <td><%$t.taker_tel%></td>
+                        <td><%$t.taker_papers%></td>
+                    </tr>
+                <%/foreach%>
+                </tbody>
+            </table>
+        </div>
+        <div class="note">如有人员变更，会重新发文致函，之前的通知函同时作废。</div>
+    </div>
+    <footer>
+        <p>GP商贸有限公司</p>
+        <p><%date('Y-m-d')%></p>
+    </footer>
+    <div class="clear"></div>
+</body>
+<script>
+    $('#processor_taker_print_close').click(function(){
+        window.close();
+    });
+    $('#processor_taker_print_btn').click(function(){
+        $(".print").hide();
+        window.print();
+    });
+</script>
+
+</html>

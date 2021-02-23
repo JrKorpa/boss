@@ -1,0 +1,136 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <%$bar%>
+        </div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>单号</b></td>
+					<td><%$view->get_apply_number()%></td>
+					<td><b>订单来源</b></td>
+					<td><%$view->get_from_name()%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('rec_apply_status',$view->get_status())%></td>
+					<td><b>总数量</b></td>
+					<td><%$view->get_amount()%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_make_name()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_make_time()%></td>
+					<td><b>审核人</b></td>
+					<td><%$view->get_check_name()|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$view->get_check_time()|default:'--'%></td>
+				</tr>
+				<tr>
+					<td><b>收款类型</b></td>
+					<td><%$dd->getEnum("rec_cash_type",$view->get_cash_type())%></td>
+					<td><b>应收总金额</b></td>
+					<td><%$view->get_total()|default:'--'%></td>
+					<td colspan="4"><a href="javascript:void(0);">下载申请明细列表</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_receive_apply_show_list">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th colspan="4">订单信息</th>
+                        <th colspan="4">客户支付信息</th>
+                        <th colspan="9">费用</th>
+                        <th colspan="2">收益</th>
+                        <th rowspan="2">应收现金</th>
+                        <%if $view->get_status() == 2 || $view->get_status() == 3%>
+                        <th rowspan='2' width="200" id="rule_th_cancel" <%if $view->get_status() == 2%>style="display:none;"<%/if%>>驳回原因</th>
+                        <%/if%>
+                    </tr>
+                    <tr>
+                        <th>对账日期</th>
+                        <th>外部订单号</th>
+                        <th>订单金额/退货贷款</th>
+                        <th>BDD订单号</th>
+                        <th>现金支付</th>
+                        <th>平台积分支付</th>
+                        <th>平台优惠券支付</th>
+                        <th>BDD优惠券支付</th>
+                        <th>扣点</th>
+                        <th>佣金</th>
+                        <th>京豆、京券</th>
+                        <th>运费</th>
+                        <th>卖家赔付</th>
+                        <th>退差价</th>
+                        <th>活动优惠</th>
+                        <th>违约罚款</th>
+                        <th>其他</th>
+                        <th>反邮</th>
+                        <th>其他</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%foreach from=$data item=item%>
+                    <tr>
+                        <td style="display:none;"><%$item.detail_id%></td>
+                        <td><%$item.replytime%></td>
+                        <td><%$item.external_sn%></td>
+                        <td><%$item.external_total%></td>
+                        <td><%$item.kela_sn%></td>
+                        <td><%$item.pay_xj%></td>
+                        <td><%$item.pay_jf%></td>
+                        <td><%$item.pay_pt_yhq%></td>
+                        <td><%$item.pay_kela_yhq%></td>
+                        <td><%$item.f_koudian%></td>
+                        <td><%$item.f_yongjin%></td>
+                        <td><%$item.f_jingdong%></td>
+                        <td><%$item.f_yunfei%></td>
+                        <td><%$item.f_peifu%></td>
+                        <td><%$item.f_chajia%></td>
+                        <td><%$item.f_youhui%></td>
+                        <td><%$item.f_weiyue%></td>
+                        <td><%$item.f_qita%></td>
+                        <td><%$item.sy_fanyou%></td>
+                        <td><%$item.sy_qita%></td>
+                        <td><%$item.total%></td>
+                        <%if $view->get_status() == 2 || $view->get_status() == 3%><!--  待审核 已驳回 -->
+                        <td  <%if $view->get_status() == 2%>style="display:none;"<%/if%>><%$item.reoverrule_reason%></td>
+                        <%/if%>
+                    </tr>
+                    <%/foreach%>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_receive_apply_show.js" %>
+//-->
+</script>

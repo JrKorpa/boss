@@ -1,0 +1,109 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>编辑石包
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped  flip-content">
+				<tr>
+					<td>石包号</td>
+					<td><%$view->get_shibao()%></td>
+					<td>库存数量</td>
+					<td><%$view->get_kucun_cnt()%></td>
+					<td>库存总重</td>
+					<td><%$view->get_kucun_zhong()%></td>
+					<td>每卡采购价格</td>
+					<td><%$view->get_caigouchengben()%></td>
+					<td>每卡销售价格</td>
+					<td><%$view->get_xiaoshouchengben()%></td>
+					<td>石包创建时间</td>
+					<td><%$view->get_addtime()%></td>
+
+				</tr>	
+			</table>
+		</div>
+
+		<form action="" method="post" class="horizontal-form" id="dia_show">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>石包</th>
+				<th>数量</th>
+				<th>总重量</th>
+				<th>每卡销售价格</th>
+			</tr>
+			</thead>
+			<tbody id="detail_body">
+			<tr>
+				<td>1</td>
+				<td><input type="text" class="txt w100" name="shibao[]" style="color:black" /></td>
+				<td><input type="text" class="txt w100" name="cnt[]"  style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="zhong[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="xiaoshouchengben[]" style="color:black"/></td>				
+			</tr>
+			<tr>
+				<td>2</td>
+				<td><input type="text" class="txt w100" name="shibao[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="cnt[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="zhong[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="xiaoshouchengben[]" style="color:black"/></td>				
+			</tr>
+			<tr>
+				<td>3</td>
+				<td><input type="text" class="txt w100" name="shibao[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="cnt[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="zhong[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="xiaoshouchengben[]" style="color:black"/></td>				
+			</tr>
+			<tr>
+				<td>4</td>
+				<td><input type="text" class="txt w100" name="shibao[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="cnt[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="zhong[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="xiaoshouchengben[]" style="color:black"/></td>				
+			</tr>
+			<tr>
+				<td>5</td>
+				<td><input type="text" class="txt w100" name="shibao[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="cnt[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="zhong[]" style="color:black"/></td>
+				<td><input type="text" class="txt w100" name="xiaoshouchengben[]" style="color:black"/></td>				
+			</tr>
+			</tbody>
+		</table>
+		 <!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 提交</button>
+				</div>
+			</div>
+		</form>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_show.js"%>
+//-->
+</script>

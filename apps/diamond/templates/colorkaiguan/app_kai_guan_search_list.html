@@ -1,0 +1,16 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<tbody>
+	<%foreach from=$kaiguanList key=key item=item%>
+		<tr>
+			<td><%$from_adList[$item.from_ad]%></td>
+			<td><input type="checkbox" name="from[]" value="<%$item.from_ad%>" <%if $item.enabled==1%>checked<%/if%>>（选中为开启定时抓取）</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

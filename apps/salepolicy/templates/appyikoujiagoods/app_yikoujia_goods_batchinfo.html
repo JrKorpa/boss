@@ -1,0 +1,33 @@
+ <div class="portlet-body form">
+ <form action="index.php?mod=salepolicy&con=AppYikoujiaGoods&act=batchgoods" method="post" 
+ class="horizontal-form"  enctype="multipart/form-data">
+    <div class="col-sm-5">
+        <label class="control-label">模版：（货号、款号、材质、镶口最小值、镶口最大值、金托类型、价格、证书类型、货品类型）</label>
+        <div class="form-group">
+            <a href="index.php?mod=salepolicy&con=AppYikoujiaGoods&act=zddow&type=1">下载csv模版</a>
+            <!--<br/>
+            <a href="index.php?mod=salepolicy&con=AppYikoujiaGoods&act=zddow&type=2">下载xls模版</a>-->
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div class="form-group">
+            <input type="hidden" name="policy_id" value="<%$policy_id%>"/>
+            <label class="control-label">选择要上传的Excel(csv、xls)文件：
+            <div class="form-group fileupload-buttonbar">
+                <span class="btn fileinput-button">
+                    <input type="file" name="yikoujiagoods" multiple="" />
+                </span>
+                <p class="control-label"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-3">
+        <button type="submit" class="btn blue"> 提交<i class="fa fa-check"></i></button>
+    </div>
+</form>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_yikoujia_goods_info.js"%>
+//-->
+</script>

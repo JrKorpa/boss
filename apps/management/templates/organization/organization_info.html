@@ -1,0 +1,59 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="organization_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">用户：</label>
+						<select class="select2_category form-control" name="user_id" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$view->getUserTree() item=value%>
+								<option value="<%$value.id%>" <%if $view->get_user_id()==$value.id%>selected<%/if%>
+								><%$value.account%>(<%$value.real_name%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">职位：</label>
+						<select class="select2_category form-control" name="position" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("position") item=value%>
+								<option value="<%$value.name%>" <%if $view->get_position()==$value.name%>selected<%/if%>
+								><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">职级：</label>
+						<select class="select2_category form-control" name="level" tabindex="1">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("position_level") item=value%>
+								<option value="<%$value.name%>" <%if $view->get_level()==$value.name%>selected<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="dept_id" value="<%$view->get_dept_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/organization_info.js"%>
+//-->
+</script>

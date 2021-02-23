@@ -1,0 +1,134 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="wait_diamond_lated_search_form_second">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">统计日期范围：</label>
+							  <div class="input-group input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+									<input type="text" class="form-control date-picker" name="start_time" value="<%$smarty.now|date_format:"%Y-%m-01"%>" />
+									<span class="input-group-addon">to</span>
+									<input type="text" class="form-control date-picker" name="end_time" value="<%$smarty.now|date_format:"%Y-%m-%d"%>" />
+							  </div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" class="form-control" name="style_sn" value="" />
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">工厂：</label>
+							<select class="select2_category form-control" tabindex="1" name="prc_ids[]" multiple id="prc_ids">
+								<option value=""></option>
+								<%foreach from=$Processor_list key=k item=value%>
+									<option value="<%$value.id%>"><%$value.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">跟单人：</label>
+								<select class="form-control" tabindex="1" name="opra_unames[]" multiple id="opra_unames">
+									<option value=""></option>
+									<%foreach from=$user_list item=v%>
+									<option value="<%$v.opra_uname%>"><%$v.opra_uname%></option>
+									<%/foreach%>
+								</select>
+							</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="from_type">
+								<option value=""></option>
+								<option value="1">采购单</option>
+								<option value="2">订单</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">钻石类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="diamond_type">
+								<option value=""></option>
+								<option value="1">期货钻</option>
+								<option value="2">现货钻</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">起版类型：</label>
+							 <select class="form-control select2-offscreen valid" tabindex="-1" name="qiban_type" id="qiban_type" >
+								<option value="-1">全部</option>
+								<%foreach from=$dd->getEnumArray('qiban_type') key=k item=value%>
+								<option value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<button data-title="跟单人等钻超期 报表" list-id="2799" title="" name="查看明细" data-url="index.php?mod=report&con=WaitDiamondLatedReport&act=downloadReport" onclick="util.cust(this,show_wait_diamond_lated_list_second);" class="btn btn-sm red">
+					下载所有未送钻明细 <i class="fa fa-bar-chart-o"></i>
+				</button>
+			</div>
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="wait_diamond_lated_search_list_second"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/wait_diamond_lated_list_second.js"%>
+//-->
+</script>

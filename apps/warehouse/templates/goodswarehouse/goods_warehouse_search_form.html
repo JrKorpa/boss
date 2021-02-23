@@ -1,0 +1,124 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="goods_warehouse_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货号：</label>
+							<input type="text" name="good_id" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">柜位号：</label>
+							<input type="text" name="box_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">所属公司：</label>
+							<select class="select2_category form-control" tabindex="1" name="company_id">
+								<option value=""></option>
+								<%foreach from=$view->getCompanyList() item=v%>
+								<option value="<%$v['id']%>"><%$v['company_name']%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                </div>
+                                <div class="row">
+					<div class="col-sm-11">
+						<div class="form-group">
+							<label class="control-label">所属仓库：<input type="checkbox" name="checkAll" />全选</label>
+                                                        <select class="select2_category form-control" disabled="disabled" size="10" tabindex="1" name="warehouse_id[]" multiple="multiple">
+								
+							</select>
+						</div>
+                                            
+					</div>
+                                </div>
+                                <div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">上架状态：</label>
+							<select class="select2_category form-control" tabindex="1" name="status">
+								<option value=""></option>
+								<option value="1">已上架</option>
+								<option value="2">未上架(既柜位0-00-0-0)</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="goods_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+                                    <!--
+					<div class="col-sm-4">
+						<div class="form-group" style="margin-left: 25px;margin-top: 32px;">
+							<div class="checkbox-list">
+								<label class="checkbox-inline">
+									<input type="checkbox" value="1" id="close" name="close"> 不显示已销售的、已返厂的、店面的货品柜位信息
+								</label>
+							</div>
+						</div>
+					</div>
+                                    -->
+				</div>
+
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="goods_warehouse_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	var wh_id="<%$smarty.get.wh_id%>";
+	<%include file="js/goods_warehouse_list.js"%>
+	<%include file="js/jquery.tagsinput.min.js"%>
+//-->
+</script>

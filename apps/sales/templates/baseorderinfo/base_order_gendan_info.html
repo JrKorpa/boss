@@ -1,0 +1,34 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="base_order_gendan_info">
+		<div class="form-body">
+			<div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">销售顾问：</label>
+                        <select class="select2_category form-control" name="genzong" tabindex="1" >
+                            <option value=""></option>
+                            <%foreach from=$make_order item=c%>
+                                <option value="<%$c%>" <%if $view->get_genzong()==$c%>selected="selected"<%/if%>><%$c%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="_ids" value="<%$_ids%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i>分配跟单人</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_order_gendan_info.js"%>
+//-->
+</script>

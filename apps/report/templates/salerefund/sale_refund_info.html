@@ -1,0 +1,60 @@
+  <div class="table-scrollable">
+ <div class="flip-scroll">
+<!-- <div class="portlet-body form"> -->
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="sale_refund_info">
+        <div class="form-body">
+            <div class="row">
+            <input type="hidden" name="datetime" value="<%$date%>">
+            <table class="table table-bordered table-striped table-hover flip-content">
+           <thead class="flip-content">
+            <tr>
+                <th>渠道</th>
+                <th></th>
+                <th>科目</th>
+                <th>月</th>
+                <%foreach from=$week_array item=u key=e%>
+                 <th><%$e+1%>周</th>
+                <%/foreach%>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+           <%foreach from=$title item=r key=o%>
+           <tr>
+               <%foreach from=$r item=t key=k%>
+                   <%foreach from=$t item=d key=index%>
+                    <td><%$d%></td>
+                   <%/foreach%>
+               <%/foreach%>
+               <td><input type="text" value="<%$itemData[$o][0]['value']%>" name="day_<%$date%>_<%$o%>_0"></td>
+               <%foreach from=$week_array item=wa key=key%>
+               <td><input type="text" value="<%$itemData[$o][$key+1]['value']%>" name="day_<%$date%>_<%$o%>_<%$key+1%>"></td>
+               <%/foreach%>
+           </tr>
+           <%/foreach%>
+        </tbody> 
+       
+    </table>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+<!-- </div> -->
+</div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file="js/sale_refund_info.js"%>
+//-->
+</script>

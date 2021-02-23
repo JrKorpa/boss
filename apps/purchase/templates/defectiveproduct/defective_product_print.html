@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>不良返厂明细表</title>
+<style type="text/css">
+{literal}
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.tLeft{text-align:left;}
+.wrap{width:660px;margin:50px auto;}
+h1{font-size:14px; text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{ border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+{/literal}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<h1>不良返厂明细表</h1>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="40">单号：</td>
+			<td class="tLeft" width="60"><%$view->get_id()%></td>
+			<td width="60">出货单号：</td>
+			<td class="tLeft" width="130"><%$view->get_ship_num()%></td>
+			<td width="60">加工商：</td>
+			<td class="tLeft"><%$view->get_prc_name()%></td>	
+		</tr>
+                <tr>
+            <td width="50">制单人：</td>
+			<td class="tLeft" ><%$order_goods[0]['make_name']%></td>
+			<td width="60">制单时间：</td>
+			<td class="tLeft" ><%$order_goods[0]['make_time']%></td>
+			<td width="60">审核人：</td>
+			<td class="tLeft"><%$order_goods[0]['check_name']%></td>
+                        <td width="60">审核时间：</td>
+			<td class="tLeft" ><%$order_goods[0]['check_time']%></td>
+                </tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>出货单对应序号</td>
+				<td>模号</td>
+				<td>金额</td>
+				<td>布产号</td>
+				<td>客户名</td>
+				<td>货品类型</td>
+				<td>备注</td>
+                               
+			</tr>
+		</thead>
+		<tbody>
+			<%foreach from=$order_goods key=key item=item %>
+			<tr>
+				<td><%$item.xuhao%></td>
+				<td><%$item.factory_sn%></td>
+				
+                  <td><%$item.total%></td>
+				<td><%$item.bc_sn%></td>
+				<td><%$item.customer_name%></td>
+				<td><%$item.cat_type%></td>
+				<td><%$item.info%></td>
+                                
+			</tr>
+			<%/foreach%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>合计</td>
+				<td colspan="6" >总数：<%$view->get_num()%>&nbsp;&nbsp;&nbsp;&nbsp;总金额：
+                    
+					   <%$view->get_total()|string_format:'%.3f'%>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	<div style="margin-top:10px;text-align:center;">制单人:___________  &nbsp;&nbsp;收发员:___________  &nbsp;&nbsp;送货员:___________&nbsp;&nbsp;工厂收货人:___________</div>
+	<br/>
+	<div class="print">
+		<button id="print_close">关闭</button>
+		<button id="print_btn">打&nbsp;印</button>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+<script>
+    $('#print_close').click(function(){
+        window.close();
+    });
+    $('#print_btn').click(function(){
+        $(".print").hide();
+        window.print();
+    });
+</script>
+</html>

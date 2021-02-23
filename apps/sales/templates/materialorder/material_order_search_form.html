@@ -1,0 +1,152 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="material_order_search_form">
+			<div class="form-body">
+				<div class="row">
+					 <div class="col-sm-3">
+						 <div class="form-group">
+							<label class="control-label" for="name">单据编号：</label>
+							<input class="form-control" name="bill_no" placeholder="请输入单据编号,多个请换行或空格隔开"/>
+						</div>
+					 </div>
+					 
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据状态：</label>
+							<select class="form-control" name="bill_status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("material.bill_status") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">销售渠道：</label>
+								<select class="form-control" name="department_id">
+								<option value=""></option>
+								<%foreach from=$view->get_department_list() key=k item=value%>
+								<option value="<%$value.id%>" <%if $view->get_department_id()==$value.id%>selected<%/if%>><%$value.channel_name%></option>
+								<%/foreach%>
+								</select>
+							</div>
+					</div>						
+					 <div class="col-sm-3">
+						 <div class="form-group">
+							<label class="control-label" for="name">制单人：</label>
+							<input class="form-control" name="create_user" />
+						</div>
+					 </div>					
+                </div>
+
+				
+                <div class="row">
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >款式编号：</label>
+							<input class="form-control" name="style_sn" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >款式名称：</label>
+							<input class="form-control" name="style_name" placeholder="请输入"/>
+						</div>
+					 </div>
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >货品编号：</label>
+							<input class="form-control" name="goods_sn" placeholder="请输入"/>
+						</div>
+					 </div>					 
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >货品名称：</label>
+							<input class="form-control" name="goods_name" placeholder="请输入"/>
+						</div>
+					 </div>		
+                </div>
+				
+                <div class="row">
+				   
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" placeholder="请选择" name="time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" placeholder="请选择" name="time_end">
+							</div>
+						</div>
+				    </div>	
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" placeholder="请选择" name="check_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" placeholder="请选择" name="check_time_end">
+							</div>
+						</div>
+				    </div>
+
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">搜索明细：</label>
+								<input type="checkbox" name="show_detail" value="1">
+							</div>
+					</div>
+
+			    </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<!--<button type="button" class="btn blue" onclick="download()"><i class="fa fa-check"></i> 导出</button>-->
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="material_order_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/material_order_list.js"%>
+//-->
+</script>

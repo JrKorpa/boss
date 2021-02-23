@@ -1,0 +1,53 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_caigou_tiaozheng_info" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品类型：</label>
+						<select class="form-control" tabindex="1" name="type">
+							<option value="">请选择</option>
+							<%foreach from=$type item=item key=k%>
+								<option value="<%$k%>"><%$item%></option>
+							<%/foreach%>
+						</select>					
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">调价说明：</label>
+						<select class="form-control" tabindex="1" name="shuoming">
+							<option value="">请选择</option>
+							<%foreach from=$dd->getEnumArray("caigou.tiaojiashuoming") item=item%>
+								<option value="<%$item.name%>"><%$item.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">上传文件：</label>
+						<input  class="" type="file" name="cgchengben_file" id="cgchengben_file" style="" />
+						<a href="index.php?mod=warehouse&con=WarehouseCaigouTiaozheng&act=getTemplate">下载格式信息</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_caigou_tiaozheng_info.js"%>
+//-->
+</script>

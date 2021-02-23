@@ -1,0 +1,96 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_processor_taker_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label">姓名：</label>
+								<input type="text" name="real_name" class="form-control" disabled/>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label">选择用户：</label><span id="processor_taker_select" style="color:red"></span>
+								<select class="form-control" tabindex="1" name="kela_user">
+									<option value=""></option>
+									<%foreach from=$view->get_kela_user() item=u%>
+									<option data-id="<%$u.id%>" data-icd="<%$u.icd%>" data-name="<%$u.real_name%>" data-account="<%$u.account%>" data-mobile="<%$u.mobile%>" value="<%$u.id%>"><%$u.real_name%>/<%$u.account%></option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label">账户：</label>
+								<input type="text" name="account" class="form-control" disabled/>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label">手机号：</label>
+								<input type="text" name="mobile" class="form-control" disabled/>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label">身份证号码：</label>
+								<input type="text" name="user_papers" class="form-control" disabled/>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label">委托取货人：</label>
+								<table class="table table-bordered table-striped table-hover flip-content">
+									<thead class="flip-content">
+									<tr>
+										<th>姓名</th>
+										<th>账号</th>
+										<th>手机</th>
+										<th>身份证</th>
+										<th>操作</th>
+									</tr>
+									</thead>
+									<tbody id="processor_taker_info_tbody">
+									<%if isset($taker)%>
+									<%foreach from=$taker item=u%>
+									<tr>
+										<td><%$u.taker_name%></td>
+										<td><%$u.taker_account%></td>
+										<td><%$u.taker_tel%></td>
+										<td><%$u.taker_papers%></td>
+										<td><span class='btn btn-xs red' onclick='del_buyer(this)'><i class='fa fa-times'>删除</i></span></td>
+										<input type='hidden' name='data[]' value='<%$u.taker_id%>' from='app_processor_taker_info' />
+									</tr>
+									<%/foreach%>
+									<%/if%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-4 col-md-6">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="supplier_id" value="<%$view->get_supplier_id()%>" />
+
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				<span type="colse" class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_processor_taker_info.js"%>
+//-->
+</script>

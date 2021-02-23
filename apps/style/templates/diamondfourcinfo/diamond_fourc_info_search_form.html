@@ -1,0 +1,122 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="diamond_fourc_info_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">主石形状：</label>
+                            <select class="form-control" tabindex="1" name="shape">
+                                <option value=""></option>
+                                <%foreach from=$view->getShapeList() key=key item=val%>
+                                <option value="<%$key%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">石重区间：</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="stone_min" value="" placeholder="请输入"/>
+                                        <span class="input-group-addon">to</span>
+                                        <input type="text" value="" name="stone_max" class="form-control" placeholder="请输入"/>
+                                    </div>
+                            </div>
+                        </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <select class="form-control" tabindex="1" name="color">
+                                <option value=""></option>
+                                <%foreach from=$view->getColorList() key=key item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <select class="form-control" tabindex="1" name="clarity">
+                                <option value=""></option>
+                                <%foreach from=$view->getClarityList() key=key item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">证书类型：</label>
+                            <select class="form-control" tabindex="1" name="cert">
+                                <option value=""></option>
+                                <%foreach from=$view->getCertList() key=key item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">状态：</label>
+                            <select class="form-control" tabindex="1" name="status">
+                                <option value=""></option>
+                                <option value="1">启用</option>
+                                <option value="2">禁用</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="diamond_fourc_info_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/diamond_fourc_info_list.js"%>
+//-->
+</script>

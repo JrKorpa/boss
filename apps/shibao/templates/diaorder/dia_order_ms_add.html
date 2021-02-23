@@ -1,0 +1,91 @@
+<form action="#" method="post" class="horizontal-form" id="dia_order_stone_add" enctype="multipart/form-data">
+<div class="row">
+    <div class='alert alert-info col-sm-12'><%$note%></div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">日期：</label>
+            <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                <input type="text" name="order_time" value="<%if $view->get_order_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_order_time()%><%/if%>" class="form-control" >
+                    <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">加工商：</label>
+            <span style='color:red;'>*</span>
+            <select class="form-control" tabindex="1" name="prc_id">
+                <option value=""></option>
+                <%foreach from=$pro_list key=k item=value%>
+                <option <%if $view->get_prc_id() == $value.id%>selected<%/if%> value="<%$value.id%>|<%$value.name%>"><%$value.name%></option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">入库方式：</label>
+            <span style='color:red;'>*</span>
+            <select class="form-control" tabindex="1" name="in_warehouse_type">
+                <option value=""></option>
+                <%foreach from=$dd->getEnumArray("dia_order.in_warehouse_type") key=k item=value%>
+                <option <%if $proinfo['pro_type'] == $value.name%>selected<%/if%>  value="<%$value.name%>"><%$value.label%></option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">结算方式：</label>
+            <span style='color:red;'>*</span>
+            <select class="form-control" tabindex="1" name="account_type">
+                <option value=""></option>
+                <%foreach from=$dd->getEnumArray("dia_order.account_type") key=k item=value%>
+                <option <%if $view->get_account_type() == $value.name%>selected<%/if%>   value="<%$value.name%>"><%$value.label%></option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">支付总计：</label>
+            <input type="text" name="shijia" class="form-control" placeholder="" value="<%$view->get_shijia()%>" />
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">纸质单号：</label>
+            <input type="text" name="send_goods_sn" class="form-control" placeholder="" value="<%$view->get_send_goods_sn()%>" />
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">备注：</label>
+            <input type="text" name="info" class="form-control" placeholder="" value="<%$view->get_info()%>" />
+        </div>
+    </div>
+</div>
+<!-- 搜索按钮 -->
+<div class="form-actions fluid">
+    <div class="col-md-offset-3 col-md-9">
+        <input type="hidden" name="order_id" value="<%$view->get_order_id()%>" />
+
+        <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+        <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+        <button type="reset" class="btn default">重置</button>
+        <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+    </div>
+</div>
+</form>
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/dia_order_ms_add.js"%>
+    //-->
+</script>

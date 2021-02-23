@@ -1,0 +1,45 @@
+id = #from_table_data_bill_w;
+
+[title]
+0 = "序号";
+1 = "货号";
+2 = "款号";
+3 = "货品名称";
+4 = "货品数量";
+5 = "盘点时间";
+6 = "盘点状态";
+7 = "盘盈所在仓库";
+
+[columns_0]
+type = numeric;
+readOnly = true;
+
+[columns_1]
+type = numeric;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+type = text;
+readOnly = true;
+
+[columns_4]
+type = numeric;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = text;
+readOnly = true;
+
+

@@ -1,0 +1,41 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>活动名称</th>
+				<th>可录单部门</th>
+				<th>允许录单开始时间</th>
+				<th>允许录单结束时间</th>
+				<th>活动举行开始时间</th>
+				<th>活动举行结束时间</th>
+				<th>最后操作人</th>
+				<th>启用状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="base_hunbohui_info_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.name%></td>
+				<td><%if isset($allSalesChannelsData[$d.department])%><%$allSalesChannelsData[$d.department]%><%/if%></td>
+				<td><%$d.start_time%></td>
+				<td><%$d.end_time%></td>
+				<td><%$d.active_start_time%></td>
+				<td><%$d.active_end_time%></td>
+				<td><%$d.user_name%></td>
+				<td><%if $d.is_delete==0%>启用<%else%>删除<%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

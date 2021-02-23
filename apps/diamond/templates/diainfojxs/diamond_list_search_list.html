@@ -1,0 +1,106 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+			<th>图片</th>
+            <th>商品编码</th>
+            <th>所在地</th>
+            <th>形状</th>
+            <th>石重</th>
+            <th>颜色</th>
+            <th>净度</th>
+            <th>切工</th>
+            <th>对称</th>
+            <th>抛光</th>
+            <th>荧光</th>
+            <th>批发价</th>
+            <th>证书类型</th>
+            <th>证书号</th>
+            <th>货品类型</th>
+            <th>是否活动</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+		<%if $d.kuan_sn%>
+			<tr data-id="zt_diamond_info_list_<%$d.goods_id%>" data-title="<%$d.goods_sn%>">
+			<td><center><img src="/public/img/tsyd.png" style="width:16px;height:16px;" alt="天生一对"></center></td>
+            <td><%if isset($d.goods_sn)%><%$d.goods_sn%><%else%><%/if%><%if isset($d.kuan_sn) && $d.kuan_sn%>(<%$d.kuan_sn%>)<%else%><%/if%><br>
+			<%if isset($d.add.goods_sn)%><%$d.add.goods_sn%><%else%><%/if%><%if isset($d.add.kuan_sn) && $d.add.kuan_sn%>(<%$d.add.kuan_sn%>)<%else%><%/if%>
+			</td>
+            <td><%$d.company_name%><br>
+			<%$d.company_name%></td>
+            <td><%$dd->getEnum("shape",$d.shape)|default:''%><br>
+			<%$dd->getEnum("shape",$d.add.shape)|default:''%>
+			</td>
+            <td><%if isset($d.carat)%><%$d.carat%><%else%><%/if%><br>
+			<%if isset($d.add.carat)%><%$d.add.carat%><%else%><%/if%></td>
+            <td><%if isset($d.color)%><%$d.color%><%else%><%/if%><br>
+			<%if isset($d.add.color)%><%$d.add.color%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%><br>
+			<%if isset($d.add.clarity)%><%$d.add.clarity%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.cut)%><%$d.cut%><%else%><%/if%><br>
+			<%if isset($d.add.cut)%><%$d.add.cut%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.symmetry)%><%$d.symmetry%><%else%><%/if%><br>
+			<%if isset($d.add.symmetry)%><%$d.add.symmetry%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.polish)%><%$d.polish%><%else%><%/if%><br>
+			<%if isset($d.add.polish)%><%$d.add.polish%><%else%><%/if%>
+			
+			</td>
+            <td><%if isset($d.fluorescence)%><%$d.fluorescence%><%else%><%/if%><br>
+			<%if isset($d.add.fluorescence)%><%$d.add.fluorescence%><%else%><%/if%>			
+			</td>
+            <td><%if $d.pifajia > 0%><%$d.pifajia%><%else%>--<%/if%></td>
+            <td><%if isset($d.cert)%><%$d.cert%><%else%><%/if%><br>
+			<%if isset($d.add.cert)%><%$d.add.cert%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%><br>
+			<%if isset($d.add.cert_id)%><%$d.add.cert_id%><%else%><%/if%>
+			</td>
+            <td><%if isset($d.good_type) && $d.good_type==1%>现货<%else%>预定<%/if%><br>
+			<%if isset($d.add.good_type) && $d.add.good_type==1%>现货<%else%>预定<%/if%>
+			</td>
+            <td><%$dd->getEnum("is_active",$d.is_active)%><br>
+			<%$dd->getEnum("is_active",$d.add.is_active)%>
+			</td>
+        </tr>
+		<%else%>
+        <tr data-id="zt_diamond_list_list_<%$d.goods_id%>" data-title="<%$d.goods_sn%>">
+			<%if $d.gemx_zhengshu%>
+				<td><center><img src="/public/img/xy.png" style="width:16px;height:16px;" alt="星耀钻石"/></center></td>
+			<%else%>
+				<td><center><img src="/public/img/zs.png" style="width:16px;height:16px;" alt="钻石"/></center></td>
+			<%/if%>
+            <td><%if isset($d.goods_sn)%><%$d.goods_sn%><%else%><%/if%>
+			<%if isset($d.kuan_sn) && $d.kuan_sn%><br>(<%$d.kuan_sn%>)<%else%><%/if%>
+			</td>
+            <td><%$d.company_name%></td>
+            <td><%$dd->getEnum("shape",$d.shape)|default:''%></td>
+            <td><%if isset($d.carat)%><%$d.carat%><%else%><%/if%></td>
+            <td><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+            <td><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+            <td><%if isset($d.cut)%><%$d.cut%><%else%><%/if%></td>
+            <td><%if isset($d.symmetry)%><%$d.symmetry%><%else%><%/if%></td>
+            <td><%if isset($d.polish)%><%$d.polish%><%else%><%/if%></td>
+            <td><%if isset($d.fluorescence)%><%$d.fluorescence%><%else%><%/if%></td>
+            <td><%if $d.pifajia > 0%><%$d.pifajia%><%else%>--<%/if%></td>
+            <td><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>
+            <td><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td>
+            <td><%if isset($d.good_type) && $d.good_type==1%>现货<%else%>期货<%/if%><%if !empty($d.special_price)%>+<%/if%></td>
+            <td><%$dd->getEnum("is_active",$d.is_active)%></td>
+        </tr>
+		<%/if%>
+        <%/foreach%>
+    </tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

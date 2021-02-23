@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>渠道名称</th>
+			<th>一级分类</th>
+			<th>二级分类</th>
+			<th>渠道归属</th>
+			<th>渠道联系人</th>
+			<th>联系人手机</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="sales_channels_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.channel_name%></td>
+			<td>
+				<%foreach from=$dd->getEnumArray("sales_channels_class") item=value%>
+				<%if $value.name==$d.channel_class%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td>
+				<%foreach from=$dd->getEnumArray("sales_channels_type") item=value%>
+				<%if $value.name==$d.channel_type%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td><%$d.channel_own%></td>
+			<td><%$d.channel_man%></td>
+			<td><%$d.channel_phone%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

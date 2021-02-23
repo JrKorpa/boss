@@ -1,0 +1,29 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="order_invoice_info_import_form">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">Excel文件(金税系统发票格式)：<span class="required">*</span></label>
+						<input type="file" class="form-control" name="file" value=""/>						
+					</div>
+				</div>		
+			</div>			
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 导入</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+
+	<%include file="js/order_invoice_info_import.js"%>
+//-->
+</script>

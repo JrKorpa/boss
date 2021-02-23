@@ -1,0 +1,71 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="jxc_wholesale_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户编号：</label>
+						<input type="text" name="wholesale_sn" class="form-control" placeholder="系统自动生成" value="<%$view->get_wholesale_sn()%>" readonly />
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户名称：</label>
+						<input type="text" name="wholesale_name" class="form-control" placeholder="请输入客户名称！" value="<%$view->get_wholesale_name()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">授信额度：</label>
+						<input type="text" name="wholesale_credit" class="form-control" placeholder="请输入授信额度！" value="<%$view->get_wholesale_credit()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">是否需要签收：</label>
+						<select class="form-control" tabindex="1" name="sign_required">
+								<option></option>
+								<option value="1" <%if 1==$view->get_sign_required()%>selected="selected"<%/if%>>是</option>
+								<option value="0" <%if 0==$view->get_sign_required()%>selected="selected"<%/if%>>否</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">签收公司：</label>
+						<select class="form-control" tabindex="1" name="sign_company">
+								<option></option>
+								<%foreach from=$company item=c %>
+								<option value="<%$c.id%>" <%if $c.id==$view->get_sign_company()%>selected="selected"<%/if%>><%$c.company_name%></option>
+								<%/foreach%>
+						</select>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="wholesale_id" value="<%$view->get_wholesale_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/jxc_wholesale_info.js"%>
+//-->
+</script>

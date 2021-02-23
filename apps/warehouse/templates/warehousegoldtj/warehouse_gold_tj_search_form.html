@@ -1,0 +1,87 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehousegoldtj_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">查询时间：</label>
+						 
+							  <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="start_time" id="start_time" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" id="end_time" value="" />
+                            </div>
+						</div>
+					</div>
+                  <div class="col-sm-6">
+						<div class="form-group" style="margin-top: 27px;">
+							<div class="checkbox-list">
+								<label class="checkbox-inline">
+									<input type="radio" value="real_all" name="zdj" id="zdj" checked="checked">实时总库存数据
+								</label>
+								<label class="checkbox-inline">
+									<input type="radio" value="sales" name="zdj" id="zdj">销售数据
+								</label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" value="from_data" name="zdj" id="zdj">入库数据
+                                </label>
+							</div>
+						</div>
+					</div>
+                  
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" name="handle" value="exportOrder" onclick="execHandler()"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+        </div>
+        </form>
+		<!-- END FORM-->
+	</div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="warehousegoldtj_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/goldtj_search_list.js"%>
+//-->
+</script>

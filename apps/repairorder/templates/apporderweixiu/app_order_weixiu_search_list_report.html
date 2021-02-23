@@ -1,0 +1,83 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                               <th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#app_order_weixiu_search_list .checkboxes" /></th>
+				<th>维修单号</th>
+				<th>订单号</th>
+				<th>布产号</th>
+				<th>货号</th>
+				<th>客户姓名</th>
+				<th>维修类型</th>
+				<th>维修工厂</th>
+				<th>制单人</th>
+				<th>跟单人</th>
+				<th>制单时间</th>
+				<th>预计出厂时间</th>
+				<th>维修内容</th>
+				<th>下单时间</th>
+				<th>状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=item%>
+			<tr data-id="app_order_weixiu_list_<%$item.id%>" data-title="<%$item.order_sn%>">
+                                <td align="center"><input class="checkboxes"  type="checkbox" title="此复选框作用于打印标签" name="_ids[]" value="<%$item.id%>" /></td>
+				<td><%$item.id%></td>
+				<td><a href="javascript:;" class="tab-con-a" data-title="<%$item.order_sn%>" data-id="<%$item.order_sn%>" data-url="index.php?
+mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$item.order_sn%>"><%$item.order_sn%></a></td>
+				<td><%$item.rec_id%></td>
+				<td><%$item.goods_id%></td>
+				<td><%$item.consignee%></td>
+				<td><%$dd->getEnum("weixiu.type",$item.re_type)%></td>
+				<td><%$view->get_pro_name($item.repair_factory)%></td>
+				<td><%$item.repair_make_order%></td>
+				<td><%$view->get_user_name($item.repair_man)%></td>
+				<td nowrap="nowrap"><%$item.order_time%></td>
+				<td nowrap="nowrap"><%$item.end_time%></td>
+				<td nowrap="nowrap"><%$view->get_repair_act_con($item.repair_act)%></td>
+				<td nowrap="nowrap"><%if $item.factory_time==""%>未下单<%else%><%$item.factory_time%><%/if%></td>
+				<td><%$dd->getEnum("weixiu.status",$item.status)%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+	
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#app_order_weixiu_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#app_order_weixiu_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#app_order_weixiu_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

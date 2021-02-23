@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <!--<th>序号</th>-->
+            <th>账号</th>
+            <th>员工编码</th>
+            <th>姓名</th>
+            <th>电话</th>
+            <th>邮箱</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$page_list.data item=d%>
+        <tr data-id="roleuser_list_<%$d.id%>">
+            <!--<td align="center"><%$d.id%></td>-->
+            <td><%$d.account%></td>
+            <td><%$d.code%></td>
+            <td><%$d.real_name%></td>
+            <td><%$d.mobile%></td>
+            <td><%$d.email%></td>
+        </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

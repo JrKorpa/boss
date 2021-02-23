@@ -1,0 +1,44 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>货号</th>
+		<th>货品名称</th>
+		<th>款号</th>
+		<th>材质</th>
+		<th>金重</th>
+		<th>颜色</th>
+		<th>钻石大小</th>
+        <th>证书类型</th>
+		<%if $isViewChengbenjia%>
+		<th>
+                    成本价
+	    </th><%/if%>		
+		<!-- <th>销售价</th> -->
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="button_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+		<td><%$d.goods_id%></td>
+		<td><%$d.goods_name%></td>
+		<td><%$d.goods_sn%></td>
+		<td><%$d.caizhi%></td>
+		<td><%$d.jinzhong%></td>
+		<td><%$d.yanse%></td>
+		<td><%$d.zuanshidaxiao%></td>
+        <td><%$d.zhengshuleibie%></td>
+		<%if $isViewChengbenjia%>
+	      <td>   	
+                    <%$d.sale_price%>
+	      </td>
+	    <%/if%>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

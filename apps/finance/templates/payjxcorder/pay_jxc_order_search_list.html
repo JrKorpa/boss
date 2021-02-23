@@ -1,0 +1,48 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th>单号</th>
+            <th>订单来源</th>
+            <th>单据类型</th>
+            <th>审核时间</th>
+            <th>货品数量</th>
+            <th>成本价</th>
+            <th>销售价</th>
+            <th>BDD订单号</th>
+            <th>核销状态</th>
+            <th>核销单号</th>
+            <th>核销时间</th>
+            <th>核销周期</th>
+            <th>是否回款</th>
+            <th>回款周期</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr>
+            <td align="center">
+			<a class="tab-con-a" data-url="index.php?mod=warehouse&con=WarehouseBillInfo<%$d.type1%>&act=show&bill_no=<%$d.jxc_order%>" data-id="<%$d.jxc_order%>" data-title="<%$d.jxc_order%>" href="javascript:;"><%$d.jxc_order%></a>
+			</td>
+            <td align="center"><%$d.ad_name|default:'0'%></td>
+            <td align="center"><%$d.type|default:''%></td>
+            <td align="center"><%$d.checktime|default:''%></td>
+            <td align="center"><%$d.goods_num|default:''%></td>
+            <td align="center"><%$d.chengben|default:''%></td>
+            <td align="center"><%$d.shijia|default:''%></td>
+            <td align="center"><%$d.kela_sn|default:''%></td>
+            <td align="center"><%$dd->getEnum('pay.warehouse_status',$d.status)%></td>
+            <td align="center"><%$d.hexiao_number|default:''%></td>
+            <td align="center"><%$d.hexiaotime|default:''%></td>
+            <td align="center"><%$d.hexiao_zq|default:''%></td>
+            <td align="center"><%$dd->getEnum('confirm',$d.is_return)%></td>
+            <td align="center"><%$d.return_zq|default:''%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

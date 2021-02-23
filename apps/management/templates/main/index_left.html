@@ -1,0 +1,46 @@
+<div class="page-sidebar-wrapper">
+	<div class="page-sidebar navbar-collapse collapse">
+		<!--侧边菜单 -->
+		<ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200" id="sidebar-menu">
+			<li class="sidebar-toggler-wrapper">
+				<!--侧边栏切换按钮 -->
+				<div class="sidebar-toggler hidden-phone"></div>
+			</li>
+			<%foreach from=$menu_data item=value%>
+			<li>
+				<a href="javascript::void(0);">
+					<i class="fa <%$value.icon%>"></i>
+					<span class="title"><%$value.label%></span>
+					<span class="arrow"></span>
+				</a>
+				<!-- 二级开始 -->
+				<ul class="sub-menu">
+					<%foreach from=$value.son item=v%>
+						<li>
+							<a href="javascript::void(0);" >
+								<i class="fa <%$v.icon%>"></i><%$v.label%>
+								<span class="arrow"></span>
+							</a>
+								<!-- 三级开始 -->
+								<ul class="sub-menu">
+									<%foreach from=$v.son item=vv%>
+										<li>
+                                                                                        <a href="<%$vv.url%>" data-id="tab-<%$vv.id%>" data-url="<%$vv.url%>" is_out="<%$vv.is_out%>">
+												<i class="fa <%$vv.icon%>"></i><%$vv.label%>
+											</a>
+										</li>
+									<%/foreach%>
+									<div class="clear"></div>
+								</ul>
+								<!-- 三级结束 -->
+						</li>
+					<%/foreach%>
+					<div class="clear"></div>
+				</ul>
+				<!-- 二级结束 -->
+			</li>
+			<%/foreach%>
+			<div class="clear"></div>
+		</ul>
+	</div>
+</div>

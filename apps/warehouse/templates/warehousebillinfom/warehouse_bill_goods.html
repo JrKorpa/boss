@@ -1,0 +1,54 @@
+<table class="table table-bordered table-striped table-hover flip-content" style="width:1500px;">
+	<thead class="flip-content">
+	<tr valign="top">
+		<th>序号</th>
+		<th>货号</th>
+		<th>款号</th>
+		<%if $isViewChengbenjia%><th>成本价</th><%/if%>
+		<th>主成色重</th>
+		<th>主成色</th>
+		<th>钻石大小</th>
+		<th>主石粒数</th>
+		<th>副石粒数</th>
+		<th>副石重</th>
+		<th>颜色</th>
+		<th>净度</th>
+		<th>金耗</th>
+		<th>证书号</th>
+        <th>证书类型</th>
+		<th>货品名称</th>
+		<%if $isViewChengbenjia%><th>加价成本</th>
+		<th>加价率(%)</th><%/if%>
+		
+		<th>新款式类型</th>
+        <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><th>展厅标签价</th><%/if%>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+	<tr data-id="" data-title="">
+		<td><%$k+1%></td>
+		<td><%$d.goods_id%></td>
+		<td><%$d.goods_sn|default:'--'%></td>
+		<%if $isViewChengbenjia%><td><%$d.sale_price|default:'0.00'%></td><%/if%>
+		<td><%$d.jinzhong|default:'--'%></td>
+		<td><%$d.caizhi|default:'--'%></td>
+		<td><%$d.zuanshidaxiao|default:'--'%></td>
+		<td><%$d.zhushilishu|default:'--'%></td>
+		<td><%$d.fushilishu|default:'--'%></td>
+		<td><%$d.fushizhong|default:'--'%></td>
+		<td><%$d.yanse|default:'--'%></td>
+		<td><%$d.jingdu|default:'--'%></td>
+		<td><%$d.jinhao|default:'--'%></td>
+		<td><%$d.zhengshuhao|default:'--'%></td>
+        <td><%$d.zhengshuleibie|default:'--'%></td>
+		<td><%$d.goods_name|default:'--'%></td>
+		<%if $isViewChengbenjia%><td title="原始采购价格：<%$d.yuanshichengbenjia%>"><%$d.yuanshichengbenjia*(1+$d.jiajialv/100)|default:'--'%></td>
+		<td><%$d.jiajialv|default:'--'%></td><%/if%>
+		<td><%$d.cat_type1|default:'--'%></td>
+        <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td><%$d.label_price|default:'0.00'%></td><%/if%>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

@@ -1,0 +1,77 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+            <th>操作</th>
+            <th>图片(主图)</th>
+            <th>款号</th>
+            <th>名称</th>
+            <th>数量</th>
+            <th>镶嵌要求</th>
+            <th>主石单颗重</th>
+			<th>主石粒数</th>
+            <th>镶口</th>
+            <th>颜色</th>
+            <th>净度</th>
+            <th>材质</th>
+            <th>18K可做色</th>
+            <th>指圈</th>
+            <th>刻字内容</th>
+            <th>表面工艺</th>
+            <th>证书号</th>
+			<th>证书类型</th>
+            <th>客户姓名</th>
+            <th>采购明细备注</th>
+            <th>是否修改</th>
+			<th>布产号</th>
+			<th>布产状态</th>
+            <th>订单号</th>
+            <th>销售渠道</th>
+            <th>占用备货名额</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$data.data key=k item=g %>
+		<tr data-id="purchase_info_show_list_<%$g.id%>" data-title="有款采购审批<%$g.id%>">
+        <td><a href="javascript:showDetail(<%$g.id%>);">查看详情</b></td>
+            <td><img src="<%if isset($g.image_url)%><%$g.image_url%><%/if%>" style="width:100px; height:100px"/></td>
+            <td><%$g.style_sn%></td>
+            <td><%$g.g_name%></td>
+            <td><%$g.num%></td>
+            <td><%if isset($g.xiangqian)%><%$g.xiangqian%><%/if%></td>
+            <td><%if isset($g.zuanshidaxiao)%><%$g.zuanshidaxiao%><%/if%></td>
+			<td><%if isset($g.zhushi_num)%><%$g.zhushi_num%><%/if%></td>
+            <td><%if isset($g.xiangkou)%><%$g.xiangkou%><%/if%></td>
+            <td><%if isset($g.yanse)%><%$g.yanse%><%/if%></td>
+            <td><%if isset($g.jingdu)%><%$g.jingdu%><%/if%></td>
+            <td><%if isset($g.caizhi)%><%$g.caizhi%><%/if%></td>
+            <td><%if isset($g.18k_color)%><%$g.18k_color%><%/if%></td>
+            <td><%if isset($g.zhiquan)%><%$g.zhiquan%><%/if%></td>
+            <td><%if isset($g.kezi)%><%$g.kezi%><%/if%></td>
+            <td><%if isset($g.face_work)%><%$g.face_work%><%/if%></td>
+            <td><%if isset($g.zhengshuhao)%><%$g.zhengshuhao%><%/if%></td>
+			<td><%if isset($g.cert)%><%$g.cert%><%/if%></td>
+            <td><%$g.consignee%></td>
+            <td><%if isset($g.info)%><%$g.info%><%/if%></td>
+            <td <%if $g.is_apply == 1%>style="background: #ff0063"<%/if%>><%$dd->getEnum('confirm',$g.is_apply)%></td>
+			<td><%if isset($g.bc_sn)%><%$g.bc_sn%><%/if%></td>
+			<td><%$dd->getEnum('buchan_status',$g.bc_status)%></td>
+            <td><%$g.order_sn_guanl%></td>
+            <td><%$g.dep_name_guanl%></td>
+            <td><%$g.guanl_num%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+function showDetail(id)
+{
+	var url = "index.php?mod=purchase&con=PurchaseGoods&act=show";
+	util._pop(url,{id:id});
+}
+//-->
+</script>

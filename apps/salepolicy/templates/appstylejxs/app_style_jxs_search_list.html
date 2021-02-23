@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>款式名称</th>
+                <th>款号</th>
+                <th>状态</th>
+                <th>添加用户</th>
+                <th>添加时间</th>
+                <th>最后禁用用户</th>
+                <th>最后禁用时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="app_style_jxs_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+                <td><%$d.style_name%></td>
+                <td><%$d.style_sn%></td>
+                <td><%$dd->getEnum('system.is_enabled', $d.status)%></td>
+                <td><%$d.add_user%></td>
+                <td><%$d.add_time%></td>
+                <td><%$d.ban_user%></td>
+                <td><%$d.ban_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

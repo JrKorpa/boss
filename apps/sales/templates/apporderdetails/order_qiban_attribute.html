@@ -1,0 +1,150 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_luozuan_attribute">
+	<form action="#" class="horizontal-form" method="post" id="app_order_detail_luozuan_form">
+		<div class="form-body">
+		
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>起版号:</b></label>
+						<%$qibanInfo.addtime%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>总价格：</b></label>
+						<%$qibanInfo.price%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>镶口：</b></label>
+						<%$qibanInfo.xiangkou%>
+					</div>
+				</div>
+				 <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>手寸：</b></label>
+						<%$qibanInfo.shoucun%>
+					</div>
+                  </div>
+			</div>	  
+			<div class="row">	  
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>主石单颗重：</b></label>
+						<%$qibanInfo.specifi%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>主石粒数：</b></label>
+						<%$qibanInfo.zhushi_num%>
+					</div>
+				</div>				
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>工厂：</b></label>
+						<%$qibanInfo.gongchang%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>模号：</b></label>
+						<%$qibanInfo.fuzhu%>
+					</div>
+				</div>
+			 </div>
+			 <div class="row">	
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>款号：</b></label>
+						<%$qibanInfo.kuanhao%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>证书号：</b></label>
+						<%$qibanInfo.zhengshu%>
+					</div>
+                </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>证书类型：</b></label>
+						<%$qibanInfo.cert%>
+					</div>
+                </div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>起版费：</b></label>
+						<%$qibanInfo.qibanfei%>
+					</div>
+				</div>
+			 </div>
+			 <div class="row">
+				 <div class="col-sm-3">
+					 <div class="form-group">
+						 <label class="control-label"><b>主石颜色：</b></label>
+						 <%$qibanInfo.yanse%>
+					 </div>
+				 </div>
+				 <div class="col-sm-3">
+					 <div class="form-group">
+						 <label class="control-label"><b>主石净度：</b></label>
+						 <%$qibanInfo.jingdu%>
+					 </div>
+				 </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>产品需求：</b></label>
+						<%$qibanInfo.xuqiu%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>金料：</b></label>
+						<%$qibanInfo.jinliao%>
+					</div>
+                </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>金色：</b></label>
+						<%$qibanInfo.jinse%>
+					</div>
+                </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>表面工艺：</b></label>
+						<%$qibanInfo.gongyi%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>起版信息：</b></label>
+						<%$qibanInfo.info%>
+					</div>
+				</div>
+		    </div>
+			<center> <div id="point" style="display:none;font-size:16px; color:red; margin:5px 0px"></div></center>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="goods_type"  value="qiban"/>
+                <input type="hidden" name="hidden_qiban_sn"  value="<%$qibanInfo.addtime%>"/>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/order_qiban_attribute.js"%>
+//-->
+</script>

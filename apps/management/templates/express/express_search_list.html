@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+        <th>序号</th>
+        <th>快递公司</th>
+        <th>快递编码</th>
+        <th>快递电话</th>
+        <th>配送区域</th>
+        <th>暂停配送区域</th>
+        <th>暂停收件时间</th>
+        <th>恢复收件时间</th>
+        <th>备注描述</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$page_list.data item=d%>
+    <tr data-id="express_list_<%$d.id%>">
+        <td><%$d.id%></td>
+        <td><%$d.exp_name%></td>
+        <td><%$d.exp_code%></td>
+        <td><%$d.exp_tel%></td>
+        <td><%$d.exp_areas%></td>
+        <td><%$d.pause_exp_areas_name%></td>
+        <td><%$d.pause_send_time%></td>
+        <td><%$d.recovery_send_time%></td>
+        <td><%$d.exp_note%></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+    <!--
+    util.hover();
+    //-->
+</script>

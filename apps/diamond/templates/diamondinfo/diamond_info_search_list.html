@@ -1,0 +1,181 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+    			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#diamond_info_search_list .checkboxes" /></th>
+				<th>图片</th>
+                <th>商品编码</th>
+                <th>证书类型</th>
+                <th>证书号</th>
+                <th>GEMX证书</th>
+                <th>形状</th>
+                <th>石重</th>
+                <th>颜色</th>
+                <th>净度</th>
+                <th>切工</th>
+                <th>对称</th>
+                <th>抛光</th>
+                <th>荧光</th>
+                <th>BDD价</th>
+                <th>成本价</th>
+                <th>源折扣</th>
+				<th>美元价</th>
+				<th>国际报价</th>
+				<th>展厅批发价</th>
+                <th>每克拉价</th>
+                <th>供应商</th>
+                <th>库房</th>
+                <th>货品类型</th>
+                <th>模号</th>
+                <!--<th>是否活动</th>-->
+                <th>状态</th>
+                <th>图片链接</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach from=$page_list.data item=d%>
+			<%if $d.kuan_sn && isset($d.add)%>
+				<tr data-id="diamond_info_list_<%$d.goods_id%>" data-title="裸钻:<%$d.goods_sn%>">
+				<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.goods_id%>" /></td>
+				<td rowspan="2" style="text-align:center;line-height:50px;"><img src="/public/img/tsyd.png" style="width:16px;height:16px;" alt="天生一对"></td>
+				<td><%if isset($d.goods_sn)%><%$d.goods_sn%><%else%><%/if%><%if isset($d.kuan_sn) && $d.kuan_sn%>(<%$d.kuan_sn%>)<%else%><%/if%></td>
+				<td><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>
+				<td><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td>
+                <td><%if isset($d.gemx_zhengshu)%><%$d.gemx_zhengshu%><%else%><%/if%></td>
+
+				<td><%if isset($Shape_arr[$d.shape])%><%$Shape_arr[$d.shape]%><%else%><%/if%></td>
+				<td><%if isset($d.carat)%><%$d.carat%><%else%><%/if%></td>
+				<td><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+				<td><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+				<td><%if isset($d.cut)%><%$d.cut%><%else%><%/if%></td>
+				<td><%if isset($d.symmetry)%><%$d.symmetry%><%else%><%/if%></td>
+				<td><%if isset($d.polish)%><%$d.polish%><%else%><%/if%></td>
+				<td><%if isset($d.fluorescence)%><%$d.fluorescence%><%else%><%/if%></td>
+				<td><%if isset($d.shop_price) && $d.shop_price>0%><%$d.shop_price%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($d.chengben_jia) && $d.chengben_jia>0%><%$d.chengben_jia%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($d.source_discount) && $d.source_discount>0%><%$d.source_discount%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($d.us_price_source) && $d.us_price_source>0%><%$d.us_price_source%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($d.guojibaojia) && $d.guojibaojia>0%><%$d.guojibaojia%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($d.pifajia) && $d.pifajia>0%><%$d.pifajia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.cts) && $d.cts>0%><%$d.cts%><%else%><div align="center">--</div><%/if%></td>
+				<td><%if isset($from_ad[$d.from_ad])%><%$from_ad[$d.from_ad]%><%else%><%$d.from_ad%><%/if%></td>
+				<td><%if isset($warehouse_arrs[$d.warehouse])%><%$warehouse_arrs[$d.warehouse]%><%else%><%/if%></td>
+				<td><%if isset($d.good_type) && $d.good_type==1%>现货<%else%>期货<%/if%></td>
+				<td><%if isset($d.mo_sn)%><%$d.mo_sn%><%else%><%/if%></td>
+				<td><%$dd->getEnum("style_good_status",$d.status)%></td>
+				</tr>
+				<tr data-id="diamond_info_list_<%$d.add.goods_id%>" data-title="裸钻:<%$d.add.goods_sn%>">
+				<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.goods_id%>" /></td>
+                <td><%if isset($d.add.goods_sn)%><%$d.add.goods_sn%><%else%><%/if%><%if isset($d.add.kuan_sn) && $d.add.kuan_sn%>(<%$d.add.kuan_sn%>)<%else%><%/if%></td>
+
+                <td><%if isset($d.add.cert)%><%$d.add.cert%><%else%><%/if%></td>
+                <td><%if isset($d.add.cert_id)%><%$d.add.cert_id%><%else%><%/if%></td>
+                <td><%if isset($d.add.gemx_zhengshu)%><%$d.add.gemx_zhengshu%><%else%><%/if%></td>
+				<td><%if isset($Shape_arr[$d.add.shape])%><%$Shape_arr[$d.add.shape]%><%else%><%/if%></td>
+                <td><%if isset($d.add.carat)%><%$d.add.carat%><%else%><%/if%></td>
+                <td><%if isset($d.add.color)%><%$d.add.color%><%else%><%/if%></td>
+                <td><%if isset($d.add.clarity)%><%$d.add.clarity%><%else%><%/if%></td>
+                <td><%if isset($d.add.cut)%><%$d.add.cut%><%else%><%/if%></td>
+                <td><%if isset($d.add.symmetry)%><%$d.add.symmetry%><%else%><%/if%></td>
+                <td><%if isset($d.add.polish)%><%$d.add.polish%><%else%><%/if%></td>
+                <td><%if isset($d.add.fluorescence)%><%$d.add.fluorescence%><%else%><%/if%></td>
+                <td><%if isset($d.add.shop_price) && $d.add.shop_price>0%><%$d.add.shop_price%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.chengben_jia) && $d.add.chengben_jia>0%><%$d.add.chengben_jia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.source_discount) && $d.add.source_discount>0%><%$d.add.source_discount%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.us_price_source) && $d.add.us_price_source>0%><%$d.add.us_price_source%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.guojibaojia) && $d.add.guojibaojia>0%><%$d.add.guojibaojia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.pifajia) && $d.add.pifajia>0%><%$d.add.pifajia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.add.cts) && $d.add.cts>0%><%$d.add.cts%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($from_ad[$d.add.from_ad])%><%$from_ad[$d.add.from_ad]%><%else%><%$d.from_ad%><%/if%></td>
+                
+				<td><%if isset($warehouse_arrs[$d.add.warehouse])%><%$warehouse_arrs[$d.add.warehouse]%><%else%><%/if%></td>
+                <td><%if isset($d.add.good_type) && $d.add.good_type==1%>现货<%else%>期货<%/if%></td>
+                <!--<td><%$dd->getEnum("is_active",$d.is_active)%></td>-->
+				<td><%if isset($d.add.mo_sn)%><%$d.add.mo_sn%><%else%><%/if%></td>
+    			<td>
+					<%$dd->getEnum("style_good_status",$d.add.status)%>
+				</td>
+               <td></td>
+				</tr>
+			<%else%>
+            <tr data-id="diamond_info_list_<%$d.goods_id%>" data-title="裸钻:<%$d.goods_sn%>">
+				<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.goods_id%>" /></td>
+				<%if $d.gemx_zhengshu%>
+					<td><center><img src="/public/img/xy.png" style="width:16px;height:16px;" alt="星耀钻石"/></center></td>
+				<%else%>
+					<td><center><img src="/public/img/zs.png" style="width:16px;height:16px;" alt="钻石"/></center></td>
+				<%/if%>
+                <td><%if isset($d.goods_sn)%><%$d.goods_sn%><%else%><%/if%><%if isset($d.kuan_sn) && $d.kuan_sn%><br>(<%$d.kuan_sn%>)<%else%><%/if%></td>
+                <td><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>
+                <!-- 暂时注释
+
+                <td><%if $d.clarity =='VS1' && $d.good_type==2%><span style='color:blue'>*</span><%/if%><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td> 
+
+                -->
+                <td><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td>
+                <td><%if isset($d.gemx_zhengshu)%><%$d.gemx_zhengshu%><%else%><%/if%></td>
+                <td><%if isset($Shape_arr[$d.shape])%><%$Shape_arr[$d.shape]%><%else%><%/if%></td>
+                <td><%if isset($d.carat)%><%$d.carat%><%else%><%/if%></td>
+                <td><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+                <td><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+                <td><%if isset($d.cut)%><%$d.cut%><%else%><%/if%></td>
+                <td><%if isset($d.symmetry)%><%$d.symmetry%><%else%><%/if%></td>
+                <td><%if isset($d.polish)%><%$d.polish%><%else%><%/if%></td>
+                <td><%if isset($d.fluorescence)%><%$d.fluorescence%><%else%><%/if%></td>
+                <td><%if isset($d.shop_price) && $d.shop_price>0%><%$d.shop_price%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.chengben_jia) && $d.chengben_jia>0%><%$d.chengben_jia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.source_discount) && $d.source_discount>0%><%$d.source_discount%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.us_price_source) && $d.us_price_source>0%><%$d.us_price_source%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.guojibaojia) && $d.guojibaojia>0%><%$d.guojibaojia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.pifajia) && $d.pifajia>0%><%$d.pifajia%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($d.cts) && $d.cts>0%><%$d.cts%><%else%><div align="center">--</div><%/if%></td>
+                <td><%if isset($from_ad[$d.from_ad])%><%$from_ad[$d.from_ad]%><%else%><%$d.from_ad%><%/if%></td>
+                <td><%if isset($warehouse_arrs[$d.warehouse])%><%$warehouse_arrs[$d.warehouse]%><%else%><%/if%></td>
+				<td><%if isset($d.good_type) && $d.good_type==1%>现货<%else%>期货<%/if%></td>
+                <!--<td><%$dd->getEnum("is_active",$d.is_active)%></td>-->
+    			<td><%if isset($d.mo_sn)%><%$d.mo_sn%><%else%><%/if%></td>
+    			<td><%$dd->getEnum("style_good_status",$d.status)%></td>
+                <td><%if substr($d.img,0,4)=='http' %><a href='<%$d.img%>' target="_new">点击查看</a><%/if%></td>
+            </tr>
+			<%/if%>
+            <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#diamond_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+    test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#diamond_info_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+    var checked = $(this).is(":checked");
+    $(set).each(function () {
+        if (checked) {
+            $(this).attr("checked", true);
+            $(this).parents('tr').addClass("active");
+        } else {
+            $(this).attr("checked", false);
+            $(this).parents('tr').removeClass("active");
+        }                    
+    });
+    $.uniform.update(set);
+});
+$('#diamond_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+    $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

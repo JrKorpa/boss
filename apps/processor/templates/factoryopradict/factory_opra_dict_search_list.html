@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>名称</th>
+				<th>添加时间</th>
+				<th>修改时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="factory_opra_dict_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.name%></td>
+				<td><%$d.create_time%></td>
+				<td><%$d.edit_time%></td>
+				<td>
+					<span class="glyphicon <%if $d.status eq 1%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span>
+				</td>
+				<td><img border="0" data-url="index.php?mod=processor&con=FactoryOpraDict&act=moveup" data-id="<%$d.id%>" onclick="util.moveup(this)" alt="上移" src="public/img/blue_arrow_up.png">
+<img border="0" data-url="index.php?mod=processor&con=FactoryOpraDict&act=movedown" data-id="<%$d.id%>" onclick="util.movedown(this)" alt="下移" src="public/img/blue_arrow_down.png"></td>
+			</tr>
+		<%/foreach%>
+
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

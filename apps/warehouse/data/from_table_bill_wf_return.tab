@@ -1,0 +1,76 @@
+id = #from_table_data_bill_wf_return;
+
+[title]
+0 = "无帐修退流水号";
+1 = "业务类型";
+2 = "货号";
+3 = "款号";
+4 = "主成色";
+5 = "订单号";
+6 = "指圈";
+7 = "证书号";
+8 = "主石重";
+9 = "主石粒数";
+10 = "零售价";
+11 = "金托类型";
+
+[label]
+0 = "virtual_id";
+1 = "business_type";
+2 = "goods_id";
+3 = "style_sn";
+4 = "ingredient_color";
+5 = "order_sn";
+6 = "finger_circle";
+7 = "credential_num";
+8 = "main_stone_weight";
+9 = "main_stone_num";
+10 = "resale_price";
+11 = "torr_type";
+
+[columns_0]
+type = text;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+type = text;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = text;
+readOnly = true;
+
+[columns_6]
+type = text;
+readOnly = true;
+
+[columns_7]
+type = text;
+readOnly = true;
+
+[columns_8]
+type = text;
+readOnly = true;
+
+[columns_9]
+type = text;
+readOnly = true;
+
+[columns_10]
+type = text;
+readOnly = true;
+
+[columns_11]
+type = text;
+readOnly = true;

@@ -1,0 +1,136 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><%if $args.time_type eq 'send'%>收货日期<%else%>下单日期<%/if%></th>
+			<th>总数量</th>
+			<th>5天内收货数量</th>
+			<th>5天内收货占比</th>
+			<th>5天内收货平均时长（天）</th>
+			<th>整体平均维修时长（天）</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr data-id="repairtimereport-index_second" start_time="<%$d.acount_date%>" end_time="<%$d.acount_date%>" repair_factory="<%$args.repair_factory%>" frequency="<%$args.frequency%>"  re_type="<%$args.re_type%>"   repair_act="<%$args.repair_act%>" time_type="<%$args.time_type%>" data-title="<%$d.acount_date%>维修收货详情">
+			<td><%$d.dotime%></td>
+			<td><%$d.cnt%></td>
+			<td><%$d.5day_receive_num%></td>
+			<td><%$d.5day_percent%>%</td>
+			<td><%$d.5day_avg%></td>
+			<td><%$d.allday_avg%></td>
+		</tr>
+	<%/foreach%>
+	<%if $tongji %>
+	<tr data-title="all_count">
+			<td>总数</td>
+			<td><%$tongji.cnt%></td>
+			<td><%$tongji.5day_receive_num%></td>
+			<td><%$tongji.5day_percent%>%</td>
+			<td><%$tongji.5day_avg%></td>
+			<td><%$tongji.allday_avg%></td>
+	</tr>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+function show_repair_second(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var title=tObj[0].getAttribute("data-title");
+	if(title=='all_count'){
+		util.xalert("很抱歉，请选择具体的一个日期！");
+		return ;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	//var acount_date = tObj[0].getAttribute("acount_date");
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var repair_factory = tObj[0].getAttribute("repair_factory");
+	var frequency = tObj[0].getAttribute("frequency");
+	var re_type = tObj[0].getAttribute("re_type");
+	var repair_act = tObj[0].getAttribute("repair_act");
+	var time_type = tObj[0].getAttribute("time_type");
+	var con=params['con'].toLowerCase();
+	var act=params['act'].toLowerCase();
+	var prefix = con+'-'+act;
+	var _id = tObj[0].getAttribute("data-id");
+	var id =_id;
+	//url+="&acount_date="+acount_date;
+	url+='&start_time='+start_time+'&end_time='+end_time+'&repair_factory='+repair_factory+'&frequency='+frequency+'&re_type='+re_type+'&repair_act='+repair_act+'&time_type='+time_type;
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.substr(1);
+		if (href==prefix)
+		{
+			
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+	//	url+="&acount_date="+acount_date+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,89 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#diamond_info_search_list .checkboxes" />全选</th>
+			<th>序号</th>
+			<th>货号</th>
+			<th>名义成本价</th>
+			<th>加价率</th>
+			<th>固定值</th>
+			<th>销售价</th>
+			<th>货品类型</th>
+            <th>货品状态</th>
+			<th>创建时间</th>
+			<th>创建人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_salepolicy_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.goods_id%></td>
+			<td align="center"><%$d.chengben%></td>
+			<td align="center"><%$d.jiajia%></td>
+			<td align="center"><%$d.sta_value%></td>
+			<td align="center"><%$d.sale_price%></td>
+			<td align="center"><%if $d.isXianhuo=='0'%>期货<%/if%><%if $d.isXianhuo=='1'%>现货<%/if%></td>
+            <td align="center"><%if $dd->getEnum('warehouse.goods_status',$d.is_on_sale)%><%$dd->getEnum('warehouse.goods_status',$d.is_on_sale)%><%else%>非仓库货品<%/if%></td>
+			<td align="center"><%$d.create_time%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.check_time%></td>
+			<td align="center"><%$d.check_user%></td>
+			<td align="center">
+			<%if $d.status=='1'%>保存<%/if%><%if $d.status=='2'%>申请<%/if%><%if $d.status=='3'%>审核通过<%/if%><%if $d.status=='4'%>未通过<%/if%>
+			<%if $d.new_status=='1'%>(可销售商品状态出错)<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+
+	util.hover();
+util.setItem('listDIV','app_salepolicy_goods_search_list');
+util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#diamond_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+  test.each(function () {
+  if ($(this).parents(".checker").size() == 0) {
+      $(this).show();
+      $(this).uniform();
+  }
+});
+}
+$('.group-checkable').click(function(){
+    if ($(".group-checkable").attr("checked")) {  
+        $(":checkbox").attr("checked", true);  
+    } else {  
+        $(":checkbox").attr("checked", false);  
+    }  
+});
+
+//table 复选框全选
+$('#diamond_info_search_list .group-checkable').change(function () {
+var set = $(this).attr("data-set");
+  var checked = $(this).is(":checked");
+  $(set).each(function () {
+      if (checked) {
+          $(this).attr("checked", true);
+          $(this).parents('tr').addClass("active");
+      } else {
+          $(this).attr("checked", false);
+          $(this).parents('tr').removeClass("active");
+      }                    
+  });
+  $.uniform.update(set);
+});
+$('#diamond_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+  $(this).parents('tr').toggleClass("active");
+});
+	
+	
+//-->
+</script>

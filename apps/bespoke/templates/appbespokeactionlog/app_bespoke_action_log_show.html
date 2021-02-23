@@ -1,0 +1,64 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>会员详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+                    离开 <i class="fa fa-angle-double-left"></i> 
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.newEmptyTab(this);" data-url="index.php?mod=bespoke&con=AppUserBespokeLog&act=index" name="沟通日志" title="沟通日志"  data-title="沟通日志" data-id="<%$view->get_member_id()%>" list-id="41">
+                    沟通日志 <i class="fa fa-edit"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button data-title="" title="刷新" name="刷新" data-url="" onclick="util.retrieveReload(this);" class="btn btn-sm btn-info">
+                    刷新 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div>
+            <div class="flip-scroll">
+                <table class="table table-bordered table-striped table-hover flip-content">
+                    <tr>
+                        <td align="center">会员名：</td>
+                        <td align="center"><%$view->get_member_name()%></td>
+                    </tr>
+                    <tr>
+                        <td align="center">会员电话：</td>
+                        <td align="center"><%$view->get_member_phone()%></td>
+                    </tr>
+                    <tr>
+                        <td align="center">会员年龄：</td>
+                        <td align="center"><%$view->get_member_age()%></td>
+                    </tr>
+
+                    <tr>
+                        <td align="center">会员类型：</td>
+                        <td align="center">
+                            <%foreach from=$dd->getEnumArray("member.member_type") item=value%>
+                            <%if $value.name==$view->get_member_type()%><%$value.label%><%/if%>
+                            <%/foreach%>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/base_member_info_show.js" %>
+//-->
+</script>

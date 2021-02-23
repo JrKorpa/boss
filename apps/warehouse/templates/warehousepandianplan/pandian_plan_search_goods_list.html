@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>单号</th>
+			<th>抽检仓</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>货品名称</th>
+			<th>成本价</th>
+			<th>制单时间</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_pandian_plan_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%if $d.type == 1%>线上<%else%>线下<%/if%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.goods_name%></td>
+			<td><%$d.price%></td>
+			<td><%$d.opt_date%></td>
+			<td><%$dd->getEnum('warehouse.goods_pandian' , $d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

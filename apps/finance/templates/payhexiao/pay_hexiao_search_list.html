@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th>核销单号</th>
+            <th>订单来源</th>
+            <th>核销类型</th>
+            <th>（货品）数量</th>
+            <th>成本价</th>
+            <th>销售价</th>
+            <th>制单人</th>
+            <th>制单时间</th>
+            <th>审核人</th>
+            <th>审核时间</th>
+            <th>状态</th>
+            <th>应收申请单号</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr data-id="<%$d.id%>" data-title="<%$d.check_sale_number%>">
+            <td align="center"><%$d.check_sale_number|default:''%></td>
+            <td align="center"><%$d.ad_name|default:''%></td>
+            <td align="center"><%$dd->getEnum('pay.hx_type',$d.cash_type)%></td>
+            <td align="center"><%$d.goods_num|default:''%></td>
+            <td align="center"><%$d.chengben|default:''%></td>
+            <td align="center"><%$d.shijia|default:''%></td>
+            <td align="center"><%$d.makename|default:''%></td>
+            <td align="center"><%$d.maketime|default:''%></td>
+            <td align="center"><%$d.checkname|default:''%></td>
+            <td align="center"><%$d.checktime|default:''%></td>
+            <td align="center"><%$dd->getEnum('pay.hx_status',$d.status)%></td>
+            <td align="center"><%$d.apply_number|default:''%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

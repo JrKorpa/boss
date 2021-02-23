@@ -1,0 +1,58 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="dealer_customer_manage_info_pl">
+		<div class="form-body">
+			<div class="row">
+                <div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">招商经理：</label>
+						<select class="form-control select2_sample1" tabindex="1" name="follow_upper_id[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$role_data key=key item=val%>
+								  <option value="<%$val.uid%>"><%$val.account%></option>
+                                <%/foreach%>
+                       </select>
+					</div>
+				</div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">推广专员：</label>
+                        <select class="form-control select2_sample1" tabindex="1" name="spread_id[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$spread key=key item=val%>
+                                  <option value="<%$val.uid%>"><%$val.account%></option>
+                                <%/foreach%>
+                       </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">项目：</label>
+                        <select class="form-control select2_sample1" tabindex="1" name="text_item[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$text_item key=key item=val%>
+                                    <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                       </select>
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="_ids" value="<%$ids%>" />
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+
+<script type="text/javascript">
+
+    <%include file="js/dealer_customer_manage_info_pl.js"%>
+</script>

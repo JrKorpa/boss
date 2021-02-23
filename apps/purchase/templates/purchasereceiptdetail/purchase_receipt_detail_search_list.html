@@ -1,0 +1,74 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><input type="checkbox" class="group-checkable" data-set="#purchase_receipt_detail_search_list .checkboxes" /></th>
+			<th>流水号</th>
+			<th>序号</th>
+			<th>供应商</th>
+			<th>出货单号</th>
+			<th>采购单号</th>
+			<th>布产号</th>
+			<th>款号</th>
+			<th>工厂模号</th>
+			<th>成品/空托</th>
+			<th>款式分类</th>
+			<th>客户名</th>
+			<th>状态</th>
+			<th>质检货品备注</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="purchase_type_list_<%$d.id%>" data-title="质检详情：<%$d.purchase_receipt_id%>-<%$d.xuhao%>">
+			<td><input class="checkboxes" type="checkbox" name="check[]" value="<%$d.id%>"/></td>
+			<td><%$d.purchase_receipt_id%></td>
+			<td><%$d.xuhao%></td>
+			<td><%$d.prc_name%></td>
+			<td><%$d.ship_num%></td>
+			<td><%$d.purchase_sn%></td>
+			<td><%$d.bc_sn%></td>
+			<td><%$d.style_sn%></td>
+			<td><%$d.factory_sn%></td>
+			<td><%$d.is_cp_kt%></td>
+			<td><%$d.cat_type%></td>
+			<td><%$d.customer_name%></td>
+			<td><%$dd->getEnum('receipt.detail_status',$d.status)%></td>
+			<td><%$d.opra_info%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//复选框组美化
+var test = $("#purchase_receipt_detail_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#purchase_receipt_detail_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#purchase_receipt_detail_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

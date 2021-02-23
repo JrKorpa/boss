@@ -1,0 +1,52 @@
+<!-- <div class="table-scrollable"> -->
+ <div>库存总数量:<%$page_list.tongji.allnum%>  库存成本总金额:<%$page_list.tongji.allcost%></div>
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>款式编号</th>
+				<th>款式名称</th>
+				<th>货品编号</th>
+				<th>货品名称</th>
+				<th>供应商</th>
+				<th>仓库</th>
+				<th>数量</th>
+				<th>成本价</th>
+				<th>成本总金额</th>
+                <th>单位</th>
+				<th>分类1</th>
+				<th>分类2</th>
+				<th>分类3</th>
+				<th>批次</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="material_inventory_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.style_sn%></td>
+				<td><%$d.style_name%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%$d.supplier_name%></td>
+				<td><%$d.warehouse_name%></td>
+				<td><%$d.inventory_qty%></td>
+				<td><%$d.cost%></td>
+				<td><%round($d.inventory_qty*$d.cost,2)%></td>
+                <td><%$d.unit%></td>
+				<td><%$d.catetory1%></td>
+				<td><%$d.catetory2%></td>
+				<td><%$d.catetory3%></td>
+				<td><%$d.batch_sn%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

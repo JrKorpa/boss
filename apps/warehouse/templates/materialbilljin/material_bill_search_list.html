@@ -1,0 +1,74 @@
+ <div class="table-scrollable"> 
+ <!--<div class="flip-scroll">-->
+	<table class="table table-bordered table-striped table-hover flip-content" width='100%'>
+		<thead class="flip-content">
+			<tr>
+				<th width='30'>序号</th>
+				<th width='60'>单据编号</th>
+				<th width='40'>单据类型</th>				
+				<th width='60'>供应商</th>					
+				<th width='5%'>销售渠道</th>
+				<th width='5%'>销售公司</th>
+				<%if $show_detail==1%>
+				<th width='5%'>货品编号</th>
+				<th width='5%'>货品名称</th>	
+				<th width='3%'>出入库<br>总数量</th>
+				<th width='3%'>出入库<br>总成本</th>
+				<th width='3%'>出入库<br>总金额</th>	
+				<%/if%>			
+				<th width='3%'>单据<br>总数量</th>
+				<th width='3%'>单据<br>总金额</th>
+				<th width='4%'>创建时间</th>
+				<th width='3%'>创建人</th>				
+				<th width='4%'>审核时间</th>
+				<th width='3%'>审核人</th>
+				<th width='5%'>单据备注</th>
+				<th width='3%'>单据状态</th>
+				<th width='3%'>仓库</th>
+				<th width='2%'>公司类型</th>
+
+			</tr>
+		</thead>
+		<%assign var=warehouse value=array_column($view->get_warehouse_list(),'name','id')%>
+		<%assign var=supplier value=array_column($view->get_supplier_list(),'name','id')%>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="material_bill_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+				<td><%$key+1%></td>
+				<td><%$d.bill_no%></td>
+				<td><%$dd->getEnumByNote("material.bill_type",$d.bill_type)%></td>
+				<td><%$d.main_supplier_name|default:'/'%></td>
+				<td><%$d.channel_name|default:'/'%></td>
+				<td><%$d.company_name|default:'/'%></td>
+				<%if $show_detail==1%>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%$d.goods_allnum%></td>
+				<td><%$d.goods_allcost%></td>	
+				<td><%$d.goods_allshijia%></td>
+				<%/if%>	
+				<td><%$d.allnum%></td>
+				<td><%$d.allshijia%></td>	
+				<td><%$d.create_time%></td>
+				<td><%$d.create_user%></td>			
+				<td><%$d.check_time%></td>
+				<td><%$d.check_user%></td>
+				<td><%$d.bill_note%></td>
+				<td><%$dd->getEnum("material.bill_status",$d.bill_status)%></td>
+				<td><%$d.main_warehouse_name|default:'/'%></td>
+				<td><%$dd->getEnum("company.company_type",$d.company_type)|default:'/'%></td>
+				
+
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

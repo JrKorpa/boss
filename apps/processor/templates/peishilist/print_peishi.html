@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 配石标签打印</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<STYLE>
+@media print {
+.noprint{display:none}
+.PageNext{page-break-after: always;}
+}
+table{font-family:'黑体';background:#FFF; font-size:1.4mm;border-collapse:collapse;margin:1.5px 0.5mm;padding:0px;height:40mm; width:35mm;}
+table td{ border:0px;padding:0px; margin:0px}
+</STYLE>
+ </head>
+ <body style="padding:0px; margin:0px"><input type="button" value="打印" onclick="window.print();" class="noprint"><br class="noprint"/>
+<%foreach from=$datalist item=data%>
+<table>
+  <tr>
+  <td colspan="2" style="text-align:center;padding-top:1mm"><%if $data.is_quick_diy==1%><font style="color:red;">快速定制</font><%else%>--<%/if%></td></tr>
+  <tr  style="border-bottom:1px solid">
+  <td style="font-size:14px;border-bottom:1px solid; text-align:center"><%$data.channel_class|default:'无'%></td>
+  <td style="font-size:14px;border-bottom:1px solid; text-align:center"><%$dd->getEnum('company.company_type',$view->getCompanyType($data.company_id))|default:'无'%></td>
+  </tr>
+  <tr>
+  <td style="text-align:center"><%$data.color|default:'&nbsp;'%></td>
+  <td style="text-align:center"><%$data.clarity|default:'&nbsp;'%></td>
+  </tr>
+  <tr>
+  <td colspan="2" style="font-size:14px;text-align:center;">
+  <%substr($data.consignee,0,18)|default:'&nbsp;'%>
+  </td></tr>
+  <tr>
+   <tr>
+  <td colspan="2" style="text-align:center;"><%$data.opra_uname|default:'&nbsp;'%></td></tr>
+  <tr>
+  <tr>
+  <td colspan="2" style=" text-align:center">
+   <img src="http://bardcode.kela.cn/barcode128/barcodeA.php?code_sn=<%$data.bc_sn%>&hideTxt=1" style="width:26mm;">
+  </td>
+  </tr>
+  <tr>
+  <td colspan="2" style=" text-align:center; font-size:14px">
+  <%$data.bc_sn%>
+  </td>
+  </tr>
+  <tr> 
+</table>
+<p class="PageNext"></p>
+<%/foreach%>
+ </body>
+</html>

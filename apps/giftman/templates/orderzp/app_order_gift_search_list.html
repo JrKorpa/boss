@@ -1,0 +1,35 @@
+<!-- <div class="table-scrollable"> -->
+<span><%$info%></span>
+<div class="pager">
+    款类:<%$tongji.type%> &nbsp;&nbsp;
+    赠品个数：<%$tongji.total%>
+</div>
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>名称</th>
+				<th>款号</th>
+                <th>手寸</th>
+				<th>刻字 </th>
+                <th>需求量</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list item=d%>
+			<tr data-id="order_gift_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.goods_name%></td>
+				<td><%$d.goods_sn|default:'--'%></td>
+				<td><%$d.zhiquan%></td>
+				<td><%$d.kezi%></td>
+				<td><%$d.xuqiu|default:'--'%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

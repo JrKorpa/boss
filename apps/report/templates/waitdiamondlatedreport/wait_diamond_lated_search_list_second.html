@@ -1,0 +1,40 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+				<th>工厂/采购人</th>
+                <th>当天应送钻数</th>
+                <th>当天未送钻数</th>
+                <th>实际当天送钻数</th>
+                <th>实际已经送钻数</th>
+                <th>超期率</th>
+                <th>及时率</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list item=d%>
+				<tr start_time="<%$d.count_date%>" end_time="<%$d.count_date%>"  data-title="<%$d.count_date%>等钻超期">
+				<td><%$d.dotime%></td>
+				<td><%$d.prc_name%>/<%$d.opra_uname%></td>
+                <td><%$d.wd_should_today%></td>
+                <td><%$d.wd_un_today%></td>
+                <td><%$d.wd_real_today%></td>
+                <td><%$d.wd_on%></td>
+                <td><%$d.chaoqilv%>%</td>
+                <td><%$d.jishilv%>%</td>
+               </tr>
+		<%/foreach%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

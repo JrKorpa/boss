@@ -1,0 +1,61 @@
+<form action="#" class="horizontal-form" method="post" id="material_bill_goods_add_rk_form">
+<!-- <div class="table-scrollable"> -->
+ <div class="table-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th style="text-align:center">序号</th>
+				<th>货品编号</th>
+				<th>货品名称</th>
+				<th>仓库</th>
+				<th>数量</th>
+				<th>成本价</th>
+				<%if $billView->get_bill_type()=='WH'%>
+                    <th>销售价</th>
+				<%/if%>
+                <th>单位</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="material_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td style="text-align:center"><%$key+1%></td>
+				<td>
+				<%$d.goods_sn%>
+				<input type="hidden" class="form-control" name="goods_sn[]" value="<%$d.goods_sn%>" />
+                <input type="hidden" class="form-control" name="batch_sn[]" value="<%$d.batch_sn%>" /> 
+                <input type="hidden" class="form-control" name="qty_limit[]" value="<%$d.num%>" />   
+			    </td>
+				<td><%$d.goods_name%></td>
+				<td>
+				<select class="form-control" name="in_warehouse_id[]">
+					<option value=""></option>
+					<%foreach from=$billView->get_warehouse_list() key=k item=value%>
+					<option value="<%$value.id%>" <%if $billView->get_warehouse_id()==$value.id%>selected<%/if%>><%$value.name%></option>
+					<%/foreach%>
+				</select>
+				</td>
+				<td><input type="text" class="form-control" size='4' name="goods_qty[]" /></td>
+				<td><input type="text" class="form-control" size='4' name="goods_cost[]" value="<%$d.cost%>" /></td>
+				<%if $billView->get_bill_type()=='WH'%>
+                    <td><input type="text" class="form-control" size='4' name="goods_shijia[]" value="<%$d.shijia%>" /></td>
+				<%/if%>
+                <td><%$d.unit%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="form-actions fluid" style="margin-left:18%">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="<%$billView->get_id()%>" />
+		<button type="reset" class="btn default">重置</button>
+		<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+<!--
+    <%include file = "js/material_bill_goods_add_rk.js"%>
+//-->
+</script>

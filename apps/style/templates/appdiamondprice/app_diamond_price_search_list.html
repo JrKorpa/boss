@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>最小值</th>
+			<th>最大值</th>
+			<th>价格</th>
+			<th>启用状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_diamond_price_list_<%$d.id%>" >
+			<td align="center"><%$d.id%></td>
+			<td><%$d.guige_a%></td>
+			<td><%$d.guige_b%></td>
+			<td><%$d.price%></td>
+			<td><%if $d.guige_status==1%>启用<%/if%><%if $d.guige_status==0%>停用<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

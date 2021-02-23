@@ -1,0 +1,73 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#purchase_info_search_list .checkboxes" /></th>
+			<th>采购单号</th>
+			<th>采购分类</th>
+			<th>采购方式</th>
+			<th>总数量</th>
+			<th>状态</th>
+                        <th>跟单人</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>备注</th>
+			<th>供应商</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="purchase_type_list_<%$d.id%>" data-title="<%$d.p_sn%>">
+			<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td><%$d.p_sn%></td>
+			<td><%$view->get_t_name($d.t_id)%></td>
+			<td><%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%>（<%if $d.is_style%>有款采购<%else%>无款采购<%/if%>）</td>
+			<td><%$d.p_sum%></td>
+			<td><%$dd->getEnum('purchase_status',$d.p_status)%></td>
+                        <td><%$d.opra_uname%></td>
+			<td><%$d.make_uname%></td>
+			<td><%$d.make_time%></td>
+			<td><%$d.check_uname%></td>
+			<td><%if $d.check_time!='0000-00-00 00:00:00'%><%$d.check_time%><%/if%></td>
+			<td><%$d.p_info%></td>
+			<td><%$d.prc_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+	util.hover();
+	util.check(util.getItem('listDIV'));
+	// 美化复选框
+	var test = $("#purchase_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+	if (test.size() > 0) {
+    test.each(function () {
+      if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+      }
+    });
+  }
+  // table 复选框全选
+  $('#purchase_info_search_list .group-checkable').change(function () {
+    var set = $(this).attr("data-set");
+		var checked = $(this).is(":checked");
+		$(set).each(function () {
+			if (checked) {
+				$(this).attr("checked", true);
+				$(this).parents('tr').addClass("active");
+			} else {
+				$(this).attr("checked", false);
+				$(this).parents('tr').removeClass("active");
+			}
+		});
+		$.uniform.update(set);
+	});
+	$('#purchase_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+  	$(this).parents('tr').toggleClass("active");
+  });
+</script>

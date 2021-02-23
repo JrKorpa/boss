@@ -1,0 +1,196 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="product_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">货号/款号：</label>
+                            <input type="text" name="goods_id" class="form-control" tabindex="1" placeholder="请输入货号或款号" value="<%$param['style_sn']%>"/>
+                        </div>
+                    </div>   
+					<div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">镶口：</label>
+							<select class="form-control" tabindex="1" name="xiangkou">
+								<option value=""></option>
+								<%foreach from=$Stone key=key item=p%>
+									<option value="<%$p%>"><%$p%></option>
+								<%/foreach%>
+							</select>
+						</div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">手寸：</label>
+							<select class="form-control" tabindex="1" name="finger">
+								<option value=""></option>
+								<%foreach from=$Finger key=key item=p%>
+									<option value="<%$p%>"><%$p%></option>
+								<%/foreach%>
+							</select>
+						</div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">材质：</label>
+							<select class="form-control" tabindex="1" name="caizhi">
+								<option value=""></option>
+								<%foreach from=$Caizhi key=key item=p%>
+									<option value="<%$key%>"><%$p%></option>
+								<%/foreach%>
+							</select>
+						</div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">材质颜色：</label>
+							<select class="form-control" tabindex="1" name="yanse">
+								<option value=""></option>
+								<%foreach from=$Yanse key=key item=p%>
+									<option value="<%$key%>"><%$p%></option>
+								<%/foreach%>
+							</select>
+						</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">货品类型：</label>
+                            <select class="form-control" tabindex="1" name="isXianhuo">
+                                <option value="1">现货</option>
+                                <option value="0">定制</option> 
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">销售渠道：</label>
+                            <select class="select2_category form-control" name="channel" tabindex="1">
+                                <%foreach from=$channelList key=key item=value%>
+                                    <option value="<%$value.id%>" ><%$value.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">销售政策名称：</label>
+                            <input type="text" name="policy_name" class="form-control" tabindex="1" placeholder="请输入销售政策名称" value=""/>
+                        </div>
+                    </div>
+					                    
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">是否快速定制：</label>
+                            <select class="form-control" tabindex="1" name="is_quick_diy">
+							<option value=""></option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+     						</select>
+                        </div>
+                    </div>
+					
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <label class="control-label">金托类型：</label><span style='color:red;'></span>
+                        <select class="select2_category form-control" name="tuo_type" tabindex="1" >
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray('warehouse_goods.tuo_type') item=j%>
+                            <option value="<%$j.name%>"
+                            <%if $j.name==$data.tuo_type%>selected="selected"<%/if%>><%$j.label%>
+                            </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                    </div>
+                    <div id="sale_div" style="display: none">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">证书类型：</label>
+                                <select class="form-control" tabindex="1" name="cert">
+                                    <option value=""></option>
+                                    <%foreach from=$cert_arr key=key item=val%>
+                                    <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="_div" style="display: none">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">颜色：</label>
+                                <select class="form-control" tabindex="1" name="color">
+                                    <option value=""></option>
+                                    <%foreach from=$color_arr key=key item=val%>
+                                    <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">净度：</label>
+                                <select class="form-control" tabindex="1" name="clarity">
+                                    <option value=""></option>
+                                    <%foreach from=$clarity_arr key=key item=val%>
+                                    <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+	
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="product_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_list.js"%>
+//-->
+</script>

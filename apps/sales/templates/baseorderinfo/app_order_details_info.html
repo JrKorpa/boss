@@ -1,0 +1,122 @@
+<div class="row">
+			<div class="usual col-sm-12" id="order_detail_tab">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#order_detail_tab_1" data-toggle="tab" title="款号">货号</a></li>
+					<!--<li><a href="#order_detail_tab_2" data-toggle="tab" title="裸钻">裸钻</a></li>-->
+				</ul>
+				<div class="tab-content">
+				<!--start tab-->
+					<div class="tab-pane active" id="order_detail_tab_1">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<tr>
+								<td align="right">货号：</td>
+								<td>
+									<input type="text" name="sale_goods_id" class="form-control" placeholder="请输入" value=""/>
+								</td>
+								<td><input  class="btn btn-sm green" type="button" value="查看" id="see_style_goods"/></td>
+							</tr>
+						</table>
+						<div id="order_detail_style_info">
+						</div>
+						
+						<div class="form-body" style="display: none">
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label"></label>
+										<input type="hidden" name="c" value="1" />
+										<input  class="btn btn-sm green" type="button" value="添加商品" name="save_order_goods"/>
+									</div>
+								</div>								
+							</div>
+						</div>
+						
+					</div>
+				<!--end tab-->
+				<!--start tab-->
+					<div class="tab-pane" id="order_detail_tab_2">
+						<table class="table table-bordered table-striped table-hover flip-content">
+							<tr>
+								<td align="right">货号：</td>
+								<td>
+									<input type="text" name="goods_id" class="form-control" placeholder="请输入" value=""/>
+								</td>
+								<td><input  class="btn btn-sm green" type="button" value="查看" id="see_Dia_goods"/></td>
+							</tr>
+						</table>
+						<div id="t"></div>
+						<div class="form-body" style="display: none;" >
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label"></label>
+										<input type="hidden" name="goods_type" value="luozuan" />
+										<input  class="btn btn-sm green" type="button" value="添加商品" name="save_diamond_goods"/></td>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end tab-->
+
+				
+
+					<!--endstart 购物车数据-->
+					<div class="portlet box blue" style="display: none;">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-reorder"></i>购物车信息
+							</div>
+							<div class="tools">
+								<a href="javascript:;" class="collapse">
+								</a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="table-toolbar">
+								<div class="btn-group" >
+									<button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=add" name="添加" title="添加明细" list-id="70" data-title="">
+										保存 <i class="fa fa-plus"></i>
+									</button>
+								</div>
+								<div class="btn-group">
+									<button class="btn btn-sm dark" onclick="util.relReload(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=search" name="刷新" title="刷新明细" list-id="70" data-title="">
+										刷新 <i class="fa fa-refresh"></i>
+									</button>
+								</div>
+
+								<div class="btn-group">
+									<button class="btn btn-sm red" onclick="util.deleteRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=delete" name="删除" title="刷新明细" list-id="70" data-title="">
+										删除 <i class="fa fa-trash-o"></i>
+									</button>
+								</div>
+								
+							</div>
+							<!-- 表格1 -->
+							<div class="flip-scroll" id="app_order_goods_info_detail">
+								<table class="table table-bordered table-striped table-hover flip-content">
+									<thead class="flip-content">
+										<tr>
+											<th align="center">货号</th>
+											<th align="center">款号</th>
+											<th align="center">商品名称</th>
+											<th align="center">商品价格</th>
+											<th align="center">数量</th>
+											<th align="center">添加时间</th>
+											<th align="center">添加人</th>	 
+										</tr>
+									</thead>
+									<tbody>
+									
+									</tbody>
+							</table>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<input type="hidden" name="id" value="<%$view->get_id()%>" />
+					<input type="hidden" name="_id" value="<%$_id|default:0%>" />
+				</div>
+			</div>
+
+		</div>

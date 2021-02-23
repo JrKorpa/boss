@@ -1,0 +1,36 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_goods_search_form_edit">
+			<div class="form-body">
+				<table class="table table-bordered table-striped  flip-content" id='update_log_list'>
+					<tr>
+						<td style='vertical-align: middle;'>
+							货号：<input type="text" name="goods_id" class="form-control" placeholder="请输入货号" value="" style='width:40%;display:inline;'/>
+							<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+<div id="goods_detail">
+
+</div>
+
+
+<!-- 修改明细 end -->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_goods_list_edit.js"%>
+//-->
+</script>

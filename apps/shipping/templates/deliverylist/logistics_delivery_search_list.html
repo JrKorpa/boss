@@ -1,0 +1,70 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			<th><input type="checkbox" class="group-checkable"  id="checkboxes" onclick="checkboxes(this)"/></th>
+				<th>序号</th>
+				<th>订单号</th>
+				<th>快递号</th>
+
+				<th>寄件人</th>
+				<th>寄件部门</th>
+				<th>订单金额</th>
+				 <th>发件缘由</th>
+				 <!--<th>打印时间</th>-->
+				 <th>打印状态</th>
+
+				<th>快递公司</th>
+				<th>收件电话</th>
+				<th>收货地址</th>
+				<th>渠道</th>
+				<th>外部订单号</th>
+				<th>添加时间</th>
+				<th>操作人</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=item%>
+			<tr data-id="logistics_delivery_list_<%$item.id%>" data-title="快递单号:<%$item.freight_no%>">
+				<td><input  type="checkbox"  name="_ids[]"  value="<%$item.id%>" /></td>
+				<td><%$item.show_id%></td>
+				<td>
+                    <%foreach from=$item.order_no item=order_no name=order_no%>
+                        <a href="javascript:;" class="tab-con-a" data-title="<%$order_no%>" data-id="<%$order_no%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$order_no%>"><%$order_no%></a>
+                        <%if !$smarty.foreach.order_no.last%>,<%/if%>
+                    <%/foreach%>
+                </td>
+				<td><%$item.freight_no%></td>
+
+				<td><%$item.sender%></td>
+				<td><%$item.department%></td>
+				<td><%$item.order_mount%></td>
+				<td><%$item.remark%></td>
+				<!--<td><%$item.print_date%></td>-->
+				<td>
+                    <%foreach from=$item.is_print item=is_print name=is_print%><%if $is_print==1%>已打印<%else%>未打印<%/if%><%if !$smarty.foreach.is_print.last%>,<%/if%><%/foreach%>
+                </td>
+				<td>
+                    <%foreach from=$item.express_id item=express_id name=express_id%><%$ExpView->get_name($express_id)%><%if !$smarty.foreach.express_id.last%>,<%/if%><%/foreach%>
+                </td>
+				<td><%$item.cons_tel%></td>
+				<td><%$item.cons_address%></td>
+				<td><%$item.channel%></td>
+				<td><%$item.out_order_id%></td>
+                <td>
+                    <%foreach from=$item.create_time item=create_time name=create_time%><%date('Y-m-d H:i:s',$create_time)%><%if !$smarty.foreach.create_time.last%>,<%/if%><%/foreach%>
+                </td>
+				<td><%$item.create_name%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

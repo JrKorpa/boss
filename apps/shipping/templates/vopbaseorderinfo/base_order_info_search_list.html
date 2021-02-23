@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>订单ID</th>
+				<th>BOSS订单号</th>
+				<th>唯品会订单号</th>
+				<th>快递单号</th>
+				<th>发货状态</th>
+				<th>客户姓名</th>
+				<th>电话</th>
+				<th>制单日期</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list item=d%>
+			<tr data-id="base_order_info_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.order_sn%></td>
+				<td><%$d.out_order_sn%></td>
+				<td><%$d.express_no%></td>
+				<td><%$d.send_good_status%></td>
+				<td><%$d.consignee%></td>
+				<td><%$d.mobile%></td>
+				<td><%$d.create_time%></td>
+				<td><%$d.order_remark%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,277 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="peishi_list_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">布产单号：</label>
+                            <input type="text" name="bc_sn" class="form-control" placeholder="支持多个布产单号,用空格或逗号隔开" />
+                        </div>
+				    </div>
+					<div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">货号：</label>
+                            <input type="text" name="goods_id" class="form-control" placeholder="支持多个货号,用空格或逗号隔开" />
+                        </div>
+                    </div>  
+					
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">配石状态：</label>
+                            <select class="form-control" tabindex="1" name="peishi_status">
+                                <option value=""></option>
+                                <option value="0">未操作</option>
+                                <%foreach from=$dd->getEnumArray("peishi_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">线上线下：</label>
+                            <select class="select2_category form-control" name="channel_class" tabindex="1" >
+                                <option value=""></option>
+                                <option value="1">线上</option>
+                                <option value="2">线下</option>
+                            </select>
+                        </div>
+                    </div>
+					
+	
+				    <div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">销售渠道：</label>
+						<select class="form-control" tabindex="1" name="department_id" disabled="disabled">
+							<option value=""></option>
+                            
+						</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">是否快速定制：</label>
+                        <select class="form-control" tabindex="1" name="is_quick_diy">
+                            <option value=""></option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                        </div>
+					</div>
+                   <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">添加时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="add_time_begin">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="add_time_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">采购时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="caigou_time_begin">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="caigou_time_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">配石中时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="peishi_time_begin">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="peishi_time_end">
+							</div>
+						</div>
+					</div>  
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">已送生产部时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="songshi_time_begin">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="songshi_time_end">
+							</div>
+						</div>
+					</div>     
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">采购人：</label>
+                            <input type="text" name="caigou_user" class="form-control" placeholder="请输入" />
+                        </div>
+				    </div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">配石人：</label>
+                            <input type="text" name="peishi_user" class="form-control" placeholder="请输入" />
+                        </div>
+				    </div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">送石人：</label>
+                            <input type="text" name="songshi_user" class="form-control" placeholder="请输入" />
+                        </div>
+				    </div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">证书类型：</label>
+                            <select class="form-control" tabindex="1" name="cert">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getCertList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>  
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石颜色：</label>
+                            <select class="form-control" tabindex="1" name="color">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getColorList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>   
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石净度：</label>
+                            <select class="form-control" tabindex="1" name="clarity">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getClarityList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>                     
+                 
+ 
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石大小：</label>
+							<div class="input-group  input-daterange">
+							<input type="text" class="form-control" name="carat_min" value="" placeholder="0.00"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control" name="carat_max" value="" placeholder="0.00"/>
+							</div>
+                        </div>
+                    </div>   
+					
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石类型：</label>
+                            <select class="form-control" tabindex="1" name="stone_cat">
+                                <option value=""></option>                                
+                                <%foreach from=$view->getStoneCatList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+				    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石形状：</label>
+                            <select class="form-control" tabindex="1" name="shape">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getShapeList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>   
+					
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">布产状态：</label>
+                            <select class="form-control" tabindex="1" name="bc_status">
+                                <option value=""></option>                               
+                                <%foreach from=$dd->getEnumArray("buchan_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>        
+					
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">布产类型：</label>
+                            <select class="form-control" tabindex="1" name="bc_type">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getBuchanTypeList() key=k item=value%>
+                                <option value="<%$k%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>      
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">布产分类：</label>
+                            <select class="form-control" tabindex="1" name="from_type">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getBuchanCatList() key=k item=value%>
+                                <option value="<%$k%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div> 
+					 
+					
+					                  
+				</div>
+
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="peishi_list_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/peishi_list_list.js"%>
+//-->
+</script>

@@ -1,0 +1,58 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><input type="checkbox" class="group-checkable" data-set="#user_warehouse_search_list .checkboxes" />
+			<th>序号</th>
+			<th>姓名</th>
+			<th>账号</th>
+			<th>仓库</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="user_warehouse_list_<%$d.id%>" data-title="仓库授权">
+			<td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.real_name%></td>
+			<td align="center"><%$d.account%></td>
+			<td align="center"><%if !empty($d.house_name)%><%$d.house_name%>(<%$d.house_code%>)<%else%>仓库已删除<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+	//复选框组美化
+	var test = $("#user_warehouse_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+	if (test.size() > 0) {
+	    test.each(function () {
+	    if ($(this).parents(".checker").size() == 0) {
+	        $(this).show();
+	        $(this).uniform();
+	    }
+	  });
+	}
+
+	// table 复选框全选
+	$('#user_warehouse_search_list .group-checkable').change(function () {
+	  var set = $(this).attr("data-set");
+	    var checked = $(this).is(":checked");
+	    $(set).each(function () {
+	        if (checked) {
+	            $(this).attr("checked", true);
+	            $(this).parents('tr').addClass("active");
+	        } else {
+	            $(this).attr("checked", false);
+	            $(this).parents('tr').removeClass("active");
+	        }                    
+	    });
+	    $.uniform.update(set);
+	});
+	$('#user_warehouse_search_list').on('change', 'tbody tr .checkboxes', function(){
+	    $(this).parents('tr').toggleClass("active");
+	});	
+//-->
+</script>

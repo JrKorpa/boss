@@ -1,0 +1,78 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>公司信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">公司名称</td>
+					<td><%$view->get_company_name()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">上级公司</td>
+					<td><%if $view->get_parent_company_name() eq null%>顶级公司<%else%><%$view->get_parent_company_name()%><%/if%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">公司编号</td>
+					<td><%$view->get_company_sn()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">公司联系人</td>
+					<td><%$view->get_contact()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">公司联系电话</td>
+					<td><%$view->get_phone()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">公司详细地址</td>
+					<td><%$view->get_address()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">开户银行地址</td>
+					<td><%$view->get_bank_of_deposit()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">开户银行账户</td>
+					<td><%$view->get_account()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">备注</td>
+					<td><%$view->get_remark()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">是否可以开发票</td>
+					<td><span class="glyphicon <%if $view->get_receipt()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">是否需要签字</td>
+					<td><span class="glyphicon <%if $view->get_is_sign()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">创建人</td>
+					<td><%$view->get_create_user_name()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">创建时间</td>
+					<td><%"Y-m-d H:i:s"|date:$view->get_create_time()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">是否内置</td>
+					<td><span class="glyphicon <%if $view->get_is_system()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

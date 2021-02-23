@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>图标名称</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="button_class_list_<%$d.id%>" data-title="<%$d.name%>">
+			<td><%$d.id%></td>
+			<td>
+				<i class="fa <%$d.name%>"> </i>&nbsp;<%$d.name%>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

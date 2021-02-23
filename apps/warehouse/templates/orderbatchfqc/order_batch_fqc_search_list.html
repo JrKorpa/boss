@@ -1,0 +1,64 @@
+<div class="table-scrollable" >
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#order_batch_fqc_search_list .checkboxes" /></th>
+				<th style="text-align:center;">编号</th>
+				<th style="text-align:center;">订单编码</th>
+				<th style="text-align:center;">发货状态</th>
+				<th style="text-align:center;">配货状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="order_batch_fqc_list_<%$d.id%>" data-title="<%$d.order_sn%>">
+				<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.order_sn%>" /></td>
+				<td align="center"><%$d.id%></td>
+				<td>
+				<a class="tab-con-a" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_sn%>" data-title="<%$d.order_sn%>" href="javascript:;"><%$d.order_sn%></a>
+				</td>
+				<td><%$dd->getEnum('order.send_good_status',$d.send_good_status)%></td>
+				<td><%$dd->getEnum('sales.delivery_status',$d.delivery_status)%></td>
+
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+	// 美化复选框
+  var test = $("#order_batch_fqc_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+  if (test.size() > 0) {
+    test.each(function () {
+      if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+      }
+    });
+  }
+  // table 复选框全选
+  $('#order_batch_fqc_search_list .group-checkable').change(function () {
+    var set = $(this).attr("data-set");
+		var checked = $(this).is(":checked");
+		$(set).each(function () {
+			if (checked) {
+				$(this).attr("checked", true);
+				$(this).parents('tr').addClass("active");
+			} else {
+				$(this).attr("checked", false);
+				$(this).parents('tr').removeClass("active");
+			}
+		});
+		$.uniform.update(set);
+	});
+	$('#order_batch_fqc_search_list').on('change', 'tbody tr .checkboxes', function(){
+  	$(this).parents('tr').toggleClass("active");
+  });
+//-->
+</script>

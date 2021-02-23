@@ -1,0 +1,64 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>销售策略名称</th>
+			<th>记录状态</th>
+			<th>是否有效</th>
+			<th>是否一口价</th>
+            <th>产品线</th>
+            <th>金托类型</th>
+            <th>货品类型</th>
+            <th>款式分类</th>
+            <th>镶口范围</th>
+            <th>主石范围</th>
+			<th style="display:none;">策略类型</th>
+			<th>默认加价率</th>
+			<th>默认固定值</th>
+			<th>销售策略开始时间</th>
+			<th>销售策略结束时间</th>
+			<th>记录创建时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="base_salepolicy_info_list_<%$d.policy_id%>" data-title="详情列表">
+			<td><%$d.policy_id%></td>
+			<td><%$d.policy_name%></td>
+			<td>
+				<%if $d.bsi_status=='1'%>保存<%/if%><%if $d.bsi_status=='2'%>申请审核<%/if%>
+				<%if $d.bsi_status=='3'%>已审核<%/if%><%if $d.bsi_status=='4'%>驳回<%/if%>
+			</td>
+			<td>
+				<%if $d.is_delete=="0" && $d.now_time <= $d.policy_end_time && $d.now_time >= $d.policy_start_time %>有效<%/if%>
+				<%if $d.is_delete=="1"  || $d.now_time > $d.policy_end_time ||$d.now_time < $d.policy_start_time %>无效<%/if%>
+			</td>
+			<td>
+				<%if $d.is_kuanprice=="1" %>是<%else%>否<%/if%>
+			</td>
+            <td><%if $d.product_type == '0'%>全部<%else%><%$d.product_type%><%/if%></td>
+            <td><%if $d.tuo_type == '0'%>全部<%else%><%$dd->getEnum('warehouse_goods.tuo_type',$d.tuo_type)%><%/if%></td>
+            <td><%if isset($huopintypes[$d.huopin_type])%><%$huopintypes[$d.huopin_type]%><%else%>全部<%/if%></td>
+            <td><%if $d.cat_type == '0'%>全部<%else%><%$d.cat_type%><%/if%></td>
+            <td><%$d.range_begin%>-<%$d.range_end%></td>
+             <td><%$d.zhushi_begin%>-<%$d.zhushi_end%></td>
+			<td style="display:none;"><%if $d.is_together==1%>普通<%else%>打包<%/if%></td>
+			<td><%$d.jiajia|default:''%></td>
+			<td><%$d.sta_value|default:''%></td>
+			<td><%$d.policy_start_time%></td>
+			<td><%$d.policy_end_time%></td>
+			<td><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

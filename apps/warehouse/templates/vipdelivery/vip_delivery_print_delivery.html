@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+body,td { font-size:13px; line-height:20px; padding:5px; font-weight:bold}
+</style>
+<style type="text/css" media="print">
+.Noprint { DISPLAY: none;}
+</style>
+<!--<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>-->
+</head>
+<body>
+<div class="Noprint">
+	<input type="button" value="打印" onclick="window.print();" style="width:120px; height:30px; font-size:20px; font-weight:bold" /><br/><br/>
+</div>
+<table cellspacing="0" style="border-collapse:collapse;" cellpadding="0" border="1" width="100%">
+        <tr>
+		     <td style="width:80px">品牌</td><td></td>
+			 <td colspan="2" style="text-align:right; width:200px"><img src="http://vis.vip.com/img/logo-200px.png" style="height:50px"/></td>
+		</tr>
+		<tr>
+			<td>送货仓库</td>
+			<td><%$view->getWarehouseName($data.warehouse)|default:''%></td>
+			<td>配送模式</td>
+			<td><%$view->getDeliveryMethodName($data.delivery_method)%></td>
+		</tr>
+		<tr>
+			<td>入库单号</td>
+			<td colspan="3"><img src="http://bardcode.kela.cn/index.php?code_sn=<%$data.storage_no%>" style="width:300px"></td>
+		</tr>
+		<tr>
+			<td>箱号</td>
+			<td colspan="3" ><img src="http://bardcode.kela.cn/index.php?code_sn=<%$data.box_no|default:1%>"></td>
+		</tr>
+		<tr>
+		    <td>要求到货时间</td>
+			<td colspan="3"><img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$data.arrive_time%>" style="width:300px"></td>
+		</tr>
+		<tr>
+		    <td>承运商</td>
+			<td colspan="3"><%$data.carrier_name%></td>
+		</tr>
+		<tr>
+		    <td>运单号</td>
+			<td colspan="3"><img src="http://bardcode.kela.cn/index.php?code_sn=<%$data.delivery_no%>" style="width:300px"></td>
+		</tr>
+</table>	
+<!--endprint-->
+</body>
+</html>

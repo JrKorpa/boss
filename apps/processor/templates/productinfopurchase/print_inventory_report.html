@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css" media="print">
+.Noprint { DISPLAY: none;}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-after: always;}
+</style>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+
+<script>
+function printorderpurchase(){
+    $(".Noprint,.kela_close").hide();
+	window.print();
+}
+</script>
+</head>
+<body>
+<%if empty($data)%>
+<div>
+无打印数据请检查程序
+</div>
+<%else%>
+<div class="Noprint">
+<input type="button" value="打印订单" onclick="printorderpurchase()"style="width:100px; height:30px; font-size:20px; font-weight:bold" />
+</div>
+<%foreach from=$data key=key item=pur%>
+<table cellspacing="0" cellpadding="1" width="100%" border="0" class='PageNext'>
+    <tbody>
+        <tr>
+            <td>
+            <table style=" margin-bottom: 15px; border-bottom: #000 2px solid" cellspacing="0" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td colspan="2" valign="middle" align="center" width="86%">
+                        <h1 style="padding-left: 15px; padding-top: 10px">
+						采购备货单</h1></td>
+                    </tr>
+                    <tr>
+                    	<td align="left" colspan="2">采购单号：&nbsp;&nbsp;<img src="http://bardcode.kela.cn/index.php?code_sn=<%$pur.p_sn%>" width="100" height="60">布产组<span style="color:red; font-size:60px;">类</span></td>
+
+
+                    </tr>
+                </tbody>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td><strong>采购单类型：&nbsp;</strong><%$pur.t_id|default:''%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>采购方式：&nbsp;</strong><%$dd->getEnum('warehouse.put_in_type',$pur.put_in_type)%></td>
+        </tr>
+        <tr>
+            <td>
+            <table style="font-size: 13px;line-height: 20px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>制单人：<%$pur.make_uname|default:''%></td>
+						<td>制单时间：<%$pur.make_time|default:'0000-00-00 00:00:00'%>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>审核人：<%$pur.check_uname|default:''%>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>布产时间：&nbsp;<%$data.check_time|default:'0000-00-00 00:00:00'%></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">采购备注：<%$data.p_info|default:''%></td>
+                    </tr>
+                </tbody>
+            </table>            </td>
+        </tr>
+		<%if !empty($pur.product_list)%>
+		<%foreach from=$pur.product_list key=k item=pro%>
+        <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="line-height: 20px;font-size: 12px; border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+                                <tr align="center">
+								    <td width="3%">布产号</td>
+									<td width="3%">采购单号</td>
+									<td width="8%">产品图片</td>
+                                    <td width="5%">款号</td>
+									<td width="5%">厂家编号(模号)</td>
+                                    <td width="7%">品名</td>
+									<td scope="col" width="15%"><div align="center">采购属性</div></td>
+									<td scope="col" width="3%"><div align="center">镶嵌要求</div></td>
+                                    <td scope="col" width="3%"><div align="center">数量</div></td>
+                                    <td>布产备注</td>
+									<td>接单时间</td>
+									<td>预计出货时间</td>
+									<td>布产时间</td>
+								</tr>
+								<tr>
+									<td><%$pro.bc_sn%></td>
+									<td><%$pur.p_sn%></td>
+									<td><%if !empty($pro.img)%><img src="<%$pro.img|default:''%>" height="120px" ><%else%>暂无图片<%/if%></td>
+									<td>&nbsp;<%$pro.style_sn|default:''%></td>
+									<td ><%$pro.m_sn|default:''%></td>
+                                    <td>&nbsp;<%$pro.goods_name|default:''%></td>
+                                    <td>
+										<%if !empty($pro.attr)%>
+                                        <%foreach from=$pro.attr item=attr%>
+											<%$attr.name%>:<%$attr.value%><br />
+										<%/foreach%>
+										<%else%>
+										无
+										<%/if%>
+									</td>
+									<td><%$pro.xiangqian|default:''%></td>
+                                    <td><%$pro.num|default:''%></td>
+									<td><%$pro.remark|default:'无'%></td>
+									<td><%$pro.order_time|default:''%></td>
+									<td><%$pro.rece_time|default:''%></td>
+									<td><%$pro.bc_time|default:''%></td>
+
+
+                               </tr>
+                            </tbody>
+                        </table></td>
+                    </tr>
+            </table></td>
+        </tr>
+		<%/foreach%>
+		<%else%>
+		<tr>
+			<td>
+				采购单没有推送布产的产品！
+			</td>
+		</tr>
+
+
+
+		<%/if%>
+         <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+							<table style="line-height: 20px;font-size:12px;border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+								<tbody>
+									<tr align="center">
+										<td colspan="2" align="left">执模部、姓名：</td>
+										<td colspan="2" align="left">镶石部、姓名：</td>
+										<td colspan="2" align="left">抛光部、姓名：</td>
+									</tr>
+									<tr>
+										<td >发货件数：</td>
+										<td>重量：</td>
+										<td>发货件数：</td>
+										<td>重量：</td>
+										<td>发货件数：</td>
+										<td>重量：</td>
+								   </tr>
+								   <tr>
+										<td>收获件数：</td>
+										<td>重量：</td>
+										<td>收获件数：</td>
+										<td>重量：</td>
+										<td>收获件数：</td>
+										<td>重量：</td>
+								   </tr>
+								   <tr>
+										<td >报废件数：</td>
+										<td>重量：</td>
+										<td>报废件数：</td>
+										<td>重量：</td>
+										<td>报废件数：</td>
+										<td>重量：</td>
+								   </tr>
+								</tbody>
+							</table>
+						</td>
+                    </tr>
+            </table></td>
+                    <tr>
+                        <td>
+                           <table style="line-height: 20px;font-size:12px;border:0px" width="100%" border="1">
+                                <tr>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                    <td align="left" style='border:0px'>主管签名：</td>
+                                    <td style='border:0px'></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+        </tr>
+    </tbody>
+</table>
+<%/foreach%>
+<%/if%>
+</body>
+</html>

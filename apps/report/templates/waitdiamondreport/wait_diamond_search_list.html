@@ -1,0 +1,37 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>制单日期</th>
+                <th>送钻总数量</th>
+                <th>等钻平均时长(天)</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list item=d%>
+				<tr data-id="tab_waitdiamondreport-index_second_<%$d.dotime%>" start_time="<%$d.count_date%>" end_time="<%$d.count_date%>"  opra_uname_string="<%$args.opra_uname_string%>" prc_ids_string="<%$args.prc_ids_string%>"   from_type="<%$args.from_type%>"  style_sn="<%$args.style_sn%>"  data-title="跟单等钻平均时长报表">
+				<td><%$d.dotime%></td>
+                <td><%$d.buchan_num%></td>
+                <td><%$d.avg_time%></td>
+               </tr>
+		<%/foreach%> 
+		<%if $tongji %>
+				<tr data-title="all_count">
+				<td>总计</td>
+                <td><%$tongji.buchan_num%></td>
+                <td><%$tongji.avg_time%></td>
+               </tr>
+		<%/if%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

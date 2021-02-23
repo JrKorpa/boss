@@ -1,0 +1,78 @@
+<div class="table-toolbar">
+	<div class="btn-group">
+		<button type="button" class="btn btn-sm green" id="from_table_data_btn" form="purchase_receipt_info_edit" data-url="index.php?mod=purchase&con=PurchaseIqcOpra&act=add" data-id="<%$view->get_id()%>" list-id="86">保存<i class="fa fa-check"></i></button>
+	</div>
+	<%$bar%>
+</div>
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="purchase_receipt_info_edit" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">出货单号：</label>
+						<input type="text" id="ship_num" name="ship_num" class="form-control" value="<%$view->get_ship_num()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">供应商：</label>
+						<select class="select2_category form-control" tabindex="1" name="prc_id" id="prc_id">
+							<option value=""></option>
+							<%foreach from=$pro_list item=value%>
+								<option value="<%$value.id%>|<%$value.name%>" <%if $view->get_prc_id()==$value.id%>selected="selected"<%/if%>><%$value.code%> | <%$value.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">总数量：</label>
+						<input type="text" name="num" class="form-control" readonly value="<%$view->get_num()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">总金额（含税）：</label>
+						<input type="text" name="all_amount" class="form-control" readonly value="<%$view->get_all_amount()%>">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="user_name" class="form-control" readonly value="<%$dd->getEnum('DefectiveProductStatus',$view->get_status())%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="user_name" class="form-control" readonly value="<%$view->get_user_name()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<input type="text" id="remark" name="remark" class="form-control" value="<%$view->get_remark()%>">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div class="table-scrollable" id="from_table_data"></div>
+			<div class="pager"></div>
+		</div>
+		<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+		<input type="hidden" name="id" value="<%$view->get_id()%>" />
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_receipt_info_edit.js"%>
+	<%include file="js/table_data_ed.js"%>
+//-->
+</script>

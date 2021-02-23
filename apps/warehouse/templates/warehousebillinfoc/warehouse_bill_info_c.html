@@ -1,0 +1,97 @@
+<div class="tabbable tabbable-custom boxless">
+	<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_c_info">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库单
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+				<div class="form-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">出库公司：</label><span style='color:red;'>*</span>
+								<select class="select2_category form-control" tabindex="1" id="from_company_id_c" name="from_company_id_c">
+									<option value=""></option>
+									<%foreach from=$company item=value%>
+									<%if $value.id == 58%>
+									<option value=" <%$value.id%> | <%$value.company_name%> "> <%$value.company_sn%> | <%$value.company_name%></option>
+									<%/if%>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">加工商：</label><span style='color:red;'>*</span>
+								<select class="select2_category form-control" tabindex="1" id="pro_id_c" name="pro_id_c">
+									<option value=""></option>
+									<%foreach from=$pro_list item=value%>
+									<option value="<%$value.id%>|<%$value.name%>" > <%$value.code%> | <%$value.id%></option>
+									<%/foreach%><!--name-->
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">出库类型：</label><span style='color:red;'>*</span>
+								<select class="select2_category form-control" tabindex="1" id="chuku_type" name="chuku_type">
+									<option value=""></option>
+									<%foreach from = $dd->getEnumArray('warehouse.chuku_type')  item=value%>
+									<option value="<%$value.name%>"><%$value.label%></option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">参考编号：</label>
+								<input type="text" name="order_sn_c" id ="order_sn_c" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label">备注信息：</label><span style='color:red;'>*</span>
+								<textarea class="form-control" id="bill_note_c" name="bill_note" rows="4" maxlength="50" ><%$view->get_bill_note()%></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 搜索按钮 -->
+			<!-- END FORM-->
+		</div>
+	</div>
+	<!--入库单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div class="" id="from_table_data_c"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="reset" class="btn default" form="warehouse_bill_c_info">重置</button>
+		<button type="submit" id="from_table_data_btn_c" class="btn green" form="warehouse_bill_c_info"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_c_info.js"%>
+	<%include file="js/table_data_ed.js"%>
+</script>

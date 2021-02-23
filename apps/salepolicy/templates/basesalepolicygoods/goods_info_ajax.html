@@ -1,0 +1,23 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">销售政策名称</th>
+			<th style="text-align: center;">加价率</th>
+			<th style="text-align: center;">固定值</th>
+			<th style="text-align: center;">销售价格</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$listinfo item=d%>
+		<tr data-id="" data-title="">
+            <td align="center"><%$d.policy_name%></td>
+			<td align="center"><%$d.jiajia%></td>
+			<td align="center"><%$d.sta_value%></td>
+			<td align="center"><%$d.sale_price%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+

@@ -1,0 +1,47 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				 <th>布产号</th>
+                 <th>款号</th>
+                 <th>收货人</th>
+                 <th>跟单人</th>
+                 <th>生产状态</th>
+                 <th>接单时间</th>
+                 <th>标准出厂时间</th>
+                 <th>问题类型</th>
+                 <th>OQC未过次数</th>
+                 <th>添加时间</th>
+                 <th>最后操作时间</th>
+                 <th>最后操作备注</th>
+                 <th>质检状态</th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="product_info_purchase_info_search_list_<%$d.id%>" data-title="<%$d.p_sn%>" data-pk='<%$d.id%>'>
+				<td><a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.id%>"class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.id%>" ><%$d.bc_sn%></a></td>
+                <td><%$d.style_sn%></td>
+                <td><%$d.consignee%></td>
+                               <td><%$d.opra_uname%></td>
+                                <td><%$dd->getEnum('buchan_fac_opra',$d.buchan_fac_opra)%></td>
+                                <td><%$d.order_time|default:'0000-00-00'%></td>
+                                <td><%$d.esmt_time%></td>
+                                <td><%$d.cat_name%></td>
+                                <td><%$d.num|default:0%></td>
+                                <td><%$d.add_time|default:'0000-00-00 00:00:00'%></td>
+                                <td><%$d.edit_time|default:'0000-00-00 00:00:00'%></td>
+                                <td><%$d.remark%></td>
+                                <td><%if $d.oqc_result eq null%>未质检<%else%><%if $d.oqc_result eq 1%>通过<%elseif $d.oqc_result eq 0%>不通过<%/if%><%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+	<%$pa%>
+</div>
+<script type="text/javascript">
+util.hover();
+</script>

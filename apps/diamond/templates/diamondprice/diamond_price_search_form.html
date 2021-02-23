@@ -1,0 +1,125 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="diamond_price_search_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">形状：</label>
+                            <select class="form-control" tabindex="1" name="shape">
+                                <option value=""></option>
+                                <option value="BR" <%if $view->get_shape() == 'BR'%>selected="selected"<%/if%>>圆形</option>
+                                <option value="PS" <%if $view->get_shape() != 'BR' && $view->get_shape() %>selected="selected"<%/if%>>异形</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <select class="form-control" tabindex="1" name="clarity">
+                                <option value=""></option>
+                                <%foreach from=$view->getClarityList() item=d%>
+                                <option value="<%$d.name%>" <%if $view->get_clarity() == $view->get_clarity() && $view->get_clarity() %>selected="selected"<%/if%>><%$d.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <select class="form-control" tabindex="1" name="color">
+                                <option value=""></option>
+                                <%foreach from=$view->getColorList() item=d%>
+                                <option value="<%$d.name%>" <%if $d.name == $view->get_color() && $view->get_color() %>selected="selected"<%/if%>><%$d.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">输入重量区间：</label>
+                            <div class="input-group date-picker input-daterange">
+                                <input type="text" class="form-control" name="min" value="<%$view->get_min()%>" placeholder="0.00"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="max" value="<%$view->get_max()%>" placeholder="0.00"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">输入价格区间：</label>
+                            <div class="input-group date-picker input-daterange">
+                                <input type="text" class="form-control" name="price_start" placeholder="0.00"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="price_end" placeholder="0.00"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">版本：</label>
+                            <select class="form-control" tabindex="1" name="version">
+                                <option value="00">全部</option>
+                                <%foreach from=$view->getVersionList() item=d%>
+                                <option value="<%$d.id%>" <%if $view->getLastId() == $d.id %>selected="selected"<%/if%>><%$d.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button data-title="下载上传的CSV文件范例" title="下载上传的CSV文件范例" name="下载上传的CSV文件范例" onclick="downloadDemo()" class="btn btn-sm yellow">
+                    下载上传的CSV文件范例 <i class="fa fa-cloud-download"></i>
+                </button>
+            </div>
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="diamond_price_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/diamond_price_list.js" %>
+//-->
+</script>

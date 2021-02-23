@@ -1,0 +1,127 @@
+<!--
+*po单号：  
+*送货仓库：   *配送模式：  
+*送货批次：     *要求到货时间：  
+*承运商公司名称：   
+-->
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_style_goods_attribute">
+	<form action="" class="horizontal-form" method="post" id="vip_delivery_info_form">
+		<div class="form-body">
+		
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">快递单号：<span class="required">*</span></label>
+						<input type="text" class="form-control" name="delivery_no"  placeholder="请输入" value="" tabindex="1"/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">承运商公司：<span class="required">*</span></label>
+						<select class="form-control" name="carrier"  tabindex="2">
+						    <option value=""></option>
+							<%foreach from=$view->getCarrierList() item=val%>
+							 <%if preg_match("/跨越/is",$val.carrier_name)%>
+							<option value="<%$val.carrier_code%>|<%$val.carrier_name%>" selected><%$val.carrier_name%></option>
+							 <%/if%>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">配送模式：<span class="required">*</span></label>
+						<select class="form-control" name="delivery_method"  tabindex="3">
+						    <option value=""></option>
+							<%foreach from=$view->getDeliveryMethodList() key=key item=val%>
+							<option value="<%$key%>"><%$val.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">送货仓库：<span class="required">*</span></label>
+						<input type="text" class="form-control" name="warehouse_name" value="" readonly/>
+						<input type="hidden" name="warehouse" value="" readonly />
+					</div>
+				</div>				
+				
+
+			</div>	
+			<div class="row">	
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">送货批次：<span class="required">*</span></label>		
+						<%foreach from=$view->getDeliveryTimeList() key=key item=volist%>
+						<div id="delivery_time_<%$key%>" class="js_delivery_time" <%if $key==1%>style="display:none"<%/if%>>
+						<select class="form-control" name="delivery_time"  tabindex="4">
+							<%foreach from=$volist item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+						<%/foreach%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">要求到货时间：<span class="required">*</span></label>
+						<%foreach from=$view->getArrivalTimeList() key=key item=volist%>
+						<div id="arrival_time_<%$key%>" class="js_arrival_time" <%if $key==1%>style="display:none"<%/if%>>
+						<select class="form-control" name="arrival_time"  tabindex="5">
+							<%foreach from=$volist item=val%>
+							<option value="<%$val%>"><%$val%></option>
+							<%/foreach%>
+						</select>
+						</div>
+						<%/foreach%>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">			  
+				<button type="reset" class="btn default">重置</button>
+				<button type="button" id="saveBtn" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单商品信息预览
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body"  id="vip_delivery_order_list">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<th>SKU码</th>
+					<th>BOSS<br/>货号</th>					
+					<th>VIP<br/>PO单号</th>
+					<th>VIP<br/>捡货单号</th>
+					<th>VIP<br/>送货仓库</th>
+					<th>BOSS<br/>订单号</th>
+					<th>BOSS<br/>订单发货状态</th>
+				</tr>	
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	<%include file="js/vip_delivery_info.js"%>
+</script>

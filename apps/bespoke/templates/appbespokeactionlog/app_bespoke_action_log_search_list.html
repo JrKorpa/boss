@@ -1,0 +1,29 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>会员ID</th>
+			<th>会员名</th>
+			<th>会员手机号</th>
+			<th>会员类型</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+                <tr data-id="app_bespoke_action_log_list_<%$d.member_id%>">
+			<td><%$d.member_id%></td>
+			<td><%$d.member_name%></td>
+			<td><%$d.member_phone%></td>
+			<td><%foreach from=$dd->getEnumArray("member.member_type") item=value%>
+                <%if $value.name==$d.member_type%><%$value.label%><%/if%>
+            <%/foreach%>
+            </td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

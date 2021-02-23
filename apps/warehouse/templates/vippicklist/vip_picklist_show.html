@@ -1,0 +1,106 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>拣货单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+       <div class="table-toolbar">
+        <%$bar%>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">PO单编号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.po_no|default:''%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">拣货单号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.pick_no|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">订单类别：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.order_cate|default:''%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">门店编号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.store_sn|default:''%>"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">送货仓库：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$view->getWarehouseName($data.warehouse)|default:''%>"/>
+				</div>
+			</div>			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">售卖时间：</label><br/>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.sell_st_time|default:''%> - <%$data.sell_et_time|default:''%>"/>
+				</div>
+			</div>
+		</div>		
+		<div class="clear"></div>
+	</div>
+</div>
+		<!-- 表格1 -->
+<div>
+ <form action="" method="post" class="horizontal-form" id="vip_picklist_show_form">  
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th style="text-align:center; width:50px" >序号</th>
+				<th>VIP<br/>SKU码</th>
+				<th>VIP<br/>货号</th>
+				<th>VIP<br/>商品名称</th>
+				<th>VIP<br/>尺码</th>
+				<th>VIP<br/>已发货数量</th>
+				<th>VIP<br/>未发货数量</th>
+				<th>BOSS<br/>已捡货数量</th>
+				<th>BOSS<br/>捡货状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data.pick_product_list item=d key=key%>
+			<tr>
+			    <td style="text-align:center"><%$key+1%></td>
+				<td>
+				<a href="javascript:;" class="tab-con-a" data-title="捡货操作" data-id="pickgoods-<%$d.barcode%>" data-url="index.php?mod=warehouse&con=VipPickDetails&act=pickGoods&pick_no=<%$data.pick_no%>&sku_no=<%$d.barcode%>&po_no=<%$d.po_no|default:$data.po_no%>"><%$d.barcode%></a>	
+		
+				</td>
+				<td><%$d.art_no%></td>							
+				<td><%$d.product_name%></td>
+				<td><%$d.size%></td>
+				<td><%$d.stock-$d.not_delivery_num%></td>
+				<td><%$d.not_delivery_num%></td>
+				<td><%$d.boss_pick_num%></td>
+				<td><%$view->getBossPickStatusName($d.boss_pick_status)%></td>
+			</tr>						
+		<%/foreach%>
+		</tbody>
+	</table>
+</form>	
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/vip_picklist_show.js"%>
+//-->
+</script>

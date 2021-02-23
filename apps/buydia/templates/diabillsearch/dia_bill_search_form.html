@@ -1,0 +1,156 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="dia_bill_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">石包：</label>
+                            <input type="text" name="dia_package" class="form-control" placeholder="批量搜索请使用单个空格隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">单号：</label>
+                            <input type="text" name="bill_no" class="form-control" placeholder="批量搜索请使用单个空格隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">纸质单号：</label>
+                            <input type="text" name="paper_no" class="form-control" placeholder="批量搜索请使用单个空格隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="create_user" class="form-control" placeholder="批量搜索请使用单个空格隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">制单时间：</label>
+                                <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                    <input type="text" class="form-control" placeholder="请输入" name="create_time_start" value="" />
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="form-control" placeholder="请输入" name="create_time_end" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">审核人：</label>
+                            <input type="text" name="check_user" class="form-control" placeholder="批量搜索请使用单个空格隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">审核时间：</label>
+                                <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                    <input type="text" class="form-control" placeholder="请输入" name="check_time_start" value="" />
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="form-control" placeholder="请输入" name="check_time_end" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">状态：</label>
+                            <select class="form-control" tabindex="1" name="status">
+                                <option value="0">全部</option>
+                                <%foreach from=$dd->getEnumArray("diabill.status") key=k item=v%>
+                                <option value="<%$v.name%>"><%$v.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">类型：</label>
+                            <select class="form-control" tabindex="1" name="bill_type">
+                                <option value="0">全部</option>
+                                <%foreach from=$bill_type key=k item=v%>
+                                <option value="<%$k%>"><%$v%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">供应商：</label>
+                            <select class="form-control" tabindex="1" name="processors_id">
+                                <option value=""></option>
+                                <%foreach from=$pro_list item=value%>
+                                    <option value="<%$value.id%>|<%$value.name%>"><%$value.code%> | <%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">工厂：</label>
+                            <select class="form-control" tabindex="1" name="factory_id">
+                                <option value=""></option>
+                                <%foreach from=$pro_list item=value%>
+                                    <option value="<%$value.id%>|<%$value.name%>"><%$value.code%> | <%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">备注：</label>
+                            <textarea class="form-control" name="remark" rows="3"></textarea>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="dia_bill_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_bill_list.js"%>
+//-->
+</script>

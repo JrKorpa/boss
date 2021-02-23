@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+        <th width="20%">操作人</th>
+        <th width="30%">操作时间</th>
+        <th width="50%">内容</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$data item=v%>
+    <tr>
+        <td><%$v.check_user%></td>
+        <td><%$v.check_time%></td>
+        <td><%$v.check_info%></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>

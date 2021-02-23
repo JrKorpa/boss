@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>用户名</th>
+			<th>组名</th>
+			<th>排序</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="group_user_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.real_name%></td>
+			<td><%$d.name%></td>
+			<td><%$d.display_order%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

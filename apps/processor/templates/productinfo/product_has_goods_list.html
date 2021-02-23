@@ -1,0 +1,52 @@
+<div class="portlet-body">
+	<%if $success != 1%>
+		<div class='alert alert-info'><%$error%></div>
+	<%else%>
+    <div class="flip-scroll col-sm-12">
+        <table class="table table-bordered table-striped table-hover flip-content" id="product_has_goods_result_list">
+        	<thead class="flip-content">
+        		<tr>
+        			<th>商品货号</th><th>商品款号</th><th>商品名称</th><th>指圈</th><th>材质</th><th>颜色</th>
+        			<th>净度</th><th>主成色重</th><th>主石大小</th>
+        		</tr>
+    		</thead>
+    		<tbody id="product_has_goods_list">
+    			<%foreach from=$goods item=g%>
+    			<tr>
+    				<td><%$g.goods_id%></td>
+    				<td><%$g.goods_sn%></td>
+    				<td><%$g.goods_name%></td>
+    				<td><%$g.shoucun%></td>
+    				<td><%$g.caizhi%></td>
+    				<td><%$g.yanse%></td>
+    				<td><%$g.jingdu%></td>
+    				<td><%$g.jinzhong%></td>
+    				<td><%$g.zuanshidaxiao%></td>
+    			</tr>
+    			<%/foreach%>
+    		</tbody>
+    	</table>
+    </div>
+    <%/if%>
+</div>
+<input type="hidden" name="select_goods_id"/>
+<div class="clear"></div>
+<style type="text/css">
+	.js_input {
+		width:150px;float:right;
+	}
+	.js_select {
+		border: 1px solid #e5e5e5;
+		background-color: #fff;
+		background-image: none;
+		filter: none;
+		height: 34px;
+		padding: 3px 0 0px 12px;
+	}
+</style>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/product_has_goods_list.js"%>
+//-->
+</script>

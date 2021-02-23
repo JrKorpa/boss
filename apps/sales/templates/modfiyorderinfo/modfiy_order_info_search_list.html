@@ -1,0 +1,60 @@
+<!-- <div class="table-scrollable"> -->
+<div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#modfiy_order_info_search_list .checkboxes" /></th>
+				<th>订单号</th>
+				<th>制单人</th>
+				<th>跟单人</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="modfiy_order_info_search_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.id%>"><%$d.order_sn%></a></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.genzong%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+	// 美化复选框
+    var test = $("#modfiy_order_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+      test.each(function () {
+        if ($(this).parents(".checker").size() == 0) {
+          $(this).show();
+          $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#modfiy_order_info_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });   
+    $('#modfiy_order_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

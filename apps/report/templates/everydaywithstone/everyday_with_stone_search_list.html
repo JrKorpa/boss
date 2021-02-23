@@ -1,0 +1,42 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th rowspan=2>统计日期</th>
+                <th rowspan=2>今日新增待配订单</th>
+                <th rowspan=2>今日完成订单</th>
+                <th style=" text-align:center;" colspan=4>未完成订单</th>
+                <th rowspan=2>累计待配订单</th>
+			</tr>
+            <tr>
+                <th>0天</th>
+                <th>1天</th>
+                <th>2天</th>
+                <th>2天以上</th>
+            </tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list key=k item=d%>
+			<tr data-id="everyday_with_stone_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$k%></td>
+                <td><%$d.xinzeng%></td>
+                <td><%$d.wancheng%></td>
+                <td><%$d.0days%></td>
+                <td><%$d.1days%></td>
+                <td><%$d.2days%></td>
+                <td><%$d.2tdays%></td>
+                <td><%$d.total%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

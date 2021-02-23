@@ -1,0 +1,223 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i><%$tname%>
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+</div>
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="dia_order_info_edit">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_type()%><%$view->get_order_id()%>"  readOnly="true" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">日期：</label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="order_time" value="<%if $view->get_order_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_order_time()%><%/if%>" class="form-control" >
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="" class="form-control" placeholder="新增" value="<%$dd->getEnum("dia_order.status",$view->get_status())%>"  readOnly="true"/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="" class="form-control" placeholder="<%$smarty.session.userName%>" value=""  readOnly="true" />
+					</div>
+				</div>	
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">审核人：</label>
+						<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_check_order()%>" readOnly="true" />
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">加工商：</label>
+						<span style='color:red;'>*</span>
+						<select class="form-control" tabindex="1" name="prc_id">
+							<option value=""></option>
+							<%foreach from=$pro_list key=k item=value%>
+							<option <%if $view->get_prc_id() == $value.id%>selected<%/if%> value="<%$value.id%>|<%$value.name%>"><%$value.name%></option>
+							<%/foreach%>
+						</select>	
+					</div>
+				</div>
+				<%if $type == "MS" || $type == "RK" || $type== "CK"%>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><%if $type == "CK"%>出库方式<%else%>入库方式<%/if%>：</label>
+						<span style='color:red;'>*</span>
+						<select class="form-control" tabindex="1" name="in_warehouse_type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("dia_order.in_warehouse_type") key=k item=value%>
+							<option <%if $view->get_in_warehouse_type() == $value.name%>selected<%/if%>  value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>					
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">结算方式：</label>
+						<span style='color:red;'>*</span>
+						<select class="form-control" tabindex="1" name="account_type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("dia_order.account_type") key=k item=value%>
+							<option <%if $view->get_account_type() == $value.name%>selected<%/if%>   value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>					
+					</div>
+				</div>
+            </div>
+            <div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">支付总计：</label>
+						<input type="text" name="shijia" class="form-control" placeholder="" value="<%$view->get_shijia()%>" 
+						<%if $type=="CK"%>readOnly="true"<%/if%>
+						 >
+					</div>
+				</div>
+				<%elseif $type == "AS"%>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">调整方式：</label>
+						<span style='color:red;'>*</span>
+						<select class="form-control" tabindex="1" name="adjust_type">
+							<option value="0">扣减</option>
+						</select>					
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">支付总计：</label>
+						<input type="text" name="shijia" class="form-control" placeholder="" value="<%$view->get_shijia()%>" />
+					</div>
+				</div>
+            </div>
+            <div class="row">
+				<%/if%>
+			   <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">数量总计：</label>
+						<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_goods_num()%>" readOnly="true" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">重量总计：</label>
+						<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_goods_zhong()%>"  readOnly="true"/>
+					</div>
+				</div>
+                <%if $type != "MS" && $type != "RK" && $type != "CK" &&  $type != "AS"%>
+            </div>
+            <div class="row">
+                <%/if%>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">价格总计：</label>
+						<input type="text" name="" class="form-control" placeholder="" value="<%$view->get_goods_total()%>" readOnly="true" />
+					</div>
+				</div>
+                <%if $type == "MS" || $type == "RK" || $type== "CK"%>
+            </div>
+            <div class="row">
+                <%/if%>
+                <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">纸质单号：</label>
+						<input type="text" name="send_goods_sn" class="form-control" placeholder="" value="<%$view->get_send_goods_sn()%>" />
+					</div>
+				</div>
+                <%if $type == "AS"%>
+            </div>
+            <div class="row">
+                <%/if%>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<input type="text" name="info" class="form-control" placeholder="" value="<%$view->get_info()%>" />
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">上传文件：</label>
+						<span style='color:red;'>*</span>
+						<input  class="form-control" type="file" name="file" id="file" style="" />
+						<%if $view->get_order_id() %>
+						<a href="index.php?mod=shibao&con=DiaOrder&act=getTemplate&type=<%$type%>&id=<%$view->get_order_id()%>">下载石包信息数据格式</a>
+						<%else%>
+						<a href="index.php?mod=shibao&con=DiaOrder&act=getTemplate&type=<%$type%>">下载石包信息数据格式</a>
+						<%/if%>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%if $view->get_order_id()%>
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+				<tr>
+					<th>序号</th>
+					<th>石包</th>
+					<th>总数量(粒)</th>
+					<th>总重量(ct)</th>
+					<th>每卡采购价格(元)</th>
+					<th>每卡销售价格(元)</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%foreach from=$data item=d%>
+				<tr>
+					<td><%$d.og_id%></td>
+					<td><%$d.shibao%></td>
+					<td><%$d.num%></td>
+					<td><%$d.zongzhong%></td>
+					<td><%$d.caigouchengben%></td>
+					<td><%$d.xiaoshouchengben%></td>
+				</tr>
+			<%/foreach%>
+			</tbody>
+		</table>	
+		<%/if%>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="order_id" value="<%$view->get_order_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_order_info_edit.js"%>
+//-->
+</script>

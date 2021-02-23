@@ -1,0 +1,61 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th>证书类型</th>
+            <th>数量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%$d.cert%></td>
+            <td><%$d.c%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+    <thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <thead class="flip-content">
+        <tr>
+            <th>来源</th>
+            <th>数量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$From_ad item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%if $d.from_ad==1%>51钻<%else%>BDD<%/if%></td>
+            <td><%$d.c%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+    <thead class="flip-content">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <thead class="flip-content">
+        <tr>
+            <th>形状</th>
+            <th>数量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$Shape item=d key=key%>
+        <tr data-id="diamond_info_list_<%$key%>" data-title="<%$key%>">
+            <td><%if isset($Shape_arr[$d.shape])%><%$Shape_arr[$d.shape]%><%else%><%/if%></td>
+            <td><%$d.c%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

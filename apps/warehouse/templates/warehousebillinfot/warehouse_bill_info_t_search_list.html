@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>款式</th>
+		<th>名称</th>
+		<th>数量</th>
+		<th>钻石大小</th>
+		<th>成本价</th>
+		<th>名义价</th>
+		<th>添加时间</th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="button_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+		<td><%$d.goods_sn%></td>
+		<td><%$d.goods_name%></td>
+		<td><%$d.num%></td>
+		<td><%$d.zuanshidaxiao%></td>
+		<td><%$d.chengbenjia%></td>
+		<td><%$d.mingyijia%></td>
+		<td><%$d.addtime%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

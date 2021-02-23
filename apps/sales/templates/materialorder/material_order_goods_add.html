@@ -1,0 +1,77 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="material_order_goods_add_list_form">
+		<div class="form-body">
+		
+		    <div class="row">
+			   <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货品编号：</label>
+						<input type="text" class="form-control" name="goods_sn" placeholder="支持批量搜索，多个请换行或用空格隔开"/>					
+					</div>
+              </div>	   
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货品名称：</label>
+						<input type="text" class="form-control" name="goods_name" value=""/>
+					</div>
+              </div>
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<input type="text" class="form-control" name="style_sn" value=""/>
+					</div>
+              </div>   
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款式名称：</label>
+						<input type="text" class="form-control" name="style_name" value=""/>
+					</div>
+              </div>  
+              <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">商品类型：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("material.goods_type") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="goods_type" value="<%$value.name%>" 
+								<%if $value.name==1%>checked="checked"<%/if%>> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+              </div>
+              <div  class="col-sm-2">
+				    <label class="control-label">&nbsp;</label><br/>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+			  </div>							  
+		</div>			
+        <!-- 搜索按钮 -->
+    </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" style="min-height:250px;overflow-y:auto;max-height:300px;" id="material_order_goods_add_list">
+		</div>
+		<div class="clear"></div>
+				
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/material_order_goods_add_list.js" %>
+//-->
+</script>

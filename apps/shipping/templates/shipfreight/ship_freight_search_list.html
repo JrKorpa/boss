@@ -1,0 +1,335 @@
+<style>
+    .tabel_th{width:100px;max-width:120px;}
+    .table_td{width:200px;max-width:300px;}
+</style>
+<div class="table-toolbar">
+	
+    <%$bar%>
+</div>
+
+<form action="#" method="post" class="horizontal-form" id="ship_freight_order_info">
+    <table id="ship_freight_order_info_table1" class="table table-bordered table-striped table-hover flip-content">
+        <tbody>
+            <tr>
+                <td class="tabel_th">订单号:</td>
+                <td class="table_td">
+                    <a data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$data['order_sn']%>" data-title="订单详情" data-id="baseorderinfo-<%$data['id']%>" data-sn="<%$data['order_sn']%>" class="tab-con-a" href="javascript:;">
+                        <%$data['order_sn']%>
+                    </a>
+                    
+                    <input type="hidden" class="form-control" name="order_no" value="<%$data['order_sn']%>" readonly/>
+                </td>
+                <td class="tabel_th">发货状态:</td>
+                <td class="table_td">
+                <%if $hidden%>
+                    <%$dd->getEnum('order.send_good_status',$data['send_good_status'])%>
+                    <%else%>存档<%/if%>
+                </td>
+                <td class="tabel_th">支付状态:</td>
+                <td class="table_td">
+                <%if $hidden%>
+                    <%$dd->getEnum('order.order_pay_status',$data['order_pay_status'])%>
+                    <%else%>存档<%/if%>
+                </td>
+                <td class="tabel_th">订单状态:</td>
+                <td class="table_td"><%if $hidden%><%$dd->getEnum('order.order_status',$data['order_status'])%><%else%>存档<%/if%></td>
+            </tr>
+            <tr>
+
+
+                <td>收件人：</td>
+                <td>
+                    <%if isset($data['consignee'])%>
+
+                    <%$data['consignee']%>
+                    <input type="hidden" class="form-control" name="consignee" value="<%$data['consignee']%>"/>
+
+                    <%/if%>
+                </td>
+
+                <td>手机：</td>
+                <td>
+                    <%if isset($data['tel'])%>
+
+                    <%$data['tel']%>
+                    <input type="hidden" class="form-control" name="cons_mobile" value="<%$data['tel']%>"/>
+
+                    <%/if%>
+                </td>
+
+		<td>外部订单号：</td>
+                <td><%if isset($out_order_sn)%><%$out_order_sn%><%/if%></td>
+            </tr>
+            <tr>
+				<td class="tabel_th">订单来源：</td>
+                <td class="table_td">
+					<%$data['order_source']%>
+				</td>
+            <td class="tabel_th">订单总金额:</td>
+            <td class="table_td">
+                <%$data['order_amount']%>
+            </td>
+           <input type="hidden"  name="order_amount_all" id="order_amount_all" value="<%$data['order_amount']%>"/> 
+
+		<td class="tabel_th">订购类型:</td>
+                <td class="table_td">
+                <%if $hidden%>
+					<%if $data['order_pay_type'] eq '货到付款'%>
+                                                <span style="color:red;font-size:14px;font-weight:bold;">货到付款</span>
+                                        <%else%>
+                                                <%$data['order_pay_type']%>
+                                        <%/if%>
+                                        <%else%>存档<%/if%>
+                </td>
+		<td>配送方式：</td>
+                <td colspan="7">
+			<%if $data.distribution_type == 1%>
+                    <%if $data.shop_type==1%>直营店-<%else if $data.shop_type==2%>经销商店-<%else%><%/if%><%$data.shop_name%>
+                    <%elseif $data.distribution_type == 2%>
+                    总公司到客户
+                    <%/if%>
+                </td>
+	</tr>
+        <%if $hidden%>
+        <tr>
+            <td>收货地址：</td>
+            <td colspan="7">
+                <%if isset($data["province_id"]) && $data['province_id'] != ''%>
+                <%$region->getRegionName($data['province_id'])%>省<%$region->getRegionName($data['city_id'])%>市<%$region->getRegionName($data['regional_id'])%><%$data['address']%>
+                <input type="hidden" class="form-control" name="cons_address" value="
+                       <%$region->getRegionName($data['province_id'])%>省<%$region->getRegionName($data['city_id'])%>市<%$region->getRegionName($data['regional_id'])%><%$data['address']%>"/>
+                <%/if%>
+            </td>
+        </tr>
+        <%else%>存档<%/if%>
+        <tr>
+            <td>备注：</td>
+            <td colspan="7"><%if isset($data['order_remark'])%><%$data['order_remark']%><%/if%></td>
+        </tr>
+        <tr>
+            <td>赠品：</td>
+            <td colspan="7"><%$zengpin['goods']%></td>
+        </tr>
+		<tr>
+            <td>赠品备注：</td>
+            <td colspan="7"><%$zengpin['remark']%></td>
+        </tr>
+    </tbody>
+</table>
+
+<%if $data['send_good_status'] ==2%>
+<table id="ship_freight_order_info_table2" class="table table-bordered table-striped table-hover flip-content">
+    <tbody>
+        <tr>
+            <td class="tabel_th">快递公司：</td>
+            <td style="width:200px"><%if $data.express_id%><span id='xx'><%$express->get_name($data.express_id)%></span><%else%>该订单未选快递公司<%/if%></td>
+            <td class="tabel_th">快递单号</td>
+            <td style="width:230px;"><%$data.freight_no%></td>
+            <td align="left">
+                <%if $data['express_id'] != 10%>
+                <span class="btn default green-stripe"><i class="fa fa-print"></i> <a onclick="window.open('/index.php?mod=shipping&con=ShipFreight&act=print_express&order_no=<%$data['order_sn']%>','','fullscreen:true,menubar:false,resizable:false,titlebar:false,toolbar:false')" target="_blank">打印快递单</a></span>
+                <%/if%>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<%elseif $data['send_good_status'] != 4 && $data['send_good_status'] != 5%>
+<div class='alert alert-info'>很抱歉,该订单目前处于非允许发货状态！</div>
+<table id="ship_freight_order_info_table2" class="table table-bordered table-striped table-hover flip-content">
+    <tbody>
+        <tr>
+            <td colspan="2">
+                <!--上门取货不打印快递单add by zhangruiying-->
+                <%if $data['express_id'] != 10%>
+                <span class="btn default green-stripe"><i class="fa fa-print"></i> <a onclick="window.open('/index.php?mod=shipping&con=ShipFreight&act=print_express&order_no=<%$data['order_sn']%>','','fullscreen:true,menubar:false,resizable:false,titlebar:false,toolbar:false')"  target="_blank">打印快递单</a></span>
+                <%/if%>
+            </td>
+        </tr>
+        <tr>
+            <td class="tabel_th">快递公司：</td>
+    <input type="hidden" name="order_amount" value="<%$data.order_amount%>">
+    <td style="width:200px">
+        <input type="hidden" name="express_id" value="<%$data.express_id%>">
+        <%if $data.express_id%><span id='xx'><%$express->get_name($data.express_id)%></span><%else%>该订单未选快递公司<%/if%>
+    </td>
+    </tr>
+    </tbody>
+</table>
+<%else%>
+<table id="ship_freight_order_info_table2" class="table table-bordered table-striped table-hover flip-content">
+    <tbody>
+        <tr>
+             <td class="tabel_th">快递公司：</td>
+		    <input type="hidden" name="order_amount" value="<%$data.order_amount%>">
+		    <td style="width:200px">
+		        <input type="hidden" name="express_id" value="<%$data.express_id%>">
+		        <%if $data.express_id%><span id='xx'><%$express->get_name($data.express_id)%></span><%else%>该订单未选快递公司<%/if%>
+		    </td>
+		
+		    <%if $data.express_id == 10 %><!-- 快递方式是上门取货的不显示input -->
+		    <td style="width:230px;">
+		        <input type="hidden" class="form-control" name="freight_no" placeholder=""/>
+		    </td>
+		    <%else%>
+		    <td class="tabel_th">快递单号
+		        <button type="button"  class="btn btn-primary" id="ship_freight_order_express"><i class="fa fa-hand-o-up"></i>电子下单</button></td>
+		    <td style="width:230px;" nowrap>        
+		        <input type="text" class="form-control" name="freight_no" id="ship_freight_no" value="<%$data.freight_no%>" placeholder="请输入快递单号"/>
+		    </td>
+		    <%/if%>
+            <td colspan="4">
+                <!--上门取货不打印快递单add by zhangruiying-->
+                <%if $data['express_id'] != 10%>
+                <span class="btn default green-stripe"><i class="fa fa-print"></i> <a onclick="window.open('/index.php?mod=shipping&con=ShipFreight&act=print_express&order_no=<%$data['order_sn']%>','','fullscreen:true,menubar:false,resizable:false,titlebar:false,toolbar:false')" target="_blank">打印快递单</a></span>
+                <%/if%>
+            </td>
+        </tr>
+        <tr>
+        	<td>商品货号：</td>
+            <td>
+                <input type="text" class="form-control tags" name="goods_sn" value="<%if $all_zp eq ''%>货品中没有需要销账的货<%/if%>" <%if $all_zp eq ''%>disabled="disabled"<%/if%> />
+            </td>
+            <td id="ship_freight_goods_sn_check">
+            </td>
+            <td id="ship_freight_goods_sn_send">
+            </td>
+          
+		    <td align="left">
+		        <button type="button" class="btn btn-primary" onclick="ship_freighr_submit()"><i class="fa fa-hand-o-up"></i> 发货</button>
+		    </td>
+    </tr>
+    </tbody>
+</table>
+<%/if%>
+<%if $hidden%>
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+       		<th style="text-align: center;">是否需要开发票</th>
+            <th style="text-align: center;">发票抬头</th>
+            <th style="text-align: center;">发票类型</th>
+            <th style="text-align: center;">发票号</th>
+            <th style="text-align: center;">发票金额</th>
+            <th style="text-align: center;">创建时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%if count($order_invoice) != 0%>
+        <tr data-id="app_order_invoice_list_322" data-title="322" class="">
+            <td align="center"><%if $order_invoice.is_invoice%>是<%else%>否<%/if%></td>
+            <td align="center"><%$order_invoice.invoice_title%></td>
+            <td align="center"><%$dd->getEnum("invoice.invoice_type",$order_invoice.invoice_type)%></td>
+            <td align="center"><%$order_invoice.invoice_num%></td>
+            <td align="center"><%$order_invoice.invoice_amount%></td>
+            <td align="center"><%$order_invoice.create_time%></td>
+        </tr>
+         <input type="hidden" class="form-control" name="is_invoice"  id="is_invoice" value="<%$order_invoice.is_invoice%>"/>
+        <input type="hidden" class="form-control" name="invoice_amount"  id="invoice_amount" value="<%$order_invoice.invoice_amount%>"/>
+        <input type="hidden" class="form-control" name="invoice_title"  id="invoice_title" value="<%$order_invoice.invoice_title%>"/>
+        <input type="hidden" class="form-control" name="invoice_num"  id="invoice_num" value="<%$order_invoice.invoice_num%>"/>
+        <input type="hidden" class="form-control" name="invoice_type"  id="invoice_type" value="<%$order_invoice.invoice_type%>"/>
+        <input type="hidden" class="form-control" name="invoice_notice"  id="invoice_notice" value="<%$invoice_notice%>"/>
+        <%else%>
+        <tr>
+            <td align="center" colspan="4">客户未填写发票信息</td>
+
+        </tr>
+        <%/if%>
+    </tbody>
+</table>
+<%/if%>
+<!--
+<table id="ship_freight_order_info_table2" class="table table-bordered table-striped table-hover flip-content">
+    <tbody>
+		<tr>
+			<td width="10%">赠品</td>
+			<td><%$zengpin.goods|default:'无'%></td>
+		</tr>
+		<tr>
+			<td width="10%">赠品备注</td>
+			<td><%$zengpin.remark|default:'无'%></td>
+		</tr>
+    </tbody>
+</table>
+-->
+<table id="ship_freight_order_info_table3" class="table table-bordered table-striped table-hover flip-content">
+    <thead class="table-scrollable">
+        <tr>
+            <th>款式45°图片</th>
+            <th>商品款号</th><th>商品货号</th><th>布产单号</th><th width="8%">商品名称</th><th>商品数量</th>
+            <th>价格</th><th>石重</th><th>切工</th><th>净度</th>
+            <th>颜色</th><th>材质</th><th>金色</th><th>金重</th>
+            <th>指圈</th><th>刻字</th><th>表面工艺</th><th>镶嵌</th>
+            <th>是否赠品</th><th>是否销账</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%if count($goods) != 0%>
+        <%foreach from=$goods item=g%>
+        <tr id="ship_freight_order_goods_<%$g.goods_id%>"  <%if $g.is_return == 1 %>style="text-decoration:line-through"<%/if%>">
+            <td><img width="150px" height="150px" src="<%$g.thumb_img%>"/></td>
+            <td><%$g.goods_sn%></td><td><%if $hidden%><%$g.goods_id%><%/if%></td><td></td>
+            <td><%$g.goods_name%></td>
+            <td><%$g.num%></td>
+			<td><%if $g.favorable_status==3%><%sprintf("%.2f",$g.goods_price-$g.favorable_price)%><%else%><%$g.goods_price%><%/if%></td>
+           <!--  <td><%$g.goods_price%></td> -->
+            <td><%$g.cart%></td>
+            <td><%$g.cut%></td>
+            <td><%$g.clarity%></td>
+
+            <td><%$g.color%></td>
+            <td><%$g.caizhi%></td>
+            <td><%$g.jinse%></td>
+            <td><%$g.jinzhong%></td>
+
+            <td><%$g.zhiquan%></td>
+            <td><%$g.kezi%></td>
+            <td><%$g.face_work%></td>
+            <td><%$g.xiangqian%></td>
+            <td><%if $g.is_zp==1%>是<%else%>否<%/if%></td>
+            <td><%if $g.is_finance==1%>否<%else%>是<%/if%></td>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+    </tbody>
+</table>
+
+
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th style="text-align: center;">序号</th>
+            <th style="text-align: center;">操作内容</th>
+            <th style="text-align: center;">操作人</th>
+            <th style="text-align: center;">订单审核状态</th>
+            <th style="text-align: center">支付状态</th>
+            <th style="text-align: center">发货状态</th>
+            <th style="text-align: center">操作时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$order_action key=key item=d %>
+        <tr data-id="order_action_322" data-title="322" class="">
+        	
+            <td><%count($order_action)-$key%></td>
+            <td><%$d.remark%></td>
+            <td><%$d.create_user%></td>
+            <td><%$dd->getEnum("order.order_status",$d.order_status)%></td>
+            <td><%$dd->getEnum("order.order_pay_status",$d.pay_status)%></td>
+            <td><%$dd->getEnum('order.send_good_status',$d.shipping_status)%></td>
+            <td><%$d.create_time%></td>
+        </tr>
+        <%/foreach%>
+
+    </tbody>
+</table>
+</form>
+
+<script type="text/javascript">
+    <!--
+    <%include file = "js/ship_order_info_list.js"%>
+//-->
+</script>
+
+
+

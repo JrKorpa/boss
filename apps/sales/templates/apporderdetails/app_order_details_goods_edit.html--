@@ -1,0 +1,149 @@
+
+<div class="portlet-body"> 
+	<!-- 表格1 -->
+	<form action="" method="post" class="horizontal-form" id="app_order_details_goods_edit_info">
+	<input type="hidden" name="goods_type" value='<%$orderdetails["goods_type"]%>'/>
+		<div class="table-scrollable">
+      <table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td align="center">货号</td>
+					<td align="center"><%$view->get_goods_id()%></td>
+					<td align="center">款号</td>
+					<td align="center"><%$view->get_goods_sn()%></td>
+					<td align="center">商品名称</td>
+					<td align="center"><%$view->get_goods_name()%></td>
+				</tr>
+				<tr>
+					<td align="center">石重</td>
+					<td align="center">
+            <input class="form-control input-small" type='text' name='cart' value='<%$orderdetails["cart"]|default:""%>' <%if !in_array('cart',$edits)%>readonly disabled<%/if%>>
+          </td>
+					<td align="center">净度</td>
+					<td align="center">
+            <select class="form-control input-small" name='clarity' id='clarity' <%if !in_array('clarity',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$clarity key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['clarity']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+          </td>
+					<td align="center">材质</td>
+					<td align="center">
+            <select class="form-control input-small" name='caizhi' id='caizhi' <%if !in_array('caizhi',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$caizhi key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['caizhi']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+          </td>
+				</tr>
+				<tr>
+					<td align="center">颜色</td>
+					<td align="center">
+            <select class="form-control input-small" name='color' id='color' <%if !in_array('color',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$color key=key item=p %>
+							<option value='<%$key%>'  <%if $orderdetails['color']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+          </td>
+					<td align="center">证书号</td>
+					<td align="center">
+            <input class="form-control input-small" type='text' id="zhengshuhao" name='zhengshuhao' value='<%$orderdetails["zhengshuhao"]|default:""%>' <%if !in_array('zhengshuhao',$edits)%>readonly disabled<%/if%>>
+          </td>
+					<td align="center">表面工艺</td>
+					<td align="center">
+            <select class="form-control input-small" name='face_work' id='face_work' <%if !in_array('face_work',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$face_work key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['face_work']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+          </td>
+				</tr>
+				<tr>
+					<td align="center">金色</td>
+					<td align="center">
+            <select class="form-control input-small" name='jinse' id='jinse' <%if !in_array('jinse',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$jinse key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['jinse']==$key%>selected="selected"   <%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+          </td>
+					<td align="center">金重</td>
+					<td align="center">
+            <input class="form-control input-small" type='text' name='jinzhong' value='<%$orderdetails["jinzhong"]|default:""%>' <%if !in_array('jinzhong',$edits)%>readonly disabled<%/if%>>
+          </td>
+					<td align="center">指圈</td>
+					<td align="center">
+            <input class="form-control input-small" type='text' name='zhiquan' value='<%$orderdetails["zhiquan"]|default:""%>' <%if !in_array('zhiquan',$edits)%>readonly disabled<%/if%>>
+          </td>
+				</tr>
+				<tr>
+					<td align="center">镶口</td>
+                    <td align="center"><input class="form-control input-small ttt" type='text' name="xiangkou" value="<%$view->get_xiangkou()%>" <%if !in_array('xiangkou',$edits)%>readonly<%/if%>/></td>
+					<td align="center">镶嵌要求</td>
+					<td align="center">
+						<select class="form-control input-small" name='xiangqian' id='xiangqian' <%if !in_array('xiangqian',$edits)%>readonly disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$xiangqian key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['xiangqian']==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</td>
+					<td align="center">成交价:</td>
+					<td align="center"><%$orderdetails["goods_price"]%></td>
+				</tr>
+				<tr>
+					<td align="center">刻字</td>
+					<td align="center"><%include file="kezi_goods_edit.html"%></td>
+					<td align="center">证书类型</td>
+					<td align="center">
+					<select class="form-control input-small" name='cert' <%if !in_array('cert',$edits)%>disabled<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$cert_type key=key item=p %>
+							<option value='<%$key%>' <%if $orderdetails['cert']==$p%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</td>
+					<%if $goods_type=='lz'%>
+					<td align="center">是否支持4C配钻</td>
+					<td align="center">	<%if !empty($orderdetails['is_peishi'])%>是<%else%>否<%/if%></td>
+					<%else%>
+					<td align="center"></td>
+					<td align="center"></td>
+					<%/if%>
+				</tr>
+			</table>
+      </div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$orderdetails['id']%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+	</form>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_details_goods_edit.js"%>
+//-->
+</script>

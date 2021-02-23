@@ -1,0 +1,45 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <%if $c gt 1 && $detail.is_stock_goods!==1%>
+    <form action="#" method="post" class="horizontal-form" id="app_order_details_ede">
+        <div class="form-body">
+            等待分配商品名称：<%$detail.goods_name%><br/>
+            等待分配商品价格：<%$detail.goods_price%>=><span id="goods_price"><%$detail.goods_price%></span><br/>
+            等待分配的优惠价格：<%$detail.favorable_price%>=><span id="favorable_price"><%$detail.favorable_price%></span><br/>
+            <div class="row">
+                <table class="table">
+                    <tr><td>商品名称</td><td>商品价格</td> <td>优惠价格</td></tr>
+                <%foreach from=$detiala key=k item=v%>
+                    <%if $v.id==$detail.id%><%else%><tr data-id="<%$v.id%>"><td><%$v.goods_name%></td>
+                    <td><input type="text" class="gpy" value="<%$v.goods_price%>"
+                      readonly=readonly  size=9 />+
+                    <input type="text" class="gpj"  value="" size="9" />=<input type="text"  value="<%$v.goods_price%>" size="9"  class="gpa"  name=goods_price[<%$v.id%>] readonly /></td>
+                   <td><input type="text" class="fpy" value="<%$v.favorable_price%>" readonly=readonly size="9" />+<input type="text" class="fpj"  value="" size="9"    class="fp"/>=<input type="text"  class="fpa" name="favorable_price[<%$v.id%>]" readonly value="<%$v.favorable_price%>" size="9" /></td>
+                </tr><%/if%>
+                <%/foreach%>
+                </table>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input name="order_g_p" value="<%$orderinfo.goods_amount%>" type="hidden"/>
+                <input name="order_g_f" value="<%$orderinfo.favorable_price%>" type="hidden"/>
+                <input name="detail_id" value="<%$detail.id%>" type="hidden"/>
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <%else%>
+            只存在一个商品禁止合并或者这个订单已经被审核了,只能删除期货不能删除现货
+    <%/if%>
+    <!-- END FORM-->
+</div>
+
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/app_order_details_ede.js"%>
+    //-->
+</script>

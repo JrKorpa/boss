@@ -1,0 +1,98 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>名称</th>
+			<th>库存数量</th>
+			<th>库存重量</th>
+			<th>买入</th>
+			<th>分包转入</th>
+			<th>送出</th>
+			<th>分包转出</th>
+			<th>还回</th>
+			<th>差额</th>
+			<th>退石</th>
+			<th>退货</th>
+			<th>遗失</th>
+			<th>损坏</th>
+			<th>其他入库</th>
+			<th>其他出库</th>
+			<th>每卡采购价格</th>
+			<th>每卡销售价格</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="dia_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.shibao%></td>
+			<td><%$d.kucun_cnt%></td>
+			<td><%$d.kucun_zhong%></td>
+			<td><a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=MS" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=MS"  href="javascript:" ><%if $d.MS_cnt == 0 && $d.MS_zhong == 0%>-/-<%else%><%$d.MS_cnt%> /<%$d.MS_zhong%><%/if%></a></td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=fenbaoru" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=fenbaoru"  href="javascript:" >
+			<%if $d.fenbaoru_cnt == 0 && $d.fenbaoru_zhong == 0%>-/-<%else%><%$d.fenbaoru_cnt%> /<%$d.fenbaoru_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=SS" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=SS"  href="javascript:" >
+			<%if $d.SS_cnt == 0 && $d.SS_zhong == 0%>-/-<%else%><%$d.SS_cnt%> /<%$d.SS_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=fenbaochu" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=fenbaochu"  href="javascript:" >
+			<%if $d.fenbaochu_cnt == 0 && $d.fenbaochu_zhong == 0%>-/-<%else%><%$d.fenbaochu_cnt%> /<%$d.fenbaochu_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=HS" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=HS"  href="javascript:" >			
+			<%if $d.HS_cnt == 0 && $d.HS_zhong == 0%>-/-<%else%><%$d.HS_cnt%> /<%$d.HS_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+
+				<%if $d.SS_cnt == 0 && $d.HS_cnt == 0 &&$d.TS_cnt ==0%>-<%else%><%$d.cha_cnt%><%/if%>/<%if $d.SS_zhong == 0 && $d.HS_zhong == 0 &&$d.TS_zhong==0%>-<%else%><%$d.cha_zhong%><%/if%>
+
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=TS" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=TS"  href="javascript:" >
+			<%if $d.TS_cnt == 0 && $d.TS_zhong == 0%>-/-<%else%><%$d.TS_cnt%> / <%$d.TS_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=TH" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=TH"  href="javascript:" >
+			<%if $d.TH_cnt == 0 && $d.TH_zhong == 0%>-/-<%else%><%$d.TH_cnt%> / <%$d.TH_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=YS" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=YS"  href="javascript:" >
+			<%if $d.YS_cnt == 0 && $d.YS_zhong == 0%>-/-<%else%><%$d.YS_cnt%> / <%$d.YS_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=SY" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=SY"  href="javascript:" >
+			<%if $d.SY_cnt == 0 && $d.SY_zhong == 0%>-/-<%else%><%$d.SY_cnt%> / <%$d.SY_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=RK" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=RK"  href="javascript:" >
+			<%if $d.RK_cnt == 0 && $d.RK_zhong == 0%>-/-<%else%><%$d.RK_cnt%> / <%$d.RK_zhong%><%/if%>
+			</a>
+			</td>
+			<td>
+			<a class="tab-con-a"  href="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=CK" data-title ="单据管理" data-id="tab-177" data-url="index.php?mod=shibao&con=DiaOrder&act=index&shibao=<%$d.shibao%>&type=CK"  href="javascript:" >
+			<%if $d.CK_cnt == 0 && $d.CK_zhong == 0%>-/-<%else%><%$d.CK_cnt%> / <%$d.CK_zhong%><%/if%>
+			</a>
+			</td>
+			<td><%$d.caigouchengben%></td>
+			<td><%$d.xiaoshouchengben%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

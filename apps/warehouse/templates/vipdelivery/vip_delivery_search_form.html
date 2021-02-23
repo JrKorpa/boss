@@ -1,0 +1,117 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="vip_delivery_search_form">
+			<div class="form-body">
+				<div class="row">
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库单号：</label>
+							<input type="text" name="storage_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>		
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">PO单号：</label>
+							<input type="text" name="po_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+								
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">运单号：</label>
+							<input type="text" name="delivery_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">发货状态：</label>
+							<select class="form-control" name="out_flag">						
+								<option value=""></option>
+								<option value="0">未出仓</option>
+								<option value="1">已出仓</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">发货时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="st_out_time">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="et_out_time">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">预计到货时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="st_estimate_arrive_time">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="et_estimate_arrive_time">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">实际到货时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="st_arrive_time">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="et_arrive_time">
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="vip_delivery_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/vip_delivery_search_list.js"%>
+//-->
+</script>

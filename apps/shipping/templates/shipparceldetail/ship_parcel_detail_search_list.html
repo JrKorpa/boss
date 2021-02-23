@@ -1,0 +1,46 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style='text-align:center;'>序号</th>
+			<th style='text-align:center;'>调拨单号</th>
+			<th style='text-align:center;'>收货人</th>
+			<th style='text-align:center;'>入库仓</th>
+			<th style='text-align:center;'>BDD订单号</th>
+			<th style='text-align:center;'>商品款号</th>
+			<th style='text-align:center;'>商品名称</th>
+			<th style='text-align:center;'>商品数量</th>
+			<th style='text-align:center;'>添加时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="ship_parcel_detail_list_<%$d.id%>" data-title="<%$d.id%>" goods-num="<%$d.num%>" jiner="<%$d.amount%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.zhuancang_sn|default:'——'%></td>
+			<td align="center"><%$d.shouhuoren|default:'——'%></td>
+			<td align="center">
+				<%if isset($d.to_warehouse_id) && isset($warehouseList[$d.to_warehouse_id])%>
+					<%$warehouseList[$d.to_warehouse_id]%>
+				<%else%>
+					——
+				<%/if%>
+			</td>
+			<td align="center"><%$d.order_sn|default:'——'%></td>
+            <td align="center"><div style="max-width: 300px;white-space: pre-line;word-wrap: break-word;"><%$d.goods_sn|default:'——'%></div></td>
+			<td align="center"><div style="max-width: 300px;white-space: pre-line;word-wrap: break-word;"><%$d.goods_name|default:'——'%></div></td>
+			<td align="center"><%$d.num|default:0%>&nbsp;<%$d.num_danwei|default:'件'%></td>
+			<td align="center"><%$d.create_time|default:'——'%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

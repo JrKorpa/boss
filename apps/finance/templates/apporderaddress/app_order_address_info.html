@@ -1,0 +1,78 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_order_address_info">
+		<div class="form-body">
+			<div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group zformj">
+                        <label class="control-label">国家：</label>
+						<select class="select2_category form-control" tabindex="1" name="mem_country_id">
+							<option value=""></option>
+							<%foreach from=$view->getCountryOption() item=value%>
+							<option value="<%$value.region_id%>" <%if $value.region_id==$view->get_country_id()%>selected<%/if%>><%$value.region_name%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group zformj">
+						<label class="control-label">省：</label>
+						<select class="form-control" tabindex="1" name="mem_province_id">
+							<option value=""></option>
+							<%if $app_address%>
+							<%foreach from=$view->getProvinceOption() item=value%>
+							<option value="<%$value.region_id%>" <%if $value.region_id==$view->get_province_id()%>selected<%/if%>><%$value.region_name%></option>
+							<%/foreach%>
+							<%/if%>
+						</select>
+					</div>
+				</div>
+                <div class="col-sm-4">
+                    <div class="form-group zformj">
+                        <label class="control-label">城市：</label>
+						<select class="select2_category form-control" tabindex="1" name="mem_city_id">
+							<option value=""></option>
+							<%if $app_address%>
+							<%foreach from=$view->getCityOption() item=value%>
+							<option value="<%$value.region_id%>" <%if $value.region_id==$view->get_city_id()%>selected<%/if%>><%$value.region_name%></option>
+							<%/foreach%>
+							<%/if%>
+						</select>
+                    </div>
+				</div>
+                <div class="col-sm-4">
+                    <div class="form-group zformj">
+                        <label class="control-label">区：</label>
+						<select class="select2_category form-control" tabindex="1" name="mem_district_id">
+							<option value=""></option>
+							<%if $app_address%>
+							<%foreach from=$view->getDistrictOption() item=value%>
+							<option value="<%$value.region_id%>" <%if $value.region_id==$view->get_regional_id()%>selected<%/if%>><%$value.region_name%></option>
+							<%/foreach%>
+							<%/if%>
+						</select>
+                    </div>
+				</div>
+                <div style="clear:both;"></div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_address_info.js"%>
+//-->
+</script>

@@ -1,0 +1,135 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="stock_purchase_search_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">销售渠道：<span style="color:red"><b> *</b></span></label>
+                            <select class="select2_category form-control" tabindex="1" name="channel_id">
+                                <option value=""></option>
+                                <%foreach from=$allshop item=value%>
+                                    <option value="<%$value.id%>"><%$value.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款号：<span style="color:red"><b> *</b></span></label>
+                            <input type="text" name="style_sn" class="form-control" placeholder="请输入" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石单颗重：<span style="color:red"><b> *</b></span></label>
+                            <input type="text" name="zuanshidaxiao" class="form-control" placeholder="请输入" value="" maxlength="40"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石颜色：<span style="color:red"><b> *</b></span></label>
+                            <select class="select2_category form-control" tabindex="1" name="yanse">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("purchase.color") key=k item=value%>
+                                <option value="<%$value.label%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+				</div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石净度：<span style="color:red"><b> *</b></span></label>
+                            <select class="select2_category form-control" tabindex="1" name="jingdu">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("purchase.neatness") key=k item=value%>
+                                <option value="<%$value.label%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质：<span style="color:red"><b> *</b></span></label>
+                            <div class="caizhi_select_box">
+                            <select class="select2_category form-control" tabindex="1" name="caizhi">
+                                <option value=""></option>
+                                <%foreach from=$caizhi_arr key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">18K可做色：<span style="color:red">( *K金)</span></label>
+                            <div class="jinse_select_box">
+                            <select class="select2_category form-control" tabindex="1" name="18k_color">
+                                <option value=""></option>
+                                <%foreach from=$jinse_arr key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">指圈：<span style="color:red">( *戒指)</span></label>
+                            <input type="text" name="zhiquan" class="form-control" placeholder="请输入" value="" maxlength="40"/>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="stock_purchase_search_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/stock_purchase_search_list.js"%>
+//-->
+</script>

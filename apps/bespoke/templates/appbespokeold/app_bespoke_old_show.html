@@ -1,0 +1,122 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>会员详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+                    离开 <i class="fa fa-angle-double-left"></i> 
+                </button>
+            </div>
+            <div class="btn-group">
+                <button data-title="" title="刷新" name="刷新" data-url="" onclick="util.retrieveReload(this);" class="btn btn-sm btn-info">
+                    刷新 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div>
+            <div class="flip-scroll">
+                <table class="table table-bordered table-striped table-hover flip-content">
+                    <tr>
+                        <td align="center">预约号：</td>
+                        <td align="center"><%$data.bespoke_sn%></td>
+                    </tr>
+                    <tr>
+                        <td align="center">客户姓名：</td>
+                        <td align="center"><%$data.bespoke_man%></td>
+                    </tr>
+                    <tr>
+                        <td align="center">手机号：</td>
+                        <td align="center"><%$data.mobile%></td>
+                    </tr>
+
+                    <tr>
+                        <td align="center">制单人：</td>
+                        <td align="center"><%$data.bespoke_server%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">预约状态：</td>
+                        <td align="center"><%$bespoke_status[$data.bespok_status]%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">接待人：</td>
+                        <td align="center"><%$data.make_order%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">email：</td>
+                        <td align="center"><%$data.email%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">来源：</td>
+                        <td align="center"><%$data.from_ad%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">部门：</td>
+                        <td align="center"><%$data.department%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">状态：</td>
+                        <td align="center">	<%if $data.withuserdo==3%>作废
+										<%elseif $data.withuserdo==1%>
+										<font color="#FF0000">需电话回访</font>
+										<%elseif $data.queue_status==0%>
+										<font color="#FF9900">未到店</font>
+										<%elseif $data.bespok_status==1%> 到店成交
+										<%elseif $data.bespok_status==2%> 到店未成交
+										<%elseif $data.bespok_status==4%> 赠品已领
+										<%/if%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">到店时间：</td>
+                        <td align="center"><%$data.shop_time%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">添加时间：</td>
+                        <td align="center"><%$data.add_time%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">顾客前台报到时间：</td>
+                        <td align="center"><%$data.inshop_time%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">开始服务时间：</td>
+                        <td align="center"><%$data.start_time%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">结束服务时间：</td>
+                        <td align="center"><%$data.end_time%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">备注：</td>
+                        <td align="center"><%$data.bespok_remark%>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>

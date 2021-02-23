@@ -1,0 +1,134 @@
+<div class="tab-pane active" id="warehousebillinfow_show"><div class="table-toolbar">
+<%if $info.bill_status == 1 %>
+	<div class="btn-group">
+	<button data-title="审核" title="审核" name="审核" data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=checkPandian" onclick="util.cust(this,checkPandian);" class="btn btn-sm red">
+		审核 <i class="fa fa-check"></i>
+	</button>
+	</div>
+	<div class="btn-group">
+	<button data-title="继续盘点" title="继续盘点" name="继续盘点" data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=ShowBoxPandian" onclick="util.cust(this,ShowBoxPandian);" class="btn btn-sm green" data-billid='<%$info.id%>'>
+		继续盘点 <i class="fa fa-check"></i>
+	</button>
+	</div>
+<%/if%>
+
+	<div class="btn-group">
+	<button data-title="导出结果" title="导出结果" name="导出结果" onclick="util.cust(this,downCsv);" class="btn btn-sm btn-primary">
+		导出结果 <i class="fa fa-plus"></i>
+	</button>
+	</div>
+
+	<div class="btn-group">
+	<button data-title="导出柜位结果" title="导出柜位结果" name="导出柜位结果" onclick="util.cust(this,downGuiweiCsv);" class="btn btn-sm purple">
+		导出柜位结果 <i class="fa fa-plus"></i>
+	</button>
+	</div>
+
+	<div class="btn-group">
+	<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" data-title="">
+		刷新 <i class="fa fa-refresh"></i>
+	</button>
+	</div>
+	<div class="btn-group">
+	<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" data-title="">
+		离开 <i class="fa fa-mail-reply"></i>
+	</button>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>盘点单
+		</div>
+		<div class="tools">
+
+		</div>
+	</div>
+<style>
+	.tabel_th{width:140px;max-width:145px;}
+	.table_td{width:200px;max-width:300px;}
+</style>
+	<div class="portlet-body">
+		<table id="ship_freight_order_info_table1" class="table table-bordered table-striped table-hover flip-content">
+			<tbody>
+			<tr>
+				<td class="tabel_th">单号:</td>
+				<td class="table_td"><%$info.bill_no%></td>
+				<td class="tabel_th">单据状态:</td>
+				<td class="table_td">
+				<%if $info.bill_status == 1%> 		<!-- 如果是保存 状态的时候，显示盘点状态 -->
+					<%if $info.status == 1%>盘点完成<%else%>盘点中<%/if%>
+				<%else%>
+					<%$dd->getEnum('warehouse.bill_status' , $info.bill_status)%>
+				<%/if%>
+				</td>
+				<td class="tabel_th">盘点公司:</td>
+				<td class="table_td"><%$info.to_company_name%></td>
+				<td class="tabel_th">盘点仓:</td>
+				<td class="table_td"><%$info.to_warehouse_name%></td>
+			</tr>
+			<tr>
+
+				<td class="tabel_th">价格总计:</td>
+				<td class="table_td"><%$info.goods_total%></td>
+				<td class="tabel_th">货品总量:</td>
+				<td class="table_td"><%$info.goods_num%></td>
+				<td class="tabel_th">审核人:</td>
+				<td class="table_td"><%if $info.bill_status==2 %><%$info.check_user%><%else%>--<%/if%></td>
+				<td class="tabel_th">审核时间:</td>
+				<td class="table_td"><%if $info.bill_status==2 %><%$info.check_time%><%else%>--<%/if%></td>
+			</tr>
+			<tr>
+				<td class="tabel_th">制单人:</td>
+				<td class="table_td"><%$info.create_user%></td>
+				<td class="tabel_th">制单时间:</td>
+				<td class="table_td"><%$info.create_time%></td>
+				<td>取消人:</td>
+			    <td><%$billcloseArr.update_user|default:'--'%></td>
+			    <td>取消时间:</td>
+			    <td><%$billcloseArr.update_time|default:'--'%></td>
+				
+			</tr>
+			
+			<tr>
+			 <td class="tabel_th">备注:</td>
+				<td class="table_td" colspan="7"><%$info.bill_note%></td>
+		   </tr>
+		</tbody></table>
+	</div>
+</div>
+
+		<!-- 明细 start -->
+		<div class="tab-pane " id="tab_bill_m_1">
+			<div class="tab-pane active" id="tab_1">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>盘点明细列表
+						</div>
+					</div>
+					<div class="portlet-body">
+						<!-- 表格信息 -->
+						<div class="table-toolbar">
+							<div class="btn-group">
+								<div id="batch_copy_goodsid_w_show" class="btn btn-sm green">
+									批量复制货号 <i class="fa fa-copy"></i>
+								</div>
+							</div>
+						</div>
+						<div class="table-scrollable" id="pandian_list">
+						</div>
+						<!-- 分页 -->
+						<div class="pager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 明细 end -->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_info_w_show.js"%>
+//-->
+</script>

@@ -1,0 +1,108 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="monthly_export_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">销售时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="export_time_start" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="time_start"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="export_time_end" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="time_end"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">体验店类型：</label>
+                            <select class="form-control" tabindex="1" name="dep_type">
+                                <option value="0">全部</option>
+                                <%foreach from=$dd->getEnumArray("shop.type") key=k item=v%>
+                                <option value="<%$v.name%>"><%$v.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+                        <select class="form-control" tabindex="1" name="dep[]" multiple>
+                            <option value=""></option>
+
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">销售顾问：</label>
+                        <select class="form-control" tabindex="1" name="salse[]" multiple>
+                            <option value=""></option>
+
+                        </select>
+                        </div>
+                    </div>
+				</div>
+                <div class = 'row'>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">导出类型：</label>
+                            <select class="form-control" tabindex="1" name="export_type">
+                                <option value="xinzeng">新增带商品</option>
+                                <option value="fahuo">每月发货</option>
+                                <option value="zuantui">转退单</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" class="btn blue" onclick="downloads()"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="monthly_export_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/monthly_export_list.js"%>
+//-->
+</script>

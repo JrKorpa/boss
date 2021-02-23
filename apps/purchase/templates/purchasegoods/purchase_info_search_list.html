@@ -1,0 +1,40 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>采购单单号</th>
+			<th>采购分类</th>
+			<th>总数量</th>
+			<th>状态</th>
+			<th>申请人</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="purchase_type_list_<%$d.id%>" data-title="<%$d.p_sn%>">
+			<td><%$d.p_sn%></td>
+			<td><%$view->get_t_name($d.t_id)%></td>
+			<td><%$d.p_sum%></td>
+			<td><%$dd->getEnum('purchase_status',$d.p_status)%></td>
+			<td><%$d.apply_uname%></td>
+			<td><%$d.make_uname%></td>
+			<td><%$d.make_time%></td>
+			<td><%$d.check_uname%></td>
+			<td><%$d.check_time%></td>
+			<td><%$d.p_info%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

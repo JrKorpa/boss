@@ -1,0 +1,178 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="dia_order_search_form">
+			<div class="form-body">
+				<div class="row">
+	
+				<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单号</label>
+							<input type="text" name="order_id" id="order_id" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">类型</label>
+						<select class="form-control" tabindex="1" name="type" id="type">
+							<option value=""></option>
+							<%foreach from=$order_type item=c key=k%>
+								<option <%if $type == $k%>selected<%/if%> value='<%$k%>'><%$c%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">状态</label>
+						<select class="form-control" tabindex="1" name="status" id="status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("dia_order.status") item=item%>
+							<option value="<%$item.name%>"><%$item.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">纸质单号</label>
+							<input type="text" name="send_goods_sn" id="send_goods_sn" class="form-control" placeholder=""/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">石包号</label>
+								<input type="text" name="shibao" id="shibao" class="form-control" placeholder="" value="<%$shibao%>"/>
+							</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">证书号</label>
+								<input type="text" name="zhengshuhao"  id="zhengshuhao" class="form-control" placeholder=""/>
+							</div>
+					</div>
+
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">制单人</label>
+								<input type="text" name="make_order" id="make_order" class="form-control" placeholder=""/>
+							</div>
+					</div>
+					<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">加工商</label>
+								<select class="form-control" tabindex="1" name="prc_id" id="prc_id">
+									<option value=""></option>
+									<%foreach from=$pro_list item=c key=k%>
+										<option value='<%$c.id%>'><%$c.name%></option>
+									<%/foreach%>
+								</select>							
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">入库方式：</label>
+							<select class="form-control" tabindex="1" name="in_warehouse_type" id="in_warehouse_type">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray("dia_order.in_warehouse_type") key=k item=value%>
+								<option  value="<%$value.name%>"><%$value.label%></option>
+								<%/foreach%>
+							</select>					
+						</div>
+					</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">结算方式：</label>
+						<select class="form-control" tabindex="1" name="account_type" id="account_type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("dia_order.account_type") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>					
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+							<input type="text" class="form-control" name="add_time_start" id="add_time_start" value="" />
+							<span class="input-group-addon">至</span>
+							<input type="text" class="form-control" name="add_time_end" id="add_time_end" value="" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">审核时间：</label>
+						<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+							<input type="text" class="form-control" name="check_time_start" id="check_time_start" value="" />
+							<span class="input-group-addon">至</span>
+							<input type="text" class="form-control" name="check_time_end" id="check_time_end" value="" />
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">备注</label>
+							<input type="text" name="info"  id="info" class="form-control" placeholder=""/>
+						</div>
+				</div>
+				
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" name="handle" value="download" onclick="downloads()"><i class="fa fa-check"></i> 下载</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="dia_order_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_order_list.js"%>
+//-->
+</script>

@@ -1,0 +1,217 @@
+<%$bar%>
+<hr/>
+<%if $exit_tuikuan == 2%>
+<div>
+	<font color='red' size='14'>此订单有未完成的退款申请，不能操作</font>
+</div>
+<%/if%>
+<%if $is_close != 0%>
+<div>
+	<font color='red' size='14'>此订单已申请关闭或关闭，只允许操作质检未通过</font>
+</div>
+<%/if%>
+<div id="fqc_err" style="font-size:30px;"></div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>基本信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>订单号</td>
+					<td><%$data["order_sn"]%><input type="hidden" id="fqc_order_sn1" value="<%$data['order_sn']%>" /></td>
+					<td>订单来源</td>
+					<td><%$data["order_source"]%></td>
+					<td>订单状态</td>
+					<td><%if $hidden%><%$dd->getEnum("order.order_status",$data["order_status"])%><%else%>存档<%/if%></td>
+					<td>发货状态</td>
+					<td><%if $hidden%><%$dd->getEnum("order.send_good_status",$data["send_good_status"])%><%else%>存档<%/if%></td>
+				</tr>
+				<tr>
+					<td>收件人</td>
+					<td><%$data["shouhuoren"]%></td>
+					<td>制单时间</td>
+					<td><%$data["create_time"]%></td>
+					<td>支付状态</td>
+					<td><%if $hidden%><%$dd->getEnum("order.order_pay_status",$data["order_pay_status"])%><%else%>存档<%/if%></td>
+					<td>配货状态</td>
+					<td><%if $hidden%><%$dd->getEnum("sales.delivery_status",$data["delivery_status"])%><%else%>存档<%/if%></td>
+				</tr>
+				<tr>
+					<td>订单备注</td>
+					<td colspan='7'><%if $hidden%><%$data["order_remark"]%><%/if%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+		</div>
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+				<tr>
+					<th align="center">序号</th>
+					<th align="center">款式45°图片</th>
+					<th align="center">货号</th>
+					<th align="center">款号</th>
+					<th align="center">布产号</th>
+					<th align="center">商品名称</th>
+					<th align="center">商品价格</th>
+					<th align="center">石重</th>
+					<th align="center">切工</th>
+					<th align="center">净度</th>
+					<th align="center">颜色</th>
+					<th align="center">证书号</th>
+					<th align="center">材质</th>
+					<th align="center">金色</th>
+					<th align="center">金重</th>
+					<th align="center">指圈</th>
+					<th align="center">刻字</th>
+					<th align="center">表面工艺</th>
+					<th align="center">镶嵌要求</th>
+					<th align="center">数量</th>
+					<th align="center">备注</th>
+				</tr>
+			</thead>
+			<tbody>
+		<!-- 表格1 -->
+			<%foreach from=$goods_data item=d%>
+				<tr data-id="order_goods_list_<%$d.id%>" data-title="">
+					<td align="center"><%$d.id%></td>
+					<td align="center"><img width="150px" height="150px" src="<%$d.thumb_img%>"/></td>
+					<td align="center"><%$d.goods_id_jxc%></td>
+					<td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$d.goods_sn%>" data-id="<%$d.goods_sn%>" data-url="index.php?mod=warehouse&con=WarehouseGoods&act=view_Image&style_sn=<%$d.goods_sn%>"><%$d.goods_sn%></a></td>
+					<td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$smarty.const.BCD_PREFIX%><%$d.bc_id%>" data-id="<%$d.bc_id%>" data-url="index.php?mod=processor&con=ProductInfo&act=show&id=<%$d.bc_id%>"><%if $hidden%><%if $d.bc_id%><%$smarty.const.BCD_PREFIX%><%$d.bc_id%><%/if%><%/if%></a></td>
+					<td align="center"><%$d.goods_name%></td>
+					<td align="center"><%$d.goods_price%></td>
+					<td align="center"><%$d.cart%></td>
+					<td align="center"><%$d.cut%></td>
+					<td align="center"><%$d.clarity%></td>
+					<td align="center"><%$d.color%></td>
+					<td align="center"><%$d.zhengshuhao%></td>
+					<td align="center"><%$d.caizhi%></td>
+					<td align="center"><%$d.jinse%></td>
+					<td align="center"><%$d.jinzhong%></td>
+					<td align="center"><%$d.zhiquan%><%if  $d.is_stock_goods && $d.shoucun && $d.zhiquan!=$d.shoucun%>(由<%$d.shoucun%>改为<%$d.zhiquan%>)<%/if%></td>
+					<td align="center"><%$d.kezi%></td>
+					<td align="center"><%$d.face_work%></td>
+					<td align="center"><%$d.xiangqian%></td>
+					<td align="center"><%$d.goods_count%></td>
+					<td align="center"><%$d.details_remark %></td>
+				</tr>
+			<%/foreach%>
+			</tbody>
+		</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<%if $hidden%>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>赠品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+		</div>
+		<div class="table-scrollable">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<tr>
+				<td width="10%">赠品</td>
+				<td><%$zengpin.goods%></td>
+			</tr>
+		<!-- 表格1 -->
+			<tr>
+				<td width="10%">赠品备注</td>
+				<td><%$zengpin.remark%></td>
+			</tr>
+		</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<%/if%>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单日志
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+		</div>
+		<div class="flip-scroll">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead class="flip-content">
+				<tr>
+					<th align="center">序号</th>
+					<th align="center">操作内容</th>
+					<th align="center">操作人</th>
+					<th align="center">订单审核状态</th>
+					<th align="center">支付状态</th>
+					<th align="center">发货状态</th>
+					<th align="center">操作时间</th>
+
+				</tr>
+			</thead>
+			<tbody>
+		<!-- 表格1 -->
+			<%foreach from=$order_action key=key item=d%>
+				<tr data-id="order_action_list_<%$d.order_id%>" data-title="">
+					<td><%count($order_action)-$key%></td>
+                    <td><%$d.remark%></td>
+                    <td><%$d.create_user%></td>
+                    <td><%$dd->getEnum("order.order_status",$d.order_status)%></td>
+                    <td><%$dd->getEnum("order.order_pay_status",$d.pay_status)%></td>
+                    <td><%$dd->getEnum('order.send_good_status',$d.shipping_status)%></td>
+                    <td><%$d.create_time%></td>
+				</tr>
+			<%/foreach%>
+			</tbody>
+		</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/order_fqc_list.js"%>
+//-->
+</script>

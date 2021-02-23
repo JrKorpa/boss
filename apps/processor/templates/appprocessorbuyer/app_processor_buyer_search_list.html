@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>姓名</th>
+			<th>账户</th>
+			<th>手机</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_processor_buyer_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.buyer_name%></td>
+			<td><%$d.buyer_account%></td>
+			<td><%$d.buyer_tel%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

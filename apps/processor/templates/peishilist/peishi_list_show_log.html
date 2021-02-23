@@ -1,0 +1,37 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>日志详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>日志流水</td>
+					<td>配石单号</td>
+					<td>操作人</td>
+					<td>操作时间</td>
+					<td>操作内容</td>
+				</tr>	
+				<%foreach from=$data key=k item=d%>
+				<tr>
+					<td><%$k+1%></td>
+					<td><%$d.peishi_id%></td>
+					<td><%$d.action_name%></td>
+					<td><%$d.add_time%></td>
+					<td><%$d.remark%></td>
+				</tr>
+				<%/foreach%>				
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

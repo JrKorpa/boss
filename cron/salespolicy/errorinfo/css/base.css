@@ -1,0 +1,56 @@
+@charset "utf-8";
+body{font-size:12px;}
+/* CSS Document */
+.page{width:1200px; margin:40px auto;}
+.submit{background-color:#3CC; padding:4px; color:#fff;border:0px; cursor:pointer;}
+
+/*表格展示样式*/
+.tj{background-color:#FC0; color:red;}
+.line{background-color:yellow;}
+.tydmc{background-color:#09F; color:#fff; font-size:16px;}
+.flmc{background-color:#6FF; color:#009; font-size:16px;}
+
+#showinfo{
+	border:1px solid #999;
+	text-align:center;
+	float:left;
+	display:none;
+	border-collapse:collapse;
+	border-width:0px 0 0 1px; 
+	width:1200px;
+	margin-bottom:60px;
+	width:1200px !important;
+}
+.showinfo{
+	border:1px solid #999;
+	text-align:center;
+	float:left;
+	border-collapse:collapse;
+	border-width:0px 0 0 1px; 
+	width:1200px;
+}
+table tr th{border:1px solid #000; padding:10px; background-color:#099; font-size:14px; font-weight:bold; color:#fff;}
+table tr td{border:1px solid #000; padding:10px; }
+
+/*搜索加载样式*/
+#show{
+		background-image:url(../img/loding.gif);
+		width:350px;
+		height:262px;
+		display:none;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-175px;
+		margin-top:-131px;
+		z-index:2;
+
+}
+/*普通的table样式*/
+table { 
+border-collapse:collapse; /* 关键属性：合并表格内外边框(其实表格边框有2px，外面1px，里面还有1px哦) */ 
+border:solid #999; /* 设置边框属性；样式(solid=实线)、颜色(#999=灰) */ 
+border-width:0 0 0 1px; /* 设置边框状粗细：上 右 下 左 = 对应：1px 0 0 1px */ 
+} 
+table th,table td {border:solid #999;border-width:1px 1px 1px 0;} 
+.clear{clear:both;}

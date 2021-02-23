@@ -1,0 +1,88 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="netsale_report_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">体验店类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="shop_type">
+                                <option value="0">全部</option>
+                                <option value="1">直营店</option>
+                                <option value="2">经销商</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">体验店：</label>
+                            <select class="form-control" tabindex="1" name="shop_id">
+                                <option value=""></option>
+                                <%foreach from=$allshop item=value%>
+                                <option value="<%$value.id%>"><%$value.shop_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="control-label">时间段：</label>
+                        <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                            <input type="text" class="form-control" name="begintime" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" />
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control" name="endtime" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" class="btn red" onclick="downloadNetSale()"><i class="fa fa-check"></i> 导出</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="netsale_report_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/netsale_report_list.js"%>
+    //-->
+</script>

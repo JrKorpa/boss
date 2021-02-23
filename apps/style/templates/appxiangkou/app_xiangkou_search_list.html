@@ -1,0 +1,105 @@
+<form id="app_xiangkou_form">
+<div class="table-scrollable">
+<table class="table table-bordered table-striped flip-content">
+	<thead class="flip-content">
+		<tr>
+				<td>镶口</td>
+				<td>手寸</td>
+				<td>副石1重</td>
+				<td>副石1数量</td>
+				<td>副石2重</td>
+				<td>副石2数量</td>
+                <td>副石3重</td>
+                <td>副石3数量</td>
+				<!--<td>其他副石成本价</td>-->
+				<td>18K标准金重</td>
+				<td>18K金重上公差</td>
+				<td>18K金重下公差</td>
+				<td>PT950标准金重</td>
+				<td>PT950金重上公差</td>
+				<td>PT950金重下公差</td>
+				<td>可定制公司</td>
+				<td>生成商品</td>
+				<td>生成时间</td>
+		</tr>
+	</thead>
+	<tbody>
+	
+	<%foreach from=$cnf_sec_stone_range item=item_stone key=key_stone%>
+	<%foreach from=$cnf_finger_range item=finger_item key=key_finger name=key_finger_name%>
+			<tr data-id="app_xiangkou_list_" data-title="">					
+						<%if $smarty.foreach.key_finger_name.first%>
+						<td rowspan="<%count($cnf_finger_range)%>">
+							<input type="hidden" name="stone_type[]" value="<%$item_stone%>"/>
+						<%$item_stone%>CT
+						</td>
+						<%/if%>
+						<td><%$finger_item%>
+						<input type="hidden" name="stone[]"	value="<%$item_stone%>"/>
+						<input type="hidden" name="finger[]" value="<%$finger_item%>"/></td>
+						<td><input  type="text" name="sec_stone_weight[]" style="color:black;" class="txt w30" size="5" 
+						<%if isset($xiangkou.$item_stone.$finger_item.sec_stone_weight)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_weight%>" <%else%> value=""<%/if%> />CT</td>
+						<td><input  type="text" name="sec_stone_num[]" style="color:black;" class="txt w30" size="5" 
+						<%if isset($xiangkou.$item_stone.$finger_item.sec_stone_num)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_num%>" <%else%> value=""<%/if%> /></td>
+						<td><input type="text" name="sec_stone_weight_other[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.sec_stone_weight_other)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_weight_other%>" <%else%> value=""<%/if%>/>CT</td>
+						<td><input type="text" name="sec_stone_num_other[]"style="color:black;"  class="txt w30" size="5" 
+						<%if isset($xiangkou.$item_stone.$finger_item.sec_stone_num_other)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_num_other%>" <%else%> value=""<%/if%>/></td>
+                        <td><input type="text" name="sec_stone_weight3[]" style="color:black;" class="txt w30" size="5"
+                        <%if isset($xiangkou.$item_stone.$finger_item.sec_stone_weight3)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_weight3%>" <%else%> value=""<%/if%>/>CT</td>
+                        <td><input type="text" name="sec_stone_num3[]"style="color:black;"  class="txt w30" size="5" 
+                        <%if isset($xiangkou.$item_stone.$finger_item.sec_stone_num3)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_num3%>" <%else%> value=""<%/if%>/></td>
+						<!--<td><input type="text" name="sec_stone_price_other[]" style="color:black;" class="txt w30" size="5" 
+						<%if isset($xiangkou.$item_stone.$finger_item.sec_stone_price_other)%> value="<%$xiangkou.$item_stone.$finger_item.sec_stone_price_other%>" <%else%> value=""<%/if%>/>元</td>-->
+						<td><input type="text" name="g18_weight[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.g18_weight)%> value="<%$xiangkou.$item_stone.$finger_item.g18_weight%>"  <%else%> value=""<%/if%>/>g/克</td>
+						
+						<td><input type="text" name="g18_weight_more[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.g18_weight_more)%> value="<%$xiangkou.$item_stone.$finger_item.g18_weight_more%>" <%else%> value=""<%/if%>/>g/克</td>
+						<td><input type="text" name="g18_weight_more2[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.g18_weight_more2)%> value="<%$xiangkou.$item_stone.$finger_item.g18_weight_more2%>" <%else%> value=""<%/if%>/>g/克</td>
+						<td><input type="text" name="gpt_weight[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.gpt_weight)%> value="<%$xiangkou.$item_stone.$finger_item.gpt_weight%>"<%else%> value=""<%/if%>/>g/克</td>
+						<td><input type="text" name="gpt_weight_more[]"style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.gpt_weight_more)%> value="<%$xiangkou.$item_stone.$finger_item.gpt_weight_more%>" <%else%> value=""<%/if%>/>g/克</td>
+						<td><input type="text" name="gpt_weight_more2[]" style="color:black;" class="txt w30" size="5"
+						<%if isset($xiangkou.$item_stone.$finger_item.gpt_weight_more2)%> value="<%$xiangkou.$item_stone.$finger_item.gpt_weight_more2%>" <%else%> value=""<%/if%>/>g/克</td>
+
+
+						<%if $smarty.foreach.key_finger_name.first%>	
+						<td rowspan="<%count($cnf_finger_range)%>">                          
+                                <%foreach from=$dd->getEnumArray("company.company_type") key=k item=value%>
+                                <%if $value.label!='供应商'%>
+                                <div>
+                                <label class="btn btn-default 
+                                 <%if isset($xiangkou.$item_stone.$finger_item.company_type) && in_array($value.name,explode(',',$xiangkou.$item_stone.$finger_item.company_type))%> active<%/if%>">
+                                    <input type="checkbox" name="company_type_<%$key_stone%>" value="<%$value.name%>"  <%if isset($xiangkou.$item_stone.$finger_item.company_type) && in_array($value.name,explode(',',$xiangkou.$item_stone.$finger_item.company_type))%> checked="checked"<%/if%>> <%$value.label%>
+                                </label>
+                                </div>
+                                <%/if%>
+                                <%/foreach%>
+                            					
+						</td>						
+						<td rowspan="<%count($cnf_finger_range)%>">
+                                                    <%if $check_status == 3%><!--只有审核通过的时候才可以生成商品 -->
+                                                    <input id="sub_mat<%$key_stone%>" data-loading-text="提交完成" autocomplete="off" class="btn btn-default" type="button" onclick="app_xiangkou_create_goods('<%$style_id%>','<%$item_stone%>','<%$key_stone%>');" value="生成商品">
+                                                    <%/if%>
+						</td>
+						<%/if%>
+						<%if $smarty.foreach.key_finger_name.first%>	
+						<td rowspan="<%count($cnf_finger_range)%>"></td>
+						<%/if%>
+				
+			</tr>
+	<%/foreach%>
+	<%/foreach%>
+	</tbody>
+</table>
+<div class="pager">
+</form>
+<script type="text/javascript">
+<!--
+	util.hover();
+	<%include file="js/app_xiangkou_list.js"%>
+//-->
+</script>

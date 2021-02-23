@@ -1,0 +1,43 @@
+<!--石包采购-->
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>单据编号</th>
+			<th>单据类型</th>
+			<th>入库制单时间</th>
+			<th>入库审核时间</th>
+			<th>纸质单号</th>
+			<th>结算商</th>
+			<th>单据金额</th>
+			<th>应付申请状态</th>
+			<th>应付申请单号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="app_deal_detail_list_<%$d.serial_number%>" data-title="<%$d.serial_number%>">
+		<td align="center"><%$d.serial_number%></td>
+		<td align="center"><!--<%$d.item_id%>-->
+
+		<a href="javascript:;" class="tab-con-a" data-title="<%$d.order_id%>" data-id="<%$d.order_id%>" data-url="index.php?mod=shibao&con=DiaOrder&act=show&id=<%$d.order_id%>&type=<%$d.type%>"><%$d.type%><%$d.order_id%>
+		</a>
+		</td>
+		<td align="center"><%$dd->getEnum('PayApply.stone_type',$d.item_type)%></td>
+		<td align="center"><%$d.make_time%></td>
+		<td align="center"><%$d.check_time%></td>
+		<td align="center"><%$d.prc_num%></td>
+		<td align="center"><%$d.prc_name%></td>
+		<td align="center"><%$d.total%></td>
+		<td align="center"><%$dd->getEnum('app_pay.detail_apply_status',$d.pay_apply_status)%></td>
+		<td align="center"><%$d.pay_apply_number%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

@@ -1,0 +1,77 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="sales_channels_person_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+                        <select class="form-control" tabindex="1" name="order_department">
+                            <option value=""></option>
+                            <%foreach from=$sales_channels_idData key=key item=p %>
+                            <option value="<%$p.id%>" <%if $p.id==$def_id%>selected="selected"<%/if%>><%$p.channel_name%></option>
+                            <%/foreach%>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                        <label class="control-label">是否网销：</label>
+                        <select class="form-control" tabindex="1" name="is_netsales">
+                            <option value="">全部</option>
+                            <option value="1">否</option>
+                            <option value="2">是</option>
+                        </select>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="sales_channels_person_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/sales_channels_person_list.js"%>
+//-->
+</script>

@@ -1,0 +1,81 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#diamond_info_search_list .checkboxes" /></th>
+			<th>商品编码</th>
+			<th>石重</th>
+			<th>形状</th>
+			<th>颜色</th>
+			<th>颜色分级</th>
+			<th>净度</th>
+			<th>证书类型</th>
+			<th>证书号</th>
+			<th>成本价</th>
+			<th>BDD价</th>
+			<th>供应商</th>
+			<th>库房</th>
+			<th>模号</th>
+			<th>状态</th>
+			<!--<th>所在地</th>-->
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_diamond_color_list_<%$d.id%>" data-title="<%$d.goods_sn%>">
+			<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%if isset($d.goods_id)%><%$d.goods_id%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.carat)%><%$d.carat%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.shape)%><%$d.shape%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.color)%><%$d.color%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.color_grade)%><%$d.color_grade%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.clarity)%><%$d.clarity%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.cert)%><%$d.cert%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.cert_id)%><%$d.cert_id%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.cost_price)%><%$d.cost_price%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.price)%><%$d.price%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.from_ad)%><%$d.from_ad%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.warehouse)%><%$d.warehouse%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.mo_sn)%><%$d.mo_sn%><%else%><%/if%></td>
+			<td align="center"><%if isset($d.status)%><%$d.status%><%else%><%/if%></td>
+			<!--<td align="center"><%if isset($d.warehouse)%><%$d.warehouse%><%else%>期货<%/if%></td>-->
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#diamond_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+  test.each(function () {
+  if ($(this).parents(".checker").size() == 0) {
+      $(this).show();
+      $(this).uniform();
+  }
+});
+}
+//table 复选框全选
+$('#diamond_info_search_list .group-checkable').change(function () {
+var set = $(this).attr("data-set");
+  var checked = $(this).is(":checked");
+  $(set).each(function () {
+      if (checked) {
+          $(this).attr("checked", true);
+          $(this).parents('tr').addClass("active");
+      } else {
+          $(this).attr("checked", false);
+          $(this).parents('tr').removeClass("active");
+      }                    
+  });
+  $.uniform.update(set);
+});
+$('#diamond_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+  $(this).parents('tr').toggleClass("active");
+});
+	
+	
+//-->
+</script>

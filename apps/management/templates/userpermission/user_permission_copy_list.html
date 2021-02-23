@@ -1,0 +1,28 @@
+<!--搜索开始-->
+<form action="#" method="post" class="horizontal-form" id="user_permission_opruser_search_form">
+
+<div class="col-sm-6">
+    <div class="portlet-body form">
+        <div class="form-body">
+            <label class="control-label">将下面用户的权限赋予左侧待授权用户：</label>
+            <input type="text" name="name" class="form-control" placeholder="请输入账号/姓名" onblur="user_permission_check_copy_user(this)">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+    <input type="hidden" name="copy_id" value="" />
+</form>
+
+<!--搜索 End-->
+<div class="col-sm-2"></div>
+<!-- 按钮 -->
+<div class="col-sm-4">
+    <button id="permission_copy" class="btn blue" title="将权限赋予目标用户">复制权限</button>
+    <button id="permission_cancel" class="btn red" title="取消当前用户的权限">取消权限</button>
+</div>
+<!--Submit End-->
+<script type="text/javascript">
+    <!--
+    <%include file="js/user_permission_copy_list.js"%>
+    //-->
+</script>

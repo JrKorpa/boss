@@ -1,0 +1,89 @@
+<div class="table-scrollable"> 
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    	<tr>
+            <th></th>
+            <th></th>
+            <th colspan="10">进店人数管理</th>
+            <th colspan="4">进店销售额管理</th>
+        </tr>
+        <tr>
+        	<th>来源<br/>分类</th>
+            <th>客户<br/>来源</th>
+            <th>新增<br/>预约人数</th>
+            <th>实际<br/>到店人数</th>
+            <th>预约预计<br/>到店人数</th>
+            <th>预约实际<br/>到店人数</th>
+            <th>预约<br/>到店率</th>
+            <th>实际<br/>成单数</th>
+            <th>实际成交<br/>客户数（不含换购）</th>
+            <th>换购人数</th>
+            <th>成交率</th>
+            <th>赠品<br/>客户数</th>
+
+            <th>总业绩</th>
+            <!--<th>商品总金额</th>-->
+            <th>总业绩<br/>（不含换购）</th>
+            <!--<th>实退款金额</th>-->
+            <th>客单价</th>
+            <th>客单价<br/>（不含换购）</th>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="16" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <!--这里有重复的 是因为source_id不一样,但是名称是一样的-->
+        <%else%>
+        	<%foreach from=$data item=sourcearr key=fenlei%>
+            	<%foreach from=$sourcearr item=obj key=row%>
+                        <tr>
+                        	<%if $row<1 %>
+                       		<td style="vertical-align:middle" rowspan="<%$sourcearr|@count%>">
+                            <!--渠道/负责人--><%$types[$fenlei]%></td>
+                            <%/if%>
+                            <td><!--各渠道合计--><%if isset($ctinfo[$obj.customer_source_id])%><%$ctinfo[$obj.customer_source_id]%><%else%><%$obj.source_name%><%/if%></td>
+                            <td><!--全部预约--><%$obj.allbokenum%></td>
+                            <td><!--实际到店数--><%$obj.realbokenum%></td>
+							<td><%$obj.yindaobokenum%></td>
+							<td><%$obj.yindaoshidaobokenum%></td>
+                            <td><!--到店率--><%$obj.daodianlv%>%</td>
+                            <td><!--实际成单数--><%$obj.ordernum%></td>
+                            <td><!--实际成单数--><%$obj.dis_borcs_to%></td>
+                            <td><!--实际成交数--><%$obj.dis_borcs_to_num%></td>
+                            <td><!--实际成交数--><%$obj.chengjiaolv%>%</td>
+                            <td><!--赠品单数--><%$obj.zpnum%></td>
+                            <!--<td>订单总金额<%$obj.orderamount%></td>-->
+                            <td><!--订单总金额--><%$obj.zongyeji%></td>
+                            <!--<td>商品总金额<%$obj.goodsamount%></td>-->
+                            <td><!--已收款金额--><%$obj.zongyeji_hg%></td>
+                            <!--<td>实退款金额<%$obj.realreturnprice%></td>-->
+                            <td><!--未收款金额--><%$obj.kedanjia%></td>
+                            <td><!--客单价--><%$obj.kedanjia_hg%></td>
+                        </tr>
+                    <%/foreach%>
+            <%/foreach%>
+            <tr>
+                <td style="vertical-align:middle" rowspan="<%$sourcearr|@count%>">
+                <td><b>总计：<b/></td>
+                <td><b><%$zongji.z_allbokenum%><b/></td>
+                <td><b><%$zongji.z_realbokenum%><b/></td>
+                <td><b><%$zongji.z_yindaobokenum%><b/></td>
+                <td><b><%$zongji.z_yindaoshidaobokenum%><b/></td>
+                <td><b><%$zongji.z_daodianlv%>%<b/></td>
+                <td><b><%$zongji.z_ordernum%><b/></td>
+                <td><b><%$zongji.z_dis_borcs_to%><b/></td>
+                <td><b><%$zongji.z_dis_borcs_to_num%><b/></td>
+                <td><b><%$zongji.z_chengjiaolv%>%<b/></td>
+                <td><b><%$zongji.z_zpnum%><b/></td>
+                <td><b><%$zongji.z_zongyeji%><b/></td>
+                <td><b><%$zongji.z_zongyeji_hg%><b/></td>
+                <td><b><%$zongji.z_kedanjia%><b/></td>
+                <td><b><%$zongji.z_kedanjia_hg%><b/></td>
+            </tr>
+        <%/if%>
+	</tbody>
+</table>
+</div>
+<%$pa%>

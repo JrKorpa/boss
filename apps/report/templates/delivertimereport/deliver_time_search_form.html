@@ -1,0 +1,149 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="deliver_time_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">时间类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="time_type" id="time_type" >
+							<option value="add">下单时间</option>
+							<option value="send">发货时间</option>
+							</select>
+						
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">统计时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="end_time" />
+                            </div>
+						</div>
+                    </div>
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">布产类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="buchan_type" id="buchan_type" >
+							<option value="">全部</option>
+							<option value="qihuo">期货</option>
+							<option value="xianhuo">现货</option>
+							<!-- <option value="weixiu">维修</option> -->
+							</select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="order_type" id="order_type" onchange="delivertime_show_sales_channels(this.value)">
+							<option value="0">全部</option>
+							<option value="1">线上订单</option>
+							<option value="2">线下订单</option>
+							</select>
+						
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订单渠道：</label>
+						<select class="form-control" tabindex="1" name="order_department" id="order_department">
+							<option value="">全部</option>
+							<%foreach from=$sales_channels_idData key=key item=p %>
+								<option value="<%$p.id%>" ><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">布产状态：</label>
+                            <select class="select2_category form-control" tabindex="1" multiple name="buchan_status[]" id="buchan_status[]" >
+                                <option value="1">未操作</option>
+                                <option value="2">已布产</option>
+                                <option value="3">生产中</option>
+                                <option value="4">已出厂</option>
+                                <option value="5">不需布产</option>
+                            </select>
+                        </div>
+                    </div>
+					 <div class="col-sm-2" style="display:none;">
+	                    <div class="form-group">
+	                        <label class="control-label">每页显示条数</label>
+	                        <input type="text" name="page_num" class="form-control" placeholder="请输入" />
+	                    </div>
+	                </div>
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+						<button  type="button"  data-title="发货量报表" list-id="27945" title="" name="导出发货量报表" data-url="index.php?mod=report&con=WarehouseStockReport&act=export_cxv_second" onclick="deliver_time_export_csv();" class="btn btn-sm blue">
+						下载报表 <i class="fa fa-bar-chart-o"></i>
+					</button>
+					<button type="button"  data-title="导出发货量报表" list-id="27945" title="" name="导出发货量报表" data-url="index.php?mod=report&con=WarehouseStockReport&act=export_cxv_detail" onclick="deliver_time_export_cxv_second(this);" class="btn btn-sm blue">
+						下载明细 <i class="fa fa-bar-chart-o"></i>
+					</button>
+				</div>
+			</div>
+        </form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<!-- <div class="btn-group">
+			<button data-title="发货量报表" list-id="274531" title="" name="导出数据" data-url="" onclick="deliver_time_export_csv();" class="btn btn-sm red">
+				<font id="export_content">导出数据 </font><i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div> -->
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="deliver_time_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function delivertime_show_sales_channels(order_type){
+	$.getJSON('index.php?mod=report&con=ReturnGoodsReport&act=get_all_onoffline_channels&order_type='+order_type,function(ret){
+		var department_id_html='<option value="0">全部</option>';
+		$.each(ret,function(i,item){
+			department_id_html+='<option value="'+item.id+'">'+item.channel_name+'</option>';
+		});
+		$('#deliver_time_search_form #order_department').html(department_id_html);
+	});
+}
+<!--
+
+	<%include file="js/deliver_time_list.js"%>
+//-->
+</script>

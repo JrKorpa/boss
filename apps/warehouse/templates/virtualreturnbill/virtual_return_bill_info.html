@@ -1,0 +1,308 @@
+<div class="portlet box blue">
+<div class="portlet-title">
+    <div class="caption">
+        <i class="fa fa-reorder"></i><%$view->get_bill_type()%>
+    </div>
+    <div class="tools">
+        <a href="javascript:;" class="">
+        </a>
+    </div>
+</div>
+
+<div class="portlet-body form">
+<div class="table-toolbar">
+    <div class="btn-group">
+        <button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" list-id="15" data-title="">
+        刷新 <i class="fa fa-refresh"></i>
+        </button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" list-id="15" data-title="">
+        离开 <i class="fa fa-mail-reply"></i>
+        </button>
+    </div>
+</div>
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="virtual_return_bill_info">
+		<div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">业务类型：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" disabled="false" tabindex="1" id="business_type" name="business_type">
+                                <option value=""></option>
+                                <%foreach from = $dd->getEnumArray('warehouse.business_type')  item=value%>
+                                <option value="<%$value.name%>" <%if $value.name == $gview->get_business_type()%>selected<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库公司：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" tabindex="1" id="from_company_id" name="from_company_id">
+                                <option value=""></option>
+                                <%foreach from=$company item=value%>
+                                <option value="<%$value.w%>" <%if $value.id == $view->get_from_company_id()%>selected<%/if%>><%$value.company_sn%> | <%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库仓库：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" name="from_warehouse_id" id="from_warehouse_id" tabindex="1" <%if $view->get_from_warehouse_id() == ''%>disabled="disabled"<%/if%>>
+                                <option value="<%$view->get_from_warehouse_id()%>|<%$view->get_from_warehouse_name()%>"><%$view->get_from_warehouse_name()%></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">货号：</label>
+                            <input type="text" name="out_goods_id" id="out_goods_id" class="form-control" placeholder="请输入" value="<%$gview->get_out_goods_id()%>" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款号：</label>
+                            <input type="text" name="style_sn" id="style_sn" class="form-control" placeholder="请输入" value="<%$gview->get_style_sn()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质：</label><span style='color:red;'>*</span>
+                            <select class="form-control" tabindex="1" name="caizhi" id="caizhi">
+                                <option value=""></option>
+                                <%foreach from=$caizhi_arr item=val%>
+                                <option value="<%$val%>" <%if $val == $gview->get_caizhi()%>selected<%/if%>><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质颜色：</label><span style='color:red;'>*</span>
+                            <select class="form-control" tabindex="1" name="ingredient_color" id="ingredient_color">
+                                <option value=""></option>
+                                <%foreach from=$jinse_arr item=val%>
+                                <option value="<%$val%>" <%if $val == $gview->get_ingredient_color()%>selected<%/if%>><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">订单号：</label>
+                            <input  id="order_sn" type="text" name="order_sn" class="form-control" placeholder="请输入" value="<%$gview->get_order_sn()%>" onblur="check_order(this)"/>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">客户姓名：</label>
+                            <input type="text" name="guest_name" id="guest_name" class="form-control" placeholder="请输入"  value="<%$gview->get_guest_name()%>" maxlength="20"/>
+                        </div>
+                    </div>  
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">顾客联系方式：</label>
+                            <input type="text" name="guest_contact" id="guest_contact" class="form-control" placeholder="请输入" value="<%$gview->get_guest_contact()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="apply_user" class="form-control" placeholder="请输入" value="<%$view->get_create_user()%>" disabled="disabled" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">金重：</label>
+                            <input type="text" name="gold_weight" id="gold_weight" class="form-control" placeholder="请输入" value="<%$gview->get_gold_weight()%>" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">指圈：</label>
+                            <input type="text" name="finger_circle" id="finger_circle" class="form-control" placeholder="请输入" value="<%$gview->get_finger_circle()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">证书号：</label>
+                            <input type="text" name="credential_num" id="credential_num" class="form-control" placeholder="请输入" value="<%$gview->get_credential_num()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石重：</label>
+                            <input type="text" name="main_stone_weight" id="main_stone_weight" class="form-control" placeholder="请输入" value="<%$gview->get_main_stone_weight()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石粒数：</label>
+                            <input type="text" name="main_stone_num" id="main_stone_num" class="form-control" placeholder="请输入" value="<%$gview->get_main_stone_num()%>" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">副石重：</label><span style='color:red;'>*</span>
+                            <input type="text" name="deputy_stone_weight" id="deputy_stone_weight" class="form-control" placeholder="请输入" value="<%$gview->get_deputy_stone_weight()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">副石粒数：</label>
+                            <input type="text" name="deputy_stone_num" id="deputy_stone_num" class="form-control" placeholder="请输入" value="<%$gview->get_deputy_stone_num()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">零售价：</label><span style='color:red;'>*</span>
+                            <input type="text" name="resale_price" id="resale_price" class="form-control" placeholder="请输入" value="<%$gview->get_resale_price()%>" />
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">出库货号：</label><span style='color:red;'>*</span>
+                            <input type="text" name="out_goods_id" id="out_goods_id" class="form-control" placeholder="请输入" value="<%$gview->get_out_goods_id()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">有账货号：</label><span style='color:red;'>*</span>
+                            <input type="text" name="exist_account_gid" id="exist_account_gid" class="form-control" placeholder="请输入" value="<%$gview->get_exist_account_gid()%>" />
+                        </div>
+                    </div>-->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">金托类型：</label>
+                            <select class="select2_category form-control" tabindex="1" id="torr_type" name="torr_type">
+                                <option value=""></option>
+                                <%foreach from = $dd->getEnumArray('warehouse_goods.tuo_type')  item=value%>
+                                <option value="<%$value.name%>" <%if $value.name == $gview->get_torr_type()%>selected<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                     
+                </div>
+                <div class="row">
+                   <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款式分类：</label>
+                            <select class="select2_category form-control" name="style_type" id="style_type" tabindex="1">
+                                <option value=""></option>
+                                <%foreach from=$catList item=c%>
+                                    <option value="<%$c.name%>" <%if $c.name == $gview->get_style_type()%>selected<%/if%>><%$c.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">产品线：</label>
+                            <select class="select2_category form-control" name="product_line" id="product_line" tabindex="1" >
+                                <option value=""></option>
+                                <%foreach from=$chanpinxian item=c%>
+                                <option value="<%$c%>" <%if $c == $gview->get_product_line()%>selected<%/if%>><%$c%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">维修费：</label><span style='color:red;'>*</span>
+                            <input type="text" name="weixiu_fee" id="weixiu_fee" class="form-control" placeholder="请输入" value="<%$gview->get_weixiu_fee()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">备注：</label>
+                            <input  id="remark" type="text" name="remark" class="form-control" placeholder="请输入" value="<%$view->get_remark()%>" />
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">公司：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" tabindex="1" id="place_company_id" name="place_company_id">
+                                <option value=""></option>
+                                <%foreach from=$company item=value%>
+                                <option value="<%$value.id%>|<%$value.company_name%>" <%if $value.id == $gview->get_place_company_id()%>selected<%/if%>><%$value.company_sn%> | <%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">仓库：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" name="place_warehouse_id" tabindex="1" <%if $gview->get_place_warehouse_id() == ''%>disabled="disabled"<%/if%>>
+                                <option value="<%$gview->get_place_warehouse_id()%>|<%$gview->get_place_warehouse_name()%>"><%$gview->get_place_warehouse_name()%></option>
+
+                            </select>
+                        </div>
+                    </div>-->
+                    
+                </div>
+                <!--<div class="row">
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">出库公司：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" tabindex="1" id="out_company_id" name="out_company_id">
+                                <option value=""></option>
+                                <%foreach from=$company item=value%>
+                                <option value="<%$value.w%>" <%if $value.id == $view->get_out_company_id()%>selected<%/if%>><%$value.company_sn%> | <%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">出库仓库：</label><span style='color:red;'>*</span>
+                            <select class="select2_category form-control" name="out_warehouse_id" id="out_warehouse_id" tabindex="1" <%if $view->get_out_warehouse_id() == ''%>disabled="disabled"<%/if%>>
+                                <option value="<%$view->get_out_warehouse_id()%>|<%$view->get_out_warehouse_name()%>"><%$view->get_out_warehouse_name()%></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">快递单号：</label><span style='color:red;'>*</span>
+                            <input type="text" name="express_sn" id="express_sn" class="form-control" placeholder="请输入" value="<%$view->get_express_sn()%>" />
+                        </div>
+                    </div>
+                </div>-->
+           </div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/virtual_return_bill_info.js"%>
+//-->
+</script>

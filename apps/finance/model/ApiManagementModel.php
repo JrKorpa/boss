@@ -1,0 +1,19 @@
+<?php
+class ApiManagementModel
+{
+    function getJxslist($ids = array()) {
+        $ret=ApiModel::management_api(array('ids'),array($ids),'GetJxslist');
+        return $ret['error'] == 0 ? $ret['data'] : array();
+    }
+    
+    function GetSalesChannelsByIds($dept_ids) {
+        if (empty($dept_ids)) return array();
+        
+        $dept_str = implode(',', array_unique($dept_ids));
+        $resp = ApiModel::management_api(array('dept_ids'), array($dept_str), 'GetSalesChannelsByIds');
+        
+        return $resp['error'] == 0 ? $resp['data'] : array();
+    }
+}
+
+?>

@@ -1,0 +1,48 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>应付单号</th>
+			<th>应付类型</th>
+			<th>结算商</th>
+			<th>结算周期</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核状态</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>应付金额</th>
+			<th style="color:red">已付金额</th>
+			<th>付款状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_balance_list_<%$d.id%>" data-title="<%$d.balance_no%>">
+			<td align="center"><%$d.balance_no%></td>
+			<td align="center"><%$d.pay_type%></td>
+			<td align="center"><%$d.supplier_name%></td>
+			<td align="center">
+				<%foreach from=$dict->getEnumArray('supplier_pay.method') item=v%>
+				<%if $view->getSupplierPayType($d.supplier_id) == $v.name %><%$v.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center"><%$d.create_name%></td>
+			<td align="center"><%date('Y-m-d H:s:i',$d.create_time)%></td>
+			<td align="center"><%$view->getBalanceStatus($d.balance_status)%></td>
+			<td align="center"><%$d.check_name%></td>
+			<td align="center">
+				<%if $d.check_time != 0%><%date('Y-m-d H:s:i',$d.check_time)%><%/if%>
+			</td>
+			<td align="center"><%$d.total_real%></td>
+			<td align="center"><%$d.pay_total%></td>
+			<td align="center"><%$view->getPayStatus($d.pay_status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

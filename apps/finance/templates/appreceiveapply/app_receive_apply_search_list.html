@@ -1,0 +1,81 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#app_receive_apply_search_list .checkboxes"  /></th>
+			<th>序号</th>
+			<th>应收申请单号</th>
+			<th>收款类型</th>
+			<th>订单来源/结算商</th>
+			<th>制单误差</th>
+			<th>应收现金</th>
+			<th>制单时间</th>
+			<th>制单人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>状态</th>
+			<th>销账误差</th>
+			<th>应收单号</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data key=key item=d%>
+		<tr data-id="app_receive_apply_list_<%$d.id%>" data-title="<%$d.apply_number%>">
+			<td align="center">
+				<%if $d.status == 5%><!---待生成应收单状态的才显示复选框-->
+				<input class="checkboxes" type="checkbox" name="checkboxs[]" value="<%$d.id%>"/>
+				<%/if%>
+			</td>
+			<td><%$d.id%></td>
+			<td><%$d.apply_number%></td>
+			<td><%$dd->getEnum("rec_cash_type",$d.cash_type)%></td>
+			<td><%$d.ad_name%></td>
+			<td><%$d.make_total_cha%></td>
+			<td><%$d.total%></td>
+			<td><%$d.make_time%></td>
+			<td><%$d.make_name%></td>
+			<td><%$d.check_time%></td>
+			<td><%$d.check_name%></td>
+			<td><%$dd->getEnum("rec_apply_status",$d.status)%></td>
+			<td><%$d.sale_total_cha%></td>
+			<td><%$d.should_number%></td>
+			
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//初始化复选框
+var test = $("#app_receive_apply_search_list input[type='checkbox']");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#app_receive_apply_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#app_receive_apply_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

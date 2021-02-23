@@ -1,0 +1,61 @@
+<div class="portlet-body">
+	<form action="index.php?mod=processor&con=ProductInfo&act=update_4c&id=<%$data.id%>" method="post"  id="product_info_4c_edit">
+	<div class="form-body">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原始证书号：</label>
+					<input type="text" name="zhengshuhao_org" class="form-control" value="<%$data.zhengshuhao_org%>" readonly/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原始采购价：</label>
+					<input type="text" class="form-control" placeholder="请输入" value=""/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原始采购折扣：</label>
+					<input type="text" class="form-control" placeholder="请输入" value=""/>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新证书号：</label>
+					<input name="zhengshuhao" type="text" class="form-control" value="<%$data.zhengshuhao%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购价：</label>
+					<input name="purchase_cost" type="text" class="form-control" value="<%$data.purchase_cost%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购折扣：</label>
+					<input name="purchase_discount" type="text" class="form-control" value="<%$data.purchase_discount%>"/>
+				</div>
+			</div>
+
+		</div>
+	<div>
+	<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$data.id%>"/>
+				<input type="hidden" name="order_sn" value="<%$data.order_sn%>"/>
+				<button type="reset" class="btn default"><i class="fa fa-check"></i>重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i>保存</button>
+			</div>
+	</div>
+		</form>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_info_4c_edit.js"%>
+//-->
+</script>

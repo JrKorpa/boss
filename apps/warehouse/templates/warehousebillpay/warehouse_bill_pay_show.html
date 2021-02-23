@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>结算商</th>
+			<th>支付内容</th>
+			<th>结算方式</th>
+			<th>含税金</th>
+			<th>金额</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$payList key=k item=g %>
+		<tr data-id="purchase_info_show_list_<%$g.id%>" data-title="<%$g.id%>">
+			<td><%$g.pro_id%></td><!--pro_name-->
+			<td><%$dd->getEnum('warehouse.pay_content',$g.pay_content)%></td>
+			<td><%$dd->getEnum('warehouse.pay_method',$g.pay_method)%></td>
+			<td><%$dd->getEnum('warehouse.pay_tax',$g.tax)%></td>
+			<td><%$g.amount%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+$(function(){
+var amountTotal = '<%$amountTotal%>';
+$("input[name=amountTotal]").val(amountTotal);
+})
+</script>

@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>方法名</th>
+			<th>显示值</th>
+			<th>提示</th>
+			<th>系统内置</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list item=d%>
+		<tr data-id="button_function_list_<%$d.id%>" data-title="<%$d.label%>(<%$d.name%>)">
+			<td><%$d.id%></td>
+			<td><%$d.name%></td>
+			<td><%$d.label%></td>
+			<td><%$d.tips%></td>
+			<td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

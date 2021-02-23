@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <style type="text/css">
+body,td { font-size:13px; line-height:20px;}
+.return_goods * {text-decoration:line-through;}
+.print_table_box{border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 15px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse}
+</style>
+<style type="text/css" media="print">
+.Noprint { DISPLAY: none;}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-after: always;}
+
+</style>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+function printorder(id){
+	$(".Noprint,.kela_close").hide();
+			//打印后，改变单据的打印状态
+	var order_sn = id;
+	$.get('index.php?mod=processor&con=ProductInfo&act=checkDayinStatus&order_sn='+order_sn , '' , function(res){
+		if(res.success == 1){
+			window.print();
+		}else{
+			alert(res.error);
+		}
+
+	})
+	}
+</script>
+
+</head>
+<body>
+
+<div class="Noprint">
+	<input type="button" value="打印提货单" onclick="printorder('<%$smarty.get._ids%>','')" style="width:120px; height:30px; font-size:20px; font-weight:bold" />
+</div>
+<!--startprint-->
+<%$html%>
+<!--endprint-->
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="repair_time_search_form_third" onsubmit="repair_time_search_form_third_onsubmit()">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">时间类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="time_type" id="time_type" >
+							<option value="add">下单时间</option>
+							<option value="send">发货时间</option>
+							</select>
+						
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">统计时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" />
+                            </div>
+						</div>
+                    </div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">维修工厂：</label>
+						<select class="form-control" tabindex="1" name="repair_factory" id="repair_factory">
+							<option value="">全部</option>
+							<%foreach from=$pro_list item=item%>
+							<option value="<%$item.id%>"><%$item.name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">维修次数：</label>
+                            <select class="select2_category form-control" tabindex="1" name="frequency" id="frequency" >
+							<option value="">全部</option>
+							<option value="1">一次</option>
+							<option value="2">二次</option>
+							</select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">维修类型：</label>
+							<select class="select2_category form-control" tabindex="-1" name="re_type" id="re_type">
+								<option value="">全部</option>
+								<option value="1">新货维修</option>
+								<option value="2">售后维修</option>
+								<option value="3">店面维修</option>
+								<option value="5">库房维修</option>
+							</select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">维修内容：</label>
+							<select class="select2_category form-control" tabindex="-1" name="repair_act" id="repair_act">
+								<option value="">全部</option>
+								<option value="1">换石</option>
+								<option value="2">镶石</option>
+								<option value="3">翻新</option>
+								<option value="4">拉沙</option>
+								<option value="5">喷砂</option>
+								<option value="6">刻字</option>
+								<option value="7">抹字</option>
+								<option value="8">抹字重刻</option>
+								<option value="9">改圈</option>
+								<option value="10">抛光</option>
+								<option value="11">电金</option>
+								<option value="12">加副石</option>
+								<option value="13">加固钻石</option>
+								<option value="14">核实</option>
+								<option value="15">做证书</option>
+								<option value="16">修抓</option>
+								<option value="17">编绳</option>
+								<option value="18">其他</option>
+							</select>
+                        </div>
+                    </div>
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+        </form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+			<button data-title="发货量报表" list-id="2710013" title="" name="查看明细" data-url="index.php?mod=report&con=RepairTimeReport&act=index_forth" onclick="util.cust(this,show_repair_forth);" class="btn btn-sm red">
+				查看明细 <i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div>
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="repair_time_search_list_third">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function repair_time_search_form_third_onsubmit(){
+	$('#repair_time_search_form_third #is_post').val('1');
+}
+var start_time="<%$args.start_time%>";
+var end_time="<%$args.end_time%>";
+var repair_factory="<%$args.repair_factory%>";
+var frequency="<%$args.frequency%>";
+var re_type="<%$args.re_type%>";
+var repair_act="<%$args.repair_act%>";
+var time_type="<%$args.time_type%>";
+<!--
+	<%include file="js/repair_time_list_third.js"%>
+//-->
+</script>

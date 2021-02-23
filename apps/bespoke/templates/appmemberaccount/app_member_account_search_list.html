@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>序号</th>
+		<th>会员卡</th>
+		<th>当前金额</th>
+		<th>总消费金额</th>
+		<th>总积分</th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="application_list_<%$d.id%>">
+		<td align="center"><%$d.id%></td>
+		<td align="center"><%$d.memeber_id%></td>
+		<td align="center"><%$d.current_money%></td>
+		<td align="center"><%$d.total_money%></td>
+		<td align="center"><%$d.total_point%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

@@ -1,0 +1,64 @@
+<!--搜索开始-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="list_style_goods_search_form">
+			<div class="row">
+						<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">产品线：</label>
+									<div class="radio-list">					
+										<select class="select2_category form-control" tabindex="1" name="product_type_id" id="product_type_id">
+											<option value=""></option>
+											<%foreach from=$product_data key=key item=value%>
+												<option value="<%$key%>"><%$value%></option>
+											<%/foreach%>
+										</select>
+										
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">分类名称：</label>
+									<div class="radio-list">					
+										<select class="select2_category form-control" tabindex="2" name="cat_type_id" id="cat_type_id">
+											<option value=""></option>
+											<%foreach from=$cat_data key=key item=value%>
+												<option value="<%$key%>"><%$value%></option>
+											<%/foreach%>
+										</select>
+										
+									</div>
+								</div>
+							</div>
+						
+				</div>
+		</div>
+
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/list_style_goods_creat_list.js"%>
+//-->
+</script>

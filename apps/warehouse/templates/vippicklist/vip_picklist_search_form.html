@@ -1,0 +1,99 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="vip_picklist_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">拣货单编号：</label>
+							<input type="text" name="pick_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">PO单编号：</label>
+							<input type="text" name="po_no" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">BOSS捡货状态：</label>
+							<select class="form-control" name="boss_pick_status">						
+								<option value=""></option>
+								<option value="0">未完成</option>
+								<option value="1">已完成</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">添加时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control" name="st_create_time">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="et_create_time">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="vip_picklist_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+//更新1天内的拣货单
+$.ajax({
+		type:"POST",
+		url: "cron/vip/index.php?act=updatepicklist&days=1",
+		data: {},
+		dataType: "json",
+		async:true,
+		success: function(res){			
+		}
+});
+<%include file="js/vip_picklist_search_list.js"%>
+//-->
+</script>

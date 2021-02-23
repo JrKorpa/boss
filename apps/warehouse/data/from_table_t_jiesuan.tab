@@ -1,0 +1,31 @@
+id = #from_table_data_t_jiesuan;
+
+[title]
+0 = "结算商";
+1 = "支付内容";
+2 = "结算方式";
+3 = "含税金";
+4 = "金额";
+
+[columns_0]
+editor = select;
+selectOptions = ["没有结算商数据,查看数字字典"];
+
+[columns_1]
+editor = select;
+selectOptions = ["没有支付内容数据"];
+
+[columns_2]
+editor = select;
+selectOptions = ["没有数据,查看数字字典"];
+readOnly = false;
+
+[columns_3]
+editor = select;
+selectOptions = ["没有数据,查看数字字典"];
+readOnly = false;
+
+[columns_4]
+type = numeric;
+format = 0,0.00;
+readOnly = false;

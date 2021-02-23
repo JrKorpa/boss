@@ -1,0 +1,164 @@
+<div class="portlet-body">
+<form action="#" method="post"  id="product_info_edit_4c">
+<input type="hidden" name="consignee" value="<%$consignee%>"/>
+<div class="form-body">
+	<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原证书号：</label>
+					<input type="text" class="form-control" name="zhengshuhao_org" value="<%$data.zhengshuhao_org%>" readonly/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原采购价：</label>
+					<input type="text"  class="form-control" value="<%$dataOrg.chengben_jia|default:''%>"  readonly/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原采购折扣：</label>
+					<input type="text" class="form-control" value="<%$dataOrg.source_discount|default:''%>"  readonly/>
+				</div>
+			</div>
+	 </div>
+	<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新证书号：<%if $data.peishi_status==1%>(<%if $data.zhengshuhao!=$data.zhengshuhao_org%><font color="red">新旧证书号不一样</font><%else%><font color="green">新旧证书号一样</font><%/if%>)<%/if%></label>
+					<!--<input name="zhengshuhao_org"  type="text" class="form-control" value="<%$data.zhengshuhao%>"/>-->
+					<input name="zhengshuhao" type="text" class="form-control" value="<%$data.zhengshuhao%>" <%if $data.peishi_status==1%>readonly<%/if%>/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购价：</label>
+					<input name="price" type="text" class="form-control" value="<%$data.price%>" readonly/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购折扣：</label>
+					<input name="discount" type="text" class="form-control" value="<%$data.discount%>" readonly/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">关联空托布产号：</label>
+					<input name="discount" type="text" class="form-control" value="<%$data.kt_bc_sn%>" disabled/>
+				</div>
+			</div>
+
+		</div>
+		<div id="hiddenAttrBox">
+			 <div class="row">
+	
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">石重：</label>
+							<input name="carat" type="text" class="form-control" value="<%$dataOrg.carat%>" readonly/>						
+						</div>					
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">切工：</label>
+							<select class="form-control" name='cut' disabled>
+								<option value="">请选择</option>
+								<%foreach from=$dataAttr.cut_arr key=key item=val %>
+								<option value='<%$val%>'<%if $dataOrg.cut==$val%> selected<%/if%>><%$val%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">净度：</label>
+						<input type="text" class="form-control" name="clarity" value="<%$dataOrg.clarity%>" readonly/>
+					</div>
+			    </div>
+				 <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">颜色：</label>
+						<input type="text" class="form-control" name="color" value="<%$dataOrg.color%>" readonly/>
+					</div>
+			    </div>
+			</div>	
+           <div class="row">  
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">形状：</label>
+						<input type="hidden" name="shape" class="form-control" value="<%$dataOrg.shape%>"/>
+						<input type="text" class="form-control" value="<%$dd->getEnum('shape',$dataOrg.shape)%>" disabled/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">抛光：</label>
+						<input type="text" class="form-control" name="polish" value="<%$dataOrg.polish|default:''%>" disabled/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">对称：</label>
+						<input type="text" class="form-control" name="symmetry" value="<%$dataOrg.symmetry|default:''%>" disabled/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">荧光：</label>
+						<input type="text" class="form-control" name="fluorescence" value="<%$dataOrg.fluorescence|default:''%>" disabled/>
+					</div>					
+				</div>	
+				
+		</div>	
+		
+						
+</div>
+		<%if $data.peishi_status==1%>
+			<div class="row">
+			    <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">配石状态：</label>
+						<input type="text" class="form-control" value="<%if $data.peishi_status%>已完成<%else%>未完成<%/if%>" disabled="disabled"/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">配石人员：</label>
+						<input type="text" class="form-control" value="<%$data.create_user%>" disabled="disabled"/>
+					</div>
+			    </div>
+			    <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">配石时间：</label>
+						<input type="text" class="form-control" value="<%$data.create_time%>" disabled="disabled"/>
+					</div>
+			    </div>
+		</div>				
+	<%/if%>
+<div>
+
+<%if $data.peishi_status==0%>
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="<%$data.id%>"/>
+		<input type="hidden" name="order_sn" value="<%$data.order_sn%>"/>
+		<button type="reset" class="btn default"><i class="fa fa-check"></i>重置</button>
+		<button type="submit" class="btn green"><i class="fa fa-check"></i>保存配石</button>
+	</div>
+</div>
+<%else%>
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="button" class="btn green" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check"></i>配石已完成，点击关闭</button>
+	</div>
+</div>
+<%/if%>
+</form>
+
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_info_edit_4c.js"%>
+//-->
+</script>

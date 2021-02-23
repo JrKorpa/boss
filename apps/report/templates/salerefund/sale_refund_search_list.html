@@ -1,0 +1,119 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <td>渠道</td>
+                <td></td>
+                <td>科目</td>
+                <td>月计</td>
+                <%foreach from=$array_week item=v key=k%>
+                    <td>第<%$k+1%>周</td>
+                <%/foreach%>
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach from=$title item=sel key=k%>
+                <%foreach from=$sel item=sel2 key=k2%>
+                    <%foreach from=$sel2 item=sel3 key=k3%>
+                        <tr>
+                            <td><%$k%></td>
+                            <td><%$k2%></td>
+                            <td><%$sel3%></td>
+                            <td>
+                                <%if $k3==200 || $k3==1200 || $k3==2200 || $k3==3200 || $k3==4200 || $k3==5200%>
+                                    <%if empty($itemdata[$k3][0])%>
+                                        0.00
+                                    <%else%>
+                                        <%$itemdata[$k3][0]%>
+                                    <%/if%>
+                                <%else%>
+                                    <%if $k=='渠道一部'%>
+                                         <%$data['month'][0][$k3]%>
+                                    <%elseif $k=='天猫'%>
+                                          <%$data['month'][1][$k3]%>
+                                    <%elseif $k=='京东'%>
+                                          <%$data['month'][2][$k3]%>
+                                    <%/if%>
+                                <%/if%>
+                                <%if $k3!=100 && $k3!=2100 && $k3!=4100 && $k3!=1100 && $k3!=3100 && $k3!=5100 %>
+                                      %
+                                <%/if%>
+                            </td>
+                            <%foreach from=$array_week item=week key=w%>
+                                <td>
+                                   <%if $k3==200 || $k3==1200 || $k3==2200 || $k3==3200 || $k3==4200 || $k3==5200%>
+                                        <%if empty($itemdata[$k3][$w+1])%>
+                                             0.00
+                                        <%else%>
+                                            <%$itemdata[$k3][$w+1]%>
+                                        <%/if%>
+                                   <%else%>
+                                        <%if $k=='渠道一部'%>
+                                            <%if empty($data['week'][0][$k3][$w])%>
+                                                0.00
+                                            <%else%>
+                                               <%$data['week'][0][$k3][$w]%>
+                                            <%/if%>
+                                        <%elseif $k=='天猫'%>
+                                            <%if empty($data['week'][1][$k3][$w])%>
+                                                  0.00
+                                            <%else%>
+                                                <%$data['week'][1][$k3][$w]%>
+                                            <%/if%>
+                                        <%elseif $k=='京东'%>
+                                            <%if empty($data['week'][2][$k3][$w])%>
+                                                  0.00
+                                            <%else%>
+                                                 <%$data['week'][2][$k3][$w]%>
+                                            <%/if%>
+                                        <%/if%>
+                                   <%/if%>
+                                    <%if $k3!=100 && $k3!=2100 && $k3!=4100 && $k3!=1100 && $k3!=3100 && $k3!=5100 %>
+                                        %
+                                    <%/if%>
+                                </td>
+                            <%/foreach%>
+                        </tr>
+                    <%/foreach%>
+                 <%/foreach%>
+            <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	/*util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#stone_use_report_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+   $('#stone_use_report_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#stone_use_report_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });*/
+//-->
+</script>

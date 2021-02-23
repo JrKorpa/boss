@@ -1,0 +1,100 @@
+<div class="portlet-body form">
+	<div class="table-toolbar">
+		<div class="btn-group">
+			<button type="button" class="btn btn-sm green" onclick="util.cust(this,pay_tzapply_save)">保存<i class="fa fa-check"></i></button>
+		</div>
+		<%$bar%>
+	</div>
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_apply_bills_info" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<input type="hidden" name="id" value="<%$info['apply_id']|default:''%>" />
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" class="form-control" readonly value="<%$info['pay_apply_number']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" class="form-control" readonly value="<%$dd->getEnum('app_pay_apply.status',$info['status'])%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" class="form-control" readonly value="<%$info['make_name']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<input type="text" class="form-control" readonly value="<%$info['make_time']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">选择供应商：</label>
+						<select class="form-control" tabindex="1" name="prc_id">
+							<option value=""></option>
+							<%foreach from=$proList key=key item=value%>
+							<option value="<%$value.id%>|<%$value.name%>" <%if !empty($info.prc_id) and $info.prc_id == $value.id%> selected="selected"<%/if%>><%$value.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付类型：</label>
+						<select class="select2_category form-control" name="type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('app_pay_should.pay_type') key=key item=value%>
+							<option value="<%$value.name%>"  <%if !empty($info.pay_type) and $info.pay_type == $value.name%> selected="selected"<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付金额：</label>
+						<input type="text" name="total_cope" class="form-control" placeholder="请输入" value="<%$info['total_cope']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">款式分类：</label><span style='color:red;'></span>
+						<select class="select2_category form-control" name="cat_type" tabindex="1" <%if $info.status == 6%>disabled<%/if%>>
+							<option value=""></option>
+							<%foreach from=$catList item=c%>
+								<option value="<%$c.id%>" <%if $info.style_type == $c.id%> selected="selected"<%/if%>><%$c.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label class="control-label">调整原因：</label>
+						<input type="text" name="adj_reason" class="form-control" placeholder="请输入" value="<%$info['adj_reason']|default:''%>">
+					</div>
+				</div>
+				<%if $info['status'] == 3%><!--已驳回的要显示驳回原因-->
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label class="control-label">驳回原因：</label>
+						<input type="text" class="form-control" readonly value="<%$info['overrule_reason']|default:''%>">
+					</div>
+				</div>
+				<%/if%>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_tz_info.js"%>
+	<%include file="js/app_apply_sub.js"%>
+//-->
+</script>

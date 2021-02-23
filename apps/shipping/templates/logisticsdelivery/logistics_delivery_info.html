@@ -1,0 +1,26 @@
+<div class="form-body">
+	<form action="#" method="post" class="horizontal-form" id="logistics_deli_qq">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">订单号：</label>
+					<input type="text" name="order_sn" class="form-control" placeholder="" onBlur="" value="<%$order_sn%>" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递号：</label>
+					<input type="text" name="delivery_sn" class="form-control" placeholder="" onBlur="" />
+				</div>
+			</div>
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+</div>
+		<script type="text/javascript">
+			<%include file="js/logistics_delivery_info.js"%>
+		</script>

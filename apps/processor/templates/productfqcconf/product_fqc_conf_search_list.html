@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>分类名称</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list item=d%>
+		<tr data-id="product_fqc_conf_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td><%$d.tree_name%></td>
+			
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

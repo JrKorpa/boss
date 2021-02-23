@@ -1,0 +1,64 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>货号</th>
+		<th>款号</th>
+		<th>主成色重</th>
+		<th>钻石大小</th>
+		<th>证书号</th>
+		<th>工费</th>
+		<th>零售价</th>
+		<%if $isViewChengbenjia%>
+		<th>退货价</th>		
+		<th>加价成本价</th>
+		<%/if%>
+		<th>手寸</th>
+		<th>长度</th>
+		<th>主成色</th>
+		<th>主石</th>
+		<th>主石粒数</th>
+		<th>副石</th>
+		<th>副石粒数</th>
+		<th>副石重</th>
+		<th>总重</th>
+		<th>净度</th>
+		<th>颜色</th>
+		<th>商品名称</th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=g%>
+	<tr data-id="button_list_<%$g.id%>" data-title="<%$g.bill_no%>">
+		<td><%$g.goods_id%></td>
+			<td><%$g.goods_sn%></td>
+			<td><%$g.jinzhong%></td>
+			<td><%$g.zuanshidaxiao|default:'--'%></td>
+			<td><%$g.zhengshuhao|default:'--'%></td>
+			<td><%$g.mairugongfei|default:'--'%></td>
+			<td><%$g.sale_price%></td>
+			<%if $isViewChengbenjia%>
+			<td><%$g.shijia%></td>			
+			<td><%$g.jiajiachengben%></td>
+			<%/if%>
+			<td><%$g.shoucun|default:'--'%></td>
+			<td><%$g.changdu|default:'--'%></td>
+			<td><%$g.caizhi|default:'--'%></td>
+			<td><%$g.zhushi|default:'--'%></td>
+			<td><%$g.zhushilishu|default:'--'%></td>
+			<td><%$g.fushi|default:'--'%></td>
+			<td><%$g.fushilishu|default:'--'%></td>
+			<td><%$g.fushizhong|default:'--'%></td>
+			<td><%$g.zongzhong|default:'--'%></td>
+			<td><%$g.zhushijingdu|default:'--'%></td>
+			<td><%$g.zhushiyanse|default:'--'%></td>
+			<td><%$g.goods_name|default:'--'%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

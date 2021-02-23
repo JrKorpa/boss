@@ -1,0 +1,171 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="dealer_customer_manage_search_form">
+			<div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">准客户姓名：</label>
+                            <input type="text" name="customer_name" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">电话：</label>
+                            <input type="text" name="tel" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">邮箱：</label>
+                            <input type="text" name="email" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">省：</label>
+                            <input type="text" name="province" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">市：</label>
+                            <input type="text" name="city" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">县区：</label>
+                            <input type="text" name="district" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">招商经理：</label>
+                            <input type="text" name="follower" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">推广专员：</label>
+                            <select class="form-control select2_sample1" tabindex="1" name="spread_id[]" multiple>
+                                    <option value=""></option>
+                                    <%foreach from=$spread key=key item=val%>
+                                      <option value="<%$val.uid%>"><%$val.account%></option>
+                                    <%/foreach%>
+                           </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">状态查询：</label>
+                            <select name="status" class="form-control" tabindex="1">
+                            <option value=""></option>
+                            <option value="待跟进">待跟进</option>
+                            <option value="跟进中">跟进中</option>
+                            <option value="成功">成功</option>
+                            <option value="舍弃">舍弃</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">来源渠道：</label>
+                            <select class="form-control select2_sample1" tabindex="1" name="source_channel[]" multiple>
+                                    <option value=""></option>
+                                    <%foreach from=$source_channel key=key item=val%>
+                                      <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+    				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">来源类型：</label>
+                            <select class="form-control select2_sample1" tabindex="1" name="source[]" multiple>
+                                    <option value=""></option>
+                                    <%foreach from=$source key=key item=val%>
+                                        <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">录入时间：</label>
+                             <div class="input-group date-picker input-daterange">
+                                <input type="text" class="form-control" name="start_time"  />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time"  />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">项目：</label>
+                            <select class="form-control select2_sample1" tabindex="1" name="text_item[]" multiple>
+                                    <option value=""></option>
+                                    <%foreach from=$text_item key=key item=val%>
+                                        <option value="<%$val%>"><%$val%></option>
+                                    <%/foreach%>
+                           </select>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" class="btn blue" onclick="downloads()"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="dealer_customer_manage_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/dealer_customer_manage_list.js"%>
+//-->
+</script>

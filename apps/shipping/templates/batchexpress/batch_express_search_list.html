@@ -1,0 +1,45 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th><input type="checkbox" class="group-checkable" data-set="#batch_express_search_list .checkboxes" /></th>
+				<th>单据号</th>				
+				<th>文件名</th>
+				<th>快递单数量</th>
+				<th>上传人</th>
+				<th>上传时间</th>
+				<th>打印时间</th>
+				<th>登记时间</th>
+				<th>快递公司</th>
+				<th>打印状态</th>
+				<th>登记状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="batch_express_search_list_<%$d.id%>" data-title="<%$d.filename%>[<%$d.id%>]">
+			    <td><input type="checkbox" class="checkboxes group-checkable" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id%><input type='hidden' value='<%$d.id%>' id="id"></td>				
+				<td><%$d.filename%></td>
+				<td align="center"><%$d.detail_num|default:0%></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+				<td><%$d.print_time%></td>
+				<td><%$d.register_time%></td>
+				<td><%if isset($expressComList[$d.express_id])%><%$expressComList[$d.express_id]%><%else%>--<%/if%></td>
+				<td><%if $d.is_print==1%>已打印<%else%>未打印<%/if%></td>
+				<td><%if $d.is_register==1%>已登记<%else%>未登记<%/if%></td>				
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/batch_express_search_list.js"%>
+//-->
+</script>

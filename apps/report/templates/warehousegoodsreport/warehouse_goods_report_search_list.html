@@ -1,0 +1,271 @@
+<%if $tongji%>
+<!-- 统计 -->
+<div class="table-toolbar">
+    <div class="btn-group">
+		货品数量:<span id="zong_num"><%$tongji['zong_num']|default:0%></span>
+    	
+        <%if Auth::canRead("warehouse_goods.nominal_price",2,0)%>
+        成本总金额:<span id="zong_chengbenjia">￥<%$tongji['zong_chengbenjia']|default:0%></span>
+        <%/if%>
+    </div>
+</div>
+<%/if%>
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+                <tr>
+                <th style="text-align:center;">
+                    <input type="checkbox" class="group-checkable" data-set="#warehouse_goods_search_list .checkboxes" />
+                </th>    
+                <th>产品线</th>
+                <th>新产品线</th>
+                <th>款式分类</th>
+                <th>新款式分类</th>
+                <th>货号</th>
+                <th>入库方式</th>
+                <th>状态</th>
+                <th>所在仓库</th>
+                <th>款号</th>
+                <th>系列及款式归属</th>
+                <th>模号</th>
+                <th>名称</th>
+                <th>价格</th>
+                <!--
+                <th>颜色</th>
+                <th>净度</th>
+                -->
+                <th>主成色</th>
+                <th>金重</th>
+                <th>手寸</th>
+                <th>金托类型</th>
+                <th>主石</th>
+                <th>主石粒数</th>
+                <th>主石形状</th>
+                <th>主石大小</th>
+                <th>主石颜色</th>
+                <th>彩钻颜色分级</th>
+                <th>主石净度</th>
+                <th>主石切工</th>
+                <th>主石规格</th>
+                <th>副石1</th>
+                <th>副石1粒数</th>
+                <th>副石1重</th>
+                <th>副石2</th>
+                <th>副石2粒数</th>
+                <th>副石2重</th>
+                <!--
+                <th>副石3－－</th>
+                <th>副石3粒数－－</th>
+                <th>副石3重－－</th>
+                -->
+                <th>证书号</th>
+                <th>证书类型</th>
+                <th>品牌</th>
+                <th>裸钻证书类型</th>
+                <!-- <th>裸钻证书号－－</th>-->
+                <th>金饰类型</th>
+                <th>结价</th>
+                <th>数量</th>
+                <th>是否绑定</th>
+                <th>所在公司</th>
+
+                <th>总库龄</th>
+                <th>本库库龄</th>
+                <th>柜位</th>
+                <th>戒托实际镶口</th>
+                <th>维修状态</th>
+                <th>维修公司</th>
+                <th>维修仓库</th>
+                <th>金耗</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+	        <tr data-id="purchase_type_list_<%$d.id%>" data-title="<%$d.goods_id%>" >
+                <td align="center">
+                    <input class="checkboxes"  type="checkbox"  name="_ids[]" value="<%$d.goods_id%>" />
+                    
+                </td>
+                <td><%$d.product_type%></td>
+                <td><%$d.product_type1%></td>
+                <td><%$d.cat_type%></td>
+                <td><%$d.cat_type1%></td>
+                <td>
+                    <%$d.goods_id%>
+<!-- 如果货品镶嵌了天生一对的钻石，货号后面显示天生一对钻石的款号 start -->
+                    <%if isset($d.tsyd) && !empty($d.tsyd) %>
+                    <br/><span style='color:red;'>(<%$d.tsyd_goods_sn%>)</span>
+                    <%/if%>
+<!-- 如果货品镶嵌了天生一对的钻石，货号后面显示天生一对钻石的款号 end -->
+                </td>
+                <td><%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%></td>
+                <td><%$dd->getEnum('warehouse.goods_status',$d.is_on_sale)%></td>
+                <td><%$d.warehouse%></td>
+                <td><%$d.goods_sn%></td>
+                 <td><%$d.xilie_name%></td>
+                <td><%$d.mo_sn%></td>
+                <td><%$d.goods_name%></td>
+                <!--<td style="text-align: center;line-height:20px;">名义价：<$d.mingyichengben></td>-->
+                <td style="text-align: center;line-height:20px;">
+                <%if Auth::canRead("warehouse_goods.nominal_price",2,$d.warehouse_id)%>名义价：<%$d.mingyichengben%><%/if%>
+                <%if Auth::canRead("warehouse_goods.cost_price",2,$d.warehouse_id)%><br/>原始采购价：<%$d.yuanshichengbenjia%><%/if%>
+                <%if Auth::canRead("warehouse_goods.purchase_price",2,$d.warehouse_id)%><br/>最新采购价：<%$d.chengbenjia%><%/if%>
+               
+                </td>
+                <!--
+                <td><$d.yanse></td>
+                <td><$d.jingdu></td>
+                -->
+                <td><%$d.caizhi%></td>
+                <td><%$d.jinzhong%></td>
+                <td><%$d.shoucun%></td>
+                <td><%$dd->getEnum('warehouse_goods.tuo_type',$d.tuo_type)%></td>
+                <td><%$d.zhushi%></td>
+                <td><%$d.zhushilishu%></td>
+                <td><%$d.zhushixingzhuang%></td>
+                <td><%$d.zuanshidaxiao%></td>
+                <td><%$d.zhushiyanse%></td>
+                <td><%$d.color_grade%></td>
+                <td><%$d.zhushijingdu%></td>
+                <td><%$d.zhushiqiegong%></td>
+                <td><%$d.zhushiguige%></td>
+                <td><%$d.fushi%></td>
+                <td><%$d.fushilishu%></td>
+                <td><%$d.fushizhong%></td>
+                <td><%$d.shi2%></td>
+                <td><%$d.shi2lishu%></td>
+                <td><%$d.shi2zhong%></td>
+                <td><%$d.zhengshuhao%></td>
+                <td><%$d.zhengshuleibie%></td>
+                <td><%$d.pinpai%></td>
+                <td><%$d.luozuanzhengshu%></td>
+                <td><%$d.ziyin%></td>
+                <td><%if $d.jiejia=='0'%>未结价<%/if%><%if $d.jiejia=='1'%>已结价<%/if%></td>
+                <td><%$d.num%></td>
+                <td><%if $d.order_goods_id%><a href="javascript:;" class="tab-con-a" data-title="订单详情" data-id="订单详情" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_goods_id=<%$d.order_goods_id%>">绑定</a><%else%>未绑定<%/if%></td>
+                <td><%$d.company%></td>
+                <td><%$d.allage|default:'未统计'%></td>
+                <td><%$d.thisage|default:'未统计'%></td>
+
+                <td><%$d.box_sn%></td>
+                <td><%$d.jietuoxiangkou%></td>
+                <td><%if $d.weixiu_status%><%$dd->getEnum('warehouse.weixiu_status',$d.weixiu_status)%><%else%>--<%/if%></td>
+                <td><%$d.weixiu_company_name%></td>
+                <td><%$d.weixiu_warehouse_name%></td>
+                <td><%$d.jinhao%></td>
+			</tr>
+
+<!-- 这个是天生一对 配对的货 start -->
+            <%if isset($d.tsyd) && !empty($d.tsyd) %>
+                <tr data-id="purchase_type_list_<%$d.tsyd.id%>" data-title="<%$d.tsyd.goods_id%>" >
+                <td align="center">
+                    <!-- <input class="checkboxes"  type="checkbox"  name="_ids[]" value="<%$d.tsyd.goods_id%>" /> -->
+                </td>
+                <td><%$d.tsyd.product_type%></td>
+				<td><%$d.tsyd.product_type1%></td>
+                <td><%$d.tsyd.cat_type%></td>
+				<td><%$d.tsyd.cat_type1%></td>
+                <td>
+                    <%$d.tsyd['goods_id']%>
+<!-- 如果货品镶嵌了天生一对的钻石，货号后面显示天生一对钻石的款号 start -->
+                    <br/><span style='color:red;'>(<%$d.tsyd_goods_sn%>)</span>
+<!-- 如果货品镶嵌了天生一对的钻石，货号后面显示天生一对钻石的款号 end -->
+                </td>
+                <td><%$dd->getEnum('warehouse.put_in_type',$d.tsyd.put_in_type)%></td>
+                <td><%$dd->getEnum('warehouse.goods_status',$d.tsyd.is_on_sale)%></td>
+                <td><%$d.tsyd.warehouse%></td>
+                <td><%$d.tsyd.goods_sn%></td>
+                 <td><%$d.xilie_name%></td>
+                <td><%$d.tsyd.mo_sn%></td>
+                <td><%$d.tsyd.goods_name%></td>
+                <!--<td style="text-align: center;line-height:20px;">名义价：<$d.tsyd.mingyichengben></td>-->
+                <td style="text-align: center;line-height:20px;">
+                <%if Auth::canRead("warehouse_goods.nominal_price",2,$d.tsyd.warehouse_id)%>名义价：<%$d.tsyd.mingyichengben%><%/if%>
+               <%if Auth::canRead("warehouse_goods.cost_price",2,$d.tsyd.warehouse_id)%><br/>原始采购价：<%$d.tsyd.yuanshichengbenjia%><%/if%>
+               <%if Auth::canRead("warehouse_goods.purchase_price",2,$d.tsyd.warehouse_id)%><br/>最新采购价：<%$d.tsyd.chengbenjia%><%/if%>
+                </td>
+                <!--
+                <td><$d.tsyd.yanse></td>
+                <td><$d.tsyd.jingdu></td>
+                -->
+                <td><%$d.tsyd.caizhi%></td>
+                <td><%$d.tsyd.jinzhong%></td>
+                <td><%$d.tsyd.shoucun%></td>
+                <td><%$dd->getEnum('warehouse_goods.tuo_type',$d.tsyd.tuo_type)%></td>
+                <td><%$d.tsyd.zhushi%></td>
+                <td><%$d.tsyd.zhushilishu%></td>
+                <td><%$d.tsyd.zhushixingzhuang%></td>
+                <td><%$d.tsyd.zuanshidaxiao%></td>
+                <td><%$d.tsyd.zhushiyanse%></td>
+                <td><%$d.tsyd.color_grade%></td>
+                <td><%$d.tsyd.zhushijingdu%></td>
+                <td><%$d.tsyd.zhushiqiegong%></td>
+                <td><%$d.tsyd.zhushiguige%></td>
+                <td><%$d.tsyd.fushi%></td>
+                <td><%$d.tsyd.fushilishu%></td>
+                <td><%$d.tsyd.fushizhong%></td>
+                <td><%$d.tsyd.shi2%></td>
+                <td><%$d.tsyd.shi2lishu%></td>
+                <td><%$d.tsyd.shi2zhong%></td>
+                <td><%$d.tsyd.zhengshuhao%></td>
+                <td><%$d.tsyd.zhengshuleibie%></td>
+                <td><%$d.tsyd.pinpai%></td>
+                <td><%$d.tsyd.luozuanzhengshu%></td>
+                <td><%$d.tsyd.ziyin%></td>
+                <td><%if $d.tsyd.jiejia=='0'%>未结价<%/if%><%if $d.tsyd.jiejia=='1'%>已结价<%/if%></td>
+                <td><%$d.tsyd.num%></td>
+                <td><%if $d.tsyd.order_goods_id%><a href="javascript:;" class="tab-con-a" data-title="订单详情" data-id="订单详情" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_goods_id=<%$d.tsyd.order_goods_id%>">绑定</a><%else%>未绑定<%/if%></td>
+                <td><%$d.tsyd.company%></td>
+                <td><%$d.tsyd.allage|default:'未统计'%></td>
+                <td><%$d.tsyd.thisage|default:'未统计'%></td>
+
+                <td><%$d.tsyd.box_sn%></td>
+                <td><%$d.tsyd.jietuoxiangkou%></td>
+                <td><%if $d.tsyd.weixiu_status%><%$dd->getEnum('warehouse.weixiu_status',$d.tsyd.weixiu_status)%><%else%>--<%/if%></td>
+                <td><%$d.tsyd.weixiu_company_name%></td>
+                <td><%$d.tsyd.weixiu_warehouse_name%></td>
+                <td><%$d.tsyd.jinhao%></td>
+                </tr>
+            <%/if%>
+<!-- 这个是天生一对 配对的货 end -->
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+        util.check(util.getItem('listDIV'));
+        //复选框组美化
+var test = $("#warehouse_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#warehouse_goods_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}
+	});
+	$.uniform.update(set);
+});
+$('#warehouse_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

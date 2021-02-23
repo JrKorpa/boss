@@ -1,0 +1,132 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="material_goods_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款式编号：</label>
+							<input type="text" name="style_sn" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款式名称：</label>
+							<input type="text" name="style_name" class="form-control" />
+						</div>
+					</div>					
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品编号：</label>
+							<input type="text" name="goods_sn" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品名称：</label>
+							<input type="text" name="goods_name" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品规格：</label>
+							<input type="text" name="goods_spec" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">分类1：</label>
+							<input type="text" name="catetory1" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">分类2：</label>
+							<input type="text" name="catetory2" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">分类3：</label>
+							<input type="text" name="catetory3" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">成本价：</label>
+							<input type="text" name="cost" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品加价率：</label>
+							<input type="text" name="goods_jiajialv" class="form-control" />
+						</div>
+					</div>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">指定销售价：</label>
+							<input type="text" name="goods_sale_price" class="form-control" />
+						</div>
+					</div>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">上下架状态：</label>
+							<select class="form-control" name="goods_status">
+								<option value=""></option>
+								<option value="1">上架</option>
+								<option value="2">下架</option>
+							</select>
+						</div>
+					</div>													
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="material_goods_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/material_goods_list.js"%>
+//-->
+</script>

@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th>订单来源/结算商</th>
+            <th>应收款(总计)</th>
+            <th>实收款(总计)</th>
+            <th>待收款(总计)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list item=f%>
+        <tr>
+            <td align="center"><%$f.ad_name%></td>
+            <td align="center"><%$f.ystotal%></td>
+            <td align="center"><%$f.sytotal%></td>
+            <td align="center"><%$f.dstotal%></td>
+        </tr>
+        <%/foreach%>
+        <tr>
+			<td align="center">总计</td>
+			<td align="center"><%$count.count_ys%></td>
+			<td align="center"><%$count.count_ss%></td>
+			<td align="center"><%$count.count_ds%></td>
+		</tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+<!--
+    util.hover();
+//-->
+</script>

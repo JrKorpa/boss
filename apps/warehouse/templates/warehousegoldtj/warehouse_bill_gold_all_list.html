@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+ 总库存数据 库存总数：<%$page_list.kucun_count%>  总成本：<%$page_list.chenben_count%>  总金重：<%$page_list.jin_count%>
+	<thead class="flip-content">
+	<%*	<tr>
+			<td colspan="12">订单总金额：<%$all_price%></td>
+		</tr>*%>
+    <tr> 
+			<th>商品渠道</th>
+			<th>库存数量</th>
+		   <th>总成本</th>
+		   <th>总金重</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_list_>" data-title="" >
+			<td  align="center"><%$d.channel%></td> 
+			<td align="center"><%$d.sku%></td> 
+			<td align="center"><%$d.cost%></td> 
+			<td align="center"><%$d.gold%></td> 
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

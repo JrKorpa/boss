@@ -1,0 +1,144 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="button_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">按钮名称：</label>
+						<input type="text" name="label" class="form-control" placeholder="请输入" onBlur="value=value.replace(/[ -~]/g,'')" maxlength="10" value="<%$view->get_label()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">按钮提示：</label>
+						<input type="text" name="tips" class="form-control" placeholder="请输入" maxlength="20" value="<%$view->get_tips()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">类型：</label>
+						<select class="form-control" tabindex="1" name="type">
+							<option value=""></option>
+							<option value="1" <%if $view->get_type()==1%>selected<%/if%>>列表页</option>
+							<option value="2" <%if $view->get_type()==2%>selected<%/if%>>查看页</option>
+							<option value="3" <%if $view->get_type()==3%>selected<%/if%>>通用类型</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">页签标题：</label>
+						<input type="text" name="data_title" class="form-control" placeholder="请输入"  value="<%$view->get_data_title()%>" maxlength="10" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">事件：</label>
+						<select class="form-control" tabindex="1" name="function_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">事件使用说明：</label>
+						<textarea id="functiontips" class="form-control" style="color: darkslateblue" readOnly="readOnly" rows="2"></textarea>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">自定义函数：</label>
+						<input type="text" name="cust_function" class="form-control" placeholder="请输入"  value="<%$view->get_cust_function()%>" maxlength="50" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">图标：</label>
+						<select class="form-control" tabindex="1" name="icon_id">
+							<option value=""></option>
+							<%foreach from=$view->getIconList() item=l %>
+								<option value="<%$l.id%>" <%if $view->get_icon_id()==$l.id%>selected="selected"<%/if%> ><%$l.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">所属模块：</label>
+						<select class="form-control" tabindex="1" name="a_id">
+							<option value=""></option>
+							<%foreach from=$view->getAppList() item=l %>
+								<option value="<%$l.id%>" mod="<%$l.code%>" <%if $l.id==$view->get_a_id()%>selected<%/if%>
+								><%$l.label%>(<%$l.code%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">所属控制器：</label>
+						<select class="form-control" tabindex="1" name="c_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">请求方法：</label>
+						<select class="form-control" tabindex="1" name="o_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">样式：</label>
+						<select class="form-control" tabindex="1" name="class_id">
+							<option value=""></option>
+							<%foreach from=$view->getClassList() item=l %>
+								<option value="<%$l.id%>" <%if $view->get_class_id()==$l.id%>selected="selected"<%/if%>><%$l.classname%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			    <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">排序：</label>
+						<input type="text" name="display_order" class="form-control" placeholder="请输入"  value="<%$view->get_display_order()%>" maxlength="100" />
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label class="control-label">请求地址：</label>
+						<input type="text" name="data_url" class="form-control" placeholder="请输入"  value="<%$view->get_data_url()%>" maxlength="100" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/button_info.js"%>
+//-->
+</script>

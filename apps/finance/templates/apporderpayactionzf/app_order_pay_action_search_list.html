@@ -1,0 +1,41 @@
+<div class="table-scrollable">
+    【订单总数】:<%$tongji.Corder_sn%>【交易记录】:<%$tongji.Cid%>【交易金额】:<%$tongji.Cdep%>
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>BDD订单号</th>
+			<th>下单时间</th>
+			<th>付款时间</th>
+			<th>订单金额</th>
+			<th>所属部门</th>
+			<th>支付方式</th>
+			<th>支付宝交易号</th>
+			<th>交易金额</th>
+            <th>淘宝订单号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_receive_list_<%$d.order_id%>" data-title="<%$d.order_id%>">
+			<td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+			<td align="center"><%$d.order_time%></td>
+			<td align="center"><%$d.pay_time%></td>
+			<td align="center"><%$d.order_amount%></td>
+			<td align="center"><%if isset($channellist[$d.department])%><%$channellist[$d.department]%><%else%>--<%/if%></td>
+			<td align="center"><%if isset($paymentlist[$d.pay_type])%><%$paymentlist[$d.pay_type]%><%else%><%$d.pay_type%><%/if%></td>
+			<td align="center"><%$d.attach_sn%></td>
+			<td align="center"><%$d.deposit%></td>
+            <td align="center"><%$d.out_order_sn%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

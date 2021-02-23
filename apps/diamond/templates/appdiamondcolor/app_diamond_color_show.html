@@ -1,0 +1,150 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			
+				 <div class="form-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">编号：</label>
+										<%$view->get_good_id()%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">数量：</label>
+										<%$view->get_quantity()%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">石重：</label>
+										<%$view->get_carat()%>
+									</div>
+								</div>
+							   
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">测量值：</label>
+										<%$view->get_measurements()%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">对称性：</label>
+										<%$view->get_symmetry()%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">抛光：</label>
+										<%$view->get_polish()%>
+									</div>
+								</div>
+							   
+							</div>
+							
+							
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="form-group">
+											<label class="control-label">荧光：</label>
+											<%$view->get_fluorescence()%>
+										</div>
+									</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">BDD价：</label>
+										<%$view->get_price()%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">供应商：</label>
+										<%foreach from=$view->getFrom_ad() key=keys item=val%>
+											 <%if $view->get_from_ad()== $keys && $keys%><%$val%><%/if%>
+										<%/foreach%>
+									</div>
+								</div>
+							   
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">净度：</label>
+											<%foreach from=$view->getClarityList() item=val%>
+											 <%if $view->get_clarity()== $val && $val%> <%$val%>  <%/if%>
+											<%/foreach%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">颜色：</label>
+											<%foreach from=$view->getColorList() item=val%>
+											 <%if $view->get_color()== $val && $val%> <%$val%>  <%/if%>
+											<%/foreach%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">颜色分级：</label>
+											<%foreach from=$view->getColor_gradeList() item=val%>
+											 <%if $view->get_color_grade()== $val && $val%> <%$val%>  <%/if%>
+											<%/foreach%>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">形状：</label>
+											<%foreach from=$view->getShapeList() key=key item=val%>
+											<%if $view->get_shape()== $val && $val%> <%$val%> <%/if%>
+											<%/foreach%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">证书类型：</label>
+											<%foreach from=$view->getCertList() item=val%>
+											<%if $view->get_cert()== $val && $val%> <%$val%> <%/if%>
+											<%/foreach%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">证书号：</label>
+										<%$view->get_cert_id()%>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_diamond_color_show.js"%>
+//-->
+</script>

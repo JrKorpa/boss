@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>属性</th>
+			<th>标识</th>
+			<th>是否启用</th>
+			<th>系统</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="dict_list_<%$d.id%>" data-title="<%$d.label%>">
+			<td><%$d.id%></td>
+			<td><%$d.name%></td>
+			<td><%$d.label%></td>
+			<td><span class="glyphicon <%if $d.is_deleted==0%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+			<td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

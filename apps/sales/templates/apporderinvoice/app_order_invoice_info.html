@@ -1,0 +1,121 @@
+<div class="portlet-body form" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_invoice_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">是否需要发票：</label>
+                        <div class="radio-list">					
+                            <select class="select2_category form-control" name="is_invoice" id="is_invoice" tabindex="1" onclick="getOrderPrice('<%$_id%>');">
+                                <%foreach from=$dd->getEnumArray("confirm") item=value%>
+                                <option value="<%$value.name%>" <%if $value.name==$view->get_is_invoice()%>selected="selected"<%/if%>
+                                        ><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票状态：</label>
+                        <div class="radio-list">					
+                            <select class="select2_category form-control" name="invoice_status" id="invoice_status" tabindex="2">
+                                <%foreach from=$dd->getEnumArray("invoice.status") item=value%>
+                                <option value="<%$value.name%>" <%if $value.name==$view->get_invoice_status()%>selected="selected"<%/if%>
+                                        ><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票类型：</label>
+                        <div class="radio-list">					
+                            <select class="select2_category form-control" name="invoice_type" tabindex="2">
+                                <%foreach from=$dd->getEnumArray("invoice.invoice_type") item=value%>
+                                <option value="<%$value.name%>" <%if $value.name==$view->get_invoice_type()%>selected="selected"<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-2">
+                    <div class="form-group">
+                        <label style="color:red;">*</label> <label class="control-label">抬头类型：</label>
+                         <div class="radio-list">
+						<select class="select2_category form-control" name="title_type" tabindex="2">
+                                <%foreach from=$dd->getEnumArray("invoice.title_type") item=value%>
+                                <option value="<%$value.name%>" <%if $value.name==$view->get_title_type()%>selected="selected"<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+						</div>
+                    </div>
+                </div>
+				<div class="col-sm-2">
+                    <div class="form-group">
+                        <label style="color:red;">*</label> <label class="control-label">发票抬头：</label>
+                        <input type="text" name="invoice_title" class="form-control" placeholder="请输入" value="<%$view->get_invoice_title()|default:""%>"  maxlength="60"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票号：</label>
+                        <input type="text" name="invoice_num" class="form-control" placeholder="请输入" value="<%$view->get_invoice_num()|default:''%>"  maxlength="45"/>
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label style="color:red;"></label> <label class="control-label">纳税人识别号（抬头为个人时不用填）：</label>
+                        <input type="text" name="taxpayer_sn" class="form-control" value="<%$view->get_taxpayer_sn()|default:''%>"  maxlength="60"/>
+                    </div>
+                </div>				
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票金额：</label>
+                        <input type="text" name="invoice_amount" id="invoice_amount" class="form-control" placeholder="请输入" value="<%$view->get_invoice_amount()%>"  maxlength="10"/>
+                    </div>
+                </div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票电子邮箱：</label>
+                        <input type="text" name="invoice_email" class="form-control" placeholder="请输入" value="<%$view->get_invoice_email()|default:''%>"  maxlength="45"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">发票邮寄地址：</label>
+                        <input type="text" name="invoice_address" class="form-control" placeholder="请输入" value="<%$view->get_invoice_address()|default:''%>"  maxlength="255"/>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">发票内容：</label>
+                        <textarea type="text" name="invoice_content" class="form-control" placeholder="请输入"  maxlength="255"><%$view->get_invoice_content()%></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <input type="hidden" name="_id" value="<%$_id|default:0%>" />
+
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+</div>    
+<!-- END FORM-->
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_order_invoice_info.js" %>
+//-->
+</script>

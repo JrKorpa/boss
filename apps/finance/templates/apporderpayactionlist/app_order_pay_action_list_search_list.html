@@ -1,0 +1,121 @@
+<%if $result%>
+<!-- 统计 -->
+<div class="table-toolbar">
+    <div class="btn-group">
+        【<span id="pay_time"><%$start_time%>到<%$end_time%></span>】
+        【收款单总数:<span id="order_num"><%$result['order_num']|default:0%></span>】
+        【订单总金额:<span id="shishou_price"><%$result['shishou_price']|default:0.00%></span>】
+        【实收金额:<span id="shishou"><%$result['zhishou']|default:0.00%></span>】<br/>
+        <!--
+		【销售单收款:<span id="paid_amont"><%$result['paid_amont']|default:0.00%></span>
+		销售单总数:<span id="paid_cnt"><%$result['paid_cnt']|default:0%></span>】
+        <br/>
+        -->
+		【未提报金额:<span id="unti_money"><%$result['unti_money']|default:0.00%></span>
+        未提报数量:<span id="unti_money_num"><%$result['unti_money_num']|default:0%></span>】		
+		【已提报金额:<span id="ti_money"><%$result['ti_money']|default:0.00%></span>
+		已提报数量:<span id="ti_money_num"><%$result['ti_money_num']|default:0%></span>】
+		【已审核金额:<span id="checked_money"><%$result['checked_money']|default:0.00%></span>
+		已审核数量:<span id="checked_money_num"><%$result['checked_money_num']|default:0%></span>】
+		【未通过金额:<span id="unchecked_money"><%$result['unchecked_money']|default:0.00%></span>
+        未通过数量:<span id="unchecked_money_num"><%$result['unchecked_money_num']|default:0%></span>】
+        <br/>
+        <%foreach from=$result['payments']  item=item%>
+            <%if $item['pay_money']>0%>   
+                【<%$item['pay_name']%>:<span id="other_money"><%$item['pay_money']|default:0.00%></span>】
+            <%/if%>  
+        <%/foreach%>
+        【其他金额:<span id="other_money"><%$result['other_money']|default:0.00%></span>】
+    </div>
+    <div class="btn-group">
+
+    </div>
+</div>
+<!-- 统计end -->
+<%/if%>
+<div class = "table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#app_order_pay_action_list_search_list .checkboxes" /></th>
+            <th>序号</th>
+            <th>订单号码</th>
+            <th>下单时间</th>
+            <th>付款时间</th>
+            <th>客户姓名</th>
+           <!-- <th>手机/电话</th>-->
+            <th>订单金额</th>
+            <th>已付金额</th>
+            <th>未付金额</th>
+            <th>支付类型</th>
+            <th>销售渠道</th>
+<!--            <th>财务处理</th>
+            <th>接待顾问</th>-->
+            <th>点款人</th>
+            <th>定金收据号</th>
+            <th>提报状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list item=d%>
+        <tr data-id="app_receive_list_<%$d.pay_id%>" data-title="<%$d.pay_id%>">
+            <td align="center"><%if $d.status==1%><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.pay_id%>" /><%/if%></td>
+            <td align="center"><%$d.pay_id%></td>
+            <td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+            <td align="center"><%$d.order_time%></td>
+            <td align="center"><%substr($d.pay_time,0,-8)%></td>
+            <td align="center"><%$d.order_consignee%></td>
+          <!--  <td align="center"></td>-->
+            <td align="center"><%$d.order_amount%></td>
+            <td align="center"><%$d.deposit%></td>
+            <td align="center"><%$d.balance%></td>
+            <td align="center"><%$payView->getPayNameById($d.pay_type)%></td>
+            <td align="center"><%if isset($allSalesChannelsData[$d.department])%><%$allSalesChannelsData[$d.department]%><%/if%></td>
+
+            <!--<td align="center"></td>
+            <td align="center"></td>-->
+            <td align="center"><%$d.opter_name%></td>
+            <td align="center"><%$d.proof_sn%></td>
+            <td align="center"><%if $d.status==1%>未提报<%/if%><%if $d.status==2%>已提报<%/if%><%if $d.status==3%>已审核<%/if%><%if $d.status==4%>审核未通过<%/if%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+</div>
+<div class = "pager">
+
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+	util.check(util.getItem('listDIV'));
+//初始化复选框
+var test = $("#app_order_pay_action_list_search_list input[type='checkbox']");
+if (test.size() > 0) {
+    test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+    }
+  });
+}
+    // table 复选框全选
+$('#app_order_pay_action_list_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+    var checked = $(this).is(":checked");
+    $(set).each(function () {
+        if (checked) {
+            $(this).attr("checked", true);
+            $(this).parents('tr').addClass("active");
+        } else {
+            $(this).attr("checked", false);
+            $(this).parents('tr').removeClass("active");
+        }                    
+    });
+    $.uniform.update(set);
+});
+$('#app_order_pay_action_list_search_list').on('change', 'tbody tr .checkboxes', function(){
+    $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

@@ -1,0 +1,52 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="button_function_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">方法名：</label>
+						<input type="text" name="name" class="form-control" autocomplete="off" placeholder="请输入" value="<%$view->get_name()%>" maxlength="30" onBlur="value=value.replace(/[^a-z_\d]/gi,'');" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">显示值：</label>
+						<input type="text" name="label" class="form-control" autocomplete="off"  placeholder="请输入"  value="<%$view->get_label()%>" maxlength="10" onBlur="value=value.replace(/[ -~]/g,'')" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">类型：</label>
+						<select class="form-control" tabindex="1" name="type">
+							<option value=""></option>
+							<option value="1">列表页</option>
+							<option value="2">查看页</option>
+							<option value="3">通用类型</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">使用提示：</label>
+						<textarea class="form-control" name="tips" rows="3" maxlength="200"><%$view->get_tips()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/button_function_info.js"%>
+//-->
+</script>

@@ -1,0 +1,56 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="base_style_cancle_check">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">作废原因：</label>
+						<%$reason_info.type%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">备注：</label>
+                        <%$reason_info.remark%>
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">操作：</label>
+                        <div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" value="7" checked="checked" name="check_status"/> 审核通过
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="3" name="check_status"/> 审核驳回
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_style_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_style_cancle_check.js"%>
+//-->
+</script>

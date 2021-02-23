@@ -1,0 +1,113 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="user_personal_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">员工编号：</label>
+                        <input type="text" name="code" class="form-control" value="<%$view->get_code()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">姓名：</label>
+                        <input type="text" name="real_name" class="form-control" value="<%$view->get_real_name()%>" disabled="true" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">性别：</label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("gender") key=k item=value%>
+                            <label class="radio-inline">
+                                <input disabled="true" type="radio" name="gender" <%if $view->get_gender()==$value.name or ($view->get_gender()=="" and $k==0)%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">帐号：</label>
+                        <input type="text" name="account" class="form-control" value="<%$view->get_account()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">邮箱：</label>
+                        <input type="text" name="email" class="form-control" value="<%$view->get_email()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">类型：</label>
+                        <select class="select2_category form-control" name="user_type" tabindex="1" disabled="true">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("user.user_type") item=value%>
+                            <option value="<%$value.name%>" <%if $value.name==$view->get_user_type()%>selected="selected"<%/if%>
+                            ><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">手机：</label>
+                        <input type="text" name="mobile" class="form-control" value="<%$view->get_mobile()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">身份证号：</label>
+                        <input type="text" name="icd" class="form-control" value="<%$view->get_icd()%>" disabled="true">
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">生日：</label>
+                        <input type="text" name="phone" class="form-control" placeholder="请输入" value="<%$view->get_birthday()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">电话：</label>
+                        <input type="text" name="phone" class="form-control" placeholder="请输入" value="<%$view->get_phone()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">入职时间：</label>
+                        <input type="text" name="phone" class="form-control" placeholder="请输入" value="<%$view->get_join_date()%>" disabled="true">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">住址：</label>
+                        <input type="text" name="address" class="form-control" value="<%$view->get_address()%>" disabled="true">
+                    </div>
+                </div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">当前所在公司：</label>
+                        <input type="text" class="form-control" value="<%$data.company_name%>" disabled="true">
+                    </div>
+                </div>
+				<div class="col-sm-8">
+                    <div class="form-group">
+                        <label class="control-label">可切换公司列表：</label>
+						<textarea class="form-control" disabled="true"><%$data.has_company%></textarea>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/personal.js"%>
+//-->
+</script>

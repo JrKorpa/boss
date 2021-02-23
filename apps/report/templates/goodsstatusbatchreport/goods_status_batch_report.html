@@ -1,0 +1,31 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form">
+			<div class="form-body">
+				<button class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">离开<i class="fa fa-mail-reply"></i></button>
+			</div>
+		<!-- 表单内容 -->
+		<form action="index.php?mod=report&con=GoodsStatusBatchReport&act=get_goods_batch" class="form-inline" role="form" method="post" id="goods_status_batch_report">
+		<!-- END FORM-->
+        <div class="form-body">
+            <div class="form-group">
+                <label class="control-label">货号：(不同货号请按<b style="color:red;">英文模式逗号</b>隔开)</label><br>
+                <textarea id="goods_sn" class="form-control" name="goods_sn" placeholder="批量使用逗号隔开输入。" rows="15" cols="45"></textarea>
+            </div>
+        </div>
+        <div class="form-body" align="center">
+            <button type="submit" class="btn btn-sm green" val="1"><i class="fa fa-search"></i> 提交下载</button>
+        </div>
+        </form>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	//<%include file="js/goods_status_batch_report.js"%>
+//-->
+</script>

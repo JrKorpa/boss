@@ -1,0 +1,91 @@
+<div class="portlet-body form">
+	<div class="tab-pane active" id="stone_procure_info_title">
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i> 石包采购申请
+				</div>
+			</div>
+			<div class="portlet-body form">
+				<form action="#" method="post" class="horizontal-form" id="stone_procure_info">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">采购单号：</label>
+									<input type="text" name="pro_sn" class="form-control" placeholder="自动生成"  value="<%$view->get_pro_sn()%>" readonly/>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">总金额：</label>
+									<div class="input-group">
+										<span class="input-group-btn "><button class="btn default" type="button">&yen;</button></span>
+										<input type="text" name="pro_total" class="form-control" placeholder="自动计算"  value="<%$view->get_pro_total()%>" readonly/>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">采购重量：</label><span style='color:red;'>*</span>
+									<input type="text" name="pro_ct" class="form-control" placeholder="自动计算"  value="<%$view->get_pro_ct()%>" readonly/>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">采购方式：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="pro_type" tabindex="1">
+										<option value=""></option>
+										<%foreach from=$dd->getEnumArray('warehouse.put_in_type') item=v%>
+										<option value="<%$v.name%>" <%if $v.name==$view->get_pro_type()%>selected<%/if%>><%$v.label%></option>
+										<%/foreach%>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class="control-label">备注：</label>
+									<input type="text" name="note" class="form-control" placeholder="请输入"  value="<%$view->get_note()%>"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>石包明细列表
+				</div>
+			</div>
+			<div class="portlet-body">
+				<!-- 提示信息 -->
+				<p class="text-danger"></p>
+				<!-- 表格信息 -->
+				<div class="table-scrollable" id="stone_procure_detail">
+				</div>
+				<!-- 分页 -->
+				<div class="pager"></div>
+			</div>
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" form="stone_procure_info"/>
+				<button type="button" id="stone_procure_info_submit_btn" class="btn green" form="stone_procure_info"><i class="fa fa-check"></i> 保存</button>
+				<div style="display:none">
+					<button type="reset" class="btn"><i class="fa"></i> 重置</button>
+				</div>
+				<span type="colse" id="stone_procure_close_btn" class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/table_data_info.js"%>// table插件表头信息
+	<%include file="js/stone_procure_info.js"%>
+//-->
+</script>

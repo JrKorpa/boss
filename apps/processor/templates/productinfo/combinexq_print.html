@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 组合镶嵌标签打印 </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<STYLE>
+@media print {
+.noprint{display:none}
+}
+</STYLE>
+ </head>
+ <body style=" padding:0px; margin:0px"><input type="button" value="打印" onclick="window.print();" class="noprint"><br class="noprint"/>
+
+<div style="width:36mm;  border:1px solid #ccc; background:#FFF; margin:0px 0px 0px 4px; padding:0px; font-size:2.5mm;font-family:'微软雅黑'">
+	布产号&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.bc_sn%></span><br />
+	客户名&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.consignee%></span><br />
+	订单号&nbsp;<span style="font-size:1.4em"><%$data.p_sn%></span><br />
+	主石&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.cart|default:''%>ct/<%$data.clarity|default:''%>/<%$data.color|default:''%></span><br />	
+	证书号&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.zhengshuhao%></span><br />
+	属性&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.caizhi%><%$data.jinse%>/<%$data.jinzhong%>g/<%$data.zhiquan%>#</span><br />
+	刻字&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.kezi%></span><br />
+	表面工艺&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.face_work%></span><br />
+	备注&nbsp;&nbsp;<span style="font-size:1.4em"><%$data.info%></span>	
+</div>
+
+
+ </body>
+</html>

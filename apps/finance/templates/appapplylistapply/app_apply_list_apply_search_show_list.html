@@ -1,0 +1,50 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>货号/单号</th>
+			<th>系统金额</th>
+			<th>应付金额</th>
+			<th>偏差值</th>
+			<th>偏差说明</th>
+			<%if $olddo['status'] == 3 || $olddo['status'] == 2%>
+			<th <%if $olddo['status'] == 2%>style="display:none;"<%/if%>>驳回原因</th>
+			<%/if%>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=item%>
+		<tr data-id="app_apply_list_apply_search_list_<%$item.id%>" data-title="<%$item.id%>">
+			<td align="center"><%$item.serial_number%></td>
+			<td align="center"><%$item.goods_id%></td>
+			<td align="center"><%$item.total%></td>
+			<td align="center"><%$item.total_cope%></td>
+			<td align="center"><%$item.total_dev%></td>
+			<td align="center">
+			<%if $item.total_dev != 0 && $olddo['status'] == 1%>
+				<input type="hidden" name="ids[]" value="<%$item.id%>" />
+				<select id="direc_<%$item.id%>" name="direc_<%$item.id%>">
+					<option value="">请选择...</option>
+					<option value="石包调价" <%if $item.dev_direction == '石包调价'%> selected <%/if%>>石包调价</option>
+					<option value="入库碎钻未入成本" <%if $item.dev_direction == '入库碎钻未入成本'%> selected <%/if%>>入库碎钻未入成本</option>
+					<option value="金重差异" <%if $item.dev_direction == '金重差异'%> selected <%/if%>>金重差异</option>
+					<option value="工费调整" <%if $item.dev_direction == '工费调整'%> selected <%/if%>>工费调整</option>
+				</select><font color="f00;">(必选)</font>
+				<%else%>
+				<%$item.dev_direction%>
+				<%/if%>
+			</td>
+			<%if $olddo['status'] == 3 || $olddo['status'] == 2%>
+			<td <%if $olddo['status'] == 2%>style="display:none;"<%/if%>><%$item.overrule_reason%></td>
+			<%/if%>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+
+	util.check(util.getItem('listDIV'));
+//-->
+</script>

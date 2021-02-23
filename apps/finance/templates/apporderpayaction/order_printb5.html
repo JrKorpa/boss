@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style media="print">
+	.noprint {display:none;}
+	.PageNext{page-break-after: always;}
+</style>
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+td {
+	font-size: 10px;
+}
+.tdjianju {
+	line-height: 30px;
+}.lianjie a:link {
+	color: #000000;
+	text-decoration: none;
+}
+.lianjie a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+.lianjie a:hover {
+	color: #FF0000;
+	text-decoration: none;
+}
+.STYLE2 {line-height: 20px; font-size: 12px; }
+.STYLE7 {color: #FFFFFF}
+.STYLE8 {line-height: 22px; font-size: 12px; font-weight: bold; }
+.STYLE9 {color: #FF0000}
+.STYLE10 {
+	font-size: 22px;
+	font-weight: bold;
+}
+.STYLE11 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.lianjie1 a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.lianjie1 a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.lianjie1 a:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.STYLE14 {font-size: 12px; font-weight: bold; color: #000000; }
+.STYLE15 {font-size: 12px}
+.STYLE16 {line-height: 22px; font-size: 12px; }
+.STYLE4 {line-height: 25px; font-size: 12px; }
+.return_goods * {text-decoration:line-through;}
+.dwqr{position: absolute; bottom:0; right:0;width:140px; height:122px;text-align: center;}
+.dwqr img{padding: 0;margin: 0}
+.dwqr p{padding:0;margin: 0;line-height: 22px;font-size: 12px}
+.print{width: 750px;margin: 0 auto; padding: 30px 25px;overflow: hidden;}
+.print button{float: right;height: 28px;padding:4px 20px; margin:0 10px}
+</style>
+<style type="text/css">
+body,td { font-size:10px; line-height:18px;}
+</style>
+</head>
+
+<body>
+<div class="print">
+    <button id="print_close">关闭</button>
+    <button id="print_btn">打&nbsp;印</button>
+</div>
+<table width="100%" cellspacing="0" cellpadding="1" border="0">
+    <tbody>
+        <tr>
+            <td>
+            <table style="margin-bottom: 1px; border-bottom: #000 2px solid" cellspacing="0" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td width="14%"><img alt="" border="0" src="public/img/logo3.jpg" />
+						</td>
+                        <td valign="middle" width="86%">
+                        <h1 style="padding-left: 0px; padding-top: 20px; font-size:30px;"><%$orderinfo.title%><!--BDD货品定制单--></h1></td>
+						<td align="right">
+                            <img src="http://bardcode.kela.cn/index.php?code_sn=<%$orderinfo.order_sn%>" style="float:right;" width="200">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <table style="line-height: 20px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>收货人: <%$orderinfo.consignee%>&nbsp;<!-- 收货人姓名 --></td>
+                        <td>手机号码：<%$orderinfo.mobile%><!-- 手机号码 --></td>
+                        <td align="right" >订单编号：</td>
+                        <td><%$orderinfo.order_sn%><!-- 订单号 --></td>
+                        <!--<td align="right">支付方式：</td>
+                        <td></td>-->
+                    </tr>
+                    <tr>
+                        <td colspan="3">收货地址：[<%$addressinfo.country_name%>]&nbsp;<%$addressinfo.regionstr%></td>
+                        <td align="center"><!--{if $chknum}会员等级:{$chknum}{/if}--></td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table style="border-right: #000 1px solid; border-top: #000 1px solid; margin-top: 1px; border-left: #000 1px solid; border-bottom: #000 1px solid; border-collapse: collapse" width="100%" border="1">
+                            <tbody>
+                                <tr align="center">
+                                    <td>商品名称<!-- {$lang.goods_name}--></td>
+                                    <td>款号<!--{$lang.goods_sn} --></td>
+									<td scope="col"><div align="center">石重</div></td>
+									<td scope="col"><div align="center">指圈</div></td>
+                                    <td scope="col"><div align="center">金料</div></td>
+                                    <td scope="col"><div align="center">金料颜色</div></td>
+									<td scope="col"><div align="center">刻字</div></td>
+                                    <td>小计<!--小计--></td>
+
+                                </tr>
+                                <%foreach from=$detailsinfo item=goods key=key%>
+                                <tr <%if $goods.is_return == 1%> class="return_goods"<%/if%>>
+                                    <td>&nbsp;<%$goods.goods_name%><!--商品名称.--></td>
+                                    <td>&nbsp;<%$goods.goods_sn%><!--货号--></td>
+									<td><div align="right"><%if isset($goods.pro['石重'])%><%$goods.pro['石重']%><%/if%></div></td>
+									<td><div align="right"><%if isset($goods.pro['指圈'])%><%$goods.pro['指圈']%><%/if%></div></td>
+                                    <td><div align="right"><%if isset($goods.pro['材质'])%><%$goods.pro['材质']%><%/if%></div></td>
+                                    <td><div align="right"><%if isset($goods.pro['金色'])%><%$goods.pro['金色']%><%/if%></div></td>
+									<td><div align="right"><%if isset($goods.pro['刻字'])%><%$goods.pro['刻字']%><%/if%></div></td>
+                                    <td><%$goods.xiaoji%>&nbsp;<!--小计 --></td>
+                                </tr>
+                                <%/foreach%>
+                                <tr>
+                                    <!-- 发票抬头和发票内容 -->
+                                    <td colspan="6">发票抬头:<%$orderinvoice.invoice_title%><br/>发票邮寄地址：<%$orderinvoice.invoice_address%></td>
+
+                                    <!-- 商品总金额 -->
+                                    <td colspan="1"></td>
+                                    <td colspan="1"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr>
+						<!--<td style="padding-right: 15px"align="right">商品总金额：:￥<%$order_account.money_paid+$order_account.money_unpaid%> - 已支付金额：￥<%$order_account.money_paid%> = 未支付金额：￥<%$order_account.money_unpaid%></td>-->
+						<td style="padding-right: 15px"align="right">订单总金额：￥<%$order_account.order_amount%>元 - 已付款金额：￥<%$order_account.money_paid%>元 + 实退金额 ￥<%$order_account.real_return_price%>元 = 应收尾款：￥<%$order_account.money_unpaid%>元</td>
+					</tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <table style="margin-top: 1px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+					<tr>
+                        <td><strong><!--用户给商家留言-->订单备注：</strong> <%$orderinfo.order_remark%></td>
+                    </tr>
+                    <tr>
+                        <td><strong><!--用户给商家留言-->赠品信息：</strong> <%$gift.giftstr%><%if $gift.remark%>--<%$gift.remark%><%/if%></td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+		<tr>
+            <td>
+            <table style="margin-top: 1px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+					<td colspan="2">
+<b>订购须知：</b><br />
+1.购买现货产品的，应在本单签订之日向BDD支付全款；购买订制产品的，应在本单签订之日支付BDD不低于产品总额50%的预付款<br />
+2.您向BDD购买的产品均附有相应的国际证书或国检证书。<br />
+3.购买订制产品的，如由于原材料紧缺、产品成本上涨等不可抗力原因，造成BDD无法按时交货，BDD将在本订单签订之日起7个工作日内向您说明，您可以选择其他同类产品生成新订单并享受总价1%的折扣优惠或者您可以选择取消本单，BDD退还您已支付的预付款并赠送歉意礼品。</i></u></b><br />
+4.购买现货产品的，BDD将于您付清货款当日交付产品；购买订制产品的，BDD自本单签订之日起35个工作日内向您交付产品（若在本单生产过程中您与BDD确认一致要修改定制内容影响生产周期，交付期限将从确认订制内容之日起重新计算35个工作日）。<br />
+5.购买订制产品的，自BDD通知您取货之日起，您应在30天内到店支付办理验货及结算取货手续，如您未在30天内完成验货及结算取货手续，自BDD通知您取货之日起，您应按照订单总价的1%/天向BDD支付该商品的保管费。<br />
+6.<b><u><i>特别说明：对于您购买黄金、裸钻、珍珠、特价及订制产品的，除因产品质量问题外，BDD不接受退、换货。购买现货产品提出特殊需求，如刻字、改圈等影响二次销售的订单产品，BDD也将不接受退、换货。</i></u></b><br />
+7.由于国内外钻石分级标准不同，如您选择的钻石国检证书复检后颜色和净度低于国际证书2级或以上，您可选择退货（赠送歉意礼品）或换货，换货将享受新订单总额1%的现金优惠。<br />
+8.BDD销售的成品裸钻，均以附带的证书内容为准。如客户自行送检结果出现证书级别与国际证书级别不一致的情况（除第7条外），不得以此向BDD要求退货或者赔偿。<br />
+9.本单一式两份，各执一份，在您签名确认和加盖BDD销售专用章后生效。<br />
+<b>收货检验小提示:</b><br />
+1.由于监督检验中心的信息录入会滞后产品交付时间，一般在收到产品10天内可查询相关信息。<br />
+2.国家黄金钻石制品质量监督检验中心（NGDTC）证书查询，请访问 http://www.ngdtc.cn/Index.asp。<br />
+3.GIA裸钻查询地址：http://www.gia.edu/reportcheck/。<br />
+4.如果其他类别的质监证书，请咨询BDD客服人员。BDD官网（http://www.kela.cn），客服电话：400-8980-188。<br />
+					</td>
+                    </tr>
+					<tr >
+					<td><b><i>我已阅读并同意上述约定，客户签名：____________</i></b></td><td>BDD销售专用章(盖章)<br/></td>
+					</tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <table style="margin-top: 1px" cellspacing="0" cellpadding="1" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <table cellspacing="0" cellpadding="1" width="100%" border="0">
+                                <tbody>
+                                <tr>
+                                    <td style="padding-top: 10px">网（http://www.kela.cn） 地址：&nbsp;&nbsp; <!--kela.cn 网（ http://www.kela.cn/）<br />地址：北京市宣武区菜市口大街平原里21号亚泰中心1011室  电话：400-722-8000,010-63559332--></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 10px">体验店电话：客服中心电话：400-8980-188<!--kela.cn 网（ http://www.kela.cn/）<br /地址：北京市宣武区菜市口大街平原里21号亚泰中心1011室  电话：400-722-8000,010-63559332--></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 10px" align="center"><!--订单操作员以及订单打印的日期 -->打印时间：<%date("Y-m-d H:i:s")|date_format:"%Y-%m-%d"%>&nbsp;&nbsp;&nbsp;销售顾问:<%$orderinfo.create_user%></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+
+
+
+    </tbody>
+</table>
+<div class="dwqr">
+    <img src="<%$channel.qrcode%>" width="100" height="100" alt="" />
+    <p>关注微信,查询订单更方便</p>
+</div>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $('#print_close').click(function(){
+        window.close();
+    });
+    $('#print_btn').click(function(){
+        $(".print").hide();
+        window.print();
+    });
+</script>
+
+</body>
+</html>

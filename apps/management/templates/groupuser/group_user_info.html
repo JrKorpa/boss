@@ -1,0 +1,35 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="group_user_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="form-group">
+						<label class="control-label">用户：</label>
+						<select class="select2_category form-control" name="user_id[]"  tabindex="1" multiple>
+							<option value=""></option>
+							<%foreach from=$view->getUserTree() item=value%>
+							<option value="<%$value.id%>"><%$value.account%>(<%$value.real_name%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="group_id" value="<%$view->get_group_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/group_user_info.js"%>
+//-->
+</script>

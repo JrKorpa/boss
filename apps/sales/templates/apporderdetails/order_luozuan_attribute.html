@@ -1,0 +1,151 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_luozuan_attribute">
+	<form action="#" class="horizontal-form" method="post" id="app_order_detail_luozuan_form">
+		<%foreach from=$data item=item%>
+		<div class="form-body">
+			<div class="row">
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>名称:</b></label>
+						<%$item.goods_name%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>货号：</b></label>
+						<%$item.goods_sn%>
+					</div>	
+				</div>
+				 <div  class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><b>商品数量：</b></label>
+                            <%$item.goods_number%>
+                        </div>
+                  </div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>石重：</b></label>
+						<%$item.carat%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>镶口：</b></label>
+						0
+					</div>
+				</div>
+				 <div  class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><b>净度：</b></label>
+                            <%$item.clarity%>
+                        </div>
+                  </div>
+
+
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>颜色：</b></label>
+						<%$item.color%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>切工：</b></label>
+						<%$item.cut%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>形状：</b></label>
+						<%$dd->getEnum("shape",$item.shape)%>
+					</div>
+				</div>
+				 <div  class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><b>对称：</b></label>
+                            <%$item.symmetry%>
+                        </div>
+                  </div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>抛光：</b></label>
+						<%$item.polish%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>荧光：</b></label>
+						<%$item.fluorescence%>
+					</div>
+				</div>
+				 <div  class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><b>BDD价：</b></label>
+                            <%if isset($item.shop_price_recalc)&&$item.shop_price_recalc==0%><font color="red"><%$item.shop_price%></font><%else%><%$item.shop_price%><%/if%>
+                        </div>
+                  </div>
+				 <div  class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><b>证书号类型：</b></label>
+                            <%$item.cert%>
+                        </div>
+                  </div>
+
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>证书号：</b></label>
+						<%$item.cert_id%>
+					</div>
+				</div>
+				<div  class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label"><b>是否活动：</b></label>
+						<%if $item.is_active==1%>正常<%else%>活动<%/if%>
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label"><b>镶嵌方式：</b></label>
+                        <select class="form-control " name='xiangqian' id='xiangqian'>
+                            <option value=""></option>
+                            <%foreach from=$xiangqian key=key item=p %>
+                            <option value='<%$key%>'>
+                            <%$p%>
+                            </option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label"><b>是否支持4C配钻：</b></label>
+                        <select class="form-control " name='is_peishi' id='is_peishi'>
+                            <!--<option value=""></option>
+                            <option value='1'>是</option>-->
+							<option value='0' selected="selected">否</option>
+                        </select>
+                    </div>
+                </div>
+		    </div>
+			<center> <div id="point" style="display:none;font-size:16px; color:red; margin:5px 0px"></div></center>
+		</div>
+		<%/foreach%>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="goods_type"  value="luozuan"/>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/order_luozuan_attribute.js"%>
+//-->
+</script>

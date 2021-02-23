@@ -1,0 +1,54 @@
+<div class="table-scrollable">
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>采购单号</th>
+                <th>审核时间</th>
+                <th>布产号</th>
+                <th>布产状态</th>
+                <th>销售渠道</th>
+                <th>款号</th>
+                <th>主石单颗重</th>
+                <th>钻石颜色</th>
+                <th>钻石净度</th>
+                <th>材质</th>
+                <th>18K可做色</th>
+                <th>指圈</th>
+                <th>可占用名额</th>
+			</tr>
+		</thead>
+		<tbody>
+        <%if !empty($page_list.data)%>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="stock_purchase_search_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.p_sn%></td>
+                <td><%$d.check_time%></td>
+                <td><%$d.bc_sn%></td>
+                <td><%$dd->getEnum('buchan_status',$d.status)%></td>
+                <td><%$view->get_dep_name($d.channel_ids)%></td>
+                <td><%$d.style_sn%></td>
+                <td><%$d.attrdata.zuanshidaxiao%></td>
+                <td><%$d.attrdata.yanse%></td>
+                <td><%$d.attrdata.jingdu%></td>
+                <td><%$d.attrdata.caizhi%></td>
+                <td><%$d.attrdata.18k_color%></td>
+                <td><%$d.attrdata.zhiquan%></td>
+                <td><%$d.rel_num%></td>
+			</tr>
+		<%/foreach%>
+        <%else%>
+            <span>没有相关信息</span>
+        <%/if%>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,37 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="base_order_info_gift">
+           <div class="row">
+               <div class="col-sm-12 gift_goods_list">
+                   <label class="control-label" style="display: block;">可选赠品：</label>
+                   <table>
+                   <%foreach from=$gifts key=key item=val%>
+                   <label class="radio-inline">
+                       <input type="checkbox" value=<%$key%> <%if in_array($key,$gifta)%>checked =checked<%/if%> name="gift_id[]">
+                       <%$val%>
+                   </label>
+                       <input name="gift_num[<%$key%>]" type="text" value="<%if array_key_exists ($key,$giftt)%><%$giftt.$key%><%else%>1<%/if%>" <%if in_array($key,$gifta)%>style="display:inline;"<%else%>style="display: none;" <%/if%> size="3" />
+                   <%/foreach%>
+                    </table>
+               </div>
+               <div class="col-sm-12">
+                   <label class="control-label">赠品备注：</label>
+                   <textarea  name="gift_remark" class="form-control"><%$giftremark|default:''%></textarea>
+               </div>
+        </div>
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="order_id" value="<%$_id|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/base_order_info_gifts.js"%>
+    //-->
+</script>

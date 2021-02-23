@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>渠道操作员信息
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+
+			<div class="portlet-body form" id="user_channel_search_form">
+				<div class="form-body">
+					<label class="control-label">检索用户：</label>
+					<input type="text" name="name" class="form-control" placeholder="请输入账号/姓名">
+					<input type="hidden" name="user_id">
+					<span style="color:red;display:inline-block;margin-top:5px;">仅能检索渠道操作员！！！</span>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+    <div class="col-sm-9">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>关联渠道列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <%$bar%>
+                </div>
+                <!--搜索开始-->
+                <div class="portlet box green">
+                        <div class="portlet-title">
+                                <div class="caption">
+                                        <i class="fa fa-reorder"></i>搜索框
+                                </div>
+                                <div class="tools">
+                                        <a href="javascript:;" class="expand">
+                                        </a>
+                                </div>
+                        </div>
+                        <div class="portlet-body form" style="display: none;">
+                               <!-- 表单内容 -->
+                               <form action="#" class="horizontal-form" method="post" id="user_channel_search_result_form">
+                                       <div class="form-body">
+                                               <div class="row">
+                                                       <div class="col-sm-4">
+                                                               <div class="form-group">
+                                                                       <label class="control-label">渠道名称:</label>
+                                                                      <input type="text" name="search_field" class="form-control" placeholder="请输入"  value="" />
+                                                               </div>
+                                                       </div>
+                                               </div>
+                                           <input type="hidden" name="house_id" value="0" />
+                                       </div>
+                                       <!-- 搜索按钮 -->
+                                       <div class="form-actions fluid">
+                                               <div class="col-md-offset-3 col-md-9">
+                                                       <button type="reset" class="btn default">重置</button>
+                                                       <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                                               </div>
+                                       </div>
+                               </form>
+                               <!-- END FORM-->
+                       </div>
+                </div>
+                <!-- 表格1 -->
+                <div class="flip-scroll" id="user_channel_search_list">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/user_channel_list.js"%>
+    //-->
+</script>

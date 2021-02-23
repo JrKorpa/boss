@@ -1,0 +1,46 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+        <div class="form-body">
+            <div class="row">
+                <div class="form-group">
+                    <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                        <tr>
+                            <th>供应商名称</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody id="processor_supplier_info_tbody">
+                        <%if !empty($supplier)%>
+                        <%foreach from=$supplier key=k item=u%>
+                        <tr>
+                            <td><%$u.name%></td>
+                            <td>
+                                <%if $u.status==1%>启用<%else%>禁用<%/if%>
+                            </td>
+                        </tr>
+                        <%/foreach%>
+                        <%else%>
+                        <tr><td colspan="2">该供应商还没有关联供应商！！！</td></tr>
+                        <%/if%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-4 col-md-6">
+                <button id="app_processor_group_show_close_btn" type="close" class="btn green"><i class="fa fa-check"></i>关闭</button>
+            </div>
+        </div>
+    <!-- END FORM-->
+</div>
+
+<script type="text/javascript">
+$import(function(){
+    $('#app_processor_group_show_close_btn').click(function(){
+        $('.modal-scrollable').trigger('click');
+    });
+});
+</script>

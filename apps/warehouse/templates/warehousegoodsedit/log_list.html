@@ -1,0 +1,19 @@
+<table class="table table-bordered table-striped  flip-content" >
+	<tbody>
+		<tr>
+			<th width='10%'>序号</th>
+			<th>操作明细</th>
+			<th width='15%'>操作人</th>
+			<th width='20%'>操作时间</th>
+		</tr>
+		<%foreach from=$data.data item=d key=k%>
+		<tr>
+			<td><%$k+1%></td>
+			<td><%$d.info%></td>
+			<td><%$d.update_user%></td>
+			<td><%$d.update_time%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

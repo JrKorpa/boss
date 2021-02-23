@@ -1,0 +1,96 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="payment_search_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">支付名称：</label>
+                            <input type="text" name="pay_name" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">使用范围：</label>
+						 <select class="select2_category form-control" name="is_range" tabindex="1">
+                            <option value=""></option>
+                            <option value="1">线上</option>
+                            <option value="2">线下</option>
+                            <option value="3">线上&线下</option>
+                        </select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">使用方式：</label>
+						 <select class="select2_category form-control" name="is_way" tabindex="1">
+                            <option value=""></option>
+                            <option value="1">订购</option>
+                            <option value="2">结算</option>
+                            <option value="3">订购&结算</option>
+                        </select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">启用：</label>
+						 <select class="select2_category form-control" name="is_enabled" tabindex="1">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+                            <option value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+						</div>
+					</div>
+                </div>
+                
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>支付方式
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+        <!-- 表格1 -->
+        <div class="table-scrollable" id="payment_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/payment_list.js"%>
+    //-->
+</script>

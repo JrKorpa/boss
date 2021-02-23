@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>单据类型</th>
+			<th>单据号码</th>
+			<th>操作类型</th>
+			<th>操作内容</th>
+			<th>操作人</th>
+			<th>操作时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_pay_log_list_<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$view->OrderType($d.order_type)%></td>
+			<td align="center"><%$d.order_no%></td>
+			<td align="center"><%$view->HandleType($d.handle_type)%></td>
+			<td align="left"><%$d.content%></td>
+			<td align="center"><%$d.create_name%></td>
+			<td align="center"><%date('Y-m-d H:i:s',$d.create_time)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

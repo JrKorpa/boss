@@ -1,0 +1,38 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>单号</th>
+                                <th>操作时间</th>
+                                <th>原因类别</th>
+                                <th>操作人</th>
+                                <th>备注</th>
+                                <th>质检类型</th>
+                                
+			</tr>
+                       
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="order_fqc_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.order_sn%></td>
+                                <td><%$d.datatime%></td>
+                                <td><%$d.problem_type%></td>
+                                <td><%$d.admin%></td>
+                                <td><%$d.remark%></td>
+                                <td>FQC</td>
+                                
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

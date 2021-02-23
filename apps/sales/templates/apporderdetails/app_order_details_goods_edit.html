@@ -1,0 +1,208 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_style_goods_attribute">
+	<form action="" class="horizontal-form" method="post" id="app_order_details_goods_edit_info">
+		<div class="form-body">
+		
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货号：</label>
+						<%$orderDetail['goods_id']|default:''%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<%$orderDetail['goods_sn']|default:''%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">商品名称：</label>
+						<%$orderDetail['goods_name']|default:''%>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">是否4C配钻:</label>
+						<%if !empty($orderDetail['is_peishi'])%>是<%else%>否<%/if%>
+					</div>					
+                </div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石单颗重</label>
+							<input class="form-control" type='text' name='cart' value='<%$orderDetail["cart"]|default:"0"%>'<%if !in_array('cart',$edits)%> readonly<%/if%>/>
+                        </div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石粒数</label>
+						<input class="form-control" type='text' name='zhushi_num' value='<%$orderDetail["zhushi_num"]|default:"0"%>'<%if !in_array('zhushi_num',$edits)%> readonly<%/if%>>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石颜色</label>
+						<select class="form-control" name="color"<%if !in_array('color',$edits)%> disabled<%/if%>>
+						   <option value=""></option>
+						   <%foreach from=$goodsAttrs.color key=key item=val %>
+						   <option value='<%$val%>'  <%if isset($orderDetail["color"]) && $orderDetail["color"]==$val%>selected="selected"<%/if%>><%$val%></option>
+						   <%/foreach%>
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石净度</label>
+						<select class="form-control" name="clarity"<%if !in_array('clarity',$edits)%> disabled<%/if%>>
+						   <option value=""></option>
+						   <%foreach from=$goodsAttrs.clarity key=key item=val %>
+						   <option value='<%$val%>' <%if isset($orderDetail["clarity"]) && $orderDetail["clarity"]==$val%>selected="selected"<%/if%>><%$val%></option>
+						   <%/foreach%>
+                   		</select>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="row">
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质</label>
+							<select class="form-control" name="caizhi"<%if !in_array('caizhi',$edits)%> disabled<%/if%>>
+							   <option value=""></option>
+							   <%foreach from=$goodsAttrs.caizhi key=key item=val %>
+							   	<option value='<%$val%>' <%if isset($orderDetail["caizhi"]) && $orderDetail["caizhi"]==$val%>selected="selected"<%/if%>><%$val%></option>
+							   <%/foreach%>
+                   			</select>							
+                        </div>
+                  </div>
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质颜色</label>
+							<select class="form-control" name="jinse"<%if !in_array('color',$edits)%> disabled<%/if%>>
+							   <option value=""></option>
+							   <%foreach from=$goodsAttrs.jinse key=key item=val %>
+							   <option value='<%$val%>' <%if isset($orderDetail["jinse"]) && $orderDetail["jinse"]==$val%>selected="selected"<%/if%>><%$val%></option>
+							   <%/foreach%>
+						   </select>
+                        </div>
+                  </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">金重：</label>
+						<input class="form-control" type='text' name='jinzhong' value='<%$orderDetail["jinzhong"]|default:"0"%>'<%if !in_array('jinzhong',$edits)%> readonly<%/if%>>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">指圈：</label>
+						<input class="form-control" type='text' name='zhiquan' value='<%$orderDetail["zhiquan"]|default:"0"%>'<%if !in_array('zhiquan',$edits)%> readonly<%/if%>>
+					</div>
+				</div>
+				 
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">镶口</label>
+						<input class="form-control" type='text' name='xiangkou' value='<%$orderDetail["xiangkou"]|default:""%>'<%if !in_array('xiangkou',$edits)%> readonly<%/if%>>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>						
+						<select class="form-control" name="cert"<%if !in_array('cert',$edits)%> disabled<%/if%>>
+                            <option value=""></option>
+                            <%foreach from=$goodsAttrs.cert key=key item=val %>
+                            <option value='<%$val%>' <%if isset($orderDetail["cert"]) && $orderDetail["cert"]==$val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">证书号</label>						
+						<input class="form-control" type='text' id="zhengshuhao" name='zhengshuhao' value='<%$orderDetail["zhengshuhao"]|default:""%>'<%if !in_array('zhengshuhao',$edits)%> readonly<%/if%>>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">镶嵌要求</label>
+						<select class="form-control" name="xiangqian"<%if !in_array('xiangqian',$edits)%> disabled<%/if%>>
+		                   <option value=""></option>
+		                   <%foreach from=$goodsAttrs.xiangqian key=key item=val %>
+		                   <option value='<%$val%>' <%if isset($orderDetail["xiangqian"]) && $orderDetail["xiangqian"]==$val%>selected="selected"<%/if%>><%$val%></option>
+	                       <%/foreach%>
+                       </select>
+					</div>
+				</div>				
+			</div>
+			<div class="row">	
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">表面工艺</label>
+						<select name="face_work" class="form-control" <%if !in_array('face_work',$edits)%> disabled<%/if%>>
+						   <option value=""></option>
+						   <%foreach from=$goodsAttrs.facework key=key item=val %>
+						   	<option value='<%$val%>' <%if isset($orderDetail["face_work"]) && $orderDetail["face_work"]==$val%>selected="selected"<%/if%>><%$val%></option>
+
+						   <%/foreach%>
+                        </select>
+					</div>
+				</div>				
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">刻字：</label>
+                             <div style="height:auto;">
+								<div id="order_detail_kezi_out_div_goods_edit" style="height: auto; width:200px; padding:4px 10px;"><%$orderDetail["keziShow"]|default:""%></div>
+								<textarea class="emotion" cols="40" rows="1" style="font-size: 13px; width:208px;" name="kezi" id="kezi" <%if !in_array('kezi',$edits)%>readonly<%/if%>><%$orderDetail["kezi"]|default:""%></textarea>
+								<%if in_array('kezi',$edits)%>
+								<div style="padding-top:5px">
+									<input class="btn blue btn-sm" id="order_detail_face_goods_edit" type="button" value="刻字图案"/>
+									<input class="btn green btn-sm" id="analytic" type="button" value="显示效果" onClick="order_detil_kezi_out_goods_edit()" />
+								</div>
+								<%/if%>
+							</div>
+						</div>
+			
+                </div>
+				
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">成交价</label>						
+						<input class="form-control" type='text' value='<%$orderDetail["goods_price"]|default:'0'%>' disabled>
+					</div>
+				</div>
+				
+				
+           </div>
+
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+			    <input type="hidden" name="id" value="<%$orderDetail['id']%>" />
+				<input type="hidden" name="goods_type" value='<%$orderDetail["goods_type"]%>'/>
+                <input type="hidden" name="goods_sn" value="<%$orderDetail['goods_sn']%>"/>
+				<%foreach from=$edits key=key item=val %>
+				<input type="hidden" name="edits[]" value="<%$val%>" />
+				<%/foreach%>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_details_goods_edit.js"%>
+//-->
+</script>

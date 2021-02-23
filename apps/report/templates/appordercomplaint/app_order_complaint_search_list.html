@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                <th>订单号</th>
+                <th>客诉选项</th>
+                <th>客诉备注</th>
+                <th>添加人</th>
+                <th>添加时间</th>
+                <th>图片（点击查看）</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="app_order_complaint_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><%$d.order_sn%></td>
+                <td><%$d.ks_option%></td>
+                <td><%$d.cl_other%></td>
+                <td><%$d.cl_user%></td>
+                <td><%$d.cl_time%></td>
+                <td>
+                    <%if $d.cl_url != ''%>
+                        <a class="fancyboximg" href="<%$d.cl_url%>" title=""><img src="<%$d.cl_url%>" width="80" height="80"/></a>
+                    <%else%>无图片<%/if%>
+                </td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

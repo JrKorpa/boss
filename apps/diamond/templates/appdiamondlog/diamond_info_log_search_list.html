@@ -1,0 +1,35 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>来源</th>
+			<th>操作</th>
+			<th>操作内容</th>
+			<th>操作人</th>
+			<th>操作时间</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="diamond_info_log_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center">
+				<%assign var=from_arr value=$diamondview->getFromAdList()%>
+				<%$from_arr[$d.from_ad]%></td>
+			<td align="center">
+				<%assign var=cloumn_arr value=$jiajialvview->get_opertion_list()%>
+				<%$cloumn_arr[$d.operation_type]%></td>
+			<td align="center"><%$d.operation_content%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

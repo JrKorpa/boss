@@ -1,0 +1,42 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_details_rai">
+        <div class="form-body" style="line-height:30px;">
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label">商品最终价格：<span id="goods_d_p"><%$view->get_goods_price()%></span></label>
+					要修改的商品：<%$view->get_goods_name()%><br/>
+					订单价格原价<span style="color:red;"><%$acountinfo.order_amount%></span> 修改为：<span id="order_price" style="color:red;"><%$acountinfo.order_amount%></span><br/>
+					商品总价原价<span style="color:red;"><%$acountinfo.goods_amount%></span> 修改为：<span id="goods_amount" style="color:red;"><%$acountinfo.goods_amount%></span><br/>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label">最终价格：</label>
+                    <input type="text" name="realprice" value="0" placeholder=""/>
+                    <input type="hidden" name="xzprice" value="0" placeholder=""onkeyup="this.value=this.value.replace(/[^(\d\.\d)]/g,'');" onpaste="this.value=this.value.replace(/[^(\d\.\d)]/g,'');" onblur="this.value=this.value.replace(/[^(\d\.\d)]/g,'');"/>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input name="detail_id" value="<%$view->get_id()%>" type="hidden"/>
+                <input name="order_id" value="<%$acountinfo.order_id%>" type="hidden"/>
+                <input name="goods_name" value="<%$view->get_goods_name()|default:''%>" type="hidden"/>
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/app_order_details_rai.js"%>
+    //-->
+</script>

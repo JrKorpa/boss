@@ -1,0 +1,88 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>
+				<input type="checkbox" class="group-checkable" data-set="#product_info_purchase_search_list .checkboxes" />
+				</th>
+				<th>编号</th>
+				<th>采购单号</th>
+				<th>采购单分类</th>
+				<th>采购数量</th>
+				<th>采购申请费用</th>
+				<th>入库方式</th>
+				<th>制单人</th>
+				<th>制单时间</th>
+	            <th>审核人</th>
+				<th>审核时间</th>
+				<th>采购备注</th>
+				<th>生产状态</th>
+				<th>跟单人</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="product_info_purchase_search_list_<%$d.id%>" data-title="<%$d.p_sn%>">
+				<td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id%></td>
+				<td><%$d.p_sn%></td>
+				<td> <%$d.t_id%></td>
+				<td><%$d.p_sum%></td>
+				<td><%$d.purchase_fee%></td>
+				<td><%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%></td>
+				<td><%$d.make_uname%></td>
+				<td><%$d.make_time%></td>
+	            <td><%$d.check_uname%></td>
+				<td><%$d.check_time%></td>
+				<td><%$d.p_info|default:''%></td>
+				<td><%if empty($d.status)%>
+				--
+				<%else%>
+				<%foreach from=$d.status key=k item=s%>
+					<%if $s!=0%>
+					<%$dd->getEnum('buchan_fac_opra',ltrim($k,'status'))%>(<%$s%>)
+					<%/if%>
+				<%/foreach%>
+				<%/if%>
+				</td>
+				<td><%$d.opra_uname|default:''%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+	<%$pa%>
+</div>
+
+<script type="text/javascript">
+  // table 复选框全选
+  var test = $("#product_info_purchase_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+	if (test.size() > 0) {
+	 	test.each(function () {
+	   	if ($(this).parents(".checker").size() == 0) {
+	     	$(this).show();
+	     	$(this).uniform();
+	    }
+	  });
+	}
+  $('#product_info_purchase_search_list .group-checkable').change(function () {
+    var set = $(this).attr("data-set");
+		var checked = $(this).is(":checked");
+		$(set).each(function () {
+			if (checked) {
+				$(this).attr("checked", true);
+				$(this).parents('tr').addClass("active");
+			} else {
+				$(this).attr("checked", false);
+				$(this).parents('tr').removeClass("active");
+			}
+		});
+		$.uniform.update(set);
+	});
+	$('#product_info_purchase_search_list').on('change', 'tbody tr .checkboxes', function(){
+  	$(this).parents('tr').toggleClass("active");
+  });
+util.hover();
+
+</script>

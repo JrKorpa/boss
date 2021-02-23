@@ -1,0 +1,124 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_receive_real_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单来源/结算商：</label>
+							<select class="form-control" tabindex="1" name="from_ad">
+								<option value=""></option>
+                                <%foreach from=$source_list key=k item=d%>
+                                <option value="<%$d.id%>"><%$d.source_name%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">实收单号：</label>
+							<input type="text" name="real_number" class="form-control" placeholder="请输入" value="" />
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应收单号：</label>
+							<input type="text" name="should_number" class="form-control" placeholder="请输入" value="" />
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">财务收款时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+								<input type="text" class="form-control" name="pay_tiime_start" value="" />
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="pay_tiime_end" value="" />
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label">财务账期：</label>
+							<div class="input-group">
+								<select class="form-control col-sm-6" style="width:50%" name="start_year" id="start_year">
+									<option value="">年</option>
+									<%foreach from=$year_list key=key item=value%>
+									<option value="<%$value.year%>"><%$value.year%></option>
+									<%/foreach%>
+								<select>
+								<select class="form-control col-sm-6" style="width:50%" name="start_qihao" id="start_qihao">
+									<option value="">期号</option>
+									<%foreach from=$all_qihao key=key item=value%>
+									<option value="<%$value%>"><%$value%></option>
+									<%/foreach%>
+								<select>
+								<span class="input-group-addon"> - </span>
+								<select class="form-control col-sm-6" style="width:50%" name="end_year" id="end_year">
+									<option value="">年</option>
+									<%foreach from=$year_list key=key item=value%>
+									<option value="<%$value.year%>"><%$value.year%></option>
+									<%/foreach%>
+								<select>
+								<select class="form-control col-sm-6" style="width:50%" name="end_qihao" id="end_qihao">
+									<option value="">期号</option>
+									<%foreach from=$all_qihao key=key item=value%>
+									<option value="<%$value%>"><%$value%></option>
+									<%/foreach%>  
+								<select>
+							</div>
+						</div>
+					</div>
+                    
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" onclick="download()" class="btn blue"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_receive_real_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_receive_real_list.js"%>
+//-->
+</script>

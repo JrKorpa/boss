@@ -1,0 +1,51 @@
+<div class="portlet box green" style="margin-top: 5px;">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>外部订单号支付
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form action="#" method="post" class="horizontal-form" id="external_pay" enctype="multipart/form-data">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">外部订单号：<span class="required">*</span></label>
+                            <input type="text" name="exter_order_num" class="form-control" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">BDD订单号：<span class="required">*</span></label>
+                            <input type="text" name="order_sn" class="form-control" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">外部订单金额：<span class="required">*</span></label>
+                            <input type="text" name="exter_order_price" class="form-control" value="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn red"><i class="fa fa-check"></i>支付</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- END FORM-->
+    </div>
+</div>
+
+<!-- 明细 end -->
+<script type="text/javascript">
+    <!--
+    <%include file="js/external_pay.js"%>
+    //-->
+</script>

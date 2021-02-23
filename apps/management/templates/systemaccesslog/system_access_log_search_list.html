@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>用户</th>
+			<th>操作状态</th>
+			<th>操作时间</th>
+			<th>其他数据</th>
+			<th>IP</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+		<tr data-id="system_access_log_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%if $d.user_id%><%$d.real_name%>(<%$d.account%>)<%else%>-<%/if%></td>
+			<td><%$dd->getEnum("login_status",$d.status)%></td>
+			<td><%$d.create_time|date_format:'%Y-%m-%d %H:%M:%S'%></td>
+			<td><%$d.data%></td>
+			<td><%$d.ip%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,164 @@
+	<!-- 切换开始 -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="tabbable tabbable-custom boxless">
+						<!-- 切换导航开始 -->
+						<ul class="nav nav-tabs" id="nva-tab">
+							<li class="active">
+								<a href="#tab-0" data-toggle="tab">首页</a>
+							</li>
+						</ul>
+						<!-- 切换导航结束 -->
+						<!-- 切换内容开始 -->
+						<div class="tab-content" id="tab-content">
+							<div class="tab-pane active" id="tab-0">
+								<div class="row-fluid">
+									<h3 class="page-title" style="padding-left:20px;">欢迎使用<%$smarty.const.SYS_NAME%> <small>(V2.0)</small></h3>
+									<div class="breadcrumb">请根据左侧导航开始使用系统，如果需要开权限请联系<span>BDD网络管理员</span></div>
+								</div>
+
+								<!-- BEGIN INTERACTIVE CHART PORTLET-->
+								<div class="row-fluid">
+									<div class="portlet box green col-md-12">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>折线图</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+											</div>
+										</div>
+										<div class="portlet-body">
+											<div id="high_chart_01"></div>
+										</div>
+									</div>
+								</div>
+								<!-- END INTERACTIVE CHART PORTLET-->
+
+								<!-- BEGIN INTERACTIVE CHART PORTLET-->
+								<div class="row-fluid">
+									<div class="portlet box green col-md-12">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>柱状图</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+											</div>
+										</div>
+										<div class="portlet-body">
+											<div id="high_chart_02"></div>
+										</div>
+									</div>
+								</div>
+								<!-- END INTERACTIVE CHART PORTLET-->
+
+								<!-- BEGIN INTERACTIVE CHART PORTLET-->
+								<div class="row-fluid">
+									<div class="portlet box green col-md-12">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>柱状图1</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+											</div>
+										</div>
+										<div class="portlet-body">
+											<div id="high_chart_03"></div>
+										</div>
+									</div>
+								</div>
+								<!-- END INTERACTIVE CHART PORTLET-->
+
+								<!-- BEGIN PIE CHART PORTLET-->
+								<div class="row-fluid">
+									<div class="portlet box green col-md-12">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>饼状图</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+											</div>
+										</div>
+										<div class="portlet-body">
+											<div class="row">
+												<div class="col-md-6 ">
+													<div class="portlet box blue">
+														<div class="portlet-title">
+															<div class="caption"><i class="icon-reorder"></i>模块比重</div>
+															<div class="tools">
+																<a href="javascript:;" class="collapse"></a>
+															</div>
+														</div>
+														<div class="portlet-body">
+															<div id="high_chart_04"></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="portlet box red">
+														<div class="portlet-title">
+															<div class="caption"><i class="icon-reorder"></i>空间占比</div>
+															<div class="tools">
+																<a href="javascript:;" class="collapse"></a>
+															</div>
+														</div>
+														<div class="portlet-body">
+															<div id="high_chart_05"></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="portlet box green">
+														<div class="portlet-title">
+															<div class="caption"><i class="icon-reorder"></i>研发学历比重</div>
+															<div class="tools">
+																<a href="javascript:;" class="collapse"></a>
+															</div>
+														</div>
+														<div class="portlet-body">
+															<div id="high_chart_06"></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="portlet box purple">
+														<div class="portlet-title">
+															<div class="caption"><i class="icon-reorder"></i>3D饼图</div>
+															<div class="tools">
+																<a href="javascript:;" class="collapse"></a>
+															</div>
+														</div>
+														<div class="portlet-body">
+															<div id="high_chart_07"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<!-- END PIE CHART PORTLET-->
+
+								<!-- BEGIN INTERACTIVE CHART PORTLET-->
+								<div class="row-fluid">
+									<div class="portlet box green col-md-12">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>月访问量</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+											</div>
+										</div>
+										<div class="portlet-body">
+											<div id="high_chart_08"></div>
+										</div>
+									</div>
+								</div>
+								<!-- END INTERACTIVE CHART PORTLET-->
+							</div>
+						</div>
+						<!-- 切换内容结束 -->
+					</div>
+				</div>
+			</div>
+			<!-- 切换结束 -->
+
+<script type="text/javascript">
+	<%include file="js/dashboard1.js"%>
+</script>

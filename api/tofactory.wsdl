@@ -1,0 +1,179 @@
+<?xml version ='1.0' encoding ='UTF-8' ?> 
+<definitions name='zh2kela' 
+  targetNamespace='zh2kela' 
+  xmlns:tns='zh2kela'
+  xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' 
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'  
+  xmlns:soapenc='http://schemas.xmlsoap.org/soap/encoding/' 
+  xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/' 
+  xmlns='http://schemas.xmlsoap.org/wsdl/'>
+ <wsdl:types>
+	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="zh2kela">
+		<xsd:element name="request">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="sign" type="xsd:string"/>
+					<xsd:element name="bc_id" type="xsd:string"/>
+					<xsd:element name="status" type="xsd:int"/>
+					<xsd:element name="fid" type="xsd:int"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="response">
+			<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="error_no" type="xsd:string"/>
+				<xsd:element name="msg" minOccurs="0" type="xsd:string"/>
+			</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="getListByPrcNorequest">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="sign" type="xsd:string"/>
+					<xsd:element name="fid" type="xsd:int"/>
+					<xsd:element name="page" type="xsd:int"/>
+					<xsd:element name="pagesize" type="xsd:int"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="getListByPrcNoresponse">
+			<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="error_no" type="xsd:string"/>
+				<xsd:element name="msg" minOccurs="0" type="xsd:string"/>
+			</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="getInfoByIdrequest">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="sign" type="xsd:string"/>
+					<xsd:element name="bc_id" type="xsd:string"/>
+					<xsd:element name="fid" type="xsd:int"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="getInfoByIdresponse">
+			<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="error_no" type="xsd:string"/>
+				<xsd:element name="msg" minOccurs="0" type="xsd:string"/>
+			</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="addDeliveryOrderrequest">
+			<xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="sign" type="xsd:string"/>
+					<xsd:element name="fid" type="xsd:int"/>
+					<xsd:element name="factory_order_sn" type="xsd:string"/>
+					<xsd:element name="product_info" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+		<xsd:element name="addDeliveryOrderresponse">
+			<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="error_no" type="xsd:string"/>
+				<xsd:element name="msg" minOccurs="0" type="xsd:string"/>
+			</xsd:sequence>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+</wsdl:types>
+
+<message name='changeStatusRequest'> 
+	<part name="parameters" element="tns:request"/>
+</message> 
+
+<message name='changeStatusResponse'> 
+	<part name="parameters" element="tns:response"/>
+</message>
+<message name='getListByPrcNoRequest'> 
+	<part name="parameters" element="tns:getListByPrcNorequest"/>
+</message> 
+
+<message name='getListByPrcNoResponse'> 
+	<part name="parameters" element="tns:getListByPrcNoresponse"/>
+</message>
+<message name='getInfoByIdRequest'> 
+	<part name="parameters" element="tns:getInfoByIdrequest"/>
+</message> 
+
+<message name='getInfoByIdResponse'> 
+	<part name="parameters" element="tns:getInfoByIdresponse"/>
+</message>
+<message name='addDeliveryOrderRequest'> 
+	<part name="parameters" element="tns:addDeliveryOrderrequest"/>
+</message> 
+
+<message name='addDeliveryOrderResponse'> 
+	<part name="parameters" element="tns:addDeliveryOrderresponse"/>
+</message>
+
+<portType name='KelaSoapBindingPort'> 
+  <operation name='changeStatus'> 
+    <input message='tns:changeStatusRequest'/> 
+    <output message='tns:changeStatusResponse'/>
+  </operation>
+  <operation name='getListByPrcNo'> 
+    <input message='tns:getListByPrcNoRequest'/> 
+    <output message='tns:getListByPrcNoResponse'/>
+  </operation>
+  <operation name='getInfoById'> 
+    <input message='tns:getInfoByIdRequest'/> 
+    <output message='tns:getInfoByIdResponse'/>
+  </operation>
+  <operation name='addDeliveryOrder'> 
+    <input message='tns:addDeliveryOrderRequest'/> 
+    <output message='tns:addDeliveryOrderResponse'/>
+  </operation>
+</portType>
+
+<binding name='KelaSoapBinding' type='tns:KelaSoapBindingPort'> 
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/> 
+  <operation name='changeStatus'> 
+    <soap:operation soapAction=''/> 
+    <input>
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output>
+  </operation> 
+  <operation name='getListByPrcNo'> 
+    <soap:operation soapAction=''/> 
+    <input>
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output>
+  </operation> 
+  <operation name='getInfoById'> 
+    <soap:operation soapAction=''/> 
+    <input>
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output>
+  </operation>
+  <operation name='addDeliveryOrder'> 
+    <soap:operation soapAction=''/> 
+    <input>
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </input> 
+    <output> 
+      <soap:body use='literal' encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/> 
+    </output>
+  </operation> 
+</binding>
+
+<service name='KelaService'>
+  <port name='KelaSOAP' binding='tns:KelaSoapBinding'> 
+    <soap:address location='http://boss.kela.cn/api/server.php'/> 
+  </port> 
+</service> 
+</definitions>

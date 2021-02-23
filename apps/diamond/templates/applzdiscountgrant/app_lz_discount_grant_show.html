@@ -1,0 +1,57 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>用户名</td>
+				
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>折扣信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            
+            <div class="btn-group">
+                <button class="btn btn-sm yellow" onclick="util.relReload(this);" data-url="index.php?mod=diamond&con=AppLzDiscountGrant&act=grantSearch" name="刷新" title="刷新明细" list-id="70">
+                    刷新 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_lz_discount_grant_info_show"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_lz_discount_grant_show.js"%>
+//-->
+</script>

@@ -1,0 +1,152 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="form-body">
+            <div class="row">
+			    <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">订单编号：</label>
+                        <%$view->get_bill_no()%>
+                    </div>
+                </div>
+
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+                        <%$view->get_department_name($view->get_department_id())%>
+                    </div>
+                </div> 				
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">单据状态：</label>
+						<%$dd->getEnum("material.bill_status",$view->get_bill_status())%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">添加时间：</label>
+						<%$view->get_create_time()%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">添加人：</label>
+                       <%$view->get_create_user()%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核时间：</label>
+						<%$view->get_check_time()%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核人：</label>
+						<%$view->get_check_user()%>
+                    </div>
+                </div>				
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">总数量：</label>
+                       <%$goods_sum.goods_num%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">总金额：</label>
+                       <%$goods_sum.amount%>
+                    </div>
+                </div>	
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">物料商品金额：</label>
+                       <%$goods_sum.material_amount%>
+                    </div>
+                </div>	
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">赠品商品金额：</label>
+                       <%$goods_sum.gift_amount%>
+                    </div>
+                </div>	
+				<div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">邮寄地址：</label>
+                       <%$view->get_address()%>
+                    </div>
+                </div> 			                              
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">单据备注：</label>
+                        <%$view->get_bill_note()%>
+                    </div>
+                </div>
+		   </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+<!--3detail start-->
+<div style="color:red; font-size:14px">【注意事项】<br/>
+1、申购时间：新开店需提前25个工作日，申请时间根据开业时间定。店面日常补货需提前15个工作日申请，申请时间为每月的1号和15号，其余时间不予受理。<br/>
+2、工期及发货时间： 请严格按照备注项填写，在不缺货的情况下，所申请的赠品会在收到财务到款通知邮件后，3个工作日内发出；<br/>
+3、快递公司、地址及费用：销售物料默认发恒路物流，深圳不超过20公斤与除深圳以外的广东地区不超过40公斤可发顺丰，运费到付，快递收货地址均默认为店铺地址，如需变更收件请邮件特殊注明；<br/>
+4、验货及退换货：赠品到店后应在2天内完成验收，如出现质量问题，应拍照邮件给支持部同事，判定确认后，需在三个工作内快递回总公司物控部，此处运费由总公司承担。<br/>
+5、到货后，非公司方造成的质量等问题，概不退换货。
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>单据明细
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+		    <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=MaterialOrder&act=addOrderGoods" name="添加" title="添加配件" list-id="70" data-title="">
+                    添加 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+			<div class="btn-group">			    
+				<button class="btn btn-sm red" onclick="util.del(this);" data-url="index.php?mod=sales&con=MaterialOrder&act=deleteOrderGoods&bill_id=<%$view->get_id()%>" name="删除" title="删除" list-id="70" data-title="删除">
+					删除 <i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.relReload(this);" data-url="index.php?mod=sales&con=MaterialOrder&act=searchOrderGoods" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="glyphicon glyphicon-refresh"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="material_order_goods_search_list"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--3detail end-->
+<script type="text/javascript">
+<!--
+    <%include file = "js/material_order_show.js" %>
+//-->
+</script>	
+<!--2end-->

@@ -1,0 +1,115 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="stone_feed_config_info">
+		<div class="form-body">
+
+            <div class="row">              
+               
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">工厂：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="factory_id">
+                            <option value=""></option>
+                            <%foreach from=$view->getFactoryList() key=key item=val%>
+                            <option value="<%$val.id%>" <%if $view->get_factory_id()==$val.id%>selected="selected"<%/if%>><%$val.code%>|<%$val.name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">供料类型：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="feed_type">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray('stone_feed_type') key=key item=val%>
+                            <option value="<%$val.name%>" <%if $view->get_feed_type()==$val.name%>selected="selected"<%/if%>><%$val.name%> | <%$val.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">证书类型：<span class="required">*</span></label>
+                        <select class="form-control" tabindex="1" name="cert">
+                            <option value=""></option>
+                            <%foreach from=$view->getCertList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_cert()==$key%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				
+            </div> 
+						<div class="row">               
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">颜色：</label>
+                        <select class="form-control" tabindex="1" name="color">
+                            <option value=""></option>
+                            <%foreach from=$view->getColorList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_color()==$key%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				 <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">净度：</label>
+                        <select class="form-control" tabindex="1" name="clarity">
+                            <option value=""></option>
+                            <%foreach from=$view->getClarityList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_clarity()==$key%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">石重区间：<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="carat_min" value="<%$view->get_carat_min()%>" placeholder="请输入"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" value="<%$view->get_carat_max()%>" name="carat_max" class="form-control" placeholder="请输入"/>
+                                </div>
+                        </div>
+                 </div>
+			</div>
+			 <div class="row">
+
+				<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">优先级：<span class="required">*</span></label>
+							<input class="form-control" name="prority_sort" value="<%$view->get_prority_sort()%>" placeholder="请填写正整数，数字越小优先级越高" />				
+
+						</div>
+				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <select class="form-control" tabindex="1" name="is_enable">
+                            <%foreach from=$view->getStatusList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_is_enable()==$key && $view->get_id()!=''%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+			 </div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/stone_feed_config_info.js"%>
+//-->
+</script>

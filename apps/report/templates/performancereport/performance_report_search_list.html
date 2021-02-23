@@ -1,0 +1,112 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align="center"  >
+			<th rowspan="2" >销售渠道</th>
+			<th rowspan="2" >总业绩</th>
+			<th rowspan="2" >订单数量</th>
+			<th rowspan="2">订单商品总金额</th>
+			<th rowspan="2">订单总金额</th>
+			<th rowspan="2">已付款</th>
+			<th rowspan="2">应收尾款</th>
+			<th rowspan="2">实退金额</th>
+			<th rowspan="2">当期实退商品总金额</th>
+			<th rowspan="2">当前实退金额（退款不退货）</th>
+			<th rowspan="2">当期发货订单商品总金额（回款）</th>
+            <th rowspan="2">实际成交客户数</th>
+            <th rowspan="2">实际成交客户数（不含换购）</th>
+            <th rowspan="2">赠品客户数</th>
+            <th colspan="2">天生一对</th>
+            <th colspan="2">星耀</th>
+			<th colspan="4">裸钻</th>
+			<th colspan="4">成品</th>
+		</tr>
+		<tr>
+            <th>件数</th>
+            <th>金额</th>
+
+            <th>件数</th>
+            <th>金额</th>
+
+			<th>件数</th>
+			<th>金额</th>
+			<th>件数占比</th>
+			<th>金额占比</th>
+
+			<th>件数</th>
+			<th>金额</th>
+			<th>件数占比</th>
+			<th>金额占比</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data key=key item=d%>
+		<tr>
+			<td align="center"><%$channalNames[$key]%></td>
+			<td align="center"><%$d.orderTongji.performance_count%></td>
+			<td align="center"><%$d.orderTongji.order_num%></td>
+			<td align="center"><%$d.orderTongji.order_goods_sum_amount%></td>
+			<td align="center"><%$d.orderTongji.order_sum_amount%></td>
+			<td align="center"><%$d.orderTongji.order_sum_paid%></td>
+			<td align="center"><%$d.orderTongji.order_sum_unpaid%></td>
+			<td align="center"><%$d.orderTongji.order_real_return_price%></td>
+			<td align="center"><%$d.returngoods%></td>
+			<td align="center"><%$d.returnprice%></td>
+            <td align="center"><%$d.orderTongji.order_send_goods_sum_amount%></td>
+            <td align="center"><%$d.orderTongji.suc_order_num%></td>
+            <td align="center"><%$d.orderTongji.hb_order_num%></td>
+            <td align="center"><%$d.orderTongji.zp_suc_order_num%></td>
+
+            <td align="center"><%$d.tsyddata.num%></td>
+            <td align="center"><%$d.tsyddata.amount%></td>
+            <td align="center"><%$d.xydata.num%></td>
+            <td align="center"><%$d.xydata.amount%></td>
+            
+			<td align="center"><%$d.lsdata.num%></td>
+			<td align="center"><%$d.lsdata.amount%></td>
+			<td align="center"><%$d.lsdata.allnum%></td>
+			<td align="center"><%$d.lsdata.allmount%></td>
+			<td align="center"><%$d.flsdata.num%></td>
+			<td align="center"><%$d.flsdata.amount%></td>
+			<td align="center"><%$d.flsdata.allnum%></td>
+			<td align="center"><%$d.flsdata.allmount%></td>
+		</tr>
+	<%/foreach%>
+	<%if $data %>
+		<tr>
+			<td align="center">总计：</td>
+			<td align="center"><%$totalInfo.performance_count%></td>
+			<td align="center"><%$totalInfo.order_num%></td>
+			<td align="center"><%$totalInfo.order_goods_sum_amount%></td>
+			<td align="center"><%$totalInfo.order_sum_amount%></td>
+			<td align="center"><%$totalInfo.order_sum_paid%></td>
+			<td align="center"><%$totalInfo.order_sum_unpaid%></td>
+			<td align="center"><%$totalInfo.order_real_return_price%></td>
+			<td align="center"><%$totalInfo.returngoods%></td>
+			<td align="center"><%$totalInfo.returnprice%></td>
+            <td align="center"><%$totalInfo.order_send_goods_sum_amount%></td>
+			<td align="center"><%$totalInfo.suc_order_num%></td>
+			<td align="center"><%$totalInfo.hb_order_num%></td>
+			<td align="center"><%$totalInfo.zp_suc_order_num%></td>
+			<td align="center"><%$totalInfo.tsyddata_num%></td>
+			<td align="center"><%$totalInfo.tsyddata_amount%></td>
+			<td align="center"><%$totalInfo.xydata_num%></td>
+			<td align="center"><%$totalInfo.xydata_amount%></td>
+			<td align="center"><%$totalInfo.lsdata_num%></td>
+            <td align="center"><%$totalInfo.lsdata_amount%></td>
+            <td align="center"><%$totalInfo.lsdata_allnum%>%</td>
+            <td align="center"><%$totalInfo.lsdata_allmount%>%</td>
+            <td align="center"><%$totalInfo.flsdata_num%></td>
+            <td align="center"><%$totalInfo.flsdata_amount%></td>
+            <td align="center"><%$totalInfo.flsdata_allnum%>%</td>
+            <td align="center"><%$totalInfo.flsdata_allmount%>%</td>
+		</tr>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

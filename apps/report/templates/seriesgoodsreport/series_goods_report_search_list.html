@@ -1,0 +1,34 @@
+
+    【总计】:<%$page_list.recordCount%>个 【总销售额】:￥<%$page_list.num_price%>
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>款号</th>
+			<th>货号</th>
+            <th>货品状态</th>
+            <th>所在公司</th>
+            <th>销售价</th>
+            <th>销售渠道</th>
+            <th>发货时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_coupon_type_list_<%$d.goods_id%>" data-title="<%$d.goods_id%>">
+			<td align="center"><%$d.goods_sn%></td>
+			<td align="center"><%$d.goods_id%></td>
+            <td align="center"><%if $d.is_on_sale == 1%>收货中<%elseif $d.is_on_sale == 2%>库存<%elseif $d.is_on_sale == 3%>已销售<%elseif $d.is_on_sale == 4%>盘点中<%elseif $d.is_on_sale == 5%>调拨中<%elseif $d.is_on_sale == 6%>损益中<%elseif $d.is_on_sale == 7%>已报损<%elseif $d.is_on_sale == 8%>返厂中<%elseif $d.is_on_sale == 9%>已返厂<%elseif $d.is_on_sale == 10%>销售中<%elseif $d.is_on_sale == 11%>退货中<%elseif $d.is_on_sale == 12%>作废<%/if%></td>
+            <td align="center"><%$d.company%></td>
+            <td align="center"><%$d.xiaoshoujia%></td>
+            <td align="center"><%$d.channel_name%></td>
+            <td align="center"><%$d.check_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

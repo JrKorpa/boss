@@ -1,0 +1,115 @@
+<div class="tabbable tabbable-custom boxless">
+<!-- 工具栏 -->
+<div class="table-toolbar">
+	<%$bar%>
+</div>
+	<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_c_info">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库单
+			</div>
+		</div>
+	</div>
+	<div class="table-scrollable">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<tr>
+				<td><b class="">其他出库单号：</b></td>
+				<td><%$view->get_bill_no()%></td>
+				<%if $isViewChengbenjia%><td><b>成本总计：</b></td>
+				<td>					
+                    <%if $smarty.const.SYS_SCOPE eq 'boss' %>
+					     <%$view->get_goods_total()%>
+					<%/if%>
+                    <%if $smarty.const.SYS_SCOPE eq 'zhanting' %>
+					     <%$view->get_shijia()%>
+					<%/if%>	
+
+				</td><%else%><td></td><td></td><%/if%>
+			</tr>
+			<tr>
+				<td><b>加工商：</b></td>
+				<td><%$view->get_pro_id()%></td><!--get_pro_name-->
+				<td><b>公司：</b></td>
+				<td><%$view->get_from_company_name()%></td>
+			</tr>
+			<tr>
+				<td><b>参考编号：</b></td>
+				<td><%$view->get_order_sn()%></td>
+				<td><b>状态：</b></td>
+				<td><%$dd->getEnum('warehouse.bill_status',$view->get_bill_status())%></td>
+			</tr>
+			<tr>
+				<td><b>出库类型：</b></td>
+				<td><%$dd->getEnum('warehouse.chuku_type',$view->get_tuihuoyuanyin())%></td>
+				<td><b>货品数量</b></td>
+				<td><%$view->get_goods_num()%></td>
+			</tr>
+			<tr>
+				<td><b>制单人：</b></td>
+				<td><%$view->get_create_user()%></td>
+				<td><b>制单时间：</b></td>
+				<td><%$view->get_create_time()%></td>
+			</tr>
+             <!--boss-789
+			<%if $status !=1%>
+			<tr>
+				<%if $status == 2%><td><b>审核人</b></td><%/if%>
+				<%if $status == 3%><td><b>取消人</b></td><%/if%>
+				<td><%$view->get_check_user()%></td>
+				<%if $status == 2%><td><b>审核时间</b></td><%/if%>
+				<%if $status == 3%><td><b>取消时间</b></td><%/if%>
+				<td><%$view->get_check_time()%></td>
+			</tr>
+			<%/if%>
+			-->
+			<tr>
+				<td><b>审核人：</b></td>
+				<td><%if $status==2 %><%$view->get_check_user()|default:'--'%><%else%>--<%/if%></td>
+				<td><b>审核时间：</b></td>
+				<td><%if $status==2 %><%$view->get_check_time()|default:'--'%><%else%>--<%/if%></td>
+		    </tr>
+			<tr>
+			 <td><b>取消人：</b></td>
+			 <td><%$billcloseArr.update_user|default:'--'%></td>
+			 <td><b>取消时间：</b></td>
+			 <td><%$billcloseArr.update_time|default:'--'%></td>
+		   </tr>
+			<tr>
+				<td><b>备注</b></td>
+				<td colspan='3'><%$view->get_bill_note()%></td>
+
+			</tr>
+		</table>
+	</div>
+	<!--入库单 end -->
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>其他出库明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<div id="batch_copy_goodsid_c_show" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</div>
+				</div>
+			</div>
+			<p class="text-danger"></p>
+			<!--这里是商品列表-->
+			<div class="flip-scroll" id="warehouse_bill_c_goods_list">
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+
+</form>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_goods_list.js"%>
+</script>

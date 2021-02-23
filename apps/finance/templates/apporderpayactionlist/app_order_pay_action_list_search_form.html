@@ -1,0 +1,102 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="app_order_pay_action_list_search_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">销售渠道：</label>
+                            <select class="form-control" tabindex="1" name="department">
+                                <option value=""></option>
+                                <%foreach from=$channellist item=p%>
+                                    <option value="<%$p.id%>"><%$p.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">状态：</label>
+                            <select class="form-control" tabindex="1" name="status">
+                                <option value=""></option>
+                                <option value="1">未提报</option>
+                                <option value="2">已提报</option>
+                                <option value="3">已审核</option>
+                                <option value="4">审核未通过</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">付款时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="">
+                                <input type="text" class="form-control" name="start_time" id="start_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>"/>
+                                <span class="input-group-addon">-</span>
+                                <input type="text" class="form-control" name="end_time" id="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单号：</label>
+                            <input type="text" class="form-control" name="order_sn"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">点款人：</label>
+                            <input type="text" class="form-control" name="opter_name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_order_pay_action_list_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_order_pay_action_list_list.js" %>
+//-->
+</script>

@@ -1,0 +1,75 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th><input type="checkbox" class="group-checkable" data-set="#app_processor_info_search_list .checkboxes" /></th>
+            <th>序号</th>
+            <th>供应商名称</th>
+            <th>经营范围</th>
+            <th>联系人</th>
+            <th>联系方式</th>
+            <th>地址</th>
+			<!--
+            <th>款数量(总)</th>
+            <th>款数量(默认工厂)</th>
+            <th>作废款数量</th>
+			-->
+            <th>审核通过时间</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr data-id="app_processor_info_list_<%$d.id%>" data-title="<%$d.name%>">
+             <td><input class="checkboxes"  type="checkbox"  name="_ids[]" value="<%$d.id%>" /></td>
+            <td align="center"><%$d.id%></td>
+            <td><%$d.name%></td>
+            <td><%$d.business_scope%></td>
+            <td><%$d.pro_contact%></td>
+            <td>TEL:<%$d.pro_phone%><%if $d.pro_qq%>||<%$d.pro_qq%><%/if%></td>
+            <td><%$d.pro_address%></td>
+			<!--
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+			-->
+            <td><%$d.create_time%></td>
+            <td><%$d.status%></td>
+        </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+    util.check(util.getItem('listDIV'));
+            //复选框组美化
+    var test = $("#app_processor_info_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+        if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#app_processor_info_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#app_processor_info_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    }); 
+//-->
+</script>

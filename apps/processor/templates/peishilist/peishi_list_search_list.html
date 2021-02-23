@@ -1,0 +1,132 @@
+<!-- <div class="flip-scroll"> -->
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th><input type="checkbox" class="group-checkable" data-set="#peishi_list_search_list .checkboxes" /></th>
+				<th>流水号</th>
+                <th>订单号</th>  
+				<th>销售渠道</th>  				
+                <th>布产号</th>
+				<th>快速定制</th>
+                <th>客户名</th>
+                <th>跟单人</th>
+				<th>线上线下</th>
+                <th>钻石大小</th>
+                <th>钻石颜色</th>
+                <th>钻石净度</th>				
+                <th>钻石形状</th>
+				<th>证书类型</th>
+				<th>数量</th>
+				<th>钻石类型</th>
+                <th>证书号</th>                
+                <th>配石状态</th>
+				<th>布产状态</th>
+				<th>布产类型</th>
+				<th>布产分类</th>
+				<th>工厂名称</th>
+                <th>货号</th>
+				<th>主石/副石</th>
+				<th>添加时间</th>
+				<th>添加人</th>
+				<th>配石中时间</th>
+				<th>配石人</th>
+				<th>已送工厂时间</th>
+				<th>送石人</th>
+				<th>采购时间</th>
+				<th>采购人</th>
+				<th>布产备注</th>				
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=sumList%>
+		    <%foreach from=$sumList.list item=d%>
+			<tr <%if $d.buchan_times > 1 && $d.status != 9%>style='color:red'<%/if%> data-id="peishilist_<%$d.id%>N<%$sumList.sumData.group_ids%>" data-title="配石<%$d.id%>">			
+			    <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id%>				
+				<!--<a href="javascript:;" class="tab-con-a" data-url="index.php?mod=processor&con=PeishiList&act=show&id=<%$d.id%>-<%$sumList.sumData.group_ids%>" data-id="peishilist_<%$d.id%>-<%$sumList.sumData.group_ids%>" data-title="详情发料配石<%$d.id%>"><%$d.id%></a>-->
+				</td>
+                <td><%$d.order_sn%></td>  
+                <td><%$d.channel_name%></td>  				
+                <td><a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.bc_id%>" class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.bc_id%>" ><%$d.bc_sn%></a></td>
+				<td style=" text-align:center"><%if $d.is_quick_diy==1%>是<%else%>否<%/if%></td>
+                <td><%$d.consignee%></td>
+                <td><%$d.opra_uname%></td>
+				<td><%$d.channel_class%></td>
+                <td><%$d.carat%></td>
+                <td><%$d.color%></td>
+                <td><%$d.clarity%></td>				
+                <td><%$d.shape%></td>
+				<td><%$d.cert%></td>
+				<td><%$d.num%></td>				
+				<td><%$d.stone_cat%></td>
+                <td><%$d.zhengshuhao%></td>                
+                <td><%$dd->getEnum('peishi_status',$d.peishi_status)|default:'未操作'%></td>
+                <td><%$dd->getEnum('buchan_status',$d.bc_status)|default:''%></td>
+				<td><%if $d.bc_type=='加急件'%><b style="color:red"><%$d.bc_type%></b><%else%><%$d.bc_type%><%/if%></td>
+                <td><%$d.from_type%></td>
+				<td><%$d.prc_name%></td>
+				<td><%$d.goods_id%></td>
+				<td><%$d.stone_position%></td>
+				<td><%$d.add_time%></td>
+				<td><%$d.add_user%></td>
+				<td><%$d.peishi_time%></td>
+				<td><%$d.peishi_user%></td>
+				<td><%$d.songshi_time%></td>
+				<td><%$d.songshi_user%></td>
+				<td><%$d.caigou_time%></td>
+				<td><%$d.caigou_user%></td>	
+				<td><%$d.bc_remark%></td>	
+			</tr>
+			<%/foreach%>
+			<tr >	
+			    <td colspan="2" style=" text-align:right">汇总</td>						
+			    <td colspan="5"></td>				
+				<td><%$sumList.sumData.channel_class%></td>
+                <td><%$sumList.sumData.carat%></td>
+                <td><%$sumList.sumData.color%></td>
+                <td><%$sumList.sumData.clarity%></td>
+                <td><%$sumList.sumData.shape%></td>
+				<td><%$sumList.sumData.cert%></td>
+                <td><%$sumList.sumData.num%></td>
+                <td colspan="18"></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    var test = $("#peishi_list_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+            test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#peishi_list_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+            var checked = $(this).is(":checked");
+            $(set).each(function () {
+                    if (checked) {
+                            $(this).attr("checked", true);
+                            $(this).parents('tr').addClass("active");
+                    } else {
+                            $(this).attr("checked", false);
+                            $(this).parents('tr').removeClass("active");
+                    }
+            });
+            $.uniform.update(set);
+    });
+    $('#peishi_list_search_list').on('change', 'tbody tr .checkboxes', function(){
+            $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

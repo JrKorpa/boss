@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>出库单号</th>
+			<th>单据类型</th>
+			<th>单据状态</th>
+			<th>转出仓</th>
+			<th>转出公司</th>
+			<th>制单人</th>
+			<th>审核人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_out_voucher_list_<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.voucher_outno%></td>
+			<td align="center">
+				<%foreach from=$dd->getEnumArray("warehouse.voucher_type") item=value%>
+				<%if $value.name==$d.voucher_type%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center">
+				<%foreach from=$dd->getEnumArray("warehouse_in_status") item=value%>
+				<%if $value.name==$d.voucher_stauts%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center"><%$d.warehouse_id%></td>
+			<td align="center"><%$d.company_id%></td>
+			<td align="center"><%$d.addby_id%></td>
+			<td align="center"><%$d.check_id%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

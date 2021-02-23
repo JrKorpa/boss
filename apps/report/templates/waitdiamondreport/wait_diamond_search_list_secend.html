@@ -1,0 +1,44 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+				<th>工厂/采购人</th>
+                <th>送钻总数量</th>
+                <th>等钻平均时长(天)</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+				<tr start_time="<%$d.count_date%>" end_time="<%$d.count_date%>"  data-title="<%$d.count_date%>等钻超期">
+				<td><%$d.count_date%></td>
+				<td><%$d.prc_name%>/<%$d.opra_uname%></td>
+                <td >
+	                <a data-url="index.php?mod=processor&con=AvgProductTime&bc_ids=<%$d.bc_ids%>" class="tab-con-a" data-id="product_list-index" data-title="工厂等钻时长--布产单详情" onclick="javascript:void()">
+					<%$d.count%></a>
+	             </td>
+                <td><%$d.avg_wait_diamond_time%></td>
+               </tr>
+		<%/foreach%> 
+		<%if $page_list.pageCount==$page_list.page %>
+				<tr data-title="all_count">
+					<td>总计</td>
+					<td>--</td>
+	                <td ><%$datacount.all_count%>
+	                </td>
+	                <td><%$datacount.avg_wait_diamond_time%></td>
+                </tr>
+		<%/if%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

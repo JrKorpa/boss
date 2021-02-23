@@ -1,0 +1,21 @@
+<lqFactory>
+<main>
+	<orderID>{$order_id}</orderID>
+	<shippingDate>{$shipping_date}</shippingDate>
+	<materialCode>{$material_code}</materialCode>
+	<printedWord>{$printed_word}</printedWord>
+	<remark>{$remark}</remark>
+	<customerNameIn>{$customer_name}</customerNameIn>
+</main>
+<detail>
+	<styleCode>{$style_sn}</styleCode>
+	<ringSize>{$ring_size}</ringSize>
+	<size>{$size}</size>
+	<quantity>{$quantity}</quantity>
+	<remark>{$remark}</remark>
+	<productionID>{$production_id}</productionID>
+	<materialCode>{$material_code}</materialCode>
+	<printedWord>{$printed_word}</printedWord>
+	<shippingDate>{$shipping_date}</shippingDate>
+</detail>
+</lqFactory>

@@ -1,0 +1,137 @@
+<div class="table-toolbar">
+
+	<div class="btn-group">
+		<button data-title="" title="下载Excel" name="下载Excel"
+				data-url="index.php?mod=warehouse&con=WarehouseBillInfoL&act=downLoadEditExcel"
+				onclick="util.cust(this,downLoadEditExcel_t);" class="btn btn-sm blue">
+			下载Excel <i class="fa fa-plus"></i>
+		</button>
+	</div>
+ 
+	<%$bar%>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>其他收货单基础信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>单号</b></td>
+					<td><%$view->get_bill_no()%></td>
+					<td><b>数量总计</b></td>
+					<td><%$view->get_goods_num()%></td>
+				</tr>
+				<tr>
+					<td><b>送货单号</b></td>
+					<td><%$view->get_send_goods_sn()|default:'--'%></td>
+					<td><b>加工商</b></td>
+					<td><%$view->get_pro_id()%></td><!--get_pro_name-->
+				</tr>
+				<%if $isViewChengbenjia%>
+				<tr>
+					<td><b>价格总计：</b></td>
+					<td><%$view->get_goods_total()%></td>
+					<td><b>支付总计：</b></td>
+					<td><%$pay_price%></td>
+				</tr>
+				<%/if%>
+				<tr>
+					<td><b>入库方式</b></td>
+					<td><%$dd->getEnum('warehouse.put_in_type', $view->get_put_in_type())%></td>
+					<td><b>是否结价</b></td>
+					<td><%$dd->getEnum('confirm', $view->get_jiejia())%></td>
+				</tr>
+				<tr>
+					<td><b>入库类型</b></td>
+					<td><%$dd->getEnum('warehouse.put_in_class', $view->get_tuihuoyuanyin())%></td>
+					<td><b>参考编号</b></td>
+					<td><%$view->get_order_sn()%></td>
+				</tr>
+				<tr>
+					<td><b>收货公司</b></td>
+					<td><%$view->get_to_company_name()|default:'--'%></td>
+					<td><b>收货仓</b></td>
+					<td><%$view->get_to_warehouse_name()|default:'--'%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_create_user()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_create_time()%></td>
+				</tr>
+				<tr>
+					<td><b>审核人：</b></td>
+					<td><%if $view->get_bill_status()==2 %><%$view->get_check_user()|default:'--'%><%else%>--<%/if%></td>
+					<td><b>审核时间：</b></td>
+					<td><%if $view->get_bill_status()==2 %><%$view->get_check_time()|default:'--'%><%else%>--<%/if%></td>
+				</tr>
+				<tr>
+					<td><b>取消人：</b></td>
+					<td><%$billcloseArr.update_user|default:'--'%></td>
+					<td><b>取消时间：</b></td>
+					<td><%$billcloseArr.update_time|default:'--'%></td>
+				</tr>	
+				<tr>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('warehouse.bill_status',$view->get_bill_status())%></td>
+					<td><b>备注</b></td>
+					<td><%$view->get_bill_note()|default:'--'%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="tabbable tabbable-custom boxless">
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<div id="batch_copy_goodsid_t_show" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</div>
+				</div>
+			</div>
+			<div class="flip-scroll table-scrollable" id="warehouse_l_info_show_list<%$view->get_id()%>"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+<div class="tabbable tabbable-custom boxless">
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>结算商列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="flip-scroll" id="warehouse_bill_pay_s_t"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+<script type="text/javascript">
+	<!--
+	<%include file="js/warehouse_bill_t_show.js"%>
+	//-->
+</script>

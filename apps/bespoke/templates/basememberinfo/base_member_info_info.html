@@ -1,0 +1,227 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="base_member_info_info" enctype="multipart/form-data">
+		<div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员名：<span class="required">*</span></label>
+                        <input type="text" name="member_name" class="form-control"  tabindex="1"  placeholder="请输入"  value="<%$view->get_member_name()%>" />
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员电话：<span class="required">*</span></label>
+                        <input type="text" name="member_phone" class="form-control"  tabindex="2"  placeholder="请输入"  value="<%$view->get_member_phone()%>" />
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员电子邮箱：</label>
+                        <input type="text" name="member_email" class="form-control"  tabindex="2" placeholder="请输入"  value="<%$view->get_member_email()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员真实姓名：</label>
+                        <input type="text" name="member_truename" class="form-control"  tabindex="2" placeholder="请输入"  value="<%$view->get_member_truename()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员固定电话：</label>
+                        <input type="text" name="member_tel" class="form-control"  tabindex="2" placeholder="请输入"  value="<%$view->get_member_tel()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员QQ：</label>
+                        <input type="text" name="member_qq" class="form-control"  tabindex="2" placeholder="请输入"  value="<%$view->get_member_qq()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员MSN：</label>
+                        <input type="text" name="member_msn" class="form-control"  tabindex="2" placeholder="请输入"  value="<%$view->get_member_msn()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员性别：<span class="required">*</span></label>
+                        <div class="radio-list">
+                            <%foreach from=$dd->getEnumArray("gender") key=k item=value%>
+                            <label class="radio-inline">
+                                <input type="radio" name="member_sex" <%if $view->get_member_sex()==$value.name or ($view->get_member_sex()=="" and $k==0)%>
+                                checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+                            </label>
+                            <%/foreach%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员生日：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="member_birthday" value="<%$view->get_member_birthday()%>" class="form-control" >
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员婚姻状况：</label>
+                        <select class="select2_category form-control" name="member_maristatus" >
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("member.maristatus") item=value%>
+                            <option value="<%$value.name%>" <%if $value.name==$view->get_member_maristatus()%>selected="selected"<%/if%>
+                            ><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员结婚时间：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="member_wedding" value="<%$view->get_member_wedding()%>" class="form-control" >
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员结婚预算：</label>
+                        <input type="text" name="member_dudget" class="form-control"  tabindex="3" placeholder="请输入"  value="<%$view->get_member_dudget()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">新密码：</label>
+                        <input onfocus="this.type='password'" name="member_password" autocomplete="off" value="<%*$view->get_member_password()*%>"
+                          class="form-control" placeholder="请输入" onkeyup="util.checkIntensity(this.value)">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">强度：</label>
+                        <table width="120" border="0" cellspacing="0" cellpadding="1">
+                            <tr align="center">
+                                <td width="33%" id="pwd_lower">弱</td>
+                                <td width="33%" id="pwd_middle">中</td>
+                                <td width="33%" id="pwd_high">强</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">重复密码：</label>
+                        <input name="confirmPass" onfocus="this.type='password'" autocomplete="off" class="form-control" id="confirmPass"
+                          value="<%*$view->get_member_password()*%>"placeholder="请输入">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员阿里旺旺账户：</label>
+                        <input type="text" name="member_aliww" class="form-control"  tabindex="3" placeholder="请输入"  value="<%$view->get_member_aliww()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员年龄：
+                        <input type="text" name="member_age" class="form-control"  tabindex="3"  placeholder="请输入"  value="<%if $view->get_member_age()>0%><%$view->get_member_age()%><%else%><%/if%>" />
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">会员类型：<span class="required">*</span></label>
+						<select class="select2_category form-control" name="member_type" tabindex="4">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("member.member_type") item=value%>
+								<option value="<%$value.name%>" <%if $value.name==$view->get_member_type()%>selected="selected"<%/if%>
+								><%$value.label%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">渠道部门：<span class="required">*</span></label>
+                        <select class="select2_category form-control" tabindex="6" name="department_id">
+                            <option value=""></option>
+                            <%foreach from=$channellist key=key item=p %>
+                                <option value="<%$p.id%>" <%if $view->get_department_id()==$p.id%>selected="selected"<%/if%>><%$p.channel_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">来源：<span class="required">*</span></label>
+                        <select class="select2_category form-control" tabindex="5" name="source_id" id="source_id">
+                            <option value=""></option>
+                            <%foreach from=$source item=p %>
+                                <option value="<%$p.id%>" <%if $view->get_customer_source_id()==$p.id%>selected="selected"<%/if%>><%$p.source_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                       <label class="control-label">密码提示问题：</label>
+                       <textarea class="form-control" name="member_question" rows="3"><%$view->get_member_question()%></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                   <div class="form-group">
+                       <label class="control-label">密码提示答案：</label>
+                       <textarea class="form-control" name="member_answer" rows="3"><%$view->get_member_answer()%></textarea>
+                   </div>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">上传头像：</label>
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="head_img" multiple="" />
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+                <input type="hidden" name="tab_id" value="<%$tab_id%>"/>
+            </div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="order_id" value="<%$order_id%>" />
+				<input type="hidden" name="member_id" value="<%$view->get_member_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_member_info_info.js"%>
+//-->
+</script>

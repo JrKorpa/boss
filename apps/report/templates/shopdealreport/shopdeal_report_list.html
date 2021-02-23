@@ -1,0 +1,58 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th>店名</th>
+            <th>全部预约</th>
+            <th>实际到店数</th>
+            <th>实际成交单数</th>
+            <th>预约成交率(%)</th>
+            <th>异业预约量</th>
+            <th>异业实际到店数</th>
+            <th>异业实际成交单数</th>
+            <th>异业预约成交率(%)</th>
+            <th>网络预约量</th>
+            <th>网络实际到店数</th>
+            <th>网络实际成交单数</th>
+            <th>网络预约成交率(%)</th>
+            <th>其他来源预约量</th>
+            <th>其他来源实际到店数</th>
+            <th>其他来源实际成交单数</th>
+            <th>其他来源预约成交率(%)</th>
+        </tr>
+	</thead>
+	<tbody data-shops="<%implode(',', array_keys($shops))%>">
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="17" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <!--这里有重复的 是因为source_id不一样,但是名称是一样的-->
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr data-dep="<%$key%>" data-id="shopdeal_report_list_<%$key%>" data-title="<%$shops[$key]%>销售顾问统计页面">
+            <td><!--门店--><%$shops[$key]%></td>
+
+            <td><!--预约数--><%$obj.all.bespokenum|default:0%></td>
+            <td><!--到店数--><%$obj.all.realbokenum|default:0%></td>
+            <td><!--成交数--><%$obj.all.ordernum|default:0%></td>
+            <td><%if empty($obj.all.realbokenum)%>0<%else%><%round($obj.all.ordernum/$obj.all.realbokenum,4)*100%><%/if%></td>
+
+            <td><!--预约数--><%$obj.yiye.bespokenum|default:0%></td>
+            <td><!--到店数--><%$obj.yiye.realbokenum|default:0%></td>
+            <td><!--成交数--><%$obj.yiye.ordernum|default:0%></td>
+            <td><%if empty($obj.yiye.realbokenum)%>0<%else%><%round($obj.yiye.ordernum/$obj.yiye.realbokenum,4)*100%><%/if%></td>
+
+            <td><!--预约数--><%$obj.site.bespokenum|default:0%></td>
+            <td><!--到店数--><%$obj.site.realbokenum|default:0%></td>
+            <td><!--成交数--><%$obj.site.ordernum|default:0%></td>
+            <td><%if empty($obj.site.realbokenum)%>0<%else%><%round($obj.site.ordernum/$obj.site.realbokenum,4)*100%><%/if%></td>
+
+            <td><!--预约数--><%$obj.other.bespokenum|default:0%></td>
+            <td><!--到店数--><%$obj.other.realbokenum|default:0%></td>
+            <td><!--成交数--><%$obj.other.ordernum|default:0%></td>
+            <td><%if empty($obj.other.realbokenum)%>0<%else%><%round($obj.other.ordernum/$obj.other.realbokenum,4)*100%><%/if%></td>
+
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

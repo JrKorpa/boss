@@ -1,0 +1,17 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>应付申请单号</th>
+			<th>应付金额</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$data.data key=k item=item %>
+		<tr>
+			<td><%$item.pay_apply_number%></td>
+			<td><%$item.total_cope%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>供应商列表
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<!--toolbar start-->
+				<div class="portlet-body form" id="app_processor_supplier_taker_list">
+					<div class="form-group">
+						<label class="control-label">供应商：</label>
+						<select class="form-control" tabindex="1" name="supplier_id">
+							<option value=""></option>
+							<%foreach from=$suppliers item=s %>
+							<option value="<%$s.id%>"><%$s.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<!-- toolbar end -->
+				<!-- 表格1 -->
+				<ul class="flip-scroll ztree" id="processor_supplier_taker_tree_list">
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>委托取货人
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+
+			<div class="portlet-body">
+				<div id="app_processor_taker_tools_list" class="table-toolbar">
+					<%$bar%>当前供应商:<span data-title="now_supplier"></span>
+					<input type="hidden" name="now_supplier"/>
+				</div>
+				<!-- 表格1 -->
+				<div class="flip-scroll" id="app_processor_taker_search_list">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_processor_taker_list.js"%>
+//-->
+</script>

@@ -1,0 +1,253 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="report_product_info_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产单号：</label>
+						<!--	<input type="text" name="bc_sn" class="form-control" placeholder="请输入多个布产号用,号或空格间隔" />
+						-->
+							<textarea class="form-control"  rows="4" cols="20" name="bc_sn"></textarea>
+
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">采购单号/订单号：</label>
+							<!--<input type="text" name="p_sn" class="form-control" placeholder="批量用“,”或空格间隔" />-->
+							<textarea class="form-control"  rows="4" cols="20" name="p_sn"></textarea>
+
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产类型：</label>
+							<select class="form-control" tabindex="1" name="from_type">
+								<option value=""></option>
+								<%foreach from=$user_type key=k item=value%>
+								<option value="<%$k%>"><%$value%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否超期：</label>
+                        <select name='is_extended' class="form-control">
+                            <option value="">--请选择--</option>
+                            <%foreach from=$is_extended item=v key=k %>
+                            <option value="<%$k%>"><%$v%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="style_sn" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">加工商/工厂：</label>
+							<select class="form-control" tabindex="1" name="prc_id">
+							<option value=""></option>
+							<%foreach from=$process key=k item=value%>
+							<option value="<%$value.id%>"><%$value.name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">跟单人：</label>
+							<select class="form-control" tabindex="1" name="opra_uname">
+							<option value="">--请选择--</option>
+							<%foreach from=$user_list item=v%>
+							<option value="<%$v.opra_uname%>"><%$v.opra_uname%></option>
+							<%/foreach%>
+
+							</select>
+						</div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">客户姓名：</label>
+							<input type="text" name= "consignee" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产状态：</label>
+							<select class="form-control" tabindex="1" name="status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("buchan_status") key=k item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品类型：</label>
+							<input type="text" name= "bc_style" class="form-control" placeholder="请输入" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">镶嵌方式：</label>
+
+						<select class="form-control" tabindex="1" name="xiangqian">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("order.xiangqian") key=key item=p%>
+								<option value="<%$p.label%>"><%$p.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">标准出厂时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="esmt_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="esmt_time_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">工厂接单时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="order_time_start">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="order_time_end">
+							</div>
+						</div>
+					</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售渠道：</label>
+						<select class="form-control" tabindex="1" name="channel_id">
+							<option value=""></option>
+                            <%foreach from=$channellist key=key item=p%>
+                            <option value="<%$p.id%>"><%$p.channel_name%></option>
+                            <%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">客户来源：</label>
+						<select class="form-control" tabindex="1" name="customer_source_id">
+							<option value=""></option>
+							<%foreach from=$customer_source_list key=key item=p%>
+								<option value="<%$p.id%>"><%$p.source_name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">生产状态：<input type="checkbox" name="checkAll" />全选</label>
+							<select name='buchan_fac_opra[]' tabindex="1" class="form-control"  multiple>
+
+								<%foreach from=$dd->getEnumArray("buchan_fac_opra") item=v key=k %>
+								<option value="<%$v.name%>"><%$v.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+						<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">每页显示条数：</label>
+										<input type="text" class="form-control" name="page_size" placeholder="请输入">
+									</div>
+
+						</div>
+
+				</div>
+				<div class="row">
+				    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">是否支持配石：</label>
+							<select class="form-control" tabindex="1" name="is_peishi">
+								<option value=""></option>
+								<option value="1">支持</option>
+								<option value="0">不支持</option>
+							</select>
+						</div>
+				   </div>						
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">配石状态：</label>
+							<select class="form-control" tabindex="1" name="peishi_status">
+								<option value=""></option>
+								<option value="1">已配石</option>
+								<option value="0">未配石</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="report_product_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+var rece_time="<%$args.rece_time%>";
+var prc_name="<%$args.prc_name%>";
+var opra_uname="<%$args.opra_uname%>";
+var status="<%$args.status%>";
+var bc_ids="<%$args.bc_ids%>";
+var from_type="<%$args.from_type%>";
+var style_sn="<%$args.style_sn%>";
+<!--
+	<%include file="js/product_info_list.js"%>
+	<%include file="js/common.js"%>
+//-->
+</script>

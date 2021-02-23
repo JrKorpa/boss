@@ -1,0 +1,44 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>订单类型</th>
+			<th>供应商名称</th>
+			<th>标准出货周期</th>
+			<th>有款起版周期</th>
+			<th>无款起版周期</th>
+			<th>现货等钻加时</th>
+			<th>期货等钻加时</th>
+			<th>周末休息</th>
+			<th>周末上班</th>
+			<th>放假日期</th>
+			<th>等钻后操作加时</th>
+			<th>订单问题加时</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_processor_worktime_list_<%$d.pw_id%>" data-title="<%$d.pw_id%>">
+			<td align="center"><%$d.pw_id%></td>
+			<td align="center"><%if $d.order_type==1%>客订单<%else%>备货单<%/if%></td>
+			<td align="center"><%$d.processor_id|default:''%></td>
+			<td align="center"><%$d.normal_day%>天</td>
+			<td align="center"><%$d.ykqbzq%>天</td>
+			<td align="center"><%$d.wkqbzq%>天</td>
+			<td align="center"><%$d.now_wait_dia%>天</td>
+			<td align="center"><%$d.wait_dia%>天</td>
+			<td align="center"><%if $d.is_rest==1%>不休<%else if $d.is_rest==2%>单休<%else%>双休<%/if%></td>
+			<td align="center"><%$d.is_work%></td>
+			<td align="center"><%$d.holiday_time%></td>
+			<td align="center"><%$d.behind_wait_dia%>天</td>
+			<td align="center"><%$d.order_problem%>天</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

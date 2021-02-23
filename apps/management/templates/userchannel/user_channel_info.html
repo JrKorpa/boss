@@ -1,0 +1,56 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="user_channel_info">
+		<div class="form-body">
+                    	<div class="row">
+                                <div class="form-group">
+                                        <label class="control-label">渠道操作员:</label>
+                                        <select class="select2_category form-control" tabindex="1" name="user_id[]" multiple>
+                                                <option value=""></option>
+                                                <%foreach from=$view->getChannelUsers() item=u%>
+                                                <option value="<%$u.id%>"><%$u.account%>(<%$u.real_name%>)</option>
+                                                <%/foreach%>
+
+                                        </select>
+                                </div>
+			</div>
+			<div class="row">
+                                <div class="form-group">
+                                        <label class="control-label">渠道：</label>
+                                        <select class="select2_category form-control" name="channel_id[]" tabindex="1" multiple>
+                                                <option value=""></option>
+                                                <%foreach from=$view->getAllChannels() item=c%>
+                                                <option value="<%$c.id%>"><%$c.channel_name%></option>
+                                                <%/foreach%>
+
+                                        </select>
+                                </div>
+			</div>
+                    	<div class="row">
+                                <div class="form-group">
+                                        <label class="control-label">创建即授权：</label>
+                                        <div class="checkbox-list">
+                                                <label class="checkbox-inline">
+                                                        <input type="checkbox" name="auth_check" value="1" /> 该操作较耗时，提交后请耐心等候。<span style="color:red;">如果渠道与操作者数量乘积超过2000，将不能在线插入数据，需要讲生成的脚本文件在命令行导入！</span>
+                                                </label>
+                                        </div>
+                                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="button" class="btn default" onclick="user_channel_info_check_all_user()">用户全选</button>
+				<button type="button" class="btn default" onclick="user_channel_info_check_all_channel()">渠道全选</button>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_channel_info.js"%>
+//-->
+</script>

@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>流程名称</th>
+			<th>经营范围</th>
+			<th>申请部门</th>
+			<th>审批流程人</th>
+			<th>创建人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_processor_process_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td><%$d.process_name%></td>
+			<td><%$d.business_type%></td>
+			<td><%$view->get_department_name($d.department_id)%></td>
+			<td><%$view->processUser($d.id)%></td>
+			<td><%$d.create_user%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

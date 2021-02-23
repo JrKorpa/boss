@@ -1,0 +1,72 @@
+<table id="wait_distribution_goods_lists" class="table table-bordered table-striped flip-content">
+	<thead>
+		<th>序号</th>
+		<th>货品款号</th>
+         <th>货品货号</th>
+		<th>货品名称</th>
+		<th>石重</th>
+		<th>切工</th>
+		<th>净度</th>
+		<th>颜色</th>
+		<th>证书号</th>
+		<th>材质</th>
+		<th>金色</th>
+		<th>金重</th>
+		<th>指圈</th>
+		<th>数量</th>
+        <th>是否赠品</th>
+        <th>是否销账</th>
+		<th>仓储货号</th>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list item=g key=k%>
+		<tr>
+			<td><%$g.id%></td>
+			<td><%$g.goods_sn%></td>
+            <td><%$g.goods_id%></td>
+			<td><%$g.goods_name%></td>
+			<td><%$g.cart%></td>
+			<td><%$g.cut%></td>
+			<td><%$g.clarity%></td>
+			<td><%$g.color%></td>
+			<td><%$g.zhengshuhao%></td>
+			<td><%$g.caizhi%></td>
+			<td><%$g.jinse%></td>
+			<td><%$g.jinzhong%></td>
+			<td><%$g.zhiquan%></td>
+			<td><%$g.goods_count%></td>
+            <td><%if $g.is_zp==1%>是<%else%>否<%/if%></td>
+            <td><%if $g.is_finance==1%>否<%else%>是<%/if%></td>
+			
+			
+
+
+			<td>
+			<%if $referer!="天生一对加盟商" %>
+            只能天生一对订单在此销账 
+          
+			<%elseif $g.delivery_status == 5%>
+				已配货
+			<%elseif $g.delivery_status == 2%>
+            
+            
+				<input type="text" class="form-control" name="jxc_goods_id[]" value='' onkeypress=" if(event.keyCode==13) { tab_next(this); return false;}" id="<%$k%>dds"/>
+		       <input type="hidden" class="form-control" name="orderDetailId[]" value='<%$g.id%>'/>
+			 
+            	
+ 
+			<%else%>
+             不允许配货
+			 <%/if%>
+			  </td>
+		</tr>
+		<%/foreach%>
+		<input type="hidden" value='<%$goods_sns%>' id='goods_sns'/><!-- 当前所有货品款号的字符串 -->
+		<input type="hidden" value='<%$goods_nums%>' id='goods_nums'/><!-- 当前所有货品数量的字符串 -->
+	</tbody>
+</table>
+<%$pa%>
+<script>
+$('#wait_distribution_goods_lists input[name="jxc_goods_id[]"]').eq(0).focus();
+$("html,body").animate({scrollTop:$('#wait_distribution_goods_lists input[name="jxc_goods_id[]"]').offset().top-310},1000)
+</script>

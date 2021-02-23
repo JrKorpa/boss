@@ -1,0 +1,190 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><%if $args.time_type eq 'send' %>发货<%else%>下单<%/if%>日期</th>
+			<th>总订单量</th>
+			<th>关闭订单</th>
+			<th>有效订单</th>
+			<th>现货订单占比</th>
+			<th>已付款订单</th>
+			<th>支付定金订单</th>
+			<th>未付款订单</th>
+			<th>已付款未发货</th>
+			<th>已付款未配货</th>
+			<th>O天发货</th>
+			<th>1天发货</th>
+			<th>2天发货</th>
+			<th>3天发货</th>
+			<th>4天发货</th>
+			<th>5天发货</th>
+			<th>6天发货</th>
+			<th>7-20天发货</th>
+			<th>超20天发货</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr start_time="<%$d.acount_date%>" end_time="<%$d.acount_date%>" data-title="<%$d.acount_date%>发货量">
+			<td><%$d.dotime%></td>
+			<td><%$d.order_all%></td>
+			<td><%$d.close_order%></td>
+			<td><%$d.check_order%></td>
+			<td>
+				(<%$d.xianhuo_order%>)
+				<%$d.xianhuo_order_percent%>%
+			</td>
+			<td>
+				<%$d.paid_order%>
+			</td>
+			<td>
+				<%$d.pay_part_order%>
+			</td>
+			<td>
+				<%$d.unpaid_order%>
+			</td>
+			<td><%$d.paid_unsend_order%></td>
+			<td><%$d.paid_undeliver_order%></td>
+			<td><%$d.0d_num%>(<%$d.0d_percent%>%)</td>
+			<td><%$d.1d_num%>(<%$d.1d_percent%>%)</td>
+			<td><%$d.2d_num%>(<%$d.2d_percent%>%)</td>
+			<td><%$d.3d_num%>(<%$d.3d_percent%>%)</td>
+			<td><%$d.4d_num%>(<%$d.4d_percent%>%)</td>
+			<td><%$d.5d_num%>(<%$d.5d_percent%>%)</td>
+			<td><%$d.6d_num%>(<%$d.6d_percent%>%)</td>
+			
+			<td><%$d.7_20d_num%>(<%$d.7_20d_percent%>%)</td>			
+			<td><%$d.21d_num%>(<%$d.21d_percent%>%)</td>
+		</tr>
+	<%/foreach%>
+	<%if $tongji %>
+	<tr data-title="发货时间统计">
+			<td>总数</td>
+			<td><%$tongji.order_all%></td>
+			<td><%$tongji.close_order%></td>
+			<td><%$tongji.check_order%></td>
+			<td>
+				(<%$tongji.xianhuo_order%>)
+				<%$tongji.xianhuo_order_percent%>%
+			</td>
+			<td>
+				<%$tongji.paid_order%>
+			</td>
+			<td>
+				<%$tongji.pay_part_order%>
+			</td>
+			<td>
+				<%$tongji.unpaid_order%>
+			</td>
+			<td><%$tongji.paid_unsend_order%></td>
+			<td><%$tongji.paid_undeliver_order%></td>
+			<td><%$tongji.0d_num%>(<%$tongji.0d_percent%>%)</td>
+			<td><%$tongji.1d_num%>(<%$tongji.1d_percent%>%)</td>
+			<td><%$tongji.2d_num%>(<%$tongji.2d_percent%>%)</td>
+			<td><%$tongji.3d_num%>(<%$tongji.3d_percent%>%)</td>
+			<td><%$tongji.4d_num%>(<%$tongji.4d_percent%>%)</td>
+			<td><%$tongji.5d_num%>(<%$tongji.5d_percent%>%)</td>
+			<td><%$tongji.6d_num%>(<%$tongji.6d_percent%>%)</td>
+			
+			<td><%$tongji.7_20d_num%>(<%$tongji.7_20d_percent%>%)</td>			
+			<td><%$tongji.21d_num%>(<%$tongji.21d_percent%>%)</td>
+	</tr>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+function show_detail_list(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var bill_type = tObj[0].getAttribute("bill_type");
+	var department_ids = tObj[0].getAttribute("department_ids");
+	var department_name= tObj[0].getAttribute("department_name");
+	var zt_type = tObj[0].getAttribute("zt_type");
+	var prefix = params['con'].toLowerCase();
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.split('-');
+		href.pop();
+		href = href.join('_').substr(1);
+		if (href==prefix)
+		{
+			alert(1);
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var id = prefix+"-"+_id;
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							url+="&id="+_id;
+
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		url+="&start_time="+start_time+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+
+		var id=1;
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

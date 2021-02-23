@@ -1,0 +1,44 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th>预约单号</th>
+            <th>销售渠道</th>
+            <th>客户来源</th>
+            <th>客户姓名</th>
+            <th>客户手机号</th>
+            <th>预约创建时间</th>
+            <th>预约到店时间</th>
+            <th>实际到店时间</th>
+            <th>接待人</th>
+            <th>接待状态</th>
+            <th>回访状态</th>
+            <th>到店状态</th>
+            <th>成交状态</th>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="13" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr>
+            <td><%$obj.bespoke_sn%></td>
+            <td><%$obj.channel_name%></td>
+            <td><%$obj.source_name%></td>
+            <td><%$obj.customer%></td>
+            <td><%$obj.customer_mobile%></td>
+            <td><%$obj.create_time%></td>
+            <td><%$obj.bespoke_inshop_time%></td>
+            <td><%$obj.real_inshop_time%></td>
+            <td><%$obj.accecipt_man%></td>
+            <td><%$dd->getEnum("bespoke.queue_status",$obj.queue_status)%></td>
+            <td><%if $obj.withuserdo>0%>已回访<%else%><span style="color: red;">未回访</span><%/if%></td>
+            <td><%$dd->getEnum("goshop_status",$obj.re_status)%></td>
+            <td><%$dd->getEnum("app_bespoke_info.deal_status",$obj.deal_status)%></td>
+		</tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

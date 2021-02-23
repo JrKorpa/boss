@@ -1,0 +1,149 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="gift_goods_search_form_gs">
+			<div class="form-body">
+				<div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">赠品名：</label>
+                        <input type="text" name="name" class="form-control" placeholder="" value="" />
+                    </div>
+                  </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">赠品款号：</label>
+                        <input type="text" name="goods_number" class="form-control" placeholder="" value="" />
+                    </div>
+                </div>
+              <!--
+ <%*
+                    <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">赠品售价：</label>
+                        <input type="text" name="sell_sprice" class="form-control" placeholder="" value="" />
+                    </div>
+                </div>
+                    *%>
+                  <%*
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">销售类型：</label>
+                            <div class="radio-list">
+                                <%foreach from=$dd->getEnumArray("gift.sell_type") key=k item=value%>
+                                <label class="radio-inline">
+                                    <input type="radio" name="sell_type"  value="<%$value.name%>"> <%$value.label%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                    *%>
+-->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否启用：</label>
+                            <select class="form-control" tabindex="1" name="status">
+                                <option value="">全部</option>
+                                <option value="1">启用</option>
+                                <option value="-1">禁用</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                       <div class="form-group">
+                           <label class="control-label">外部订单是否显示勾选框：</label>
+                           <select class="form-control" tabindex="1" name="is_check">
+                               <option value="">请选择</option>
+                               <option value="1">是</option>
+                               <option value="0">否</option>
+                           </select>
+                       </div>
+                   </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">添加时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="">
+                                <input type="text" class="form-control" name="start_time" value="">
+                                <span class="input-group-addon">-</span>
+                                <input type="text" class="form-control" name="end_time" value="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否销账：</label>
+                            <select class="form-control" tabindex="1" name="is_xz">
+                                <option value="">请选择</option>
+                                <option value="2">是</option>
+                                <option value="1">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">可销售渠道：</label>
+                           	线上：<input type='checkbox' name='sale_way1' value ='1'/>
+                           	线下：<input type='checkbox' name='sale_way2'value ='2'/>
+                        </div>
+                        
+                    </div>
+                 
+                </div>
+                <div class="row">
+                  
+                </div>
+                
+            </div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="gift_goods_search_list_gs"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/gift_goods_list.js"%>
+//-->
+</script>

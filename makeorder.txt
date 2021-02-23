@@ -1,0 +1,2758 @@
+PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200512790642\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2896 ,2 , \'2020-05-12 16:20:57\' ,\'admin\', \'2020-05-12 16:20:57\', \'\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200512790642',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-05-12 16:20:57',
+            'create_user' => 'admin',
+            'modify_time' => '2020-05-12 16:20:57',
+            'customer_source_id' => 2896,
+            'department_id' => 2,
+            'order_remark' => '',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-05-12 16:20:57',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2896',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200512671869\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2896 ,2 , \'2020-05-12 16:21:04\' ,\'admin\', \'2020-05-12 16:21:04\', \'现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200512671869',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-05-12 16:21:04',
+            'create_user' => 'admin',
+            'modify_time' => '2020-05-12 16:21:04',
+            'customer_source_id' => 2896,
+            'department_id' => 2,
+            'order_remark' => '现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-05-12 16:21:04',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2896',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\cuteframe\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709479418\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2896 ,2 , \'2020-07-09 11:15:17\' ,\'admin\', \'2020-07-09 11:15:17\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709479418',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:15:17',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:15:17',
+            'customer_source_id' => 2896,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:15:17',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2896',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709881883\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2896 ,2 , \'2020-07-09 11:15:21\' ,\'admin\', \'2020-07-09 11:15:21\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709881883',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:15:21',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:15:21',
+            'customer_source_id' => 2896,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:15:21',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2896',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709441394\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:15:33\' ,\'admin\', \'2020-07-09 11:15:33\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709441394',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:15:33',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:15:33',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:15:33',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709949322\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:16:09\' ,\'admin\', \'2020-07-09 11:16:09\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709949322',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:16:09',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:16:09',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:16:09',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709961114\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:16:14\' ,\'admin\', \'2020-07-09 11:16:14\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709961114',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:16:14',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:16:14',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:16:14',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709318207\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:16:28\' ,\'admin\', \'2020-07-09 11:16:28\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709318207',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:16:28',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:16:28',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:16:28',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709828142\' ,\'1\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:16:39\' ,\'admin\', \'2020-07-09 11:16:39\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709828142',
+            'bespoke_id' => '1',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:16:39',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:16:39',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:16:39',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709466428\' ,\'0\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,256,2889 ,2 , \'2020-07-09 11:16:56\' ,\'admin\', \'2020-07-09 11:16:56\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709466428',
+            'bespoke_id' => '',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:16:56',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:16:56',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:16:56',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709328323\' ,\'0\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,269,2889 ,2 , \'2020-07-09 11:17:02\' ,\'admin\', \'2020-07-09 11:17:02\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709328323',
+            'bespoke_id' => '',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:17:02',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:17:02',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:17:02',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '269',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200709485665\' ,\'0\' ,\'12312\' ,\'\',\'\'  ,\'15897532111\' ,2 ,1 ,1,269,2889 ,2 , \'2020-07-09 11:17:28\' ,\'admin\', \'2020-07-09 11:17:28\', \'需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200709485665',
+            'bespoke_id' => '',
+            'user_id' => '2',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2020-07-09 11:17:28',
+            'create_user' => 'admin',
+            'modify_time' => '2020-07-09 11:17:28',
+            'customer_source_id' => 2889,
+            'department_id' => 2,
+            'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '12312',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15897532111',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-07-09 11:17:28',
+          ),
+          'address' => 
+          array (
+            'consignee' => '12312',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15897532111',
+          'user_name' => '12312',
+          'department_id' => '2',
+          'customer_source' => '2889',
+          'order_pay_type' => '269',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '需要订制，周期为35个工作日，取货时间为周一到周五早上十一点到晚上七点 现货已取走 现货已取走 现货未取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200805711517\' ,\'2\' ,\'相仲\' ,\'\',\'\'  ,\'15989407534\' ,3 ,1 ,1,269,1 ,2 , \'2020-08-05 16:19:37\' ,\'admin\', \'2020-08-05 16:19:37\', \'\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200805711517',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2020-08-05 16:19:37',
+            'create_user' => 'admin',
+            'modify_time' => '2020-08-05 16:19:37',
+            'customer_source_id' => 1,
+            'department_id' => 2,
+            'order_remark' => '',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2020-08-05 16:19:37',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '2',
+          'customer_source' => '1',
+          'order_pay_type' => '269',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'order_remark' => '',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200805734738\' ,\'2\' ,\'相仲\' ,\'\',\'\'  ,\'15989407534\' ,3 ,1 ,1,269,1 ,2 , \'2020-08-05 16:19:45\' ,\'admin\', \'2020-08-05 16:19:45\', \'\', \'0\',1,1,2,0,1,\'展厅订单\',\'1\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200805734738',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2020-08-05 16:19:45',
+            'create_user' => 'admin',
+            'modify_time' => '2020-08-05 16:19:45',
+            'customer_source_id' => 1,
+            'department_id' => 2,
+            'order_remark' => '',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 1,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 1,
+            'invoice_amount' => 0,
+            'create_time' => '2020-08-05 16:19:45',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '2',
+          'customer_source' => '1',
+          'order_pay_type' => '269',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'is_real_invoice' => 'on',
+          'order_remark' => '',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200805982330\' ,\'2\' ,\'相仲\' ,\'\',\'\'  ,\'15989407534\' ,3 ,1 ,1,269,1 ,2 , \'2020-08-05 16:19:54\' ,\'admin\', \'2020-08-05 16:19:54\', \'\', \'0\',1,1,2,0,1,\'展厅订单\',\'1\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200805982330',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2020-08-05 16:19:54',
+            'create_user' => 'admin',
+            'modify_time' => '2020-08-05 16:19:54',
+            'customer_source_id' => 1,
+            'department_id' => 2,
+            'order_remark' => '',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 1,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 1,
+            'invoice_amount' => 0,
+            'create_time' => '2020-08-05 16:19:54',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '2',
+          'customer_source' => '1',
+          'order_pay_type' => '269',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'is_real_invoice' => 'on',
+          'order_remark' => '',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20200805386279\' ,\'2\' ,\'相仲\' ,\'\',\'\'  ,\'15989407534\' ,3 ,1 ,1,256,1 ,2 , \'2020-08-05 16:20:15\' ,\'admin\', \'2020-08-05 16:20:15\', \'\', \'0\',1,1,2,0,1,\'展厅订单\',\'1\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20200805386279',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 256,
+            'delivery_status' => 1,
+            'create_time' => '2020-08-05 16:20:15',
+            'create_user' => 'admin',
+            'modify_time' => '2020-08-05 16:20:15',
+            'customer_source_id' => 1,
+            'department_id' => 2,
+            'order_remark' => '',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 1,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 1,
+            'invoice_amount' => 0,
+            'create_time' => '2020-08-05 16:20:15',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '2',
+          'customer_source' => '1',
+          'order_pay_type' => '256',
+          'recommended' => '',
+          'recommender_sn' => '',
+          'is_real_invoice' => 'on',
+          'order_remark' => '',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20210122847150\' ,\'2\' ,\'相仲\' ,\'111\',\'\'  ,\'15989407534\' ,3 ,1 ,1,269,1 ,2 , \'2021-01-22 15:16:55\' ,\'admin\', \'2021-01-22 15:16:55\', \'现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20210122847150',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2021-01-22 15:16:55',
+            'create_user' => 'admin',
+            'modify_time' => '2021-01-22 15:16:55',
+            'customer_source_id' => 1,
+            'department_id' => 2,
+            'order_remark' => '现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '111',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2021-01-22 15:16:55',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '2',
+          'customer_source' => '1',
+          'order_pay_type' => '269',
+          'recommended' => '111',
+          'recommender_sn' => '',
+          'order_remark' => '现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))PDOException::__set_state(array(
+   'message' => 'SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+   'string' => '',
+   'code' => '22007',
+   'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+   'line' => 489,
+   'trace' => 
+  array (
+    0 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\model\\BaseOrderInfoModel.php',
+      'line' => 489,
+      'function' => 'query',
+      'class' => 'PDO',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 'INSERT INTO `base_order_info` ( `order_sn`,`bespoke_id`,`consignee`,`recommended`,`recommender_sn`,`mobile`,`user_id`, `order_status`, `order_pay_status`, `order_pay_type`,  `customer_source_id`, `department_id`, `create_time`, `create_user`,  `modify_time`, `order_remark`,  `is_delete`,`send_good_status`,`buchan_status`,`is_xianhuo`,`is_zp`,`delivery_status`,`referer`,`is_real_invoice`,`out_company`,`pay_date`) VALUES (\'20210122920132\' ,\'2\' ,\'相仲\' ,\'111\',\'\'  ,\'15989407534\' ,3 ,1 ,1,269,1 ,3 , \'2021-01-22 15:17:03\' ,\'admin\', \'2021-01-22 15:17:03\', \'现货已取走\', \'0\',1,1,2,0,1,\'展厅订单\',\'0\',0,\'0000-00-00 00:00:00\')',
+      ),
+    ),
+    1 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\apps\\sales\\control\\BaseOrderInfoController.php',
+      'line' => 945,
+      'function' => 'makeEmptyOrder',
+      'class' => 'BaseOrderInfoModel',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'order' => 
+          array (
+            'order_pay_status' => 1,
+            'order_sn' => '20210122920132',
+            'bespoke_id' => '2',
+            'user_id' => '3',
+            'order_status' => 1,
+            'order_check_status' => 1,
+            'order_pay_type' => 269,
+            'delivery_status' => 1,
+            'create_time' => '2021-01-22 15:17:03',
+            'create_user' => 'admin',
+            'modify_time' => '2021-01-22 15:17:03',
+            'customer_source_id' => 1,
+            'department_id' => 3,
+            'order_remark' => '现货已取走',
+            'order_price' => 0,
+            'is_delete' => 0,
+            'consignee' => '相仲',
+            'recommended' => '111',
+            'recommender_sn' => '',
+            'mobile' => '15989407534',
+            'is_xianhuo' => 2,
+            'is_zp' => 0,
+            'referer' => '展厅订单',
+            'is_real_invoice' => 0,
+          ),
+          'invoice' => 
+          array (
+            'is_invoice' => 0,
+            'invoice_amount' => 0,
+            'create_time' => '2021-01-22 15:17:03',
+          ),
+          'address' => 
+          array (
+            'consignee' => '相仲',
+            'express_id' => 10,
+            'country_id' => 1,
+            'province_id' => 0,
+            'city_id' => 0,
+            'regional_id' => 0,
+            'address' => '',
+            'tel' => '',
+            'zipcode' => '',
+            'email' => '',
+            'distribution_type' => 1,
+            'freight_no' => '',
+            'shop_type' => 0,
+            'shop_name' => '',
+            'goods_id' => 0,
+          ),
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'insert',
+      'class' => 'BaseOrderInfoController',
+      'type' => '->',
+      'args' => 
+      array (
+        0 => 
+        array (
+          'mod' => 'sales',
+          'con' => 'BaseOrderInfo',
+          'act' => 'insert',
+          'mobile' => '15989407534',
+          'user_name' => '相仲',
+          'department_id' => '3',
+          'customer_source' => '1',
+          'order_pay_type' => '269',
+          'recommended' => '111',
+          'recommender_sn' => '',
+          'order_remark' => '现货已取走 ',
+          'id' => '',
+          'tab_id' => '72',
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 64,
+      'function' => 'run',
+      'class' => 'Controller',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\frame\\~runtime.php',
+      'line' => 63,
+      'function' => 'dispatch',
+      'class' => 'Route',
+      'type' => '::',
+      'args' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'file' => 'D:\\phpstudy_pro\\WWW\\boss\\index.php',
+      'line' => 18,
+      'function' => 'run',
+      'class' => 'App',
+      'type' => '->',
+      'args' => 
+      array (
+      ),
+    ),
+  ),
+   'previous' => NULL,
+   'errorInfo' => 
+  array (
+    0 => '22007',
+    1 => 1292,
+    2 => 'Incorrect datetime value: \'0000-00-00 00:00:00\' for column \'pay_date\' at row 1',
+  ),
+))

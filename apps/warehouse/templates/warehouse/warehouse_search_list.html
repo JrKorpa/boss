@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>所属公司</th>
+			<th>仓库名称</th>
+                        <th>仓库类型</th>
+			<th>仓库编号</th>
+			<th>是否启用</th>
+			<th>默认上架</th>
+			<th>创建时间</th>
+			<th>添加人</th>
+			<th>货品数量</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_list_<%$d.id%>" data-title="<%$d.name%>">
+			<td align="center"><%$d.id%></td>
+			<td><%$d.company_name%></td>
+			<td><%$d.name%></td>
+                        <td><%$dd->getEnum('warehouse.type',$d.type)%></td>
+			<td><%$d.code%></td>
+			<td><span class="glyphicon <%if $d.is_delete%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+			<td><span class="glyphicon <%if $d.is_default%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>			
+			<td><%$d.create_time%></td>
+			<td align="center"><%$d.create_user%></td>
+			<td><%$view->getGoodsNum($d.id)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

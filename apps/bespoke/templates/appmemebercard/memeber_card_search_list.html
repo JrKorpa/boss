@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+        <th>序号</th>
+        <th>会员卡卡号</th>
+        <th>会员卡等级</th>
+        <th>会员卡类型</th>
+        <th>会员卡状态</th>
+        <th>更新时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$page_list.data item=d%>
+    <tr data-id="memcard_list_<%$d.id%>">
+        <td align="center"><%$d.id%></td>
+        <td><%$d.mem_card_sn%></td>
+        <td>
+            <%foreach from=$dd->getEnumArray("member.member_level") item=value%>
+                <%if $value.name==$d.mem_card_level%><%$value.label%><%/if%>
+            <%/foreach%>
+        </td>
+        <td>
+            <%foreach from=$dd->getEnumArray("member.member_type") item=value%>
+                <%if $value.name==$d.men_card_type%><%$value.label%><%/if%>
+            <%/foreach%>
+        </td>
+        <td>
+            <%foreach from=$dd->getEnumArray("card_status") item=value%>
+            <%if $value.name==$d.mem_card_status%><%$value.label%><%/if%>
+            <%/foreach%>
+        </td>
+        <td><%date('Y-m-d H:i:s',$d.mem_card_uptime)%></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+    <!--
+    util.hover();
+    //-->
+</script>

@@ -1,0 +1,42 @@
+<div id="product_xiangkou_search_list">
+    <div class='alert alert-info' style="display: block !important;width:100% !important; text-align: center;">相同镶口的货品信息
+    </div>
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+            <th style="text-align: center;">序号</th>
+            <th style="text-align: center;">45°图片</th>
+            <th style="text-align: center;">货号或款号</th>
+            <th style="text-align: center;">销售渠道</th>
+            <th style="text-align: center;">所在库房</th>
+            <th style="text-align: center;">销售价</th>
+            <th style="text-align: center;">镶口</th>
+            <th style="text-align: center;">现货状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr>
+            <td align="center"><%$d.id%></td>
+            <td align="center"><%if $d.thumb_img != ''%><img src="<%$d.thumb_img%>" width = "80" height = "80"><%else%>无图片<%/if%></td>
+           <td align="center"><%$d.goods_id%></td>
+            <td align="center"><%if isset($channelList[$d.channel])%>
+                <%$channelList[$d.channel]%>
+                <%/if%></td>
+            <td align="center"><%$d.warehouse%></td>
+            <td align="center"><%$d.sale_price%></td>
+            <td align="center"><%$d.xiangkou%></td>
+            <td align="center"><%if $d.isXianhuo=='0'%>定制<%/if%><%if $d.isXianhuo=='1'%>现货<%/if%></td>
+        </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<div class="clear"></div>
+</div>
+<script type="text/javascript">
+    util.setItem('listDIV','product_xiangkou_search_list');
+    function product_xiangkou_search_page(url1){
+        util.page(url1);
+    }
+</script>

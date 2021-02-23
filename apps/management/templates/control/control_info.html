@@ -1,0 +1,70 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="control_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">控制器名：</label>
+						<input type="text" name="code" class="form-control" placeholder="请输入" value="<%$view->get_code()%>" maxlength="40" onBlur="value=value.replace(/[^a-z]/gi,'');" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">显示名称：</label>
+						<input type="text" name="label" class="form-control" placeholder="请输入" maxlength="20" onBlur="value=value.replace(/[ -~]/g,'')" value="<%$view->get_label()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">所属项目：</label>
+						<select class="select2_category form-control" tabindex="1" name="application_id">
+							<option value=""></option>
+							<%foreach from=$view->getAppList() item=l %>
+								<option value="<%$l.id%>" <%if $view->get_application_id()==$l.id%>selected="selected"<%/if%>><%$l.label%>(<%$l.code%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">类型：</label>
+						<select class="select2_category form-control" tabindex="1" name="type">
+							<option value=""></option>
+							<option value="1" <%if $view->get_type()==1%>selected<%/if%>>独立对象</option>
+							<option value="2" <%if $view->get_type()==2%>selected<%/if%>>主对象</option>
+							<option value="3" <%if $view->get_type()==3%>selected<%/if%>>明细对象</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">关联主对象：</label>
+						<select class="select2_category form-control" tabindex="1" name="parent_id">
+							<option value=""></option>
+							<%foreach from=$view->getParentObj() item=obj%>
+								<option value="<%$obj.id%>" <%if
+							$view->get_parent_id()==$obj.id%>selected="selected"<%/if%>><%$obj.label%>(<%$obj.code%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/control_info.js"%>
+//-->
+</script>

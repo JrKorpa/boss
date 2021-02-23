@@ -1,0 +1,77 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_salepolicy_goods_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货号：</label>
+						<input type="text" name="goods_id" class="form-control" placeholder="请输入" value="<%$view->get_goods_id()%>">
+					</div>
+				</div>
+				<!--<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">现货状态：</label>
+						<select class="select2_category form-control" name="isXianhuo" tabindex="1">
+                            <option value=""></option>
+								<option value="0" <%if $view->get_isXianhuo()=='0'%>selected="selected"<%/if%>>期货</option>
+								<option value="1" <%if $view->get_isXianhuo()=='1'%>selected="selected"<%/if%>>现货</option>
+						</select>
+					</div>
+				</div>	-->
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">固定值：</label>
+						<input type="text" name="sta_value" class="form-control" placeholder="请输入" value="<%if $view->get_sta_value()%><%$view->get_sta_value()%><%else%><%$baseInfo->get_sta_value()%><%/if%>">
+					</div>
+				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">成本价：</label>
+                        <input type="text" name="chengben" class="form-control" placeholder="请输入" value="<%$view->get_chengben()%>" readonly="readonly">
+                    </div>
+                </div>
+			</div>
+
+			<div class="row">
+				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">加价率：</label>
+						<input type="text" name="jiajia" class="form-control" placeholder="请输入" value="<%if $view->get_jiajia()%><%$view->get_jiajia()%><%else%><%$baseInfo->get_jiajia()%><%/if%>">
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">销售价：</label>
+						<input type="text" name="sale_price" class="form-control" placeholder="请输入" value="<%$view->get_sale_price()%>">
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">保险费：</label>
+						<input type="text" name="baoxianfee"  readonly="readonly" class="form-control" placeholder="请输入" value="<%$baoxianfee%>">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="policy_id" value="<%$policy_id%>"/>
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_salepolicy_goods_info.js"%>
+//-->
+</script>

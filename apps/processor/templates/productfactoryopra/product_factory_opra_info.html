@@ -1,0 +1,41 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="factory_opra">
+	<div class="form-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="form-group">
+					<label class="control-label">操作：（当前工厂操作：<%$factory_opra_status%>）</label>
+					<div class="radio-list">
+						<%foreach from=$factory_config item=value%>
+						<label class="radio-inline">
+							<input type="radio" name="fac_opra" value="<%$value.dict_value%>" <%if $value.dict_value==$factory_opra_status_id%> checked="checked"<%/if%> /> <%$value.name%>
+						</label>
+						<%/foreach%>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<input type="text" name="opra_info" class="form-control" placeholder="请输入备注" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="id" value="<%$id%>" />
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_factory_opra_info.js"%>
+//-->
+</script>

@@ -1,0 +1,171 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="pay_hexiao_info" enctype="multipart/form-data">
+		<div class="btn-group">
+			<button type="submit"  class="btn btn-sm green">
+			保存 <i class="fa fa-check"></i>
+			</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-sm blue" data-title="提交" data-url="index.php?mod=finance&con=PayHexiao&act=subCon" onclick="util.retrieveConfirm(this);">
+			提交 <i class="fa fa-glass"></i>
+			</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-sm red" data-title="取消" data-url="index.php?mod=finance&con=PayHexiao&act=delCon" onclick="util.retrieveConfirm(this);">
+			取消 <i class="fa fa-trash-o"></i>
+			</button>
+		</div>
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">单号：</label>
+                        <input type="text" name="check_sale_number" class="form-control" value="<%$view->get_check_sale_number()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <input type="text" name="status" class="form-control" value="<%$dd->getEnum('pay.hx_status',$view->get_status())%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">制单时间：</label>
+                        <input type="text" name="maketime" class="form-control" value="<%$view->get_maketime()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">制单人：</label>
+                        <input type="text" name="makename" class="form-control" value="<%$view->get_makename()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核时间：</label>
+                        <input type="text" name="checktime" class="form-control" value="<%$view->get_checktime()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核人：</label>
+                        <input type="text" name="item_id" class="form-control" value="<%$view->get_checkname()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">订单来源：</label>
+                        <select class="form-control" tabindex="1" name="from_ad">
+                            <option value=""></option>
+                           	<%foreach from=$source_list key=k item=d%>
+							<option value="<%$d.id%>" <%if $view->get_from_ad() == $d.id%>selected<%/if%>><%$d.source_name%></option>
+							<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">核销类型：</label>
+                        <select class="form-control" tabindex="1" name="cash_type" disabled="disabled">
+                            <option value=""></option>
+                          	<%foreach from=$dd->getEnumArray('pay.hx_type') item=value key=key%>
+							<option value="<%$value.name%>" <%if $view->get_cash_type() == $value.name%>selected<%/if%>><%$value.label%></option>
+							<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">单据数量：</label>
+                        <input type="text" name="order_num" class="form-control" value="<%$view->get_order_num()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">（货品）总数：</label>
+                        <input type="text" name="goods_num" class="form-control" value="<%$view->get_goods_num()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">成本价：</label>
+                        <input type="text" name="chengben" class="form-control" value="<%$view->get_chengben()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">销售价：</label>
+                        <input type="text" name="shijia" class="form-control" value="<%$view->get_shijia()%>" disabled />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">数据：</label>
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="data" />
+                        		<a href="index.php?mod=finance&con=PayHexiao&act=download">下载数据格式</a>
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<input type="hidden" name="id" value="<%$view->get_id()%>" />
+			<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+			<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+        </div>
+    </form>
+</div>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="pay_hexiao_show_list">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th>单号</th>
+                        <th>单据类型</th>
+                        <th>（货品）总数</th>
+                        <th>成本价</th>
+                        <th>销售价</th>
+                        <%if $view->get_status() == 2 || $view->get_status() == 4%>
+                        <th id="rule_th" <%if $view->get_status() == 2%>style="display:none;"<%/if%>>驳回原因</th>
+                        <%/if%>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%foreach from=$data item=item%>
+                    <tr>
+                        <td align="center" valign="middle"><%$item.jxc_order%></td>
+                        <td><%$item.type%></td>
+                        <td><%$item.goods_num%></td>
+                        <td><%$item.chengben%></td>
+                        <td><%$item.shijia%></td>
+                        <%if $view->get_status() == 2 || $view->get_status() == 4%><!--  待审核 已驳回 -->
+                        <td <%if $view->get_status() == 2%>style="display:none;"<%/if%>><%$item.overrule_reason%></td>
+                        <%/if%>
+                    </tr>
+                    <%/foreach%>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/pay_hexiao_info.js" %>
+//-->
+</script>

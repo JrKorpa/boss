@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>所属仓库</th>
+			<th>柜位号</th>
+			<th>添加时间</th>
+			<th>添加人</th>
+			<th>货品数量</th>
+			<th>是否禁用</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_box_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$view->getWarehouseName($d.warehouse_id)%></td>
+			<td align="center"><%$d.box_sn%></td>
+			<td align="center"><%$d.create_time%></td>
+			<td align="center"><%$d.create_name%></td>
+			<td align="center"><%$view->getGoodsSumByBox($d.id)%></td>
+			<td align="center"><%$dd->getEnum('is_enabled', $d.is_deleted)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

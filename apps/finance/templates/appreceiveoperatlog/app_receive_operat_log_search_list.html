@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>操作人</th>
+			<th>操作时间</th>
+			<th >操作事项</th>
+		</tr>
+	</thead>
+	<tbody>
+				<%foreach from=$page_list.data item=value key=k %>
+					<tr>
+						<td><%$value.operat_name%></td>
+						<td><%$value.operat_time%></td>
+						<td><%$value.operat_content%></td>
+					</tr>
+				<%foreachelse%>
+					<tr>
+						<td colspan="3" >暂无相关信息记录</td>
+					</tr>
+				<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

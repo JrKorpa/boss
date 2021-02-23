@@ -1,0 +1,57 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_material_info_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">材质名称：</label>
+						<input type="text" name="material_name" class="form-control" placeholder="请输入"  value="<%$view->get_material_name()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">税点：</label>
+						<input type="text" name="tax_point" class="form-control" placeholder="请输入"  value="<%$view->get_tax_point()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">价格：</label>
+						<input type="text" name="price" class="form-control" placeholder="请输入"  value="<%$view->get_price()%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">是否启用：</label>
+						<div class="radio-list">					
+							<select class="select2_category form-control" name="material_status" tabindex="1">
+							<%foreach from=$dd->getEnumArray("is_enabled") item=value%>
+								<option value="<%$value.name%>" <%if $value.name==$view->get_material_status()%>selected="selected"<%/if%>
+								><%$value.label%></option>
+							<%/foreach%>
+						</select>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_material_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_material_info_info.js"%>
+//-->
+</script>

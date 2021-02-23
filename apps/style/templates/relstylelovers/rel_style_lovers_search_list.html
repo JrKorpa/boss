@@ -1,0 +1,66 @@
+<div class="flip-scroll">
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>款式45°图片</th>
+                <th>款式编号</th>
+                <th>款式名称</th>
+                <th>款式性别</th>
+                <th>产品线</th>
+                <th>款式分类</th>
+                <th>工厂模号</th>
+                <!--<th>记录备注</th>-->
+				<th>状态</th>
+                <th>是否定制</th>
+                <th>添加时间</th>
+                <th>更新时间</th>
+                
+			</tr>
+		</thead>
+		<tbody>
+		 <%foreach from=$page_list.data item=d%>
+            <tr data-id="base_style_info_search_list_<%$d.love_id%>" data-title="<%$d.love_id%>">
+                <td align="center"><%$d.love_id%></td>
+                <td>
+                    <%if $d.thumb_img != ''%>
+                    <a class="fancyboximg" href="<%$d.big_img%>" title="<%$d.style_sn%> - <%$d.style_name%>">
+                        <img src="<%$d.thumb_img%>" width="80" height="80"/>
+                    </a>
+                    <%else%>无图片<%/if%>
+                </td>
+                <td>
+				<a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn%>" data-id="BaseStyleInfo-<%$d.style_id%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$d.style_id%>"><%$d.style_sn%></a> 
+				<br>
+				<%if $d.style_sn!=$d.style_sn1%>
+				(<a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn1%>" data-id="BaseStyleInfo-<%$d.style_id1%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$d.style_id1%>"><%$d.style_sn1%></a>)
+				<%else%>
+				(<a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn2%>" data-id="BaseStyleInfo-<%$d.style_id2%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$d.style_id2%>"><%$d.style_sn2%></a>)
+				<%/if%></td>
+                <td><%$d.style_name%></td>
+                <td><%$dd->getEnum('style.style_sex',$d.style_sex)%></td>
+                <td><%$d.product_type%></td>
+                <td><%$d.style_type%></td>
+                <td><%$d.factory_info%></td>
+                <!--<td><%$d.style_remark|truncate:103:''%></td>-->
+				<td><%$dd->getEnum('style.check_status',$d.check_status)%></td>
+                <td><%$dd->getEnum('confirm',$d.is_made)%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.modify_time%></td>
+                
+              
+            </tr>
+        <%/foreach%>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

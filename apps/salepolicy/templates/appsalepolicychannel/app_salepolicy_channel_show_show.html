@@ -1,0 +1,48 @@
+<div class="portlet-body">
+	<!-- 表格1 -->
+	<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<td>序号</td>
+				<td><%$view->get_id()%></td>
+			</tr>
+			<tr>
+				<td>销售策略id</td>
+				<td><%$view->get_policy_id()%></td>
+			</tr>
+			<tr>
+				<td>等级</td>
+				<td><%$view->get_channel_level()%></td>
+			</tr>
+			<tr>
+				<td>创建时间</td>
+				<td><%$view->get_create_time()%></td>
+			</tr>
+			<tr>
+				<td>创建人</td>
+				<td><%$view->get_create_user()%></td>
+			</tr>
+			<tr>
+				<td>审核时间</td>
+				<td><%$view->get_check_time()%></td>
+			</tr>
+			<tr>
+				<td>审核人</td>
+				<td><%$view->get_check_user()%></td>
+			</tr>
+			<tr>
+				<td>状态</td>
+				<td><%$dd->getEnum('app_salepolicy_channel.status',$view->get_status())%></td>
+			</tr>
+			<tr>
+				<td>是否删除</td>
+				<td><%$dd->getEnum('app_salepolicy_channel.is_delete',$view->get_is_delete())%></td>
+			</tr>
+		</table>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

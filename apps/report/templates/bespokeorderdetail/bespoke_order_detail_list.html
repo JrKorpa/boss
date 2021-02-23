@@ -1,0 +1,58 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <td style="text-align: center;">销售渠道</td>
+            <td style="text-align: center;">预约来源</td>
+            <td style="text-align: center;">预约号</td>
+            <td style="text-align: center;">预约客服</td>
+            <td style="text-align: center;">BDD订单号</td>
+            <td style="text-align: center;">订单类型</td>
+            <td style="text-align: center;">订单状态</td>
+            <td style="text-align: center;">支付状态</td>
+            <td style="text-align: center;">支付类型</td>
+            <td style="text-align: center;">实付金额</td>
+            <td style="text-align: center;">订单总金额</td>
+            <td style="text-align: center;">发货状态</td>
+            <td style="text-align: center;">布产状态</td>
+            <td style="text-align: center;">制单时间</td>
+            <td style="text-align: center;">制单人</td>
+            <td style="text-align: center;">订单备注</td>
+            <td style="text-align: center;">货号</td>
+            <td style="text-align: center;">款号</td>
+            <td style="text-align: center;">商品名称</td>
+            <td style="text-align: center;">现货/期货</td>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="20" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr>
+            <td><%$obj.channel_name%></td>
+            <td><%$obj.source_name%></td>
+            <td><%$obj.bespoke_sn%></td>
+            <td><%$obj.make_order%></td>
+            <td><%$obj.order_sn%></td>
+            <td><%$obj.is_xianhuo%></td>
+            <td><%$obj.order_status%></td>
+            <td><%$obj.order_pay_status%></td>
+            <td><%$obj.order_pay_type%></td>
+            <td><%$obj.money_paid%></td>
+            <td><%$obj.order_amount%></td>
+            <td><%$obj.send_good_status%></td>
+            <td><%$obj.buchan_status%></td>
+            <td><%$obj.create_time%></td>
+            <td><%$obj.create_user%></td>
+            <td><%$obj.order_remark%></td>
+            <td><%$obj.goods_id%></td>
+            <td><%$obj.goods_sn%></td>
+            <td><%$obj.goods_name%></td>
+            <td><%$obj.is_stock_goods%></td>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

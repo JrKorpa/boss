@@ -1,0 +1,89 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="sale_profit_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">统计方式：</label><span style="color:red;">（默认按周统计）</span>
+                            <select class="select2_category form-control" tabindex="1" name="statistics_way">
+                                <%foreach from=$dd->getEnumArray("report.statistics_way") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">统计年份：</label><span style="color:red;">（默认按当前年份统计）</span>
+                            <select class="select2_category form-control" tabindex="1" name="statistics_year">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("report.statistics_year") key=k item=value%>
+                                <option value="<%$value.label%>" <%if $value.label == $year%>selected<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <%if $smarty.const.SYS_SCOPE eq 'zhanting' %>    
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">报表内容：</label>
+                            <select class="select2_category form-control" tabindex="1" name="report_type">
+                                <option value="1">个体店裸钻零售利润</option>
+                                <option value="2">裸钻批发销售利润</option>
+                            </select>
+                        </div>
+                    </div>
+                    <%/if%>
+
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="sale_profit_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/sale_profit_list.js"%>
+//-->
+</script>

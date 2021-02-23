@@ -1,0 +1,122 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_processor_worktime_info">
+		<div class="form-body">
+			<div class="row">
+				 <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">订单类型：</label>
+						<select class="form-control" tabindex="1" name="order_type">
+							<option value="all" <%if $view->get_order_type()==1 || $view->get_order_type()==2%> disabled='disabled'<%/if%>>全部</option>
+                            <option value="1" <%if $view->get_order_type()==1%>selected="selected"<%/if%>>客订单</option>
+                            <option value="2" <%if $view->get_order_type()==2%>selected="selected"<%/if%>>备货单</option>
+
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">标准出货周期：</label>
+                        <input type="text" name="normal_day" class="form-control" placeholder="默认是7天" value="<%$view->get_normal_day()|default:'1'%>" />
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">周末休息：</label>
+						<select class="form-control" tabindex="1" name="is_rest">
+                            <option value="1" <%if $view->get_is_rest()==1%>selected="selected"<%/if%>>不休</option>
+                            <option value="2" <%if $view->get_is_rest()==2%>selected="selected"<%/if%>>单休</option>
+                            <option value="3" <%if $view->get_is_rest()==3%>selected="selected"<%/if%>>双休</option>
+                        </select>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="row">
+				 	 <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">有款起版周期：</label>
+						<input type="text" name="ykqbzq" class="form-control" placeholder="" value="<%$view->get_ykqbzq()|default:'1'%>" />
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">现货等钻加时：</label>
+						<input type="text" name="now_wait_dia" class="form-control" placeholder="默认是25天" value="<%$view->get_now_wait_dia()|default:'1'%>" />
+					</div>
+				</div>
+			   <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">周末上班：</label>
+						<div style="position:relative">
+							<textarea name="is_works" class="form-control" style="width:310px;float:left"><%$view->get_is_work()%></textarea>
+							<div class="input-group date-picker input-daterange" style="width:5px;height:30px;float:right;margin-right:8px;">
+								<input type='text' name="is_work" class="form-control" placeholder=""/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">无款起版周期：</label>
+						<input type="text" name="wkqbzq" class="form-control" placeholder="" value="<%$view->get_wkqbzq()|default:'1'%>" />
+					</div>
+				</div>
+				 <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">期货等钻加时：</label>
+						<input type="text" name="wait_dia" class="form-control" placeholder="默认是25天" value="<%$view->get_wait_dia()|default:'1'%>" />
+					</div>
+				</div>
+				  <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">放假日期：</label>
+						<textarea name="holiday_times" class="form-control" style="width:310px;float:left"><%$view->get_holiday_time()|default:''%></textarea>
+						<div class="input-group date-picker input-daterange" style="width:5px;height:30px;float:right;margin-right:8px;">
+							<input type='text' name="holiday_time" class="form-control" placeholder="" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+					<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">等钻后加时：</label>
+						<input type="text" name="behind_wait_dia" class="form-control" placeholder="默认是5天" value="<%$view->get_behind_wait_dia()|default:'1'%>" />
+					</div>
+				</div>
+              	 <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">订单问题加时：</label>
+						<input type="text" name="order_problem" class="form-control" placeholder="默认是5天" value="<%$view->get_order_problem()|default:'1'%>" />
+					</div>
+				</div>
+			</div>
+
+			</div>
+			
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="pw_id" value="<%$view->get_pw_id()%>" />
+				
+				<input type="hidden" name="_id" value="<%$_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_processor_worktime_info.js"%>
+//-->
+</script>

@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>月盘点单号</th>
+			<th>仓库</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>货品名称</th>
+			<th>成本价</th>
+			<th>制单时间</th>
+			<th>审核时间</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_pandian_plan_list_<%$d.plan_id%>" data-title="仓库上下架详细">
+			<td><%$d.bill_no%></td>
+			<td> <%$d.warehouse_name%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.goods_name%></td>
+			<td><%if $d.price<=0%><%$d.origin_price%><%else%><%$d.price%><%/if%></td>
+			<td><%$page_data.opt_date%></td>
+			<td><%$page_data.verify_date%></td>
+			<td><%if $d.status ==4%>正常<%elseif $d.status ==3%>盘盈<%else%>盘亏<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+//-->
+</script>

@@ -1,0 +1,120 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>日期</th>
+			<th>订单数量</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr start_time="<%$d.add_date%>" data-id="delivergoods_searchlist" end_time="<%$d.add_date%>" bill_type="<%$args.bill_type%>" department_name="<%$args.department_name%>" department_ids="<%$args.department_ids%>" zt_type="<%$args.zt_type%>" data-title="按渠道部门发货订单量">
+			<td><%$d.add_date%></td>
+			<td><%$d.acount%></td>
+		</tr>
+	<%/foreach%>
+	<%if $acount_all %>
+	<tr start_time="<%$args.start_time%>" end_time="<%$args.end_time%>" bill_type="<%$args.bill_type%>" department_name="<%$args.department_name%>" department_ids="<%$args.department_ids%>" zt_type="<%$args.zt_type%>" data-title="发货量">
+			<td>总数</td>
+			<td><%$acount_all%></td>
+	</tr>
+	<%/if%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<!-- <%$pa%> -->
+</div>
+<script type="text/javascript">
+function show_detail_list(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var bill_type = tObj[0].getAttribute("bill_type");
+	var department_ids = tObj[0].getAttribute("department_ids");
+	var department_name= tObj[0].getAttribute("department_name");
+	var zt_type = tObj[0].getAttribute("zt_type");
+	var prefix = params['con'].toLowerCase();
+	var _id = tObj[0].getAttribute("data-id").split('_').pop();
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.split('-');
+		href.pop();
+		href = href.join('_').substr(1);
+		if (href==prefix)
+		{
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var id = prefix+"-"+_id;
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							//url+="&id="+_id;
+							url+="&start_time="+start_time+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		url+="&start_time="+start_time+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+
+		var id = prefix+"-"+_id;
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

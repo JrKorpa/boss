@@ -1,0 +1,82 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="diamond_sale_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-3" id="bacheitem">
+                        <div class="form-group">
+                            <label class="control-label">货号：</label>
+                            <input type="text" name="goods_id" class="form-control" placeholder="批量查询请使用逗号分隔"/>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">货品状态：</label>
+                            <select class="form-control" tabindex="1" name="is_on_sale">
+                            <option value="">全部</option>
+                            <%foreach from=$dd->getEnumArray('warehouse.goods_status') key=k item=value%>
+                            <option value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-3">
+                        <label class="control-label">销售时间：</label>
+                        <div class="input-group date-picker input-daterange">
+                            <input type='text' name="start" class="form-control" placeholder="请输入"/>
+                            <span class="input-group-addon">至</span>
+                            <input type='text' name="end" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="glyphicon glyphicon-search" aria-hidden="true"></i> 搜索</button>
+                    <button type="button" class="btn blue" onclick="downloadDiaSale()"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="diamond_sale_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/diamond_sale_list.js"%>
+//-->
+</script>

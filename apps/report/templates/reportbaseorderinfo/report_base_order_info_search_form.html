@@ -1,0 +1,250 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="report_base_order_info_search_form" onsubmit="report_base_order_info_search_form_post()" >
+			<div class="form-body">
+				<div class="row">
+					<div id='bachstyle4' class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单号：</label> 
+							<input type="text" name="order_sn" id="order_sn" class="form-control"  ondblclick="bachstyle(this)" placeholder=" 双击可批量输入订单号">
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">外部订单号搜索：</label>
+                            <input type="text" name="out_order_sn" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">客户姓名：</label>
+                            <input type="text" name="consignee" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">手机号码：</label>
+                            <input type="text" name="mobile" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="create_user" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">跟单人：</label>
+                            <input type="text" name="genzong" class="form-control" placeholder="请输入">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <%assign var="shiwu" value="`$smarty.now-15*24*3600`"%>
+                        <div class="form-group">
+                            <label class="control-label">制单时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$shiwu|date_format:'%Y-%m-%d'%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" />
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订单状态：</label>
+						<select class="form-control" tabindex="1" name="order_status">
+							<option value=""></option>
+							<%foreach from =$dd->getEnumArray("order.order_status") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">布产状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="buchan_status">
+                                <option value=""></option>
+                                <%foreach from=$buchan_status key=k item=v%>
+                                <option value="<%$k%>"><%$v%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">配货状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="delivery_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("sales.delivery_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">发货状态：</label>
+                            <select class="select2_category form-control" tabindex="1" name="send_good_status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("order.send_good_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+				    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">销售渠道：</label>
+						<select class="form-control" tabindex="1" name="order_department">
+							<%if !$onlySale%>
+							<option value=""></option>
+							<%/if%>
+							<%foreach from=$sales_channels_idData key=key item=p %>
+								<option value="<%$p.id%>" ><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">客户来源：</label>
+                            <select class="form-control" tabindex="1" name="customer_source">
+                                <option value=""></option>
+                                <%foreach from=$customer_source_list key=key item=p%>
+                                <option value="<%$p.id%>"><%$p.source_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">支付状态：</label>
+						<select class="form-control" tabindex="1" name="order_pay_status">
+							<option value=""></option>
+							<%foreach from =$dd->getEnumArray("order.order_pay_status") item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订购类型：</label>
+						<select class="form-control" tabindex="1" name="pay_type">
+							<option value=""></option>
+							<%foreach from =$pay_type key=key item=value%>
+							<option value="<%$key%>"><%$value%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">赠品单：</label>
+                            <select class="form-control" tabindex="1" name="is_zp">
+                                <option value=""></option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <label class="control-label">订单类型：</label>
+                        <select class="form-control" tabindex="1" name="order_type">
+                            <option value=""></option>
+                            <option value="1">现货</option>
+                            <option value="0">期货</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                        <label class="control-label">录单类型：</label>
+                        <select class="form-control" tabindex="1" name="hbh_referer">
+                            <option value=""></option>
+                            <option value="1">婚博会</option>
+                            <option value="0">非婚博会</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group" style="margin-left: 25px;margin-top: 32px;">
+                            <div class="checkbox-list">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="1" id="close_order" name="close_order"> 显示已经关闭订单
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+        </form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="report_base_order_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function report_base_order_info_search_form_post(){
+	$('#report_base_order_info_search_form #is_post').val('1');
+}
+var start_time="<%$args.start_time%>";
+var end_time="<%$args.end_time%>";
+var time_type="<%$args.time_type%>";
+var buchan_type="<%$args.buchan_type%>";
+var order_type="<%$args.order_type%>";
+var order_department="<%$args.order_department%>";
+var is_delete="<%$args.is_delete%>";
+var order_pay_status="<%$args.order_pay_status%>";
+var send_good_status="<%$args.send_good_status%>";
+var delivery_status="<%$args.delivery_status%>";
+var diff_day="<%$args.diff_day%>";
+var department_id="<%$args.department_id%>";
+var channel_class="<%$args.channel_class%>";
+<!--
+	<%include file="js/report_base_order_info_list.js"%>
+//-->
+</script>

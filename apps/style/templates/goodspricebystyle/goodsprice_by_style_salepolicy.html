@@ -1,0 +1,45 @@
+<div class="table-scrollable">
+		  <table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			<th align="center"><input type="checkbox" class="group-checkable" data-set="#goodsprice_by_style_salepolicy .checkboxes" /></th>
+			<th style="text-align:center">编号</th>
+			<th style="text-align:center">款号</th>
+			<%foreach from=$attrTitleList item=d key=key%>
+			<th style="text-align:center"><%$d%></th>		
+			<%/foreach%>
+			<th style="text-align:center">销售渠道</th>			
+			<th style="text-align:center">加价率</th>
+			<th style="text-align:center">固定值</th>
+            <th style="text-align:center">标签价</th>
+			<th style="text-align:center">更新时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d key=key%>
+			<tr>
+			    <td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			    <td style="text-align:center"><%$key+1%></td>
+				<td style="text-align:center"><%$d.style_sn%></td>
+				<%foreach from=$d.attrDataList item=d2 key=key2%>
+				<td style="text-align:center"><%$d2%></td>		
+				<%/foreach%>
+				<td style="text-align:center"><%$d.channel_name%></td>
+				<td style="text-align:center"><%$d.jiajialv%></td>
+				<td style="text-align:center"><%$d.sta_value%></td>
+                <td style="text-align:center"><%$d.channel_price%></td>
+				<td style="text-align:center"><%$d.update_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+    
+	<%include file="js/goodsprice_by_style_list.js"%>
+
+</script>

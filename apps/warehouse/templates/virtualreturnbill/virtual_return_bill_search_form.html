@@ -1,0 +1,178 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="virtual_return_bill_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">无账货号：</label>
+                            <input type="text" name="no_account_gid" class="form-control" placeholder="多个用空格或逗号隔开"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">单据号：</label>
+                            <input type="text" name="bill_id" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">单据类型：</label>
+                            <select class="form-control" name="bill_type">
+                                <option value=""></option>
+                                <%foreach from = $dd->getEnumArray('noaccount.bill_type')  item=value%>
+                                    <option value="<%$value.label%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">单据状态：</label>
+                            <select class="form-control" name="bill_status">
+                                <option value=""></option>
+                                <%foreach from = $dd->getEnumArray('noaccount.bill_status')  item=value%>
+                                    <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">货品所在公司：</label>
+                            <select class="form-control" name="place_company_id">
+                                <option value=""></option>
+                                <%foreach from = $view->get_company_list()  item=value%>
+                                    <option value="<%$value.id%>"><%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">货品所在仓库：</label>
+                            <select class="form-control" name="place_warehouse_id">
+                                <option value=""></option>                                
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">业务类型：</label>
+                            <select class="form-control" name="business_type">
+                                <option value=""></option>
+                                <%foreach from = $dd->getEnumArray('warehouse.business_type')  item=value%>
+                                    <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">订单号：</label>
+                            <input type="text" name="order_sn" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">有账货号：</label>
+                            <input type="text" name="exists_account_gid" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库公司：</label>
+                            <select class="form-control" name="from_company_id">
+                                <option value=""></option>
+                                <%foreach from = $view->get_company_list()  item=value%>
+                                    <option value="<%$value.id%>"><%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">客户姓名：</label>
+                            <input type="text" name="guest_name" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+					
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">申请人：</label>
+                            <input type="text" name="apply_user" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="create_user" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">审核人：</label>
+                            <input type="text" name="check_user" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+                                <input type="text" class="form-control" placeholder="请选择" name="time_start">
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" placeholder="请选择" name="time_end">
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="virtual_return_bill_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/virtual_return_bill_list.js"%>
+//-->
+</script>

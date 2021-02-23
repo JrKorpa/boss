@@ -1,0 +1,50 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    	<tr>
+        	<th></th>
+            <th></th>
+            <th colspan="5">进店人数管理</th>
+            <th colspan="5">进店销售额管理</th>
+        </tr>
+        <tr>
+        	<th>体验店</th>
+            <th>销售顾问</th>
+            <th>全部预约</th>
+            <th>实际到店数</th>
+            <th>预约到店率</th>
+            <th>实际成单数</th>
+            <th>预约成交率</th>
+            <th>订单总金额</th>
+            <th>已收款金额</th>
+            <th>未收款金额</th>
+            <th>客单价</th>
+            <th>赠品单数</th>
+        </tr>
+	</thead>
+	<tbody>
+    <%foreach from=$alldata item=d key=xsgw%>
+		<tr data-id="shopcount_xsgw_list_<%$d.shopid%>" data-title="<%$shopname%>">
+        	<%if $rows>=1 && $d.index < 2 %>
+            	<td rowspan="<%$rows%>" style="vertical-align:middle;"><%$shopname%></td>
+            <%/if%>
+            <td><%$xsgw%></td>
+            <td><%$d.cloumn1%></td>
+            <td><%$d.cloumn2%></td>
+            <td><%$d.cloumn3%></td>
+            <td><%$d.cloumn4%></td>
+            <td><%$d.cloumn5%></td>
+            <td><%$d.cloumn6%></td>
+            <td><%$d.cloumn7%></td>
+            <td><%$d.cloumn8%></td>
+            <td><%$d.cloumn9%></td>
+            <td><%$d.cloumn10%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

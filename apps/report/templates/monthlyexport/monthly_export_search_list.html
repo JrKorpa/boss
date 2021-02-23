@@ -1,0 +1,280 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+        <%if $export_type eq 'xinzeng'%>
+    		<thead class="flip-content">
+    			<tr>
+    				<th>订单号</th>
+                    <th>来源</th>
+                    <th>销售渠道</th>
+                    <th>顾问</th>
+                    <th>类型</th>
+                    <th>商品类型</th>
+                    <th>系列</th>
+                    <th>证书类型</th>
+                    <th>彩钻</th>
+                    <th>钻石大小</th>
+                    <th>总金额</th>
+                    <th>原价</th>
+                    <th>成交价</th>
+                    <th>已付金额</th>
+                    <th>未付金额</th>
+                    <th>是否网销订单</th>
+                    <th>网销名</th>
+                    <th>款号</th>
+                    <th>货品名称</th>
+                    <th>黄金材质</th>
+                    <th>金重</th>
+                    <th>商品数量</th>
+                    <th>订单状态</th>
+                    <th>付款状态</th>
+                    <th>第一次点款时间</th>
+                    <th>证书号</th>
+                    <th>款式分类</th>
+                    <th>产品线</th>
+                    <th>期货\现货</th>
+                    <th>发货状态</th>
+                    <th>布产状态</th>
+                    <th>绑定货号</th>
+                    <th>成本</th>
+                    <th>货品所在仓库</th>
+                    <th>是否退货</th>
+                    <th>可取货状态</th>
+					<th>款式来源渠道</th>
+					<th>成品定制码</th>
+                    <th>天生一对特殊款</th>
+                    <th>商品信息备注</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    		<%foreach from=$page_list.data item=d%>
+    			<tr data-id="monthly_export_list_<%$d.id%>" data-title="<%$d.id%>">
+                    <td><%$d.order_sn%></td>
+                    <td><%$d.ad_name%></td>
+                    <td><%$d.dep_name%></td>
+                    <td><%$d.make_order%></td>
+                    <td><%$d.referer%></td>
+                    <td><%$d.goods_type%></td>
+                    <td><%$d.xl_name_str%></td>
+                    <td><%$d.cert%></td>
+                    <td><%if $d.goods_type eq 'caizuan_goods'%>是<%else%>否<%/if%></td>
+                    <td><%$d.cart%></td>
+                    <td><%$d.price%></td>
+                    <td><%$d.market_price%></td>
+                    <td><%$d.goods_price%></td>
+                    <td><%$d.money_paid%></td>
+                    <td><%$d.order_amount%></td>
+                    <td><%$d.wangxiao%></td>
+                    <td><%$d.bespoke_make_order%></td>
+                    <td><%$d.goods_sn%></td>
+                    <td><%$d.goods_name%></td>
+                    <td><%$d.gold%></td>
+                    <td><%$d.gold_weight%></td>
+                    <td><%$d.goods_count%></td>
+                    <td><%$d.order_status%></td>
+                    <td><%$d.order_pay_status%></td>
+                    <td><%$d.pay_date%></td>
+                    <td><%$d.zhengshuhao%></td>
+                    <td><%$d.cat_type1%></td>
+                    <td><%$d.product_type1%></td>
+                    <td><%$d.is_stock_goods%></td>
+                    <td><%$d.send_good_status%></td>
+                    <td><%$d.buchan_status%></td>
+                    <td><%$d.bd_goods_id%></td>
+                    <td><%$d.chengbenprice%></td>
+                    <td><%$d.warehouse%></td>
+                    <td><%$d.is_return_srt%></td>
+                    <td><%$d.is_kequstr%></td>
+					<td><%$d.style_channel%></td>
+					<td><%$d.cpdzcode%></td>
+                    <td><%if $d.is_tsyd_special != '' %><%$d.is_tsyd_special%><%else%><%if in_array($d.detail_id,$tsyd_list)%>是<%else%><%/if%><%/if%></td>
+                    <td><%$d.details_remark%></td>
+    			</tr>
+    		<%/foreach%>
+        	</tbody>
+        <%elseif $export_type eq 'fahuo'%>
+            <thead class="flip-content">
+                    <th>来源</th>
+                    <th>顾问</th>
+                    <th>柜面</th>
+                    <th>订单号</th>
+                    <th>销售渠道</th>
+                    <th>总金额</th>
+                    <th>已付金额</th>
+                    <th>未付金额</th>
+                    <th>类型</th>
+                    <th>款号</th>
+                    <th>货品名称</th>
+                    <th>商品类型</th>
+                    <th>金料</th>
+                    <th>金重</th>
+                    <th>原价</th>
+                    <th>成交价</th>
+                    <th>成本价</th>
+                    <th>系列</th>
+                    <th>证书类型</th>
+                    <th>彩钻</th>
+                    <th>货号</th>
+                    <th>双十一特价钻</th>
+                    <th>是否网销订单</th>
+                    <th>网销名</th>
+                    <th>石重</th>
+                    <th>点款流水号</th>
+                    <th>是否以旧换新订单</th>
+                    <th>退货商品金额</th>
+                    <th>实际回款金额</th>
+                    <th>证书号</th>
+                    <th>款式分类</th>
+                    <th>产品线</th>
+                    <th>期货\现货</th>
+					<th>款式来源渠道</th>
+					<th>成品定制码</th>
+                    <th>发货时间</th>
+                    <th>第一次付款时间</th>
+                    <th>天生一对特殊款</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%foreach from=$page_list.data item=d%>
+                <tr data-id="monthly_export_list_<%$d.id%>" data-title="<%$d.id%>">
+                    <td><%$d.ad_name%></td>
+                    <td><%$d.make_order%></td>
+                    <td><%$d.id%></td>
+                    <td><%$d.order_sn%></td>
+                    <td><%$d.dep_name%></td>
+                    <td><%$d.price%></td>
+                    <td><%$d.money_paid%></td>
+                    <td><%$d.order_amount%></td>
+                    <td><%$d.referer%></td>
+                    <td><%$d.goods_sn%></td>
+                    <td><%$d.goods_name%></td>
+                    <td><%$d.goods_type%></td>
+                    <td><%$d.gold%></td>
+                    <td><%$d.gold_weight%></td>
+                    <td><%$d.market_price%></td>
+                    <td><%$d.goods_price%></td>
+                    <td><%$d.sale_price%></td>
+                    <td><%$d.xl_name_str%></td>
+                    <td><%$d.cert%></td>
+                    <td><%if $d.goods_type eq 'caizuan_goods'%>是<%else%>否<%/if%></td>
+                    <td><%$d.goods_id%></td>
+                    <td><%if $d.special_price neq ''%>是<%else%>否<%/if%></td>
+                    <td><%$d.wangxiao%></td>
+                    <td><%$d.bespoke_make_order%></td>
+                    <td><%$d.cart%></td>
+                    <td><%$d.tuikuan_str%></td>
+                    <td><%$d.is_huanxin%></td>
+                    <td><%$d.tuihuo_price%></td>
+                    <td><%$d.real_hk_price%></td>
+                    <td><%$d.zhengshuhao%></td>
+                    <td><%$d.cat_type1%></td>
+                    <td><%$d.product_type1%></td>
+                    <td><%$d.is_stock_goods%></td>
+					<td><%$d.style_channel%></td>
+					<td><%$d.cpdzcode%></td>
+                    <td><%$d.shipfreight_time%></td>
+                    <td><%$d.pay_date%></td>
+                    <td><%if $d.is_tsyd_special != '' %><%$d.is_tsyd_special%><%else%><%if in_array($d.detail_id,$tsyd_list)%>是<%else%><%/if%><%/if%></td>
+                </tr>
+            <%/foreach%>
+            </tbody>
+        <%elseif $export_type eq 'zuantui'%>
+            <thead class="flip-content">
+                <tr>
+                    <th>订单号</th>
+                    <th>来源</th>
+                    <th>销售渠道</th>
+                    <th>顾问</th>
+                    <th>退款申请人</th>
+                    <th>录入类型</th>
+                    <th>商品类型</th>
+                    <th>系列</th>
+                    <th>证书类型</th>
+                    <th>彩钻</th>
+                    <th>钻石大小</th>
+                    <th>总金额</th>
+                    <th>标价</th>
+                    <th>成交价</th>
+                    <th>应退金额</th>
+                    <th>实退金额</th>
+                    <th>退款核算金额</th>
+                    <th>是否网销订单</th>
+                    <th>网销名</th>
+                    <th>款号</th>
+                    <th>货号名称</th>
+                    <th>黄金材质</th>
+                    <th>金重</th>
+                    <th>商品数量</th>
+                    <th>订单状态</th>
+                    <th>付款状态</th>
+                    <th>退款类型</th>
+                    <th>审核金额</th>
+                    <th>订单商品总金额</th>
+                    <th>会计审核时间</th>
+                    <th>证书号</th>
+                    <th>退款申请人所属渠道</th>
+                    <th>款式分类</th>
+                    <th>产品线</th>
+                    <th>期货\现货</th>
+                    <th>退款方式</th>
+					<th>款式来源渠道</th>
+					<th>成品定制码</th>
+                    <th>天生一对特殊款</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%foreach from=$page_list.data item=d%>
+                <tr data-id="monthly_export_list_<%$d.id%>" data-title="<%$d.id%>">
+                    <td><%$d.order_sn%></td>
+                    <td><%$d.ad_name%></td>
+                    <td><%$d.dep_name%></td>
+                    <td><%$d.make_order%></td>
+                    <td><%$d.account%></td>
+                    <td><%$d.referer%></td>
+                    <td><%$d.goods_type%></td>
+                    <td><%$d.xl_name_str%></td>
+                    <td><%$d.cert%></td>
+                    <td><%if $d.goods_type eq 'caizuan_goods'%>是<%else%>否<%/if%></td>
+                    <td><%$d.cart%></td>
+                    <td><%$d.price%></td>
+                    <td><%$d.market_price%></td>
+                    <td><%$d.goods_price1%></td>
+                    <td><%$d.should_return_amount%></td>
+                    <td><%$d.real_return_price%></td>
+                    <td><%$d.goods_price%></td>
+                    <td><%$d.wangxiao%></td>
+                    <td><%$d.bespoke_make_order%></td>
+                    <td><%$d.goods_sn%></td>
+                    <td><%$d.goods_name%></td>
+                    <td><%$d.caizhi%></td>
+                    <td><%$d.jinzhong%></td>
+                    <td><%$d.goods_count%></td>
+                    <td><%$d.order_status%></td>
+                    <td><%$d.order_pay_status%></td>
+                    <td><%$d.return_types%></td>
+                    <td><%$d.confirm_price%></td>
+                    <td><%$d.goods_amount%></td>
+                    <td><%$d.deparment_finance_time%></td>
+                    <td><%$d.zhengshuhao%></td>
+                    <td><%$d.apply_channel%></td>
+                    <td><%$d.cat_type1%></td>
+                    <td><%$d.product_type1%></td>
+                    <td><%$d.is_stock_goods%></td>
+                    <td><%$d.return_by%></td>
+					<td><%$d.style_channel%></td>
+					<td><%$d.cpdzcode%></td>
+                    <td><%if $d.is_tsyd_special != '' %><%$d.is_tsyd_special%><%else%><%if in_array($d.detail_id,$tsyd_list)%>是<%else%><%/if%><%/if%></td>
+                </tr>
+            <%/foreach%>
+            </tbody>
+        <%else%>
+        <%/if%>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

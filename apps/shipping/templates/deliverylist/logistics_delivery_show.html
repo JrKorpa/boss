@@ -1,0 +1,29 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>快件信息详情
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <th>快递单号：</th><th><%$view->get_freight_no()%></th>
+                <tr><td colspan="2"></td></tr>
+                <%if is_array($info)%>
+                <%foreach from=$info item = i%>
+                <tr>
+                    <td><%$i.time%></td><td><%$i.context%></td>
+                </tr>
+                <%/foreach%>
+                <%else%>
+                <tr><td colspan="2"><%$info%></td></tr>
+                <%/if%>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>快递交接单</title>
+
+<style type="text/css">
+
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:600px;margin:50px auto;}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+
+</style>
+<script type="text/javascript" src='public/js/jquery-1.10.2.min.js'></script>
+<script type="text/javascript">
+	function printorder(chk_value){
+		bdhtml = window.document.body.innerHTML;
+		sprnstr = "<!--startprint-->";
+		eprnstr = "<!--endprint-->";
+		prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+		prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+		$.post("index.php?mod=shipping&con=DeliveryList&act=updateprintstatus",{chk_value:chk_value},function(res){
+			if(res.error){
+				alert(res.error);
+			}else{
+				window.document.body.innerHTML = prnhtml;
+		  		window.print();
+			}
+			
+		  });
+		
+	}
+</script>
+
+</script>
+
+</head>
+<body>
+<div class="wrap"><input type="button" value="打印快递单" onclick="printorder('<%$smarty.get.chk_value%>')" style="width:150px; height:30px; font-size:20px; font-weight:bold;" /></div>
+<!--startprint-->
+<div class="wrap">
+
+	<h1>快递交接单</h1>
+	<p>打印人：<%$smarty.session.userName%>&nbsp;&nbsp;&nbsp;&nbsp;打印时间：<%$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'%>  <b style="float:right">数量总计：<%$num%></b> </p>  
+	<table cellpadding="0" cellspacing="0" border="1" width="100%"> 
+		<thead>
+		<tr>
+			<td align="center" width="65">快递单号</td>
+			<td align="center" width="110">快递公司</td>	
+			<td align="center" width="110">寄件人</td>	
+			<td align="center" width="110">寄件部门</td>	
+			<td align="center" width="110">发件日期</td>	
+		</tr>
+		 </thead> 
+		 <tbody> 
+			<%foreach key=key item=item from=$data%>
+			<tr style="line-height:16px;">
+				<td align="center"><%$item.freight_no%></td>
+				<td align="center"><%$item.express_name%></td>
+				<td align="center"><%$item.sender%></td>
+				<td align="center"><%$item.department%></td>
+				<td align="center"><%$item.create_time|date_format:'%Y-%m-%d %H:%M:%S'%></td>
+			</tr>
+			<%/foreach%>
+
+			<tr>
+				<td align="right" style="line-height:36px;" width="65" colspan='6'>签名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+			 </tbody> 
+			 
+			 
+    </table>
+</div>
+<!--endprint-->
+</body>
+</html>
+

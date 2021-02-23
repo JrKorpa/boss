@@ -1,0 +1,38 @@
+<style type="text/css">
+.picture_show{width:320px;margin:0 auto;}
+.picture_zoompic{width: 100%; border:solid 1px #dfdfdf;background:url(public/img/loading.gif) no-repeat 50% 50%;}
+.picture_zoompic img{width: 100%;height: auto}
+.pic_sliderbox{width:100%;overflow:hidden;margin-top: 6px;}
+.pic_sliderbox .arrow-btn{width:20px;height:53px;background:url(public/img/arrow-btn.png) no-repeat;cursor:pointer;}
+.pic_sliderbox #pic_btn-left{float:left;background-position:0 0;}
+.pic_sliderbox #pic_btn-left.dasabled{background-position:0 -53px;}
+.pic_sliderbox #pic_btn-right{float:right;background-position:-20px 0;}
+.pic_sliderbox #pic_btn-right.dasabled{background-position:-20px -53px;}
+.pic_sliderbox .pic_slider{float:left;height:53px;width:277px;position:relative;overflow:hidden;display:inline;}
+.pic_sliderbox .pic_slider ul{position:absolute;left:0;padding:0;margin-left:3px;margin-bottom: 0; width:2000px;list-style:none; }
+.pic_sliderbox .pic_slider li{float:left;width:55px;text-align:center;list-style:none}
+.pic_sliderbox .pic_slider li img{width: 53px; border:solid 2px #f9f9f9;}
+.pic_sliderbox .pic_slider li.current img{border:solid 2px #3366cc;}
+</style>
+<div class="picture_show">
+	<div class="picture_zoompic"><img src="<%if !empty($res_pic_list)%><%if isset($res_pic_list[0]['big_img'])%><%$res_pic_list[0]['big_img']%><%else%><%$res_pic_list[0]['thumb_img']%><%/if%><%/if%>"/></div>
+	<div class="pic_sliderbox">
+		<div id="pic_btn-left" class="arrow-btn dasabled"></div>
+		<div class="pic_slider" id="picture_thumbnail">
+			<ul>
+				<%foreach from=$res_pic_list item=d%>
+				<li><img src="<%if isset($d.big_img)%><%$d.big_img%><%else%><%$d.thumb_img%><%/if%>"/></li>
+				<%/foreach%>
+			</ul>
+		</div>
+		<div id="pic_btn-right" class="arrow-btn"></div>
+	</div>
+	<%if !empty($bc_note)%>
+	<div style="width:320px;float: left;margin: 25px auto;border:1px solid #DDDDDD;padding: 10px 5px;">
+	<label>布产提示：</label>
+	<span style='color:red;font-size:20px;'>
+		<%$bc_note.factory_name%><%if isset($bc_note.factory_sn)%>,<%$bc_note.factory_sn%><%/if%>
+	</span>
+    </div>
+   <%/if%>
+</div>

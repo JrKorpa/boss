@@ -1,0 +1,33 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>统计时间</th>
+			<th>公司</th>
+			<th>库存数量</th>
+			<th>库存金额</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr data-id="warehousestockreport-index_third"
+		warehouse_ids_string="<%$d.warehouse_ids_string%>" 
+		company_ids_string="<%$d.company_id%>" 
+		types_string="<%$d.types_string%>"
+		dotime_string="<%$d.dotime_string%>"
+		">
+			<td><%$d.dotime_string%></td>
+			<td><%$d.company_name%></td>
+			<td><%$d.count%></td>
+			<td><%$d.warehouse_price%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

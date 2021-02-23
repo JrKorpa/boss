@@ -1,0 +1,111 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>部门列表
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			
+			<div class="portlet-body">
+				<!-- 表格1 -->
+				<ul class="flip-scroll ztree" id="organization_dept_list">
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>岗位信息
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			
+			<div class="portlet-body">
+				<div class="table-toolbar">
+				<%$bar%>
+				</div>
+				<!-- 搜索表单start -->
+				<!--搜索开始-->
+				<div class="portlet box green">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>搜索框
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse">
+							</a>
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<!-- 表单内容 -->
+						<form action="#" class="horizontal-form" method="post" id="organization_search_form">
+							<div class="form-body">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label class="control-label">职位：</label>
+											<select class="select2_category form-control" name="position" tabindex="1">
+												<option value=""></option>
+												<%foreach from=$dd->getEnumArray("position") item=value%>
+													<option value="<%$value.name%>"><%$value.label%></option>
+												<%/foreach%>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label class="control-label">职级：</label>
+											<select class="select2_category form-control" name="level" tabindex="1">
+												<option value=""></option>
+												<%foreach from=$dd->getEnumArray("position_level") item=value%>
+													<option value="<%$value.name%>"><%$value.label%></option>
+												<%/foreach%>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+												<label class="control-label">用户名:</label>
+											   <input type="text" name="account" class="form-control" placeholder="请输入"  value="" />
+										</div>
+                                    </div>
+									<input type="hidden" name="dept_id" value="">
+								</div>
+							</div>
+							<!-- 搜索按钮 -->
+							<div class="form-actions fluid">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="reset" class="btn default">重置</button>
+									<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+								</div>
+							</div>
+						</form>
+						<!-- END FORM-->
+					</div>
+				</div>
+				<!-- 搜索表单end -->
+
+				<!-- 表格1 -->
+				<div class="flip-scroll" id="organization_search_list">
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/organization_list.js"%>
+//-->
+</script>

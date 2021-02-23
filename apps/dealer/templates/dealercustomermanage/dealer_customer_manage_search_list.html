@@ -1,0 +1,136 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content" id="jxs_profit_order_list">
+		<thead class="flip-content">
+			<tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#jxs_profit_order_list .checkboxes" /></th>
+                <th>录入时间</th>
+                <th>准客户姓名</th>
+                <th>状态</th>
+                <th>项目</th>
+                <th>来源<br>类型</th>
+                <th>来源渠道</th>
+                <th>联系电话</th>
+                <th>联系邮箱</th>
+                <th>省</th>
+                <th>市</th>
+                <th>区</th>
+                <th>意向<br>开店数</th>
+                <th>投资金额</th>
+                <th>招商经理</th>
+                <th>推广专员</th>
+                <th>跟进情<br>况详情</th>
+                <th>跟进情况</th>
+                <th>其他信息</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="dealer_customer_manage_search_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><input type="checkbox" class="checkboxes group-checkable" name="_ids[]" value="<%$d.id%>" /></td>
+                <td><%$d.created_time%></td>
+                <td><%$d.customer_name%></td>
+                <td><%$d.status%></td>
+                <td><%$d.text_item%></td>
+                <td><%$d.source%></td>
+                <td><%$d.source_channel%></td>
+                <td><%$d.tel%></td>
+                <td><%$d.email%></td>
+                <td><%$d.province%></td>
+                <td><%$d.city%></td>
+                <td><%$d.district%></td>
+                <td><%$d.shop_nums%></td>
+                <td><%$d.investment_amount%></td>
+                <td><%$d.follow_upper%></td>
+                <td><%$d.spread_name%></td>
+                <td style="text-align: center"><a onclick="open_sub_table(this)" class="open_btn" href="javascript:void(0)"><i class="fa fa-plus"></i></a></td>
+                <td style="white-space: pre-wrap;"><div style="width:250px;"><%$d.newest_follow_info%></div></td>
+                <td style="white-space: pre-wrap;"><div style="width:250px;"><%$d.info%></div></td>
+			</tr>
+        	<tr style="display: none">
+            <td colspan="12" style="background-color: #FFFFFF;">
+                <table class="table table-bordered table-striped flip-content">
+                    <thead class="flip-content">
+                        <tr>
+                            <th>内容</th>
+                            <th>跟进人</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <%foreach from=$d.follow_info item=detail%>
+                        <tr>
+                            <td><%$detail.content%></td>
+                            <td><%$detail.follow_name%></td>
+                            <td><%$detail.created_time%></td>
+                        </tr>
+                        <%/foreach%>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        	<tr style="display: none"></tr>
+		<%foreachelse%>
+        	<tr>
+				<td colspan="16">当前无任务</td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+    util.hover();
+    //复选框组美化
+    var test = $("#jxs_profit_order_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+        if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#jxs_profit_order_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }                    
+        });
+        $.uniform.update(set);
+    });
+    $('#jxs_profit_order_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+    $('#jxs_profit_order_list .sort_wholesale').click(function(){
+          var orderby = $("#jxs_profit_order_list input[name='sort_wholesale']").val();
+          if(orderby == "asc"){
+              orderby = "desc"; 
+          }else{
+              orderby = "asc"; 
+          }
+          $("#jxs_profit_order_list input[name='sort_wholesale']").val(orderby);
+          $("#jxs_profit_order_list").submit();
+    
+    });
+    
+    $('#jxs_profit_order_list .sort_create_time').click(function(){
+          var orderby = $("#jxs_profit_order_list input[name='sort_create_time']").val();
+          if(orderby == "asc"){
+              orderby = "desc"; 
+          }else{
+              orderby = "asc"; 
+          }
+          $("#jxs_profit_order_list input[name='sort_create_time']").val(orderby);
+          $("#jxs_profit_order_list").submit();
+    
+    });
+//-->
+</script>

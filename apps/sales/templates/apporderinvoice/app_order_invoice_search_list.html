@@ -1,0 +1,35 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">是否需要开发票</th>
+			<th style="text-align: center;">发票状态</th>
+			<th style="text-align: center;">发票抬头</th>
+			<th style="text-align: center;">发票类型</th>
+			<th style="text-align: center;">发票号</th>
+			<th style="text-align: center;">发票金额</th>	
+			<th style="text-align: center;">电子邮箱</th>		
+			<th style="text-align: center;">创建时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data key=key item=d%>
+		<tr data-id="app_order_invoice_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$dd->getEnum("confirm",$d.is_invoice)%></td>
+			<td align="center"><%$dd->getEnum("invoice.status",$d.invoice_status)%></td>
+			<td align="center"><%$d.invoice_title%></td>
+			<td align="center"><%$dd->getEnum("invoice.invoice_type",$d.invoice_type)%></td>
+			<td align="center"><a onclick="util.add(this);" data-url="index.php?mod=finance&con=OrderInvoiceInfo&act=showFapiao&invoice_num=<%$d.invoice_num%>"><%$d.invoice_num%></a></td>
+			            
+			<td align="center"><%$d.invoice_amount%></td>
+			<td align="center"><%$d.invoice_email%></td>
+			<td align="center"><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

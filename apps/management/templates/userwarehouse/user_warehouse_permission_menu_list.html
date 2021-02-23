@@ -1,0 +1,44 @@
+<style type="text/css">
+	.menu_permission_tree a {
+		display:inline-block;
+		margin:4px;
+		padding:6px 10px;
+		text-decoration:none;
+		font:12px Arial;
+		color:#FFF;
+		outline:none;
+		border:1px solid #CCC;
+		background:#22A4C4;
+		-moz-border-radius:10px !important;
+		-webkit-border-radius:10px !important;
+		border-radius:10px !important;
+	}
+
+	.menu_permission_tree a:hover {
+		color:#FFF;
+		background:#0B718B;
+	}
+</style>
+
+<div class="menu_permission_tree">
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_expandall)">全部展开</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_collapseall)">全部收起</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_selectall)">全选</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_selectnone)">取消</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_reload)">重置</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_save)">授权</a>
+</div>
+<ul id="user_warehouse_permission_menu_tree" class="ztree"></ul>
+<div class="menu_permission_tree">
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_expandall)">全部展开</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_collapseall)">全部收起</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_selectall)">全选</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_selectnone)">取消</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_reload)">重置</a>
+	<a href="javascript:void(0);" class="button" onclick="util.cust(this,user_warehouse_permission_menu_save)">授权</a>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_warehouse_permission_menu_list.js"%>
+//-->
+</script>

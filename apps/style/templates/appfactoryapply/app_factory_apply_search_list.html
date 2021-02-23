@@ -1,0 +1,96 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+		    <th><input type="checkbox" class="group-checkable" data-set="#app_factory_apply_search_list .checkboxes" /></th>
+			<th>序号</th>
+			<th>款式45°图片</th>
+			<th>款号</th>
+			<th>产品线</th>
+			<th>品类</th>
+			<th>申请类型</th>
+			<th>已有工厂信息</th>
+			<th>供应商</th>
+			<th>工厂模号</th>
+			<th>镶口</th>
+			<th>工厂费用</th>
+			<th>状态</th>
+			<th>申请次数</th>
+			<th>申请人</th>
+			<th>申请时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="apply_factory_list_<%$d.apply_id%>">
+		    <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.apply_id%>" <%if $d.status > 1 %>disabled="true"<%/if%> /></td>
+			<td align="center"><%$d.apply_id%></td>
+			<td>
+				<%if $d.thumb_img != ''%>
+                    <a class="fancyboximg" href="<%$d.big_img%>" title="<%$d.style_sn%> - <%$d.style_name%>">
+                        <img src="<%$d.thumb_img%>" width="80" height="80"/>
+                    </a>
+                <%/if%>
+			</td>
+			<td align="center">
+				<a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn%>" data-id="basestyleinfo-<%$d.style_id%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$d.style_id%>"><%$d.style_sn%></a>
+			</td>
+			<td align="center"><%$d.product_type_name%></td>
+			<td align="center"><%$d.cat_type_name%></td>
+			<td align="center"><%if $d.type==1%>添加<%elseif $d.type==2%>作废<%elseif $d.type==3%>默认工厂<%elseif $d.type==4%>修改<%/if%></td>
+			<td align="center"><%if isset($d.factory_info)%><%$d.factory_info%><%/if%></td>
+			<td align="center"><%$d.factory_name%></td>
+			<td align="center"><%$d.factory_sn%></td>
+			<td align="center"><%$d.xiangkou%></td>
+			<td align="center"><%$d.factory_fee%></td>
+			<td align="center"><%$d.status_name%></td>
+			<td align="center"><%$d.apply_num%></td>
+			<td align="center"><%$d.make_name%></td>
+			<td align="center"><%$d.crete_time%></td>
+			<td align="center"><%$d.check_name%></td>
+			<td align="center"><%$d.check_time%></td>
+			<td align="center"><%$d.info%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+//util.check(util.getItem('listDIV'));
+// 美化复选框
+var test = $("#app_factory_apply_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+  test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+      $(this).show();
+      $(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#app_factory_apply_search_list .group-checkable').change(function () {
+ 	  var set = $(this).attr("data-set");
+      var checked = $(this).is(":checked");
+      $(set).each(function () {
+    	  if ($(this).attr('disabled') == 'disabled') return true;
+          if (checked) {
+              $(this).attr("checked", true);
+              $(this).parents('tr').addClass("active");
+          } else {
+              $(this).attr("checked", false);
+              $(this).parents('tr').removeClass("active");
+          }
+      });
+      $.uniform.update(set);
+  });
+  $('#app_factory_apply_search_list').on('change', 'tbody tr .checkboxes', function(){
+  $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

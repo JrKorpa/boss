@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+                <tr>
+                        <th align="center">序号</th>
+                        <th align="center">操作内容</th>
+                        <th align="center">操作人</th>
+                        <th align="center">订单审核状态</th>
+                        <th align="center">支付状态</th>
+                        <th align="center">发货状态</th>
+                        <th align="center">操作时间</th>
+
+                </tr>
+        </thead>
+        <tbody>
+<!-- 表格1 -->
+        <%foreach from=$order_action key=key item=d%>
+                <tr data-id="order_action_list_<%$d.order_id%>" data-title="">
+                        <td><%$key+1%></td>
+                        <td><%$d.remark%></td>
+                        <td><%$d.create_user%></td>
+                        <td><%$dd->getEnum("order.order_status",$d.order_status)%></td>
+                        <td><%$dd->getEnum("order.order_pay_status",$d.pay_status)%></td>
+                        <td><%$dd->getEnum('order.send_good_status',$d.shipping_status)%></td>
+                        <td><%$d.create_time%></td>
+                </tr>
+        <%/foreach%>
+        </tbody>
+</table>

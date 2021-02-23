@@ -1,0 +1,130 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>按款定价编辑/添加
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="" class="horizontal-form" method="post" id="goodsprice_by_style_edit">
+			<div class="form-body ">
+				<table class="table table-bordered table-striped  flip-content">
+					<tr>
+					     <td style='text-align:center; vertical-align: middle;width:150px'>
+							款号
+						</td>
+						<td style='vertical-align: middle;'>
+							<input type="text" name="style_sn" class="form-control" placeholder="请输入款号" value="<%$style_sn|default:''%>" style='width:40%;display:inline;'/>
+							<button type="button" class="btn green search_btn"><i class="fa fa-check"></i> 搜索</button>
+						</td>
+					</tr>
+				</table>
+				<div id="attr_data_content">				  
+			    </div>
+            </div>
+            
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default ">重置</button>
+					<button type="submit" id="btn_confirm" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>按款定价列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	    <!-- 工具栏 -->
+		<div class="table-toolbar">
+<div class="btn-group">
+<button class="btn btn-sm blue" onclick="util.downloadCSV(this);" data-url="index.php?mod=style&con=GoodsPriceByStyle&act=exportCSV&style_sn=<%$style_sn%>" name="数据模板下载" title="数据模板下载" list-id="283" data-title="裸石配钻记录">
+	按款定价列表下载 <i class="fa fa-cloud-download"></i>
+</button>
+</div>
+<div class="btn-group">
+<button class="btn btn-sm yellow" onclick="util.add(this);" data-url="index.php?mod=style&con=GoodsPriceByStyle&act=importIndex&style_sn=<%$style_sn%>" name="按款定价导入" title="导入价格" list-id="336" data-title="按款定价导入">
+	按款定价导入 <i class="fa fa-cloud-upload"></i>
+</button>
+</div>
+<div class="btn-group">
+<button type="button" class="btn btn-sm green" onclick="util.pop3(this);" data-url="index.php?mod=style&con=GoodsPriceByStyle&act=addSalepolicy" name="添加销售策略" title="添加销售策略" list-id="329" data-title="">
+     添加销售策略 <i class="fa fa-plus"></i>
+</button>
+</div>
+ <div class="btn-group">
+      <button class="btn btn-sm dark js_reload_style_price" id="reload_style_price_edit" data-url="index.php?mod=style&con=GoodsPriceByStyle&act=getAttrPriceList&style_sn=<%$style_sn%>" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+</div>
+		<form action="" class="horizontal-form" method="post" id="goodsprice_by_style_edit_price_update">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="goodsprice_by_style_price" style="height:400px; overflow:scroll">
+		
+		</div>
+		<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default ">重置</button>
+					<button type="submit" id="btn_confirm" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				
+				<button type="button" class="btn btn-sm blue" onclick="util.pop3(this);" data-url="index.php?mod=style&con=GoodsPriceByStyle&act=addSalepolicy" name="添加销售策略" title="添加销售策略" list-id="329" data-title="">
+     添加销售策略 <i class="fa fa-plus"></i>
+</button>
+				</div>
+		</div>
+		</form>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>销售策略列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	    <!-- 工具栏 -->
+		<div class="flip-scroll" id="style_salepolicy_form">
+		
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="goodsprice_by_style_salepolicy">
+		
+		</div>
+		<div class="clear"></div>
+		<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">       
+			<button class="btn btn-sm blue" onclick="util.cust(this,deleteSalepolicy);" data-url="index.php?mod=style&con=GoodsPriceSalepolicy&act=delete" name="删除销售策略" title="删除销售策略" list-id="329"  data-title="">
+				删除选中销售策略 <i class="fa fa-minus"></i>
+			</button>	
+			
+			<button class="btn btn-sm red" onclick="util.cust(this,deleteSalepolicyAll);" data-url="index.php?mod=style&con=GoodsPriceSalepolicy&act=deleteAll" name="清空该款所有销售策略" title="清空该款所有销售策略" list-id="329"  data-title="">
+				清空该款所有销售策略 <i class="fa fa-minus"></i>
+			</button>
+         </div>			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/goodsprice_by_style_edit.js"%>
+//-->
+</script>

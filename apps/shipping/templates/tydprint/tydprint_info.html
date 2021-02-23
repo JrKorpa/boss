@@ -1,0 +1,55 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="shop_cfg_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">体验店名称：</label>
+                        <label class="form-control"><%$view->get_shop_name()%></label>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">收货单位：<span class="required">*</span></label>
+						<input type="text" name="accepter_company" class="form-control" placeholder="请输入" value="<%$accepter.company%>" maxlength="128" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">收件人：<span class="required">*</span></label>
+						<input type="text" name="accepter_name" class="form-control" placeholder="请输入" value="<%$accepter.name%>" maxlength="128" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">收件人电话：<span class="required">*</span></label>
+						<input type="text" name="accepter_mobile" class="form-control" placeholder="请输入"  value="<%$accepter.mobile%>" maxlength="64" />
+					</div>
+				</div>
+				
+				
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">收货地址：<span class="required">*</span></label>
+						<input type="text" name="accepter_address" class="form-control" placeholder="请输入"  value="<%$accepter.address%>" maxlength="64" />
+					</div>
+				</div>
+			</div>
+        </div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+       	
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/tydprint_info.js"%>
+//-->
+</script>

@@ -1,0 +1,42 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="" method="post" class="horizontal-form" id="purchase_batch_add_goods" enctype="multipart/form-data">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">采购单号：</label>
+                        <input type="text" name="p_sn" class="form-control"  value="<%$view->get_p_sn()%>" disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">申请费用：</label>
+                        <input type="text" name="purchase_fee" class="form-control"  value="<%$view->get_purchase_fee()%>" disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">上传文件：</label>
+                        <input type="file" name="batch_goods" class="form-control" placeholder="请选择文件" />
+                        <span class="label label-sm"><a href="index.php?mod=purchase&con=PurchaseGoods&act=downPurcaseCSV&pur_id=<%$view->get_id()%>">下载采购款式数据格式</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-4 col-md-6">
+                <input type="hidden" name="pur_id" value="<%$view->get_id()%>" />
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                <span type="colse" class="btn dark close-btn"><i class="fa fa-ban"></i> 取消</span>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/purchase_batch_add_goods.js"%>
+    //-->
+</script>

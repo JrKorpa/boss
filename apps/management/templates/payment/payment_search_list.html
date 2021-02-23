@@ -1,0 +1,46 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+        <th>序号</th>
+        <th>支付方式</th>
+        <th>拼音名称</th>
+        <th>手续费</th>
+        <th>使用范围</th>
+        <th>使用方式</th>
+        <th>启用</th>
+        <!--<th>货到付款</th>
+        <th>网络支付</th>
+        <th>是否显示</th>-->
+        <th>创建时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$page_list.data item=d%>
+    <tr data-id="payment_list_<%$d.id%>">
+        <td><%$d.id%></td>
+        <td><%$d.pay_name%></td>
+        <td><%$d.pay_code%></td>
+        <td><%$d.pay_fee%></td>
+        <td>
+            <%if $d.is_online == 1%>线上/<%/if%>
+            <%if $d.is_offline == 1%>线下/<%/if%>
+        </td>
+            <td>
+            <%if $d.is_order == 1%>订购/<%/if%>
+            <%if $d.is_balance == 1%>结算/<%/if%>
+        </td>
+        <td><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+        <!--<td><span class="glyphicon <%if $d.is_cod%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+        <td><span class="glyphicon <%if $d.is_web%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+        <td><span class="glyphicon <%if $d.is_display%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>-->
+        <td><%date('Y-m-d',$d.add_time)%></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+    <!--
+    util.hover();
+    //-->
+</script>

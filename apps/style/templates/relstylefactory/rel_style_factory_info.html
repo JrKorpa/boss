@@ -1,0 +1,58 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="rel_style_factory_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">生产产商：</label>
+                        <select class="form-control" tabindex="1" name="factory_id" <%if $view->get_is_def()==1&&$view->get_is_factory()==1%>disabled="disabled"<%/if%>>
+                            <option value=""></option>
+                            <%foreach from=$processorList item=l %>
+                            <option value="<%$l.id%>" <%if $view->get_factory_id()==$l.id%>selected="selected"<%/if%>><%$l.name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">工厂模号：</label>
+                        <input type="text" name="factory_sn" class="form-control" placeholder="请输入" value="<%$view->get_factory_sn()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">镶口：</label>
+                        <input type="text" name="xiangkou" class="form-control" placeholder="请输入" value="<%$view->get_xiangkou()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">工厂费用：</label>
+                        <input type="text" name="factory_fee" class="form-control" placeholder="请输入" value="<%$view->get_factory_fee()%>" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_f_id()%>" />
+                <input type="hidden" name="style_id" value="<%$style_id%>" />
+                <input type="hidden" name="style_sn" value="<%$style_sn%>" />
+                <input type="hidden" name="_id" value="<%$_id|default:0%>" />
+                <input type="hidden" name="is_made" value="<%$is_made%>" />
+                <input type="hidden" name="factory_name" value="" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/rel_style_factory_info.js" %>
+//-->
+</script>

@@ -1,0 +1,141 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+                <th>布产数</th>
+                <th>接单数</th>
+                <th>当天应出数</th>
+                <th>当天未出数</th>
+                <th>实际出货数</th>
+                <th>超期率</th>
+                <th>及时率</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list item=d%>
+			<tr data-id="factorylatedreport-detail_list"  start_time="<%$d.esmt_time%>" end_time="<%$d.esmt_time%>" from_type="<%$args.from_type%>" opra_uname_string="<%$args.opra_uname_string%>" prc_ids_string="<%$args.prc_ids_string%>" style_sn="<%$args.style_sn%>" data-title="<%$d.esmt_time%>工厂超期率">
+				<td><%$d.dotime%></td>
+                <td><%$d.delivery_num%></td>
+                <td><%$d.receive_num%></td>
+                <td><%$d.cnt%></td>
+                <td><%$d.un_cnt%></td>
+                <td><%$d.on_cnt%></td>
+                <td><%$d.lated_percent%>%</td>
+                <td><%$d.pass_percent%>%</td>
+            </tr>
+		<%/foreach%> 
+		<%if $datacount %>
+			<tr data-id="ClothProductionTracking_list_" data-title="all_count">
+				<td>总计</td>
+                <td><%$datacount.delivery_num%></td>
+                <td><%$datacount.receive_num%></td>
+                <td><%$datacount.cnt%></td>
+                <td><%$datacount.un_cnt%></td>
+                <td><%$datacount.on_cnt%></td>
+                <td><%$datacount.lated_percent%>%</td>
+                <td><%$datacount.pass_percent%>%</td>
+             </tr>
+		<%/if%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+function show_detail_list(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+
+	var title=tObj[0].getAttribute("data-title");
+	if(title=='all_count'){
+		util.xalert("很抱歉，请选择具体的一个日期！");
+		return ;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var from_type = tObj[0].getAttribute("from_type");
+	var opra_uname_string = tObj[0].getAttribute("opra_uname_string");
+	var prc_ids_string= tObj[0].getAttribute("prc_ids_string");
+	var style_sn = tObj[0].getAttribute("style_sn");
+	var con=params['con'].toLowerCase();
+	var act=params['act'].toLowerCase();
+	var prefix = con+'-'+act;
+	var _id = tObj[0].getAttribute("data-id");
+	var id =_id;
+	url+="&start_time="+start_time+"&end_time="+end_time+"&from_type="+from_type+"&opra_uname_string="+opra_uname_string+"&prc_ids_string="+prc_ids_string+"&style_sn="+style_sn;
+
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.substr(1);
+		if (href==prefix)
+		{
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

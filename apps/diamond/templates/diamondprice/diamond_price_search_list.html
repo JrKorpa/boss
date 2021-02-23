@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th align="center">序号</th>
+			<th align="center">形状</th>
+			<th align="center">净度</th>
+			<th align="center">颜色</th>
+			<th align="center">重量|小</th>
+			<th align="center">重量|大</th>
+			<th align="center">价格</th>
+			<th align="center">版本</th>
+			<th align="center">时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="diamond_price_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.shape%></td>
+			<td align="center"><%$d.clarity%></td>
+			<td align="center"><%$d.color%></td>
+			<td align="center"><%$d.min%></td>
+			<td align="center"><%$d.max%></td>
+			<td align="center"><%$d.price%></td>
+			<td align="center"><%$d.version%></td>
+			<td align="center"><%$d.addtime%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

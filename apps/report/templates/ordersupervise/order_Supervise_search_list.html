@@ -1,0 +1,57 @@
+<!-- <div class="table-scrollable"> -->
+<script type="text/javascript">
+function dataShow(th,data){
+		if(th.textContent=='查看详情'){
+            var obj=$(th).parent().prev();
+            var arr=data.split(',');
+            $(obj).append('<br>');
+            $(arr).each(function(val){
+                $(obj).append('<span>'+arr[val]+'<span><br>');
+            });
+            $(th).text('关闭详情');
+		}else if(th.textContent=='关闭详情'){
+            var obj=$(th).parent().prev();
+            $(obj).find('span').remove();
+            $(obj).find('br').remove();
+            $(th).text('查看详情');
+		}
+	}
+</script>
+ <div class="table-scrollable">
+	 <table class="table table-bordered table-striped table-hover flip-content">
+		 <tr >
+			 <td colspan=3 style=" text-align: center;line-height: line-height;font-size: 30px;">超期货品数据</td>
+		 </tr>
+		 <tr>
+			 <td>仓库</td>
+			 <td>超期货品数量</td>
+			 <td>详情</td>
+		 </tr>
+		 <%foreach from =$page_list[1] item=v key=k%>
+		 <tr>
+			 <td><%$v.warehouse%></td>
+			 <td><%$v.goodsSum%></td>
+			 <td ><a onclick="dataShow(this,'<%$v.orderStr%>');" href="javascript:;">查看详情</a></td>
+		 </tr>
+		 <%/foreach%>
+	 </table>
+	 <br><br><br><br>
+	<table class="table table-bordered table-striped table-hover flip-content">
+			<tr >
+				<td colspan=3 style=" text-align: center;line-height: line-height;font-size: 30px;">预警货品数量</td>
+			</tr>
+			<tr>
+				<td>仓库</td>
+				<td>预警货品数量</td>
+				<td>详情</td>
+			</tr>
+			<%foreach from =$page_list[0] item=v key=k%>
+				<tr>
+					<td><%$v.warehouse%></td>
+					<td><%$v.goodsSum%></td>
+					<td ><a onclick="dataShow(this,'<%$v.orderStr%>');" href="javascript:;">查看详情</a></td>
+				</tr>
+			<%/foreach%>
+	</table>
+</div>
+

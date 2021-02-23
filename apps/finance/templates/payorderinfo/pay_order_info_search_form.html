@@ -1,0 +1,155 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="pay_order_info_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">BDD订单号：</label>
+                            <input type="text" name="kela_sn" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">支付方式：</label>
+                            <select class="form-control" tabindex="1" name="pay_name">
+                                <option value=""></option>
+                                <%foreach from=$payment item=d%>
+                                <option value="<%$d.id%>"><%$d.pay_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">来源部门：</label>
+                            <select class="form-control" tabindex="1" name="department">
+                                <option value=""></option>
+                                <%foreach from=$departlist item=d%>
+                                <option value="<%$d.id%>"><%$d.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">订单来源：</label>
+                            <select class="form-control" tabindex="1" name="from_ad">
+                                <option value=""></option>
+                                <%foreach from=$source_list key=k item=d%>
+                                <option value="<%$d.id%>"><%$d.source_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                   </div>
+                   <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">外部订单号：</label>
+                            <input type="text" name="external_id" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">应收申请单：</label>
+                            <input type="text" name="apply_number" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">申请状态：</label>
+                            <select class="form-control" tabindex="1" name="status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('payorder.apply_status') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">误差：</label>
+                            <select class="form-control" tabindex="1" id="storage_mode" name="storage_mode[]" multiple>
+                                <option value=""></option>
+                                <option value="3">销帐有误差</option>
+                                <option value="4">制单有误差</option>
+                            </select>
+                        </div>
+                    </div>
+                   </div>
+                     <div class="row">
+					<div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">下单时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="order_time_start" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="order_time_end" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">发货时间：</label>
+                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                <input type="text" class="form-control" name="shipping_time_start" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="shipping_time_end" value="" />
+                            </div>
+                        </div>
+                    </div>
+
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                    <button type="button" onclick="download()" class="btn blue"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="pay_order_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/pay_order_info_list.js"%>
+//-->
+</script>

@@ -1,0 +1,61 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th style=" width:20px"><input type="checkbox" class="group-checkable" data-set="#diy_xiangkou_config_search_list .checkboxes" /></th>
+				<th>款式编号</th>
+                <th>镶口</th>
+                <th>石重下限</th>
+                <th>石重上限</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$page_list.data item=d%>
+            <tr data-id="diy_xiangkou_config_search_list_<%$d.id%>" data-title="<%$d.style_sn%>">
+                <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+                <td><%$d.style_sn%></td>
+                <td><%$d.xiangkou%></td>
+                <td><%$d.carat_lower_limit%></td>
+                <td><%$d.carat_upper_limit%></td>
+            </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#diy_xiangkou_config_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#diy_xiangkou_config_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#diy_xiangkou_config_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

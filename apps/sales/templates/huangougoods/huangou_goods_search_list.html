@@ -1,0 +1,44 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>				
+                <th style="width:20px;display:none"><input type="checkbox" class="group-checkable" data-set="#huangou_goods_list .checkboxes" />序号</th>
+                <th>序号</th>
+				<th>销售渠道</th>
+				<th>商品名称</th>
+                <th>款号</th>				
+				<th>销售价</th>
+                <th>标签价</th>
+                <th>创建人</th>
+				<th>创建时间</th>
+				<th>修改时间</th>
+				<th>启用状态</th>			
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="huangou_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.channel_name%></td>
+				<td><%$d.goods_name%></td>
+				<td><%$d.style_sn%></td>				
+				<td><%$d.sale_price%></td>
+				<td><%$d.label_price%></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+				<td><%$d.update_time%></td>
+				<td><%$dd->getEnum('is_enabled', $d.status)%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

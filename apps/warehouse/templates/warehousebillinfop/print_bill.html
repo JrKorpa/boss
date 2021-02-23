@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批发销售单</title>
+<style type="text/css">
+
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:700px;margin:50px auto;}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+
+</style>
+<style media="print">
+.Noprint{display:none;}
+.PageNext{page-break-after: always;}
+</style>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js?version=0.3"></script>
+<script type="text/javascript">
+
+function print_price_bill() {
+	$(".price_bill").removeClass("Noprint").show();
+	$(".noprice_bill").addClass("Noprint").hide();
+	window.print();
+}
+function print_noprice_bill() {
+	$(".price_bill").addClass("Noprint").hide();
+	$(".noprice_bill").removeClass("Noprint").show();
+	window.print();
+}
+</script>
+</head>
+<body>
+	<div style="text-align:center;" class="Noprint">
+		<input type="button" class="Noprint" value="打&nbsp;印&nbsp;价&nbsp;格" onclick="print_price_bill()" >
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="Noprint" value="不&nbsp;打&nbsp;印&nbsp;价&nbsp;格" onclick="print_noprice_bill()" >
+	</div>	
+<!--startprint-->
+<%foreach from=$bill_list item=bill%>
+<div class="wrap price_bill">
+	<h1>批发销售单</h1>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="65">单号：</td>
+			<td width="110"><%$bill['bill_info'].bill_no%></td>
+			<td width="65">日期：</td>
+			<td width="110"><%$bill['bill_info'].create_time|date_format:'%Y-%m-%d'%></td>
+			<td width="65">店铺：</td>
+			<td width="110"><%$bill['bill_info'].from_company_name%></td>
+			<td width="65">审核人：</td>
+			<td width="110"><%$bill['bill_info'].check_user%></td>
+		</tr>
+		<tr>
+			<td>客户：</td>
+			<td colspan = '3'>
+            <%if isset($wholesaleArr[$bill['bill_info'].to_customer_id])%><%$wholesaleArr[$bill['bill_info'].to_customer_id]%><%else%><%/if%>
+            </td>
+			<td>件数：</td>
+			<td><%$bill['bill_info'].goods_num%></td>
+			<td>参考编号：</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>备注：</td>
+			<td colspan="3"><%$bill['bill_info'].bill_note%></td>
+			<td>销售价：</td>
+			<td><%$bill['bill_info'].shijia%></td>
+			<td>管理费</td>
+			<td><%$bill['tongji'].management_fee|string_format:'%.2f'%></td>
+		</tr>
+        <%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+        <tr>
+            <td colspan="2">展厅标签价总计：</td>
+            <td colspan="6"><%$bill['bill_info'].label_price_total|string_format:'%.2f'%></td>
+        </tr>
+        <%/if%>
+    </table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>货号</td>
+				<td>款号</td>
+				<td>名称</td>
+				<td>主石<br/>(ct/p)</td>
+				<td>副石<br/>(ct/p)</td>
+				<td>主成<br/>色重</td>
+				<td>证书号</td>
+				<td>数量</td>
+				<td>销售价</td>
+				<td>管理费</td>
+                <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td>展厅标签价</td><%/if%>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$bill['goods_list'] item=d%>
+			<tr>
+				<td><%$d.goods_id%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%if $d.zuanshidaxiao > 0%><%$d.zuanshidaxiao|string_format:'%.3f'%>/<%$d.zhushilishu%><%/if%></td>
+				<td><%if $d.fushizhong > 0%><%$d.fushizhong|string_format:'%.3f'%>/<%$d.fushilishu%><%/if%></td>
+				<td class="tRight"><%if $d.jinzhong > 0 %><%$d.jinzhong|string_format:'%.3f'%><%/if%></td>
+				<td><%$d.zhengshuhao%></td>
+				<td class="tRight"><%$d.num%></td>
+				<td class="tRight"><%$d.shijia%></td>
+				<td class="tRight"><%$d.management_fee%></td>
+                <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td class="tRight"><%$d.label_price%></td><%/if%>
+			</tr>
+		<%/foreach%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">合计</td>
+				<td><%if $bill['tongji'].zuanshidaxiao > 0%><%$bill['tongji'].zuanshidaxiao|string_format:'%.3f'%>/<%$bill['tongji'].zhushilishu%><%/if%></td>	<!-- 主石 -->
+				<td><%if $bill['tongji'].fushizhong > 0%><%$bill['tongji'].fushizhong|string_format:'%.3f'%>/<%$bill['tongji'].fushilishu%><%/if%></td>	<!-- 副石 -->
+				<td class="tRight"><%if $bill['tongji'].jinzhong > 0%><%$bill['tongji'].jinzhong|string_format:'%.3f'%><%/if%></td><!-- 金重 -->
+				<td>&nbsp;</td>	<!-- 证书号 -->
+				<td class="tRight"><%$bill['tongji'].num%></td><!-- 数量 -->
+				<td class="tRight"><%$bill['tongji'].xiaoshoujia|string_format:'%.2f'%></td>	<!-- 销售价 -->
+				<td class="tRight"><%$bill['tongji'].management_fee|string_format:'%.2f'%></td>
+                <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td class="tRight"><%$bill['tongji'].label_price|string_format:'%.2f'%></td><%/if%>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+
+
+
+
+
+<div class="wrap noprice_bill" style="display:none">
+	<h1>批发销售单</h1>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="65">单号：</td>
+			<td width="110"><%$bill['bill_info'].bill_no%></td>
+			<td width="65">日期：</td>
+			<td width="110"><%$bill['bill_info'].create_time|date_format:'%Y-%m-%d'%></td>
+			<td width="65">店铺：</td>
+			<td width="110"><%$bill['bill_info'].from_company_name%></td>
+			<td width="65">审核人：</td>
+			<td width="110"><%$bill['bill_info'].check_user%></td>
+		</tr>
+		<tr>
+			<td>客户：</td>
+			<td colspan = '3'>
+            <%if isset($wholesaleArr[$bill['bill_info'].to_customer_id])%><%$wholesaleArr[$bill['bill_info'].to_customer_id]%><%else%><%/if%>
+            </td>
+			<td>件数：</td>
+			<td><%$bill['bill_info'].goods_num%></td>
+			<td>参考编号：</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>备注：</td>
+			<td colspan="3"><%$bill['bill_info'].bill_note%></td>
+						<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+ 
+    </table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>货号</td>
+				<td>款号</td>
+				<td>名称</td>
+				<td>主石<br/>(ct/p)</td>
+				<td>副石<br/>(ct/p)</td>
+				<td>主成<br/>色重</td>
+				<td>证书号</td>
+				<td>数量</td>
+
+               
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$bill['goods_list'] item=d%>
+			<tr>
+				<td><%$d.goods_id%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%if $d.zuanshidaxiao > 0%><%$d.zuanshidaxiao|string_format:'%.3f'%>/<%$d.zhushilishu%><%/if%></td>
+				<td><%if $d.fushizhong > 0%><%$d.fushizhong|string_format:'%.3f'%>/<%$d.fushilishu%><%/if%></td>
+				<td class="tRight"><%if $d.jinzhong > 0 %><%$d.jinzhong|string_format:'%.3f'%><%/if%></td>
+				<td><%$d.zhengshuhao%></td>
+				<td class="tRight"><%$d.num%></td>
+
+			</tr>
+		<%/foreach%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">合计</td>
+				<td><%if $bill['tongji'].zuanshidaxiao > 0%><%$bill['tongji'].zuanshidaxiao|string_format:'%.3f'%>/<%$bill['tongji'].zhushilishu%><%/if%></td>	<!-- 主石 -->
+				<td><%if $bill['tongji'].fushizhong > 0%><%$bill['tongji'].fushizhong|string_format:'%.3f'%>/<%$bill['tongji'].fushilishu%><%/if%></td>	<!-- 副石 -->
+				<td class="tRight"><%if $bill['tongji'].jinzhong > 0%><%$bill['tongji'].jinzhong|string_format:'%.3f'%><%/if%></td><!-- 金重 -->
+				<td>&nbsp;</td>	<!-- 证书号 -->
+				<td class="tRight"><%$bill['tongji'].num%></td><!-- 数量 -->
+			
+			</tr>
+		</tfoot>
+	</table>
+</div>
+<div class="PageNext"></div>
+<%/foreach%>
+<!--endprint-->
+</body>
+</html>

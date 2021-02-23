@@ -1,0 +1,75 @@
+<div class="tabbable tabbable-custom boxless">
+	<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_e_info">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>损益单
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+				<div class="form-body">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">公司：</label><span style='color:red'>*</span>
+								<!--<div class="input-group">-->
+									<select class="select2_category form-control" tabindex="1" id="from_company_id" name="from_company_id">
+										<option value=""></option>
+										<%foreach from=$company item=c%>
+											<option value="<%$c.id%>|<%$c.company_name%>" <%if $view->get_from_company_id() == $c.id%>selected='selected'<%/if%>>
+											<%$c.company_sn%> | <%$c.company_name%>
+											</option>
+										<%/foreach%>
+									</select>
+									<!--
+									<span id="from_company_btn" class="input-group-addon btn green"> 确定 </span>
+									-->
+								<!--</div>-->
+							</div>
+						</div>
+						<div class="col-sm-8">
+							<div class="form-group">
+								<label class="control-label">备注信息：</label>
+								<input type="text" id="bill_note" name="bill_note" class="form-control" placeholder="" value="<%$view->get_bill_note()%>"/> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 搜索按钮 -->
+			<!-- END FORM-->
+		</div>
+	</div>
+	<!--入库单 end -->
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>损益明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<!-- 提示信息 -->
+			<p class="text-danger"></p>
+			<!-- 表格信息 -->
+			<div class="" id="from_table_data_e">
+			</div>
+			<!-- 分页 -->
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="id" value="" form="warehouse_bill_e_info"/>
+			<button type="reset" class="btn default" form="warehouse_bill_e_info">重置</button>
+			<button type="submit" id="from_table_data_btn_e" class="btn green" form="warehouse_bill_e_info"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+</form>
+</div>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_e_info.js"%>
+	<%include file="js/table_data_ed.js"%>
+</script>

@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>期号(1-12)</th>
+			<th>开始日期</th>
+			<th>结束日期</th>
+			<th>会计年度</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_jiezhang_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.qihao%></td>
+			<td align="center"><%$d.start_time%></td>
+			<td align="center"><%$d.end_time%></td>
+			<td align="center"><%$d.year%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

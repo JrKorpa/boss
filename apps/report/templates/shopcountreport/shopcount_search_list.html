@@ -1,0 +1,65 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    	<tr>
+        	<th></th>
+            <th colspan="10">进店人数管理</th>
+            <th colspan="4">进店销售额管理</th>
+        </tr>
+        <tr>
+        	<th>体验店</th>
+            <th>新增<br/>预约人数</th>
+            <th>实际<br/>到店人数</th>
+            <th>预约预计<br/>到店人数</th>
+            <th>预约实际<br/>到店人数</th>
+
+            <th>预约<br/>到店率</th>
+            <th>实际<br/>成单数</th>
+            <th>实际成交<br/>客户数（不含换购）</th>
+            <th>换购人数</th>
+            <th>预约<br/>成交率</th>
+            <th>赠品客户数</th>
+
+            <th>总业绩</th>
+            <!--<th>商品总金额</th>-->
+            <th>总业绩<br/>（不含换购）</th>
+            <!--<th>实退款金额</th>-->
+            <th>客单价</th>
+            <th>客单价<br/>（不含换购）</th>
+        </tr>
+	</thead>
+	<tbody>
+    <%foreach from=$alldata item=tydinfo key=tydid%>
+    	<tr data-id="shopcount_list_<%$tydid%>" data-title="<%$alltyd[$tydid]%>销售顾问统计页面">
+        	<td><%$alltyd[$tydid]%></td>
+            <td><%$tydinfo.allbokenum%></td>
+            <td><%$tydinfo.realbokenum%></td>
+            <td><%$tydinfo.yindaobokenum%></td>
+            <td><%$tydinfo.yindaoshidaobokenum%></td>
+
+            <td><%$tydinfo.daodianlv%>%</td>
+            <td><%$tydinfo.ordernum%></td>
+            <td><%$tydinfo.dis_ordernum_to%></td>
+             <td><%$tydinfo.dis_ordernum_to_num%></td>
+            <td><%$tydinfo.chengjiaolv%>%</td>
+			<td><%$tydinfo.zpnum%></td>
+
+            <td><%$tydinfo.orderamount%></td>
+            <!--<td><%$tydinfo.goodsamount%></td>-->
+            <td><%$tydinfo.huangouprice%></td>
+            <!--<td><%$tydinfo.moneypaid%></td>-->
+            <!--<td><%$tydinfo.realreturnprice%></td>-->
+            <td><%$tydinfo.kedanjia%></td>
+            <td><%$tydinfo.kedanjia_hg%></td>
+            <!--<td><%$tydinfo.moneyunpaid%></td>-->
+    	</tr>
+    <%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,47 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>对账快递单号原文件</th>
+				<th>状态</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="express_check_search_list_<%$d.id%>" data-title="<%$d.id%>" data-url="index.php?mod=shipping&con=ExpressCheck&act=downloads&id=<%$d.id%>">
+				<td><%$d.id%><input type='hidden' value='<%$d.id%>' id="id"></td>
+				<td><%$d.oldname%></td>
+				<td><%if $d.option==1%>已对账<%else%>未对账<%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+	function downloads(obj) {
+	   
+		var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+		//var tObj = $("#express_check_search_list").find('table>tbody>.tab_click');
+		if (!tObj.length)
+		{
+			$('.modal-scrollable').trigger('click');
+			util.xalert("很抱歉，您当前未选中任何一行！");
+			return false;
+		}
+		//alert(tObj[0].getAttribute("data-url").split('_').pop());
+		var objid = tObj[0].getAttribute("data-url").split('_').pop();
+		//alert(objid);return false;
+		//var objid =tObj[0].getAttribute("data-id").split('_').pop();
+		//var args = "&id="+objid;
+	    location.href = objid;
+	}
+<!--
+	util.hover();
+//-->
+</script>

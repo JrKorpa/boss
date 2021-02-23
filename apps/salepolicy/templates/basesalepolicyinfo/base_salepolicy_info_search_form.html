@@ -1,0 +1,171 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="expand">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form" style="display: none;">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="base_salepolicy_info_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">销售策略名称：</label>
+							<input type="text" name="policy_name" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">记录状态：</label>
+							<select class="form-control" tabindex="1" name="policy_status">
+                                <option></option>
+                                <option value="1">保存</option>
+                                <option value="2">申请审核</option>
+                                <option value="3">已审核</option>
+                                <option value="4">驳回</option>
+                            </select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">是否有效：</label>
+                            <select class="form-control" tabindex="1" name="is_delete">
+                                <option></option>
+                                <option value="0">有效</option>
+                                <option value="1">无效</option>
+                            </select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">产品线：</label>
+							<select class="form-control" name="chanpinxian" tabindex="1" >
+								<option></option>
+								<%foreach from=$chanpinxian item=c%>
+								<option value="<%$c%>"><%$c%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                </div>
+                <div class="row">
+                	<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">金托类型：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="jintuo_type" tabindex="1" >
+								<option value="">全部</option>
+								<%foreach from=$dd->getEnumArray('warehouse_goods.tuo_type') item=j%>
+								<option value="<%$j.name%>"><%$j.label%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">货品类型：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="huopin_type" tabindex="1" >
+								<option value="">全部</option>
+                                <option value="0">期货</option>
+                                <option value="1">现货</option>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款式分类：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="cat_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$catList item=c%>
+									<option value="<%$c.name%>"><%$c.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+                    <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">镶口范围：</label>
+							<div class="input-group">
+								<input  type="text" class="form-control" width="50px" name="range_begin">
+								<span class="input-group-addon">to</span>
+								<input  type="text" class="form-control" width="50px" name="range_end">
+							</div>
+						</div>
+					</div>
+                    
+                </div>
+                <div class="row">
+                <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">主石范围：</label>
+							<div class="input-group">
+								<input  type="text" class="form-control" width="50px" name="zhushi_begin">
+								<span class="input-group-addon">to</span>
+								<input  type="text" class="form-control" width="50px" name="zhushi_end">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">销售策略有效时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="time_start" value="" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="time_end" value="" />
+                            </div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">是否按款定价：</label>
+                            <select class="form-control" tabindex="1" name="is_kuanprice">
+                                <option></option>
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+            
+	</div>
+    <div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="base_salepolicy_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_salepolicy_info_list.js"%>
+//-->
+</script>

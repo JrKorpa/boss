@@ -1,0 +1,58 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th rowspan="2" style="vertical-align: middle;">网销名</th>
+            <th colspan="4" style="text-align: center;">新增</th>
+            <th colspan="4" style="text-align: center;">退货商品金额</th>
+            <th rowspan="2" style="vertical-align: middle;">退款不退货金额</th>
+            <th rowspan="2" style="vertical-align: middle;">总业绩</th>
+            <th colspan="4" style="text-align: center;">回款</th>
+            <th rowspan="2" style="vertical-align: middle;">回款总金额</th>
+        </tr>
+        <tr>
+            <th>裸钻数</th>
+            <th>裸钻金额</th>
+            <th>成品数</th>
+            <th>成品金额</th>
+            <th>裸钻数</th>
+            <th>裸钻金额</th>
+            <th>成品数</th>
+            <th>成品金额</th>
+            <th>裸钻数</th>
+            <th>裸钻金额</th>
+            <th>成品数</th>
+            <th>成品金额</th>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="16" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr>
+            <td><%$obj.username%></td>
+            <td><%$obj.newlz_count%></td>
+            <td><%$obj.newlz_amount%></td>
+            <td><%$obj.newcp_count%></td>
+            <td><%$obj.newcp_amount%></td>
+            <td><%$obj.returnlz_count%></td>
+            <td><%$obj.returnlz_amount%></td>
+            <td><%$obj.returncp_count%></td>
+            <td><%$obj.returncp_amount%></td>
+            <td><%$obj.loss_goods_amount%></td>
+            <td><%$obj.total_gain%></td>
+            <td><%$obj.shiplz_count%></td>
+            <td><%$obj.shiplz_amount%></td>
+            <td><%$obj.shipcp_count%></td>
+            <td><%$obj.shipcp_amount%></td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-网销回款总金额详情" data-id="netsalereport-<%time()%>" data-url="index.php?mod=report&con=NetSaleReport&act=total_ship&name=<%$obj.username%>&<%$args_where%>"><%$obj.total_ship%>
+			</a>
+			</td>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

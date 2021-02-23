@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>公司</th>
+                <th>商品类型</th>
+                <th>折扣</th>
+                <th>提成比例A<br/>（裸钻小于0.5克拉）</th>
+                <th>提成比例B<br/>（裸钻0.5克拉（含）-1克拉）</th>
+                <th>提成比例C<br/>（裸钻1克拉（含）-1.5克拉）</th>
+                <th>提成比例D<br/>（裸钻1.5克拉及以上）</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="extra_category_ratio_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+                <td><%$d.dep_name%></td>
+                <td><%$dd->getEnum('extra.goods_type',$d.goods_type)%></td>
+                <td><%$d.discount%></td>
+                <td><%$d.pull_ratio_a%></td>
+                <td><%$d.pull_ratio_b%></td>
+                <td><%$d.pull_ratio_c%></td>
+                <td><%$d.pull_ratio_d%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,124 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="delivergoodsreport_detail_list_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+							<label class="control-label">统计时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" id="start_time" name="start_time" value="<%$where.start_time%>" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" id="end_time"  name="end_time" value="<%$where.end_time%>" />
+                            </div>
+						</div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="bill_type" id="bill_type" onchange="show_type();">
+							<option value="">选择类型</option>
+							<option value="S" <%if $where.bill_type=='S'%> selected<%/if%> >网络发货</option>
+							<option value="M" <%if $where.bill_type=='M'%> selected<%/if%> >展厅发货</option>
+							</select>
+							<input type="hidden" name="page" value="<%$where.page%>" />
+							<span id="show_department2" style="display:none;" >
+							<select style="float:left;" class="select2_category form-control" tabindex="1" name="department_name" id="department_name">
+								<option value="0">全部</option>
+								<option value="银行销售部" <%if $where.department_name=='银行销售部'%> selected<%/if%> >银行销售部</option>
+								<option value="B2C销售部" <%if $where.department_name=='B2C销售部'%> selected<%/if%> >B2C销售部</option>
+								<option value="京东销售部" <%if $where.department_name=='京东销售部'%> selected<%/if%> >京东销售部</option>
+								<option value="淘宝销售部" <%if $where.department_name=='淘宝销售部'%> selected<%/if%> >淘宝销售部</option>
+								<option value="官方网站部" <%if $where.department_name=='官方网站部'%> selected<%/if%> >官方网站部</option>
+								<option value="微信平台" <%if $where.department_name=='微信平台'%> selected<%/if%> >微信平台</option>
+							</select>
+							</span>
+							<span id="show_zt2" style="display:none;">
+							<!--&nbsp;&nbsp;
+								展厅发货类型：-->
+									<select class="select2_category form-control" tabindex="1" name="zt_type" id="zt_type">
+										<option value="0" selected="selected">全部</option>
+										<option value="1" <%if $where.zt_type=='1'%> selected<%/if%> >展厅订单</option>
+										<option value="2" <%if $where.zt_type=='2'%> selected<%/if%> >展厅整包</option>		
+										</select>
+							</span>
+                        </div>
+                    </div>
+			</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green" id="detail_list_submit"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+        </form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="delivergoodsreport_detail_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+var start_time=document.getElementById('start_time').value;
+var end_time=document.getElementById('end_time').value;
+var bill_type=document.getElementById('bill_type').value;
+var zt_type=document.getElementById('zt_type').value;
+var department_name=document.getElementById('department_name').value;
+var department_ids="<%$where.department_ids%>";
+function show_type()
+{
+	var s_t = document.getElementById('bill_type').value;
+	
+	if(s_t == 'S')//网络
+	{
+		document.getElementById('show_zt2').style.display = "none";
+		document.getElementById('show_department2').style.display = "";
+	}
+	else if(s_t == 'M')//展厅
+	{
+		document.getElementById('show_zt2').style.display = "";
+		document.getElementById('show_department2').style.display = "none";
+	}
+	else
+	{
+		document.getElementById('show_zt2').style.display = "none";
+		document.getElementById('show_department2').style.display = "none";
+	}
+}
+
+	<%include file="js/detail_list.js"%>
+
+</script>

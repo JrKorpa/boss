@@ -1,0 +1,24 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>体验店名称</th>
+			<th>体验店地址</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="shop_cfg_recycle_list_<%$d.id%>" data-title="<%$d.shop_name%>">
+			<td><%$d.id%></td>
+			<td><%$d.shop_name%></td>
+			<td><%$d.shop_address%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

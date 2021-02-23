@@ -1,0 +1,38 @@
+id = #defec_pro_from_table_data;
+
+[title]
+0 = "序号";
+1 = "工厂模号";
+2 = "布产号";
+3 = "客户名";
+4 = "款式分类";
+5 = "金额";
+6 = "备注";
+
+[columns_0]
+type = numeric;
+readOnly = true;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+type = text;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_6]
+type = text;

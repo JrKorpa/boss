@@ -1,0 +1,40 @@
+<div class="portlet-body"> 
+	<!-- 表格1 -->
+	<form action="" method="post" class="horizontal-form" id="app_order_details_price_edit">
+		<div class="table-scrollable">
+      <table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td align="center">货号</td>
+					<td align="center"><input class="form-control input-small" type='text' name='goods_id' value='<%$view->get_goods_id()%>'></td>
+                    <td align="center">商品价格</td>
+					<td align="center">
+                        <input class="form-control input-small" type='text' name='goods_price' value='<%if $orderdetails["goods_price"] != ''%><%$orderdetails["goods_price"]%><%else%>0.00<%/if%>'>
+                    </td>
+				</tr>
+				<tr>
+                    <td align="center">款号</td>
+                        <td align="center"><input class="form-control input-small" type='text' name='goods_sn' value='<%$view->get_goods_sn()%>'>
+                    </td>
+					<td align="center">商品优惠金额</td>
+					<td align="center">
+                        <input class="form-control input-small" type='text' name='favorable_price' value='<%if $orderdetails["favorable_price"] != ''%><%$orderdetails["favorable_price"]%><%else%>0.00<%/if%>'>
+                    </td>
+				</tr>
+			</table>
+      </div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$orderdetails['id']%>" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+	</form>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_details_price_edit.js"%>
+//-->
+</script>

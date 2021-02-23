@@ -1,0 +1,65 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="oqc_opra">
+	<div class="form-body">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">质检结果：</label>
+					<div class="radio-list">
+						<label class="radio-inline">
+							<input type="radio" name="oqc_result" value="1" checked="checked" /> 质检通过
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="oqc_result" value="0" /> 质检未过
+						</label>
+					</div>
+				</div>
+			</div>
+		<div id="oqc_div" style="display:none;">
+			<div class="col-sm-4">
+				<div class="form-group">
+
+					<label class="control-label">质检未过类型：</label>
+					<select class="form-control" tabindex="1" name="oqc_reason" id="oqc_reason"  onchange="change_pro()">
+						<option value=""></option>
+						<%foreach from=$top_menu key=k item=value%>
+						<option value="<%$value.id%>"><%$value.cat_name%></option>						
+						<%/foreach%>
+					</select>		
+					<label class="control-label">OQC未过原因：（如未过原因不能满足业务需求，请联系相关人员添加。）</label>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">未过原因：</label>
+					<select class="form-control" tabindex="1" name="oqc_problem" id="oqc_problem" >
+						<option value=""></option>
+					</select>
+				</div>
+			</div>	
+	</div>
+			<div class="col-sm-12">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<input type="text" maxlength="50" name="oqc_info" class="form-control" placeholder="请输入备注" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="ids" value="<%$id%>" />
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_oqc_opra_info_pl.js"%>
+//-->
+</script>

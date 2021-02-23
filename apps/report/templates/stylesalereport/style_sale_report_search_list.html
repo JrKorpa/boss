@@ -1,0 +1,32 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+                    <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                            <tr>
+                                <th>款号</th>
+                                <th>渠道</th>                                                      
+                                <%foreach from=$data.dates key=k item=date%>
+                                <th><%$date%></th>
+                                <%/foreach%>
+                            </tr>
+                        </thead>                        
+                        <tbody>
+                        	<%foreach $data.data key=style_sn item=v1%>
+                        	   <%foreach $v1 key=qudao item=v2%>
+                        	       <tr>
+                        	       	   <td><%$style_sn%></td><td><%$qudao%></td>
+                        	       	   <%foreach $v2 key=date item=v3%>
+                                           <td><%$v3.sale_num%></td>
+                        	       	   <%/foreach%>
+                        	       </tr>
+                               <%/foreach%>
+                        	<%/foreach%>
+	</table>
+</div>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

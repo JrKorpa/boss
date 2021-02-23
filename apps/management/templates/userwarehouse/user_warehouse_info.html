@@ -1,0 +1,46 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="user_warehouse_info">
+		<div class="form-body">
+			<div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">库管：</label>
+                                        <select class="form-control" tabindex="1" name="user_arr[]" multiple>
+                                                                        <option value=""></option>
+                                            <%foreach from=$view->getUserList($view->get_house_id()) item=value%>
+                                            <option value="<%$value.id%>"><%$value.account%>(<%$value.real_name%>)</option>
+                                            <%/foreach%>
+                                        </select>
+                                    </div>
+                                </div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">创建即授权：</label>
+						<div class="checkbox-list">
+							<label class="checkbox-inline">
+								<input type="checkbox" name="auth_check" value="1" /> 该操作较耗时，提交后请耐心等候
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="house_id" value="<%$view->get_house_id()%>" />
+
+				<button type="button" class="btn default" onclick="user_warehouse_info_check_all()">全选</button>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/user_warehouse_info.js"%>
+//-->
+</script>

@@ -1,0 +1,31 @@
+<div class="table-scrollable"> 
+<!-- <div class="flip-scroll">-->
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th>序号</th>
+                <th>当前状态</th>
+                <th>备注</th>
+                <th>操作人</th>
+                <th>操作时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach from=$page_list.data item=d key=key%>
+            <tr data-id="product_opra_log_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><%count($page_list.data)-$key%></td>
+                <td><%$dd->getEnum('buchan_status',$d.status)%></td>
+                <td><%$d.remark%></td>
+                <td><%$d.uname%></td>
+                <td><%$d.time%></td>                              
+            </tr>
+            <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+    <%$pa%>
+</div>
+<script type="text/javascript">
+    util.hover();
+</script>

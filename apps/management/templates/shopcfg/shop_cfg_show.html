@@ -1,0 +1,170 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+                    离开 <i class="fa fa-angle-double-left"></i>
+                </button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" list-id="72" data-title="">
+					刷新 <i class="fa fa-refresh"></i>
+				</button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td  class="flip-content">体验店名称</td>
+                    <td><%$d.shop_name%></td>
+                    <td  class="flip-content">简称</td>
+                    <td><%$d.short_name%></td>
+                    <td  class="flip-content">体验店类别</td>
+                    <td colspan="10"><%$dd->getEnum('shop.type',$d.shop_type)%></td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td  class="flip-content">体验店地址</td>
+                    <td colspan="5"><%$d.shop_address%></td>
+                    <td  class="flip-content">区域</td>
+                    <td colspan="5"><%$d.area%></td>
+                    <td  class="flip-content">体验店电话</td>
+                    <td colspan="5"><%$d.shop_phone%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">店长</td>
+                    <td colspan="5"><%$d.shopowner%></td>
+                    <td  class="flip-content">店长联系电话</td>
+                    <td colspan="5"><%$d.shopowner_tel%></td>
+                    <td  class="flip-content">店长邮箱</td>
+                    <td colspan="5"><%$d.shopowner_mail%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">营业时间</td>
+                    <td colspan="15"><%$d.shop_time%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">快捷交通路线</td>
+                    <td colspan="15"><%$d.shop_traffic%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">体验店的二级域名</td>
+                    <td colspan="15"><%$d.second_url%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">百度地图坐标</td>
+                    <td colspan="15"><%$d.baidu_maps%></td>
+                </tr>
+                <tr align="center">
+                    <td  class="flip-content">体验店介绍</td>
+                    <td  colspan="15"><%$d.shop_dec%></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="flip-content">创建人</td>
+                    <td><%$d.real_name%></td>
+                    <td  colspan="2" class="flip-content">创建时间</td>
+                    <td colspan="15"><%"Y-m-d H:i:s"|date:$d.create_time%></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>经销商信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.retrieveEdit(this);" title="修改" data-url="index.php?mod=management&con=ShopCfg&act=c_edit">
+                    修改 <i class="fa fa-angle-double-left"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td  class="flip-content">经销商公司名称</td>
+                    <td><%$d.dealer_name%></td>
+                    <td  class="flip-content">开店日期</td>
+                    <td><%$d.start_shop_time%></td>
+                    <td  class="flip-content">区域经理</td>
+                    <td><%$d.regional_manager%></td>
+                    <td  class="flip-content">加盟类型</td>
+                    <td><%$d.join_type%></td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td  class="flip-content">店铺负责人</td>
+                    <td><%$d.shop_responsible_name%></td>
+                    <td  class="flip-content">负责人联系电话</td>
+                    <td><%$d.shop_responsible_tel%></td>
+                    <td  class="flip-content">负责人邮箱</td>
+                    <td colspan="4"><%$d.shop_responsible_mail%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">合同状态</td>
+                    <td><%$d.contract_status%></td>
+                    <td  class="flip-content">合同开始日期</td>
+                    <td><%$d.contract_start_time%></td>
+                    <td  class="flip-content">合同结束日期</td>
+                    <td colspan="3"><%$d.contract_end_time%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">商标使用费</td>
+                    <td><%$d.trademark_use_fee%></td>
+                    <td  class="flip-content">授信及担保额度</td>
+                    <td><%$d.credit_guarantee_fee%></td>
+                    <td  class="flip-content">担保人</td>
+                    <td colspan="3"><%$d.security_user%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">钻石及宝石管理费</td>
+                    <td><%$d.diamond_gem_fee%></td>
+                    <td  class="flip-content">素金类管理费</td>
+                    <td><%$d.su_jin_fee%></td>
+                    <td  class="flip-content">GIA裸钻管理费</td>
+                    <td><%$d.gia_diamond_fee%></td>
+                    <td  class="flip-content">其它裸钻管理费</td>
+                    <td><%$d.other_diamond_fee%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">进货指标</td>
+                    <td colspan="3"><%$d.stock_index%></td>
+                    <td  class="flip-content">拓展指标</td>
+                    <td colspan="3"><%$d.development_index%></td>
+                </tr>
+                <tr align="center">
+                    <td  class="flip-content">备注</td>
+                    <td colspan="7"><%$d.remarks%></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

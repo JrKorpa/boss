@@ -1,0 +1,127 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="return_goods_search_second_form" onsubmit="return_goods_search_second_form_post()">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="end_time"/>
+                            </div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">单据类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="bill_type" id="order_type" onchange="show_sales_channels(this.value)" >
+							<option value="">全部</option>
+							<option value="D">销售退货单</option>
+							<option value="O">维修退货单</option>
+							</select>
+						
+                        </div>
+                    </div>
+					<div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单类型：</label>
+                            <select class="select2_category form-control" tabindex="1" name="order_type" id="order_type" onchange="show_sales_channels(this.value)" >
+							<option value="0">全部</option>
+							<option value="1">线上退货</option>
+							<option value="2">线下退货</option>
+							</select>
+						
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">订单渠道：</label>
+						<select class="form-control" tabindex="1" name="department_id" id="department_id">
+							<option value="">全部</option>
+							<%foreach from=$sales_channels_idData key=key item=p %>
+								<option value="<%$p.id%>" ><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+	
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="return_goods_search_second_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function return_goods_search_second_form_post(){
+	$('#return_goods_search_second_form #is_post').val('1');
+}
+function show_sales_channels(order_type){
+	$.getJSON('index.php?mod=report&con=ReturnGoodsReport&act=get_all_onoffline_channels&order_type='+order_type,function(ret){
+		var department_id_html='<option value="0">全部</option>';
+		$.each(ret,function(i,item){
+			department_id_html+='<option value="'+item.id+'">'+item.channel_name+'</option>';
+		});
+		$('#department_id').html(department_id_html);
+	});
+}
+var start_time="<%$smarty.get.start_time%>";
+if(start_time=='' || start_time=='null')
+start_time=document.getElementById("start_time").value;
+var end_time="<%$smarty.get.end_time%>";
+if(end_time=='' || end_time=='null')
+end_time=document.getElementById("end_time").value;
+var order_type="<%$smarty.get.order_type%>";
+if(order_type=='' || order_type=='null')
+	order_type=document.getElementById("order_type").value;
+var department_id="<%$smarty.get.department_id%>";
+if(department_id=='' || department_id=='null')
+	department_id=document.getElementById("department_id").value;
+var bill_type="<%$smarty.get.bill_type%>";
+
+<!--
+	<%include file="js/return_goods_second_list.js"%>
+//-->
+</script>

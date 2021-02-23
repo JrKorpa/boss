@@ -1,0 +1,25 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			
+			<th style="text-align: center;">收货人</th>
+			<th style="text-align: center;">电话</th>
+			<th style="text-align: center;">地址</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list key=key item=d%>
+		<tr data-id="app_order_address_list_<%$d.mem_address_id%>" data-title="<%$d.mem_address_id%>">
+			<td align="center"><%$d.customer%></td>
+			<td align="center"><%$d.mobile%></td>
+			<td align="center"><%$d.addressstr%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

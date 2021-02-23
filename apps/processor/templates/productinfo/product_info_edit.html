@@ -1,0 +1,120 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>布产单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="col-sm-6">
+
+		<form action="#" method="post" class="horizontal-form" id="product_info_edit">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<td>布产单号</td>
+				<td><%$view->get_bc_sn()%></td>
+			</tr>
+			<tr>
+				<td>采购单号</td>
+				<td><%$view->get_p_sn()%></td>
+			</tr>
+			<tr>
+				<td>状态</td>
+				<td style="color:#4b8df8"><%$dd->getEnum('buchan_status',$view->get_status())%></td>
+			</tr>
+			<tr>
+				<td>分配工厂</td>
+				<td><%$view->get_prc_name()%></td>
+			</tr>
+			<tr>
+				<td>跟单人</td>
+				<td><%$view->get_opra_uname()%></td>
+			</tr>
+			<tr>
+				<td>标准出厂时间</td>
+				<td style="color:#4b8df8"><%$view->get_esmt_time()%></td>
+			</tr>
+			<tr>
+				<td>工厂交货时间</td>
+				<td><%$view->get_rece_time()%></td>
+			</tr>
+			<tr>
+				<td>款号</td>
+				<td><%$view->get_style_sn()%></td>
+			</tr>
+			<tr>
+				<td>数量</td>
+				<td><div class="form-group">
+					<input type="text" name="num" class="form-control" placeholder="请输入" value="<%$view->get_num()%>" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>备注</td>
+				<td><input type="text" name="info" class="form-control" placeholder="请输入" value="<%$view->get_info()%>" /></td>
+			</tr>
+			<%foreach from=$style_attr key=k item=value%>
+			<tr>
+				<td><%$value.attribute_name%></td>
+				<td>
+
+				<%if $value.show_type == 1%><!--文本框-->
+				<input type="text" name="<%$value.attribute_code%>[]" class="form-control" placeholder="请输入" value="<%$attr[$value.attribute_code]%>"/>
+				<input type="hidden" name="<%$value.attribute_code%>[]" value="<%$value.attribute_name%>"/>
+				<%/if%>
+				
+				<%if $value.show_type == 2%><!--单选-->
+					<div class="radio-list">
+					<%foreach from=$value.value item=item%>
+					<label class="radio-inline">
+					<input type="radio" value="<%$ia%>" name="<%$value.attribute_code%>[]" <%if !empty($attr[$value.attribute_code]) && $attr[$value.attribute_code] == $ia%>checked="checked"<%/if%> /><%$ia%>
+					</label>
+					<%/foreach%>
+
+					<input type="hidden" name="<%$value.attribute_code%>[]" value="<%$value.attribute_name%>"/>
+					</div>
+				<%/if%>
+
+				<%if $value.show_type == 3 || $value.show_type == 4 %><!--复选和下拉-->
+					<select class="select2_category form-control" tabindex="1" name="<%$value.attribute_code%>[]">
+						<option value="无">无</option>
+						<%foreach from=$value.value item=item%>
+						<option value="<%$item%>" <%if $attr[$value.attribute_code] == $item%>selected="selected"<%/if%>><%$item%></option>
+						<%/foreach%>
+					</select>
+					<input type="hidden" name="<%$value.attribute_code%>[]" value="<%$value.attribute_name%>"/>
+				<%/if%>
+
+				</td>
+			</tr>
+			<%/foreach%>
+
+		</table>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>"/>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存布产信息</button>
+			</div>
+		</div>
+		</form>
+		</div>
+		<div class="col-sm-6">
+			<!-- 布产图片 -->
+			<%$gallery_html%>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_info_edit.js"%>
+	<%include file="js/product_info.js"%>
+//-->
+</script>

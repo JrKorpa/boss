@@ -1,0 +1,50 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>赠品名称</th>
+				<th>赠品款号</th>
+				<th>是否活圈</th>
+				<th>销售价格</th>
+				<th>是否启用</th>
+                <!--<th>销售状态</th>-->
+				<th>添加时间</th>
+				<th>修改时间</th>
+				<th>是否销账</th>
+				<th>可销售渠道</th>
+				<th>外部订单是否显示勾选框</th>
+				<th>日志</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="gift_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.name%></td>
+				<td><%$d.goods_number|default:'--'%></td>
+				<td><%if $d.is_randring==1%>是<%else%>否<%/if%></td>
+				<td>￥<%$d.sell_sprice%></td>
+                <td><span class="glyphicon <%if $d.status==1%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				<%*<td><%if $d.sell_type==1%>店面销售<%else%>系统销售<%/if%></td>*%>
+				<td><%if $d.add_time!=0%><%($d.add_time|date_format:'%Y-%m-%d %H:%M:%S')|default:'--'%><%else%>--<%/if%></td>
+                <td><%if $d.update_time!=0%><%($d.update_time|date_format:'%Y-%m-%d %H:%M:%S')|default:'--'%><%else%>--<%/if%></td>
+				<td><%if $d.is_xz==2%>是<%else%>否<%/if%></td>
+				<td><%if $d.sale_way==1%>线上<%else if $d.sale_way==2%>线下<%else if $d.sale_way==12%>线上&线下<%else%>无<%/if%></td>
+				<td><%if $d.is_zp==1%>是<%else%>否<%/if%></td>
+				<td><input type='submit' value='查看' class="btn btn-sm blue" onclick="util.add(this);"
+                 data-url="index.php?mod=giftman&con=GiftGoods&act=showlog&goods_number=<%$d.goods_number%>"  list-id="<%$d.id%>" data-title="查看日志"/><input type='hidden' value=<%$d.id%> /></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

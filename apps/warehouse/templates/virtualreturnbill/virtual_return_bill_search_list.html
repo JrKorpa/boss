@@ -1,0 +1,95 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#virtual_return_bill_search_list .checkboxes" /></th>
+				<th>单据编号</th>
+                <th>无账货号</th>
+                <th>单据状态</th>
+                <th>单据类型</th>
+                <th>业务类型</th>
+                <th>货号修退状态</th>
+                <th>创建用户</th>
+                <th>创建时间</th>
+                <th>出库公司名称</th>
+                <th>出库仓库名称</th>
+                <th>入库公司名称</th>
+                <th>入库仓库名称</th>
+                <th>货品所在公司</th>
+                <th>货品所在仓库</th>
+                <th>审核时间</th>
+                <th>审核用户</th>
+                <th>快递单号</th>
+                <th>转有帐操作人</th>
+                <th>转有帐时间</th>
+                <th>有帐货号</th>
+				<th>维修费</th>
+                <th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="virtual_return_bill_search_list_<%$d.id%>" data-title="单据编号<%$d.id%>">
+                <td><%if $d.bill_type == '无账调拨单' && $d.bill_status == 1%><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /><%/if%></td>
+				<td align="center"><%$d.id%></td>
+                <td align="center"><%$d.no_account_gid|default:'--'%></td>
+                <td align="center"><%$dd->getEnum('noaccount.bill_status',$d.bill_status)%></td>
+                <td align="center"><%$d.bill_type|default:'--'%></td>
+                <td align="center"><%$dd->getEnum('warehouse.business_type',$d.business_type)|default:'--'%></td>
+                <td align="center"><%$dd->getEnum('noaccount.return_status',$d.return_status)|default:'--'%></td>
+                <td align="center"><%$d.create_user%></td>
+                <td align="center"><%$d.create_time%></td>
+                <td align="center"><%$d.out_company_name|default:'--'%></td>
+                <td align="center"><%$d.out_warehouse_name|default:'--'%></td>
+                <td align="center"><%$d.from_company_name|default:'--'%></td>
+                <td align="center"><%$d.from_warehouse_name|default:'--'%></td>
+                <td align="center"><%$d.place_company_name|default:'--'%></td>
+                <td align="center"><%$d.place_warehouse_name|default:'--'%></td>
+                <td align="center"><%$d.check_time|default:'--'%></td>
+                <td align="center"><%$d.check_user|default:'--'%></td>
+                <td align="center"><%$d.express_sn|default:'--'%></td>
+                <td align="center"><%$d.exist_account_user|default:'--'%></td>
+                <td align="center"><%$d.exist_account_time|default:'--'%></td>
+                <td align="center"><%$d.exist_account_gid|default:'--'%></td>
+				 <td align="center"><%$d.weixiu_fee|default:'0'%></td>
+                <td align="center"><%$d.remark|default:'--'%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    var test = $("#virtual_return_bill_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+            test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#virtual_return_bill_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+            var checked = $(this).is(":checked");
+            $(set).each(function () {
+                    if (checked) {
+                            $(this).attr("checked", true);
+                            $(this).parents('tr').addClass("active");
+                    } else {
+                            $(this).attr("checked", false);
+                            $(this).parents('tr').removeClass("active");
+                    }
+            });
+            $.uniform.update(set);
+    });
+    $('#virtual_return_bill_search_list').on('change', 'tbody tr .checkboxes', function(){
+            $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

@@ -1,0 +1,35 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="form-inline" role="form" method="post" id="order_fqc_search_form">
+			<div class="form-body">
+				<div class="form-group">
+					<label class="control-label" for="name">订单号：</label>
+					<input id="order_sn" type="text" class="form-control" name="order_sn" placeholder="请输入订单号"/>
+				</div>
+				<button type="button" class="btn btn-sm green"><i class="fa fa-search"></i> 搜索</button>
+				<div class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">离开<i class="fa fa-mail-reply"></i></div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+	
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="order_fqc_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/order_fqc_form.js"%>
+//-->
+</script>

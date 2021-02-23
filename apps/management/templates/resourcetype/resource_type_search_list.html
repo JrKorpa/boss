@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+        <th>序号</th>
+        <th>显示标识</th>
+        <th>编码</th>
+        <th>主表</th>
+        <th>相关表</th>
+        <th>字段</th>
+        <th>外键</th>
+        <th>是否系统内置</th>
+        <th>是否启用</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$page_list.data item=d%>
+    <tr data-id="resource_search_list_<%$d.id%>">
+        <td><%$d.id%></td>
+        <td><%$d.label%></td>
+        <td><%$d.code%></td>
+        <td><%$d.main_table%></td>
+        <td><%$d.user_table%></td>
+        <td><%$d.fields%></td>
+        <td><%$d.foreigh_key%></td>
+        <td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+        <td><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+    <!--
+    util.hover();
+    //-->
+</script>

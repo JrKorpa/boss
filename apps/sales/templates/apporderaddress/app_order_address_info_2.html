@@ -1,0 +1,187 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_order_address_info_2">
+           <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">配送方式：</label><span style="color:red">*</span>
+                    <div class="radio-list">
+                        <select class="select2_category form-control" name="distribution_type" tabindex="1" >
+                            <option value="" ></option>
+                            <%foreach from=$dd->getEnumArray("sales.distribution_type")  item=value%>
+                            <option value="<%$value.name%>" <%if $member_address.distribution_type==$value.name%>selected="selected"<%/if%>><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <div id="address_mendian_info"      <%if $member_address.distribution_type==2%> style="display:none" <%/if%>>
+   
+        <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">体验店类别：</label>
+            <select class="select2_category form-control" tabindex="1" name="shop_type" >
+                <option value=""></option>
+                <%foreach from=$dd->getEnumArray("shop.type") key=k item=value%>
+                <option  value="<%$value.name%>" <%if $member_address.shop_type==$value.name%>
+                selected<%/if%>><%$value.label%></option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">体验店：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="2" id="shop_id" name="shop_id" >
+                <option value=""></option>
+                 <%foreach from=$shop  item=value%>
+               <option name="shopid"   parentid="<%$value.shop_type%>" value="<%$value.id%>" <%if $member_address.shop_name==$value.shop_name%>selected="selected"<%/if%>
+                 ><%$value.shop_name%></option>
+                
+                <%/foreach%>
+            </select>
+        </div>
+        <div >
+        </div>
+    </div>
+	<!--
+	<%if $referer=="天生一对加盟商"%>
+   <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">批发客户：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="2" id="wholesale_name" name="wholesale_name" >
+                <option value=""></option>
+                 <%foreach from=$wholesaleArr  item=value%>
+               <option  value="<%$value.wholesale_name%>" <%if $member_address.wholesale_name==$value.wholesale_name%>selected="selected"<%/if%>
+                 ><%$value.wholesale_name%></option>
+                
+                <%/foreach%>
+            </select>
+        </div>
+        <div >
+        </div>
+    </div>
+	<%/if%>-->
+    </div>
+  </div>
+  
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">收货人：</label><span style="color:red">*</span>
+            <input type="text" name="consignee" class="form-control" placeholder="请输入" value="<%$member_address.consignee|default:''%>" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">电话：</label></label><span style="color:red">*</span>
+            <input type="text" name="tel" class="form-control" placeholder="请输入" value="<%$member_address.tel|default:''%>" />
+        </div>
+    </div>
+     <span id="address_mendian_info1"      <%if $member_address.distribution_type==1%> style="display:none" <%/if%>>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">email：</label>
+            <input type="text" name="email"  class="form-control" placeholder="请输入" value="<%$member_address.email|default:''%>" />
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">邮编：</label>
+            <input type="text" name="zipcode" class="form-control" placeholder="请输入" value="<%$member_address.zipcode|default:''%>"  maxlength="6"/>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">快递公司：</label><span style="color:red">*</span>
+            <div class="radio-list">
+                <select class="form-control" tabindex="1" name="express_id">
+                    <option value=""></option>
+                    </a><%foreach from=$express  item=e%>
+                   <option value="<%$e.id%>" <%if $member_address.express_id==$e.id%>selected="selected"<%/if%>><%$e.exp_name%></option>
+                    <%/foreach%>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">国家：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="country_id">
+                <option value=""></option>
+                <%foreach from=$count item=l %>
+                <option value="<%$l.region_id%>" mod="<%$l.region_name%>" 
+                ><%$l.region_name%>(<%$l.region_name%>)</option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">省：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="province_id">
+                <option value=""></option>
+            
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">市：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="city_id">
+                <option value=""></option>
+                  
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">区：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="regional_id">
+                <option value=""></option>
+                  
+            </select>
+   </div> 
+  
+ </span>
+</div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label class="control-label">收货地址：</label></label><span style="color:red">*</span>
+            <input id="shop_cfg_info" type="text" name="address" id="address" class="form-control" placeholder="请输入" value="<%$member_address.address|default:''%>" maxlength="60"
+            <%if $member_address.distribution_type==1%> readOnly <%/if%>/>
+        </div>
+    </div>
+</div>
+<div class="row">
+ 
+</div>
+
+
+            
+
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                    <input type="hidden" name="_id" value="<%$_id|default:0%>" />
+                <input type="hidden" name="member_id" value="<%$member_id|default:0%>" />
+                <input type="hidden" name="order_id" value="<%$member_address.order_id|default:0%>" />
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/app_order_address_info_2.js"%>
+    //-->
+</script>

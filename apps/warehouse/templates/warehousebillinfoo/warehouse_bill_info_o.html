@@ -1,0 +1,111 @@
+<div class="tabbable tabbable-custom boxless">
+	<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_o">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>维修退货单
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+				<div class="form-body">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">入库公司：</label><span style='color:red;'>*</span>
+								<select class="select2_category form-control" tabindex="1" id="to_company_id" name="to_company_id">
+									<option value=""></option>
+									<%foreach from=$company item=value%>
+									<option value="<%$value.id%>"><%$value.company_sn%> | <%$value.company_name%></option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">入库仓库：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="to_warehouse_id" tabindex="1" disabled="disabled">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+						<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">单据编号：</label>
+									<input type="text" name="bill_no" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">货品数量：</label>
+									<input type="text" name="goods_num" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">价格总计：</label>
+									<input type="text" name="chengbenjia" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+					<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">订单号：</label><span style='color:red;'></span>
+									<input  id="order_sn" type="text" name="order_sn" class="form-control" value="" onblur="check_order(this)"/>
+								</div>
+							</div>
+							
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">客户姓名：</label>
+							<input type="text" name="consignee" id="consignee" class="form-control" placeholder="请输入" readOnly="true"   value="" maxlength="20"/>
+						</div>
+					</div>	
+							 <div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">制单人：</label><span style='color:red;'>*</span>
+									<input type="text" name="ship_number" class="form-control" placeholder="请输入" value="<%$smarty.session.userName%>" disabled="disabled" />
+								</div>
+							</div>
+					</div>
+					<div class="row">
+							<div class="col-sm-9">
+								<div class="form-group">
+									<label class="control-label">备注：</label>
+									<textarea class="form-control" name="bill_note" rows="4" id='bill_note'></textarea>
+								</div>
+							</div>
+				<!-- 搜索按钮 -->
+			<!-- END FORM-->
+		</div>
+	</div>
+	<!--入库单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>维修退货明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div id="from_table_data_o"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="reset" class="btn default" form="warehouse_bill_info_o">重置</button>
+		<button type="submit" id="from_table_data_btn_o" class="btn green" form="warehouse_bill_info_o"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_o_info.js"%>
+	<%include file="js/table_data_ed.js"%>
+</script>

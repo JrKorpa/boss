@@ -1,0 +1,31 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>查看日志
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>时间</td>
+					<td>操作</td>
+					<td>操作人</td>
+				</tr>
+				<%foreach from=$view.data item=d%>
+				<tr>
+					<td><%$d.add_time%></td>
+					<td><%$d.receipt_action%></td>
+					<td><%$d.add_user%></td>
+				</tr>
+				<%/foreach%>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

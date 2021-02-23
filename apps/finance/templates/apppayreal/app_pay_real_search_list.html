@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>财务实付单号</th>
+			<th>财务应付单号</th>
+			<th>实付类型</th>
+			<th>结算商</th>
+			<th>银行交易流水号</th>
+			<th>收款方帐号</th>
+			<th>财务付款时间</th>
+			<th>实付金额</th>
+			<th>制单时间</th>
+			<th>制单人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_pay_real_list_<%$d.pay_real_number%>" data-title="<%$d.pay_real_number%>">
+			<td align="center"><%$d.pay_real_all_name%></td>
+			<td align="center"><a data-url="index.php?mod=finance&con=AppPayShould&act=show&id=<%$d.pay_real_number%>" data-id="<%$d.pay_real_number%>" data-title="<%$d.pay_real_number%>" class="tab-con-a" href="javascript:;"><%$d.pay_number%></a></td>
+			<td align="center"><%if $d.pay_type==1%>代销借货<%/if%><%if $d.pay_type==2%>成品采购<%/if%><%if $d.pay_type==3%>石包采购<%/if%></td>
+			<td align="center"><%$d.prc_name%></td>
+			<td align="center"><%$d.bank_serial_number%></td>
+			<td align="center"><%$d.bank_name%> <%$d.bank_account%></td>
+			<td align="center"><%$d.pay_time%></td>
+			<td align="center"><%$d.total%></td>
+			<td align="center"><%$d.make_time%></td>
+			<td align="center"><%$d.make_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

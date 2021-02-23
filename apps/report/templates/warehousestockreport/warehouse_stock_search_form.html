@@ -1,0 +1,107 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_stock_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">所属公司：</label>
+						<select class="form-control" tabindex="1" name="company_id[]" multiple id="company_id">
+							<option value="">请选择</option>
+							<%foreach from=$company_info item=c%>
+								<option value='<%$c.id%>'><%$c.company_name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">仓库名称：</label>
+							<select class="form-control" tabindex="1" name="warehouse_id[]" multiple id="warehouse_id">
+							<option value="">请选择</option>
+							<%foreach from=$allhouse item=c %>
+								<option value='<%$c.id%>'><%$c.name%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+                   <div class="col-sm-4">
+						<div class="form-group">
+						<label class="control-label">仓库类型：</label>
+						<select class="form-control" tabindex="1" name="type[]" multiple id="type">
+							<option value="">请选择</option>
+							<%foreach from=$type item=c%>
+								<option value='<%$c.name%>'><%$c.label%></option>
+							<%/foreach%>
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="start_time" value="<%$smarty.now|date_format:'%Y-%m-01'%>" id="start_time"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time" value="<%$smarty.now|date_format:'%Y-%m-%d'%>" id="end_time"/>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+			<button data-title="公司-库存详情" list-id="2791986" title="" name="查看明细" data-url="index.php?mod=report&con=WarehouseStockReport&act=index_second" onclick="show_warehouse_stock_index_second(this);" class="btn btn-sm red">
+				查看明细 <i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div>
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="warehouse_stock_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_stock_list.js"%>
+//-->
+</script>

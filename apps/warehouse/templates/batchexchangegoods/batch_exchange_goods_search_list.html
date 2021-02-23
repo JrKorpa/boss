@@ -1,0 +1,67 @@
+<!-换货订单商品列表->
+<div class="table-scrollable"> 
+ <table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th align="center">序号</th>
+				<th align="center">换货原因</th>
+				<th align="center">更换货号</th>				
+				<th align="center">订单号</th>
+				<th align="center">货号</th>
+				<th align="center">款号</th>
+				<th align="center">商品名称</th>
+				<th align="center">商品价格(实付)</th>
+				<th align="center">石重</th>
+				<th align="center">切工</th>
+				<th align="center">净度</th>
+				<th align="center">颜色</th>
+				<th align="center">证书号</th>
+				<th align="center">材质</th>
+				<th align="center">金色</th>
+				<th align="center">金重</th>
+				<th align="center">指圈</th>
+				<th align="center">刻字</th>
+				<th align="center">表面工艺</th>
+				<th align="center">镶嵌要求</th>
+				<th align="center">数量</th>
+				<th align="center">备注</th>
+			</tr>
+		</thead>
+		<tbody id="register_express_form">
+		<%foreach from=$goods_list item=d key=key%>
+			<tr class="tab_hover">
+			    <td><%$key+1%></td>
+			    <td>
+					<select name="reason_arr[<%$d.id%>]">
+					<option value="订单问题" selected="selected">订单问题</option>
+					<option value="货品问题">货品问题</option>
+					</select>
+				</td>
+				<td><input type="text" tabindex="<%$key+1%>" class="new_goods_id" name="new_goods_id_arr[<%$d.id%>]" value="<%$d.bind_goods_id|default:''%>"/></td>				
+				<td><%$d.order_sn|default:''%></td>
+				<td><%$d.goods_id%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%if $d.favorable_status==3%><%sprintf("%.2f",$d.goods_price-$d.favorable_price)%><%else%><%$d.goods_price%><%/if%></td>
+				<td><%$d.cart|default:0%></td>
+				<td><%$d.cut%></td>
+				<td><%$d.clarity%></td>
+				<td><%$d.color%></td>
+				<td><%$d.zhengshuhao%></td>
+				<td><%$d.caizhi%></td>
+				<td><%$d.jinse%></td>
+				<td><%$d.jinzhong%></td>
+				<td><%$d.zhiquan%></td>
+				<td><%$d.kezi%></td>
+				<td><%$d.face_work%></td>
+				<td><%$d.xiangqian%></td>
+				<td>1</td>
+				<td><%$d.details_remark%></td>	
+			</tr>
+		<%/foreach%>
+		</tbody>
+</table>
+</div>
+<script type="text/javascript">
+	<%include file="js/batch_exchange_goods_search_list.js"%>
+</script>

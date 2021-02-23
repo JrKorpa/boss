@@ -1,0 +1,50 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+				<th>跟单人</th>
+                <th>布产号</th>
+                <th>款号</th>
+                <th>工厂标准出厂时间</th>
+                <th>实际出厂时间</th>
+                <th>布产单当前状态</th>
+                <th>布产单当前状态备注</th>
+                <th>当前操作人</th>
+                <th>当前操作时间</th>
+              	</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+				<tr >
+					<td><%$d.dotime%></td>
+					<td><%$d.opra_uname%></td>
+	                <td>
+	                <a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.id%>" class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.id%>"><%$d.bc_sn%></a>
+					</td>
+	                <td><%$d.style_sn%></td>
+	                <td><%$d.esmt_time%></td>
+	                <td><%$d.rece_time%></td>
+	                
+	                <td><%if $d.status==1 %>初始化<%elseif $d.status==3 %> 已分配
+	                <%elseif $d.status==4 %> 生产中 <%elseif $d.status==7 %>部分出厂
+	                <%elseif $d.status==9 %> 已出厂<%elseif $d.status==10 %>已取消
+	                <%elseif $d.status==11 %>不需布产 <%else%>其它<%/if%>
+	                </td>
+	                <td><%$d.last_opra_remark %></td>
+	                <td><%$d.last_opra_uname%></td>
+	                <td><%$d.last_opra_time%></td>
+               </tr>
+		<%/foreach%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

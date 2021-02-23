@@ -1,0 +1,32 @@
+<!-- <div class="table-scrollable"> -->
+<div class="flip-scroll">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+        <tr>
+            <th>期初库存重量</th>
+            <th>期初库存数量</th>
+            <th>预计采购重量</th>
+            <th>重量规格</th>
+            <th>颜色规格</th>
+            <th>净度规格</th>
+            <th>采购预算金额</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$page_list.data item=d%>
+        <tr>
+            <td align="right"><%$d.keep_ct%></td>
+            <td align="right"><%$d.keep_num%></td>
+            <td align="right"><%$d.pro_ct%></td>
+            <td align="right"><%$dd->getEnum('stone.ct_norms',$d.ct_norms)%></td>
+            <td align="right"><%$dd->getEnum('stone.color_norms',$d.color_norms)%></td>
+            <td align="right"><%$dd->getEnum('stone.clarity_norms',$d.clarity_norms)%></td>
+            <td align="right"><%$d.pro_budget%></td>
+        </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+    <%$pa%>
+</div>

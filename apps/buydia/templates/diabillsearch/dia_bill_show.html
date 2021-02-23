@@ -1,0 +1,91 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>单号</td>
+					<td><%$billInfo.bill_no%></td>
+                    <td>单据类型</td>
+                    <td><%$bill_type[$billInfo.bill_type]%></td>
+                    <td>状态</td>
+                    <td><%$dd->getEnum("diabill.status",$billInfo.status)%></td>
+				</tr>	
+                <tr>
+                    <td>供应商</td>
+                    <td><%$billInfo.processors_name%></td>
+                    <td>工厂</td>
+                    <td><%$billInfo.factory_name%></td>
+                    <td>单据来源</td>
+                    <td><%$dd->getEnum("diabill.source",$billInfo.source)%></td>
+                </tr>
+                <tr>
+                    <td>价格总计</td>
+                    <td><%$billInfo.price_total%></td>
+                    <td>制单人</td>
+                    <td><%$billInfo.create_user%></td>
+                    <td>审核人</td>
+                    <td><%$billInfo.check_user%></td>
+                </tr>
+                <tr>
+                    <td>总数量</td>
+                    <td><%$billInfo.num%></td>
+                    <td>总重量</td>
+                    <td><%$billInfo.weight%></td>
+                    <td>纸质单号</td>
+                    <td><%$billInfo.paper_no%></td>
+                </tr>
+                <tr>
+                    <td>制单时间</td>
+                    <td><%$billInfo.create_time%></td>
+                    <td>审核时间</td>
+                    <td><%$billInfo.check_time%></td>
+                    <td>备注</td>
+                    <td><%$billInfo.remark%></td>
+                </tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格 -->
+        <div class="flip-scroll" id="use_stone_bill_search_list">
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_bill_show.js"%>
+//-->
+</script>

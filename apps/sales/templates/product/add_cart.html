@@ -1,0 +1,67 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="add_cart_form">
+		<div class="form-body">
+            <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">销售渠道：</label>
+                    <select class="form-control" tabindex="1" name="qudao">
+                        <option value=""></option>
+                        <%foreach from=$qudao key=k item=q%>
+                        <option value="<%$k%>" <%if $channel_id==$k%>selected<%/if%>><%$q%></option>
+                        <%/foreach%>
+                    </select>
+                </div>
+            </div>
+		</div>
+    </div>
+
+
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>查看货品
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="flip-scroll" id="qudao_cart_list">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>购物车
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="flip-scroll" id="cart_goods_list">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+		<!-- 搜索按钮 -->
+		
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/add_cart.js"%>
+//-->
+</script>

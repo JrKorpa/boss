@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th>销售顾问</th>
+            <th>网销预约到店数</th>
+            <th>网销预约成交数</th>
+            <th>网销订单成交数</th>
+            <th>成交率（%）</th>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="4" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr>
+            <td><%$obj.username%></td>
+            <td>
+                <a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-网络预约到店数" data-id="netdealratereport1-<%time()%>"
+                   data-url="index.php?mod=report&con=NetOrderReport&act=bespoke_list&a=accecipt_inshop_bespokes&name=<%$obj.username%>&<%$args_where%>">
+                    <%$obj.bes_inshop_count%>
+                </a>
+			</td>
+            <td><%$obj.bes_deal_count%></td>
+            <td>
+                <a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-网络订单成交单数" data-id="netdealratereport2-<%time()%>"
+                   data-url="index.php?mod=report&con=NetOrderReport&act=order_list&a=accecipt_online_orders&name=<%$obj.username%>&<%$args_where%>">
+                    <%$obj.order_deal_count%>
+                </a>
+			</td>
+            <td><%($obj.rate)%></td>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

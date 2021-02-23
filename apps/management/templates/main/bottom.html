@@ -1,0 +1,58 @@
+<!-- 弹出框 -->
+<div class="modal container fade ajax-modal" tabindex="-1">
+	<div class="modal-header" style="background:#ccc !important;">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		<h4 class="modal-title" style="font-weight:bold !important;">操作提示！！！</h4>
+	</div>
+	<div class="modal-body">
+		<p>
+			<%if $smarty.const.APP_DEBUG%>
+			看到我说明模版文件不存在、ajax没有返回内容或返回内容不是json格式！
+			<%else%>
+			没有操作权限！
+			<%/if%>
+		</p>
+	</div>
+</div>
+<!-- /弹出框 -->
+<div class="footer">
+	<div class="footer-inner">
+		 2007-<%$smarty.now|date_format:'%Y'%> © 
+		<%if $smarty.const.SYS_NAME eq '51BOSS运营管理系统'  %>
+		  
+		<%else%>
+		  GP商贸有限公司.
+		<%/if%>		 
+	</div>
+	<div class="footer-tools">
+		<span class="go-top">
+			<i class="fa fa-angle-up"></i>
+		</span>
+	</div>
+</div>
+</body>
+</html>
+<!--[if lt IE 9]>
+<script src="public/js/respond.min.js"></script>
+<script src="public/js/excanvas.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js?version=0.3"></script>
+<script type="text/javascript" src="public/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="public/js/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="public/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="public/js/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+<script type="text/javascript" src="public/js/bootstrap-modal/js/bootstrap-modal.js"></script>
+<script type="text/javascript" src="public/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="public/js/bootbox/bootbox.min.js"></script>
+<script type="text/javascript" src="public/js/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="public/js/jquery.cokie.min.js"></script>
+<script type="text/javascript" src="public/js/uniform/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="public/js/jquery.form.js"></script>
+<script type="text/javascript" src="public/js/jquery-validation/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="public/js/backstretch/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="public/js/app.js"></script>
+<script type="text/javascript" src="public/js/jquery.validate.extends.js"></script>
+<script type="text/javascript" src="public/js/ls.js"></script>
+<script type="text/javascript" src="public/js/util.js?version=1.0"></script>
+<script type="text/javascript" src="public/js/ui-extended-modals.js?version=0.1"></script>
+<script type="text/javascript" src="public/js/loader.js"></script>

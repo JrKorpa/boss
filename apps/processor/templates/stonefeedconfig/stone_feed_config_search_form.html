@@ -1,0 +1,145 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="stone_feed_config_search_form">
+			<div class="form-body">
+				<div class="row">
+				     <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">工厂：</label>
+							<select class="form-control" tabindex="1" name="factory_id">
+								<option value=""></option>
+								<%foreach from=$view->getFactoryList() key=key item=val%>
+								<option value="<%$val.id%>"><%$val.code%> | <%$val.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">供料类型：</label>
+							<select class="form-control" tabindex="1" name="feed_type">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray('stone_feed_type') key=key item=val%>
+                            <option value="<%$val.name%>"><%$val.name%> | <%$val.label%></option>
+                            <%/foreach%>
+                        </select>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">证书类型：</label>
+                            <select class="form-control" tabindex="1" name="cert">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getCertList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>  
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石颜色：</label>
+                            <select class="form-control" tabindex="1" name="color">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getColorList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>   
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">钻石净度：</label>
+                            <select class="form-control" tabindex="1" name="clarity">
+                                <option value=""></option>                               
+                                <%foreach from=$view->getClarityList() key=k item=value%>
+                                <option value="<%$value%>"><%$value%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>                     
+                 
+ 
+					 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">石重范围：</label>
+							<div class="input-group  input-daterange">
+							<input type="text" class="form-control" name="carat_min" value="" placeholder="0.00"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control" name="carat_max" value="" placeholder="0.00"/>
+							</div>
+                        </div>
+                    </div> 					
+					<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <select class="form-control" tabindex="1" name="is_enable">
+                            <option value=""></option>
+                            <%foreach from=$view->getStatusList() key=key item=val%>
+                            <option value="<%$key%>"><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                        </div>
+					</div>
+                   <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">添加时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="create_time_begin">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="create_time_end">
+							</div>
+						</div>
+					</div>	                  
+				</div>
+
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="stone_feed_config_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/stone_feed_config_list.js"%>
+//-->
+</script>

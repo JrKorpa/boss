@@ -1,0 +1,75 @@
+id = #from_table_data_bill_m;
+
+[title]
+0 = "货号";
+1 = "款号";
+2 = "零售价";
+3 = "主成色重";
+4 = "主成色";
+5 = "主石粒数";
+6 = "副石粒数";
+7 = "副石重";
+8 = "颜色";
+9 = "净度";
+10 = "金耗";
+11 = "证书号";
+12 = "货品名称";
+
+
+[columns_0]
+type = text;
+readOnly = false;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_3]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_6]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_7]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_8]
+type = text;
+readOnly = true;
+
+[columns_9]
+type = text;
+readOnly = true;
+
+[columns_10]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_11]
+type = text;
+readOnly = true;
+
+[columns_12]
+type = text;
+readOnly = true;

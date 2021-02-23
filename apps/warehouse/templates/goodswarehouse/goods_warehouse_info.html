@@ -1,0 +1,91 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="goods_warehouse_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">仓库：</label>
+						<%if $action == 'edit'%>
+						<input type="text" name='' value="<%$view->getWarehouse($view->get_good_id())%>"  class="form-control" disabled="disabled"/>
+						<input type="hidden" name='warehouse_id' value="<%$view->get_warehouse_id()%>"  class="form-control" />
+						<%else%>
+						<select class="select2_category form-control" tabindex="1" name="warehouse_id">
+							<option value=""></option>
+							<%if $view->get_id()%><!-- 修改时，限制只能选当前仓库，不可以选择其他库 -->
+							<%foreach from=$view->getWarehouseList() item=v%>
+							<option value="<%$v.id%>" warehouse_id='<%$v.id%>' <%if $v.id == $view->get_warehouse_id()%>selected<%/if%> ><%$v.id%> <%$v.name%> | <%$v.code%></option>
+							<%/foreach%>
+							<%else%>
+							<%foreach from=$view->getWarehouseList() item=v%>
+							<option value="<%$v.id%>" warehouse_id='<%$v.id%>' ><%$v.id%> <%$v.name%> | <%$v.code%></option>
+							<%/foreach%>
+							<%/if%>
+						</select>
+						<%/if%>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">柜位：</label>
+						<select class="form-control" tabindex="1" name="box_id">
+							<option value=""></option>
+							<%if $action == 'edit'%>
+							<%foreach from=$boxList item=t%>
+							<option value="<%$t.id%>" <%if $t.id == $view->get_box_id()%>selected<%/if%>><%$t.box_sn%></option>
+							<%/foreach%>
+							<%/if%>
+						</select>
+					</div>
+				</div>
+				<div  <%if $action == 'edit'%> class="col-sm-4"<%else%>class="col-sm-12" <%/if%>>
+				    <div class="form-group" id='gs'>
+				        <label class="control-label">货号：<%if $action neq 'edit'%>(每个货号用<b style="color:red;">,</b>或<b style="color:red;">空格间隔</b>)<%/if%></label>
+				        <%if $action == 'edit'%>
+					<input type="text" name='good_id' value="<%$view->get_good_id()%>"  class="form-control" readonly/>
+				        <%else%>
+				            <input type="text" id="tags_1" name="good_id" class="form-control tags" placeholder="请输入" value=""/>
+				        <%/if%>
+				    </div>
+				</div>
+
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/goods_warehouse_info.js"%>
+//-->
+    $(function(){
+        var ComponentsFormTools = function () {
+            var handleTagsInput = function () {
+                if (!jQuery().tagsInput) {
+                    return;
+                }
+                $('#tags_1').tagsInput({
+                    width: 'auto',
+                    'onAddTag': function () {
+                        // alert(1);
+                    },
+                });
+            }
+
+            return {
+                init: function () {
+                    handleTagsInput();
+                }
+            };
+        }();
+       // ComponentsFormTools.init();
+    });
+</script>

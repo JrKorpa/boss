@@ -1,0 +1,41 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>成品定制码</th>
+				<th>成交价</th>
+				<th>款式来源渠道</th>
+				<th>使用状态</th>
+				<th>订单号</th>
+				<th>款号</th>
+				<th>销售顾问</th>
+				<th>销售渠道</th>
+				<th>创建人</th>
+			</tr>
+		</thead>
+		<tbody>
+		 <%foreach from=$page_list.data item=d%>
+			<tr data-id="gift_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.transaction_price%></td>
+				<td><%$d.department_id_from%></td>
+				<td><%$d.status%></td>
+				<td><%$d.order_sn%></td>
+            	<td><%$d.style_sn%></td>
+            	<td><%$d.sale_user%></td>
+            	<td><%$d.department_id%></td>
+            	<td><%$d.create_user%></td>
+			</tr>
+		<%/foreach%>
+		</tbody> 
+	</table>
+</div>
+<div class="pager">
+<%$pa%> 
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

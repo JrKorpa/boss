@@ -1,0 +1,46 @@
+<!--成本采购-->
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>单据编号</th>
+			<th>单据类型</th>
+			<th>入库制单时间</th>
+			<th>入库审核时间</th>
+			<th>入库方式</th>
+			<th>供货商单号</th>
+			<th>结算商</th>
+			<th>支付内容</th>
+			<th>单据金额</th>
+			<th>应付申请状态</th>
+			<th>应付申请单号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="app_deal_detail_list_<%$d.serial_number%>" data-title="<%$d.serial_number%>">
+		<td><%$d.serial_number%></td>
+		<td>
+		<a href="javascript:;" class="tab-con-a" data-title="<%$d.item_id%>" data-id="<%$d.item_id%>" data-url="index.php?mod=warehouse&con=WarehouseBillInfo<%$d.type1%>&act=show&bill_no=<%$d.item_id%>"><%$d.item_id%></a>
+
+		</td>
+		<td><%$dd->getEnum('PayApply.cp_type',$d.item_type)%></td>
+		<td><%$d.make_time%></td>
+		<td><%$d.check_time%></td>
+		<td align="center"><%$dd->getEnum('warehouse.put_in_type',$d.storage_mode)%></td>
+		<td><%$d.prc_num%></td>
+		<td><%$d.prc_name%></td>
+		<td><%$dd->getEnum('warehouse.pay_content',$d.pay_content)%></td>
+		<td><%$d.total%></td>
+		<td align="center"><%$dd->getEnum('app_pay.detail_apply_status',$d.pay_apply_status)%></td>
+		<td><%$d.pay_apply_number%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

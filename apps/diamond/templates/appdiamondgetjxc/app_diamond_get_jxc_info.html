@@ -1,0 +1,240 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="diamond_info_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">商品编码：</label>
+                        <input type="text" name="goods_sn" class="form-control" placeholder="请输入" value="<%$view->get_goods_sn()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">商品名称：</label>
+                        <input type="text" name="goods_name" class="form-control" placeholder="请输入" value="<%$view->get_goods_name()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">商品数量：</label>
+                        <input type="text" name="goods_number" class="form-control" readonly placeholder="请输入" value="1" />
+                    </div>
+                </div>
+				  <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">石重：</label>
+                        <input type="text" name="carat" class="form-control" placeholder="请输入" value="<%$view->get_carat()%>" />
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">净度：</label>
+                        <select class="form-control" tabindex="1" name="clarity">
+                            <option value=""></option>
+                            <%foreach from=$view->getClarityList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_clarity()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">颜色：</label>
+                        <select class="form-control" tabindex="1" name="color">
+                            <option value=""></option>
+                            <%foreach from=$view->getColorList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_color()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">形状：</label>
+                        <select class="form-control" tabindex="1" name="shape">
+                            <option value=""></option>
+                            <%foreach from=$view->getShapeList() key=key item=val%>
+                            <option value="<%$key%>" <%if $view->get_shape()== $key && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">切工：</label>
+                        <select class="form-control" tabindex="1" name="cut">
+                            <option value=""></option>
+                            <%foreach from=$view->getCutList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_cut()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">抛光：</label>
+                        <select class="form-control" tabindex="1" name="polish">
+                            <option value=""></option>
+                            <%foreach from=$view->getPolishList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_polish()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">对称：</label>
+                        <select class="form-control" tabindex="1" name="symmetry">
+                            <option value=""></option>
+                            <%foreach from=$view->getSymmetryList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_symmetry()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">荧光：</label>
+                        <select class="form-control" tabindex="1" name="fluorescence">
+                            <option value=""></option>
+                            <%foreach from=$view->getFluorescenceList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_fluorescence()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">证书类型：</label>
+                        <select class="form-control" tabindex="1" name="cert">
+                            <option value=""></option>
+                            <%foreach from=$view->getCertList() item=val%>
+                            <option value="<%$val%>" <%if $view->get_cert()== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">证书号：</label>
+                        <input type="text" name="cert_id" class="form-control" placeholder="请输入" value="<%$view->get_cert_id()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">gemx证书号：</label>
+                        <input type="text" name="gemx_zhengshu" class="form-control" placeholder="请输入" value="<%$view->get_gemx_zhengshu()%>" />
+                    </div>
+                </div>
+
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">台宽：</label>
+                        <input type="text" name="table_lv" class="form-control" placeholder="请输入" value="<%$view->get_table_lv()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">台深：</label>
+                        <input type="text" name="depth_lv" class="form-control" placeholder="请输入" value="<%$view->get_depth_lv()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">成本价：</label>
+                        <input type="text" name="chengben_jia" class="form-control" placeholder="请输入" value="<%$view->get_chengben_jia()%>" />
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">市场价：</label>
+                        <input type="text" name="market_price" class="form-control" placeholder="请输入" value="<%$view->get_market_price()%>" />
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">货品类型：</label>
+						<div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" name="good_type" checked="checked" <%if $view->get_good_type()=='1' %>checked="checked"<%/if%> value="1" /> 现货
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="good_type" <%if $view->get_good_type()=='2' %>checked="checked"<%/if%> value="2" /> 期货
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">来源：</label>
+						<div class="radio-list">
+                            <label class="radio-inline">
+                                <input type="radio" name="from_ad" checked="checked" <%if $view->get_from_ad()=='1' %>checked="checked"<%/if%> value="1" /> BDD
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="from_ad" <%if $view->get_from_ad()=='2' %>checked="checked"<%/if%> value="2" /> 51钻
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+			</div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <div class="radio-list">
+							<%foreach from=$dd->getEnumArray("style_good_status") item=value%>
+							<label class="radio-inline">
+                                <input type="radio" name="status" <%if $value.name==$view->get_status()%> checked="checked"<%/if%> value="<%$value.name%>" /> <%$value.label%>
+                            </label>
+							<%/foreach%>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否为活动（双11等活动）：</label>
+                        <div class="radio-list">
+							<%foreach from=$dd->getEnumArray("is_active") item=value%>
+							<label class="radio-inline">
+                                <input type="radio" name="is_active" <%if $value.name==$view->get_is_active()%> checked="checked"<%/if%> value="<%$value.name%>" /> <%$value.label%>
+                            </label>
+							<%/foreach%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="goods_id" value="<%$view->get_goods_id()%>" />
+
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_diamond_info_info.js" %>
+//-->
+</script>

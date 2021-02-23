@@ -1,0 +1,12 @@
+<%foreach from=$points item = p%>
+<div class="col-sm-2">
+  <div class="form-group">
+    <label class="control-label"><%$p[1]%>：</label>
+    <div class="input-group">
+      <input type="text" name="point[<%$p[0]%>|<%$p[1]%>]" class="form-control" placeholder="请输入"  value="<%$p[2]%>" />
+   		<span class="input-group-btn"><button class="btn btn-danger default" type="button" onclick="del_point(this,'<%$p[0]%>')"><i class="fa fa-times"></i></button></span>
+    </div>
+    <span class="help-block"></span>
+  </div>
+</div>
+<%/foreach%>

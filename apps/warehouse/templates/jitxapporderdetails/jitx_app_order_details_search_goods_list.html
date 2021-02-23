@@ -1,0 +1,89 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>货号</th>
+				<th>款号</th>
+				<th>款式分类</th>
+				<th>产品线</th>
+				<th>货品名称</th>
+				<th>价格</th>
+				<th>材质</th>
+				<th>配件金重</th>				
+				<th>金重</th>
+				<th>颜色</th>
+				<th>净度</th>				
+				<th>手寸</th>
+				<th>主石</th>
+				<th>钻石大小</th>
+                <th>主石粒数</th>
+				<th>副石1</th>
+				<th>副石1粒数</th>
+				<th>副石1重</th>
+				<th>副石2</th>
+				<th>副石21粒数</th>
+				<th>副石2重</th>
+				<th>副石3</th>
+				<th>副石3粒数</th>
+				<th>副石3重</th>		
+				<th>证书号</th>
+				<th>所在仓库</th>
+
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data item=d%>
+			<tr data-goods-id="<%$d.goods_id%>" data-goods-sn="<%$d.goods_sn%>">
+				<td><%$d.goods_id%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.cat_type1%></td>
+				<td><%$d.product_type1%></td>
+				<td nowrap><%$d.goods_name%></td>
+				<td><%$d.mingyichengben%></td>
+				<td><%$d.caizhi%></td>
+				<td><%$d.peijianjinzhong%></td>	
+				<td><%$d.jinzhong%></td>				
+				<td><%$d.yanse%></td>
+				<td><%$d.jingdu%></td>				
+				<td><%$d.shoucun%></td>
+				<td><%$d.zhushi%></td>
+				<td><%$d.zuanshidaxiao%></td>
+				<td><%$d.zhushilishu%></td>
+				<td><%$d.fushi1%></td>
+				<td><%$d.fushi1lishu%></td>
+				<td><%$d.fushi1zhong%></td>
+				<td><%$d.shi2%></td>
+				<td><%$d.shi2lishu%></td>
+				<td><%$d.shi2zhong%></td>
+				<td><%$d.shi3%></td>
+				<td><%$d.shi3lishu%></td>
+				<td><%$d.shi3zhong%></td>					
+				<td  nowrap><%$d.zhengshuhao%></td>
+				<td ><%$d.warehouse%></td>				
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+<!--
+	$(".table tbody tr").hover(function() {
+		if (!$(this).hasClass('tab_click'))
+		{
+			$(this).addClass("tab_hover"); // 鼠标经过添加hover样式
+		}
+    }, function() {
+		if (!$(this).hasClass('tab_click'))
+		{
+			$(this).removeClass("tab_hover"); // 鼠标离开移除hover样式
+		}
+    }).click(function(){        
+    	$("#jitx_app_order_details_info input[name='goods_id']").val($(this).attr("data-goods-id"));
+    	$('#jitx_app_order_details_info_goods_id').html($(this).attr("data-goods-id"));
+    	$('#jitx_app_order_details_info_goods_sn').html($(this).attr("data-goods-sn"));    	
+        $(this).addClass("tab_click").siblings().removeClass("tab_click");
+	});
+//-->
+</script>

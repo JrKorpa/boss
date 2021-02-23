@@ -1,0 +1,46 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>入库单号</th>
+			<th>单据类型</th>
+			<th>货品数量</th>
+			<th>成本金额</th>
+			<th>支付金额</th>
+			<th>状态</th>
+			<th>存储仓库</th>
+			<th>制单人</th>
+			<th>审核人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="application_list_<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.order_no%></td>
+			<td align="center">
+				<%foreach from=$dd->getEnumArray("warehouse.order_type") item=value%>
+				<%if $value.name==$d.order_type%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center"><%$d.goods_num%></td>
+			<td align="center"><%$d.cost_price%></td>
+			<td align="center"><%$d.pay_price%></td>
+			<td align="center">
+				<%foreach from=$dd->getEnumArray("warehouse_in_status") item=value%>
+				<%if $value.name==$d.order_status%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td align="center"><%$d.warehouse_id%></td>
+			<td align="center"><%$d.addby_id%></td>
+			<td align="center"><%$d.check_id%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

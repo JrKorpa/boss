@@ -1,0 +1,89 @@
+<%if $tongji%>
+<!-- 统计 -->
+<div class="table-toolbar">
+    <div class="btn-group">
+		货品数量:<span id="zong_num"><%$tongji['zong_num']|default:0%></span>
+    	
+        <%if Auth::canRead("warehouse_goods.nominal_price",2,0)%>
+        成本总金额:<span id="zong_chengbenjia">￥<%$tongji['zong_chengbenjia']|default:0%></span>
+        <%/if%>
+    </div>
+</div>
+<%/if%>
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+                <tr>
+                <th style="text-align:center;">
+                    <input type="checkbox" class="group-checkable" data-set="#warehouse_goods_search_list .checkboxes" />
+                </th>
+				<th></th>
+                <th>款号</th>
+                <th>模号</th>
+                <th>名称</th>
+                <th>主成色</th>
+				<th>数量</th>
+				<th>价格</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+	        <tr data-id="purchase_type_list_<%$d.id%>" data-title="<%$d.goods_id%>" >
+                <td align="center">
+                    <input class="checkboxes"  type="checkbox"  name="_ids[]" value="<%$d.goods_id%>" />
+                    
+                </td>
+				<td><%if $d.img%><img src="<%$d.img%>" width="45"><%/if%></td>
+                <td><%$d.goods_sn%></td>
+                <td><%$d.mo_sn%></td>
+                <td><%$d.goods_name%></td>
+				<td><%$d.caizhi%></td>
+				<td><%$d.counts%></td>
+                <!--<td style="text-align: center;line-height:20px;">名义价：<$d.mingyichengben></td>-->
+                <td style="text-align: center;line-height:20px;">
+                <%if Auth::canRead("warehouse_goods.nominal_price",2,$d.warehouse_id)%>名义价：<%$d.mingyichengben%><%/if%>
+                <%if Auth::canRead("warehouse_goods.cost_price",2,$d.warehouse_id)%><br/>原始采购价：<%$d.yuanshichengbenjia%><%/if%>
+                <%if Auth::canRead("warehouse_goods.purchase_price",2,$d.warehouse_id)%><br/>最新采购价：<%$d.chengbenjia%><%/if%>
+                </td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+        util.check(util.getItem('listDIV'));
+        //复选框组美化
+var test = $("#warehouse_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#warehouse_goods_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}
+	});
+	$.uniform.update(set);
+});
+$('#warehouse_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

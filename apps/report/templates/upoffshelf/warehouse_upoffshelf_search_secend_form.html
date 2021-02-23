@@ -1,0 +1,147 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_upoffshelf_search_second_form" onsubmit="warehouse_upoffshelf_search_second_form_post()">
+			<div class="form-body">
+				<div class="row">
+					
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">公司：</label>
+							<select class="select2_category form-control" tabindex="1" name="company_id" id="company_id">
+								<option value=""></option>
+								<%foreach from=$company item=v%>
+								<option value="<%$v['id']%>"><%$v['company_name']%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">公司所属仓库：</label>
+							<select class="select2_category form-control" tabindex="1" name="warehouse_type" id="warehouse_type">
+								<option value="0">全部</option>
+								<option value="1">线上</option>
+								<option value="2">线下</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">仓库：</label><span style='color:red;'></span>
+							<div id="warehouse_div">
+							<select class="select2_category form-control" name="warehouse[]" tabindex="1" multiple  id="warehouse" >
+								<option value="">全部</option>
+
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">统计时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+                                <input type="text" class="form-control" name="time_start" value="" id="time_start"/>
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="time_end" value="" id="time_end"/>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="is_post" id="is_post" value="0" />
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<div class="btn-group">
+			<button data-title="导出报表" list-id="479470" title="" name="导出报表" data-url="index.php?mod=report&con=UpOffShelf&act=export_cxv_details" onclick="upoffshelf_export_cxv_details(this);" class="btn btn-sm blue">
+				下载明细 <i class="fa fa-bar-chart-o"></i>
+			</button>
+			</div>
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="warehouse_upoffshelf_search_list2">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+function warehouse_upoffshelf_search_second_form_post(){
+	$('#warehouse_upoffshelf_search_second_form #is_post').val('1');
+}
+var online_warehouse=new Array('线上钻饰库','线上混合库','黄金网络库','主站库','淘宝黄金','淘宝素金','京东黄金','京东素金','彩宝库','深圳珍珠库','银行库','B2C库','彩钻库','轻奢库');
+var offline_warehouse=new Array('婚博会备货库','总公司后库','总公司店面配货库','黄金店面库');
+$(function(){
+	$('#warehouse_upoffshelf_search_second_form  #warehouse_type').change(function(){
+		change_warehouse_second();
+	});
+	$('#warehouse_upoffshelf_search_second_form  #company_id').change(function(){
+		change_warehouse_second();
+	});
+})
+function change_warehouse_second(){
+	var warehouse_type=$('#warehouse_upoffshelf_search_second_form  #warehouse_type').val();
+	var company_id=$('#warehouse_upoffshelf_search_second_form  #company_id').val();
+	var add_content='<option value="">全部</option>';
+	if(company_id=='58'){//58为总公司
+		if(warehouse_type=='1'){
+			for(index in online_warehouse){
+				if(index!='contains'){
+					add_content+='<option value="'+online_warehouse[index]+'">'+online_warehouse[index]+'</option>';
+				}
+			}
+		}
+		else if(warehouse_type=='2'){
+			for(index in offline_warehouse){
+				if(index!='contains'){
+					add_content+='<option value="'+offline_warehouse[index]+'">'+offline_warehouse[index]+'</option>';
+				}
+			}
+		}
+	}
+	$('#warehouse_upoffshelf_search_second_form #warehouse').html(add_content);
+}
+var dt="<%$dt%>";
+var warehouse_type="<%$args.warehouse_type%>";
+var time_start="<%$args.time_start%>";
+var time_end="<%$args.time_end%>";
+var warehouse_string="<%$args.warehouse_string%>";
+var company_id="<%$args.company_id%>";
+<!--
+	<%include file="js/warehouse_detail_list.js"%>
+//-->
+</script>

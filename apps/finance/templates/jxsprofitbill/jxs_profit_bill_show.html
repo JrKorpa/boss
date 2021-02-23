@@ -1,0 +1,116 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table id="jxs_profit_bill_table" class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td class="w_10"><b>单号</b></td>
+					<td class="w_15"><%$view->get_id()%></td>
+					<td class="w_10"><b>经销商</b></td>
+					<td colspan="3"><%$jxs_name%></td>
+					<td class="w_10"><b>结算状态</b></td>
+					<td class="w_15"><%if $view->get_status() == 1%>已结算<%elseif $view->get_status() == 2%>未结算<%/if%></td>
+				</tr>
+				<tr>
+					<td><b>操作人</b></td>
+					<td><%$view->get_created_by()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_created_date()%></td>
+					<td><b>结算时间</b></td>
+					<td><%$view->get_calc_date()%></td>	
+					<td><b>结算金额</b></td>
+					<td><%$view->get_calc_profit()%></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+		</div>
+		<!--搜索开始-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>搜索框
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="expand"></a>
+				</div>
+			</div>
+			<div class="portlet-body form" style="display:none;">
+				<!-- 表单内容 -->
+				<form action="#" class="horizontal-form" method="post" id="jxs_order_search_form">
+					<div class="form-body">
+						<div class="row">
+							 <div class="col-sm-4">
+		                        <div class="form-group">
+		                            <label class="control-label">时间段：</label>
+		                            <div class="input-group date-picker input-daterange">
+		                                <input type="text" class="form-control" name="start_time"  />
+		                                <span class="input-group-addon">to</span>
+		                                <input type="text" class="form-control" name="end_time"  />
+		                            </div>
+		                        </div>
+		                    </div>
+						</div>
+						<input type="hidden" name="jxs_id" value="<%$view->get_jxs_id()%>" />
+						<input type="hidden" name="calc_status" value="<%$view->get_status()%>" />
+						<input type="hidden" name="profit_id" value="<%$view->get_id()%>" />
+						<input type="hidden" name="page_size" value="10" />
+					</div>
+					<!-- 搜索按钮 -->
+					<div class="form-actions fluid">
+						<div class="col-md-offset-3 col-md-9">
+							<button type="reset" class="btn default">重置</button>
+							<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+						</div>
+					</div>
+				</form>
+				<!-- END FORM-->
+			</div>
+		</div>
+
+		<!-- 表格 -->
+		<div id="jxs_order_search_list">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/jxs_profit_bill_show.js"%>
+//-->
+</script>

@@ -1,0 +1,148 @@
+<div class="table-toolbar">
+	<%if $info.bill_status == 1%>
+		<div class="btn-group">
+		<button data-title="盘点完成" title="盘点完成" name="盘点完成" data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=OffPandian" onclick="util.cust(this,OffPandian);" class="btn btn-sm red">
+			盘点完成 <i class="fa fa-check"></i>
+		</button>
+		</div>
+		<div class="btn-group">
+		<button data-title="取消" title="取消" name="取消" data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=closePandian" onclick="util.cust(this,closePandian);" class="btn btn-sm btn-primary green">
+			取消 <i class="fa fa-plus"></i>
+		</button>
+		</div>
+		<%if $is_fengonsi != 1%> 	<!-- 不是总公司的盘点单 不显示这个按钮 -->
+			<div class="btn-group">
+			<button data-title="盘点完成" title="盘点完成" name="盘点完成" data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=qieBox" onclick="util.cust(this,qieBox);" class="btn btn-sm btn-primary">
+				盘点下一柜位 <i class="fa fa-plus"></i>
+			</button>
+			</div>
+		<%/if%>
+
+	<%/if%>
+
+	<div class="btn-group">
+	<button data-title="导出结果" title="导出结果" name="导出结果" onclick="util.cust(this,downCsv);" class="btn btn-sm btn-primary">
+		导出结果 <i class="fa fa-plus"></i>
+	</button>
+	</div>
+
+	<div class="btn-group">
+	<button data-title="导出柜位结果" title="导出柜位结果" name="导出柜位结果" onclick="util.cust(this,downGuiweiCsv);" class="btn btn-sm purple">
+		导出柜位结果 <i class="fa fa-plus"></i>
+	</button>
+	</div>
+	<div class="btn-group">
+	<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" data-title="">
+		刷新 <i class="fa fa-refresh"></i>
+	</button>
+	</div>
+	<div class="btn-group">
+	<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" data-title="">
+		离开 <i class="fa fa-mail-reply"></i>
+	</button>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>盘点单
+		</div>
+		<div class="tools">
+
+		</div>
+	</div>
+<style>
+	.tabel_th{width:140px;max-width:145px;}
+	.table_td{width:200px;max-width:300px;}
+</style>
+	<div class="portlet-body">
+	<form action="#" class="form-inline" role="form" method="post" id="warehouse_bill_info_w_box">
+		<table id="ship_freight_order_info_table1" class="table table-bordered table-striped table-hover flip-content">
+			<tr>
+				<td class="tabel_th">单号:</td>
+				<td class="table_td"><%$info.bill_no%></td>
+				<td class="tabel_th">状态:</td>
+				<td class="table_td">
+					<%if $info.bill_status == 1%> 		<!-- 如果是保存 状态的时候，显示盘点状态 -->
+						<%if $info.status == 1%>盘点完成<%else%>盘点中<%/if%>
+					<%else%>
+						<%$dd->getEnum('warehouse.bill_status' , $info.bill_status)%>
+					<%/if%>
+				</td>
+				<td class="tabel_th">制单人:</td>
+				<td class="table_td"><%$info.create_user%></td>
+				<td class="tabel_th">制单时间:</td>
+				<td class="table_td"><%$info.create_time%></td>
+			</tr>
+			<tr>
+				<td class="tabel_th">盘点仓:</td>
+				<td class="table_td" colspan="3"><%$info.to_warehouse_name%></td>
+				<td class="tabel_th">审核人:</td>
+				<td class="table_td"><%$info.check_user%></td>
+				<td class="tabel_th">审核时间:</td>
+				<td class="table_td"><%$info.check_time%></td>
+			</tr>
+			<tr>
+				<td class="tabel_th">价格总计:</td>
+				<td class="table_td"><%$info.goods_total%></td>
+				<td class="tabel_th">应盘总数:</td>
+				<td class="table_td" id='goods_num'><%$info.goods_num%></td>
+				<td class="table_td">已盘数量:</td>
+				<td class="table_td" id='paned'><%$row%></td>
+				<td class="table_td"><%$realName%></td>
+				<td class="table_td" id='count1'><%$count1%></td>
+			</tr>
+			<tr>
+				<td class="tabel_th">备注:</td>
+				<td class="table_td" colspan="7">
+					<input type="text" class="form-control" name="bill_note" style='width:100%' onblur="subnote(this);" bill_id='<%$info.id%>' value="<%$info.bill_note%>" <%if $info.bill_status != 1%>disabled<%/if%>/>
+				</td>
+			</tr>
+		<%if $status != 1%> <!--是否点击的 “盘点完成” 的操作 ， 没有盘点完成 显示一下的页面-->
+
+<!--开始添加啦 ~ start-->
+<tr>
+	<td colspan="8" style="text-align:center;color:red;font-size:25px;" id='input_box'>
+		<div class="form-group">
+			<label class="control-label" for="name">柜位号：</label>
+			<%if $is_fengonsi == 1%>
+				<input type="text" class="form-control" name="box_sn" value="0-00-0-0" readonly="readonly"/>
+			<%else%>
+				<input type="text" class="form-control" name="box_sn" placeholder="请输入柜位号"/>
+			<%/if%>
+
+		</div>
+		<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 开始盘点</button>
+	</td>
+	<td colspan="8" style="text-align:center;color:red;font-size:25px;" id='text_box'></td>
+</tr>
+<!--开始添加啦 ~ end-->
+
+<tr id='input_goods'>
+	<td colspan="8" style="text-align:center;color:red;font-size:25px;" >
+	<%if $can_pl_pandian =='YES'%>
+	<input type="text" class="form-control" name="goods_id" placeholder="请输入货号，批量以空格隔开，批量总数不能超过300个" style="width: 300px;" disabled="disabled" />
+	<%else%>
+	<input type="text" class="form-control" name="goods_id" placeholder="请输入货号" disabled="disabled" />
+	<%/if%>
+	<input type='hidden' name='bill_id' value='<%$info.id%>'/>
+	<button type="submit" class="btn btn-sm green"><i class="fa fa-search"></i> 盘点</button>
+	</td>
+</tr>
+		<%/if%>
+		<input type='hidden' name='bill_id' value='<%$info.id%>'/>
+		<input type="hidden" name='warehouse_id' value='<%$view->get_to_warehouse_id()%>'>		<!--获取盘点的仓库ID -->
+        <input type='hidden' name='affirm' value='0'/>
+		</table>
+		</form>
+	</div>
+</div>
+<div id='pandianed_list' style='border: 1px solid #b4cef8;padding: 10px;'>
+	<p></p>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_info_w_box.js"%>
+//-->
+</script>

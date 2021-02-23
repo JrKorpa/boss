@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>布产单查询
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="portlet-body form" id="product_send_drill_search_from">
+                    <div class="form-group">
+                        <label class="control-label">输入布产单号：
+                        <button class="btn green btn-sm" type="button">导出送钻信息</button></label>
+                        <textarea name="bc_sn_arr" id="" cols="25" rows="30"></textarea>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>证书搜索
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div id="product_send_search_from" class="table-toolbar">
+                    <div class="form-group">
+                        <label class="control-label" for="name">证书号：</label>
+                        <input type="text" class="form-control" name="zhengshuhao" placeholder="请输入证书号"/>
+                    </div>
+                    <button type="button" class="btn btn-sm green"><i class="fa fa-search"></i> 搜索</button>
+                    <span class="btn btn-sm dark" name="刷新" data-url="" onclick="util.retrieveReload(this);">刷新<i class="fa fa-refresh"></i></span>
+                </div>
+                <!-- 表格1 -->
+
+                    <table id="product_zhengshu_search_list" class="table table-bordered table-striped table-hover flip-content">
+                    </table>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file = "js/product_send_drill_list.js" %>
+    //-->
+</script>

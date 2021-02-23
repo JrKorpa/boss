@@ -1,0 +1,86 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="material_bill_goods_add_list_form">
+		<div class="form-body">
+		
+		     <div class="row">
+			   <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货品编号：</label>
+						<input type="text" class="form-control"  name="goods_sn" placeholder="支持批量搜索，多个请换行或用空格隔开"/>						
+					</div>
+              </div>	   
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">货品名称：</label>
+						<input type="text" class="form-control" name="goods_name" value="" placeholder="请输入货品名称"/>
+					</div>
+              </div>
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<input type="text" class="form-control" name="style_sn" value=""/>
+					</div>
+              </div>   
+			  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">款式名称：</label>
+						<input type="text" class="form-control" name="style_name" value=""/>
+					</div>
+              </div>                
+			 <div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">供应商：</label>
+							<select class="form-control" name="supplier_id">
+							<option value=""></option>
+							<%foreach from=$view->get_supplier_list() key=k item=value%>
+							<option value="<%$value.id%>" <%if $view->get_supplier_id()==$value.id%>selected<%/if%>><%$value.name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+			 </div>
+			 <div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">仓库：</label>
+							<select class="form-control" name="warehouse_id">
+							<option value=""></option>
+							<%foreach from=$view->get_warehouse_list() key=k item=value%>
+							<option value="<%$value.id%>" <%if $view->get_warehouse_id()==$value.id%>selected<%/if%>><%$value.name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+			</div>
+		</div>
+		<div class="row" align="center">		
+				    <label class="control-label">&nbsp;</label><br/>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+			 	  
+		</div>			
+        <!-- 搜索按钮 -->
+    </form>
+    <!-- END FORM-->
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll"  style="min-height:250px;overflow-y:auto;max-height:300px;" id="material_bill_goods_add_list_ck">
+		</div>
+		<div class="clear"></div>
+				
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/material_bill_goods_add_list_ck.js" %>
+//-->
+</script>

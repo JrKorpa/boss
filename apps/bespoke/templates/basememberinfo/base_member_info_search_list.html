@@ -1,0 +1,33 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>会员ID</th>
+			<th>会员名</th>
+			<th>渠道部门</th>
+			<th>来源</th>
+			<th>会员手机号</th>
+			<th>会员类型</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+                <tr data-id="base_member_info_list_<%$d.member_id%>" data-title="会员详情">
+			<td><%if isset($d.member_id)%><%$d.member_id%><%else%><%/if%></td>
+			<td><%if isset($d.member_name)%><%$d.member_name%><%else%><%/if%></td>
+			<td><%if isset($allSalesChannelsData[$d.department_id])%><%$allSalesChannelsData[$d.department_id]%><%else%><%/if%></td>
+			<td><%if isset($d.customer_source_id)%><%$view->get_source_name($d.customer_source_id)%><%else%><%/if%></td>
+			<td><%if isset($d.member_phone)%><%$d.member_phone%><%else%><%/if%></td>
+			<td><%foreach from=$dd->getEnumArray("member.member_type") item=value%>
+                <%if $value.name==$d.member_type%><%$value.label%><%/if%>
+            <%/foreach%>
+            </td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

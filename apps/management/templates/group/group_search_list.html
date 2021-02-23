@@ -1,0 +1,28 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>组名称</th>
+			<th>编码</th>
+			<th>显示顺序</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data item=d%>
+		<tr data-id="group_list_<%$d.id%>" data-title="<%$d.name%>">
+			<td><%$d.id%></td>
+			<td><%$d.tree_name%></td>
+			<td><%$d.code%></td>
+			<td align="center">
+				 <img src="public/img/blue_arrow_up.png" border="0" alt="上移" onclick="util.moveup(this)" data-id="<%$d.id%>" data-url='index.php?mod=management&con=group&act=moveup' />
+				 <img src="public/img/blue_arrow_down.png" border="0" alt="下移" onclick="util.movedown(this)" data-id="<%$d.id%>" data-url='index.php?mod=management&con=group&act=movedown'/>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

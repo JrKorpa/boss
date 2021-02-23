@@ -1,0 +1,135 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="purchase_receipt_detail_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">流水号：</label>
+							<input type="text" name="purchase_receipt_id" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">出货单号：</label>
+							<input type="text" name="ship_num" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">采购单号：</label>
+							<input type="text" name="purchase_sn" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">布产号：</label>
+							<input type="text" name="bc_sn" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款号：</label>
+							<input type="text" name="style_sn" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">客户名：</label>
+							<input type="text" name="customer_name" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label>
+							<select class="form-control" tabindex="1" name="status">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('receipt.detail_status') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">供应商：</label>
+						<select class="select2_category form-control" tabindex="1" name="prc_id">
+							<option value=""></option>
+							<%foreach from=$Processor_list key=k item=value%>
+								<option value="<%$value.id%>"><%$value.code%> | <%$value.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">每页显示条数：</label>
+                            <input type="text" name="page_size" class="form-control" value="10" placeholder="请输入">
+                        </div>
+                    </div>
+
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		
+			<div class="btn-group">
+				<button class="btn btn-sm red" data-title="" title="生成不良品返厂单" name="生成不良品返厂单" data-url="index.php?mod=purchase&con=PurchaseReceipt&act=add" onclick="util.cust(this,addBl);" list-id="80">
+				 	生成不良品返厂单 <i class="fa fa-wrench"></i>
+				</button>
+			</div>
+<!--
+			<div class="btn-group">
+				<button class="btn btn-sm red" data-title="" title="批量质检" name="批量质检" data-url="index.php?mod=purchase&con=PurchaseReceiptDetail&act=bacth_addIqc" onclick="util.cust(this,batch_add);" list-id="80">
+				 	批量质检 <i class="fa fa-wrench"></i>
+				</button>
+			</div>
+			-->
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="purchase_receipt_detail_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_receipt_detail_search_list.js"%>
+//-->
+</script>

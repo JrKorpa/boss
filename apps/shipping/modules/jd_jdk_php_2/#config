@@ -1,0 +1,35 @@
+https://auth.360buy.com/oauth/token?grant_type=authorization_code&client_id=11054&redirect_uri=&code=GET_CODE&state=YOUR_CUSTOM_CODE &client_secret= YOUR_APP_SECRET
+https://auth.360buy.com/oauth/authorize?response_type=code&client_id=11054&redirect_uri=&state=
+
+http://auth.360buy.com/oauth/authorize?response_type=code&client_id=7DADAC9ED8F29A0790087849188EB2E1&redirect_uri=http://www.kela.cn/test/getjd.php&state=myststeid&scope=read
+
+code=cGAPcA&state=myststeid
+
+7DADAC9ED8F29A0790087849188EB2E1
+流量：5000次/天
+
+http://www.kela.cn/?code=cGAPcA&state=myststeid
+
+http://auth.360buy.com/oauth/authorize?response_type=code&client_id=7DADAC9ED8F29A0790087849188EB2E1&redirect_uri=http://www.kela.cn&state=myststeid&scope=read
+
+http://auth.360buy.com/oauth/token?grant_type=authorization_code&client_id=7DADAC9ED8F29A0790087849188EB2E1&redirect_uri=http://www.kela.cn&client_secret=f5a1e7f4c4e04fcfa2084842098e9c63&code=yuuza8&state=myststeid
+
+caifurong123
+
+
+kelanzuanshi     0d13adff-8228-472e-a1db-435a4e1babd9
+kelanluozuan     84d720dc-131a-447f-9c72-596b995ea4ab
+jd_kelanjintiao  fc25bad1-b61b-412a-9c61-017261aba600
+jd_kaxiou
+jd_oruoya  6f0a8bdb-2d6b-46f1-8134-478f2f3aec89
+
+
+"jingdongA" => array("ad_name"=> "京东", "api_path" =>"jd_jdk_php_2"),kelanzuanshi   caifurong123    d135c6d4-657f-4113-921d-0ecbbaa0b454
+"jingdongB" => array("ad_name"=> "京东/裸钻", "api_path" =>"jd_jda_php"),kelanluozuan  caifurong123   fd6f0636-0ed4-4c32-96a2-0f1f9cf7e1fd
+"jingdongC" => array("ad_name"=> "京东/金条", "api_path" =>"jd_jdb_php"),jd_kelanjintiao  jdmubiao6000w  54f049de-a66e-48cd-9520-e43537ab294d
+"jingdongD" => array("ad_name"=> "京东/名品手表", "api_path" =>"jd_jdc_php"),
+"jingdongE" => array("ad_name"=> "京东/欧若雅", "api_path" =>"jd_jdd_php")jd_oruoya   jdmubiao6000w 7f8fb250-aeec-4e1f-995d-455821843da6
+
+
+
+http://auth.360buy.com/oauth/authorize?response_type=code&client_id=7DADAC9ED8F29A0790087849188EB2E1&redirect_uri=http://www.kela.cn/test/getjd.php&state=myststeid&scope=read

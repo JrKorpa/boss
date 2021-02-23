@@ -1,0 +1,95 @@
+<div id="address_member_info">
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">收货人：</label><span style="color:red">*</span>
+            <input type="text" name="consignee" class="form-control" placeholder="请输入" value="<%$member_address.customer|default:''%>" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="control-label">电话：</label></label><span style="color:red">*</span>
+            <input type="text" name="tel" class="form-control" placeholder="请输入" value="<%$member_address.mobile|default:''%>" />
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">email：</label>
+            <input type="text" name="email"  class="form-control" placeholder="请输入" value="" />
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">邮编：</label>
+            <input type="text" name="zipcode" class="form-control" placeholder="请输入" value=""  maxlength="6"/>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">快递公司：</label><span style="color:red">*</span>
+            <div class="radio-list">
+                <select class="form-control" tabindex="1" name="express_id">
+                    <option value=""></option>
+                    <%foreach from=$express key=k item=e%>
+                    <option value="<%$k%>"><%$e%></option>
+                    <%/foreach%>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">国家：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="country_id">
+                <option value=""></option>
+                <%foreach from=$count item=l %>
+                <option value="<%$l.region_id%>" mod="<%$l.region_name%>"
+                ><%$l.region_name%>(<%$l.region_name%>)</option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">省：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="province_id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">市：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="city_id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">区：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="1" name="regional_id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label class="control-label">收货地址：</label></label><span style="color:red">*</span>
+            <input type="text" name="address" class="form-control" placeholder="请输入" value="<%$member_address.mem_address|default:''%>" maxlength="60"/>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
+<script type="text/javascript">
+
+    <%include file="js/address_member.js"%>
+
+</script>

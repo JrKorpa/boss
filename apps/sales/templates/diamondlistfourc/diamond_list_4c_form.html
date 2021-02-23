@@ -1,0 +1,191 @@
+<!--搜索开始-->
+<link rel="stylesheet" href="public/js/jRange/jquery.range.css"/>
+<script src="public/js/jRange/jquery.range.js" type="text/javascript"></script>
+<style type="text/css">
+iframe[src="about:blank"] {
+  display: block !important;
+}
+#qidian_wpa_2852155799_32{
+    right:130px !important;
+}
+</style>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="diamond_list_4c_search_form">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">石重：</label><br/>
+                            <div class="input-group  input-daterange">
+                                <input type="text" class="form-control" name="carat_min" value="<%$args.carat_min|default:''%>" placeholder="0.00" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="carat_max" value="<%$args.carat_max|default:''%>" placeholder="0.00"/>
+                            </div>
+                        </div>
+                    </div> 
+					<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">切工：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <label class="btn btn-default">
+                                    <input type="checkbox" name="cut[]" value="EX" class="toggle"> EX
+                                </label>
+								<label class="btn btn-default">
+                                    <input type="checkbox" name="cut[]" value="VG" class="toggle"> VG
+                                </label>
+								<label class="btn btn-default" title="3EX表示切工、抛光、对称皆为EX">
+                                    <input type="checkbox" name="cut[]" value="3EX" class="toggle"> 3EX
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">荧光：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getFluorescenceList() item=val%>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" name="fluorescence[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+					 <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">证书类型：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                  <label class="btn btn-default">
+                                    <input type="checkbox" name="cert[]" value="GIA" class="toggle"> GIA
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+					
+				</div> 
+				<div class="row"> 
+
+				    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getClarityList() item=val%>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" name="clarity[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>                
+                   	<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">货品类型：</label>
+                            <select class="form-control" tabindex="1" name="good_type">
+                                <option value=""></option>
+                                <option value="1">现货</option>
+                                <option value="2">期货</option>
+                            </select>
+                        </div>
+                    </div>
+				</div>
+				<div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getColorList() item=val%>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" name="color[]" value="<%$val%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+                    
+                 </div>
+				<div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">形状：</label>
+                            <div class="btn-group box-btnlist" data-toggle="buttons">
+                                <%foreach from=$view->getShapeList() key=key item=val%>
+                                <label class="btn btn-default">
+                                    <input type="checkbox" name="shape[]" value="<%$key%>" class="toggle"> <%$val%>
+                                </label>
+                                <%/foreach%>
+                            </div>
+                        </div>
+                    </div>
+				</div>				
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+		<div class="btn-group"><button class="btn btn-sm green" onclick="util.confirm(this);" data-url="index.php?mod=sales&con=DiamondListFourC&act=addCart" name="加入购物车" title="加入购物车" list-id="292" data-title="裸钻4C快捷搜索">加入购物车</button></div>&nbsp;
+         <%$bar%>
+            <%if $smarty.const.SYS_SCOPE eq 'zhanting' %>   
+                <%if $kefu_type==1%> 
+                    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAzMzUxMF80NjI4NzZfNDAwOTk4NTE1MV8"></script>
+                    <!-- WPA start -->
+                    <script id="qd28521557990588e3d905f8c3af5ce41c9510f402ad" src="https://wp.qiye.qq.com/qidian/2852155799/0588e3d905f8c3af5ce41c9510f402ad" charset="utf-8" async defer></script>
+                    <!-- WPA end -->
+          
+                <%elseif $kefu_type==2 %>
+                    <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODAzMzUxMF80NjI4NzZfNDAwOTk4NTE1MV8"></script>
+                
+                <%else%>                   
+                    <!-- WPA start -->
+                    <script id="qd28521557990588e3d905f8c3af5ce41c9510f402ad" src="https://wp.qiye.qq.com/qidian/2852155799/0588e3d905f8c3af5ce41c9510f402ad" charset="utf-8" async defer></script>
+                    <!-- WPA end -->                    
+                <%/if%>    
+            
+            <%/if%>
+        </div>		
+        <!-- 表格1 -->
+		<div class="flip-scroll">
+		<b>推荐钻石</b>   <a href="javascript:;" class="tab-con-a js_more_diamond_list" data-id="productinfo-0" data-title="裸钻搜索" data-url="index.php?mod=sales&con=DiamondList&act=index">More>></a>
+        </div>
+        <div class="flip-scroll" id="diamond_list_4c_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/diamond_list_4c_search_list.js"%>
+//-->
+</script>

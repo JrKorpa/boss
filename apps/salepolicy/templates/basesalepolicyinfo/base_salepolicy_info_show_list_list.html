@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>销售策略名称</th>
+			<th>记录状态</th>
+			<th>是否有效</th>
+			<th>销售策略开始时间</th>
+			<th>销售策略结束时间</th>
+			<th>记录创建时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$data.data key=k item=g %>
+		<tr data-id="base_salepolicy_info_show_list_<%$g.policy_id%>" data-title="<%$g.policy_id%>">
+			<td><%$g.policy_id%></td>
+			<td><%$g.policy_name%></td>
+			<td><%if $g.bsi_status=='1'%>保存<%/if%><%if $g.bsi_status=='2'%>申请审核<%/if%><%if $g.bsi_status=='3'%>已审核<%/if%><%if $g.bsi_status=='4'%>取消<%/if%></td>
+			<td><%if $g.is_delete=='0'%>有效<%/if%><%if $g.is_delete=='1'%>无效<%/if%></td>
+			<td><%$g.policy_start_time%></td>
+			<td><%$g.policy_end_time%></td>
+			<td><%$g.create_time%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+//-->
+</script>

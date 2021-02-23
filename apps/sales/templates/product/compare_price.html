@@ -1,0 +1,103 @@
+<%if $error ==1%>
+		<%$content%>
+<%else%>
+
+<%if  !empty($daobao)%>
+
+<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">销售政策</th>
+			<th style="text-align: center;">策略名称</th>
+			<th style="text-align: center;">政策类型</th>
+			<th style="text-align: center;">货号</th>
+			<th style="text-align: center;">销售价</th>
+			<th style="text-align: center;">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		
+			<%foreach from=$dabao_data key=p_key item=d%>
+				<tr data-id="order_product_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				   <td align="center"><%$d.policy_name%></td>
+				   <td align="center"><%$d.together_name%></td>
+				   <td align="center">打包政策</td>
+				   <td align="center"><%$d.goods_id%></td>
+				   <td align="center"><%$d.sale_price%></td>
+				   <td align="center">
+				    <span onclick="product_add_cart('<%$d.together_id%>',<%$d.type%>,<%$d.channel%>);" class="btn  green"><i class="fa">加入购物车</i></span>
+				   </td>
+				</tr>
+			<%/foreach%>
+		</tbody>
+	</table>
+<%/if%>
+<%if !empty($putong_data)%>
+<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th style="text-align: center;">销售政策</th>
+			<th style="text-align: center;">政策类型</th>
+			<th style="text-align: center;">货号</th>
+			<%if $is_cpdz==1%>
+			<th style="text-align: center;">颜色</th>
+			<th style="text-align: center;">净度</th>
+			<th style="text-align: center;">形状</th>
+			<th style="text-align: center;">证书类型</th>
+			<th style="text-align: center;">金托类型</th>
+			<th style="text-align: center;">货品类型</th>
+			<%/if%>
+			<th style="text-align: center;">销售价</th>
+			<th style="text-align: center;">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+
+		   <%foreach from=$putong_data key=k item=g%>
+            	<%foreach from=$g.sprice key=key item=d%>
+                <tr data-id="order_product_goods_list_<%$d.id%>" data-title="<%$d.id%>" data-goodsid="<%$g.goods_id%>" data-xh="<%$g.isXianhuo%>" data-keys="<%$g.goods_id%>|<%$g.xiangkou%>|<%$d.color%>|<%$d.clarity%>|<%$d.cert%>|<%$g.tuo_type%>|<%$g.isXianhuo%>|<%$channel_id%>|<%$d.goods_key%>">
+                   <td align="center" class="pname"><%$d.policy_name%></td>
+                   <td align="center">普通策略</td>
+                   <td align="center"><%$d.goods_id%></td>
+				   <%if $is_cpdz==1%>
+				   <td align="center"><%$d.color|default:''%></td>
+				   <td align="center"><%$d.clarity|default:''%></td>
+				   <td align="center"><%$d.shape|default:''%></td>
+				   <td align="center"><%$d.cert|default:''%></td>
+				   <td align="center"><%$dd->getEnum('warehouse_goods.tuo_type',$g.tuo_type)%></td>
+				   <td align="center">成品定制</td>				
+				   <%/if%>
+                   <td align="center"  style="position: relative;"><span class="pprice" ><%$d.sale_price%></span></td>
+                   <td align="center">
+                       <span onclick="util.cust(this,product_add_cart);" class="btn  green"><i class="fa">加入购物车</i></span>
+                       <input type="hidden" value="1" />
+                   </td>
+                </tr>
+                <%/foreach%>
+			<%/foreach%>
+
+			
+		</tbody>
+	</table>
+<%/if%>
+	
+<%/if%>
+
+<script type="text/javascript">''
+    util.hover();
+    $('td .ic').click(function(){
+        $(this).next('div').show();
+    });
+    $('td div tr').click(function(){
+        var id = $(this).attr('data-title');
+        var n = $(this).children('td .name').html();
+        var p = $(this).children('td .prcie').html();
+        var tr = $(this).parent().parent().parent().parent().parent();
+        tr.attr('data-title',id);
+        tr.children('.pname').html(n);
+        tr.find('td .pprice').html(p);
+        $(this).parent().parent().parent().hide();
+    });
+
+
+</script>

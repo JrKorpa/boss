@@ -1,0 +1,37 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>体验店名称</th>
+            <th>体验店类别</th>
+            <th>营业状态</th>
+			<th>体验店地址</th>			
+			<th>是否省代体验店</th>
+			<th>是否在官网显示</th>
+			<th>排序</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="shop_cfg_list_<%$d.id%>" data-title="<%$d.shop_name%>">
+			<td><%$d.id%></td>
+			<td><%$d.shop_name%></td>
+            <td><%$dd->getEnum("shop.type",$d.shop_type)%></td>
+            <td><%if $d.shop_status==1%>正常营业<%/if%><%if $d.shop_status==0%>暂停营业<%/if%><%if $d.shop_status==2%>关闭<%/if%></td>
+			<td><%$d.shop_address%></td>			
+			<td><%if empty($d.sd_company_name)%>否<%else%>是<%/if%></td>
+			<td><%if $d.official_webiste_show<>1%>否<%else%>是<%/if%></td>
+			<td>
+				<img src="public/img/blue_arrow_up.png" border="0" alt="上移" onclick="util.moveup(this)" data-id="<%$d.id%>" data-url='index.php?mod=management&con=ShopCfg&act=moveup' />
+				<img src="public/img/blue_arrow_down.png" border="0" alt="下移" onclick="util.movedown(this)" data-id="<%$d.id%>" data-url='index.php?mod=management&con=ShopCfg&act=movedown'/>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

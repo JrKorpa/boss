@@ -1,0 +1,37 @@
+<%if !empty($attr_list_all)%>
+<%foreach from=$attr_list_all item=attr_list key=k_style_sn%>
+<table class="table table-bordered table-striped table-hover flip-content" id="attr_list_box">
+    <tr>
+		<td style='text-align:center;vertical-align: middle; font-weight:bold; font-size:14px' colspan="2">
+          <%$k_style_sn%>
+		</td>
+	</tr>	
+	<%foreach from=$attr_list item=attr%>
+	<tr>
+		<td style='text-align:center;vertical-align: middle;width:150px'>
+			<input type="checkbox" class="checkAll" id="val[<%$k_style_sn%>][<%$attr.attribute_id%>]" value="1" /><label for="val[<%$k_style_sn%>][<%$attr.attribute_id%>]"><%$attr.attribute_name%></label>
+		</td>
+		<td>
+		<%foreach from=$attr.attrVal item=val%>
+		<input type="checkbox" name="attr[<%$k_style_sn%>][<%$attr.attribute_id%>][<%$val.att_value_id%>]" id="val[<%$k_style_sn%>][<%$attr.attribute_id%>][<%$val.att_value_id%>]"<%if $val.selected%> checked="checked"<%/if%> value="<%$val.att_value_id%>" />
+		<label for="attr[<%$k_style_sn%>][<%$attr.attribute_id%>][<%$val.att_value_id%>]"> <%$val.att_value_name%></label>&nbsp;
+		<%/foreach%>
+		</td>
+	</tr>	
+	<%/foreach%>
+</table>
+<%/foreach%>
+<%else%>
+<p style="font-size:14px; color:#CC3300; font-weight:bold">此款号不存或没有合法属性</p>
+<%/if%>
+<input type="hidden" name="_style_sn" value="<%$style_sn%>"/>
+<script>
+   $("#attr_list_box .checkAll").click(function(){
+       if($(this).attr('checked')){
+	       $(this).parent().parent().find("td input").attr("checked","checked");
+	   }else{
+	       $(this).parent().parent().find("td input").attr("checked",false);
+	   }
+   });
+		
+</script>

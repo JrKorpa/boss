@@ -1,0 +1,107 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">					
+        </div>
+        <!-- 表格1 -->
+        <div class="table-scrollable">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td  class="flip-content">用户信息：</td>
+                    <td>
+						<%if isset($smarty.session.bespoke.customer)%>
+                        <a href="javascript:void(0);" onclick="util.addNew(this)" data-url="index.php?mod=bespoke&con=BaseMemberInfo&act=show&id=<%$smarty.session.bespoke.mem_id%>" data-title="<%$smarty.session.bespoke.customer%>" list-id="<%$smarty.session.bespoke.mem_id%>"><%$smarty.session.bespoke.customer%></a>
+						<%/if%>
+					</td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">销售阶段：</td>
+                    <td>
+						<label><input type="radio" name="salesstage" value="1" />了解</label>
+						<label><input type="radio" name="salesstage" value="2" />对比</label>
+						<label><input type="radio" name="salesstage" value="3" />决定</label>
+					</td>
+                </tr>
+                <tr>
+                    <td class="flip-content">品牌印象：</td>
+                    <td>
+						<label><input type="radio" name="brandimage" value="1" />弱</label>
+						<label><input type="radio" name="brandimage" value="2" />中</label>
+					    <label><input type="radio" name="brandimage" value="3" />强</label>
+					</td>
+                </tr>
+                <!--<tr>
+                    <td  class="flip-content">客户类型：</td>
+                    <td>
+						<label><input type="radio" name="user_level" value="0" />C类用户</label>
+						<label><input type="radio" name="user_level" value="1" />B类用户</label>
+						<label><input type="radio" name="user_level" value="2" />A类用户</label>
+					</td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">赠品类型：</td>
+                    <td>
+						<label><input type="radio" name="gift_type" value="-1"/>无赠品</label>
+						<label><input type="radio" name="gift_type" value="1"/>异业联盟</label>
+						<label><input type="radio" name="gift_type" value="2"/>进店礼</label>
+						<label><input type="radio" name="gift_type" value="3"/>成单礼</label>
+					</td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">赠品：</td>
+                    <td>
+						<div style="height:120px; overflow:scroll;">
+							<input type=checkbox name="gift_id[]" value="1" id="gift_id">金银币
+							<input type=checkbox name="gift_id[]" value="2" id="gift_id">黑皮绳
+						</div>					
+					</td>
+                </tr>-->
+                <tr>
+                    <td  class="flip-content">顾客备注：</td>
+                    <td>
+						<%if isset($smarty.session.bespoke.remark)%>
+						<%$smarty.session.bespoke.remark%>
+						<%/if%>
+					</td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">历史操作备注：</td>
+                    <td>
+						
+					</td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">操作备注：</td>
+                    <td>
+						<textarea rows="2" cols="36" id="action_note" name="action_note"></textarea>	
+					</td>
+                </tr>
+                <tr align="center">
+                    <td  class="flip-content" colspan="2">转给：
+                    <select class="select2_category" tabindex="1" name="make_order" id="make_order">
+                        <option value=""></option>
+                        <%foreach from=$make_order item=value%>
+                        <option value="<%$value.account%>"><%$value.account%></option>
+                        <%/foreach%>
+                    </select>
+					<button type="button" class="btn green" onclick="save_make_bespoke0('<%$beid%>');"><i class="fa fa-check"></i> 确定</button> <button type="button" class="btn green"  onclick="wieldBespoke('bespoke_pause','<%$beid%>');"><i class="fa fa-check"></i> 暂停服务</button> <button type="button" class="btn green" onclick="finish_Bespoke0();"><i class="fa fa-check"></i> 操作已结束</button>
+					<input id="beid" type="hidden" value="<%$beid%>" >
+					</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_bespoke_info_show.js" %>
+//-->
+</script>

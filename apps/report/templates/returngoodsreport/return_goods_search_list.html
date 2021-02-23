@@ -1,0 +1,121 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>审核时间</th>
+			<th>单据类型</th>
+			<th>总发货量(线上，线下)</th>
+			<th>总退货量（线上，线下）</th>
+			<th>总退货占比(线上，线下)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list item=d%>
+		<tr data-id="returngoodsreport-index_second" data-title="按渠道部门退货率详细" start_time="<%$d.do_date%>" end_time="<%$d.do_date%>" bill_type="<%$d.type%>" order_type="<%$arg.channel_class%>" department_id="<%$arg.department_id%>">
+			<td><%$d.do_date%></td>
+			<td><%if $d.type=="O"%>维修退货单<%elseif $d.type=="D"%>销售退货单<%else%>维修退货单+销售退货单<%/if%></td>
+			<td><%$d.total_sale_count|default:0%>(<%$d.online_sale_count|default:0%>,<%$d.upline_sale_count|default:0%>)</td>
+			<td><%$d.total_return_count|default:0%>(<%$d.online_return_count|default:0%>,<%$d.upline_return_count|default:0%>)</td>
+			<td><%$d.r_lv|default:0%>%(<%$d.ron_lv|default:0%>%,<%$d.rup_lv|default:0%>%)</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+	<%if $tongji %>
+	<tbody>
+		<tr data-title="all_count">
+			<td><%$tongji.do_date%></td>
+			<td><%if $tongji.type=="O"%>维修退货单<%elseif $tongji.type=="D"%>销售退货单<%else%>维修退货单+销售退货单<%/if%></td>
+			<td><%$tongji.total_sale_count|default:0%>(<%$tongji.online_sale_count|default:0%>,<%$tongji.upline_sale_count|default:0%>)</td>
+			<td><%$tongji.total_return_count|default:0%>(<%$tongji.online_return_count|default:0%>,<%$tongji.upline_return_count|default:0%>)</td>
+			<td><%$tongji.r_lv|default:0%>%(<%$tongji.ron_lv|default:0%>%,<%$tongji.rup_lv|default:0%>%)</td>
+	</tr>
+	</tbody>
+	<%/if%>
+</table>
+<%$pa%>
+<script type="text/javascript">
+function return_goods_list(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var order_type = tObj[0].getAttribute("order_type");
+	var department_id = tObj[0].getAttribute("department_id");
+	var bill_type = tObj[0].getAttribute("bill_type");
+	var con=params['con'].toLowerCase();
+	var act=params['act'].toLowerCase();
+	var prefix = con+'-'+act;
+	var _id = tObj[0].getAttribute("data-id");
+	var id =_id;
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.substr(1);
+		if (href==prefix)
+		{
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		//url+="&acount_date="+acount_date;
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

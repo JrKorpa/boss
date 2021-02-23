@@ -1,0 +1,318 @@
+<%if $smarty.session.userType==1%>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>更改订单配货状态
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" role="form" method="post" id="warehouse_deal_form_order">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单号：<span style="color: red">*批量输入以空格或者逗号分开</span></label>
+                            <textarea name="order_sn" rows="5" cols="50" ></textarea>
+                        </div>
+                    </div><br/>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">要更改的配货状态：<span style="color: red">*</span></label>
+                            <select name="delivery_status" tabindex="1" class="form-control">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('sales.delivery_status') key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit"  class="btn green"><i class="fa fa-check"></i>更改配货状态</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<%/if%>
+<!--搜索开始-->
+<%if $smarty.session.userName=="admin"%>
+<h2>只自动生调拨单，并且不改变货品位置。功能模块只开放给技术部内部使用，业务部门人员勿动，后果自负。</h2>
+<div class="portlet box green">
+    <div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+    </div>
+    <div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" role="form" method="post" id="warehouse_deal_form">
+		    <div class="form-body">
+		    <div class="row">
+		    <div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">出库公司：</label>
+							<select class="form-control" tabindex="1" name="from_company_id">
+								<option></option>
+								<%foreach from=$view->getCompany() item=c %>
+								<option value="<%$c.id%>|<%$c.company_name%>"> <%$c.company_sn%> | <%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+			 <div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">入库公司：</label>
+							<select class="form-control" tabindex="1" name="to_company_id">
+								<option></option>
+								<%foreach from=$view->getCompany() item=c%>
+								<option value="<%$c.id%>|<%$c.company_name%>"> <%$c.company_sn%> | <%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">入库仓库：</label><!--getWarehouse-->
+							<select class="form-control" tabindex="1" name="to_warehouse_id">
+								<option></option>
+								<%foreach from=$view->getWarehouse() item=w%>
+								<option value="<%$w.id%>|<%$w.name%>"> <%$w.code%> | <%$w.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+			</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">时间：<span style="color: red">*</span></label>
+							<input type="text" name="create_time" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">货号：</label>
+								<input type="text" name="goods_id" class="form-control" placeholder="请输入"/>
+							</div>
+					</div>
+
+				<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					</div>
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 生成调拨单据</button>
+			</div>
+		</div>
+
+	</form>
+	</div>
+</div>
+
+
+
+<!-- 更改状态快捷方式 -->
+<div class="portlet box green">
+    <div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>货品状态及位置更改
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+    </div>
+    <div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" role="form" method="post" id="warehouse_deal_form2">
+		    <div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">货号：<span style="color: red">*</span></label>
+							<input type="text" name="goods_id" class="form-control" placeholder="请输入货号，批量输入以空格或者逗号分开"/>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+                                                <div class="form-group">
+                                                        <label class="control-label">要更改的库存状态：</label>
+                                                        <select name="is_on_sale" tabindex="1" class="form-control">
+                                                            <option value=""></option>
+                                                            <%foreach from=$dd->getEnumArray('warehouse.goods_status') key=k item=value%>
+                                                            <option value="<%$value.name%>"><%$value.label%></option>
+                                                            <%/foreach%>
+                                                            <option value="100">100</option>
+                                                        </select>
+                                                </div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">公司：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="company_id" tabindex="1" >
+								<option value=""></option>
+								<%foreach from=$companylist item=c%>
+									<option value="<%$c.id%>"><%$c.company_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">仓库：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="warehouse_id" tabindex="1" disabled="disabled">
+								<option value=""></option>
+
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit"  class="btn green"><i class="fa fa-check"></i>更改状态</button>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+<%/if%>
+
+<!--搜索开始-->
+<%if in_array($smarty.session.userName,array("admin","sz张宇","谭碧玉","梁全升","程丹蕾","韦芦芸"))%>
+<h2>自动生成销售单，不做货品任何改变。功能模块只开放给技术部内部使用，业务部门人员勿动，后果自负。谁动跟谁拼命（潮潮）</h2>
+<div class="portlet box green">
+    <div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>生成销售单
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+    </div>
+    <div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" role="form" method="post" id="warehouse_BillS">
+		    <div class="form-body">
+		    <div class="row">
+		    <div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">出库公司：</label>
+					<select class="form-control" tabindex="1" name="from_company_id">
+						<option></option>
+						<%foreach from=$view->getCompany() item=c %>
+						<option value="<%$c.id%>|<%$c.company_name%>"> <%$c.company_sn%> | <%$c.company_name%></option>
+						<%/foreach%>
+					</select>
+				</div>
+			</div>
+					
+			</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">时间：<span style="color: red">*</span></label>
+							<input type="text" name="create_time" class="form-control" placeholder="请输入" value="<%$time%>"/>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">货号：</label>
+								<input type="text" name="goods_id" class="form-control" placeholder="可以添加多个，以英文逗号隔开"/>
+							</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">总价：</label>
+							<input type="text" name="shijia" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">备注：</label>
+							<input type="text" name="bill_note" class="form-control" placeholder="请输入"/>
+						</div>
+					</div>
+					</div>
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 生成销售单据</button>
+			</div>
+		</div>
+
+	</form>
+	</div>
+</div>
+<%/if%>
+<!-- 导出货号的最后单据以及状态 -->
+<div class="portlet box green">
+    <div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>导出货号的最后单据以及状态
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+    </div>
+    <div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="index.php?mod=warehouse&con=WarehouseDeal&act=batinsert" role="form" method="post" id="warehouse_deal_form3" enctype="multipart/form-data">
+		    <div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">货号文件：<span style="color: red">*</span></label>
+							<input type="file" name="file_csv" id="file_csv"/>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="submit"  class="btn green"><i class="fa fa-check"></i>导出</button>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+
+	<%include file="js/warehouse_deal.js"%>
+//-->
+</script>

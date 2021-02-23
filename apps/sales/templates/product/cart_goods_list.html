@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+    <tr>
+			<th style="text-align: center;">政策类型</th>
+			<th style="text-align: center;">货号</th>
+			<th style="text-align: center;">现货/期货</th>
+			<th style="text-align: center;">销售价</th>
+        <th style="text-align: center;">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%foreach from=$goods key=k item=d%>
+    <tr data-id="order_product_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+        <td align="center"><%if $d.type ==2%>打包政策<%else%>普通政策<%/if%></td>
+        <td align="center"><%$d.goods_id%></td>
+        <td align="center"><%if $d.is_stock_goods == 1%>现货<%else%>期货<%/if%></td>
+        <td align="center"><%$d.goods_price%></td>
+        <td align="center"><span data-id="<%$d.id%>" onclick="del_cart_goods(this)" class="btn btn-xs red"><i class="fa fa-times">删除</i></span></td>
+    </tr>
+    <%/foreach%>
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    function del_cart_goods(obj){
+        var urldelcartgoodsurl = "index.php?mod=sales&con=Product&act=DelCartGoods";
+        var id =$(obj).attr('data-id');
+        $.post(urldelcartgoodsurl,{id:id},function(data){
+			 if(data.success==0){
+				 util.xalert("删除失败！");
+				 return false;
+			 }
+             $('#cart_goods_list').empty().html(data);
+        })
+    }
+</script>
+

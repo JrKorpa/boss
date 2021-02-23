@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+ 销售数据 <%$page_list.start_time%> 到 <%$page_list.end_time%>  库存总数：<%$page_list.num_count%>  总成本：<%$page_list.chengbenjia_count%>  总金重：<%$page_list.gold_count%>
+	<thead class="flip-content">
+	<%*	<tr>
+			<td colspan="12">订单总金额：<%$all_price%></td>
+		</tr>*%>
+    <tr>
+			<th>日期</th>
+			<th>库房</th>
+			<th>款号</th> 
+			<th>数量</th>
+			<th>金重</th>
+			<th>成本</th>  
+			<th>买入工费</th>  
+			<th>销售价</th>  
+			<th>是否冻结</th>  
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_list_" data-title="" id=''> 
+			<td align="center"><%$d.check_time%></td>
+			<td align="center"><%$d.warehouse%></td>
+			<td align="center"><%$d.goods_sn%></td>
+            <td align="center"><%$d.num%></td>
+			<td align="center"><%$d.gold%></td>
+			<td align="center"><%$d.chengbenjia%></td>
+			<td align="center"><%$d.mairugongfei%></td>
+			<td align="center"><%$d.shijia%></td>
+			<td align="center"><%$d.is_settle%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

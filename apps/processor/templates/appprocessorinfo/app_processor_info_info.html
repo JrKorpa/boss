@@ -1,0 +1,292 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_processor_info_info">
+        <div class="form-body">
+            <div class="portlet box blue">
+                <!--基本信息-->
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>基本信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 供应商编码：</label>
+                            <input type="text" name="code" class="form-control" placeholder="请输入"  value="<%$view->get_code()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 供应商名称：</label>
+                            <input type="text" name="name" class="form-control" placeholder="请输入"  value="<%$view->get_name()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">供货商邮箱：</label>
+                            <input type="text" name="pro_email" class="form-control" placeholder="请输入"  value="<%$view->get_pro_email()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 经营范围：</label>
+                            <select class="form-control" tabindex="1" name="business_scope[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$view->getScopeList() item=val%>
+                                <option value="<%$val.id%>" <%if $view->get_business_scope()== $val.id%>selected="selected"<%/if%>><%$val.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 出货周期：</label>
+                            <input type="text" name="cycle" class="form-control" placeholder="请输入"  value="<%$view->get_cycle()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 付款周期：</label>
+                            <select class="form-control" tabindex="1" name="balance_type">
+                                <option value=""></option>
+                                <%foreach from=$view->getBalanceTypeList() item=value%>
+                                <option value="<%$value.id%>" <%if $value.id==$view->get_balance_type()%>selected<%/if%>><%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span>采购额度：</label>
+                            <input type="text" name="purchase_amount" class="form-control" placeholder="请输入"  value="<%$view->get_purchase_amount()%>" />
+                        </div>
+                    </div>
+                </div>
+                <!--基本信息-->
+            </div>
+            <div class="portlet box blue">
+                <!--证件信息-->
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>证件信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 营业执照号码：</label>
+                            <input type="text" name="business_license" class="form-control" placeholder="请输入"  value="<%$view->get_business_license()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 税务登记证号：</label>
+                            <input type="text" name="tax_registry_no" class="form-control" placeholder="请输入"  value="<%$view->get_tax_registry_no()%>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 增值税发票：</label>
+                            <select class="form-control" tabindex="1" name="tax_invoice">
+                                <option value=""></option>
+                                <%foreach from=$view->getTaxInvoiceList() item=value%>
+                                <option value="<%$value.name%>" <%if $value.name==$view->get_pay_type()%>selected<%/if%>><%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 税点：</label>
+                            <input type="text" name="tax_point" class="form-control" placeholder="请输入"  value="<%$view->get_tax_point()%>" />
+                        </div>
+                    </div>
+                    <!--营业执照 地址-->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 营业执照地址-省：</label>
+                            <select class="form-control" tabindex="1" name="business_license_region_1">
+                                <option value=""></option>
+                                <%foreach from=$view->getProvinceOption() item=value%>
+                                <option value="<%$value.region_id%>" <%if $value.region_id==$view->get_area(0)%>selected<%/if%>><%$value.region_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 营业执照地址-市：</label>
+                            <select class="form-control" tabindex="1" name="business_license_region_2">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 营业执照地址-区：</label>
+                            <select class="form-control" tabindex="1" name="business_license_region_3">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 营业执照详细地址：</label>
+                            <input type="text" name="business_license_address" class="form-control" placeholder="请输入"  value="<%$view->get_business_license_address()%>">
+                        </div>
+                    </div>
+                    <!--营业执照 地址-->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 开户银行：</label>
+                            <input type="text" name="bank_name" class="form-control" placeholder="请输入"  value="<%$view->get_bank_name()%>">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 户名：</label>
+                            <input type="text" name="account_name" class="form-control" placeholder="请输入"  value="<%$view->get_account_name()%>">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 银行账户：</label>
+                            <input type="text" name="account" class="form-control" placeholder="请输入"  value="<%$view->get_account()%>">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red">*</span> 结算方式：</label>
+                            <select class="form-control" tabindex="1" name="pay_type">
+                                <option value=""></option>
+                                <%foreach from=$view->getPayTypeList() item=value%>
+                                <option value="<%$value.id%>" <%if $value.id==$view->get_pay_type()%>selected<%/if%>><%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--证件信息-->
+            </div>
+            <div class="portlet box blue">
+                <!--联系信息-->
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>联系信息
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">取货地址-省：</label>
+                            <select class="form-control" tabindex="1" name="pro_region_1">
+                                <option value=""></option>
+                                <%foreach from=$view->getProvinceOption() item=value%>
+                                <option value="<%$value.region_id%>" <%if $value.region_id==$view->get_pro_area(0)%>selected<%/if%>><%$value.region_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">取货地址-市：</label>
+                            <select class="form-control" tabindex="1" name="pro_region_2">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">取货地址-区：</label>
+                            <select class="form-control" tabindex="1" name="pro_region_3">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">取货详细地址：</label>
+                            <input type="text" name="pro_address" class="form-control" placeholder="请输入"  value="<%$view->get_pro_address()%>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <!--公司联系人-->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"><span style="color: red">*</span> 公司联系人：</label>
+                                    <input type="text" name="pro_contact" class="form-control" placeholder="请输入"  value="<%$view->get_pro_contact()%>" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"><span style="color: red">*</span> 公司联系方式手机：</label>
+                                    <input type="text" name="pro_phone" class="form-control" placeholder="请输入"  value="<%$view->get_pro_phone()%>" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">公司联系方式qq：</label>
+                                    <input type="text" name="pro_qq" class="form-control" placeholder="请输入"  value="<%$view->get_pro_qq()%>" />
+                                </div>
+                            </div>
+                            <!--BDD联系人-->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"><span style="color: red">*</span> BDD紧急联系人：</label>
+                                    <input type="text" name="contact" class="form-control" placeholder="请输入"  value="<%$view->get_contact()%>" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label"><span style="color: red">*</span> BDD紧急联系电话：</label>
+                                    <input type="text" name="kela_phone" class="form-control" placeholder="请输入"  value="<%$view->get_kela_phone()%>" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">BDD紧急联系qq：</label>
+                                    <input type="text" name="kela_qq" class="form-control" placeholder="请输入"  value="<%$view->get_kela_qq()%>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">备注：</label>
+                                <textarea class="form-control" name="info" rows="4"><%$view->get_info()%></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--联系信息-->
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green" name="submit_type" value="baocun"><i class="fa fa-check"></i> 保存</button>
+                <button type="submit" class="btn yellow" name="submit_type" value="tijiao"><i class="fa fa-check"></i> 提交</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file = "js/app_processor_info_info.js" %>
+    //-->
+
+</script>

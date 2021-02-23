@@ -1,0 +1,51 @@
+<body>
+<!--startprint-->
+<table border=1>
+<tr>
+	<td colspan='6' align='center'><b>维修送货单</b></td>
+<tr>
+	<td>维修单</td>
+	<td>订单号</td>
+	<td>货号</td>
+	<td>客户姓名</td>
+	<td>维修项</td>
+	<td>备注</td>
+</tr>
+<%foreach from = $res item = item %>
+<tr>
+	<td><%$item.id%></td>
+	<td><%$item.order_sn%></td>
+	<td><%$item.goods_id%></td>
+	<td><%$item.consignee%></td>
+	<td><%$item.repair_act%></td>
+	<td width='250'><%$item.remark%></td>
+</tr>
+<%/foreach%>
+<tr><td colspan='6' align='right'><b>合计:<%$num%>件</b>&nbsp;&nbsp;</td></tr></table>
+<!--endprint-->
+</body>
+<div style="text-align:left;">
+
+    <button id="print_close" onclick="close_bill();">关闭</button>
+    <button id="print_btn" onclick="print_bill();">打&nbsp;印</button>
+
+	</div>
+	<script type="text/javascript">
+
+function close_bill(){
+        window.close();
+    }
+
+function print_bill(){
+	bdhtml = window.document.body.innerHTML;
+	sprnstr = "<!--startprint-->";
+	eprnstr = "<!--endprint-->";
+	prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+	prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+	window.document.body.innerHTML = prnhtml;
+	window.print();
+
+    
+}
+	
+</script>

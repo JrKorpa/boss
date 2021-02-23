@@ -1,0 +1,79 @@
+ <div class="table-scrollable"> 
+ <!--<div class="flip-scroll">-->
+	<%if $billView->get_bill_cat()==1%>
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">		    
+			<tr>
+				<th>序号</th>
+				<th>商品编码</th>
+				<th>商品名称</th>
+				<th>供应商</th>
+				<th>入库仓库</th>				
+				<th>批次</th>
+				<th>入库数量</th>
+				<th>成本价</th>
+				<th>成本总金额</th>
+				<th>出入库总金额</th>
+			</tr>
+		</thead>		
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="material_bill_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td><%$billView->get_supplier_name($d.supplier_id)|default:'/'%></td>
+				<td><%$billView->get_warehouse_name($d.in_warehouse_id)|default:'/'%></td>
+				<td><%$d.batch_sn%></td>
+				<td><%$d.num%></td>
+				<td><%$d.cost%></td>
+				<td><%$d.allcost%></td>
+				<td><%$d.allshijia%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+	<%/if%>
+	<%if $billView->get_bill_cat()==2%>
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>商品编码</th>
+				<th>商品名称</th>
+				<th>供应商</th>
+				<th>出库仓库</th>				
+				<th>批次</th>
+				<th>出库数量</th>
+				<th>成本价</th>
+				<th>销售价</th>
+			</tr>			
+		</thead>		
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+			<tr data-id="material_bill_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$key+1%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$d.goods_name%></td>				
+				<td><%$billView->get_supplier_name($d.supplier_id)|default:'/'%></td>
+				<td><%$billView->get_warehouse_name($d.out_warehouse_id)|default:'/'%></td>
+				<td><%$d.batch_sn%></td>
+				<td><%$d.num%></td>
+				<td><%$d.cost%></td>
+				<td><%$d.shijia%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+	<%/if%>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.setItem('url','index.php?mod=warehouse&con=MaterialBillJin&act=searchBillGoods&_id='+getID().split('-').pop());
+
+//-->
+</script>

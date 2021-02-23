@@ -1,0 +1,116 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_pandian_plan_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单号：</label>
+							<input type="text" name="id" class="form-control" placeholder="请输入单号">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">抽检仓：</label>
+							<select class="select2_category form-control" tabindex="1" id="type" name="type">
+								<option value=""></option>
+								<option value="1">线上</option>
+								<option value="2">线下</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据状态：</label>
+							<select class="select2_category form-control" tabindex="1" id="status" name="status">
+								<option value=""></option>
+								<%foreach from=$bill_status item=d key=k%>
+								<option value="<%$k%>"><%$d%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单人：</label>
+							<input type="text" name="opt_admin" class="form-control" placeholder="请输入制单人">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核人：</label>
+							<input type="text" name="verify_admin" class="form-control" placeholder="请输入审核人">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+						<input type="text" class="form-control" name="create_time_start" value="">
+						<span class="input-group-addon">to</span>
+						<input type="text" class="form-control" name="create_time_end" value="">
+						</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+						<label class="control-label">审核时间：</label>
+						<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+						<input type="text" class="form-control" name="start_time_start" value="">
+						<span class="input-group-addon">to</span>
+						<input type="text" class="form-control" name="start_time_end" value="">
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="warehouse_pandian_plan_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_pandian_plan_list.js"%>
+//-->
+</script>

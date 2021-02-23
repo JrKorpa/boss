@@ -1,0 +1,16 @@
+ <table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th style="text-align: center;">销售政策名称</th>
+		<th style="text-align: center;">销售价格 </th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$pricelist key=k item=ss%>
+	<tr data-id="<%$ss.goods_key%>" data-title="<%$ss.id%>">
+		<td align="center" class="name"><%$ss.policy_name|default:''%></td>
+		<td align="center" class="prcie"  title=""><%$ss.sale_price|default:''%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>

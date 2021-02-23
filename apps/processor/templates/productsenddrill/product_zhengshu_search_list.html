@@ -1,0 +1,48 @@
+<tr><td style="background:#ff3737;color:#FFF" colspan="6"><b>订单信息：</b></td></tr>
+<%if $order_info%>
+<tr>
+    <td style="width:10%"><b>订单号:</b></td><td><%$order_info['order_sn']%></td>
+    <td style="width:10%"><b>客户姓名:</b></td><td><%$order_info['consignee']%></td>
+    <td style="width:10%"><b>客户手机:</b></td><td><%$order_info['mobile']%></td>
+</tr>
+<tr>
+    <td><b>销售渠道:</b></td><td><%$saleView->getChannelNameById($order_info['department_id'])%></td>
+    <td><b>客户来源:</b></td><td><%$custView->getSourceName($order_info['customer_source_id'])%></td>
+    <td><b>录单来源:</b></td><td><%$order_info['referer']%></td>
+</tr>
+<%else%>
+<tr>
+    <td colspan="6">很抱歉,未查到订单信息！</td>
+</tr>
+<%/if%>
+<tr><td style="background:#ff3737;color:#FFF" colspan="6"><b>布产信息：</b></td></tr>
+<%if $bc_info%>
+<tr>
+    <td style="width:10%"><b>布产号:</b></td><td><%$bc_info['bc_sn']%></td>
+    <td style="width:10%"><b>分配工厂:</b></td><td><%$bc_info['prc_name']%></td>
+    <td style="width:10%"><b>跟单人:</b></td><td><%$bc_info['opra_uname']%></td>
+</tr>
+<tr>
+    <td><b>客户姓名:</b></td><td><%$bc_info['consignee']%></td>
+    <td><b>款号:</b></td><td><%$bc_info['style_sn']%></td>
+    <td><b>布产来源:</b></td><td>
+    <%if $bc_info['from_type'] == '2'%>订单:<%/if%>
+    <%if $bc_info['from_type'] == '1'%>采购:<%/if%>
+    <%$bc_info['p_sn']%>
+    </td>
+</tr>
+<tr>
+    <td><b>布产类型:</b></td><td><%$bc_info['bc_style']%></td>
+    <td><b>镶嵌要求:</b></td><td><%$bc_info['xiangqian']%></td>
+    <td><b>布产状态:</b></td><td><%$dd->getEnum('buchan_status',$bc_info['status'])%></td>
+</tr>
+<tr>
+    <td><b>销售渠道:</b></td><td><%$saleView->getChannelNameById($bc_info['channel_id'])%></td>
+    <td><b>客户来源:</b></td><td><%$custView->getSourceName($bc_info['customer_source_id'])%></td>
+    <td><b>生产状态:</b></td><td><%$dd->getEnum('buchan_fac_opra',$bc_info['buchan_fac_opra'])%></td>
+</tr>
+<%else%>
+<tr>
+    <td colspan="6">很抱歉,未查到布产信息！</td>
+</tr>
+<%/if%>

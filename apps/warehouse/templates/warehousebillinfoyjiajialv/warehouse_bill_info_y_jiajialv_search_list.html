@@ -1,0 +1,43 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				
+				<th>款式类型</th>
+				<!--<th>目前加价率</th>-->
+				<th>拟定调整加价率</th>
+				<th>拟定加价率上线时间</th>
+				<th>制单人</th>
+				<th>审核人</th>
+				<th>状态</th>
+				<th>流水号</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="warehouse_bill_info_y_jiajialv_list_<%$d.id%>" data-title="<%$d.id%>">
+				
+				<td><%$d.style_type_name%></td>
+				<!--<td><%$d.active_jiajialv%></td>-->
+				<td><%$d.jiajialv%></td>
+				<td><%$d.active_date%></td>
+				<td><%$d.creator%></td>
+				<td><%$d.checker%></td>
+				<td><%$dd->getEnum('warehouse.bill_status',$d.status)%></td>
+				<td><%$d.id%></td>
+				<td><%$d.remark%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

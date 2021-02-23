@@ -1,0 +1,109 @@
+<div class="table-toolbar">
+<!-- 先不要编辑<div class="btn-group">
+		<button type="button" class="btn btn-sm green" id="from_table_data_btn" form="defective_product_info" data-url="index.php?mod=purchase&con=PurchaseIqcOpra&act=add" data-id="<%$view->get_id()%>" list-id="86">保存<i class="fa fa-check"></i></button>
+	</div> -->
+	<%$bar%>
+</div>
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="defective_product_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_id()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$dd->getEnum('bl_status',$view->get_status())%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_make_name()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">审核人：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_check_name()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">供应商：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_prc_name()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">出货单号：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_ship_num()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货总数：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_num()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货总金额：</label>
+						<input type="text" name="t_name" class="form-control" placeholder="请输入" readonly="true" value="<%$view->get_total()%>">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<!-- 表格1 -->
+			<div class="portlet-body">
+				<!-- 表格1 -->
+				<div class="flip-scroll">
+				<table class="table table-bordered table-striped  flip-content">
+					<tr>
+						<th>出货单对应序号</th>
+						<th>工厂模号</th>
+						<th>金额</th>
+						<th>布产号</th>
+						<th>客户名</th>
+						<th>货品类型</th>
+						<th>货品备注</th>
+					</tr>
+					<%foreach from=$list item=opra %>
+					<tr>
+						<td><%$opra.xuhao%></td>
+						<td><%$opra.factory_sn%></td>
+						<td><%$opra.total%></td>
+						<td><%$opra.bc_sn%></td>
+						<td><%$opra.customer_name%></td>
+						<td><%$opra.cat_type%></td>
+						<td><%$opra.info%></td>
+					</tr>
+					<%/foreach%>
+				</table>
+			</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!--<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div class="table-scrollable" id="defec_pro_from_table_data"></div>
+			<div class="pager"></div>
+		</div>
+		-->
+		
+	</form>
+	<!-- END FORM-->
+</div>
+
+
+<script type="text/javascript">
+<!--
+	<%include file="js/defective_product_info.js"%>
+//-->
+</script>

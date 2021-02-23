@@ -1,0 +1,32 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>日期</th>
+				<th>工厂/采购人</th>
+                <th>送钻总数量</th>
+                <th>等钻平均时长</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+			<tr>
+				<td><%$d.dotime%></td>
+				<td><%$d.prc_name%>/<%$d.opra_uname%></td>
+                <td ><%$d.buchan_num%></td>
+                <td><%$d.avg_time%></td>
+			</tr>
+		<%/foreach%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

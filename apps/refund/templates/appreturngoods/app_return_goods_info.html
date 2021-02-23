@@ -1,0 +1,307 @@
+<style type="text/css">
+.bg { background-color: #ccc; width: 100%; height: 100%; left: 0; top: 0; opacity: 0.5; z-index: 1; position: fixed!important; position: absolute; }
+</style>
+<div class="portlet-body form" id="app_return_goods_info_body"> 
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_return_goods_info">
+			<!--第一步:选择退款类型-->
+			<div class="portlet box blue" id="portlet_box_fa">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>
+						第一步:选择退款类型
+					</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse">
+						</a>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<div class="form-body form-horizontal form-row-seperated">
+						<div class="form-group">
+							<label class="control-label col-sm-3">退款方式<span class="required">*</span></label>
+							<div class="radio-list col-sm-9">
+								<label class="radio-inline">
+									<input type="radio" name="return_by" id="return_by1" value="1" onClick="change_return_by(this.value);"/>
+									退商品
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="return_by" id="return_by2" value="2" onClick="change_return_by(this.value);"/>
+									不退商品 
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">退款类型<span class="required">*</span></label>
+							<div class="radio-list col-sm-9">
+								<label class="radio-inline">
+									<input type="radio" name="return_type" id="return_type1" value="1" onClick="change_return_type(this.value);"/>
+									转单
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="return_type" id="return_type2" value="2" onClick="change_return_type(this.value);"/>
+									打卡
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="return_type" id="return_type3" value="3" onClick="change_return_type(this.value);"/>
+									现金
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3">输入订单<span class="required">*</span></label>
+							<div class="col-sm-9">
+								<input type="text" name="order_sn" id="order_sn" class="form-control" placeholder="请输入"  value="" />
+							</div>
+						</div>
+						<div class="form-group last">
+							<label class="control-label col-sm-3">查看帮助<span class="required">*</span></label>
+							<div class="col-sm-9">
+								<input type="checkbox" value="0" id="helped" name="helped">
+								<button type="button" list-id="41" data-id="14" data-url="" onClick="util.cust(this,Execution);" class="btn btn-link"> 查看帮助 </button>
+								<span class="help-block">
+									(补差价时，分两个步骤：先转单，后剩余差价原订单申请退款)<br>(当转单操作时，如果原订单中已经有商品，并且原商品已经存在，请选择退商品) 
+								</span>
+							</div>
+						</div>
+					</div>
+					<!-- 按钮 -->
+					<div class="form-actions fluid">
+						<div class="col-md-offset-3 col-md-9">
+							<input type="hidden" name="return_id" value="<%$view->get_return_id()%>" />
+							<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+							<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+							<button type="reset" class="btn default">重置</button>
+							<button type="button" class="btn green" onClick="util.cust(this,start_step2);"><i class="fa fa-check"></i> 开始退款</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="portlet box blue" id="portlet_box"> 
+				<!--第二步:选择退款订单-->
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>
+						 第二步:选择退款订单 
+					</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse">
+						</a>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<div class="form-body" style="padding:10px 20px">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group" style="margin-bottom:0px">
+										<label class="control-label"><b>订单信息：</b></label>
+								</div>
+							</div>		
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label" id="order_sn2">订单号：</label>
+								</div>
+							</div>	
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label" id="money_paid2">订单已付金额：</label>
+								</div>
+							</div>	
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label" id="money_unpaid2">订单未付金额：</label>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+                        <div id="zhuandan" style="clear:both">
+                            <div class="col-sm-12">
+                                    <div class="form-group" style="margin-bottom:0px">
+                                        <label class="control-label"><b>退单信息：</b></label>
+                                    </div>
+                                </div>  
+                                <div class="col-sm-4">      
+                                    <div class="form-group">
+                                        <label class="control-label">退款主要原因</label>
+                                        <select class="select2_category form-control" name="zuandan_reason_id" tabindex="1">
+                                            <option value="" selected="selected"></option>
+                                            <%foreach from=$return_reason key=key item=item%>
+                                            <option value="<%$key%>">
+                                            <%$item%>
+                                            </option>
+                                            <%/foreach%>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">详细退款原因</label>
+                                        <textarea name="return_res" class="form-control valid">其他原因</textarea>
+                                    </div>
+                                </div>
+                        </div>
+								
+					<div id="daka" style="clear:both">
+					            <div class="col-sm-12">
+									<div class="form-group" style="margin-bottom:0px">
+										<label class="control-label"><b>打卡：</b></label>
+									</div>
+							   </div>	
+                                <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">卡属人员：</label>
+										<input type="text" name="consignee2" id="consignee2" class="form-control" placeholder="请输入"  value="" />
+									</div>
+								</div>
+								<div class="col-sm-4">
+									 <div class="form-group">
+										<label class="control-label">开户银行：</label>
+										<input type="text" name="bank_name2" id="bank_name2" class="form-control" placeholder="请输入"  value="" />
+									</div>
+								</div>
+								 <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">银行卡号：</label>
+										<input type="text" name="return_card2" id="return_card2" class="form-control" placeholder="请输入"  value="" />
+									</div>
+								</div>
+								 <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">联系方式：</label>
+										<input type="text" name="mobile2" id="mobile2" class="form-control" placeholder="请输入"  value="" />
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">退款原因：</label>
+										<textarea name="return_res2" id="return_res2" class="form-control valid"></textarea>
+									</div>
+								</div>
+				 </div>
+				 <div class="return_type_box" id="xianjin" style="clear:both">
+				               <div class="col-sm-12">
+									<div class="form-group" style="margin-bottom:0px">
+										<label class="control-label"><b>现金：</b></label>
+									</div>
+							   </div>	
+							   <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">收款人名：</label>
+										<input class="form-control" type="text" value="" name="consignee3" id="consignee3" placeholder="请输入"/>
+									</div>
+							   </div>
+							   <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">联系方式：</label>
+										<input class="form-control" type="text" value="" name="mobile3" id="mobile3" placeholder="请输入"/>
+									</div>
+							   </div>
+							   <div class="col-sm-4">	
+									<div class="form-group">
+										<label class="control-label">退款原因：</label>
+										<textarea name="return_res3" id="return_res3" class="form-control valid"></textarea>
+									</div>
+							   </div>	
+							</div>
+				 </div>
+				 <div class="row">
+						<div class="col-sm-12">
+							<div class="form-group" style="margin-bottom:0px">
+								<label class="control-label"><b>退款商品信息：</b></label>
+							</div>
+						</div>								
+				</div>
+				<div id="app_return_goods_box">
+				  <table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+						<tr>
+						<th style="width:30px"><input type="checkbox" class="group-checkable" data-set="#app_return_goods_list .checkboxes"/></th>
+						<th style="width:60px">序号</th>
+						<th style="width:150px">申请退款金额</th>	
+						<th style="width:150px">手续费</th>
+						<th style="text-align:center">商品信息</th>
+						</tr>
+					</thead>
+					<tbody id="app_return_goods_list">
+					</tbody>
+				</table>
+		      </div>
+					<!-- 按钮 -->
+					<div class="form-actions fluid">
+						<div class="col-md-offset-3 col-md-9">
+							<input type="hidden" name="return_id" value="<%$view->get_return_id()%>" />
+							<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+							<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+							<button type="reset" class="btn default">重置</button>
+							<button type="submit" class="btn green"><i class="fa fa-check"></i> 提交申请</button>
+						</div>
+					</div>
+				</div>
+				<!--第二步:选择退款订单--> 
+			</div>
+	</form>
+	<!-- END FORM--> 
+</div>
+<div id="app_return_goods_info_bg" class="bg" style="display:none;"></div>
+<div id="app_return_goods_info_container" style="display: none;width:80%;height:400px;background:#E0E0E0;padding:5px;">
+	<div class="shell"> <br />
+		<a href="javascript:void(0)" name="g" style="float:right;">关闭</a> 
+		<!-- Main -->
+		<div>
+			<div>&nbsp;</div>
+			<!-- Content -->
+			<div> 
+				<!-- Box -->
+				<div> 
+					<!-- Box Head -->
+					<div>
+						<h2>使用帮助</h2>
+					</div>
+					<!-- End Box Head --> 
+					<!-- Search Box Head -->
+					<div> <span>一、查询功能</span><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一步.选择退款条件：流水号、订单号、申请时间、申请类型、申请部门条件进行筛选退款单。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二步.查询退款列表：流水号、订单号、申请人、申请部门、申请类型、收款人、申请产品、申请时间、实退金额、主管状态、库管状态、现场财务状态、财务状态、操作。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三步.点击列表操作"详情"查询退款单的详细情况，进而进行退款审核操作。 <br/>
+						<br/>
+						<span style="font-size:14px; font-weight:bold">二、申请退款功能</span><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一步.选择退款类型:退款方式、退款类型、订单号、及查看帮助。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二步.选择退款类型:申请退款金额。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.转单时，要求填写退款主要原因及详细退款原因。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.打卡时，卡属人员，开户银行、银行卡号、联系方式及退款原因。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.现金时，收款人名、联系方式及退款原因。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三步.提交退款申请<br/>
+						<br/>
+						<br/>
+						<span style="font-size:14px; font-weight:bold">三、审核功能</span><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一步.业务负责人审核。业务负责人意见有审核通过和驳回功能。驳回后的退款单不可再操作。业务负责人审核通过后，不退商品不需要库管部门审核。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二步.库管审核。库管对退商品进行审核。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三步.现场财务审核。转单业务将不需要账务部门审核。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四步.财务部审核。加入手续费，无手续费请填0。<br/>
+						<br/>
+						<br/>
+						<span style="font-size:14px; font-weight:bold">四、注意事项</span><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.补差价时，请选择退商品，保证退款后的原单中没有商品。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.在转单时，如果原订单中存在商品，请选择退商品，保证退款后的原单中没有商品。
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.从申请退款开始，申请金额不可改变。可多次申请退款。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.对于退商品的订单，仅可使用一次退商品，退商品后不可再退。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.使用退商品时，必须选中退款商品信息。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.现在支持单个订单中的单个商品退款。在转单退单订单有2个及以上可退商品，退款后剩余金额必须大于为剩余商品金额的50%。<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.建议使用最新谷歌浏览器。 </div>
+					<!-- End Search Box Head --> 
+				</div>
+				<!-- Table --> 
+			</div>
+			<!-- End Box --> 
+			
+		</div>
+		<!-- End Content -->
+		<div>&nbsp;</div>
+	</div>
+	<!-- Main --> 
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_return_goods_info.js"%>
+//-->
+</script>

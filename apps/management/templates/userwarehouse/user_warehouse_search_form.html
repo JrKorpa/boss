@@ -1,0 +1,106 @@
+<div class="row">
+	<div class="col-sm-4">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>批量操作
+				</div>
+				<div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+				</div>
+			</div>
+			<div class="portlet-body form">
+			<br />&nbsp;
+				<div class="btn-group">
+					<button class="btn btn-sm btn-info" onclick="util.cust(this,user_warehouse_batch_add);" data-url="index.php?mod=management&con=UserWarehouse&act=batchAdd" data-title="" title="给库管批量添加仓库！">
+						批量关联 <i class="fa fa-plus"></i>
+					</button>
+				</div><br />
+
+				<br />
+			</div>
+		</div>
+
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>仓库信息
+				</div>
+				<div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+				</div>
+			</div>
+			<div class="portlet-body form" id="user_warehouse_search_form">
+			</div>
+		</div>
+	</div>
+
+    <div class="col-sm-8">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>管控用户列表
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <%$bar%>
+                </div>
+                <!--搜索开始-->
+                <div class="portlet box green">
+                        <div class="portlet-title">
+                                <div class="caption">
+                                        <i class="fa fa-reorder"></i>搜索框
+                                </div>
+                                <div class="tools">
+                                        <a href="javascript:;" class="expand">
+                                        </a>
+                                </div>
+                        </div>
+                        <div class="portlet-body form" style="display: none;">
+                                <!-- 表单内容 -->
+                                <form action="#" class="horizontal-form" method="post" id="user_warehouse_search_result_form">
+                                        <div class="form-body">
+                                                <div class="row">
+                                                        <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                        <label class="control-label">姓名/账号:</label>
+                                                                       <input type="text" name="search_field" class="form-control" placeholder="请输入"  value="" />
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                            <input type="hidden" name="house_id" value="0" />
+                                        </div>
+                                        <!-- 搜索按钮 -->
+                                        <div class="form-actions fluid">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                        <button type="reset" class="btn default">重置</button>
+                                                        <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                                                </div>
+                                        </div>
+                                </form>
+                                <!-- END FORM-->
+                        </div>
+                </div>
+				<!-- 搜索表单end -->
+                <!-- 表格1 -->
+                <div class="flip-scroll" id="user_warehouse_search_list">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/user_warehouse_list.js"%>
+//-->
+</script>

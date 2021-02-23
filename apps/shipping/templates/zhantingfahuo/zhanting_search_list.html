@@ -1,0 +1,12 @@
+<tr>
+	<td align="center"><%$data.id%></td>
+	<td align="center"><%$data.express_sn%></td>
+	<td align="center"><%$kuaidi[$data.express_id]|default:'--'%></td>
+        <td align="center"><%$data.order_sn%></td>
+	<td align="center"><%$companyList[$data.company_id]|default:'--'%></td>
+	<!--<td align="center"><$data.shouhuoren></td>-->
+        <td align="center"><%$data.consignee%></td>
+	<td align="center"><%$data.num%></td>
+	<td align="center"><%$data.amount%></td>
+	<td align="center"><%$dd->getEnum('order.send_good_status', $data.send_status)%></td>
+</tr>

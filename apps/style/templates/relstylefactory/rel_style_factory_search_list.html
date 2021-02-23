@@ -1,0 +1,37 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>款号</th>
+			<th>生产厂商</th>
+			<th>厂家模号</th>
+			<th>镶口</th>
+			<th>工费</th>
+			<th>是否默认镶口</th>
+			<th>是否默认工厂</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%if !empty($page_list.data)%>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="rel_style_factory_list_<%$d.f_id%>">
+			<td align="center"><%$d.f_id%></td>
+			<td align="center"><%$d.style_sn%></td>
+			<td align="center"><%$d.factory_name|default:''%></td>
+			<td align="center"><%$d.factory_sn%></td>
+			<td align="center"><%$d.xiangkou%></td>
+			<td align="center"><%$d.factory_fee%></td>
+			<td align="center"><%$d.is_def%></td>
+			<td align="center"><%$d.is_factory%></td>
+		</tr>
+	<%/foreach%>
+	<%/if%>
+	</tbody>
+</table>
+<%$pa%>
+<!--<%$pa%>-->
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

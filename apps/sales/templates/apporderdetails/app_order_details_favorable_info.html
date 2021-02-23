@@ -1,0 +1,96 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_order_details_favorable_info">
+		<div class="form-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group"><span style="color:red">*</span>
+                    <label class="control-label">优惠金额：</label>
+                    <input type="text" name="favorable_price" class="form-control" value="" onblur="check_favorable_price()"/>
+                </div>
+            </div>  
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label">折扣密码：</label><span style="color:red">（超出制单人折扣权限需输入折扣密码。）</span>
+                    <input type="text" name="discount_mima" class="form-control" value=""/>
+                    <span style="color:red" id="details_favorable_discount_mima_error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">           	
+            </div>
+            <div class="col-sm-4">            
+          	<div id="app_order_details_show_point" style="color:red"></div>
+            </div>
+        </div> 	
+		<!--<%if $goods_type =='lz'%>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">折扣密码：</label>
+                        <input type="text" name="discount_mima" class="form-control" value="" onblur="get_discount_mima()"/>
+						<span style="color:red" id="details_favorable_discount_mima_error"></span>
+					</div>
+				</div>	
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">优惠金额：</label>
+                        <input type="text" name="favorable_price" class="form-control" value="" />
+					</div>
+				</div>			
+			</div>
+
+		<%else%>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">优惠金额：</label>
+                        <input type="text" name="favorable_price" class="form-control"  value="<%$view->get_favorable_price()%>" />
+					</div>
+				</div>	
+<!--				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">指定审批人：</label>
+						<select class="form-control" tabindex="1" name="check_user">
+                            <option value=""></option>
+							<option value="1">admin</option>
+                        </select>
+					</div>
+				</div>			-->
+				<!--<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">指定审批人：</label>
+						<input type="text" name="check_user_name" class="form-control" 
+                        value="<%if $departmentid == 2%>admin" readonly /><%else%>"<%/if%>
+					</div>
+				</div>			
+			</div>
+		<%/if%>-->
+
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$id%>" />
+				<input type="hidden" name="carat" value="<%$carat%>" />
+				<input type="hidden" name="grant_id" value="" />
+				
+<!--				<input type="hidden" name="check_user_name" value="" />-->
+				
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_order_details_favorable_info.js"%>
+//-->
+</script>

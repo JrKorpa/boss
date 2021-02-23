@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th style='text-align:center;'>货号</th>
+		<th style='text-align:center;'>款式</th>
+		<th style='text-align:center;'>货品名称</th>
+		<th style='text-align:center;'>数量</th>
+		<th style='text-align:center;'>颜色</th>
+		<th style='text-align:center;'>入库方式</th>
+		<%if $isViewChengbenjia%><th style='text-align:center;'>成本价</th>
+		<th style='text-align:center;'>退货价</th><%/if%>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="button_list_<%$d.id%>" data-title="<%$d.bill_no%>">
+		<td style='text-align:center;'><%$d.goods_id%></td>
+		<td style='text-align:center;'><%$d.goods_sn%></td>
+		<td style='text-align:center;'><%$d.goods_name%></td>
+		<td style='text-align:center;'><%$d.num%></td>
+		<td style='text-align:center;'><%$d.yanse%></td>
+		<td style='text-align:center;'><%$dd->getEnum('warehouse.put_in_type' , $d.in_warehouse_type)%></td>
+		<%if $isViewChengbenjia%><td style='text-align:center;'><%$d.yuanshichengbenjia%></td>
+		<td style='text-align:center;'><%$d.yuanshichengbenjia%></td><%/if%>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

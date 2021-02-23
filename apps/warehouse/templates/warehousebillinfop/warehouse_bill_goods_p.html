@@ -1,0 +1,101 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>主成色重</th>
+			<th>主石重</th>
+			<th>证书号</th>
+
+			<th>采购价</th>
+			<th>名义价</th>
+			<th>批发价</th>
+			<th>差异价</th>
+
+			<th>手寸</th>
+			<th>长度</th>
+			<th>主成色</th>
+			<th>主石</th>
+			<th>主石粒数</th>
+			<th>副石</th>
+			<th>副石粒数</th>
+			<th>副石重</th>
+			<th>总重</th>
+			<th>净度</th>
+			<th>颜色</th>
+			<th>名称</th>
+			<th>订单号</th>
+			<th>品号</th>
+			<th>项次</th>
+			<th>外部订单号</th>
+			<th>表面工艺</th>
+            <th>门店结算类型</th>
+            <th>结算操作时间</th>
+			<th>入库方式</th>
+			<th>管理费</th>
+            <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><th>展厅标签价</th><%/if%>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+		<tr data-id="" data-title="">
+			<td><%$k+1%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.jinzhong%></td>
+			<td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhengshuhao%></td>
+            <!--<th>采购价</th>
+            <th>名义价</th>
+            <th>批发价</th>
+            <th>差异价</th>-->
+            <%if $show_private_data_zt%>
+            <%if $show_caigou_price==false || $userType == 1%>
+            <td><%$d.sale_price%></td>
+            <%else%><td>--</td><%/if%><%else%><td>--</td>
+            <%/if%>
+
+			<%if $show_private_data_zt || $is_show_caigoujia%>
+            <%if $show_mingyichenggben==false || $userType == 1%>
+			<td><%$d.mingyichengben%></td>
+            <%else%><td>--</td><%/if%><%else%><td>--</td>
+			<%/if%>
+
+            <%if $show_pifajia==false || $userType == 1%>
+			<td><%$d.shijia%></td>
+            <%else%><td>--</td><%/if%>
+
+            <%if $show_private_data_zt || $is_show_caigoujia%>		
+            <%if $show_mingyichenggben==false || $userType == 1%>	
+			<td><%$d.pf_chajia%></td>
+            <%else%><td>--</td><%/if%><%else%><td>--</td>
+			<%/if%>
+
+			<td><%$d.shoucun%></td>
+			<td><%$d.changdu%></td>
+			<td><%$d.caizhi%></td>
+			<td><%$d.zhushi%></td>
+			<td><%$d.zhushilishu%></td>
+			<td><%$d.fushi%></td>
+			<td><%$d.fushilishu%></td>
+			<td><%$d.fushizhong%></td>
+			<td><%$d.zongzhong%></td>
+			<td><%$d.jingdu%></td>
+			<td><%$d.yanse%></td>
+			<td><%$d.goods_name%></td>
+			<td><%$d.order_sn%></td>
+			<td><%$d.pinhao%></td>
+			<td><%$d.xiangci%></td>
+			<td><%$d.p_sn_out%></td>
+			<td><%$d.face_work%></td>
+            <td><%$d.dep_settlement_type%></td>
+            <td><%$d.settlement_time%></td>
+			<td><%$dd->getEnum('warehouse.put_in_type',$d.put_in_type)%></td>
+			<td><%$d.management_fee%></td>
+            <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td><%$d.label_price%></td><%/if%>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

@@ -1,0 +1,179 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>采购单基础信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>采购单单号</b></td>
+					<td><%$view->get_p_sn()%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('purchase_status',$view->get_p_status())%></td>
+				</tr>
+				<tr>
+					<td><b>采购分类</b></td>
+					<td><%$view->get_t_name($view->get_t_id())%></td>
+					<td><b>采购方式</b></td>
+					<td><%$dd->getEnum('warehouse.put_in_type',$view->get_put_in_type())%></td>
+				</tr>
+				<tr>
+					<td><b>采购申请费用</b></td>
+					<td><%$view->get_purchase_fee()%></td>
+					<td><b>总数量</b></td>
+					<td><span id="s_num"><%$view->get_p_sum()%></span></td>
+				</tr>
+				<tr>
+
+					<td><b>工厂生产</b></td>
+					<td><%$dd->getEnum("confirm",$view->get_is_tofactory())%></td>
+					<td><b>是否允许占用备货名额</b></td>
+					<td><%$dd->getEnum("confirm",$view->get_is_zhanyong())%></td>
+				</tr>
+				<tr>
+
+					<td><b>供应商</b></td>
+					<td><%$view->get_prc_name()%></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_make_uname()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_make_time()%></td>
+				</tr>
+				<tr>
+					<td><b>审核人</b></td>
+					<td><%$view->get_check_uname()|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%if $view->get_check_time()!='0000-00-00 00:00:00'%><%$view->get_check_time()%><%else%>--<%/if%></td>
+				</tr>
+				<tr>
+                    <td><b>销售渠道</b></td>
+                    <td colspan='3'><%$view->get_dep_name()|default:'--'%></td>
+				</tr>
+                <tr>
+                    <td><b>备注</b></td>
+                    <td colspan='3'><%$view->get_p_info()%></td>
+                </tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>采购单明细（<%if $view->get_is_style()%>有款采购<%else%>无款采购<%/if%>）
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!--只有保存和驳回状态下并且操作人是制单人，采购的详细信息才能显示各种编辑按钮-->
+			<%if ($view->get_p_status() == 1 || $view->get_p_status() == 4) && $view->get_make_uname() == $smarty.session.userName%>
+			<div class="btn-group">
+				<button class="btn btn-sm green" onclick="util.add(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=add&pinfo_id=<%$id%>&is_style=<%$view->get_is_style()%>" data-id="<%$view->get_id()%>" list-id="41">
+					添加采购内容 <i class="fa fa-plus"></i>
+				</button>
+			</div>
+			<%if $view->get_is_style() == '1'%>
+			<div class="btn-group">
+				<button class="btn btn-sm green" onclick="util.add(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=batch_add&pur_id=<%$id%>&is_style=<%$view->get_is_style()%>" data-id="<%$view->get_id()%>" list-id="41">
+					批量添加采购 <i class="fa fa-plus"></i>
+				</button>
+			</div>
+			<%/if%>
+			<div class="btn-group">
+				<button class="btn btn-sm purple" onclick="util.retrieve(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=edit&pinfo_id=<%$id%>&is_style=<%$view->get_is_style()%>" data-id="<%$view->get_id()%>" list-id="41">
+					编辑 <i class="fa fa-edit"></i>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm red" onclick="util.deleteRel(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=delete&pinfo_id=<%$id%>" data-id="<%$view->get_id()%>" list-id="41" name="删除">
+					删除 <i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+			<!-- 已经审核 -->
+			<%elseif ($view->get_p_status() == 3) && $view->get_is_style() %> <!-- 审核状态的 采购单 并且 是有款采购的 -->
+				<div class="btn-group">
+						<button class="btn btn-sm red" onclick="util.retrieve(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=applyEdit&pinfo_id=<%$id%>&is_style=<%$view->get_is_style()%>" data-id="<%$view->get_id()%>" list-id="41">
+						申请修改 <i class="fa fa-edit"></i>
+					</button>
+				</div>
+				<%if Auth::getAuth('BUTTON10047')%>  <!-- 有审核采购单的权限，就有这个按钮的权限 -->
+				<div class="btn-group">
+					<button class="btn btn-sm green" onclick="util.view(this)" data-url="index.php?mod=purchase&con=PurchaseGoods&act=showCheck&pinfo_id=<%$id%>&is_style=<%$view->get_is_style()%>" data-id="<%$view->get_id()%>" list-id="41">
+						查看审批 <i class="fa fa-search"></i>
+					</button>
+				</div>
+				<%/if%>
+			<%/if%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="purchase_info_show_list<%$id%>">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>采购单收货情况
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="purchase_receipt_show_list<%$id%>">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>操作日志
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+                <div class="table-toolbar">
+                    <button class="btn btn-sm green" data-title="" list-id="80" title="添加采购单日志" name="添加" data-url="index.php?mod=purchase&con=PurchaseInfo&act=addLogs&id=<%$view->get_id()%>" onclick="util.addRel(this);">添加<i class="fa fa-plus"></i></button>
+		</div>
+		<!-- 表格 -->
+                <div class="flip-scroll" id="log_search_list<%$id%>">
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_info_show.js"%>
+//-->
+</script>

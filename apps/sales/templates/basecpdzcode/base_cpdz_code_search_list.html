@@ -1,0 +1,75 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th style="width:20px;display:none"><input type="checkbox" class="group-checkable" data-set="#base_cpdz_code_search_list .checkboxes" /></th>
+				<th>成品定制码</th>
+                <th>成交价</th>
+				<th>款式来源渠道</th>
+                <th>使用状态</th>
+                <th>创建人</th>
+				<th>创建时间</th>
+				<th>订单号</th>
+				<th>款号</th>
+				<th>销售顾问</th>
+				<th>销售渠道</th>
+				<th>使用时间</th>				
+            </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$page_list.data item=d%>
+            <tr data-id="base_cpdz_code_search_list_<%$d.id%>" data-title="<%$d.code%>">
+                <td style="display:none"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+                <td><%$d.code%></td>
+                <td><%$d.price%></td>
+                <td><%$d.style_channel%></td>
+                <td><%$dd->getEnum("cpdzcode.use_status",$d.use_status)%></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+				<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.order_id%>"><%$d.order_sn%></a></td>
+				<td><%$d.style_sn%></td>
+				<td><%$d.sales_user%></td>
+				<td><%$d.sales_channel%></td>
+				<td><%$d.use_time%></td>
+            </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#base_cpdz_code_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#base_cpdz_code_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#base_cpdz_code_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

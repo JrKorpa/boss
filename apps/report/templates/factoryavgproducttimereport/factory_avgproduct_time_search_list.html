@@ -1,0 +1,37 @@
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>交货日期</th>
+                <th>出货数量</th>
+                <th>平均生产时长(天)</th>
+			</tr>
+		</thead>
+		<tbody>
+	 	<%foreach from=$page_list.data item=d%>
+				<tr data-id="tab-factoryavgproducttimereport-detail_list<%$d.dotime%>" start_time="<%$d.dotime%>" end_time="<%$d.dotime%>" from_type="<%$args.from_type%>" opra_uname_string="<%$args.opra_uname_string%>" prc_ids_string="<%$args.prc_ids_string%>" style_sn="<%$args.style_sn%>" data-title="各工厂平均出厂时长">
+				<td><%$d.dotime%></td>
+                <td><%$d.cnt%></td>
+                <td><%$d.avg_product_time%></td>
+               </tr>
+		<%/foreach%> 
+		<%if $tongji %>
+				<tr data-title="all_count">
+				<td>总计</td>
+                <td><%$tongji.cnt%></td>
+                <td><%$tongji.avg_product_time%></td>
+               </tr>
+		<%/if%> 
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+    <input type="hidden" id="ClothProductionTracking_current_page" value="" />
+<%$pa%>
+</div>
+<script type="text/javascript">
+
+<!--
+	util.hover();
+//-->
+</script>

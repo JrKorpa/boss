@@ -1,0 +1,52 @@
+
+				<%if $count_besp_list0>0%>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<span class="username">您有预约请查看</span>
+					<i class="fa fa-envelope"></i>
+					<span class="badge"><%$count_besp_list0%></span>
+				</a>
+				<%/if%>
+				<div class="dropdown-menu">
+					<div class="flip-scroll" id="my_infosss">
+						<table class="table table-bordered table-striped menu-table">
+							<thead>
+								<tr>
+									<th>预约单号</th>
+									<th>姓名</th>
+									<th>联系电话</th>
+									<th>预约填写人</th>
+									<th>到店时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+							 	<%foreach from=$besp_list0 item=item name=tbl%>
+								<tr>
+									<td><%$item.bespoke_sn%></td>
+									<td><%$item.customer%></td>
+									<td><%$item.customer_mobile%></td>
+									<td><%$item.make_order%></td>
+									<td><%$item.bespoke_inshop_time%></td>
+									<td>
+										<%if $item.queue_status==2%>
+										<a href="#" onclick="wieldBespoke('get_bespoke','<%$item.bespoke_id%>');">
+											<i class="fa fa-user"></i> 领单
+										</a>
+										<!--<a href="#" onclick="wieldBespoke('reject_bespoke','<%$item.bespoke_id%>');">
+											<i class="fa fa-trash-o"></i> 拒绝
+										</a>-->	
+										<%else%>
+										<a href="#" onclick="wieldBespoke('bespoke_pause','<%$item.bespoke_id%>');">
+											<i class="fa fa-user"></i> 暂停服务
+										</a>
+										<a href="#" onclick="wieldBespoke('release_bespoke','<%$item.bespoke_id%>');">
+											<i class="fa fa-user"></i>  结束
+										</a>
+										<%/if%>
+									</td>
+							 	</tr>
+							 	<%/foreach%>
+							</tbody>
+						</table>
+					</div>
+				</div>

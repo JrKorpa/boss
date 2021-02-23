@@ -1,0 +1,139 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th><%if $args.time_type eq 'send'%>发货日期<%else%>下单日期<%/if%></th>
+			<th>总数量</th>
+			<th>0天收货</th>
+			<th>1天收货</th>
+			<th>2天收货</th>
+			<th>3天收货</th>
+			<th>4天收货</th>
+			
+			<th>5天收货</th>
+			<th>6天收货</th>
+			<th>7天收货</th>
+			<th>8-20天收货</th>
+			<th>超20天收货</th>
+			<th>5天内收货</th>
+			<th>5天内收货占比</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr data-id="tab-repairtimereport-index_third" start_time="<%$d.acount_date%>" end_time="<%$d.acount_date%>" repair_factory="<%$args.repair_factory%>" frequency="<%$args.frequency%>"  re_type="<%$args.re_type%>"   repair_act="<%$args.repair_act%>" time_type="<%$args.time_type%>" data-title="工厂维修详情" >
+			<td><%$d.acount_date%></td>
+			<td><%$d.allday_receive_num%></td>
+			<td><%$d.0day_receive_num%></td>
+			<td><%$d.1day_receive_num%></td>
+			<td><%$d.2day_receive_num%></td>
+			<td><%$d.3day_receive_num%></td>
+			<td><%$d.4day_receive_num%></td>
+			
+			<td><%$d.5day_receive_num%></td>
+			<td><%$d.6day_receive_num%></td>
+			<td><%$d.7day_receive_num%></td>
+			<td><%$d.8_20day_receive_num%></td>
+			<td><%$d.21day_receive_num%></td>
+			<td><%$d.0_5day_receive_num%></td>
+			<td><%$d.0_5day_receive_percent%>%</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+
+</div>
+<script type="text/javascript">
+function show_repair_third(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var repair_factory = tObj[0].getAttribute("repair_factory");
+	var frequency = tObj[0].getAttribute("frequency");
+	var re_type = tObj[0].getAttribute("re_type");
+	var repair_act = tObj[0].getAttribute("repair_act");
+	var time_type = tObj[0].getAttribute("time_type");
+	var con=params['con'].toLowerCase();
+	var act=params['act'].toLowerCase();
+	var prefix = con+'-'+act;
+	var _id = tObj[0].getAttribute("data-id");
+	var id =_id;
+	//url+="&acount_date="+acount_date;
+	url+='&start_time='+start_time+'&end_time='+end_time+'&repair_factory='+repair_factory+'&frequency='+frequency+'&re_type='+re_type+'&repair_act='+repair_act+'&time_type='+time_type;
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.substr(1);
+		if (href==prefix)
+		{
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		//url+="&start_time="+start_time+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+		
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

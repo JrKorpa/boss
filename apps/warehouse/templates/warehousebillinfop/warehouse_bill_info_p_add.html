@@ -1,0 +1,236 @@
+<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%if $bill_status == 1%>
+		<div class="btn-group">
+			<button class="btn btn-sm blue" onclick="util.cust(this,closeBillp);" data-url="index.php?mod=warehouse&con=WarehouseBillInfoP&act=CloseBill" name="取消" title="取消-仓储-批发销售单" list-id="88" data-title="取消批发销售单">
+				取消 <i class="fa fa-ban"></i>
+			</button>
+		</div>
+		<%/if%>
+		<%$bar%>		
+		<!-- 工具栏 -->		
+		</div>
+		<!-- 表格1 -->
+
+		<!--入库单 start-->
+		<div class="tab-pane active" id="tab_bill_m_0">
+			<div class="portlet box green">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-reorder"></i>批量销售单
+					</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse"></a>
+					</div>
+				</div>
+			<div class="portlet-body form">
+				<!-- 表单内容 -->
+				<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_p_add">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">批发单号：</label>
+									<input type="text" name="bill_no" class="form-control" value="<%$view->get_bill_no()%>" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">数量总计：</label>
+
+									<input type="text" name="goods_num" class="form-control" placeholder="0" value="<%$view->get_goods_num()%>" disabled="disabled" />
+								</div>
+							</div>
+                            <%if $show_private_data_zt || $is_show_caigoujia%>
+                            <%if $show_mingyichenggben==false || $userType == 1%>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">名义总金额：</label>
+									<input type="text" name="mingyijia" class="form-control" placeholder="0" value="<%$view->get_pifajia()%>" disabled="disabled" />
+								</div>
+							</div>
+                            <%/if%><%/if%>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">批发总金额：</label>
+									<input type="text" name="xiaoshoujia" class="form-control" placeholder="0" value="<%$view->get_shijia()%>" disabled="disabled" />
+								</div>
+							</div>
+                            <%if $show_private_data_zt || $is_show_caigoujia%>
+                            <%if $show_mingyichenggben==false || $userType == 1%>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">差异总金额：</label>
+									<input type="text" name="" class="form-control" placeholder="0" value="<%$view->get_chajia_pf()%>" disabled="disabled" />
+								</div>
+							</div>
+                            <%/if%><%/if%>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">日期：</label>
+									<input type="text" name="create_time" class="form-control" value="<%$view->get_create_time()%>" disabled="disabled"/>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">单据状态：</label>
+									<input type="text" class="form-control" value="<%$dd->getEnum('warehouse.bill_status',$bill_status)%>" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">制单人：</label>
+									<input type="text" class="form-control" value="<%if $view->get_create_user() != ''%><%$view->get_create_user()%><%else%><%$smarty.session.userName%><%/if%>" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">出库公司：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="from_company" id="from_company" tabindex="1" <%if !empty($view->get_bill_no())%>disabled="disabled"<%/if%>>
+										<option value=""></option>
+										<%foreach from=$from_company item=c%>
+										<option value="<%$c.id%>|<%$c.company_name%>"  <%if isset($from_company_id) && $from_company_id == $c.id%>selected <%/if%>><%$c.company_sn%> | <%$c.company_name%></option>
+										<%/foreach%>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">批发客户：</label><span style='color:red;'>*</span>
+									<%if count($whoList) >0 %>
+									<select class="select2_category form-control" name="wholesale_user" tabindex="1" id="wholesale_user" <%if $view->get_id() && $smarty.const.SYS_SCOPE eq 'zhanting'%>disabled<%/if%>>
+										<option value=""></option>
+										<%foreach from=$whoList item=d%>
+										<option value="<%$d.wholesale_id%>|<%$d.sign_company%>" <%if isset($to_customer_id) && $to_customer_id == $d.wholesale_id%>selected <%/if%>><%$d.wholesale_sn%> | <%$d.wholesale_name%></option>
+										<%/foreach%>
+									</select>
+									<%else%>
+									<input type="text" name="wholesale_user_val" id="wholesale_user_val" class="form-control" <%if isset($wholesale_user_val)%>value="<%$wholesale_user_val%>"<%/if%> />
+									<input type="hidden" name="wholesale_user" id="wholesale_user" class="form-control" <%if isset($wholesale_user)%>value="<%$wholesale_user%>"<%/if%> />
+									<%/if%>
+								</div>
+							</div>
+							
+							 <div id="sign_rel_div" style="display:none;">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">入库公司：</label><span style='color:red;'>*</span>
+										<select class="select2_category form-control" name="to_company" id="to_company" tabindex="1">
+											<option value=""></option>
+											<%foreach from=$whoList item=d%>
+											<option value="<%$d.sign_company%>|<%$d.sign_company_name%>"  <%if isset($to_warehouse_id) && $to_warehouse_id == $d.sign_company%>selected <%/if%>><%$d.sign_company_name%></option>
+											<%/foreach%>
+										</select>
+									</div>
+								</div>
+								<!--
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">入库仓库：</label><span style='color:red;'>*</span>
+										<select class="select2_category form-control" name="to_warehouse" id="to_warehouse" tabindex="1" <%if !empty($view->get_bill_no())%>disabled="disabled"<%/if%>>
+											<option value=""></option>
+											<%foreach from=$warehouse item=c%>
+											<option value="<%$c.id%>|<%$c.name%>"  <%if isset($to_warehouse_id) && $to_warehouse_id == $c.id%>selected <%/if%>> <%$c.code%> | <%$c.name%></option>
+											<%/foreach%>
+										</select>
+									</div>
+								</div>
+								-->
+							</div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">出库类型：</label><span style='color:red;'>*</span>
+                                    <select class="form-control" tabindex="1" name="out_warehouse_type">
+                                    <option value=""></option>
+                                    <%foreach from=$dd->getEnumArray("warehouse.out_warehouse_type") key=k item=value%>
+                                    <option value="<%$value.name%>" <%if $view->get_out_warehouse_type() == $value.name %>selected<%/if%>><%$value.label%></option>
+                                    <%/foreach%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">类别：</label>
+                                    <select class="form-control" tabindex="1" name="p_type">
+                                    <option value=""></option>
+                                    <%foreach from=$dd->getEnumArray("warehouse.ptype") key=k item=value%>
+                                    <option value="<%$value.label%>" <%if $view->get_p_type() == $value.label %>selected<%/if%>><%$value.label%></option>
+                                    <%/foreach%>
+                                    </select>
+                                </div>
+                            </div>
+                            <%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+							 <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">是否开票：</label>
+                                    <select class="form-control" tabindex="1" name="is_invoice" id="is_invoice" <%if $view->get_id()%>disabled<%/if%>>
+                                    <option value=""></option>
+                                    <option value="1" <%if $view->get_id() && $view->get_is_invoice() == 1 %>selected<%/if%>>开票</option>
+									<option value="0" <%if $view->get_id() && $view->get_is_invoice() == 0 %>selected<%/if%>>不开票</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">展厅标签价总计：</label>
+                                    <input type="text" name="label_price_total" class="form-control" placeholder="0" value="<%$view->get_label_price_total()%>" disabled="disabled" />
+                                </div>
+                            </div>
+                            <%/if%>
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label">备注：</label>
+									<textarea class="form-control" name="bill_note" rows="4" id='bill_note'><%$view->get_bill_note()%></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 搜索按钮 -->
+				</form>
+				<!-- END FORM-->
+			</div>
+			</div>
+		</div>
+		<!--入库单 end -->
+
+		<!-- 明细 start -->
+		<div class="tab-pane " id="tab_bill_m_1">
+			<div class="tab-pane active" id="tab_1">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>批量销售单明细列表
+						</div>
+						<div class="tools">
+							<a href="javascript:;" class="collapse"></a>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<!-- 提示信息 -->
+						<p class="text-danger"></p>
+						<!-- 表格信息 -->
+						<div class="" id="from_table_data_bill_p">
+						</div>
+						<!-- 分页 -->
+						<div class="pager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 明细 end -->
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="reset" class="btn default" form="warehouse_bill_info_p_add" id='reset'>重置</button>
+		<button type="button" id="from_table_data_info_p_btn" class="btn green" form="warehouse_bill_info_p_add"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+
+		<div class="clear"></div>
+	</div>
+
+<script type="text/javascript">
+	<%include file="js/table_data_ed.js"%>// table插件表头信息
+	<%include file="js/warehouse_bill_info_p_add.js"%>
+</script>

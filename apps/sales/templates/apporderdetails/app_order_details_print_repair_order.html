@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+<script>
+function printRepair(){
+    var goods_ids = "<%$goods_ids%>";
+	var goods_sns = "<%$goods_sns%>";
+	var order_id  = "<%$order_info.id%>";
+	var url ="index.php?mod=sales&con=AppOrderDetails&act=addprintRepairOrderLog";
+	var data = {'order_id':order_id,'goods_ids':goods_ids,'goods_sns':goods_sns};
+    $.post(url,data,function(res){
+		$(".Noprint").hide();
+		window.print();
+	},'json');
+}
+</script>
+</head>
+<body>
+<div class="Noprint">
+<input type="hidden" name="goods_ids" value="<%$goods_ids%>"/>
+<input type="hidden" name="goods_sns" value="<%$goods_sns%>"/>
+<input type="button" value="打印订单" onclick="printRepair()"style="width:100px; height:30px; font-size:20px; font-weight:bold" />
+</div>
+<table cellspacing="0" cellpadding="1" width="100%" border="0" class='PageNext'>
+    <tbody>
+        <tr>
+            <td>
+            <table style=" margin-bottom: 15px; border-bottom: #000 2px solid" cellspacing="0" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td colspan="1" style="text-align:right" width="50%">
+                        <h2 style="padding-left:15px; padding-top: 10px">
+						维修取货单</h2></td>
+						<td align="right" width="50%" style="text-align:right"><img src="http://bardcode.kela.cn/index.php?code_sn=<%$order_info.order_sn%>" width="300" height="60"/></td>
+						<td align="center" width="30%"></td>
+                    </tr>
+                </tbody>
+            </table></td>
+        </tr>
+		<tr>
+            <td>
+			<table style="margin-bottom:15px;font-size:14px; font-weight:bold" cellspacing="0" width="100%" border="0">
+                <tbody>
+                    <tr>
+                        <td width="50%">
+                        收货人: <%$order_info.consignee%>
+						</td>
+						<td width="50%" style="font-size:14px; text-align:right">
+						所属部门: <%$order_info.department%>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+           </td>
+		</tr>
+		 <%foreach from=$goods_list key=key item=goods%>
+		<tr>
+         <td>
+		     <table style="margin-bottom:15px;border-collapse:collapse" cellspacing="0" width="100%" border="1">
+		         <tr>
+				 <th>商品名称</th>
+				 <th>数量</th>
+				 <th>款号</th>
+				 <th>柜号</th>
+				 <th>图片</th>
+				 <th>钻石大小</th>
+				 <th>金料</th>
+				 <th>金重</th>
+				 <th>指圈</th>
+				 <th>价钱</th>
+				</tr>
+				<tr>
+				 <td style="text-align:center"><%$goods.goods_name%></td>
+				 <td style="text-align:center">1</td>
+				 <td style="text-align:center; font-size:13px">
+				 <%$goods.goods_sn%><br/>
+				 <%if $goods.goods_sn!="仅售现货"%>
+				 <img src="http://bardcode.kela.cn/index.php?code_sn=<%$goods.goods_sn%>" width="90" height="60"/><br/>
+				 <%/if%>
+				 <%$goods.bind_goods_id|default:'无绑定商品'%>
+				 </td>
+				 <td style="text-align:center" ><%$goods.bind_box_sn|default:'无'%></td>
+				 <td style="text-align:center">
+				 <%if !empty($goods.big_img)%><img width="80" height="80" src="<%$goods.big_img%>"><%else%>无图片<%/if%>
+				 </td>
+				 <td style="text-align:center"><%$goods.cart|default:0%>CT</td>
+				 <td style="text-align:center"><%$goods.caizhi|default:'无'%></td>
+				 <td style="text-align:center"><%$goods.jinzhong|default:0%></td>
+				 <td style="text-align:center"><%$goods.zhiquan|default:0%></td>
+				 <td style="text-align:center">
+				 ￥<%if $goods.favorable_status==3%><%sprintf("%.2f",$goods.goods_price-$goods.favorable_price)%><%else%><%$goods.goods_price%><%/if%>元
+				 </td>
+				</tr>
+				<tr>
+				 <td colspan="10" style="padding:5px">备注:<%$goods.details_remark%></td>				
+				</tr>
+				<tr>
+				 <td colspan="10" style="padding:5px">
+				   <table style="margin-bottom:15px;" cellspacing="0" width="100%" border="0">
+		            <tr><td width="15%">A 可维修</td><td width="15%"> B 配错</td><td width="15%">C 不可维修</td><td></td><td></td></tr>
+					<tr>
+					<td style="padding-top:10px">维修内容 :</td>
+					<td colspan="4" style="padding-top:10px">
+					 <input type="checkbox" />镶嵌
+					 <input type="checkbox" />改指圈,由<input type="text" style="border:0px;border-bottom:#333333 1px solid;width:30px; padding-left:5px" />改成<input type="text" style="border:0px;border-bottom:#333333 1px solid;width:30px;padding-left:5px" />
+					 <input type="checkbox" />刻字
+					 <input type="checkbox" />抹字
+					 <input type="checkbox" />抹字重刻
+					 <input type="checkbox" />翻新<br/>
+					 <input type="checkbox" />重做证书
+					 <br/>
+					 </td>
+					</tr>
+				   </table>   
+				 </td>				
+				</tr>
+				<tr>
+				 <td style="padding:5px" colspan="10">质检人:</td>
+				</tr>
+		     </table>
+		 </td>
+	   </tr>
+        <%/foreach%>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="product_factory_oprauser_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">选择用户：</label>
+						<select class="form-control" tabindex="1" name="kela_user">
+							<option value=""></option>
+							<%foreach from=$userlist key=key item=u%>
+							<option data-id="<%$u.id%>" data-icd="<%$u.icd%>" data-name="<%$u.real_name%>" data-account="<%$u.account%>" data-mobile="<%$u.mobile%>" value="<%$u.id%>" <%if !empty($user_select) && $user_select.opra_user_id == $u.id%>selected<%/if%> ><%$u.real_name%>/<%$u.account%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">当前供应商名称：</label>
+						<div style="height: 35px;line-height: 35px;font-size: 20px;color:red;"><%$proName%> (<%if !empty($user_select)%><%$user_select.opra_uname%><%else%>未绑定<%/if%>)</div>
+						<input type="hidden" name='pro_id' value='<%$pro_id%>'>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">生产经理：</label>
+						<select class="form-control" tabindex="1" name="production_manager_id">
+							<option value=""></option>
+							<%foreach from=$userlist key=key item=u%>
+							<option data-id="<%$u.id%>" data-icd="<%$u.icd%>" data-name="<%$u.real_name%>" data-account="<%$u.account%>" data-mobile="<%$u.mobile%>" value="<%$u.id%>" <%if !empty($user_select) && $user_select.production_manager_id == $u.id%>selected<%/if%> ><%$u.real_name%>/<%$u.account%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_factory_oprauser_info.js"%>
+//-->
+</script>

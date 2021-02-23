@@ -1,0 +1,35 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>黄金价格</th>
+                <th>加价率</th>
+                <th>创建时间</th>
+                <th>创建用户</th>
+                <th>是否启用</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="app_gold_jiajialv_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+                <td><%$d.gold_price%></td>
+                <td><%$d.jiajialv%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.create_user%></td>
+                <td><%$dd->getEnum('is_enabled', $d.is_usable)%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,75 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th><input type="checkbox" class="group-checkable" data-set="#stone_feed_config_search_list .checkboxes" /></th>
+				<th>ID</th>
+                <th>工厂名称</th>
+				<th>供料类型</th>
+                <th>最小石重</th>
+                <th>最大石重</th>
+                <th>颜色</th>
+                <th>净度</th>
+                <th>证书类型</th>
+                <th>优先级</th>                
+				<th>状态</th>
+				<th>添加人</th>
+				<th>添加时间</th>				
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="stone_feed_config_search_list_<%$d.id%>" data-title="<%$d.id%>">
+			    <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id%></td>
+                <td><%$d.factory_name%></td>
+				<td><%$dd->getEnum('stone_feed_type',$d.feed_type)%></td>
+                <td><%$d.carat_min%></td>
+                <td><%$d.carat_max%></td>
+                <td><%$d.color%></td>
+                <td><%$d.clarity%></td>
+                <td><%$d.cert%></td>
+                <td><%$d.prority_sort%></td>
+                <td><%if $d.is_enable == 1%>启用<%else%>禁用<%/if%></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    var test = $("#stone_feed_config_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+            test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#stone_feed_config_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+            var checked = $(this).is(":checked");
+            $(set).each(function () {
+                    if (checked) {
+                            $(this).attr("checked", true);
+                            $(this).parents('tr').addClass("active");
+                    } else {
+                            $(this).attr("checked", false);
+                            $(this).parents('tr').removeClass("active");
+                    }
+            });
+            $.uniform.update(set);
+    });
+    $('#stone_feed_config_search_list').on('change', 'tbody tr .checkboxes', function(){
+            $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

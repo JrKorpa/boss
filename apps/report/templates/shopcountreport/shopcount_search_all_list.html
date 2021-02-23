@@ -1,0 +1,61 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    	<tr>
+        	<th></th>
+            <th colspan="6">进店人数管理</th>
+            <th colspan="5">进店销售额管理</th>
+        </tr>
+        <tr>
+        	<th>体验店</th>
+            <th>全部预约</th>
+            <th>实际到店数</th>
+            <th>当期应到预约的实际到店数</th>
+            <th>预约到店率</th>
+            <th>实际成单数</th>
+            <th>预约成交率</th>
+            <th>订单总金额</th>
+            <th>已收款金额</th>
+            <th>未收款金额</th>
+            <th>客单价</th>
+            <th>赠品单数</th>
+        </tr>
+	</thead>
+	<tbody>
+    <%foreach from=$alldata item=tydinfo key=tydid%>
+    	
+    	<tr data-id="shopcount_list_<%$tydid%>" data-title="<%$alltyd[$tydid]%>销售顾问统计页面">
+        	<td><%$alltyd[$tydid]%><%$tydid%></td>
+            <td><%$tydinfo.allbokenum%></td>
+            <td>555<%$tydinfo.realbokenum%>123</td>
+            <td><%$tydinfo.yindaobokenum%></td>
+            <td><%$tydinfo.yindaoshidaobokenum%></td>
+            <td><!--预约到店率：实际到店数/预约当期应到数-->
+                <%if $tydinfo.relbokenum gt 0 && $tydinfo.needbokenum  gt 0%>
+                    <%($tydinfo.relbokenum *100 / $tydinfo.needbokenum)|string_format:"%.2f"%>%
+                <%/if%>
+            </td> 
+            <td><%$tydinfo.ordernum%></td>
+            <td><!--预约成交率：实际成单数/实际到店数率-->
+                <%if $tydinfo.ordernum gt 0 && $tydinfo.relbokenum  gt 0%>
+                    <%($tydinfo.ordernum *100 / $tydinfo.relbokenum)|string_format:"%.2f"%>%
+                <%/if%>
+            </td>
+            <td><%$tydinfo.orderamount%></td>
+            <td><%$tydinfo.moneypaid%></td>
+            <td><%$tydinfo.moneyunpaid%></td>
+            <td><%$tydinfo.zpnum%></td>
+            <td><!--客单价-->
+                <%if $tydinfo.orderamount gt 0 && $tydinfo.ordernum  gt 0%>
+                    <%($tydinfo.orderamount/$tydinfo.ordernum)|string_format:"%.2f"%>
+                <%/if%>
+            </td>
+    	</tr>
+    <%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

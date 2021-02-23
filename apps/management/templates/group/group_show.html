@@ -1,0 +1,56 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		
+			<!--<div class="btn-group">
+				<button class="btn btn-sm green" onclick="util.retrieveEdit(this);" data-url="index.php?mod=management&con=group&act=edit" data-id="<%$view->get_id()%>" list-id="17">
+					编辑 <i class="fa fa-edit"></i>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm red" onclick="util.retrieveDelete(this);" data-url="index.php?mod=management&con=group&act=delete" data-id="<%$view->get_id()%>" list-id="17">
+				删除 <i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+				离开 <i class="fa fa-angle-double-left"></i> 
+				</button>
+			</div>-->
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>工作组名称</td>
+					<td><%$view->get_name()%></td>
+				</tr>
+				<tr>
+					<td>编码</td>
+					<td><%$view->get_code()%></td>
+				</tr>
+				<tr>
+					<td>上级组</td>
+					<td><%if $view->get_parent_id()%><a href="javascript:;" class="tab-con-a" data-title="<%$view->getParentName($view->get_parent_id())%>" data-url="index.php?mod=management&con=Group&act=show&id=<%$view->get_parent_id()%>"  data-id="department-<%$view->get_parent_id()%>"><%$view->getParentName($view->get_parent_id())%></a><%else%>顶级<%/if%>
+					</td>
+				</tr>
+
+				<tr>
+					<td>描述</td>
+					<td><%$view->get_note()%></td>
+				</tr>	
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+
+			<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>日期</th>
+						<th>订单所属部门</th>
+						<th>订单量</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$page_list.data item=d %>
+					<tr data-title="<%$d.add_date%>发货量">
+						<td><%$d.add_date%></td>
+						<td><%$d.department_name%></td>
+						<td><%$d.count%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+			</div>
+			<div class="pager">
+			<%$pa%> 
+			</div>
+<script type="text/javascript">
+<!--
+util.hover();
+//-->
+</script>

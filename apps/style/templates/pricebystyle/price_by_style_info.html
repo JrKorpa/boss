@@ -1,0 +1,144 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="price_by_style_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">石头位置类型：</label>
+						<select class="form-control" tabindex="1" name="stone_position" readonly>
+							<%foreach from=$stonePosition key=key item=d %>
+							<option value="<%$key%>" <%if $view->get_stone_position()==$key%>selected="selected"<%/if%>><%$d%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">石头类型：</label>
+						<select class="form-control" tabindex="1" name="stone_cat" >
+							<%foreach from=$stoneCat key=key item=d %>
+							<option value="<%$key%>" <%if $view->get_stone_cat()==$key%>selected="selected"<%/if%>><%$d%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">金托类型：</label>
+						<select class="form-control" tabindex="1" name="tuo_type">
+                            <%foreach from=$tuoType item=d %>
+							<option value="<%$d.id%>" <%if $view->get_tuo_type()==$d.id%>selected="selected"<%/if%>><%$d.name%></option>
+							<%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">主石范围：</label>
+						<div class="input-group date-picker input-daterange">
+                            <input type="text" class="form-control" name="zuan_min" value="<%$view->get_zuan_min()%>"/>
+                            <span class="input-group-addon">to</span>
+                            <input type="text" class="form-control" name="zuan_max" value="<%$view->get_zuan_max()%>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">主石颜色范围：</label>
+						<div class="input-group date-picker input-daterange">
+							<select class="form-control" tabindex="1" name="zuan_yanse_min">
+								<option value=""></option>
+								<%foreach from=$zuanYanse key=key item=d %>
+								<option value="<%$key%>" <%if $view->get_zuan_yanse_min()==$d%>selected="selected"<%/if%>><%$d%></option>
+								<%/foreach%>
+							</select>
+                            <span class="input-group-addon">to</span>
+							<select class="form-control" tabindex="1" name="zuan_yanse_max">
+								<option value=""></option>
+								<%foreach from=$zuanYanse key=key item=d %>
+								<option value="<%$key%>" <%if $view->get_zuan_yanse_max()==$d%>selected="selected"<%/if%>><%$d%></option>
+								<%/foreach%>
+							</select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">证书类型：</label>
+						<select class="form-control" tabindex="1" name="cert">
+							<option value=""></option>
+							<%foreach from=$certType item=d %>
+							<option value="<%$d.name%>" <%if $view->get_cert()==$d.name%>selected="selected"<%/if%>><%$d.name%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">主石形状：</label>
+						<select class="form-control" tabindex="1" name="zuan_shape">
+							<option value=""></option>
+							<%foreach from=$shapes item=d %>
+							<option value="<%$d.name%>" <%if $view->get_zuan_shape()==$d.name%>selected="selected"<%/if%>><%$d.name%></option>
+							<%/foreach%>
+						</select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">材质：</label>
+						<div class="input-group date-picker input-daterange">
+							<select class="form-control" tabindex="1" name="caizhi">
+                                <%foreach from=$dd->getEnumArray("style.caizhi") item=value%>
+                                <option value="<%$value.name%>" <%if $view->get_caizhi()==$value.name%>selected="selected"<%/if%>><%$value.label%></option>
+                                <%/foreach%>
+							</select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">主石净度范围：</label>
+						<div class="input-group date-picker input-daterange">
+							<select class="form-control" tabindex="1" name="zuan_jindu_min">
+								<option value=""></option>
+								<%foreach from=$zuanJindu key=key item=d %>
+								<option value="<%$key%>" <%if $view->get_zuan_jindu_min()==$d%>selected="selected"<%/if%>><%$d%></option>
+								<%/foreach%>
+							</select>
+                            <span class="input-group-addon">to</span>
+							<select class="form-control" tabindex="1" name="zuan_jindu_max">
+								<option value=""></option>
+								<%foreach from=$zuanJindu key=key item=d %>
+								<option value="<%$key%>" <%if $view->get_zuan_jindu_max()==$d%>selected="selected"<%/if%>><%$d%></option>
+								<%/foreach%>
+							</select>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label">价格：</label>
+                        <input type="text" name="price" class="form-control" placeholder=""  value="<%$view->get_price()%>"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <input type="hidden" name="style_id" value="<%$style_id%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/price_by_style_info.js" %>
+//-->
+</script>

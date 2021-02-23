@@ -1,0 +1,41 @@
+<div class="portlet-body">
+	<!-- 表格1 -->
+	<div class="flip-scroll">
+		<table class="table table-bordered table-striped  flip-content">
+			<tr>
+				<td>序号</td>
+				<td><%$view->get_policy_id()%></td>
+			</tr>
+			<tr>
+				<td>销售策略名称</td>
+				<td><%$view->get_policy_name()%></td>
+			</tr>
+			<tr>
+				<td>记录状态</td>
+				<td><%if $view->get_bsi_status()=='1'%>保存<%/if%><%if $view->get_bsi_status()=='2'%>申请审核<%/if%><%if $view->get_bsi_status()=='3'%>已审核<%/if%><%if $view->get_bsi_status()=='4'%>取消<%/if%></td>
+			</tr>
+			<tr>
+				<td>是否有效</td>
+				<td><%if $view->get_is_delete()=='0'%>有效<%/if%><%if $view->get_is_delete()=='1'%>无效<%/if%></td>
+			</tr>
+			<tr>
+				<td>销售策略开始时间</td>
+				<td><%$view->get_policy_start_time()%></td>
+			</tr>
+			<tr>
+				<td>销售策略结束时间</td>
+				<td><%$view->get_policy_end_time()%></td>
+			</tr>
+			<tr>
+				<td>记录备注</td>
+				<td><%$view->get_check_remark()%></td>
+			</tr>
+
+		</table>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+//-->
+</script>

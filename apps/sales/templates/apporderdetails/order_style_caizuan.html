@@ -1,0 +1,78 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_caizuan_goods_attribute">
+	<form action="#" class="horizontal-form" method="post" id="app_order_detail_caizuan_goods_form">
+		<div class="form-body">
+		
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">产品编码：</label>
+						<input type="text" name="goods_sn" class="form-control" readonly  placeholder="请输入" value="<%$style_attr.goods_sn%>" readonly/>
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">石重：</label>
+                        <input type="text" name="cart" class="form-control" readonly placeholder="请输入" value="<%if isset($style_attr.carat) && $style_attr.carat != ''%><%$style_attr.carat%><%else%><%/if%>"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">形状：</label>
+                        <input type="text" name="shape" class="form-control" readonly placeholder="请输入" value="<%$style_attr.shape%>"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">颜色：</label>
+                        <input type="text" name="color" class="form-control" readonly placeholder="请输入" value="<%$style_attr.color%>"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">净度：</label>
+                        <input type="text" name="clarity" class="form-control" readonly placeholder="请输入" value="<%$style_attr.clarity%>"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">证书号：</label>
+                        <input type="text" name="zhengshuhao" class="form-control" placeholder="请输入" value="<%if isset($style_attr.cert_id) && $style_attr.cert_id != ''%><%$style_attr.cert_id%><%else%><%/if%>" readonly />
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">BDD价：</label>
+                        <input type="text" name="chengjiaojia" class="form-control" placeholder="请输入" value="<%if isset($style_attr.price) && $style_attr.price != ''%><%$style_attr.price%><%else%><%/if%>" readonly/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">备注：</label>
+                        <textarea name="info"></textarea>
+                    </div>
+                </div>
+            </div>
+            <center> <div id="point" style="display:none;font-size:16px; color:red; margin:5px 0px"></div></center>
+        </div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="goods_type"  value="caizuan_goods"/>
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/order_caizuan_attribute.js"%>
+//-->
+</script>

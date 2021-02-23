@@ -1,0 +1,69 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_y_jiajialv_info">
+		<div class="form-body">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">款式分类：</label>
+					<select class="form-control" tabindex="1" name="style_type_id">
+						<option value="">请选择</option>
+						<%foreach from=$catType item=v%>
+						<option value="<%$v.id%>"><%$v.name%></option>
+						<%/foreach%>
+					</select>						
+				</div>
+			</div>
+		    <div class="col-sm-4">
+				<div class="form-group">
+				<label class="control-label">目前加价率：</label>
+					<input type="text" name="active_jiajialv" class="form-control" placeholder="请输入" readonly />
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="form-group">
+				<label class="control-label">拟定加价率：</label>
+					<input type="text" name="jiajialv" class="form-control" placeholder="请输入" />
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">
+						<input type="radio" name="active_mode" value="active_date" checked="checked" />拟定生效时间
+						<input type="radio" name="active_mode" value="active_now" />即时生效
+					</label>
+					<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+						<input type="text" class="form-control" name="active_date" value="" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+					<div class="form-group">
+					<label class="control-label">备注：</label>
+						<input type="text" name="remark" class="form-control" placeholder="请输入" />
+					</div>
+			</div>
+		</div>
+
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_info_y_jiajialv_info.js"%>
+//-->
+</script>

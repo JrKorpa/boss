@@ -1,0 +1,65 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_bespoke_info_info" enctype="multipart/form-data">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">选择要上传的CSV文件：</label>
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="file_price" multiple="" />
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+						<a href="javascript:;">下载模板</a>
+                    </div>
+					<div class="form-group">
+						<label class="control-label">客户来源：</label>
+						<select class="select2_category form-control" tabindex="1" name="customer_source_id">
+							<option value=""></option>
+							<%foreach from=$CustomerSourcesData key=key item=p %>
+							<option value="<%$key%>" <%if $view->get_customer_source_id()==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">销售渠道：</label>
+						<select class="select2_category form-control" tabindex="1" name="department_id">
+							<option value="" ></option>
+							<%foreach from=$channellist key=key item=p %>
+							<option value="<%$p.id%>" <%if $view->get_department_id()==$p.id%>selected="selected"<%/if%>>
+							<%$p.channel_name%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="" />
+
+                <input type="hidden" name="_cls" value="" />
+                <input type="hidden" name="tab_id" value="" />
+
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_bespoke_info_upload.js" %>
+-->
+</script>

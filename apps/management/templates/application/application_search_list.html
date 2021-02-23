@@ -1,0 +1,34 @@
+<div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                                <th>项目名称</a</th>
+				<th>项目文件夹</th>
+				<th>图标</th>
+				<th>是否启用</th>
+				<th>是否内置</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="application_list_<%$d.id%>" data-title="<%$d.label|truncate_cn:10%>">
+				<td><%$d.id%></td>
+                <td><a href="javascript:void(0);" class="tab-con-a" data-title="<%$d.label%>" data-url="index.php?mod=management&con=Control&act=index&application_id=<%$d.id%>" data-id="tab-<%Auth::getMenuIdByPermissionCode('CONTROL_M')%>"><%$d.label%></a></td>
+				<td><%$d.code%></td>
+				<td><i class="fa <%$d.icon_name%>"></i></td>
+				<td><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				<td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+	<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

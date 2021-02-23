@@ -1,0 +1,137 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td align="right">单号：</td>
+					<td><%$view->get_pay_apply_number()%></td>
+					<td align="right">状态：</td>
+					<td><%$view->get_status()%></td>
+					<td align="right">应付类型：</td>
+					<td><%$view->get_pay_type()%></td>
+                </tr>
+				<tr>
+					<td align="right">制单人：</td>
+					<td><%$view->get_make_name()%></td>
+					<td align="right">制单时间：</td>
+					<td><%$view->get_make_time()%></td>
+					<td></td>
+					<td></td>
+				</tr>	
+                <tr>
+					<td align="right">审核人：</td>
+					<td><%$view->get_check_name()%></td>
+					<td align="right">审核时间：</td>
+					<td><%$view->get_check_time()%></td>
+					<td></td>
+					<td></td>
+				</tr>	
+				<tr>
+					<td align="right">供应商/结算商：</td>
+					<td><%$view->get_prc_name()%></td>
+					<td align="right">发票号：</td>
+					<td><%$view->get_fapiao()%></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td align="right">数量：</td>
+					<td><%$view->get_pay_number()%></td>
+					<td align="right">应付金额：</td>
+					<td><%$view->get_apply_id()%></td>
+					<td align="right">偏差金额：</td>
+					<td><%$view->get_apply_id()%></td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td colspan="2"></td>
+					<td><a href="javascript:;" onclick="app_adj_apply_goods_download_mo()">下载数据格式</a></td>
+					<td><a href="/index.php?mod=finance&con=AppPayApply&act=show&down=1&id=<%$view->get_apply_id()%>">下载申请明细列表</a></td>
+					<td></td>
+				</tr>	
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>申请明细列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<!-- 工具条 -->
+		</div>
+        					
+		<!-- 表格 -->
+		<div class="flip-scroll" id="app_adj_apply_goods_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+	            <thead class="flip-content">
+				<tr>
+					<td>流水号</td>
+					<td>货号/单号</td>
+					<td>系统金额</td>
+					<td>应付金额</td>
+					<td>偏差值</td>
+					<td>偏差说明</td>
+				</tr>	
+                </thead>
+                <tbody>
+		        <%foreach from=$applyGoodsData item=item%>
+				<tr>
+                    <td align="center" valign="middle"><%$item.serial_number%></td>
+                    <td><%$item.goods_id%></td>
+                    <td><%$item.total%></td>
+                    <td><%$item.total_cope%></td>
+                    <td><%$item.total_dev%></td>
+                    <td><%if $item.total_dev != 0 && $view->get_status() == 0%>
+                    <input type="hidden" name="ids[]" value="<%$item.id%>" />
+                    <select id="direc_<%$item.id%>" name="direc_<%$item.id%>">
+                        <option value="">请选择...</option>
+                        <option value="石包调价" <%if $item.dev_direction == '石包调价'%> selected <%/if%>>石包调价</option>
+                        <option value="入库碎钻未入成本" <%if $item.dev_direction == '入库碎钻未入成本'%> selected <%/if%>>入库碎钻未入成本</option>
+                        <option value="金重差异" <%if $item.dev_direction == '金重差异'%> selected <%/if%>>金重差异</option>
+                        <option value="工费调整" <%if $item.dev_direction == '工费调整'%> selected <%/if%>>工费调整</option>
+                    </select><font color="f00;">(必选)</font>
+                    <%else%><%$item.dev_direction%><%/if%></td>
+                    <%if $view->get_status() == 2 || $view->get_status() == 1%>
+                    <td <%if $view->get_status() == 1%>style="display:none;"<%/if%>><%$item.overrule_reason%></td>
+                    <%/if%>
+				</tr>
+                <%/foreach%>
+                </tbody>
+            </table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_adj_apply_show.js"%>
+//-->
+</script>

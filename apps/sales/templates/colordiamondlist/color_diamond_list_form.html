@@ -1,0 +1,177 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>搜索框
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="colordiamond_list_search_form">
+            <div class="form-body">
+	            <div class="row">
+	                    <div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">商品编码：</label>
+								<input type="text" value="" placeholder="请输入" class="form-control" name="goods_sn">
+							</div>
+						</div>
+	                   <div class="col-sm-3">
+	                        <div class="form-group">
+	                            <label class="control-label">石重：</label>
+	                            <div class="input-group  input-daterange">
+	                                <input type="text" class="form-control" name="carat_min" value="" />
+	                                <span class="input-group-addon">to</span>
+	                                <input type="text" class="form-control" name="carat_max" value="" />
+	                            </div>
+	                        </div>
+	                    </div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">颜色分级：</label>
+								<select class="form-control select2_sample1"  tabindex="2" name="color_grade">
+									<option value=""></option>
+									<%foreach from=$view->getColor_grade_arr() item=val%>
+									<option value="<%$val%>" >
+									<%$val%>
+									</option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+					</div>
+	            
+	             <div class="row">
+		            <div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">颜色：</label>
+									<select class="form-control select2_sample1"  tabindex="2" name="color" >
+										<option value=""></option>
+										<%foreach from=$view->getColor_arr() item=val%>
+										<option value="<%$val%>" >
+										<%$val%>
+										</option>
+										<%/foreach%>
+									</select>
+								</div>
+							</div>
+					 <div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">形状：</label>
+								<select class="form-control" tabindex="1" name="shape" >
+									<option value=""></option>
+									<%foreach from=$view->getShape_arr() key=key item=val%>
+									<option value="<%$val%>" >
+									<%$val%>
+									</option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+							
+					<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">净度：</label>
+								<select class="form-control" tabindex="3" name="clarity" >
+									<option value=""></option>
+									<%foreach from=$view->getClarity_arr() item=val%>
+									<option value="<%$val%>">
+									<%$val%>
+									</option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>		
+	              </div>
+	            
+	             <div class="row">
+		            	<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">证书类型：</label>
+									<select class="form-control" tabindex="3" name="cert" >
+										<option value=""></option>
+										<%foreach from=$view->getCert_arr() item=val%>
+										<option value="<%$val%>" >
+										<%$val%>
+										</option>
+										<%/foreach%>
+									</select>
+								</div>
+						</div>
+			             <div class="col-sm-4">
+									<div class="form-group">
+										<label class="control-label">证书号：</label>
+										<input type="text" value="" placeholder="请输入" class="form-control" name="cert_id">
+									</div>
+						</div>
+	            	 <div class="col-sm-3">
+	                        <div class="form-group">
+	                            <label class="control-label">BDD区间价：</label>
+	                            <div class="input-group  input-daterange">
+	                                <input type="text" class="form-control" name="price_min" value="" />
+	                                <span class="input-group-addon">to</span>
+	                                <input type="text" class="form-control" name="price_max" value="" />
+	                            </div>
+	                        </div>
+	                    </div>
+	            </div>
+	            
+					<div class="row">
+	                    <div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label">供应商：</label>
+								<select class="form-control" tabindex="1" name="from_ad" >
+									<option value=""></option>
+									<%foreach from=$view->getFromad_arr() key=key item=val%>
+									<option value="<%$val%>" >
+									<%$val%>
+									</option>
+									<%/foreach%>
+								</select>
+							</div>
+						</div>
+					</div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+
+    <div class="portlet-body">
+        <!-- 工具栏 -->
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="color_diamond_list_search_list">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/colordiamond_list_list.js"%>
+//-->
+</script>

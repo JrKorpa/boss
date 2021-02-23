@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+            <th>兑换码</th>
+			<th>兑换状态</th>
+            <th>兑换人</th>
+            <th>兑换时间</th>
+            <th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_coupon_type_list_<%$d.exchange_id%>" data-title="<%$d.exchange_id%>">
+			<td align="center"><%$d.exchange_id%></td>
+            <td align="center"><%$d.exchange_coupon%></td>
+			<td align="center"><%if $d.exchange_status == 1%>兑换成功<%else%>兑换失败<%/if%></td>
+            <td align="center"><%$d.exchange_name%></td>
+            <td align="center"><%$d.exchange_time%></td>
+            <td align="center"><%$d.exchange_remark%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,95 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption"> <i class="fa fa-reorder"></i>
+			搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_bespoke_old_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">预约号：</label>
+							<input type="text" name="bespoke_sn" class="form-control" placeholder="请输入"></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">客户姓名：</label>
+							<input type="text" name="bespoke_man" class="form-control" placeholder="请输入"></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">手机号码：</label>
+							<input type="text" name="mobile" class="form-control" placeholder="请输入"></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">预约添加时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>
+								">
+								<input type="text" class="form-control" name="start_add_time" value="" />
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="end_add_time" value="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label">销售渠道：</label>
+							<div class="checkbox-lists clearfix">
+								<%foreach from=$qudao key=key item=val%>
+								<label class="checkbox-inline">
+									<input type="checkbox" name="department[]" value="<%$key%>
+									">
+									<%$val%></label>
+								<%/foreach%>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"> <i class="fa fa-check"></i>
+						搜索
+					</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>
+			结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+		<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<%$bar%></div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_bespoke_old_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_bespoke_old_list.js"%>//--></script>

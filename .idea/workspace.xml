@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="761667db-ed1b-4d5e-aea2-3149d96f2b8d" name="默认的" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron/diamond/auto_diamond.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1148" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron/diamond/cron_diamond_from_ad.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron/diamond/data_config.ini.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cron/diamond/dia_api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2888">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cron/diamond/dia_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="1182" column="40" lean-forward="true" selection-start-line="1182" selection-start-column="40" selection-end-line="1182" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>珂兰钻石</find>
+      <find>public/img/logo.png</find>
+      <find>珂兰</find>
+      <find>上海BDD商贸</find>
+      <find>is_factory</find>
+      <find>createGoods</find>
+      <find>to_shipment</find>
+      <find>shipment</find>
+      <find>insert</find>
+      <find>batch_insertIqc</find>
+      <find>bath_insert</find>
+      <find>checkProSN</find>
+      <find>app_order_goods_info_detail</find>
+      <find>del</find>
+      <find>.del</find>
+      <find>downPurcaseCSV</find>
+      <find>trimIconv</find>
+      <find>n insert</find>
+      <find>autocomplet</find>
+      <find>GetProcessorInAccount</find>
+      <find>AddAppPayDetail</find>
+      <find>批量复制货号</find>
+      <find>batchCopyGoods_id</find>
+      <find>batch_copy_goodsid_w_show</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>BDD</replace>
+      <replace>GP商贸</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\phpstudy_pro\WWW\cuteframe</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/apps/sales/model/SelfProductInfoModel.php" />
+        <option value="$PROJECT_DIR$/apps/style/control/RelStyleAttributeController.php" />
+        <option value="$PROJECT_DIR$/apps/processor/model/SalesModel.php" />
+        <option value="$PROJECT_DIR$/apps/diamond/control/DiamondInfoController.php" />
+        <option value="$PROJECT_DIR$/apps/diamond/control/DiamondGetJxcController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WaitDistributionController.php" />
+        <option value="$PROJECT_DIR$/apps/processor/control/ProductApplyInfoController.php" />
+        <option value="$PROJECT_DIR$/apps/purchase/model/ProductInfoModel.php" />
+        <option value="$PROJECT_DIR$/apps/management/control/MainController.php" />
+        <option value="$PROJECT_DIR$/apps/shipping/control/ShipFreightController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/api/api.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoTController.php" />
+        <option value="$PROJECT_DIR$/apps/management/control/ShopCfgController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoEController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoCController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoBController.php" />
+        <option value="$PROJECT_DIR$/apps/shipping/control/WeipinhuiShipController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoDController.php" />
+        <option value="$PROJECT_DIR$/apps/management/control/UserController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/model/WarehouseBillInfoSModel.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoHController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoPController.php" />
+        <option value="$PROJECT_DIR$/apps/processor/api/api.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoMController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoWfController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoLController.php" />
+        <option value="$PROJECT_DIR$/frame/class/Controller.class.php" />
+        <option value="$PROJECT_DIR$/apps/management/model/CProcessorModel.php" />
+        <option value="$PROJECT_DIR$/apps/purchase/control/PurchaseInfoController.php" />
+        <option value="$PROJECT_DIR$/apps/style/model/RelStyleFactoryModel.php" />
+        <option value="$PROJECT_DIR$/apps/style/model/BaseStyleInfoModel.php" />
+        <option value="$PROJECT_DIR$/apps/style/control/AppXiangkouController.php" />
+        <option value="$PROJECT_DIR$/apps/processor/model/PurchaseModel.php" />
+        <option value="$PROJECT_DIR$/apps/processor/model/ProductInfoPurchaseModel.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/apps/purchase/model/PurchaseReceiptDetailModel.php" />
+        <option value="$PROJECT_DIR$/apps/shibao/control/DiaOrderController.php" />
+        <option value="$PROJECT_DIR$/apps/warehouse/model/SalesModel.php" />
+        <option value="$PROJECT_DIR$/apps/purchase/templates/purchaseinfo/purchase_info.html" />
+        <option value="$PROJECT_DIR$/apps/warehouse/templates/batchexchangegoods/batch_exchange_goods_search_form.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="159" />
+    <option name="width" value="1590" />
+    <option name="height" value="1007" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="boss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boss" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boss" type="462c0819:PsiDirectoryNode" />
+              <item name="cron" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boss" type="462c0819:PsiDirectoryNode" />
+              <item name="cron" type="462c0819:PsiDirectoryNode" />
+              <item name="diamond" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="761667db-ed1b-4d5e-aea2-3149d96f2b8d" name="默认的" comment="" />
+      <created>1588062296348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588062296348</updated>
+      <workItem from="1588062297458" duration="468000" />
+      <workItem from="1588904605065" duration="9842000" />
+      <workItem from="1589512204873" duration="1370000" />
+      <workItem from="1589772715394" duration="2058000" />
+      <workItem from="1589774870618" duration="829000" />
+      <workItem from="1590465341831" duration="3458000" />
+      <workItem from="1590499289822" duration="3000" />
+      <workItem from="1590499297941" duration="733000" />
+      <workItem from="1590542143662" duration="238000" />
+      <workItem from="1590542394500" duration="6000" />
+      <workItem from="1590575926297" duration="3052000" />
+      <workItem from="1590629013100" duration="1799000" />
+      <workItem from="1590839086312" duration="632000" />
+      <workItem from="1590975313439" duration="873000" />
+      <workItem from="1590978924982" duration="2831000" />
+      <workItem from="1591014661270" duration="1482000" />
+      <workItem from="1591077828123" duration="3454000" />
+      <workItem from="1591276977567" duration="1034000" />
+      <workItem from="1591580420120" duration="10268000" />
+      <workItem from="1591616664488" duration="1408000" />
+      <workItem from="1591766615665" duration="722000" />
+      <workItem from="1591849623201" duration="1506000" />
+      <workItem from="1591955942416" duration="251000" />
+      <workItem from="1592883817176" duration="191000" />
+      <workItem from="1592886433084" duration="826000" />
+      <workItem from="1592914175251" duration="319000" />
+      <workItem from="1593575528446" duration="985000" />
+      <workItem from="1593760723459" duration="1715000" />
+      <workItem from="1594627981492" duration="1458000" />
+      <workItem from="1594630527538" duration="2692000" />
+      <workItem from="1594642156491" duration="1559000" />
+      <workItem from="1594688844801" duration="617000" />
+      <workItem from="1594692775591" duration="296000" />
+      <workItem from="1594711068136" duration="135000" />
+      <workItem from="1594711230836" duration="2294000" />
+      <workItem from="1594715113875" duration="499000" />
+      <workItem from="1594776449628" duration="1944000" />
+      <workItem from="1594780302252" duration="642000" />
+      <workItem from="1594780953222" duration="3805000" />
+      <workItem from="1594794627997" duration="113000" />
+      <workItem from="1594800556700" duration="1452000" />
+      <workItem from="1594957984499" duration="5604000" />
+      <workItem from="1598411691438" duration="580000" />
+      <workItem from="1598841615216" duration="118000" />
+      <workItem from="1598924089721" duration="258000" />
+      <workItem from="1598924636750" duration="363000" />
+      <workItem from="1598927228003" duration="94000" />
+      <workItem from="1598927711499" duration="409000" />
+      <workItem from="1598930138115" duration="1191000" />
+      <workItem from="1598933866962" duration="893000" />
+      <workItem from="1599034225299" duration="538000" />
+      <workItem from="1599035203327" duration="1367000" />
+      <workItem from="1599558006854" duration="712000" />
+      <workItem from="1600677530491" duration="649000" />
+      <workItem from="1600681562901" duration="143000" />
+      <workItem from="1600681827604" duration="94000" />
+      <workItem from="1600918255980" duration="813000" />
+      <workItem from="1600945434449" duration="1098000" />
+      <workItem from="1601001908089" duration="1450000" />
+      <workItem from="1601257084791" duration="2039000" />
+      <workItem from="1601451763941" duration="5439000" />
+      <workItem from="1602464912455" duration="135000" />
+      <workItem from="1603865972341" duration="154000" />
+      <workItem from="1604304262146" duration="690000" />
+      <workItem from="1604311970895" duration="624000" />
+      <workItem from="1610613521774" duration="88000" />
+      <workItem from="1611115259355" duration="791000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="96193000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23347548" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="找到" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/apps/sales/control/UpdateOrderDingGouController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/warehousebillinfol/shouhuo_print_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2988">
+          <caret line="166" column="26" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sales/control/UpdateOrderFromadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="37" column="33" lean-forward="true" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sales/templates/updateorderfromad/update_order_from_ad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/batchexchangegoods/batch_exchange_goods_search_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/batchexchangegoods/js/batch_exchange_goods_search_form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="85" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/style/templates/basestyleinfo/base_style_info_show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2014">
+          <caret line="214" column="49" selection-start-line="214" selection-start-column="49" selection-end-line="214" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/control/WarehouseHuodongPrintCodeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1118">
+          <caret line="264" column="37" selection-start-line="264" selection-start-column="33" selection-end-line="264" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/sales/control/UncheckOrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/model/WarehouseBillPayModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/finance/control/ProcessorInAccountController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2736">
+          <caret line="152" column="66" selection-start-line="152" selection-start-column="62" selection-end-line="152" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/finance/model/ProcessorInAccountModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5292">
+          <caret line="294" column="31" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/finance/templates/processorinaccount/processor_in_account_search_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoLController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6894">
+          <caret line="383" column="37" selection-start-line="383" selection-start-column="37" selection-end-line="383" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/model/WarehouseBillInfoLModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9864">
+          <caret line="548" column="48" selection-start-line="548" selection-start-column="48" selection-end-line="548" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoTController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7164">
+          <caret line="398" column="31" selection-start-line="398" selection-start-column="31" selection-end-line="398" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/model/WarehouseBillInfoTModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8730">
+          <caret line="485" column="35" selection-start-line="485" selection-start-column="24" selection-end-line="485" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/model/ApiFinanceModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/control/WarehouseBillInfoWController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2268">
+          <caret line="126" column="34" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/warehousebillinfow/warehouse_bill_info_w_info.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/warehousebillinfow/warehouse_bill_info_w_show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2088">
+          <caret line="116" column="38" selection-start-line="116" selection-start-column="38" selection-end-line="116" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/warehousebillinfow/js/warehouse_bill_info_w_show.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27072">
+          <caret line="1504" column="1" selection-start-line="1472" selection-end-line="1504" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/templates/warehousebillinfow/warehouse_bill_goods.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/warehouse/control/WarehouseBillController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="761" column="43" selection-start-line="761" selection-start-column="43" selection-end-line="761" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#33#39#0" expanded="true" />
+            <element signature="e#42#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/finance/api/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="53" column="48" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/top.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-772" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/personal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-972" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/header.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/index_left.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/index_right.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2032" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/index_right1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/templates/saleplan/sale_plan_search_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/templates/saleplantwo/sale_plan_two_search_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-594" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/templates/everydaywithstone/everyday_with_stone_search_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/DiamondSaleReportModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-736">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/EverydayWithStoneModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-772">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/OfflineChannelGoldReportModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-450">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/SaleProfitModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/ShibaoModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/AppPerformanceCountModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-18">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/ExtraGemxAwardModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/dia_config.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/management/templates/main/index_right2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/report/model/PerformanceReportModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/auto_diamond.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1148" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/cron_diamond_from_ad.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/data_config.ini.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/dia_api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2888">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/diamond/dia_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="1182" column="40" lean-forward="true" selection-start-line="1182" selection-start-column="40" selection-end-line="1182" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,132 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>单据编号</td>
+					<td><%$view->get_id()%></td>
+                    <td>无账修退流水号</td>
+                    <td><%$view->get_g_id()%></td>
+                    <td>单据状态</td>
+                    <td><%$dd->getEnum('noaccount.bill_status',$view->get_bill_status())%></td>
+				</tr>	
+                <tr>
+                    <td>单据类型</td>
+                    <td><%$view->get_bill_type()%></td>
+                    <td>创建用户</td>
+                    <td><%$view->get_create_user()%></td>
+                    <td>创建时间</td>
+                    <td><%$view->get_create_time()%></td>
+                </tr>
+                <tr>
+                    <td>入库公司名称</td>
+                    <td><%$view->get_from_company_name()|default:'--'%></td>
+                    <td>入库仓库名称</td>
+                    <td><%$view->get_from_warehouse_name()|default:'--'%></td>
+                    <td>出库公司名称</td>
+                    <td><%$view->get_out_company_name()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>出库仓库名称</td>
+                    <td><%$view->get_out_warehouse_name()|default:'--'%></td>
+                    <td>审核时间</td>
+                    <td><%$view->get_check_time()|default:'--'%></td>
+                    <td>审核用户</td>
+                    <td><%$view->get_check_user()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>快递单号</td>
+                    <td><%$view->get_express_sn()|default:'--'%></td>
+                    <td>备注</td>
+                    <td><%$view->get_remark()|default:'--'%></td>
+                    <td>业务类型</td>
+                    <td><%$dd->getEnum('warehouse.business_type',$gview->get_business_type())%></td>
+                </tr>
+                <tr>
+                    <td>订单号</td>
+                    <td><%$gview->get_order_sn()|default:'--'%></td>
+                    <td>款号</td>
+                    <td><%$gview->get_style_sn()|default:'--'%></td>
+                    <td>主成色</td>
+                    <td><%$gview->get_caizhi()|default:'--'%><%$gview->get_ingredient_color()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>金重</td>
+                    <td><%$gview->get_gold_weight()|default:'--'%></td>
+                    <td>金托类型</td>
+                    <td><%$dd->getEnum('warehouse_goods.tuo_type',$gview->get_torr_type())|default:'--'%></td>
+                    <td>产品线</td>
+                    <td><%$gview->get_product_line()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>款式分类</td>
+                    <td><%$gview->get_style_type()|default:'--'%></td>
+                    <td>指圈</td>
+                    <td><%$gview->get_finger_circle()|default:'--'%></td>
+                    <td>证书号</td>
+                    <td><%$gview->get_credential_num()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>主石重</td>
+                    <td><%$gview->get_main_stone_weight()|default:'--'%></td>
+                    <td>主石粒数</td>
+                    <td><%$gview->get_main_stone_num()|default:'--'%></td>
+                    <td>副石重</td>
+                    <td><%$gview->get_deputy_stone_weight()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>副石粒数</td>
+                    <td><%$gview->get_deputy_stone_num()|default:'--'%></td>
+                    <td>零售价</td>
+                    <td><%$gview->get_resale_price()|default:'--'%></td>
+                    <td>出库货号</td>
+                    <td><%$gview->get_out_goods_id()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>货品所在公司名称</td>
+                    <td><%$gview->get_place_company_name()|default:'--'%></td>
+                    <td>货品所在仓库名称</td>
+                    <td><%$gview->get_place_warehouse_name()|default:'--'%></td>
+                    <td>顾客姓名</td>
+                    <td><%$gview->get_guest_name()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>顾客联系方式</td>
+                    <td><%$gview->get_guest_contact()|default:'--'%></td>
+                    <td>退货备注</td>
+                    <td><%$gview->get_return_remark()|default:'--'%></td>
+                    <td>无账申请时间</td>
+                    <td><%$gview->get_without_apply_time()|default:'--'%></td>
+                </tr>
+                <tr>
+                    <td>申请人</td>
+                    <td><%$gview->get_apply_user()|default:'--'%></td>
+                    <td>有账货号</td>
+                    <td><%$gview->get_exist_account_gid()|default:'--'%></td>
+                    <td>货号修退状态</td>
+                    <td><%$dd->getEnum('noaccount.return_status',$gview->get_return_status())%></td>
+                </tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/virtual_return_bill_show.js"%>
+//-->
+</script>

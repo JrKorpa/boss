@@ -1,0 +1,132 @@
+<div class="portlet-body">
+<div class="form-body">
+	<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原证书号：</label>
+					<input type="text" name="zhengshuhao_org" class="form-control" value="<%$data.zhengshuhao_org%>" disabled/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原采购价：</label>
+					<input type="text" class="form-control" value="<%$dataOrg.chengben_jia|default:''%>"  disabled/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">原采购折扣：</label>
+					<input type="text" class="form-control" value="<%$dataOrg.source_discount|default:''%>"  disabled/>
+				</div>
+			</div>
+	 </div>
+	   <div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新证书号：(<%if $data.zhengshuhao!=$data.zhengshuhao_org%><font color="red">新旧证书号不一样</font>
+					<%else%><font color="green">新旧证书号一样</font><%/if%>)</label>
+					<input type="text" class="form-control" value="<%$data.zhengshuhao%>" disabled/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购价：</label>
+					<input type="text" class="form-control" value="<%$data.price%>" disabled/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">新采购折扣：</label>
+					<input type="text" class="form-control" value="<%$data.discount%>" disabled/>
+				</div>
+			</div>
+
+		</div>
+<div id="hiddenAttrBox">
+			 <div class="row">
+	
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">石重：</label>
+							<input name="carat" type="text" class="form-control" value="<%$data.carat%>" disabled/>						
+						</div>					
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">切工：</label>
+							<input name="carat" type="text" class="form-control" value="<%$data.cut%>" disabled/>							
+						</div>
+					</div>
+					<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">净度：</label>
+						<input type="text" class="form-control" value="<%$data.clarity%>" disabled/>
+					</div>
+			    </div>
+				 <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">颜色：</label>
+						<input type="text" class="form-control" name="color" value="<%$data.color%>" disabled/>
+					</div>
+			    </div>
+			</div>	
+           <div class="row">  
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">形状：</label>
+						<input type="text" class="form-control" value="<%$dd->getEnum('shape',$data.shape)%>" readonly/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">抛光：</label>
+						<input type="text" class="form-control" value="<%$dataOrg.polish|default:''%>" readonly disabled/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">对称：</label>
+						<input type="text" class="form-control" value="<%$dataOrg.symmetry|default:''%>" readonly disabled/>
+					</div>					
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">荧光：</label>
+						<input type="text" class="form-control" value="<%$dataOrg.fluorescence|default:''%>" readonly disabled/>
+					</div>					
+				</div>		
+			</div>	
+   </div>	
+		<div class="row">
+		    <div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">配石状态：</label>
+					<input type="text" class="form-control" value="<%if $data.peishi_status%>已完成<%else%>未完成<%/if%>" disabled="disabled"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">配石人员：</label>
+					<input type="text" class="form-control" value="<%$data.create_user%>" disabled="disabled"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">配石时间：</label>
+					<input type="text" class="form-control" value="<%$data.create_time%>" disabled="disabled"/>
+				</div>
+			</div>
+		</div>
+<div>
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="button" class="btn green" data-dismiss="modal" aria-hidden="true"><i class="fa fa-check"></i>配石已完成，点击关闭</button>
+	</div>
+</div>
+
+</div>
+<script type="text/javascript">
+<!--
+	
+//-->
+</script>

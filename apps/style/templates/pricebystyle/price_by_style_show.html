@@ -1,0 +1,581 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <%$bar%>
+        </div>
+        <!-- 表格1 -->
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式ID：</label>
+                        <%$view->get_style_id()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式编号：</label>
+                        <a href="javascript:;" class="tab-con-a" data-title="<%$view->get_style_sn()%>" data-id="basestyleinfo-<%$view->get_style_id()%>" data-url="index.php?mod=style&con=BaseStyleInfo&act=show&id=<%$view->get_style_id()%>"><%$view->get_style_sn()%></a>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式名称：</label>
+                        <%$view->get_style_name()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">产品线：</label>
+                        <%if empty($product_type) %><%else%><%$product_type.product_type_name%><%/if%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式分类：</label>
+                        <%$style_type.cat_type_name%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">添加时间：</label>
+                        <%$view->get_create_time()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">更新时间：</label>
+                        <%$view->get_modify_time()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核时间：</label>
+                        <%$view->get_check_time()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">作废时间：</label>
+                        <%$view->get_cancel_time()%>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                       <%$dd->getEnum('style.check_status',$view->get_check_status())%>
+                    </div>
+                </div>
+                
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否定制：</label>
+                        <%$dd->getEnum('confirm',$view->get_is_made())%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">畅销度：</label>
+						<%$dd->getEnum("sell_type",$view->get_sell_type())%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">搭配套系名称：</label>
+						<%$view->get_dapei_goods_sn()%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否常备款：</label>
+						<%if $view->get_changbei_sn() == 1%>是<%else if $view->get_changbei_sn() == 2%>否<%/if%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否是赠品：</label>
+						<%if $view->get_is_zp() == 1%>否<%else if $view->get_changbei_sn() == 2%>是<%/if%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">款式性别：</label>
+						<%if $view->get_style_sex() == 1%>男<%else if  $view->get_style_sex() == 2%>女<%else $view->get_style_sex() == 3%>中性<%/if%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">系列及款式归属：</label>
+						<%foreach from=$xilie_name item=p %>
+						      <%$p.name%>
+							<%/foreach%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">市场细分：</label>
+						<%$view->get_market_xifen()%>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">是否允许绑定已销账：</label>
+						<%if $view->get_bang_type()==1%>是<%elseif $view->get_bang_type()==2%>否<%else%><%/if%>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">记录备注：</label>
+                        <%$view->get_style_remark()%>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<!--3detail start-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>属性信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_style_attribute_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>款式编号</th>
+						<th>分类类型</th>
+						<th>产品线</th>
+						<th>显示方式</th>
+						<th>属性</th>
+						<th>属性值</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_attrs.data key=key item=d%>
+					<tr data-id="rel_style_attribute_list_<%$d.rel_id%>">
+						<td align="center"><%$key+1%></td>
+						<td align="center"><%$d.style_sn%></td>
+						<td align="center"><%$cat_data[$d.cat_type_id]%></td>
+						<td align="center"><%$product_data[$d.product_type_id]%></td>
+						<td align="center"><%$showType[$d.show_type]%></td>
+						<td align="center"><%$d.attribute_name%></td>
+						<td align="center">
+						<%if isset($d.att_value_name)%><%$d.att_value_name%><%/if%>
+						
+						</td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>		
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--3detail end-->
+
+<%if true ||  $view->get_style_type()==2 || $view->get_style_type()==10 || $view->get_style_type()==11%>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>商品属性
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_app_xiangkou_search_list">
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<%else%>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>商品属性
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+              k金重：<input type='text' name="style_jinzhong_k" id="style_jinzhong_k"style="width:100px">
+              成本价格：<input type='text' name="chengben_k" id="chengben_k"style="width:100px">
+         </div>
+         <div class="table-toolbar">
+              PT金重：<input type='text' name="style_jinzhong_pt" id="style_jinzhong_pt"style="width:100px">
+              成本价格：<input type='text' name="chengben_pt" id="chengben_pt"style="width:100px">
+          </div>
+        
+         <div class="table-toolbar">
+              足金金重：<input type='text' name="style_jinzhong_zj" id="style_jinzhong_zj"style="width:100px">
+              成本价格：<input type='text' name="chengben_zj" id="chengben_zj"style="width:100px">
+        </div>
+         <div class="table-toolbar">
+              银饰重：<input type='text' name="style_jinzhong_zj" id="style_jinzhong_s"style="width:100px">
+              成本价格：<input type='text' name="chengben_zj" id="chengben_s"style="width:100px">
+        </div>
+        <!-- 表格1 -->
+        <div class="clear"></div>
+    </div>
+</div>
+<%/if%>
+<!--2end-->
+
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>石头信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="price_style_stone_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>款式编号</th>
+						<th>石头位置类型</th>
+						<th>石头类型</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_stone.data item=d%>
+					<tr data-id="rel_style_stone_list_<%$d.id%>">
+						<td align="center"><%$d.id%></td>
+						<td align="center"><%$d.style_sn%></td>
+						<td align="center"><%$d.stone_position%></td>
+						<td align="center"><%$d.stone_cat%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>按款定价信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=style&con=PriceByStyle&act=add&style_id=<%$view->get_style_id()%>" name="添加" title="添加规则" list-id="170" data-title="添加规则">
+                    添加 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm blue" onclick="util.editRel(this);" data-url="index.php?mod=style&con=PriceByStyle&act=edit&_id=<%$view->get_style_id()%>" name="编辑" title="编辑规则" list-id="270" data-title="编辑规则">
+                    编辑 <i class="fa fa-edit"></i>
+                </button>
+            </div>        
+            <div class="btn-group">
+                <button class="btn btn-sm purple" onclick="util.relConfirm(this);" data-url="index.php?mod=style&con=PriceByStyle&act=delete&_id=<%$view->get_style_id()%>" name="作废" title="作废规则" list-id="370" data-title="作废规则">
+                    作废 <i class="fa fa-edit"></i>
+                </button>
+            </div>        
+            <div class="btn-group">
+                <button class="btn btn-sm yellow" onclick="util.relConfirm(this);" data-url="index.php?mod=style&con=PriceByStyle&act=recover&_id=<%$view->get_style_id()%>" name="审核" title="审核规则" list-id="470" data-title="审核规则">
+                    审核 <i class="fa fa-edit"></i>
+                </button>
+            </div>        
+		</div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="price_by_style_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>支持材质</th>
+						<th>石头位置类型</th>
+						<th>石头类型</th>
+						<th>金托类型</th>
+						<th>主石范围</th>
+						<th>主石颜色范围</th>
+						<th>主石净度范围</th>
+						<th>证书类型</th>
+						<th>主石形状</th>
+						<th>款式售价</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_price item=d%>
+					<tr data-id="price_by_style_<%$d.id%>">
+						<td align="center"><%$d.id%></td>
+						<td align="center"><%$dd->getEnum("style.caizhi",$d.caizhi)%></td>
+						<td align="center"><%$stonePosition[$d.stone_position]%></td>
+						<td align="center"><%$stoneCat[$d.stone_cat]%></td>
+						<td align="center"><%$tuoType[$d.tuo_type]%></td>
+						<td align="center"><%$d.zuan_min%> - <%$d.zuan_max%></td>
+						<td align="center"><%$d.zuan_yanse_min%> - <%$d.zuan_yanse_max%></td>
+						<td align="center"><%$d.zuan_jindu_min%> - <%$d.zuan_jindu_max%></td>
+						<td align="center"><%$d.cert%></td>
+						<td align="center"><%$d.zuan_shape%></td>
+						<td align="center"><%$d.price%></td>
+						<td align="center"><%if $d.is_delete eq 0%>正常<%else%>作废<%/if%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--detail end
+ 
+-->
+
+<!--detail2 start-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>工厂信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_style_factory_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>款号</th>
+						<th>生产厂商</th>
+						<th>厂家模号</th>
+						<th>镶口</th>
+						<th>工费</th>
+						<th>是否默认镶口</th>
+						<th>是否默认工厂</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%if !empty($style_factorys.data)%>
+				<%foreach from=$style_factorys.data item=d%>
+					<tr data-id="rel_style_factory_list_<%$d.f_id%>">
+						<td align="center"><%$d.f_id%></td>
+						<td align="center"><%$d.style_sn%></td>
+						<td align="center"><%$d.factory_name|default:''%></td>
+						<td align="center"><%$d.factory_sn%></td>
+						<td align="center"><%$d.xiangkou%></td>
+						<td align="center"><%$d.factory_fee%></td>
+						<td align="center"><%$d.is_def%></td>
+						<td align="center"><%$d.is_factory%></td>
+					</tr>
+				<%/foreach%>
+				<%/if%>
+				</tbody>
+			</table>		
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>相册信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_style_gallery_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>款式编号</th>
+						<th>图片位置</th>
+						<th>图片排序</th>
+						<th>原图 <span style="color:red;">点击查看大图</span></th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_gallery.data item=d%>
+					<tr data-id="base_style_info_search_list_<%$d.g_id%>">
+						<td align="center"><%$d.g_id%></td>
+						<td><%$d.style_sn%></td>
+						<td>
+							<%if isset($imagePlace[$d.image_place])%><%$imagePlace[$d.image_place]['name']%><%else%><%/if%>
+						</td>
+						<td><%$d.img_sort%></td>
+						<td><a class="fancyboximg" href="<%$d.img_ori%>" title="<%if isset($imagePlace[$d.image_place])%><%$imagePlace[$d.image_place]['name']%><%else%><%/if%>"><img src="<%$d.thumb_img%>" width="80" height="80"></a></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>工费信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_app_style_fee_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>款式ID</th>
+						<th>费用类型</th>
+						<th>费用</th>
+						<th>状态</th>
+						<th>用户名</th>
+						<th>创建时间</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_fee.data item=d%>
+					<tr data-id="app_style_fee_list_<%$d.id%>" data-title="<%$d.id%>">
+						<td align="center"><%$d.id%></td>
+						<td align="center"><%$view->get_style_sn()%></td>
+						<td><%$feeTypes[$d.fee_type]%></td>
+						<td align="center"><%$d.price%></td>
+						<td><%if $d.status=='1'%>启用<%/if%><%if $d.status=='2'%>停用<%/if%></td>
+						<td align="center"><%$d.check_user%></td>
+						<td align="center"><%$d.check_time%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+        
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>表面工艺效果图
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="price_app_style_bmgyt_list">
+            <table class="table table-bordered table-striped flip-content">
+                    <tr>
+                        <th>光面+拉砂 <span style="color:red;">点击查看大图</span></th>
+                        <th>光面+磨砂</th>
+                        <th>光面</th>
+                        <th>拉砂</th>
+                        <th>磨砂</th>
+                    </tr>
+                    <tr>
+                        <td><a class="fancyboximg" href="public/img/gm_ls.jpg" title="光面+拉砂"><img style='width:198px; height: 198px;' src="public/img/gm_ls.jpg" /></a></td>
+                        <td><a class="fancyboximg" href="public/img/gm_ms.jpg" title="光面+磨砂"><img style='width:198px; height: 198px;' src="public/img/gm_ms.jpg" /></a></td>
+                        <td><a class="fancyboximg" href="public/img/gm.jpg" title="光面"><img style='width:198px; height: 198px;' src="public/img/gm.jpg" /></a></td>
+                        <td><a class="fancyboximg" href="public/img/ls.jpg" title="拉砂"><img style='width:198px; height: 198px;' src="public/img/ls.jpg" /></a></td>
+                        <td><a class="fancyboximg" href="public/img/ms.jpg" title="磨砂"><img style='width:198px; height: 198px;' src="public/img/ms.jpg" /></a></td>
+                    </tr>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--detail2 end-->
+
+<!--detail3 start-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>日志信息
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="flip-scroll" id="price_base_style_log_search_list">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>操作人</th>
+						<th>操作内容</th>
+						<th>操作时间</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$style_log.data item=d key=key%>
+					<tr data-id="base_style_log_list_<%$d.id%>" data-title="<%$d.id%>">
+						<td><%count($style_log.data)-$key%></td>
+						<td><%$d.create_user%></td>
+						<td><%$d.remark%></td>
+						<td><%$d.create_time%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--detail3 end-->
+<script type="text/javascript">
+<!--
+	util.hover();
+    <%include file = "js/price_by_style_show.js" %>
+//-->
+</script>	
+<!--2end-->

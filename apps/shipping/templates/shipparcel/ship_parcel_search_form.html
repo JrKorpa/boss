@@ -1,0 +1,153 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="ship_parcel_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" class="form-control" placeholder="请输入订单号" value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">调拨单号：</label>
+							<input type="text" name="bill_m_no" class="form-control" placeholder="请输入调拨单号" value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">快递单号：</label>
+							<input type="text" name="express_sn" class="form-control" placeholder="请输入快递单号" value="" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">快递公司：</label>
+							<select class="form-control" tabindex="1" name="express_id">
+							<option value=""></option>
+							<%foreach from=$express item=value%>
+							<option value="<%$value.id%>"><%$value.id%> | <%$value.exp_name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">发货状态：</label>
+							<select class="form-control" tabindex="1" name="send_status">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('order.send_good_status') item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">打印状态：</label>
+							<select class="form-control" tabindex="1" name="is_print">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('confirm') item=value%>
+							<option value="<%$value.name%>"><%$value.label%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">目标展厅：</label>
+							<select class="form-control" tabindex="1" name="company_id">
+							<option value=""></option>
+							<%foreach from=$company_list item=value%>
+							<option value="<%$value.id%>"><%$value.company_sn%> | <%$value.company_name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+                                        <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">添加时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+								<input type="text" class="form-control" name="date_time_s" value="" />
+								<span class="input-group-addon">至</span>
+								<input type="text" class="form-control" name="date_time_e" value="" />
+							</div>
+						</div>
+
+					</div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                            <label class="control-label">发货时间：</label>
+                                                            <div class="input-group date-picker input-daterange" data-date="<%$smarty.now|date_format:"%Y-%m-%d"%>">
+                                                                    <input type="text" class="form-control" name="send_date_time_s" value="" />
+                                                                    <span class="input-group-addon">至</span>
+                                                                    <input type="text" class="form-control" name="send_date_time_e" value="" />
+                                                            </div>
+                                            </div>
+                                        </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">每页记录显示条数：</label>
+							<select class="form-control" tabindex="1" name="page_size">
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+							<option value="200">200</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll table-scrollable" id="ship_parcel_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/ship_parcel_list.js"%>
+//-->
+</script>

@@ -1,0 +1,142 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="material_inventory_search_form">
+			<div class="form-body">
+				<div class="row">
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >款式编号：</label>
+							<input class="form-control" name="style_sn" placeholder="请输入"/>
+						</div>
+					 </div>	
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >款式名称：</label>
+							<input class="form-control" name="style_name" placeholder="请输入"/>
+						</div>
+					 </div>		
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" for="name">货品编号：</label>
+							<input class="form-control" name="goods_sn" placeholder="请输入货号,多个请换行或空格隔开"/>
+						</div>
+					 </div>					 			 				 
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >货品名称：</label>
+							<input class="form-control" name="goods_name" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >供应商：</label>
+							<select class="select2_category form-control" tabindex="1" name="supplier_id">
+								<option value=""></option>
+								<%foreach from=$Processor_list key=k item=value%>
+								<option value="<%$value.id%>"><%$value.code%> | <%$value.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >分类1：</label>
+							<input class="form-control" name="catetory1" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >分类2：</label>
+							<input class="form-control" name="catetory2" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >分类3：</label>
+							<input class="form-control" name="catetory3" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">仓库：</label>
+							<select class="form-control" name="warehouse_id">
+								<option value=""></option>
+								<%foreach from=$view->get_warehouse_list() key=k item=value%>
+								<option value="<%$value.id%>"><%$value.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					 </div>					 
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >货品规格：</label>
+							<input class="form-control" name="goods_spec" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >成本价：</label>
+							<input class="form-control" name="cost" placeholder="请输入"/>
+						</div>
+					 </div>
+					 <div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label" >仅显示数量大于0：</label>
+							<select class="select2_category form-control" tabindex="1" name="number_index" >
+								<option value="1">仅显示数量大于0</option>
+								<option value="2">不限制数量</option>
+							</select>
+						</div>
+					 </div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="button" class="btn blue" onclick="download()"><i class="fa fa-check"></i> 导出</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="material_inventory_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/material_inventory_list.js"%>
+//-->
+</script>

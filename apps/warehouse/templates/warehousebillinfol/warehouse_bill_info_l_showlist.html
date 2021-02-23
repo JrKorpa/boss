@@ -1,0 +1,240 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>货号</th>
+			<th>款号</th>
+			<th>模号</th>
+			<th>饰品分类</th>
+			<th>款式分类</th>
+			<th>主成色</th>
+			<th>主成色重</th>
+			<th>金耗</th>
+			<th>主成色重计价</th>
+			<th>主成色买入单价</th>
+
+			<th>主成色买入成本</th>
+			<th>主成色计价单价</th>
+			<th>主石</th>
+			<th>主石粒数</th>
+			<th>主石重</th>
+			<th>主石重计价</th>
+			<th>主石颜色</th>
+			<th>主石净度</th>
+			<th>主石买入单价</th>
+			<th>主石买入成本</th>
+
+			<th>主石计价单价</th>
+			<th>主石切工</th>
+			<th>主石形状</th>
+			<th>主石包号</th>
+			<th>主石规格</th>
+			<th>副石</th>
+			<th>副石粒数</th>
+			<th>副石重</th>
+			<th>副石重计价</th>
+			<th>副石颜色</th>
+			<th>副石净度</th>
+
+			<th>副石买入单价</th>
+			<th>副石买入成本</th>
+			<th>副石计价单价</th>
+			<th>副石形状</th>
+			<th>副石包号</th>
+			<th>副石规格</th>
+			<th>总重</th>
+			<th>买入工费单价</th>
+			<th>买入工费</th>
+			<th>计价工费</th>
+
+			<th>手寸</th>
+			<th>黄金分类</th>
+			<th>单件成本</th>
+			<th>配件成本</th>
+			<th>配件金重</th>
+			<%if $isViewChengbenjia%><th>其他成本</th>
+			<th>成本价</th>
+			<th>计价成本</th>
+			<th>加价率</th><%/if%>
+		
+			<th>最新零售价</th>
+			<th>品牌</th>
+                        <!--<th>裸钻证书类型</th>-->
+			<th>长度</th>
+			<th>证书号</th>
+			<!--<th>GEMX证书号</th>-->
+			<th>颜色</th>
+			<th>净度</th>
+			<th>配件数量</th>
+			<th>国际证书</th>
+			<th>证书类别</th>
+			<th>名称</th>
+			<th>订单号</th>
+			<th>石2</th>
+
+			<th>石2粒数</th>
+			<th>石2重</th>
+			<th>石2重计价</th>
+			<th>石2买入单价</th>
+			<th>石2买入成本</th>
+			<th>石2计价单价</th>
+            <th>石2包号</th>
+			<th>切工</th>
+			<th>抛光</th>
+			<th>对称</th>
+			<th>荧光</th>
+
+            <th>石3</th>
+            <th>石3粒数</th>
+            <th>石3重</th>
+            <th>石3重计价</th>
+            <th>石3买入单价</th>
+            <th>石3买入成本</th>
+            <th>石3计价单价</th>
+            <th>石3包号</th>
+
+			<th>布产号</th>
+			<th>销售成本</th>
+			<th>钻石折扣</th>
+			<th>证书2</th>
+			<th>裸钻国际报价</th>
+			<th>工厂成本</th>
+			<th>成品|空托</th>
+			<th>GEMX证书号</th>
+			<th>戒托实际镶口</th>
+			<th>主石条码</th>
+			<th>(主石)彩站颜色分级</th>
+            <th>供应商货品条码</th>
+			<th>裸钻证书类型</th>
+			<th>生产跟单费用</th>
+            <th>证书费用</th>
+			<th>基础工费</th>
+			<th>备货绑定订单号</th>
+			<%if $smarty.const.SYS_SCOPE eq 'zhanting'%><th>展厅标签价</th><%/if%>
+			<th>国检总重</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d%>
+		<tr data-id="purchase_type_list_<%$d.id%>">
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.mo_sn%></td>
+			<td><%$d.product_type%></td>
+			<td><%$d.cat_type%></td>
+			<td><%$d.caizhi%></td>
+			<td><%$d.jinzhong%></td>
+			<td><%$d.jinhao%></td>
+			<td><%$d.zhuchengsezhongjijia%></td>
+			<td><%$d.zhuchengsemairudanjia%></td>
+			<td><%$d.zhuchengsemairuchengben%></td>
+			<td><%$d.zhuchengsejijiadanjia%></td>
+
+			<td><%$d.zhushi%></td>
+			<td><%$d.zhushilishu%></td>
+			<td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhushizhongjijia%></td>
+			<td><%$d.zhushiyanse%></td>
+
+			<td><%$d.zhushijingdu%></td>
+			<td><%$d.zhushimairudanjia%></td>
+			<td><%$d.zhushimairuchengben%></td>
+			<td><%$d.zhushijijiadanjia%></td>
+			<td><%$d.zhushiqiegong%></td>
+
+			<td><%$d.zhushixingzhuang%></td>
+			<td><%$d.zhushibaohao%></td>
+			<td><%$d.zhushiguige%></td>
+			<td><%$d.fushi%></td>
+			<td><%$d.fushilishu%></td>
+
+			<td><%$d.fushizhong%></td>
+			<td><%$d.fushizhongjijia%></td>
+			<td><%$d.fushiyanse%></td>
+			<td><%$d.fushijingdu%></td>
+			<td><%$d.fushimairudanjia%></td>
+			<td><%$d.fushimairuchengben%></td>
+
+			<td><%$d.fushijijiadanjia%></td>
+			<td><%$d.fushixingzhuang%></td>
+			<td><%$d.fushibaohao%></td>
+			<td><%$d.fushiguige%></td>
+			<td><%$d.zongzhong%></td>
+
+			<td><%$d.mairugongfeidanjia%></td>
+			<td><%$d.mairugongfei%></td>
+			<td><%$d.jijiagongfei%></td>
+			<td><%$d.shoucun%></td>
+			<td><%$d.ziyin%></td>
+
+			<td><%$d.danjianchengben%></td>
+			<td><%$d.peijianchengben%></td>
+			<td><%$d.peijianjinchong%></td>
+			<%if $isViewChengbenjia%><td><%$d.qitachengben%></td>
+			<td><%$d.yuanshichengbenjia%></td>
+			<td><%$d.mingyichengben%></td>
+			<td><%$d.jiajialv%></td><%/if%>
+			
+			<td><%$d.zuixinlingshoujia%></td>
+			<td><%$d.pinpai%></td>
+			<td><%$d.changdu%></td>
+			<td><%$d.zhengshuhao%></td>
+			<td><%$d.yanse%></td>
+			<td><%$d.jingdu%></td>
+			<td><%$d.peijianshuliang%></td>
+			<td><%$d.guojizhengshu%></td>
+			<td><%$d.zhengshuleibie%></td>
+			<td><%$d.goods_name%></td>
+			<td><%$d.kela_order_sn%></td>
+                        <!--<td><%$d.luozuanzhengshu%></td>
+			<td><%$d.zhengshuhao2%></td>-->
+			
+			<td><%$d.shi2%></td>
+			<td><%$d.shi2lishu%></td>
+			<td><%$d.shi2zhong%></td>
+
+			<td><%$d.shi2zhongjijia%></td>
+			<td><%$d.shi2mairudanjia%></td>
+			<td><%$d.shi2mairuchengben%></td>
+			<td><%$d.shi2jijiadanjia%></td>
+            <td><%$d.shi2baohao%></td>
+			<td><%$d.qiegong%></td>
+
+			<td><%$d.paoguang%></td>
+			<td><%$d.duichen%></td>
+			<td><%$d.yingguang%></td>
+
+            <td><%$d.shi3%></td>
+            <td><%$d.shi3lishu%></td>
+            <td><%$d.shi3zhong%></td>
+            <td><%$d.shi3zhongjijia%></td>
+            <td><%$d.shi3mairudanjia%></td>
+            <td><%$d.shi3mairuchengben%></td>
+            <td><%$d.shi3jijiadanjia%></td>
+            <td><%$d.shi3baohao%></td>
+            
+			<td><%$d.buchan_sn%></td>
+			<td><%$d.mingyichengben%></td>
+			<td><%$d.zuanshizhekou%></td>
+			<td><%$d.zhengshuhao2%></td>
+			<td><%$d.guojibaojia%></td>
+			<td><%$d.gongchangchengben%></td>
+			<td><%if $d.tuo_type==1%>成品<%elseif $d.tuo_type==2%>空托女戒<%elseif $d.tuo_type==3%>空托<%/if%></td>
+			<td><%$d.gemx_zhengshu%></td>
+			<td><%$d.jietuoxiangkou%></td>
+			<td><%$d.zhushitiaoma%></td>
+			<td><%$d.color_grade%></td>
+            <td><%$d.supplier_code%></td>
+			<td><%$d.luozuanzhengshu%></td>
+			<td><%$d.with_fee%></td>
+            <td><%$d.certificate_fee%></td>
+			<td><%$d.operations_fee%></td>
+            <td><%$d.bind_order_sn%></td>
+
+			<%if $smarty.const.SYS_SCOPE eq 'zhanting'%><td><%$d.label_price%></td><%/if%>
+			<td><%$d.guojian_wgt%></td>
+
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

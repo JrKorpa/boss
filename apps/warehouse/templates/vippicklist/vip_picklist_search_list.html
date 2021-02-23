@@ -1,0 +1,74 @@
+<!-- <div class="flip-scroll"> -->
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th><input type="checkbox" class="group-checkable" data-set="#vip_picklist_search_list .checkboxes" /></th>
+				<th>VIP<br/>拣货单编号</th>
+                <th>VIP<br/>PO单编号</th>
+                <th>VIP<br/>合作模式</th>
+				<th>VIP<br/>送货仓库</th>
+                <th>VIP<br/>订单类别</th>
+                <th>BOSS/VIP<br/>拣货数量</th>
+				<th>VIP<br/>创建时间</th>
+                <th>VIP<br/>出库状态</th>								
+                <th>VIP<br/>发货数</th>
+				<th>BOSS<br/>捡货状态</th>						
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="picklist_<%str_replace('-','NN',$d.pick_no)%>" data-title="拣货单详情">			
+			    <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.pick_no%>" /></td>
+				<td>
+				<a href="javascript:;" class="tab-con-a" data-title="拣货单详情" data-id="vippicklist-<%str_replace('-','NN',$d.pick_no)%>" data-url="index.php?mod=warehouse&con=VipPickList&act=show&id=<%$d.pick_no%>"><%$d.pick_no%></a>	
+				</td>
+                <td><%$d.po_no%></td>
+                <td><%$pickDetailsView->getCoModeName($d.co_mode)|default:""%></td>
+				<td><%$pickDetailsView->getWarehouseName($d.sell_site)|default:""%></td>
+                <td><%$pickDetailsView->getOrderCateName($d.order_cate)|default:""%></td>
+                <td><%$d.boss_pick_num%>/<%$d.pick_num%></td>
+                <td><%$d.create_time%></td>				
+				<td><%$pickDetailsView->getDeliveryStatusName($d.delivery_status)|default:""%></td>				
+				<td><%$d.delivery_num%></td>
+				<td><%if $d.boss_pick_status==1%><b>已完成</b><%else%>未完成<%/if%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    var test = $("#vip_picklist_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+            test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#vip_picklist_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+            var checked = $(this).is(":checked");
+            $(set).each(function () {
+                    if (checked) {
+                            $(this).attr("checked", true);
+                            $(this).parents('tr').addClass("active");
+                    } else {
+                            $(this).attr("checked", false);
+                            $(this).parents('tr').removeClass("active");
+                    }
+            });
+            $.uniform.update(set);
+    });
+    $('#vip_picklist_search_list').on('change', 'tbody tr .checkboxes', function(){
+            $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

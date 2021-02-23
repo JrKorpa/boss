@@ -1,0 +1,142 @@
+<div class="portlet-body form"> 
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="rel_cat_attribute_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">产品线：</label>
+						<select class="select2_category form-control" tabindex="1" name="product_type_id">
+							<option value=""></option>
+							<%foreach from=$viewproduct->getProductTree(false) item=p %>
+							<option value="<%$p.id%>" <%if $view->get_product_type_id()==$p.id%>selected="selected"<%/if%>>
+							<%$p.tname%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">分类名称：</label>
+						<select class="select2_category form-control" tabindex="1" name="cat_type_id">
+							<option value=""></option>
+							<%foreach from=$viewcat->getCatTree(false) item=p %>
+							<option value="<%$p.id%>" <%if $view->get_cat_type_id()==$p.id%>selected="selected"<%/if%>>
+							<%$p.tname%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">属性名称：</label>
+						<select class="select2_category form-control" tabindex="2" name="attribute_id">
+							<option value=""></option>
+							<%foreach from=$attribute_data key=key item=value%>
+							<option value="<%$key%>" <%if $key==$view->get_attribute_id()%>selected<%/if%> >
+							<%$value%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">属性类型：</label>
+						<select class="select2_category form-control" tabindex="2" name="attr_type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray("rel_cat_attribute.attr_type") key=key item=value%>
+							<option value="<%$value.name%>" <%if $value.name==$view->get_attr_type()%>selected<%/if%> >
+							<%$value.label%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">是否显示：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_show" <%if $view->get_is_show()==$value.name or ($view->get_is_show()=="" and $k==0)%>
+									checked="checked"<%/if%> value="<%$value.name%>" />
+								<%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">是否默认：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_default" <%if $view->get_is_default()==$value.name or ($view->get_is_default()=="" and $k==0)%>
+									checked="checked"<%/if%> value="<%$value.name%>" />
+								<%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">是否必填：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("confirm") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_require" <%if $view->get_is_require()==$value.name or ($view->get_is_require()=="" and $k==0)%>
+									checked="checked"<%/if%> value="<%$value.name%>" />
+								<%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("is_enabled") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="status" <%if $view->get_status()==$value.name or ($view->get_status()=="" and $k==0)%>
+									checked="checked"<%/if%> value="<%$value.name%>" />
+								<%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<textarea class="form-control" name="info" rows="3"><%$view->get_info()%>
+						</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_rel_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM--> 
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/rel_cat_attribute_info.js"%>
+//-->
+</script>

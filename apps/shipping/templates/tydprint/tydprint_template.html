@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打印快递单</title>
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: 宋体;
+	font-size: 18px;
+	font-family: "微软雅黑";
+}
+/* 打印，再次元素之后进行分页 */
+.PageNext{page-break-after: always;}
+-->
+
+
+<!--模板的样式
+	.mybox{
+		width:823px;
+		height:539px;
+		background-image:url(/public/img/bg/dly_sf_express.jpg);
+		margin:0 auto;
+	}
+	.leftmid{
+		width:395px;
+		height:145px;
+		/*border:1px solid #F00;*/
+		float:left;
+		margin-top:180px;
+		padding-top:18px;
+	}
+	.line{
+		width:395px;
+		height:32px;
+		float:left;
+		padding-top:10px;
+		
+	}
+	.companyname{
+		width:250px;
+		height:20px;
+		line-height:20px;
+		float:left;
+		padding-left:60px;
+		/*color:#F00;*/
+	}
+	.contact_user{
+		width:155px;
+		height:20px;
+		line-height:20px;
+		padding-left:285px;		
+	}
+	.address{
+		width:358px;
+		height:45px;
+		float:left;
+		padding-left:50px;
+	}
+	
+	
+	.linetwo{
+		width:395px;
+		height:20px;
+		float:left;
+	}
+	.area,.tel,.mobile{float:left;height:30px; font-size:20px;}
+	/*区号*/
+	.area{
+		width:85px;
+		padding-left:80px;
+	}
+	/*固定电话*/
+	.tel{
+		width:190px;
+		height:20px;
+		float:left;
+		padding-left:50px;
+		padding-top:5px;
+		margin-top:10px;
+		line-height:20px; 
+	}
+	
+	.rightmid
+	{
+		width:400px;
+		height:295px;
+		float:left;
+		/*border:1px solid #F00;*/
+		margin-top:140px;
+	}
+
+	.qianming{
+		width:385px;
+		height:30px;
+		margin-top:170px;
+		padding-left:50px;
+		float:left;
+		text-align:left;
+	}
+	.detail{
+		width:353px;
+		height:135px;
+		float:left;
+		padding-left:110px;
+		padding-top:239px;
+	}
+-->
+</style>
+<!-- 新顺丰快递样式  -->
+<%if (!empty($express_id)&&($express_id==4||$express_id==18))%>
+<style type="text/css">
+*{padding:0;margin:0;list-style: none;font-family: "黑体";font-size:14px;}
+	ul{padding:0;margin:0;}
+	.main{width:98%;margin:0px auto;border:1px solid red;}
+	.bdb{border-bottom: 1px solid #ccc;}
+	.bdr{border-right: 1px solid #ccc;}
+	.main>div{overflow: hidden;width: 100%; /*display: flex;align-items: center;justify-content: center;*/}
+	.logo{width:100%;font-weight: bold;vertical-align: top;-webkit-transform-origin-x: 0;transform: scale(0.82);word-break:keep-all;}
+	.top2{padding: 3px 3px;border-bottom: 1px solid #ccc;box-sizing:border-box;}
+    .top2 .boxr{width:25%;height:100%;float:right;font-size:10pt;border-left: 1px solid #ccc}
+	.top3 .topa, .top4 .topa, .top5 .topa,.top6 .topa,.top9 .topa,.top10 .topa{width:6%;height:90%;text-align:center;display:inline-block;border-right: 1px solid #ccc;font-size:12px;box-sizing: border-box;}
+	
+	.top3 .topb{width:90%;display:inline-block;font-size:36pt;vertical-align: top;line-height: 14mm;}
+    
+    .top4 .topa{width:6%;height:90%;text-align:center;display:inline-block;border-right: 1px solid #ccc;font-size:18pt;box-sizing: border-box;}    
+	.top4 .topb{width:80%;display:inline-block;font-size:9pt;font-weight: bold;vertical-align: top;}
+    
+	.top5 .topb{width:90%;display:inline-block;font-size:7pt;font-weight: bold;vertical-align: top;-webkit-transform-origin-x: 0;transform: scale(0.82);word-break:keep-all;}
+	
+	.top6 .boxl{width:100%;height:100%;float: left;}
+	.top6 .boxl .boxa{height:10mm;overflow: hidden;box-sizing:border-box;}
+	.top6 .boxl .boxa ul li{float:left;padding:0;margin:0;}
+	.top6 .boxl .boxa ul li span{display:block;font-size: 10px;line-height:12px; -webkit-transform-origin-x: 0;transform: scale(0.8);word-break:keep-all; }	
+	.top6 .boxl .boxa ul li.li1{width:40%;}
+	.top6 .boxl .boxa ul li.li2{width:20%;}
+	.top6 .boxl .boxa ul li.li3{width:96% !important;}
+	.top6 .boxl .boxb{height:12mm;display: flex;align-items: center;overflow: hidden;width:100%;}
+	.top6 .boxl .boxb .topb{display: inline-block;width:50%;font-size:8pt;vertical-align: top;height:12mm;box-sizing:border-box;}
+	.top6 .boxl .boxb .topc{display: inline-block;width:40%;font-size: 8pt;vertical-align: top;
+	  -webkit-transform-origin-x: 0;transform: scale(0.8);}
+	.top6 .boxr{width:18%;height:100%;float:right;font-size:8pt;}
+	
+	.top8 .topa{width:40%;height:100%;float:left;border-right: 1px solid #ccc;padding-top:1mm;}
+    .top8 .topb{width:30%;height:100%;float:left;border-right: 1px solid #ccc;padding-top:1mm;}
+    .top8 .topc{width:20%;height:100%;float:left;padding-top:1mm;}       
+	.top9 .topb,.top10 .topb{width:90%;display:inline-block;font-size:6pt;vertical-align: top;}
+	.main .top11{min-height: 50px;font-size:8pt;}
+	
+	/*.main{width: 100mm;}*/
+	.logo{height: 10mm;}
+	.top2{height: 13mm;padding-left:5mm;}
+	.top3{height: 14mm;}
+	.top4{height: 17mm;}
+	.top5{height: 12mm;}
+	.top6{height: 16mm;}
+	
+	.top8{height: 32mm;padding-top:1mm;padding-left:1mm;border-top: 2px solid #ccc;box-sizing:border-box;}
+
+	.top11{height: 2mm;}
+</style>
+<%/if%>
+
+<%if (!empty($express_id)&&($express_id==19))%>
+<style type="text/css">
+        *{padding:0;margin:0;box-sizing: border-box;font-family: "黑体";}
+        .fl{float: left;}
+        .fr{float:right;}
+        .bdb{border-bottom: 1px solid #ccc;}
+        .bdr{border-right: 1px solid #ccc;}
+        .bdl{border-left: 1px solid #ccc;}
+        .clear{clear: both;}
+
+        .main{width:100mm;height:auto;border:1mm solid #3a3535;box-sizing:border-box;margin:0px auto;overflow: hidden;}
+
+        .box1{width:100%;height:9mm;}
+        .box1_a{width:30mm;height:100%;}
+        .box1_b{width:24mm;height:100%;font-size: 12pt;text-align: right;line-height: 9mm;}
+
+        .box2{width:100%;height:15mm;font-size: 24pt;text-align: center;line-height: 15mm;font-weight: bold;}
+
+        .box3{width:100%;height:10mm;}
+        .box3_a{width:74mm;height:100%;font-size: 16pt;text-align: center;line-height:10mm;}
+        .box3_b{width:24mm;height:100%;font-size: 5pt;text-align: center;line-height:10mm;}
+
+        .box4{}
+        .box4_w1{width:5mm;}
+        .box4_a{width:100%;height:18mm;padding-top:3mm;}
+        .box4_b{width:100%;height:12mm;padding-top:1mm;}
+        .box4_w2{width:69mm;}
+        .box4_c{width:100%;height:18mm;padding:5px;font-size: 8pt;;}
+        .box4_d{width:100%;height:12mm;padding:0 5px;font-size: 6pt;}
+        .box4_w3{width:24mm;}
+        .box4_e{width:100%;height:5mm;font-size: 5pt;text-align: center;}
+        .box4_f{width:100%;height:25mm;font-size: 5pt;}
+
+        .box5{width:100%;height:25mm;text-align:center;}
+
+        .box6{width:100%;height:19mm;}
+        .box6_a{width:54mm;height:100%;font-size: 6pt;}
+        .box6_b{width:44mm;height:100%;font-size: 8pt;}
+
+        .line2{width:100%;height:0;border-bottom: 1mm solid #3a3535;}
+        .box7{width:100%;height:14mm;}
+        .box7_a{width:30mm;height:100%;padding-top:5px;padding-left:5px;}
+        .box7_b{width:68mm;height:100%;text-align: center;padding-top:3px;}
+
+        .box8{width:100%;height:12mm;}
+        .box8_a{width:5mm;height:100%;}
+        .box8_b{width:93mm;height:100%;font-size: 8pt;}
+
+        .box9{width:100%;height:12mm;}
+        .box9_a{width:5mm;height:100%;}
+        .box9_b{width:93mm;height:100%;font-size: 8pt;}
+        
+        .box10{width:100%;height:30mm;}
+        .box10_a{width:74mm;height:100%;font-size: 8pt;}
+        .box10_b{width:24mm;height:100%;font-size: 16pt;text-align: center; center;padding-top:15mm;}
+</style>
+<%/if%>
+
+
+
+<script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+printorder_follow('');
+function printorder_follow(exp_id_list){
+	var id = '<%$id|default:0%>';
+	window.print();
+	/*$.get('index.php?mod=shipping&con=Tydprint&act=changePrintStatus&status=1&id='+id,'',function(ret){
+		if(ret.success == 1){
+			window.print();
+		}else{
+			alert("更改打印状态程序异常");
+		}
+	})
+	*/
+	
+}
+function UpdatePrintStatus(){
+	var id = '<%$ids|default:0%>';
+	window.print();
+	/*$.get('index.php?mod=shipping&con=Tydprint&act=changePrintStatus&status=1&id='+id,'',function(ret){
+		if(ret.success == 1){
+			window.print();
+		}else{
+			alert("更改打印状态程序异常");
+		}
+	})*/
+	
+}
+</script>
+</head>
+<body>
+<div style="height:50px; display:none;" align="center">
+<input type="button" value="打印快递单" onclick="UpdatePrintStatus()" style="width:130px; height:30px; font-size:20px; font-weight:bold; cursor:pointer;" />
+
+</div>
+<%foreach from=$data item=v%>
+<%if (empty($express_id))%>
+<div style="width:823px;height:539px;
+background-image:url(/public/img/bg/dly_sf_express.jpg);margin:0 auto; margin-bottom:20px;">
+    <!-- 只需要： 体验店名称、联络人、地址、电话，寄件人   -->
+    <div class="leftmid">
+        <div class="line">
+            <div class="companyname"><%$v.accepter_company%></div>
+            <div class="contact_user"><%$v.acceptername%></div>
+        </div>
+        <div class="address"><%$v.accepter_address%></div>
+        <div class="linetwo">
+            <div class="tel"><%$v.acceptermobile%></div>
+        </div>
+		<div class="qianming"><%$peoplename%></div>
+    </div>
+    <div class="rightmid">
+       
+        <div class="detail">
+            转寄协议客户，必须本人签收!
+        </div>
+    </div>
+</div>
+<%/if%>
+<!-- 新顺丰快递模板  -->
+
+
+<%if (!empty($express_id)&&($express_id==4 || $express_id==18))%>
+<div class="main">
+    <div class="logo bdb">
+        <center>打印时间<br><%date("Y-m-d H:i")%></center>
+    </div>
+    <div class="top2 bdb" >
+       <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"   width="250px" height="45px">
+        <div class="boxr">
+        
+        <%if $v.express_type eq '2' %>
+           <%if $v.detail.proCode=='T1' || $v.detail.proCode=='T2' || $v.detail.proCode=='T4' || $v.detail.proCode=='T6' || $v.detail.proCode=='T8' || $v.detail.proCode=='T9' %>  
+              <img src='/public/img/bg/<%$v.detail.proCode%>.png' height='40' width='40'/> 
+           <%/if%>
+           <%if empty($v.detail.proCode) %>顺丰隔日 <%/if%>    
+        <%/if%>       
+        <%if $v.express_type eq '1' %>
+           <%if $v.detail.proCode=='T1' || $v.detail.proCode=='T2' || $v.detail.proCode=='T4' || $v.detail.proCode=='T6' || $v.detail.proCode=='T8' || $v.detail.proCode=='T9' %>  
+              <img src='/public/img/bg/<%$v.detail.proCode%>.png' height='40' width='40'/> 
+           <%/if%>
+           <%if empty($v.detail.proCode) %>顺丰次日 <%/if%>          
+        <%/if%>
+        </div>       
+    </div>
+    <div class="top3 bdb">
+        <div class="topa">&nbsp;</div>
+        <div class="topb">
+            <%$v.detail.destRouteLabel %>
+        </div>
+    </div>
+    <div class="top4 bdb">
+        <div class="topa">收</div>
+        <div class="topb">
+          <%$v.acceptername %> &nbsp;&nbsp; <%$v.acceptermobile %></br>
+          <span><%$v.accepter_address%></span>
+        </div>
+       
+    </div>
+    <div class="top8 bdb">
+        <div class="topa">
+             <div style="width:'100%';box-sizing:border-box;"><%if ($express_id==18)%>到方付<%else%>寄方月结<%/if%></div>
+             <div style="width:'100%';font-size:40pt;vertical-align: top;border-top: 1px solid #ccc;overflow: hidden;box-sizing:border-box;"><%$v.detail.codingMapping %></div>
+             <div style="width:'100%';font-size:24pt;vertical-align: top;border-top: 1px solid #ccc;"><%$v.detail.sourceTransferCode %></div>
+        </div>    
+        <div class="topb" style="float:left">  
+        <img src="http://bardcode.kela.cn/qrcode.php?code=<%$v.detail.twoDimensionCode%>"   width="120px" height="120px">
+        </div>
+         <div class="" style="    font-size: 25pt;width: 9%;float:left;height: 100%;border-right: 1px solid #ccc;">
+            已验视
+        </div>
+        <div class="topc" style="float:left">
+            <div style="    text-align: center;font-size: 40pt;"><%$v.detail.abFlag %>&nbsp;</div>
+            <div style="text-align: center;border-top:1px solid;    font-size: 30pt; "><%$v.detail.codingMappingOut%></div>
+
+        </div>
+    </div>
+
+    <div class="top5 bdb">
+        <div class="topa">寄</div>
+        <div class="topb">
+        <%$smarty.const.EXPRESS_J_CONTACT%> <%$smarty.const.EXPRESS_J_TEL %><%$smarty.const.EXPRESS_J_ADDRESS%>
+        </div>
+    </div>
+    <div class="top6 bdb">
+        <div class="boxl bdr">
+           
+                <ul><!-- 声明价值 保价费用 包装费用 定时推送 第三方地区 全部删除 -->
+                    <li class="li1"><span>增值服务：</span></li>
+                    
+                    <li class="li3"><span>托寄物:饰品</span> </li>
+                    <li class="li1" style="display: inline-block;"><span>计费重量:</span></li>
+                    <li class="li2"style=" padding-left: 20px;   display: inline-block;"><span>实际重量:</span></li>
+                    <li class="li2"style="  padding-left: 20px;  display: inline-block;"><span>费用合计:</span></li>
+                </ul>
+           
+        </div>
+       
+    </div>
+
+
+ 
+    <div class="top11 ">
+     备注:&nbsp;&nbsp; <%$smarty.const.EXPRESS_SF_REMARK%>
+    </div>
+</div>
+<%/if%>
+
+<%if (!empty($express_id)&&($express_id==180))%>
+<div class="main">
+    <div class="logo bdb">
+        
+    </div>
+    <div class="top2 bdb" >
+       <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"   width="150px" height="45px">
+        <div class="boxr">
+        <%if $v.express_type==2 %>顺丰隔日<%/if%>
+        <%if $v.express_type==1 %>顺丰次日<%/if%>
+        </div>       
+    </div>
+    <div class="top3 bdb">
+        <div class="topa">目<br/>的<br/>地</div>
+        <div class="topb">
+             <%$v.destcode %>
+        </div>
+    </div>
+    <div class="top4 bdb">
+        <div class="topa">收<br/>件<br/>人</div>
+        <div class="topb">
+          <%$v.acceptername %> &nbsp;&nbsp; <%$v.acceptermobile %></br>
+          <span><%$v.accepter_address%></span>
+        </div>
+    </div>
+    <div class="top5 bdb">
+        <div class="topa">寄<br/>件<br/>人</div>
+        <div class="topb">
+        <%$smarty.const.EXPRESS_J_CONTACT%> <%$smarty.const.EXPRESS_J_TEL %><%$smarty.const.EXPRESS_J_ADDRESS%>
+        </div>
+    </div>
+    <div class="top6 bdb">
+        <div class="boxl bdr">
+            <div class="boxa bdb">
+                <ul><!-- 声明价值 保价费用 包装费用 定时推送 第三方地区 全部删除 -->
+                    <li class="li1"><span>付款方式:<%if ($express_id==18)%>到方付<%else%>寄方月结<%/if%></span></li>
+                    <li class="li2"><span>计费重量:</span></li>                    
+                    <li class="li2"><span>运费:</span></li>                    
+                    <li class="li2"><span>费用合计:</span></li>
+                    <li class="li3"><span><%if ($express_id!=18) %>月结账号:<%$smarty.const.EXPRESS_SF_YUEJIEZHANGHAO%><%/if%></span> </li>
+                    <li class="li1"><span>件数:</span></li>
+                </ul>
+            </div>
+            <div class="boxb">
+                <div class="topa ">拖<br/>寄<br/>物</div>
+                <div class="topb bdr"><%$smarty.const.EXPRESS_GOODS_NAME%></div>
+                <div class="topc ">
+                	收件员:</br>
+         			寄件日期:</br>
+         			派件员:</br>
+                </div>
+            </div>
+        </div>
+        <div class="boxr">
+		签名：
+        </div>
+    </div>
+
+    <div class="top8 bdb">
+        <div class="boxr">
+         <img src="./public/img/SFLOGO.png" height="20px">
+         <img src="./public/img/95338.png" height="20px">
+        </div>    	
+		 <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="150px" height="45px">
+    </div>
+    <div class="top9 bdb">
+        <div class="topa">寄<br/>件<br/>人</div>
+        <div class="topb">
+           <%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;<%$smarty.const.EXPRESS_J_TEL %></br>
+       	   <span> <%$smarty.const.EXPRESS_J_ADDRESS%></span>
+        </div>
+    </div>
+    <div class="top10 bdb">
+        <div class="topa">收<br/>件<br/>人</div>
+        <div class="topb">
+          <%$v.acceptername %> &nbsp;&nbsp; <%$v.acceptermobile %></br>
+          <span><%$v.accepter_address%></span>
+        </div>
+    </div>
+    <div class="top11 ">
+   	 备注:&nbsp;&nbsp; <%$smarty.const.EXPRESS_SF_REMARK%>
+    </div>
+</div>
+<%/if%>
+
+
+<%if (!empty($express_id)&&($express_id==19))%>
+    <div class="main">
+        <div class="box1 bdb">
+            <div class="box1_a fl "></div>
+            <div class="box1_b fr ">标准面单</div>
+        </div>
+        <div class="box2 bdb ">
+            <%$v.datoubi %>
+        </div>
+        <div class="box3 bdb">
+            <div class="box3_a fl bdr "><%$v.destcode%></div>
+            <div class="box3_b fr "><%date("Y-m-d")%></div>
+        </div>
+        <div class="box4 bdb">
+            <div class="box4_w1 bdb fl">
+                <div class="box4_a bdb ">收件</div>
+                <div class="box4_b ">寄件</div>
+            </div>
+            <div class="box4_w2 bdb fl">
+                <div class="box4_c bdl bdb ">
+                    <p><%$v.acceptername %>  <%$v.acceptermobile %></p>
+                    <p><%$v.accepter_address%></p>
+                </div>
+                <div class="box4_d bdl ">
+                    <p><%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;<%$smarty.const.EXPRESS_J_TEL %></p>
+                    <p><%$smarty.const.EXPRESS_J_ADDRESS%></p>
+                </div>
+            </div>
+            <div class="box4_w3 bdb fr">
+                <div class="box4_e bdl bdb ">服务</div>
+                <div class="box4_f bdl ">
+                    <p>代收金额:</p>
+                    <p>预约配送:</p>
+                    <p></p>
+                    <p>声明价值:</p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="box5 bdb ">
+            <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="250px" height="80px">
+        </div>
+        <div class="box6 bdb">
+            <div class="box6_a fl bdr ">快件送达收件人地址,经收件人或收件人(寄件人)允许的代收人签字,视为送达。您的签字代表您已验收此包裹,并已确认商品信息无误,包装完好,没有划痕，破损等表面质量问题</div>
+            <div class="box6_b fr ">签收人：</div>
+        </div>
+        <div class="line2"></div>
+        <div class="box7 bdb">
+            <div class="box7_a fl bdr "></div>
+            <div class="box7_b fr ">
+              <img src="http://bardcode.kela.cn/barcode128/barcode.php?code_sn=<%$v.express_no|default:''%>"  style="padding:5px 3px;"  width="180px" height="50px">
+            </div>
+        </div>
+        <div class="box8 bdb">
+            <div class="box8_a fl bdr ">收件</div>
+            <div class="box8_b fr ">
+                    <p><%$v.acceptername %>  <%$v.acceptermobile %></p>
+                    <p><%$v.accepter_address%></p>
+            </div>
+        </div>
+        <div class="box9 bdb">
+            <div class="box9_a fl bdr ">寄件</div>
+            <div class="box9_b fr ">
+                <p><%$smarty.const.EXPRESS_J_CONTACT%> &nbsp;<%$smarty.const.EXPRESS_J_TEL %></p>
+                <p><%$smarty.const.EXPRESS_J_ADDRESS%></p>
+            </div>
+        </div>
+        <div class="box10 bdb">
+          <div class="box10_a  fl bdr ">
+           产品:<%$smarty.const.EXPRESS_GOODS_NAME%><br>
+           备注:<%$smarty.const.EXPRESS_SF_REMARK%></div>
+          <div class="box10_b  fr ">已验视</div>
+        </div>
+    </div>
+<%/if%>
+
+<div class="PageNext"></div>
+<%/foreach%>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>批量下架
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="batch_under_carriage_form">
+			<div class="form-body">
+				<table class="table table-bordered table-striped  flip-content">
+					<tr>
+						<td style='vertical-align: middle;' align="right">
+							请输入货号：
+						</td>
+						<td style='vertical-align: middle;' align="left">
+							<textarea class="form-control" id='ids' name="ids" placeholder="多个货号按回车分隔" style='width:80%;display:inline;' rows="6"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style='vertical-align: middle;' align="center" colspan="2">
+							<button name="carriage" class="btn green"><i class="fa fa-check"></i> 批量下架</button>
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</form>
+		<!-- END FORM-->
+		<div id='num' style="  font-size: 15px;padding: 0 15px;background: #E44;">该批次共下架:<span>0</span></div>
+		<div id='error_list' style='padding: 0 15px 15px 15px;font-size: 15px;'></div>
+	</div>
+</div>
+<!-- 修改明细 end -->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/batch_under_carriage.js"%>
+//-->
+</script>

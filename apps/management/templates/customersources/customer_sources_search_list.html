@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>来源名称</th>
+			<th>来源编码</th>
+			<th>一级分类</th>
+			<th>二级分类</th>
+            <th>分类</th>
+            <th>启用</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="customer_sources_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.source_name%></td>
+			<td><%$d.source_code%></td>
+			<td>
+				<%foreach from=$dd->getEnumArray("sales_channels_class") item=value%>
+				<%if $value.name==$d.source_class%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+			<td>
+				<%foreach from=$dd->getEnumArray("sales_channels_type") item=value%>
+				<%if $value.name==$d.source_type%><%$value.label%><%/if%>
+				<%/foreach%>
+			</td>
+            <td><%$arr[$d.fenlei]%></td>
+            <td><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

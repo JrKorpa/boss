@@ -1,0 +1,58 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="app_style_gallery_info" enctype="multipart/form-data">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">图片路径：</label>
+                        <input type="text" name="img_ori" class="form-control" placeholder="请输入"  value="<%$view->get_img_ori()%>" />
+                    </div>
+                </div>
+                <!--
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">上传图片：</label>
+                        <input type="file" name="img_ori" class="form-control" placeholder="请输入"  value="<%$view->get_img_ori()%>" />
+                    </div>
+                </div>
+                -->
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">图片位置：</label>
+                        <select class="form-control" tabindex="1" name="image_place">
+                            <option value=""></option>
+                            <%foreach from=$view->getImagePlaceList() item=value%>
+                            <option value="<%$value.id%>" <%if $value.id==$view->get_image_place()%>selected="selected"<%/if%>
+                                    ><%$value.name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">图片排序：</label>
+                        <input type="text" name="img_sort" class="form-control" placeholder="请输入"  value="<%if $view->get_img_sort() == ''%>10<%else%><%$view->get_img_sort()%><%/if%>" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_g_id()%>" />
+                <input type="hidden" name="style_id" value="<%if $view->get_style_id()%><%$view->get_style_id()%><%else%><%$style_id%><%/if%>">
+                <input type="hidden" name="_id" value="<%$_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/app_style_gallery_info.js" %>
+//-->
+</script>

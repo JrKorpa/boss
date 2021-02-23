@@ -1,0 +1,50 @@
+<div class="table-scrollable" >
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>登录帐号</th>
+				<th>账户状态</th>
+				<th>员工状态</th>
+				<th>用户类型</th>
+				<th>用户角色</th>
+				<th>特殊身份</th>
+				<th>姓名</th>
+				<th>员工编码</th>
+				<!-- <th>电话</th>
+	 -->			<th>手机</th>
+				<th>邮箱</th>
+                <th>实习期</th>
+				<th>转正日期</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d key=k%>
+			<tr data-id="user_list_<%$d.id%>" data-title="<%$d.account%>(<%$d.real_name%>)" del="<%$d.is_deleted%>">
+				<td><%$d.id%></td>
+				<td ><%$d.account%></td>
+				<td><%$dd->getEnum("is_enabled",$d.is_enabled)%></td>
+				<td><%$dd->getEnum("user.is_on_work",$d.is_on_work)%></td>
+				<td><%$dd->getEnum("user.user_type",$d.user_type)%></td>
+				<td><%$roleArr[$d.role_id]%></td>
+				<td><%if $d.is_warehouse_keeper%>库管<%/if%><%if $d.is_channel_keeper%><%if $d.is_warehouse_keeper%>,<%/if%>渠道操作员<%/if%></td>
+				<td><%$d.real_name%></td>
+				<td><%$d.code%></td>
+				<!-- <td><%$d.phone%></td>
+	 -->			<td><%$d.mobile%></td>
+				<td><%$d.email%></td>
+                <td><span class="glyphicon <%if $d.internship%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></td>
+				<td ><%$d.trun_date%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+	<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

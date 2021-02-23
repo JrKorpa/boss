@@ -1,0 +1,63 @@
+<style type="text/css">
+	.act_info2 img{border-bottom: none}
+	.tsyd_ul{width: 100%;overflow: hidden;margin: 10px auto 30px}
+	.tsyd_ul .row{margin-bottom:15px}
+	.tsyd_ul a{display:block;width:100%;padding: 10px; border:solid 2px #ddd; border-radius: 6px;color:#333;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+	.tsyd_ul a img{width:100%}
+	.tsyd_ul p{width: 100%; overflow: hidden;text-indent:0;font-size: 1em;font-family: "微软雅黑";line-height: 25px;}
+	.tsyd_ul span{float: left; display: inline-block; width:50%;text-indent:0;font-size: .875em;line-height: 25px;font-family: "微软雅黑";}
+   /* .tsyd_ul span.sps{width:100%}*/
+	.tsyd_ul span i{font-size: .75em;padding-left: 10px; color:#999;}
+	@media screen and (max-width: 768px){
+		.tsyd_ul span i{display: block; font-size: .75em;padding-left: 10px; color:#999;}
+	}
+	.tsyd_ul span b{font-size: 1.4em;padding-left: 10px; color:#d7273e;}
+</style>
+</head>
+<body>
+<!--头部-->
+<div id="main">
+	<div class="activity">
+		<div class="act_info2">
+			<div class="tsyd_ul">
+                <div class="table-toolbar">
+                <%$bar%>
+                </div>
+				<%foreach from=$data key=key item=v name=foo%> 
+				  <%if $smarty.foreach.foo.index % 2 == 1%>
+					<div class="row">
+				  <%/if%>	
+						<div class="col-sm-6">
+							<a href="javascript:;" class="tab-con-a" data-title="<%if  $v[0].jumpto==1%>裸钻搜索<%else%>销售商品<%/if%>" data-id="tab-130" data-url="index.php?mod=sales&con=<%if  $v[0].jumpto==1%>DiamondList&act=index&start=<%if  isset($v[0].xiangkou_min)%><%$v[0].xiangkou_min/100%><%else%><%/if%>-<%if isset($v[0].xiangkou_max)%><%$v[0].xiangkou_max/100%><%else%><%/if%>&end=<%if  isset($v[0].add.xiangkou_min)%><%$v[0].add.xiangkou_min/100%><%else%><%/if%>-<%if isset($v[0].add.xiangkou_max)%><%$v[0].add.xiangkou_max/100%><%else%><%/if%>"
+							<%else%>Product&act=index&style_sn=<%$v[0].style_sn%>"
+							<%/if%>>
+								<img src="<%if isset($v[0].pic) && !empty($v[0].pic)%><%$v[0].pic%><%else%><%$v[0].add.pic%><%/if%>">
+								<p><b><%$v[0].style_name%></b></p>
+								<p>
+									<span><%$v[0].style_sn%></span>
+									<span class="sps">18K戒托定制价<b>￥<%$v[0].k_price%></b></span>
+								</p>
+								<p>
+									<span>钻石重量：<%$v[0].carat%>分<i>范围：<%$v[0].xiangkou_min%>-<%$v[0].xiangkou_max%>分</i></span>
+									<span>Pt950戒托定制价<b><%if $v[0].pt_price == 0 || $v[0].pt_price>= 10000%> 不做Pt<%else%>￥<%$v[0].pt_price%><%/if%></b></span>
+								</p>
+								<p>
+									<span><%if isset($v[0].add.style_sn)%><%$v[0].add.style_sn%><%else%><%/if%></span>
+								</p>
+								<p>
+									<span>钻石重量：<%if isset($v[0].add.carat)%><%$v[0].add.carat%><%else%><%/if%>分<i>范围：<%if isset($v[0].add.xiangkou_min)%><%$v[0].add.xiangkou_min%><%else%><%/if%>-<%if isset($v[0].add.xiangkou_max)%><%$v[0].add.xiangkou_max%><%else%><%/if%>分</i></span>
+
+								</p>
+							</a>
+						</div>
+				  <%if $smarty.foreach.foo.index % 2 == 1%>
+					</div>
+				  <%/if%>
+				<%/foreach%>
+			</div>
+		</div>
+	</div>
+</div>
+<!--滑动块-->
+</body>
+</html>

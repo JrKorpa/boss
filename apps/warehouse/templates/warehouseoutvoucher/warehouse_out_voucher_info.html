@@ -1,0 +1,91 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_out_voucher_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">出库单号：</label>
+						<input type="text" name="voucher_outno" class="form-control" placeholder="请输入" value="<%$view->get_id()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单据类型：</label>
+						<input type="text" name="voucher_type" class="form-control" placeholder="请输入" value="<%$view->get_voucher_type()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">货品总数：</label>
+						<input type="text" name="goods_num" class="form-control" placeholder="请输入" value="<%$view->get_goods_num()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">BDD订单号：</label>
+						<input type="text" name="kela_order_sn" class="form-control" placeholder="请输入" value="<%$view->get_kela_order_sn()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">转出仓：</label>
+						<select class="select2_category form-control" tabindex="1" id="warehouse_id" name="warehouse_id">
+								<option value="">请选择</option>
+						<%foreach from=$warehouse_list item=c%>
+								<option value="<%$c.id%>" <%if $view->get_warehouse_id() == $c.id%>selected='selected'<%/if%> >
+								<%$c.name%>
+								</option>
+						<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">转出公司：</label>
+						<select class="select2_category form-control" tabindex="1" id="company_id" name="company_id">
+								<option value="">请选择</option>
+								<%foreach from=$company_list item=c%>
+										<option value="<%$c.id%>" <%if $view->get_company_id() == $c.id%>selected='selected'<%/if%> >
+										<%$c.company_name%>
+										</option>
+								<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">总成本价：</label>
+						<input type="text" name="cost_price" class="form-control" placeholder="请输入" value="<%$view->get_cost_price()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">销售总价：</label>
+						<input type="text" name="sales_price" class="form-control" placeholder="请输入" value="<%$view->get_sales_price()%>" />
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<textarea class="form-control" name="note" rows="2"><%$view->get_note()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_out_voucher_info.js"%>
+//-->
+</script>

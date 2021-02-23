@@ -1,0 +1,105 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">项目名称</td>
+					<td><%$view->get_label()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">项目文件夹</td>
+					<td><%$view->get_code()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">图标</td>
+					<td><i class="fa <%$view->get_icon_by_id($view->get_icon())%>"></i></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">是否启用</td>
+					<td><span class="glyphicon <%if $view->get_is_enabled()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">是否内置</td>
+					<td><span class="glyphicon <%if $view->get_is_system()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--detail start-->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>菜单组
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar1%>
+		</div>
+		<!--搜索开始-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>搜索框
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="expand"></a>
+				</div>
+			</div>
+			<div class="portlet-body form" style="display:none;">
+				<!-- 表单内容 -->
+				<form action="#" class="horizontal-form" method="post" id="menu_group_search_form">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label class="control-label">分组名称：</label>
+									<input type="text" name="label" class="form-control" placeholder="请输入" onBlur="value=value.replace(/[ -~]/g,'')" maxlength="10" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 搜索按钮 -->
+					<div class="form-actions fluid">
+						<div class="col-md-offset-3 col-md-9">
+							<button type="reset" class="btn default">重置</button>
+							<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+						</div>
+					</div>
+				</form>
+				<!-- END FORM-->
+			</div>
+		</div>
+
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="menu_group_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--detail end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/application_show.js"%>
+//-->
+</script>

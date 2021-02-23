@@ -1,0 +1,136 @@
+<div class="table-toolbar">
+<%if isset($row.id) && $row.id != ''%>
+	<div class="btn-group">
+		<button data-title="继续盘点"  data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=ShowBoxPandian" onclick="util.cust(this,ShowBoxPandian);" class="btn btn-sm green" id='jxpd'>
+			继续盘点 <i class="fa fa-plus"></i>
+		</button>
+	</div>
+	<div class="btn-group">
+		<button data-title="开始盘点" data-url="" onclick="util.cust(this,newPandian);" class="btn btn-sm blue"  pandian-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=ShowBoxPandian"id='newpan'>
+			新建盘点单 <i class="fa fa-plus"></i>
+		</button>
+	</div>
+	<div class="btn-group">
+		<button data-title="上一个盘点单"  onclick="util.cust(this,qieBill);" class="btn btn-sm purple"  data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=qiePandian&type=pre&now=">
+			上一个盘点单 <i class="fa fa-step-backward"></i>
+		</button>
+	</div>
+	<div class="btn-group">
+		<button data-title="下一个盘点单" onclick="util.cust(this,qieBill);" class="btn btn-sm btn-info"  data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=qiePandian&type=next&now=">
+			下一个盘点单 <i class="fa fa-step-forward"></i>
+		</button>
+	</div>
+<%else%>
+	<div class="btn-group">
+		<button data-title="新建盘点单"  data-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=CreatePandian" onclick="util.cust(this,createPandian);" class="btn btn-sm red" pandian-url="index.php?mod=warehouse&con=WarehouseBillInfoW&act=ShowBoxPandian">
+			保存盘点单 <i class="fa fa-plus"></i>
+		</button>
+	</div>
+<%/if%>
+<div class="btn-group">
+	<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" data-title="">
+		刷新 <i class="fa fa-refresh"></i>
+	</button>
+</div>
+<div class="btn-group">
+	<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" data-title="">
+		离开 <i class="fa fa-mail-reply"></i>
+	</button>
+</div>
+
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>盘点单 <span id='xilie'></span>
+		</div>
+		<div class="tools">
+			<!-- <a href="javascript:;" class="collapse">
+			</a> -->
+		</div>
+	</div>
+
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_w_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" name="bill_no" class="form-control" value="<%$row.bill_no%>" readonly/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<input type="text" name="create_time" class="form-control" value="<%$row.create_time%>" readonly/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="bill_status" class="form-control" value="<%$dd->getEnum('warehouse.bill_status' , $row.bill_status)%>" readonly/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" name="create_user" class="form-control" value="<%$row.create_user%>" readonly/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品总量：</label>
+						<input type="text" name="goods_num" class="form-control" value="<%$row.goods_num%>" readonly/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">价格总计：</label>
+						<input type="text" name="chengbenjia" class="form-control" value="<%$row.goods_total%>" readonly/>
+					</div>
+				</div>
+				<%if $row.to_warehouse_name != ''%>
+				<div class="col-sm-4" id='warehouse_name'>
+					<div class="form-group">
+						<label class="control-label">仓库：</label>
+						<input type="text" class="form-control" value="<%$row.to_warehouse_name%>" disabled/>
+					</div>
+				</div>
+				<%/if%>
+				<div class="col-sm-4" <%if $row.id%>style='display:none;'<%/if%> id='warehouse_list'>
+					<div class="form-group">
+						<label class="control-label">仓库：</label><span style='color:red'>*</span>
+						<select class="form-control" tabindex="1" name="warehouse" <%if isset($row.to_warehouse_id)%>disabled<%/if%>>
+						<option value=""></option>
+						<%foreach from=$warehouse item=w key=k%>
+						<option value="<%$k%>" <%if isset($row.to_warehouse_id) && $row.to_warehouse_id == $k%>selected<%/if%>><%$w%></option>
+						<%/foreach%>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-8">
+					<div class="form-group">
+						<label class="control-label">备注：</label>
+						<input type="text" name="bill_note" class="form-control" value="<%$row.bill_note%>" <%if isset($row.to_warehouse_id)%>disabled<%/if%>/>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<input type="hidden" name="id" value="<%$row.id%>" />
+
+	</form>
+	<!-- END FORM-->
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_bill_info_w_info.js"%>
+//-->
+</script>

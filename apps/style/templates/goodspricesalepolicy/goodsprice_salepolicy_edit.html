@@ -1,0 +1,54 @@
+	<div class="portlet-body">
+		<!-- 表单内容 -->
+		<form action="" class="horizontal-form" method="post" id="goodsprice_salepolicy_edit">
+			<div class="form-body ">
+			   <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">销售渠道：</label>
+						 <input type="hidden" name="id" value="<%$data.id%>"/>
+						 <input type="text"  disabled="disabled" class="form-control" value="<%$data.channel_name%>"/>
+                    </div>
+				</div>	
+				 <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款号：</label>
+                            <input type="text" disabled="disabled" class="form-control" value="<%$data.style_sn%>"/>
+                        </div>
+				</div>
+             </div>
+
+			<div class="row">
+
+					<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">加价率：</label>
+						<input type="text" name="jiajialv"  id="jiajialv" class="form-control" value="<%$data.jiajialv%>">
+				   </div>
+			   </div>
+			   <div class="col-sm-3">
+				   <div class="form-group">
+						<label class="control-label">固定值：</label>
+						<input type="text" name="sta_value"  id="sta_value" class="form-control" value="<%$data.sta_value%>"/>
+					</div>
+				</div>
+           </div>
+
+            </div>
+            
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default ">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+
+
+<script type="text/javascript">
+<!--
+	<%include file="js/goodsprice_salepolicy_add.js"%>
+//-->
+</script>

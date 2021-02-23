@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>演示：jQuery滑动选取数值范围插件</title>
+<meta name="keywords" content="jquery,滑动" />
+<meta name="description" content="Helloweba文章结合实例演示HTML5、CSS3、jquery、PHP等WEB技术应用。" />
+<link rel="stylesheet" type="text/css" href="http://www.helloweba.com/demo/css/main.css" />
+<style type="text/css">
+.demo{width:600px; margin:60px auto 10px auto}
+#g1,#g2{margin-top:50px}
+</style>
+<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.7.2/jquery.min.js"></script>
+<link rel="stylesheet" href="jquery.range.css">
+<script src="jquery.range.js"></script>
+<script>
+$(function(){
+	$('.single-slider').jRange({
+		from: 0,
+		to: 100,
+		step: 1,
+		scale: [0,25,50,75,100],
+		format: '%s',
+		width: 300,
+		showLabels: true,
+		showScale: true
+	});
+	$('.range-slider').jRange({
+		from: 0,
+		to: 100,
+		step: 1,
+		scale: [0,25,50,75,100],
+		format: '%s',
+		width: 300,
+		showLabels: true,
+		isRange : true
+	});
+	
+	$("#g1").click(function(){
+		var aa = $(".single-slider").val();
+		alert(aa);
+	});
+	$("#g2").click(function(){
+		var aa = $(".range-slider").val();
+		alert(aa);
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="main" style="width:80%">
+	<div class="demo">
+		<input type="hidden" class="single-slider" value="23" />
+		<button id="g1">获取值</button>
+	</div>
+	<div class="demo">
+		<input class="range-slider" type="hidden" value="25,75"/>
+		<button id="g2">获取值</button>
+	</div>
+</div>
+</body>
+</html>

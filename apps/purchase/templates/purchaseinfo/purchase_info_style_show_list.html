@@ -1,0 +1,37 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>产品线</th>
+			<th>款式分类</th>
+			<th>数量</th>
+			<th>备注</th>
+			<th>客户名称</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$data.data key=k item=g %>
+		<tr data-id="purchase_info_show_list_<%$g.id%>" data-title="<%$g.id%>">
+			<td><%$product_list[$g.product_type_id]%></td>
+			<td><%$cat_list[$g.cat_type_id]%></td>
+			<td><%$g.num%></td>
+			<td><%$g.info%></td>
+			<td><%$g.consignee%></td>
+			<td><a href="javascript:showDetail(<%$g.id%>);">查看详情</a></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+function showDetail(id)
+{
+	var url = "index.php?mod=purchase&con=PurchaseGoods&act=show";
+	util._pop(url,{id:id});
+}
+//-->
+</script>

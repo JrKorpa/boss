@@ -1,0 +1,39 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+                <th>公司</th>
+                <th>款式渠道来源</th>
+                <th>商品类型</th>
+                <th>折扣上限</th>
+                <th>折扣下限</th>
+                <th>提成</th>
+                <th>优先级</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="extra_discount_scope_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.id%></td>
+                <td><%$d.dep_name%></td>
+                <td><%$d.style_channel_name%></td>
+                <td><%$dd->getEnum('extra.goods_type',$d.goods_type)%></td>
+                <td><%$d.discount_upper%></td>
+                <td><%$d.discount_floor%></td>
+                <td><%$d.push_money%></td>
+                <td><%$d.priority%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

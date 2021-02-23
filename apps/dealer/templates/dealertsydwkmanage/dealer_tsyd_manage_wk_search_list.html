@@ -1,0 +1,111 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content" id="jxs_profit_order_list">
+		<thead class="flip-content">
+			<tr style="background:#ECECEC" data-id="dealer_tsyd_manage_wk_search_list_<%$d.id%>" data-title="<%$d.id%>">
+				<%if $show_checkbox %>
+				<th><input type="checkbox" class="group-checkable" data-set="#jxs_profit_order_search_list .checkboxes" /></th>
+				<%/if%>
+                <th>客户</th>               
+                <th>状态</th>
+                <th>发货确认</th>
+                <th>单据日期（制单日期）</th>
+                <th>批发销售单号</th>
+                <th>订单号</th>
+                <th>应收款</th>
+                <th>已收款</th>
+                <th>余额</th>               
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list item=d%>
+			<tr>
+                <td><%$d.customer%></td>
+                <td><%$dd->getEnum('warehouse.bill_status',$d.bill_status)%></td>
+                <td><%if $d.confirm_delivery==1%>已确认<%else%>未确认<%/if%></td>
+                <td><%$d.create_time%></td>
+                <td><a href="javascript:;" class="tab-con-a" data-title="<%$d.bill_no%>" data-id="dealertsydmanage-<%$d.bill_no%>" data-url="index.php?mod=warehouse&con=WarehouseBillInfoP&act=show&id=<%$d.id%>"><%$d.bill_no%></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+               
+			</tr>
+			<%foreach from=$d.list item=e%>
+			<tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="javascript:;" class="tab-con-a" data-title="<%$e.order_sn%>" data-id="dealertsydmanage-<%$e.order_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$e.order_sn%>"><%$e.order_sn%></a></td>
+                <td><%$e.receivables%></td>
+                <td><%$e.money_paid%></td>
+                <td><span <%if $e.balance <0 %>style="color:red"<%/if%>><%sprintf("%.2f",$e.balance)%></span></td>
+               
+			</tr>
+        	<%/foreach%>
+        	
+		  <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>小计</td>
+                <td><%sprintf("%.2f",$d.receivablesCount)%></td>
+                <td><%sprintf("%.2f",$d.moneyPaidCount)%></td>
+                <td><span <%if $d.balanceCount <0 %>style="color:red"<%/if%>><%sprintf("%.2f",$d.balanceCount)%></span></td>
+               
+			</tr>
+		<%/foreach%>
+		     <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>总计</td>
+                <td><%sprintf("%.2f",$receivablesCount)%></td>
+                <td><%sprintf("%.2f",$moneyPaidCount)%></td>
+                <td><span <%if $balanceCount <0 %>style="color:red"<%/if%>><%sprintf("%.2f",$balanceCount)%></span></td>
+               
+			</tr>
+		</tbody>
+	</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+util.hover();
+//util.check(util.getItem('listDIV'));
+// 美化复选框
+var test = $("#jxs_profit_order_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+  test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+      $(this).show();
+      $(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#jxs_profit_order_search_list .group-checkable').change(function () {
+ 	  var set = $(this).attr("data-set");
+      var checked = $(this).is(":checked");
+      $(set).each(function () {
+    	  if ($(this).attr('disabled') == 'disabled') return true;
+          if (checked) {
+              $(this).attr("checked", true);
+              $(this).parents('tr').addClass("active");
+          } else {
+              $(this).attr("checked", false);
+              $(this).parents('tr').removeClass("active");
+          }
+      });
+      $.uniform.update(set);
+  });
+  $('#jxs_profit_order_search_list').on('change', 'tbody tr .checkboxes', function(){
+  $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

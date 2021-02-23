@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>会员卡ID</th>
+			<th>本次调整</th>
+			<th>调整类型</th>
+			<th>调整状态</th>
+			<th>发生时间</th>
+			<th>更新时间</th>
+			<th>审核人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="application_list_<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.memeber_id%></td>
+			<td align="center"><%$d.change_step%></td>
+			<td align="center"><%$d.chane_type%></td>
+			<td align="center"><%$d.change_status%></td>
+			<td align="center"><%date('Y-m-d',$d.happen_time)%></td>
+			<td align="center"><%($d.pass_time != 0)?date('Y-m-d',$d.pass_time):'0000-00-00'%></td>
+			<td align="center"><%$d.pass_userid%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

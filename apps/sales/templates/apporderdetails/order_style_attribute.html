@@ -1,0 +1,245 @@
+<!-- 表单内容 -->
+<div class="portlet-body form">
+<div id="ln_order_detail_style_goods_attribute">
+	<form action="" class="horizontal-form" method="post" id="app_order_detail_style_goods_form">
+		<div class="form-body">
+		
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">商品名称：</label>
+						<input type="text" name="goods_name" class="form-control" placeholder="请输入" value="<%$goods_name|default:""%>" <%if !in_array('goods_name',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">款号：</label>
+						<input type="text" name="goods_sn" class="form-control" placeholder="请输入" value="<%$data_attr.data.goods_sn|default:""%>" <%if !in_array('goods_sn',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>				
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">证书号：</label>
+						<input type="text" id="zhengshuhao" name="zhengshuhao" class="form-control" placeholder="请输入" value="<%$data_attr.data.zhengshuhao|default:""%>" <%if !in_array('zhengshuhao',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>						
+						<select class="form-control" id="cert_type" name='cert' <%if !in_array('cert',$edits)%>read-only="true"<%/if%>>
+							<option value="">请选择</option>
+							<%foreach from=$goods_attr.cert_type key=key item=p %>
+							<option value='<%$key%>' <%if $data_attr.data.cert==$p%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>	
+			<div class="row">	
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石单颗重：</label>
+						<input type="text" name="cart" class="form-control" origin-data="<%$data_attr.data.cart|default:'0'%>" placeholder="请输入" value="<%$data_attr.data.cart|default:'0'%>" <%if !in_array('cart',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石粒数：</label>
+						<input type="text" name="zhushi_num" class="form-control" origin-data="<%$data_attr.data.zhushi_num|default:'0'%>" placeholder="请输入" value="<%$data_attr.data.zhushi_num|default:'0'%>" <%if !in_array('zhushi_num',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">主石颜色：</label>
+						<%if !in_array('color',$edits)%><input type="hidden" name="color" value="<%$data_attr.data.color|default:""%>"/><%/if%>
+						<select class="form-control" tabindex="3" name="color" <%if !in_array('color',$edits)%>disabled<%/if%>>
+							 <option value=""></option>
+							<%foreach from=$goods_attr.color item=value%>
+								<option value="<%$value%>" <%if $data_attr.data.color==$value%>selected<%/if%>><%$value%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石净度：</label>
+							<%if !in_array('clarity',$edits)%><input type="hidden" name="clarity" value="<%$data_attr.data.clarity|default:""%>"/><%/if%>
+                            <select class="form-control" tabindex="3" name="clarity" <%if !in_array('clarity',$edits)%>disabled<%/if%>>
+                                <option value=""></option>
+                              <%foreach from=$goods_attr.clarity item=value%>
+								<option value="<%$value%>" <%if $data_attr.data.clarity==$value%>selected<%/if%>><%$value%></option>
+							   <%/foreach%>
+                            </select>
+                        </div>
+				</div>
+				
+			</div>
+
+			<div class="row">				
+                 
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质：</label>
+							<%if !in_array('caizhi',$edits)%><input type="hidden" name="caizhi" value="<%$data_attr.data.caizhi|default:""%>"/><%/if%>
+                            <select class="form-control" tabindex="3" name="caizhi" <%if !in_array('caizhi',$edits)%>disabled<%/if%>>
+                                <option value=""></option>
+								<%foreach from=$goods_attr.caizhi item=value%>
+									<option value="<%$value%>" <%if $data_attr.data.caizhi==$value%>selected<%/if%>><%$value%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                 </div>
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">材质颜色：</label>
+							<%if !in_array('jinse',$edits)%><input type="hidden" name="jinse" value="<%$data_attr.data.jinse|default:""%>"/><%/if%>
+                            <select class="form-control" tabindex="3" name="jinse" <%if !in_array('jinse',$edits)%>disabled<%/if%>>
+							<option value=""></option>
+                               <%foreach from=$goods_attr.jinse item=value%>
+									<option value="<%$value%>" <%if $data_attr.data.jinse==$value%>selected<%/if%>><%$value%></option>
+								<%/foreach%>
+                            </select>
+                        </div>
+                  </div>
+				  <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">镶口：</label>
+						<input type="text" name="xiangkou" class="form-control" placeholder="请输入" value="<%$data_attr.data.xiangkou|default:''%>" <%if !in_array('xiangkou',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">指圈：</label>
+						<input type="text" name="zhiquan" class="form-control" placeholder="请输入" value="<%$data_attr.data.zhiquan|default:''%>" <%if !in_array('zhiquan',$edits)%>readonly<%/if%>/>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">	
+				
+
+				 <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">金重：</label>
+						<input type="text" name="jinzhong" class="form-control" placeholder="请输入"  value="<%$data_attr.data.jinzhong|default:""%>" <%if !in_array('jinzhong',$edits)%>readonly<%/if%>/>
+					</div>
+				 </div>
+				 <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">表面工艺：</label>
+						<%if !in_array('face_work',$edits)%><input type="hidden" name="face_work" value="<%$data_attr.data.face_work|default:""%>"/><%/if%>
+						<select class="form-control" tabindex="3" name="face_work" <%if !in_array('face_work',$edits)%>disabled<%/if%>>
+  							<option value="">请选择</option>
+							<%foreach from=$goods_attr.face_work key=key item=p %>
+							<option value='<%$key%>'><%$p%></option>
+							<%/foreach%>
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">镶嵌要求：</label>
+							<%if !in_array('xiangqian',$edits)%><input type="hidden" name="xiangqian" value="<%$data_attr.data.xiangqian|default:""%>"/><%/if%>
+                            <select class="form-control" tabindex="3" id="xiangqianshopping" name="xiangqian"  <%if !in_array('xiangqian',$edits)%>disabled<%/if%>>
+                                <option value=""></option>
+                               <%foreach from=$goods_attr.xiangqian key=key item=value%>
+							    <%if $value==$default_factory%>
+								<option value="<%$value%>" selected="selected"><%$value%></option>
+								<%else%>
+								<option value="<%$value%>"><%$value%></option>
+								<%/if%>
+							   <%/foreach%>
+                            </select>
+							
+                        </div>
+                  </div>
+				  <div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">成交价：</label>
+						<input type="text" name="chengjiaojia" class="form-control" placeholder="请输入" onchange="calculate_point()"  value="<%$chengjiaojia|default:""%>" <%if !in_array('chengjiaojia',$edits)%>2readonly2<%/if%>/>
+                        <%if isset($goods_id) &&isset($prices[$goods_id]) && !empty($prices[$goods_id])%>
+                         <span style="position: relative; float: left;">
+                            <img class="ic" src="public/img/left.png">
+                            <div class="oxs" id="salepolicy_price_box" style="display: none; position:absolute;top:20px;width:280px;z-index: 200" >
+                                <table class="table table-bordered table-striped table-hover flip-content">
+                                    <thead class="flip-content">
+                                    <tr>
+                                        <th style="text-align: center;">销售政策名称</th>
+                                        <th style="text-align: center;">销售价格 </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%foreach from=$prices[$goods_id] key=k item=ss%>
+                                    <tr data-id="" data-title="<%$k%>">
+                                        <td align="center" class="name"><%$ss.policy_name|default:''%></td>
+                                        <td align="center" class="prcie"><%$ss.sale_price|default:''%></td>
+                                    </tr>
+                                    <%/foreach%>
+                                    </tbody>
+                                </table>
+                            </div>
+						</span>
+                      <%/if%>                         
+					</div>
+				</div>
+                <div id="_div_qujia" style="display:none">
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                        <label class="control-label">+</label>
+                        <input type="button" id="getChengpindingzhiPrice" class="btn red"  value="取价">
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				
+				<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">刻字：</label>
+                            <%include file="kezi.html"%>
+                        </div>
+						
+                </div>
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">商品备注：</label>
+                        <textarea class="form-control" name="info"></textarea>
+                    </div>
+                </div>
+				<div class="col-sm-3" id="_div_cpdzcode">
+					<div class="form-group">
+						<label class="control-label">成品定制码：</label>
+						<input type="text" name="cpdzcode" class="form-control" placeholder="请输入" value=""/>
+					</div>
+				</div>
+		    </div>
+			<center> <div id="point" style="display:none;font-size:16px; color:red; margin:5px 0px"></div></center>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+			    <input type="hidden" name="goods_id" value="<%$goods_id%>"/>
+				<input type="hidden" name="channel_id" value="<%$channel_id%>"/>
+			    <input type="hidden" name="policy_id" value="<%$policy_id%>"/>
+				<input type="hidden" name="edits" value="<%base64_encode(json_encode($edits))%>"/>
+				<input type="hidden" name="goods_type"  value="style_goods"/>
+                <input type="hidden" name="tuo_type"  value="<%$tuo_type%>"/>
+				<input type="hidden" name="price_key"  value=""/>
+				<input type="hidden" name="goods_key"  value=""/>
+				<input type="hidden" name="shape"  value="<%$data_attr.data.shape|default:""%>"/>
+				<button type="reset" class="btn default">重置</button>
+				<button type="button" id="btn_submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/order_style_attribute.js"%>
+//-->
+</script>

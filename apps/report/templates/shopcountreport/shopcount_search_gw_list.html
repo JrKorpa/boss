@@ -1,0 +1,69 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+    	<tr>
+        	<th></th>
+        	<th></th>
+            <th colspan="10">进店人数管理</th>
+            <th colspan="4">进店销售额管理</th>
+        </tr>
+        <tr>
+        	<th>体验店</th>
+            <th>销售<br/>顾问</th>
+            <th>新增<br/>预约人数</th>
+            <th>实际<br/>到店人数</th>
+            <th>预约预计<br/>到店人数</th>
+            <th>预约实际<br/>到店人数</th>
+            <th>预约<br/>到店率</th>
+            <th>实际<br/>成单数</th>
+            <th>实际成交<br/>客户数</th>
+            <th>换购人数</th>
+            <th>预约<br/>成交率</th>
+            <th>赠品客户数</th>
+
+            <th>总业绩</th>
+            <!--<th>商品总金额</th>-->
+            <th>总业绩<br/>（不含换购）</th>
+            <!--<th>实退款金额</th>-->
+            <th>客单价</th>
+            <th>客单价<br/>（不含换购）</th>
+	</thead>
+	<tbody>
+    <%foreach from=$alldata item=gwdata key=rows%>
+    	<%foreach from=$gwdata item=gwdatainfo key=gwname%>
+		<tr>
+        	<%if $rows<1 %>
+            	<th rowspan="<%$rownum%>" style="vertical-align:middle;"><%$shopname%></th>
+            <%/if%>
+            <th><%$gwname%></th>
+            <td><%$gwdatainfo.allbokenum%></td>
+            <td><%$gwdatainfo.realbokenum%></td>
+            <td><%$gwdatainfo.yindaobokenum%></td>
+            <td><%$gwdatainfo.yindaoshidaobokenum%></td>
+
+            <td><%$gwdatainfo.daodianlv%>%</td>
+            <td><%$gwdatainfo.ordernum%></td>
+            <td><%$gwdatainfo.dis_ordernum_to%></td>
+            <td><%$gwdatainfo.dis_ordernum_to_num%></td>
+            <td><%$gwdatainfo.chengjiaolv%>%</td>
+			<td><%$gwdatainfo.zpnum%></td>
+
+            <td><%$gwdatainfo.orderamount%></td>
+            <!--<td><%$gwdatainfo.goodsamount%></td>-->
+            <td><%$gwdatainfo.huangouprice%></td>
+            <!--<td><%$gwdatainfo.realreturnprice%></td>-->
+            <td><%$gwdatainfo.kedanjia%></td>
+            <!--<td><%$gwdatainfo.moneyunpaid%></td>-->
+            <td><%$gwdatainfo.kedanjia%></td>
+		</tr>
+        <%/foreach%>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

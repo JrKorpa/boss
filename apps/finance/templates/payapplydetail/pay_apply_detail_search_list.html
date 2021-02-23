@@ -1,0 +1,47 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>订单来源/结算商</th>
+			<th>销售额(总计)</th>
+			<th>成本(总计)</th>
+			<th>费用(总计)</th>
+			<th>收益(总计)</th>
+			<th>利润(总计)</th>
+			<th>销售金额</th>
+			<th>销售费用</th>
+			<th>销售收益</th>
+			<th>销售成本</th>
+			<th>销售利润</th>
+			<th>退货金额</th>
+			<th>退货费用</th>
+			<th>退货收益</th>
+			<th>退货成本</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list item=pl%>
+		<tr>
+			<td align="center"><%$pl.ad_name%></td>
+			<td align="center"><%$pl.xse%></td>
+			<td align="center"><%$pl.cb%></td>
+			<td align="center"><%$pl.fy%></td>
+			<td align="center"><%$pl.sy%></td>
+			<td align="center"><%$pl.lr%></td>
+			<td align="center"><%$pl.xsje%></td>
+			<td align="center"><%$pl.xsfy%></td>
+			<td align="center"><%$pl.xssy%></td>
+			<td align="center"><%$pl.xscb%></td>
+			<td align="center"><%$pl.xslr%></td>
+			<td align="center"><%$pl.thje%></td>
+			<td align="center"><%$pl.thfy%></td>
+			<td align="center"><%$pl.thsy%></td>
+			<td align="center"><%$pl.thcb%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

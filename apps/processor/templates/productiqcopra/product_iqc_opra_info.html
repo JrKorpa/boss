@@ -1,0 +1,47 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="product_shipment">
+	<div class="form-body">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">实际交货数量</label>
+					<input type="text" name="sj_num" class="form-control" placeholder="请输入数量" value="0" />
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">报废数量</label>
+					<input type="text" name="bf_num" class="form-control" placeholder="请输入数量" value="0" />
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">IQC未过数量</label>
+					<input type="text" name="iqc_num" class="form-control" placeholder="请输入数量" value="0" />
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<input type="text" name="info" class="form-control" placeholder="请输入备注" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="id" value="<%$id%>" />
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_iqc_opra_info.js"%>
+//-->
+</script>

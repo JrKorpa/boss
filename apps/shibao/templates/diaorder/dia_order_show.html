@@ -1,0 +1,89 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i><%$tname%>详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td align="right">单&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
+					<td><%$view->get_order_id()%></td>
+					<td align="right">日&nbsp;&nbsp;&nbsp;期：</td>
+					<td><%$view->get_order_time()%></td>
+					<td align="right">状&nbsp;&nbsp;&nbsp;态：</td>
+					<td><%$dd->getEnum("dia_order.status",$view->get_status())%></td>
+					<td align="right">制&nbsp单&nbsp;人：</td>
+					<td><%$view->get_make_order()%></td>
+				</tr>	
+				<tr>
+					<td align="right">审&nbsp;核&nbsp;人：</td>
+					<td><%$view->get_check_order()%></td>
+					<td align="right">加&nbsp;工&nbsp;商：</td>
+					<td><%$view->get_prc_name()%></td>
+					<td align="right"><%if $view->get_type() == "CK"%>出库方式<%else%>入库方式<%/if%>：</td>
+					<td><%if $view->get_in_warehouse_type()%><%$dd->getEnum("dia_order.in_warehouse_type",$view->get_in_warehouse_type())%><%else%>&nbsp;&nbsp;&nbsp;&nbsp---<%/if%></td>
+					<td align="right">结算方式：</td>
+					<td><%if $view->get_account_type()%><%$dd->getEnum("dia_order.account_type",$view->get_account_type())%><%else%>&nbsp;&nbsp;&nbsp;&nbsp---<%/if%></td>
+				</tr>
+				<tr>
+					<td align="right">数量总计：</td>
+					<td><%$view->get_goods_num()%></td>
+					<td align="right">重量总计：</td>
+					<td><%$view->get_goods_zhong()%></td>
+					<td align="right">价格总计：</td>
+					<td><%$view->get_goods_total()%></td>
+					<td align="right">纸质单号：</td>
+					<td><%$view->get_send_goods_sn()%></td>
+				</tr>
+				<tr>
+					<td align="right">总计支付：</td>
+					<td><%if $view->get_shijia()!=0.00%><%$view->get_shijia()%><%else%>&nbsp;&nbsp;&nbsp;&nbsp---<%/if%></td>
+					<td align="right">调整方式：</td>
+					<td><%if $view->get_type()=="AS" && $view->get_adjust_type() == 0 %>扣减<%else%>&nbsp;&nbsp;&nbsp;&nbsp---<%/if%></td>
+					<td align="right">备&nbsp;&nbsp;&nbsp;&nbsp;注：</td>
+					<td><%$view->get_info()%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>石包详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格 -->
+		<div class="flip-scroll" id="dia_order_goods_search_list">
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 end-->
+
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_order_show.js"%>
+//-->
+</script>

@@ -1,0 +1,49 @@
+<span id="address_mendian_info">
+<div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">提货人：</label><span style="color:red">*</span>
+                <input type="text" name="consignee" class="form-control" placeholder="请输入" value="<%$membeinfo.consignee%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">电话：</label></label><span style="color:red">*</span>
+                <input type="text" name="tel" class="form-control" placeholder="请输入" value="<%$membeinfo.mobile%>" />
+            </div>
+        </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">体验店类别：</label>
+            <select class="select2_category form-control" tabindex="1" name="shop_type">
+                <option value=""></option>
+                <%foreach from=$dd->getEnumArray("shop.type") key=k item=value%>
+                <option value="<%$value.name%>" <%if $shop.shop_type==$value.name%>
+                selected<%/if%>><%$value.label%></option>
+                <%/foreach%>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">体验店：</label></label><span style="color:red">*</span>
+            <select class="form-control" tabindex="2" name="shop_id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div id="shop_cfg_info">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</span>
+
+<script type="text/javascript">
+
+    <%include file="js/address_miandian.js"%>
+
+</script>

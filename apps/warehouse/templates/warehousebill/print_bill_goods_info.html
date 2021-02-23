@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 货品标签打印</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+<STYLE>
+@media print {
+.noprint{display:none}
+.PageNext{page-break-after: always;}
+}
+table{font-family:'黑体';background:#FFF; font-size:1.4mm;border-collapse:collapse;margin:1px 0.5mm;padding:0px;height:35mm; width:40mm;}
+table td{ border:0px;padding:0px; margin:0px}
+</STYLE>
+ </head>
+ <body style="padding:0px; margin:0px"><input type="button" value="打印" onclick="window.print();" class="noprint"><br class="noprint"/>
+<%foreach from=$datalist item=data%>
+<table>
+  <tr>
+  <td colspan="2" style="padding-top:1mm;padding-left:3mm;"><%$data.goods_name%></td></tr>
+  <tr>
+  <td colspan="2" style="font-size:14px;padding-left:3mm;"><%$data.goods_sn|default:'&nbsp;'%></td>
+  </tr>
+  <tr>
+  <td style="font-size:14px;padding-left:3mm;"><%$data.zhengshuhao|default:'&nbsp;'%>&nbsp;</td>
+  <td style="font-size:14px;padding-right:3mm;"><%$data.shoucun|default:'&nbsp;'%>#</td>
+  </tr>
+  <tr>
+  <td colspan="2" style="font-size:xx-small;padding-left:3mm;"><%$data.caizhi|default:'&nbsp;'%>:<%$data.jinzhong|default:'&nbsp;'%></td></tr>
+  <tr>
+  <td colspan="2" style="font-size:12px;transform: scale(0.833333);">主石<%$data.zuanshidaxiao|default:0%>/<%$data.zhushilishu|default:0%>副石<%$data.fushizhong|default:0%>/<%$data.fushilishu|default:0%></td>
+  </tr>
+  
+  <tr>
+  <tr>
+  <tr>
+  <td colspan="2" style=" text-align:center">
+   <img src="http://bardcode.kela.cn/barcode128/barcodeA.php?code_sn=<%$data.goods_id%>&hideTxt=1" style="width:32mm;">
+  </td>
+  </tr>
+  <tr>
+  <td colspan="2" style=" text-align:center; font-size:14px">
+  <%$data.goods_id%>
+  </td>
+  </tr>
+  <tr> 
+</table>
+<p class="PageNext"></p>
+<%/foreach%>
+ </body>
+</html>

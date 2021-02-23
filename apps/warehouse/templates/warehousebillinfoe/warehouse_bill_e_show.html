@@ -1,0 +1,100 @@
+<div class="portlet-body">
+<!-- 损益单 start -->
+<!-- 工具栏 -->
+	<div class="table-toolbar">
+		<%$bar%>
+	</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>损益单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>损益单号</b></td>
+					<td><%$view->get_bill_no()%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('warehouse.bill_status',$status)%></td>
+				</tr>
+				<tr>
+					<td><b>货品数量</b></td>
+					<td><%$view->get_goods_num()%></td>
+					<td><b>公司</b></td>
+					<td><%$view->get_from_company_name()%></td>
+				</tr>
+				<%if $isViewChengbenjia%>
+				<tr>
+					<td><b>成本总计</b></td>
+					<td><%$view->get_goods_total()%></td>
+					<td><b>退款总计</b></td>
+					<td><span id="s_num"><%$view->get_shijia()%></span></td>
+				</tr>
+				<%/if%>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_create_user()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_create_time()%></td>
+				</tr>
+				<tr>
+						<td><b>审核人：</b></td>
+						<td><%if $view->get_bill_status()==2 %><%$view->get_check_user()|default:'--'%><%else%>--<%/if%></td>
+						<td><b>审核时间：</b></td>
+						<td><%if $view->get_bill_status()==2 %><%$view->get_check_time()|default:'--'%><%else%>--<%/if%></td>
+				   </tr>
+                <tr>
+					 <td><b>取消人：</b></td>
+					 <td><%$billcloseArr.update_user|default:'--'%></td>
+					 <td><b>取消时间：</b></td>
+					 <td><%$billcloseArr.update_time|default:'--'%></td>
+				   </tr>	
+				<tr row="2">
+					<td><b>备注</b></td>
+					<!--<td colspan="3"><%$view->get_bill_note()%></td>-->
+					<td colspan="3" rowspan="2"><%mb_substr($view->get_bill_note(),0,120)%><br><%mb_substr($view->get_bill_note(),120,300)%></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+	<!-- 损益单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>损益明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<button id="batch_copy_goodsid_e_show" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</button>
+				</div>
+			</div>
+			<p class="text-danger"></p>
+			<div class="" id="warehouse_goods_list"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+
+
+</div>
+</form>
+<script type="text/javascript">
+<%include file="js/warehouse_bill_e_show.js"%>
+<%include file="js/table_data_ed_edit.js"%>
+</script>

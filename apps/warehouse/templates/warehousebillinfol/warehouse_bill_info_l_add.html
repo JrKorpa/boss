@@ -1,0 +1,221 @@
+<!-- 表单内容 -->
+<div class="table-toolbar">
+    <!--这里修改成下载空的vbExcel根据工号进行下载-->
+    <div class="btn-group">
+        <button data-title="" title="下载Excel" name="下载Excel" data-url="index.php?mod=warehouse&con=WarehouseBillInfoL&act=downLoadExcel" onclick="util.cust(this,downLoadExcel);" class="btn btn-sm blue">
+            下载Excel <i class="fa fa-plus"></i>
+        </button>
+    </div>
+    <!--这里导入html文件-->
+    <div class="btn-group">
+        <button data-title="" title="导入html" name="导入html" data-url="index.php?mod=warehouse&con=WarehouseBillInfoL&act=importJs" id="imjs" onclick="util.cust(this,importJs);" class="btn btn-sm red">
+            导入库信息 <i class="fa fa-plus"></i>
+        </button>
+    </div>
+    <span>您的工号是：<%$user_id%></span>
+</div>
+<div class="portlet box green" style="margin-top: 5px;">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>请填写收货单主信息
+        </div>
+        <div class="tools">
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form action="#" method="post" class="horizontal-form" id="warehouse_bill_l_add" enctype="multipart/form-data">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">送货单号：<span class="required">*</span></label>
+                            <input type="text" name="ship_num" class="form-control" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">加工商：<span class="required">*</span></label>
+                            <select class="select2_category form-control" tabindex="1" name="prc_id">
+                                <option value=""></option>
+                                <%foreach from=$pro_list item=value %>
+                                <option value="<%$value.id%>|<%$value.name%>" <%if $value.id == $processor_id%>selected<%/if%>><%$value.code%> | <%$value.id%></option><!--name-->
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库方式：<span class="required">*</span></label>
+                            <select class="select2_category form-control" tabindex="1" name="put_in_type" >
+                                <option value=""></option>
+                                <%foreach from=$put_in_type_list item=value %>
+                                <option value="<%$value.name%>" <%if $value.name==$put_in_type%>selected<%/if%> ><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否结价：<span class="required">*</span></label>
+                            <select class="select2_category form-control" tabindex="1" name="jiejia">
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray('confirm') item=value %>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库公司：</label>
+                            <select class="select2_category form-control" tabindex="1" name="to_company_id">
+                                <option value=""></option>
+                                <%foreach from=$company item=value %>
+                                <option value="<%$value.id%>|<%$value.company_name%>"><%$value.company_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">入库仓：<span class="required">*</span></label>
+                            <select class="select2_category form-control" tabindex="1" name="to_warehouse_id" >
+                                <option value=""></option>
+                                <%foreach from=$warehouse item=value %>
+                                <option value="<%$value.id%>|<%$value.name%>"><%$value.code%> | <%$value.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">参考编号：</label>
+                            <input type="text" name="order_sn" class="form-control" value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">制单人：</label>
+                            <input type="text" name="create_user" class="form-control" readonly
+                                   value="<%$smarty.session.userName%>" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">备注：</label>
+                            <input type="text" name="bill_note" class="form-control" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+				   <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">总金额：</label>
+                            <input id="goods_total" type="text" name="" class="form-control" readonly
+                                   value="" />
+                        </div>
+                    </div>
+					                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">总数量：</label>
+                            <input id="goods_num" type="text" name="goods_num" class="form-control" readonly
+                                   value="" />
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">上传单据内容：
+                            <a href="index.php?mod=warehouse&con=WarehouseBillInfoL&act=getTemplate">下载模板</a></label>
+                            <input type="file" name="out_goods_list"/>
+                        </div>
+                    </div>-->
+                    <div id="InfoL"></div>
+                </div>
+            </div>
+<!--结算商开始-->			
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结算商列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<button class="btn btn-sm green" type="button" onclick="util.add(this)" data-url="index.php?mod=warehouse&con=WarehouseBillPay&act=addBillPay" data-id="" list-id="41">
+					添加 <i class="fa fa-plus"></i>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm purple" type="button" onclick="util.retrieve(this)" data-url="index.php?mod=warehouse&con=WarehouseBillPay&act=editBillPay" data-id="" list-id="41">
+					编辑 <i class="fa fa-edit"></i>
+				</button>
+			</div>
+
+			<div class="btn-group">
+				<button class="btn btn-sm red" type="button" onclick="util.deleteRel(this)" data-url="index.php?mod=warehouse&con=WarehouseBillPay&act=deleteBillPay" data-id="" list-id="41" name="删除">
+					删除 <i class="fa fa-trash-o"></i>
+				</button>
+			</div>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable" id="warehouse_bill_pay11">
+          <table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>结算商</th>
+			<th>支付内容</th>
+			<th>结算方式</th>
+			<th>含税金</th>
+			<th>金额</th>
+		</tr>
+	</thead>
+	<tbody id="detail_body">
+		<%foreach from=$payList key=k item=g %>
+		<tr data-id="purchase_info_show_list_<%$g.id%>" data-title="<%$g.id%>">
+			<td><%$g.id%></td><!--pro_name-->
+			<td><%$dd->getEnum('warehouse.pay_content',$g.pay_content)%></td>
+			<td><%$dd->getEnum('warehouse.pay_method',$g.pay_method)%></td>
+			<td><%$dd->getEnum('warehouse.pay_tax',$g.pay_tax)%></td>
+			<td><%$g.amount%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!--结算商结束-->			
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>"/>
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- END FORM-->
+    </div>
+</div>
+
+<!-- 明细 end -->
+<script type="text/javascript">
+    <!--
+    <%include file="js/warehouse_bill_infol_add.js"%>
+    //-->
+</script>

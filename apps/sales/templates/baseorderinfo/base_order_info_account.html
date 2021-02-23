@@ -1,0 +1,96 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="base_order_info_account">
+        <div class="form-body">
+            <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">订单总金额：</label>
+                <input type="text" name="order_amount" class="form-control" placeholder="请输入" value="<%$order_account.order_amount%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">商品总金额：</label>
+                <input type="text" name="goods_amount" class="form-control" placeholder="请输入" value="<%$order_account.goods_amount%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">实际退款：</label>
+                <input type="text" name="real_return_price" class="form-control" placeholder="请输入" value="<%$order_account.real_return_price%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">优惠总金额：</label>
+                <input type="text" name="favorable_price" class="form-control" placeholder="请输入" value="<%$order_account.favorable_price%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">优惠券金额：</label>
+                <input type="text" name="coupon_price" class="form-control" placeholder="请输入" value="<%$order_account.coupon_price%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">配送费：</label>
+                <input type="text" name="shipping_fee" class="form-control" placeholder="请输入" value="<%$order_account.shipping_fee%>" />
+            </div>
+        </div>
+     <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label">保证金：</label>
+            <input type="text" name="insure_fee" class="form-control" placeholder="请输入" value="<%$order_account.insure_fee%>" />
+        </div>
+    </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">支付费：</label>
+                <input type="text" name="pay_fee" class="form-control" placeholder="请输入" value="<%$order_account.pay_fee%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">包装费：</label>
+                <input type="text" name="pack_fee" class="form-control" placeholder="请输入" value="<%$order_account.pack_fee%>" />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">贺卡费：</label>
+                <input type="text" name="card_fee" class="form-control" placeholder="请输入" value="<%$order_account.card_fee%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">已付金额：</label>
+                <input type="text" name="money_paid" class="form-control" placeholder="请输入" value="<%$order_account.money_paid%>" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">未付金额：</label>
+                <input type="text" name="money_unpaid" class="form-control" placeholder="请输入" value="<%$order_account.money_unpaid%>" />
+            </div>
+        </div>
+</div>
+            </div>
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="order_id" value="<%$_id|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/base_order_info_account.js"%>
+    //-->
+</script>

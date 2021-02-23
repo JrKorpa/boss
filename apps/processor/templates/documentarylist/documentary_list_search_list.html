@@ -1,0 +1,52 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				
+				<th>布产单号</th>
+				<th>布产来源</th>
+				<th>款号</th>
+				<th>布产状态</th>
+				<th>数量</th>
+				<th>工厂名称</th>
+	                        <th>客户姓名</th>
+				<th>跟单人</th>
+				<th>标准出厂时间</th>
+				<th>工厂交货时间</th>
+				<th>货品类型</th>
+				<th>镶嵌方式</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="purchase_type_list_<%$d.id%>" data-title="<%$d.bc_sn%>">
+				<td><%$d.bc_sn%></td>
+				<td><%if $d.from_type == 1%>采购单<%else%>订单<%/if%><%$d.p_sn%></td>
+				<td><%$d.style_sn%></td>
+				<td><%$dd->getEnum('buchan_status',$d.status)%></td>
+				<td><%$d.num%></td>
+				<td><%$d.prc_name%></td>
+	                        <td><%$d.consignee%></td>
+				<td><%$d.opra_uname%></td>
+				<td <%if (date('Y-m-d H:i:s',time()+86400)>$d.esmt_time) && ($d.status < 8) %>style="color: red"<%/if%>>
+					<%$d.esmt_time%>
+				</td>
+				<td><%$d.rece_time%></td>
+				<td><%$d.bc_style%></td>
+				<td><%$d.xiangqian%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+	<input type="hidden" name="" id="purchase_type_list_page" value="<%$page_list.page%>" />
+	<%$pa%>
+</div>
+
+<script type="text/javascript">
+  
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,86 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead>
+				<tr>
+					<th>渠道名称</th>
+					<th>渠道编码</th>
+					<th>联系人</th>
+					<th>联系人邮箱</th>
+					<th>联系人手机</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><%$view->get_channel_name()%></td>
+					<td><%$view->get_channel_code()%></td>
+					<td><%$view->get_channel_man()%></td>
+					<td><%$view->get_channel_email()%></td>
+					<td><%$view->get_channel_phone()%></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>渠道用户
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+		<table class="table table-bordered table-striped table-hover flip-content">
+			<thead>
+			<tr>
+				<th>序号</th>
+				<th>用户姓名</th>
+				<th>是否在职</th>
+				<th>账户状态</th>
+				<th>部门权限</th>
+			</tr>
+			</thead>
+			<tbody>
+			<%foreach from=$view->getUsers() key=k item=u%>
+				<tr>
+					<td><%$k+1%></td>
+					<td><%$u.account%>(<%$u.real_name%>)</td>
+					<td><%$dd->getEnum("user.is_on_work",$u.is_on_work)%></td>
+					<td><%$dd->getEnum("is_enabled",$u.is_enabled)%></td>
+					<td><%$dd->getEnum("user_channel.power",$u.power)%></td>
+				</tr>
+			<%foreachelse%>
+				<tr>
+					<td colspan="4">
+						无
+					</td>
+				</tr>
+
+			<%/foreach%>
+
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

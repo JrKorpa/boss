@@ -1,0 +1,185 @@
++function(debug){
+	if(typeof window.KELALoader != "undefined") return;//防止多次加载
+	var KELALoader ={
+		//资源池
+		res:[],
+		//已加载
+		loaded:[],
+		//添加资源
+		_add:function(element){
+			this.res.push(this.parseElement(element));
+		},
+		parseElement:function(el){
+			if (el.indexOf('#')==0)
+			{
+				return this.getFullPath(this.getExtension(el))+el.substring(1);
+			}
+			return el;
+		},
+		getExtension:function (url) {
+			url = url || "";
+			var items = url.split("?")[0].split(".");
+			return items[items.length-1].toLowerCase();
+		},
+		getFullPath:function(ext)
+		{
+			if(!('css'==ext || 'js'==ext)) throw new Error('资源类型不正确');
+			return 'apps/'+this.getMod()+"/"+ext+"/";
+		},
+		getMod:function(){
+			var url = window.location.href;
+			var pattern = /(\w+)=(\w+)/ig;
+			var params = [];
+			url.replace(pattern, function(a, b, c){
+				params[b] = c;
+			});
+			if (this.isUndefined(params['mod'])){
+				return params['mod'];
+			}
+			return 'management';
+		},
+		is:function(type, obj){
+			var clas = Object.prototype.toString.call(obj).slice(8, -1);
+			return obj !== undefined && obj !== null && clas === type;		
+		},
+		isFunction:function (item) {
+			return this.is("Function", item);
+		},
+		isArray:function (item) {
+			return this.is("Array", item);
+		},
+		isUndefined:function(item){
+			return this.is("undefined",item);
+		},
+		//加载资源
+		_loadNext:function(callback){
+			var that=this;//*
+			if(that.res.length>0){
+				var src=that.res.shift();
+				if (that.loaded[src])
+				{
+					that._loadNext(callback);
+				}
+				else
+				{
+					var head=document.getElementsByTagName("head")[0];
+					var ext = that.getExtension(src);
+					if (ext=='js')
+					{
+						var obj=document.createElement("script");
+						obj.type = "text/javascript";
+						obj.src=src;
+					}
+					else
+					{
+						var obj = document.createElement("link");
+						obj.type = "text/css";
+						obj.rel  = "stylesheet";
+						obj.href = src; 
+					}
+
+					head.appendChild(obj);
+
+					if( obj.addEventListener ) {
+						obj.addEventListener("load",function(){
+							that.loaded[src]=true;
+							that._loadNext(callback);//这里用到的闭包的知识，引用外部变量。。
+						}, false);
+					} else if(obj.attachEvent) {
+						obj.attachEvent("onreadystatechange", function(){
+								if(obj.readyState == 4 || obj.readyState == 'complete'|| obj.readyState == 'loaded') {
+									that.loaded[src]=true;
+									that._loadNext(callback);//这里用到的闭包的知识，引用外部变量。。
+								}
+						});
+					}
+				}
+			}
+			else{
+				if(that.isFunction(callback)){
+					callback();
+				}
+				else
+				{
+					//alert(callback+'未定义');
+				}
+			}
+		},
+		_load:function(callback){
+			this._loadNext(callback);
+		},
+		ieAdjust:function(){
+			var b_version=navigator.appVersion
+			var version=b_version.split(";");
+			var trim_Version=version[1].replace(/[ ]/g,"").replace(/MSIE/i,"");
+			return trim_Version<9;
+		}
+	}
+	window.KELALoader=KELALoader;
+//	var self = document.getElementsByTagName('script');
+//    self = self[self.length - 1];
+//	var _init=self.getAttribute('init');//初始化模块
+//	if(_init){KELALoader._add(_init)} //预加载初始化模块
+}(true);
+
+function $add(f){
+	if (KELALoader.isArray(f))
+	{
+		for (var i=0;i<f.length ;i++ )
+		{
+			KELALoader._add(f[i]);
+		}
+	}
+	else
+	{
+		KELALoader._add(f);
+	}
+}
+
+function $import(f,callback)
+{
+	if (KELALoader.isFunction(f)){callback = f;f=[];}
+	var _js =[];
+	if(navigator.userAgent.indexOf("MSIE")>0 && KELALoader.ieAdjust()){
+		_js.concat(["public/js/respond.min.js","public/js/excanvas.min.js"]);
+	}
+
+	var _jss =[];
+//	var _jss = ["public/js/jquery-1.10.2.min.js","public/js/jquery-migrate-1.2.1.min.js",
+//"public/js/jquery-ui/jquery-ui-1.10.3.custom.min.js","public/js/bootstrap/js/bootstrap.min.js",
+//"public/js/bootstrap-modal/js/bootstrap-modalmanager.js",
+//"public/js/bootstrap-modal/js/bootstrap-modal.js","public/js/jquery-slimscroll/jquery.slimscroll.min.js",
+//"public/js/bootbox/bootbox.min.js","public/js/jquery.blockui.min.js",
+//"public/js/jquery.cokie.min.js","public/js/uniform/jquery.uniform.min.js",
+//"public/js/jquery.form.js","public/js/jquery-validation/dist/jquery.validate.min.js",
+//"public/js/backstretch/jquery.backstretch.min.js","public/js/app.js",
+//"public/js/jquery.validate.extends.js","public/js/ls.js","public/js/util.js",
+//"public/js/ui-extended-modals.js"];
+	if (KELALoader.isArray(f))
+	{
+		_js = _js.concat(_jss).concat(f);
+	}
+	else
+	{
+		_js = _js.concat(_jss);
+		_js.push(f);
+	}
+	for (var i=0;i<_js.length ;i++ )
+	{
+		KELALoader._add(_js[i]);
+	}
+	KELALoader._load(callback);
+}
+
+window.gblCurrentTabId=0;
+function getID(){
+	return window.gblCurrentTabId;
+}
+
+function setTabID(id){
+	window.gblCurrentTabId=id;
+}
+
+String.prototype.trim = function () {
+    return this.replace(/(^\s*)|(\s*$)/g, '')
+};

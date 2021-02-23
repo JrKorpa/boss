@@ -1,0 +1,65 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="order_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">会员用户：</label>
+						<select class="form-control" tabindex="1" name="user_id">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_user_id() == 1%>selected <%/if%>>AA</option>
+							<option value="2" <%If $view->get_user_id() == 2%>selected <%/if%>>BB</option>
+							<option value="3" <%If $view->get_user_id() == 3%>selected <%/if%>>CC</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">订单部门：</label>
+						<select class="form-control" tabindex="1" name="order_department">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_order_department() == 1%>selected <%/if%>>西单体验单</option>
+							<option value="2" <%If $view->get_order_department() == 2%>selected <%/if%>>经销商</option>
+							<option value="3" <%If $view->get_order_department() == 3%>selected <%/if%>>上海体验店</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">订单来源：</label>
+						<select class="form-control" tabindex="1" name="order_source">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_order_source() == 1%>selected <%/if%>>淘宝</option>
+							<option value="2" <%If $view->get_order_source() == 2%>selected <%/if%>>银行</option>
+							<option value="3"<%If $view->get_order_source() == 3%>selected <%/if%> >京东</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-11">
+					<div class="form-group">
+						<label class="control-label">备注信息：</label>
+						<textarea class="form-control" name="order_remark" rows="2" maxlength="50"><%$view->get_order_remark()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/order_info.js"%>
+//-->
+</script>

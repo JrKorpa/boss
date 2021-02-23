@@ -1,0 +1,102 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#app_yikoujia_goods_search_list .checkboxes" />全选</th>
+			<th>序号</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>材质</th>
+			<th>金托</th>
+			<th>颜色</th>
+			<th>净度</th>
+			<th>证书类型</th>
+			<th>最小镶口</th>
+			<th>最大镶口</th>
+			<th>销售价</th>
+            <th>货品类型</th>
+            <th>销售政策</th>
+            <th>货品状态</th>
+            <th>添加时间</th>
+            <th>添加人</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_yikoujia_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.goods_id%></td>
+			<td align="center"><%$d.goods_sn%></td>
+			<td align="center"><%$d.caizhi%></td>
+			<td align="center"><%$dd->getEnum('warehouse_goods.tuo_type',$d.tuo_type)|default:'全部'%></td>
+			<td align="center"><%$d.color%></td>
+			<td align="center"><%$d.clarity%></td>
+			<td align="center"><%$d.cert%></td>
+			<td align="center"><%$d.small%></td>
+			<td align="center"><%$d.sbig%></td>
+			<td align="center"><%$d.price%></td>
+            <td align="center">
+            <%if $d.isXianhuo=='1'%>现货<%/if%><%if $d.isXianhuo=='0'%>期货<%/if%>
+            </td>
+			<td align="center"><%$d.policy_name%></td>
+            <td align="center">
+            	<%if $d.is_delete=='1'%>无效<%/if%><%if $d.is_delete=='0'%>有效<%/if%>
+           	</td>
+            <td align="center"><%$d.add_time%></td>
+            <td align="center"><%$d.add_user%></td>
+           
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+
+util.hover();
+util.setItem('listDIV','app_yikoujia_goods_search_list');
+util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#app_yikoujia_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+  test.each(function () {
+  if ($(this).parents(".checker").size() == 0) {
+      $(this).show();
+      $(this).uniform();
+  }
+});
+}
+$('.group-checkable').click(function(){
+    if ($(".group-checkable").attr("checked")) {  
+        $(":checkbox").attr("checked", true);  
+    } else {  
+        $(":checkbox").attr("checked", false);  
+    }  
+});
+
+//table 复选框全选
+$('#app_yikoujia_goods_search_list .group-checkable').change(function () {
+var set = $(this).attr("data-set");
+  var checked = $(this).is(":checked");
+  $(set).each(function () {
+      if (checked) {
+          $(this).attr("checked", true);
+          $(this).parents('tr').addClass("active");
+      } else {
+          $(this).attr("checked", false);
+          $(this).parents('tr').removeClass("active");
+      }                    
+  });
+  $.uniform.update(set);
+});
+$('#app_yikoujia_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+  $(this).parents('tr').toggleClass("active");
+});
+	
+	
+//-->
+</script>

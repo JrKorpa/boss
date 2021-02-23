@@ -1,0 +1,59 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="ConfItem_info_form">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label class="control-label">配置项：</label>
+                        <input type="text" name="item" class="form-control" placeholder="请输入" value="<%$view->get_item()%>" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">备注说明：</label>
+                        <input type="text" name="note" class="form-control" placeholder="请输入" value="<%$view->get_note()%>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">服务器：</label>
+                    <input type="text" name="db_host" class="form-control" placeholder="请输入" value="<%$view->get_db_host()%>" />
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label">端口：</label>
+                    <input type="text" name="db_port" class="form-control" placeholder="请输入" value="<%$view->get_db_port()%>" />
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label">库名称：</label>
+                    <input type="text" name="db_name" class="form-control" placeholder="请输入" value="<%$view->get_db_name()%>" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="control-label">用户名：</label>
+                    <input type="text" name="db_user" class="form-control" placeholder="请输入" value="<%$view->get_db_user()%>" />
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label">密码：</label>
+                    <input type="text" name="db_pwd" class="form-control" placeholder="请输入" value="<%$view->get_db_pwd()%>" />
+                </div>
+            </div>
+            <!-- 搜索按钮 -->
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                    <button type="reset" class="btn default">重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+    <!--
+    <%include file="js/conf_item_info.js"%>
+    //-->
+</script>

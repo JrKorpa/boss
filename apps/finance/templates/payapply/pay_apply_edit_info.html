@@ -1,0 +1,115 @@
+<div class="table-toolbar">
+	<div class="btn-group">
+		<button type="button" class="btn btn-sm green" onclick="util.cust(this,pay_apply_save)">保存<i class="fa fa-check"></i></button>
+	</div>
+	<%$bar%>
+</div>
+<form action="#" method="post" class="horizontal-form" id="pay_apply_show_form" enctype="multipart/form-data">
+	<input type="hidden" name="apply_id" value="<%$info['apply_id']%>"/>
+
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">单号：</label>
+						<input type="text" class="form-control" readonly value="<%$info['pay_apply_number']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" class="form-control" readonly value="<%$dd->getEnum('app_pay_apply.status',$info['status'])%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单人：</label>
+						<input type="text" class="form-control" readonly value="<%$info['make_name']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">制单时间：</label>
+						<input type="text" class="form-control" readonly value="<%$info['make_time']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">数量：</label>
+						<input type="text" class="form-control" readonly value="<%$info['amount']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付金额：</label>
+						<input type="text" class="form-control" readonly value="<%$info['total_cope']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">选择供应商：</label>
+						<select class="form-control" tabindex="1" name="prc_id">
+							<option value=""></option>
+							<%foreach from=$proList key=key item=value%>
+							<option value="<%$value.id%>|<%$value.name%>" <%if $info.prc_id == $value.id%> selected="selected"<%/if%>><%$value.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">应付类型：</label>
+						<select class="select2_category form-control" name="type">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('app_pay_should.pay_type') key=key item=value%>
+							<option value="<%$value.name%>"  <%if $info.pay_type == $value.name%> selected="selected"<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">发票号：</label>
+						<input type="text" name="fapiao" class="form-control" placeholder="请输入" value="<%$info['fapiao']|default:''%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">数据(流水号)：</label>
+						<input type="file" name="data" placeholder="请输入" value="">
+						<a href="index.php?mod=finance&con=PayApply&act=downloadDemo">下载数据格式</a>
+						<a href="?mod=finance&con=PayApply&act=downData&id=<%$info['apply_id']%>">下载申请明细列表</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- END FORM-->
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>应付申请单明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="pay_apply_edit_list<%$info['apply_id']%>">
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_edit_info.js"%>
+	<%include file="js/app_apply_sub.js"%>
+//-->
+</script>

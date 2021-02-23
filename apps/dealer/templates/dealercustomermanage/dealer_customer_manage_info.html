@@ -1,0 +1,210 @@
+<style>
+.modal.container {overflow-y:scroll !important; overflow-x:hidden !important;}
+</style>
+<div class="portlet-body form fo-tm">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="dealer_customer_manage_info">
+	<%if $smarty.session.userType == 1 || in_array($smarty.session.userId,$operator)%>
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">准客户名称：</label>
+						<input type="text" name="customer_name" class="form-control" placeholder="请输入" value="<%$view->get_customer_name()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<select name="status" class="form-control" tabindex="1">
+                            <option value=""></option>
+                            <option value="待跟进"<%if $view->get_status() == '待跟进'%> selected<%/if%>>待跟进</option>
+                            <option value="跟进中"<%if $view->get_status() == '跟进中'%> selected<%/if%>>跟进中</option>
+                            <option value="成功"<%if $view->get_status() == '成功'%> selected<%/if%>>成功</option>
+                            <option value="舍弃"<%if $view->get_status() == '舍弃'%> selected<%/if%>>舍弃</option>
+                            </select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">来源类型：</label>
+						<input type="text" name="source" class="form-control" placeholder="请输入" value="<%$source_edit%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">来源渠道：</label>
+						<input type="text" name="source_channel" class="form-control" placeholder="请输入" value="<%$source_channel_edit%>" />
+					</div>
+				</div>
+
+			
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">联系电话：</label>
+						<input type="text" name="tel" class="form-control" placeholder="请输入" value="<%$view->get_tel()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">联系邮箱：</label>
+						<input type="text" name="email" class="form-control" placeholder="请输入" value="<%$view->get_email()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">省：</label>
+						<input type="text" name="province" class="form-control" placeholder="请输入" value="<%$view->get_province()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">市：</label>
+						<input type="text" name="city" class="form-control" placeholder="请输入" value="<%$view->get_city()%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">县区：</label>
+						<input type="text" name="district" class="form-control" placeholder="请输入" value="<%$view->get_district()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">意向开店数：</label>
+						<input type="text" name="shop_nums" class="form-control" placeholder="请输入" value="<%$view->get_shop_nums()%>" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">投资金额：</label>
+						<input type="text" name="investment_amount" class="form-control" placeholder="请输入" value="<%$view->get_investment_amount()%>" />
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">项目：</label>
+                        <input type="text" name="text_item" class="form-control" placeholder="请输入" value="<%$text_item%>" />
+                    </div>
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">其他信息：</label>
+						<textarea name="info" class="form-control" style="margin: 0px -851.5px 0px 0px; width: 1107px; height: 51px;"><%$view->get_info()%></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">招商经理：</label>
+						<select class="form-control select2_sample1" tabindex="1" name="follow_upper_id[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$role_data key=key item=val%>
+                                 <%if !empty($follower_arr) && in_array($val.uid,$follower_arr)%>
+                                  <option value="<%$val.uid%>" selected="selected"><%$val.account%></option>
+								  <%else%>
+								  <option value="<%$val.uid%>"><%$val.account%></option>
+								  <%/if%>
+                                <%/foreach%>
+                       </select>
+					</div>
+				</div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">推广专员：</label>
+                        <select class="form-control select2_sample1" tabindex="1" name="spread_id[]" multiple>
+                                <option value=""></option>
+                                <%foreach from=$spread key=key item=val%>
+                                 <%if !empty($spread_arr) && in_array($val.uid,$spread_arr)%>
+                                  <option value="<%$val.uid%>" selected="selected"><%$val.account%></option>
+                                  <%else%>
+                                  <option value="<%$val.uid%>"><%$val.account%></option>
+                                  <%/if%>
+                                <%/foreach%>
+                       </select>
+                    </div>
+                </div>
+				</div>
+				<%if $id && !empty($follow_data)%>
+				<div class="row" id="editTab">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label" style="font-weight:bold;text-decoration:underline;cursor:pointer;">点击编辑跟进情况</label>
+					</div>
+				</div>
+				</div>
+			<div class="row" id="followCondition" style="display:none">
+			<div class="col-sm-10">
+					<div class="form-group">
+						<label class="control-label">跟进情况：</label>
+						<%foreach from=$follow_data key=key item=val%>
+						<input type="text" name="content[]" class="form-control" placeholder="请输入" value="<%$val.content%>" />
+						<input type="hidden" name="fid[]" class="form-control" placeholder="请输入" value="<%$val.id%>" />
+						<br>
+						<%/foreach%>
+					</div>
+			</div>
+			<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label">时间：</label>
+						<%foreach from=$follow_data key=key item=val%>
+						<input type="text" class="form-control" readonly value="<%$val.created_time%>" />
+						<br>
+						<%/foreach%>
+					</div>
+			</div>
+				</div>
+				<%/if%>
+		</div>
+		<%else%>
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">状态：</label>
+						<input type="text" name="status" class="form-control" placeholder="请输入" value="<%$view->get_status()%>" />
+					</div>
+				</div>
+			</div>
+			</div>
+			<%/if%>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+
+	<%include file="js/dealer_customer_manage_info.js"%>
+
+$("#editTab").click(function(){
+	$("#followCondition").toggle();
+});
+$(document).delegate(".modal.container","touchstart",function(event){
+	event.stopPropagation();
+})
+$(document).delegate(".modal.container","touchmove",function(event){
+	event.stopPropagation();
+})
+$(function(){
+	var height = $(window).height();
+	$(".modal.container").height(height);
+})
+</script>

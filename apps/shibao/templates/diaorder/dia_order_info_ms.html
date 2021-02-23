@@ -1,0 +1,67 @@
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>添加买石单
+		</div>
+	</div>
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="dia_order_stone_search">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3" id="dia_order_stone_prosn">
+					<div class="form-group">
+						<label class="control-label">采购单号：</label>
+						<div class="input-group">
+							<input type="text" name="pro_sn" class="form-control" form="dia_order_stone_add" placeholder="请输入石包采购单号"/>
+							<span class="input-group-btn "><button class="btn green" type="button">确定</button></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">分批采购：<span style='color:red;font-size:0.9em;'>[本次完成所有采购请选否]</span></label>
+						<select class="select2_category form-control" name="is_batch" tabindex="1" form="dia_order_stone_add">
+							<option value=""></option>
+							<%foreach from=$dd->getEnumArray('confirm') item=v%>
+							<option value="<%$v.name%>"><%$v.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">上传文件：</label>
+						<span style='color:red;'>*</span>
+						<input  class="form-control" type="file" name="file" id="file" style="" form="dia_order_stone_add"/>
+						<%if $view->get_order_id() %>
+						<a href="index.php?mod=shibao&con=DiaOrder&act=getTemplate&type=<%$type%>&id=<%$view->get_order_id()%>">下载石包信息数据格式</a>
+						<%else%>
+						<a href="index.php?mod=shibao&con=DiaOrder&act=getTemplate&type=<%$type%>">下载石包信息数据格式</a>
+						<%/if%>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- END FORM-->
+</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>基本信息
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="dia_order_stone_add_info">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/dia_order_ms_info.js"%>
+//-->
+</script>

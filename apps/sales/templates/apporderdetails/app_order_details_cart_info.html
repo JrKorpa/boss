@@ -1,0 +1,166 @@
+<!-- begin 4c商品（裸钻普通搜索|裸钻快捷搜索） -->	
+<%if $is_4c_cart_goods|@count neq 0 %>
+	<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#ln_app_order_goods_info_detail .checkboxes" /></th>
+			<th style=" text-align:center">钻重</th>
+			<th style=" text-align:center">形状</th>
+			<th style=" text-align:center">颜色</th>
+			<th style=" text-align:center">净度</th>
+			<th style=" text-align:center">切工</th>
+			<th style=" text-align:center">荧光</th>
+			<th style=" text-align:center">证书类型</th>
+			<th style=" text-align:center">BDD价</th>
+			<th style=" text-align:center">是否支持4C配钻</th>
+		</tr>
+	</thead>
+	<tbody id="new_ln_order_detial_info">
+	<%foreach from=$is_4c_cart_goods item=d key=key%>
+		<tr data-id="order_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td style="text-align:center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td style="text-align:center"><%$d.carat|default:''%></td>
+			<td style="text-align:center"><%$dd->getEnum("shape",$d.shape)|default:''%></td>
+			<td style="text-align:center"><%$d.color|default:''%></td>
+			<td style="text-align:center"><%$d.clarity|default:''%></td>			
+			<td style="text-align:center"><%$d.cut|default:''%></td>
+			<td style="text-align:center"><%$d.fluorescence|default:''%></td>
+			<td style="text-align:center" class="js_show_cert" cert_type="<%$d.cert|default:''%>" cert_id="<%$d.cert_id|default:''%>"><%$d.cert|default:''%></td>
+			<td style="text-align:center"><%$d.shop_price|default:''%></td>		
+			<td style="text-align:center">
+			<%if $d.is_4c==2%>
+			<select class="form-control" tabindex="1" name="is_peishi">
+				<option value="1">是</option>
+            </select>
+			<%else%>
+			<select class="form-control" tabindex="1" name="is_peishi">
+				<!--<option value="">请选择</option>
+				<option value="1">是</option>-->
+				<option value="0">否</option>
+            </select>
+			<%/if%>
+			</td>
+
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%/if%>
+<!-- end 4c商品（裸钻普通搜索|裸钻快捷搜索） -->
+<!-- 成都婚博会特价钻 4c商品 -->	
+<%if $is_4c_cart_goods3|@count neq 0 %>
+	<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#ln_app_order_goods_info_detail .checkboxes" /></th>
+			<th style=" text-align:center">钻重</th>
+			<th style=" text-align:center">形状</th>
+			<th style=" text-align:center">颜色</th>
+			<th style=" text-align:center">净度</th>
+			<th style=" text-align:center">切工</th>
+			<th style=" text-align:center">荧光</th>
+			<th style=" text-align:center">证书类型</th>
+			<!--<th style=" text-align:center">BDD价</th>-->
+			<th style=" text-align:center">活动特价</th>			
+			<th style=" text-align:center">是否支持4C配钻</th>
+		</tr>
+	</thead>
+	<tbody id="new_ln_order_detial_info">
+	<%foreach from=$is_4c_cart_goods3 item=d key=key%>
+		<tr data-id="order_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td style="text-align:center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td style="text-align:center"><%$d.carat|default:''%></td>
+			<td style="text-align:center"><%$dd->getEnum("shape",$d.shape)|default:''%></td>
+			<td style="text-align:center"><%$d.color|default:''%></td>
+			<td style="text-align:center"><%$d.clarity|default:''%></td>			
+			<td style="text-align:center"><%$d.cut|default:''%></td>
+			<td style="text-align:center"><%$d.fluorescence|default:''%></td>
+			<td style="text-align:center" class="js_show_cert" cert_type="<%$d.cert|default:''%>" cert_id="<%$d.cert_id|default:''%>"><%$d.cert|default:''%></td>
+			<!--<td style="text-align:center"><%$d.shop_price|default:''%></td>-->
+			<td style="text-align:center"><%$d.special_price|default:''%></td>	
+			<td style="text-align:center">
+			<select class="form-control" tabindex="1" name="is_peishi">
+				<option value="1">是</option>
+            </select>
+			</td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%/if%>
+	<!-- begin 非4c商品 -->
+	<%if $not_4c_cart_goods|@count neq 0 %>
+	<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#ln_app_order_goods_info_detail .checkboxes" /></th>
+			<th style="text-align:center">货号</th>
+			<th style="text-align:center">款号</th>
+			<th style="text-align:center">商品类型</th>
+			<th style="text-align:center">商品名称</th>
+			<th style="text-align:center">商品价格</th>
+			<th style="text-align:center">数量</th>
+			<th style="text-align:center">现货/期货</th>
+			<th style="text-align:center">渠道</th>
+		</tr>
+	</thead>
+	
+	<tbody id="new_ln_order_detial_info">
+	<%foreach from=$not_4c_cart_goods item=d key=key%>
+		<tr data-id="order_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td style="text-align:center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+			<td style="text-align:center"><%$d.goods_id%></td>
+			<td style="text-align:center"><%$d.goods_sn%></td>
+			<td style="text-align:center"><%if $d.goods_type=='lz'%>裸钻<%else%>非裸钻<%/if%></td>
+			<td style="text-align:center"><%$d.goods_name%></td>
+			<td style="text-align:center"><%$d.goods_price%></td>
+			<td style="text-align:center"><%$d.goods_count%></td>
+			<td style="text-align:center"><%if $d.is_stock_goods==1%>现货<%else%>期货<%/if%></td>
+			<td style="text-align:center"><%$d.department_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+	</table>
+	<%/if%>
+	<!-- end 非4c商品 -->
+	
+	
+
+<script type="text/javascript">
+<!--
+    util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#ln_app_order_goods_info_detail input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+    test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#ln_app_order_goods_info_detail .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+    var checked = $(this).is(":checked");
+    $(set).each(function () {
+        if (checked) {
+            $(this).attr("checked", true);
+            $(this).parents('tr').addClass("active");
+        } else {
+            $(this).attr("checked", false);
+            $(this).parents('tr').removeClass("active");
+        }                    
+    });
+    $.uniform.update(set);
+});
+$('#ln_app_order_goods_info_detail').on('change', 'tbody tr .checkboxes', function(){
+    $(this).parents('tr').toggleClass("active");
+});
+
+$(".js_show_cert").dblclick(function(){
+	   util.xalert("<font style='font-size:13px;'>证书类型："  +$(this).attr("cert_type") + "<br\>" + "证 书 号：" + $(this).attr("cert_id")+"</font>");
+	});
+//-->
+</script>

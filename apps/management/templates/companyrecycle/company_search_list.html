@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<tr>
+		<th>序号</th>
+		<th>公司名称</th>
+		<th>联系人</th>
+		<th>联系电话</th>
+	</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="company_list_<%$d.id%>" data-title="<%$d.company_name%>">
+		<td><%$d.id%></td>
+		<td><%$d.company_name%></td>
+		<td><%$d.contact%></td>
+		<td><%$d.phone%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

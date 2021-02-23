@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%$title%></title>
+<style type="text/css">
+{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:660px;margin:50px auto;}
+h1{font-size:14px; text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{ border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<h1><%$title%></h1>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="65">加工商：</td>
+			<td width="70"><%$order.prc_name%></td>
+			<td width="65">&nbsp;</td>
+			<td width="70">&nbsp;</td>
+			<td width="65">单号：</td>
+			<td width="70"><%$order.type%><%$order.order_id%></td>
+			<td width="65">日期：</td>
+			<td width="70"><%$order.order_time|date_format:'%Y-%m-%d'%></td>
+			
+		</tr>
+		<tr>
+			<td colspan="6">备注：<%$order.info%></td>
+			<td>纸质单号：</td>
+			<td><%$order.send_goods_sn%></td>	
+			
+		</tr>
+		<tr>
+			<td>入货方式：</td>
+			<td><%if $order.in_warehouse_type == 0%>购买<%elseif $order.in_warehouse_type == 1%>委托加工<%elseif $order.in_warehouse_type == 2%>代销<%elseif $order.in_warehouse_type == 3%>借入<%/if%>			</td>
+			<td>结算方式：</td>
+			<td><%if $order.account_type == 0%>记账<%elseif $order.account_type == 1%>已付款<%/if%></td>
+			<td>制单人：</td>
+			<td><%$order.make_order%></td>
+			<td>审核人：</td>
+			<td><%$order.check_order%></td>	
+			
+		</tr>	
+		<tr>
+			<td>总重：</td>
+			<td ><%$order.goods_zhong|string_format:'%.3f'%></td>
+			<td>总件数：</td>
+			<td><%$order.goods_num%></td>
+			<td>总成本：</td>
+			<td><%$order.goods_total|string_format:'%.2f'%></td>
+			<td>支付总计：</td>
+			<td><%$order.shijia|string_format:'%.2f'%></td>
+		</tr>		
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" style="border:0" width="100%">
+		<tr>
+		  
+			<td>&nbsp;
+			</td>
+			<td>
+			<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+				<tr>
+					<td>石包</td>
+					<td>数量(粒)</td>
+					<td>重量(ct)</td>
+					<td>每卡采购价格(元)</td>
+					<td>采购成本(元)</td>
+				</tr>
+				<%foreach key=key item=item from=$order_goods%>
+				<tr>
+					<td><%$item.shibao%></td>
+					<td><%$item.num%></td>
+					<td><%$item.zongzhong %></td>
+					<td><%$item.caigouchengben %></td>
+					<td><%math equation="x * y" x=$item.zongzhong y=$item.caigouchengben%></td>
+				</tr>
+				<%/foreach%>
+			</table>
+			</td>
+			<td>&nbsp;
+			</td>
+		</tr>
+	</table>
+	
+</div>
+</body>
+</html>

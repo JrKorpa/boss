@@ -1,0 +1,84 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="diachannel_jiajialv_info">
+		<div class="form-body">
+			<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label"> 销售渠道：</label>
+							<select class="form-control" tabindex="1" name="channel_id">
+								<option value=""></option>
+								<%foreach from=$channels key=key item=val%>
+								<option value="<%$val['channel_id']%>" <%if $view->getField('channel_id')==$val['channel_id']%>selected="selected"<%/if%>><%$val['channel_name']%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">最小钻重(CT)：</label>
+							<input type="text" name="carat_min" class="form-control" placeholder="最小钻重" value="<%$view->getField('carat_min')%>" />
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">最大钻重(CT)：</label>
+							<input type="text" name="carat_max" class="form-control" placeholder="最大钻重" value="<%$view->getField('carat_max')%>" />
+						</div>
+					</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">证书类型：</label>
+						<select class="form-control" tabindex="1" name="cert">
+                            <option value=""></option>
+                            <%foreach from=$view->getCertList() item=val%>
+                            <option value="<%$val%>" <%if $view->getField('cert')== $val && $val%>selected="selected"<%/if%>><%$val%></option>
+                            <%/foreach%>
+                        </select>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">货品状态：</label>
+						<select class="form-control" tabindex="1" name="good_type">
+                            <option value=""></option>
+                            <option value="1" <%if $view->getField('good_type')== 1%>selected="selected"<%/if%>>现货</option>
+                            <option value="2" <%if $view->getField('good_type')== 2%>selected="selected"<%/if%>>期货</option>
+	                    </select>
+					</div>
+				</div>
+				
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">加价：</label>
+						<input type="text" name="jiajialv" class="form-control" placeholder="加价" value="<%$view->getField('jiajialv')%>" />
+					</div>
+				</div>
+
+			</div>
+		<!-- 搜索按钮 -->
+		<div class="row">
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<input type="hidden" name="id" value="<%$view->getField('id')%>" />
+					
+					<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+					<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+	
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/diachannel_jiajialv_info.js"%>
+//-->
+</script>

@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>状态</th>
+			<th>供应商</th>
+			<th>出货单号</th>
+			<th>总数量</th>
+			<th>总金额</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>最新操作人</th>
+			<th>最新操作时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="purchase_type_list_<%$d.id%>" data-title="流水号<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$dd->getEnum('DefectiveProductStatus',$d.status)%></td>
+			<td><%$d.prc_name%></td>
+			<td><%$d.ship_num%></td>
+			<td><%$d.num%></td>
+			<td><%$d.all_amount%></td>
+			<td><%$d.user_name%></td>
+			<td><%$d.create_time %></td>
+			<td><%$d.edit_user_name %></td>
+			<td><%$d.edit_time %></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

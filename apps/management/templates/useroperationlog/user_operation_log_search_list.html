@@ -1,0 +1,36 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>模块</th>
+			<th>对象</th>
+			<th>方法</th>
+			<th>日志内容</th>
+			<th>IP</th>
+			<th>操作人</th>
+			<th>时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+		<tr data-id="user_operation_log_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.m_name%><br/><%$d.module%></td>
+			<td><%$d.c_name%><br/><%$d.controller%></td>
+			<td><%$d.a_name%><br/><%$d.action%></td>
+			<td>
+			请求地址:<%$d.request_url%><br/>
+			数据变化:<%$d.remark%></td>
+			<td><%$d.ip%></td>
+			<td><%$d.create_user%></td>
+			<td><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

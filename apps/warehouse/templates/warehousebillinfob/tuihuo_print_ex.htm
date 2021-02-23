@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>退货返厂单</title>
+<style type="text/css">
+
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:700px;margin:10px auto;}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:5px;}
+table.list-ch td{border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:25px; line-height:12px; text-align:center; font-weight:bold;}
+
+</style>
+<style media="print">
+
+	.Noprint{display:none;} 
+
+</style>
+
+</head>
+<body>
+<!--startprint-->
+<div class="wrap">
+	<h1>退货返厂单-明细表</h1>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="75">单号：</td>
+			<td width="110"><%$data.bill_no%></td>
+			<td width="75">日期：</td>
+			<td width="110"><%$data.create_time|date_format:'%Y-%m-%d'%></td>
+			<td width="75">状态：</td>
+			<td width="110"><%$dd->getEnum('warehouse.bill_status',$data.bill_status)%></td>
+			<td width="75">制单人：</td>
+			<td width="110"><%$data.create_user%></td>	
+		</tr>
+        <td>出库公司：</td>
+            <td colspan="7"><%$data.from_company_name%></td>
+		<tr>
+			<td>加工商：</td>
+			<td><%$data.pro_id%></td><!--pro_name-->
+			<td>出货仓</td>
+			<td><%$data.to_warehouse_name%></td>
+			<td>审核人：</td>
+			<td><%$data.check_user%></td>
+			<td>入库方式：</td>
+			<td><%$dd->getEnum("dia_order.in_warehouse_type",$goods_info.0.in_warehouse_type)%></td>	
+		</tr>
+		<tr>
+			<td>数量总计：</td>
+			<td ><%$data.goods_num%></td>
+			<td>成本总计：</td>
+			<td><%$data.goods_total%></td>
+			<td>退货总计：</td>
+			<td><%$data.shijia%></td>	
+			<td>参考编号：</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>备注：</td>
+			<td colspan="3"><%$data.bill_note%></td>
+			
+			<td></td>
+			<td></td>	
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+    </table>	
+	
+	<table cellpadding="0" cellspacing="0" border="0" style="border:0" width="100%">
+		<tr>
+			<td>
+			<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+				<tr>
+					<td>主成色</td>
+					<td>重</td>
+				</tr>
+				<%foreach key=key item=item from=$zhuchengsetongji%>
+				<tr>
+					<td><%$item.caizhi%></td>
+					<td><%$item.jinzhong|string_format:'%.3f'%></td>
+				</tr>
+				<%/foreach%>
+				<tr>
+					<td>小计</td>
+					<td><%$zhuchengsezhongxiaoji|string_format:'%.3f'%></td>
+				</tr>
+			</table>
+			
+			</td>
+
+			</td>
+			<td>&nbsp;
+			</td>
+			<td>
+			<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+				<tr>
+					<td>主石</td>
+					<td>粒数</td>
+					<td>重</td>
+				</tr>
+				<%foreach key=key item=item from=$zhushitongji%>
+				<tr>
+					<td><%$item.zhushi%></td>
+					<td><%$item.zhushilishu%></td>
+					<td><%$item.zuanshidaxiao|string_format:'%.3f'%></td>
+				</tr>
+				<%/foreach%>
+				<tr>
+					<td>小计</td>
+					<td><%$zhushilishuxiaoji%></td>
+					<td><%$zhushizhongxiaoji|string_format:'%.3f'%></td>
+				</tr>
+			</table>
+			</td>
+
+			<td>&nbsp;
+			</td>
+			<td>
+			<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+				<tr>
+					<td>副石</td>
+					<td>粒数</td>
+					<td>重</td>
+				</tr>
+				<%foreach key=key item=item from=$fushitongji%>
+				<tr>
+					<td><%$item.fushi%></td>
+					<td><%$item.fushilishu%></td>
+					<td><%$item.fushizhong|string_format:'%.3f'%></td>
+				</tr>
+				<%/foreach%>
+				<tr>
+					<td>小计</td>
+					<td><%$fushilishuxiaoji%></td>
+					<td><%$fushizhongxiaoji|string_format:'%.3f'%></td>
+				</tr>
+			</table>
+			</td>
+			
+		</tr>
+	</table>
+
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch" style="width:400px">
+		<thead>
+			<tr>
+				<td>加工商</td>
+				<td>支付内容</td>
+				<td>金额</td>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<%foreach key=key item=item from=$BillPay %>
+			<tr>
+				<td width='200'><%$item.pro_id%></td><!--pro_name-->
+				<td><%$dd->getEnum("warehouse.pay_content",$item.pay_content)%></td>
+				<td class="tRight"><%$item.amount|string_format:'%.2f'%></td>
+				
+			</tr>
+			<%/foreach%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td >合计</td>
+				<td>&nbsp;</td>
+				<td class="tRight"><%$amount%></td>
+			</tr>
+		</tfoot>
+	</table><div style="margin-top:10px;text-align:center;">制单人:___________  &nbsp;&nbsp;收发员:___________  &nbsp;&nbsp;收货人:___________    打印时间 <%$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'%></div>
+	
+	<!--endprint-->
+	
+	<div style="text-align:center;">
+
+    <button id="print_close" onclick="close_bill();">关闭</button>
+    <button id="print_btn" onclick="print_bill();">打&nbsp;印</button>
+
+	</div>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+
+ function close_bill(){
+        window.close();
+    }
+
+function print_bill(){
+	bdhtml = window.document.body.innerHTML;
+	sprnstr = "<!--startprint-->";
+	eprnstr = "<!--endprint-->";
+	prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+	prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+	window.document.body.innerHTML = prnhtml;
+	window.print();
+
+    
+}
+</script>
+</html>

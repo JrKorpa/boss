@@ -1,0 +1,95 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+    			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#product_info_4c_search_list .checkboxes" /></th>
+				<th>序号</th>
+                <th>订单号</th>
+                <th>布产号</th>				
+                <th>原证书号</th>
+                <th>新证书号</th>
+				<th>原价格</th>
+                <th>新价格</th>
+				<th>原折扣</th>
+                <th>新折扣</th>
+                <th>新石重</th>
+                <th>新颜色</th>
+                <th>新净度</th>
+                <th>新形状</th>                
+                <th>4C配钻状态</th>
+                <th>布产状态</th>
+				<th>空托布产号</th>
+				<th>配石时间</th>	
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach from=$page_list.data item=d key=key%>
+				<tr data-id="product_info_4c_list_<%$d.id%>" data-title="布产号:<%$d.bc_sn%>">
+				<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.id|default:''%></td>
+				<td>
+				<a href="javascript:;" class="tab-con-a" data-id="baseorderinfo-<%$d.order_sn%>" data-title="<%$d.order_sn|default:''%>" data-url="index.php?mod=sales&amp;con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn|default:''%></a>
+				</td>
+				<td>
+				<a href="javascript:;" class="tab-con-a" data-id="productinfo-<%$d.id%>" data-title="<%$d.bc_sn|default:''%>" data-url="index.php?mod=processor&con=ProductInfo&act=show&id=<%$d.id%>"><%$d.bc_sn|default:''%></a>
+				</td>				
+				<td><%$d.zhengshuhao_org|default:''%></td>
+				<td><%$d.zhengshuhao|default:''%></td>
+				<td><%$d.price_org|default:''%></td>
+				<td><%$d.price|default:''%></td>				
+				<td><%$d.discount_org|default:''%></td>
+				<td><%$d.discount|default:''%></td>
+				<td><%$d.carat|default:''%></td>
+				<td><%$d.color|default:''%></td>
+				<td><%$d.clarity|default:''%></td>
+				<td><%$dd->getEnum('shape',$d.shape)%></td>
+	            <td><%if $d.peishi_status==1%><font color="green">已完成</font><%else%><font color="red">未完成</font><%/if%></td>
+				<td><%$dd->getEnum('buchan_status',$d.status)%></td>
+				<td>
+				<%if $d.bc_sn%>
+				<a href="javascript:;" class="tab-con-a" data-id="productinfo-<%$d.kt_bc_id%>" data-title="<%$d.bc_sn|default:''%>" data-url="index.php?mod=processor&con=ProductInfo&act=show&id=<%$d.kt_bc_id%>"><%$d.kt_bc_sn%></a>
+				<%/if%>
+				</td>
+				<td><%$d.create_time|default:''%></td>				
+				</tr>
+            <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#product_info_4c_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+    test.each(function () {
+    if ($(this).parents(".checker").size() == 0) {
+        $(this).show();
+        $(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#product_info_4c_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+    var checked = $(this).is(":checked");
+    $(set).each(function () {
+        if (checked) {
+            $(this).attr("checked", true);
+            $(this).parents('tr').addClass("active");
+        } else {
+            $(this).attr("checked", false);
+            $(this).parents('tr').removeClass("active");
+        }                    
+    });
+    $.uniform.update(set);
+});
+$('#product_info_4c_search_list').on('change', 'tbody tr .checkboxes', function(){
+    $(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

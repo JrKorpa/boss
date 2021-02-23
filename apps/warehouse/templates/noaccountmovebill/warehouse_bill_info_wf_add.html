@@ -1,0 +1,187 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>无账调拨单
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		<!--<div class="btn-group">
+				<button class="btn btn-sm blue" onclick="util.cust(this,hedui_goods);" data-url="index.php?mod=warehouse&con=WarehouseBillInfoWf&act=hedui_goods" name="核对货品" title="核对货品" list-id="15" data-title="">
+				核对货品 <i class="fa fa-refresh"></i>
+				</button>
+		</div>
+		<%if $view->get_id() && $view->get_bill_status() == 1%>
+			<div class="btn-group">
+				<button class="btn btn-sm blue" onclick="util.cust(this,closeBill);" data-url="index.php?mod=warehouse&con=WarehouseBillInfoWf&act=closeBill" name="取消" title="取消维修调拨" list-id="15" data-title="">
+				取消 <i class="fa fa-refresh"></i>
+				</button>
+			</div>
+		<%/if%>
+		<div class="btn-group">
+				<button class="btn btn-sm blue" onclick="util.cust(this,printcode);" data-url="index.php?mod=warehouse&con=WarehouseBill&act=printcode" name="打印条码" title="打印条码" list-id="15" data-title="">
+				打印条码 <i class="fa fa-refresh"></i>
+				</button>
+			</div>-->
+			<div class="btn-group">
+				<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新查看页签" list-id="15" data-title="">
+				刷新 <i class="fa fa-refresh"></i>
+				</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" list-id="15" data-title="">
+				离开 <i class="fa fa-mail-reply"></i>
+				</button>
+			</div>
+		</div>
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="warehouse_bill_info_wf_add">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单号：</label><span style='color:red;'>*</span>
+							<input type="text" name="bill_no" class="form-control" value="<%$view->get_bill_no()%>" placeholder="自动生成" disabled="disabled"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">日期：</label><span style='color:red;'>*</span>
+							<input type="text" name="create_time" class="form-control" value='<%if $view->get_bill_no()%><%$view->get_create_time()%><%else%><%$smarty.now|date_format:'%Y-%m-%d'%><%/if%>' disabled="disabled"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">状态：</label><span style='color:red;'>*</span>
+							<input type="text" name="bill_status" class="form-control" value='<%if $view->get_bill_no()%><%$dd->getEnum("warehouse.bill_status",$view->get_bill_status())%><%else%>新建<%/if%>' disabled="disabled"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单人：</label><span style='color:red;'>*</span>
+							<input type="text" name="create_user" class="form-control" value='<%if $view->get_bill_no()%><%$view->get_create_user()%><%else%><%$smarty.session.userName%><%/if%>' disabled="disabled"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">发货方：</label><span style='color:red;'>*</span>
+							<select class="select2_category form-control" name="from_company_id" tabindex="1" <%if $view->get_id()%>disabled="disabled"<%/if%>>
+							<option value=""></option>
+							<%foreach from=$fahuofang item=e%>
+								<option value="<%$e.id%>|<%$e.company_name%>" <%if $view->get_from_company_id() != '' && ($view->get_from_company_id() == $e.id)%>selected<%/if%> ><%$e.company_sn%> | <%$e.company_name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">收货方：</label><span style='color:red;'>*</span>
+							<select class="select2_category form-control" name="to_warehouse_id" tabindex="1" <%if $view->get_id()%>disabled="disabled"<%/if%>>
+								<option value=""></option>
+							<%foreach from=$weixiu_list item=w%>
+								<option value="<%$w.id%>|<%$w.name%>" <%if $view->get_to_warehouse_id() != '' && ($view->get_to_warehouse_id() == $w.id)%>selected<%/if%> ><%$w.code%> | <%$w.name%></option>
+							<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">配送公司：</label>
+							<select class="select2_category form-control" name="to_customer_id" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$kuaidi_list item=k%>
+								<option value="<%$k.id%>" <%if $view->get_to_customer_id() != '' && ($view->get_to_customer_id() == $k.id)%>selected<%/if%> ><%$k.exp_name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">数量总计：</label>
+							<input type="text" name="goods_num" class="form-control" value='<%$view->get_goods_num()%>' disabled="disabled"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">订单号：</label>
+							<input type="text" name="order_sn" placeholder="请输入" class="form-control" value='<%$view->get_order_sn()%>'  onblur="check_order(this)" />
+						</div>
+					</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">顾客姓名：</label>
+                            <input type="text" name="customer" placeholder="自动带出" class="form-control" value='<%$consignee%>' id="customer"/>
+                        </div>
+                    </div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">快递单号：</label>
+							<input type="text" name="ship_number" placeholder="请输入" class="form-control" value='<%$wfview->get_ship_number()%>'/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">备注：</label><span style='color:red;'>*</span>
+							<input type="text" name="bill_note" placeholder="请输入" class="form-control" value='<%$view->get_bill_note()%>' id="bill_notes"/>
+						</div>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">无账修退流水号</label><span style='color:red;'>（逗号，空格，回车自动换行）：</span>
+                            <textarea id="virtual_id" name="virtual_id" cols="10"  rows="10" placeholder="请批量输入无账修退流水号" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<!--<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>维修调拨明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+		<%if $view->get_id()%>
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<button id="batch_copy_goodsid_wf_e" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		<%/if%>
+		<p class="text-danger"></p>
+		<div class="" id="from_table_data_bill_wf_return">
+		</div>
+		<div class="pager"></div>
+	</div>
+</div>-->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<button type="reset" class="btn default" form="warehouse_bill_info_wf_info" id="reset">重置</button>
+			<button type="button" id="from_table_data_info_wf_btn" class="btn green" form="warehouse_bill_info_wf_info"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	<div class='clear'></div>
+<script type="text/javascript">
+<!--
+	<%include file="js/table_data.js"%>
+	<%include file="js/warehouse_bill_info_wf_add.js"%>
+//-->
+</script>

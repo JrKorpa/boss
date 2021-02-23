@@ -1,0 +1,29 @@
+id = #from_table_data_t_jiesuan_edit;
+
+[title]
+0 = "结算商";
+1 = "支付内容";
+2 = "结算方式";
+3 = "含税金";
+4 = "金额";
+
+
+[columns_0]
+editor = select;
+selectOptions = ["数字字典中找不到相应数据"];
+
+[columns_1]
+editor = select;
+selectOptions = ["数字字典warehouse.pay_content中找不到相应数据"];
+
+[columns_2]
+editor = select;
+selectOptions = ["数字字典warehouse.pay_method中找不到相应数据"];
+
+[columns_3]
+editor = select;
+selectOptions = ["数字字典warehouse.pay_tax中找不到相应数据"];
+
+[columns_4]
+type = numeric;
+format = 0,0.00;

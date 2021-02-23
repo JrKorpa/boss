@@ -1,0 +1,151 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>布产现货搜索
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="product_has_goods_search">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">仓库：</label><!--house-->
+                            <select class="form-control" tabindex="1" name="warehouse_id">
+                                <option value=""></option>
+                                <%foreach from=$warehouseList item=val%>
+                                <option value="<%$val.id%>"><%$val.name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">指圈：</label>
+                            <input type="text" name="shoucun" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">材质：</label>
+                            <select class="form-control" tabindex="1" name="caizhi">
+                                <option value=""></option>
+                                <%foreach from=$zhuchengseList item=val%>
+                                <option value="<%$val.caizhi%>"><%$val.caizhi%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <select class="form-control" tabindex="1" name="yanse">
+                                <option value=""></option>
+                                <%foreach from=$view->getGoodsAttrs('yanse') item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">颜色：</label>
+                            <select class="form-control" tabindex="1" name="yanse">
+                                <option value=""></option>
+                                <%foreach from=$yanse item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <select class="form-control" tabindex="1" name="jingdu">
+                                <option value=""></option>
+                                <%foreach from=$view->getGoodsAttrs('jingdu') item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label">净度：</label>
+                            <select class="form-control" tabindex="1" name="jingdu">
+                                <option value=""></option>
+                                <%foreach from=$jingdu item=val%>
+                                <option value="<%$val%>"><%$val%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主成色重：</label>
+                            <div  class="input-group date-picker input-daterange">
+                                <input type='text' name="zhuchengse_1" class="form-control" placeholder="请输入"/>
+                                <span class="input-group-addon">-</span>
+                                <input type='text' name="zhuchengse_2" class="form-control" placeholder="请输入"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">主石大小：</label>
+                            <div  class="input-group date-picker input-daterange">
+                                <input type='text' name="zuanshidaxiao_1" class="form-control" placeholder="请输入"/>
+                                <span class="input-group-addon">-</span>
+                                <input type='text' name="zuanshidaxiao_2" class="form-control" placeholder="请输入"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">现货货号：</label>
+                            <input type="text" name="goods_id" class="form-control" placeholder="请输入" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">款号：</label>
+                            <input type="text" name="goods_sn" class="form-control" value="<%$goods_sn%>" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="hidden" name="bc_id" value="<%$bc_id%>"/>
+                        <input type="hidden" name="order_gs_id" value="<%$order_gs_id%>"/>
+                        <input type="hidden" name="order_sn" value="<%$order_sn%>"/><!-- 订单号 -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="reset" class="btn default"><i class="fa fa-refresh"></i> 重置</button>
+                    <button type="submit" class="btn green"><i class="fa fa-search"></i> 搜索</button>
+                    <button id="product_has_goods_cannel_bc" type="button" class="btn red"><i class="fa fa-undo"> </i> 不需布产 </button>				<%if $combineXQShow==1%>	
+					<button id="product_has_goods_combinexq" type="button" class="btn blue"><i class="fa fa-edit"></i>  现货组合镶嵌 </button>     <%/if%>
+                </div>
+            </div>
+
+        </form>
+        <!-- END FORM-->
+    </div>
+    <div class="portlet-body" id="product_has_goods_result_list">
+        <!-- 结果列表 -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/product_has_goods.js"%>
+    //-->
+</script>

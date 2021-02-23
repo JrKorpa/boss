@@ -1,0 +1,140 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>配石发料详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+		<%$bar%> 
+		</div>
+		<div id="peishi_info_box" style="height:350px">
+			<!-- 表格1 -->
+			<div class="col-sm-6">
+				<table class="table table-bordered table-striped  flip-content">
+					<tr>
+						<td><b>布产单号</b></td>
+						<td>BC123456</td>
+					</tr>				
+				 </table>
+			</div>
+			<div class="col-sm-6">
+				<!-- 布产图片 -->
+	            
+			</div>
+		</div>
+		<div class="clear"></div>
+
+	
+	<div class="table-scrollable">
+	<form name="peishi_list_show_form" method="post" id="peishi_list_show_form" >
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>流水号</th>
+                <th>订单号</th>   
+				<th>工厂名称</th>             
+                <th>布产号</th>
+				<th>快速定制</th>
+                <th>客户名</th>
+				<th>线上线下</th>
+                <th>钻石大小</th>
+                <th>钻石颜色</th>
+                <th>钻石净度</th>				
+                <th>钻石形状</th>
+				<th>证书类型</th>
+				<th>数量</th>
+                <th>证书号</th>                
+                <th>配石状态</th>		
+                <th>钻石条码</th>	
+				<th>
+				批量更改<br/>配石状态				
+				<!--<select class="form-control" tabindex="1" name="peishi_status_all">
+					<option value=""></option>
+					<%foreach from=$peishi_status_arr key=k item=value%>
+					<option value="<%$value.name%>"><%$value.label%></option>
+					<%/foreach%>
+				</select>--></th>	
+				<th>备注</th>			
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data item=d%>
+			<tr data-id="<%$d.id%>" class="js_row">
+				<td><%$d.id%></td>
+                <td><%$d.order_sn%></td>  
+				<td><%$d.prc_name%></td>              
+                <td><a href="javascript:;" data-title="<%$d.bc_sn%>" data-id="productinfo-<%$d.bc_id%>"class="tab-con-a" data-url="index.php?mod=processor&con=ProductInfo&act=show&bc_id=<%$d.bc_id%>" ><%$d.bc_sn%></a></td>
+				<td style="text-align:center"><%if $d.is_quick_diy==1%>是<%else%>否<%/if%></td>
+                <td><%$d.consignee%></td>
+				<td><%$d.channel_class%></td>
+                <td><%$d.carat%></td>
+                <td><%$d.color%></td>
+                <td><%$d.clarity%></td>				
+                <td><%$d.shape%></td>
+				<td><%$d.cert%></td>
+				<td><%$d.num%></td>				
+                <td><%$d.zhengshuhao%></td>                
+                <td><%$dd->getEnum('peishi_status',$d.peishi_status)|default:'未操作'%></td>
+				<td>
+				<%if in_array($d.peishi_status,array(2,5))%> 
+				<textarea class="js_goods_id" name="goods_id[<%$d.id%>]" style="width:95px;height:50px" peishi-status-default="<%$d.peishi_status_default%>" peishi-status-default2="<%$d.peishi_status_default2%>" peishi-status-edit="<%$d.peishi_status_edit%>"><%str_replace(',',"\r\n",$d.goods_id)%></textarea>
+				<%else%>
+				<%str_replace(',',"<br/>",$d.goods_id)%>
+				<%/if%>
+				</td>
+				<td  style="width:100px" >
+				<%if !in_array($d.peishi_status,array(1,3,4,6))%>
+				<select class="form-control js_peishi_status"  name="peishi_status[<%$d.id%>]">
+					<option value=""></option>
+	    			<%foreach from=$peishi_status_arr key=k item=value%>
+						<%if $d.peishi_status==0 && !in_array($value.name,array(0,1,2,3))%>
+						    <%continue%>
+						<%/if%>
+						<%if $d.peishi_status==2 && !in_array($value.name,array(1,2,3,4,5,6))%>
+						    <%continue%>
+						<%/if%>
+						<%if $d.peishi_status==5 && !in_array($value.name,array(1,2,4,5,6))%>
+						    <%continue%>
+						<%/if%>						
+					<option value="<%$value.name%>" <%if $d.peishi_status_default==$value.name%>selected<%/if%>><%$value.label%></option>
+					<%/foreach%>
+				</select>
+				<%else%>
+				<%$dd->getEnum("peishi_status",$d.peishi_status)%>
+				<%/if%>
+				</td>	
+				<td>
+				<%if !in_array($d.peishi_status,array(1,3,4,6))%>
+				<textarea name="peishi_remark[<%$d.id%>]" style="width:95px;height:50px"></textarea>
+				<input type="hidden" name="id[]" value="<%$d.id%>"/>
+				<%else%>
+				   <%$d.peishi_remark%>
+				<%/if%>
+				</td>				
+			</tr>	
+			
+		<%/foreach%>
+		</tbody>
+	</table>
+    <div class="form-actions fluid">
+        <div class="col-md-offset-3 col-md-9">
+            <button type="reset" class="btn default">重置</button>
+            <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+        </div>
+    </div>
+</form>
+</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+    util.hover();
+	<%include file="js/peishi_list_show.js"%>
+//-->
+</script>

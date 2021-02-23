@@ -1,0 +1,72 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	<%*	<tr>
+			<td colspan="12">订单总金额：<%$all_price%></td>
+		</tr>*%>
+    <tr>
+			<th>序号</th>
+			<th>订单号</th>
+			<th>销售渠道</th>
+		<!--	<th>渠道部门</th>-->
+			<th>客户来源</th>
+			<th>会员名称</th>
+			<th>订单状态</th>
+			<th>支付状态</th>
+			<th>订购类型</th>
+            <th>配货状态</th>
+            <th>发货状态</th>
+            <th>是否是现货</th>
+			<!--<th>订单商品总金额</th>-->
+			<th>制单人</th>
+			<th>制单时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_list_<%$d.id%>" data-title="<%$d.order_sn%>" id='<%$d.id%>'>
+			<td  align="center"><%$d.id%></td>
+            <td align="center">
+                <a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a>
+            </td>
+			<td align="center"><%if isset($allSalesChannelsData[$d.department_id])%><%$allSalesChannelsData[$d.department_id]%><%/if%></td>
+			<td align="center"><%$d.customer_source_name|default:''%></td>
+			<td align="center"><%$d.consignee%></td>
+			<td align="center">
+				<%$dd->getEnum('order.order_status',$d.order_status)%>
+			</td>
+			<td align="center">
+				<%$dd->getEnum('order.order_pay_status',$d.order_pay_status)%>
+			</td>
+			<td align="center">
+				<%$pay_type[$d.order_pay_type]%>
+			</td>
+            <td align="center">
+                <%$dd->getEnum('sales.delivery_status',$d.delivery_status)%>
+            </td>
+
+            <td align="center">
+                <%$dd->getEnum('order.send_good_status',$d.send_good_status)%>
+            </td>
+
+
+
+            <td align="center">
+                <%if $d.is_xianhuo==0%>期货单<%else%>现货单<%/if%>
+            </td>
+
+			<!--<td align="center"><%$d.order_amount|default:0%></td>-->
+			
+			<td align="center"><%$d.create_user%></td>
+			<td align="center"><%$d.create_time%></td>
+			
+
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

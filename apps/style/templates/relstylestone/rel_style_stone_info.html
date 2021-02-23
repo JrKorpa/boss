@@ -1,0 +1,46 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="rel_style_stone_info">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">石头位置类型：</label>
+                        <select class="form-control" tabindex="1" name="stone_position">
+                            <option value="1" <%if $view->get_stone_position()==1%>selected="selected"<%/if%>>主石</option>
+                            <option value="2" <%if $view->get_stone_position()==2%>selected="selected"<%/if%>>副石</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">石头类型：</label>
+                        <select class="form-control" tabindex="1" name="stone_cat">
+                            <%foreach from=$view->getStoneCatList() key=key item=l %>
+                            <option value="<%$key%>" <%if $view->get_stone_cat()==$key%>selected="selected"<%/if%>><%$l.stone_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-body"><div class="row" id="show_div"></div></div>
+
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="hidden" name="id" value="<%$view->get_id()%>" />
+                <input type="hidden" name="style_id" value="<%if $view->get_style_id()%><%$view->get_style_id()%><%else%><%$style_id%><%/if%>">
+                <input type="hidden" name="_id" value="<%$_id|default:0%>" />
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/rel_style_stone_info.js" %>
+//-->
+</script>

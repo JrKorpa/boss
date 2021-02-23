@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<tr>
+		<td  class="flip-content">款号：</td>
+		<td  class="flip-content">数量：</td>
+		<td  class="flip-content">价格：</td>
+		<td  class="flip-content">优惠：</td>
+		<td  class="flip-content">是否现货：</td>
+	</tr>
+	<%foreach from=$cart_data item=d%>
+	<tr>
+		<td  class="flip-content"><%$d.goods_sn%></td>
+		<td  class="flip-content"><%$d.goods_count%></td>
+		<td  class="flip-content"><%$d.goods_price%></td>
+		<td  class="flip-content"><%$d.sale_price%></td>
+		<td  class="flip-content"><%if $d.is_stock_goods == 1%>现货<%else%>期货<%/if%></td>
+	</tr>
+	<%/foreach%>
+</table>

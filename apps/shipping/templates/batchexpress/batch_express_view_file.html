@@ -1,0 +1,128 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i><%$data.filename|default:"error"%>
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+       <div class="table-toolbar">
+        <%$bar%>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">上传用户：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.create_user|default:''%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">打印状态：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%if $data.is_print==1%>已打印<%else%>未打印<%/if%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">登记状态：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%if $data.is_register==1%>已登记<%else%>未登记<%/if%>"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">上传时间：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.create_time|default:'000-00-00 00:00:00'%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">打印时间：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.print_time|default:'000-00-00 00:00:00'%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">登记时间：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.register_time|default:'000-00-00 00:00:00'%>"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递公司：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.company_name|default:'--'%>"/>
+				</div>
+			</div>
+			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">单据编号：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.id|default:'0'%>"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递单数量：</label>
+					<input type="text" class="form-control" disabled="disabled" value="<%$data.detail_num|default:'0'%>"/>
+				</div>
+			</div>			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+		<!-- 表格1 -->
+		<div id="batch_express_search_list">
+		  <table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th style="text-align:center">编号</th>
+				<th>快递单号</th>
+				<th>寄件人</th>
+				<th>寄件部门</th>
+				<th>发件缘由</th>
+				<th>收货人</th>
+				<th>收件地址</th>
+				<th>联系电话</th>
+			</tr>
+		</thead>
+		<tbody id="register_express_form">
+		 <input type="hidden" name="file_id" value="<%$data.id%>"/>
+		<%foreach from=$data.expresslist item=d key=key%>
+			<tr>
+			    <td style="text-align:center"><%$key+1%></td>
+				<td style="width:150px">
+				<%if $data.is_register==1%>
+				<%$d.freight_no%>				
+				<%else%>
+				  <input type="text" class="freight_no" name="freight_no[<%$d.id%>]" value="<%$d.freight_no%>" tabindex="<%($key+1)%>" />
+				<%/if%>
+				</td>
+				<td><%$d.sender%></td>
+				<td><%$d.department%></td>
+				<td><%$d.remark%></td>
+				<td><%$d.consignee%></td>
+				<td><%$d.cons_address%></td>
+				<td><%$d.cons_tel%></td>	
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/batch_express_view_file.js"%>
+//-->
+</script>

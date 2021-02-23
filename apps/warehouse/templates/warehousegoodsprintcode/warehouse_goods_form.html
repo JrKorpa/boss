@@ -1,0 +1,198 @@
+<!--搜索开始-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>商品算价打印标签
+        </div>
+        <div class="tools">
+            <a href="javascript:;" ><!--class="collapse" 自动展开还是闭合的-->
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+    	<div class="form-body">
+            <button class="btn btn-sm yellow" name="离开" onclick="util.closeTab(this);">
+            	离开<i class="fa fa-mail-reply"></i>
+            </button>
+        </div>
+        <!-- 表单内容 -->
+        <form action="#" class="horizontal-form" method="post" id="printcode_search_form">
+            <div class="form-body">
+            	<div class="row">
+                	<div class="col-sm-3">
+                        <div class="form-group">
+                        <label class="control-label">销售渠道：<font color='red'>(只为获取销售政策用,不做货品过滤！)</font></label>
+                            <select id="department_id" class="select2_category form-control" 
+                            	name="department_id" tabindex="1">
+                                <%foreach from=$channelList key=key item=value%>
+                                    <option value="<%$value.id%>" ><%$value.channel_name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+					
+					<div class="col-sm-3">
+                           <label class="control-label">
+                            <input type="checkbox"  name="is_activity" value="1">活动
+                            </label>
+                    </div>
+					
+					<div class="col-sm-3" id="policy_id_div" style="display:none">
+                        <div class="form-group">
+                        <label class="control-label">销售政策：</label>
+                            <select id="policy_id" class="select2_category form-control" 
+                            	name="policy_id" tabindex="1">
+                                
+                            </select>
+                        </div>
+                    </div>
+					
+                </div>
+                <div class="row">
+                     <div class="col-sm-6">
+                        <div class="form-group">
+                         <label class="control-label">货号：</label>
+                        <textarea rows="6" id="goods_id" name="goods_id"  placeholder="请输入要打标的货号,多个货号请以逗号,分开" 
+                        class="form-control"></textarea>
+                        </div>
+                    </div>   
+                </div>
+                <div class="row">                            
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <br/><font color='red'>提示：该功能只用于打印标签，不区分新旧款、不对货品参数做判断！</font>
+                            <br/>标签价公式   = 货品名义成本 *   加价率     +   累计系数
+                            <br/>
+                            <br/>
+                            <div class="form-group">
+                                <label class="control-label">打印标签文件类型：</label>
+                                <select id="daying_type" class="select2_category form-control" 、
+                                name="daying_type" tabindex="1" >
+                                    <option value="1">csv</option>
+                                    <option value="2">xls</option>
+                                </select>
+                            </div>
+                            <%if $smarty.const.SYS_SCOPE eq 'zhanting'%><label class="control-label"><input type="radio" name="type_t" value="3">
+                                        展厅标签价</label><%/if%>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            请设置标签价： 货品名义成本 * 
+                            <input id="jiajialv" type="text" class="form-control" 
+                            name="jiajialv" readonly="readonly" value="1" placeholder="加价率"/>
+                            <font color='red'>(加价率只能输入数字小数且小数点后保留2位！)</font>
+                            <br/>
+                            *<input id="jiajianum" type="text" value="0" class="form-control" 
+                            name="jiajianum" readonly="readonly" placeholder="累计系数"/>
+                            <font color='red'>(系数只能输入正负数字小数且小数点后保留2位！)</font>
+                            <br/>
+                            <label class="control-label">
+                                <input type="radio" value="0" class="type_t" name="type_t" >
+                                自定义打标【(<%$zdyms%>)X加价率 +加价系数 】
+                            </label>
+                            <br/>
+                            <label class="control-label">
+                                <input type="radio" value="1" class="type_t" name="type_t" checked>
+                                根据销售政策打标<font color='red'>(不允许选择价格尾数变99)</font>
+                            </label>
+                            <br/>
+                            <label class="control-label">
+                                <input type="radio" value="2" class="type_t" name="type_t">
+                                指定价打标(关联warehouse_biaoqian)
+                            </label>
+                            <br/><br/>
+                            <label class="control-label">
+                            <input type="checkbox" disabled="disabled" name="nine_price" value="1">活动价标签(价格尾数变为99)
+                            </label>
+                            </div>
+                        </div>
+                    </div>
+            	</div>
+                <!-- 搜索按钮 -->
+                <div class="form-actions fluid">
+                    <div class="col-md-offset-3 col-md-9">
+                        <a  class="btn btn-sm blue" data-title="商品打印标签" list-id="235" title="打印商品条码" name="打印商品条码" data-url="index.php?mod=warehouse&con=WarehouseGoodsPrintCode&act=printcode" onclick="util.cust(this,printcode);">
+                            打印商品条码
+                            <i class="fa fa-cloud-download"></i>
+                        </a>
+                    </div>
+                </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+    <div class="flip-scroll" id="channel_search_list"></div>
+</div>
+
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>导入指定价打标数据
+        </div>
+        <div class="tools">
+            <a href="javascript:;" ><!--class="collapse" 自动展开还是闭合的-->
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form action="index.php?mod=warehouse&con=WarehouseHuodongPrintCode&act=uploadzdfile" class="horizontal-form" method="post" enctype="multipart/form-data">
+            <div class = "row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">选择要上传的Excel(xls、xlsx、csv)文件：
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="zhidingcode" multiple="" />
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label">模版：（货号、指定价、活动价）</label>
+                    <div class="form-group">
+                        <a href="index.php?mod=warehouse&con=WarehouseHuodongPrintCode&act=zddow&type=1">下载导入csv模版（按照模版填写）</a><br/>
+						<a href="index.php?mod=warehouse&con=WarehouseHuodongPrintCode&act=zddow&type=2">下载导入xls模版（按照模版填写）</a>
+						<br/>
+						<a href="index.php?mod=warehouse&con=WarehouseHuodongPrintCode&act=zddow&type=3">下载导入xlsx模版（按照模版填写）</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions fluid">
+                <div class="col-md-offset-3 col-md-9">
+                    <button type="submit" class="btn blue"> 提交<i class="fa fa-check"></i></button>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/salepolicy_goods_list.js"%>
+//-->
+$(function(){
+  $(":radio").click(function(){
+	var type = parseInt($(this).val());
+	if(type > 0 ){
+		$("#jiajialv").attr("readonly", 'readonly');
+		$("#jiajianum").attr("readonly", 'readonly');
+		$("#jiajialv").val('');
+		$("#jiajianum").val('');
+	}else{
+		$("#jiajialv").removeAttr("readonly");
+		$("#jiajianum").removeAttr("readonly");
+	}
+	
+	//99活动价可选
+	if(type == 1)
+	{
+		$("[name=nine_price]:checkbox").prop("checked", false);
+		$("[name=nine_price]:checkbox").attr("disabled", 'disabled');
+	}else{
+		$("[name=nine_price]:checkbox").prop("disabled", false);	
+	}
+	
+  });
+});
+</script>

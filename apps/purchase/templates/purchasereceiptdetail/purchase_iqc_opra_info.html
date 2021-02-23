@@ -1,0 +1,42 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="purchase_iqc_opra">
+	<div class="form-body">
+		<div class="row">			
+			<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">质检操作：</label>
+					<div class="radio-list">
+						<%foreach from=$dd->getEnumArray('iqc_opra') key=key item=value%>
+						<label class="radio-inline">
+							<input type="radio" name="opra_code" value="<%$value.name%>" <%if $value.name == 1%>checked="checked"<%/if%> /> <%$value.label%>
+						</label>
+						<%/foreach%>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-8">
+				<div class="form-group">
+					<label class="control-label">备注：</label>
+					<input type="text" name="opra_info" class="form-control" maxlength="100" placeholder="请输入备注" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 搜索按钮 -->
+	<div class="form-actions fluid">
+		<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="rece_detail_id" value="<%$rece_detail_id%>" />
+			<button type="reset" class="btn default">重置</button>
+			<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+		</div>
+	</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/purchase_iqc_opra_info.js"%>
+//-->
+</script>

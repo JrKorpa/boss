@@ -1,0 +1,128 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="menu_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">菜单名称：</label>
+						<input type="text" name="label" class="form-control" placeholder="请输入" maxlength="20" value="<%$view->get_label()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">图标：</label>
+						<select class="form-control" tabindex="1" name="icon">
+							<option value=""></option>
+							<%foreach from=$view->getIconList() item=l %>
+								<option value="<%$l.id%>" <%if $view->get_icon()==$l.id%>selected="selected"<%/if%> ><%$l.name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">类型：</label>
+						<select class="form-control" tabindex="1" name="type">
+							<option value=""></option>
+							<option value="1" <%if $view->get_type()==1%>selected<%/if%>>通用</option>
+							<option value="2" <%if $view->get_type()==2%>selected<%/if%>>库管可见</option>
+							<option value="3" <%if $view->get_type()==3%>selected<%/if%>>渠道可见</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">是否启用：</label>
+						<div class="radio-list">
+							<%foreach from=$dd->getEnumArray("is_enabled") key=k item=value%>
+							<label class="radio-inline">
+								<input type="radio" name="is_enabled" <%if $view->get_is_enabled()===$value.name or ($view->get_is_enabled()=="" and $k==0)%>
+								 checked="checked"<%/if%> value="<%$value.name%>"> <%$value.label%>
+							</label>
+							<%/foreach%>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">菜单组：</label>
+						<select class="select2_category form-control" tabindex="1" name="group_id">
+							<option value=""></option>
+							<%foreach from=$view->getMenuOptions() item=value%>
+							<optgroup label="<%$value.app_label%>">
+							<%if !empty($value.son)%>
+								<%foreach from=$value.son item=v%>
+									<option value="<%$v.group_id%>" pid="<%$v.app_id%>" cls="<%$v.code%>" <%if $v.group_id==$view->get_group_id()%>selected<%/if%>
+									><%$v.group_label%></option>
+								<%/foreach%>
+							<%/if%>
+							</optgroup>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">所属控制器：</label>
+						<select class="form-control" tabindex="1" name="c_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">请求方法：</label>
+						<select class="form-control" tabindex="1" name="o_id">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">编码：</label>
+						<input type="text" name="code" class="form-control" placeholder="请输入" onBlur="value=value.toUpperCase()" maxlength="40" readOnly="readOnly" value="<%$view->get_code()%>" />
+					</div>
+				</div>
+
+				<div class="col-sm-9">
+					<div class="form-group">
+						<label class="control-label">菜单链接：</label>
+						<input type="text" name="url" class="form-control" placeholder="请输入"  value="<%$view->get_url()%>" maxlength="100" />
+					</div>
+				</div>
+                                <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">外部链接：</label>
+						<div class="checkbox-list">
+							<label class="checkbox-inline">
+								<input type="checkbox" name="is_out" value="1" <%if $view->get_is_out()==1%>checked<%/if%> /> 链接外部系统
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="application_id" value="<%$view->get_application_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/menu_info.js"%>
+//-->
+</script>

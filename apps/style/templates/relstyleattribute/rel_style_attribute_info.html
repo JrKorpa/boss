@@ -1,0 +1,78 @@
+<div class="portlet-body form">
+    <!-- 表单内容 -->
+    <form action="#" method="post" class="horizontal-form" id="rel_style_attribute_info">
+        <div class="form-body">
+            <div class="row">
+            <%foreach from=$new_attribute_data  item=value%>
+                <%if $value['info']['show_type']==1%>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <%assign var=key value=$value['info']['attribute_id']%>
+                        <label class="control-label"><%$value['info']['attribute_name']%>：</label>
+                        <input type="text" name="1-<%$key%>" class="form-control" placeholder="请输入"  value="<%$value['info']['attribute_value']%>" />
+                    </div>
+                </div>
+				<%else if $value['info']['show_type']==4 && array_key_exists('value',$value)%>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <%assign var=key value=$value['info']['attribute_id']%>
+                        <label class="control-label"><%$value['info']['attribute_name']%>：</label>
+                        <select class="form-control" tabindex="1" name="4-<%$key%>">
+                            <option value=""></option>
+                            <%foreach from=$value['value'] key=s_key item=tsp%>
+                            <option value="<%$s_key%>" <%if $tsp['checked']==$s_key%>selected<%/if%>><%$tsp['att_value_name']%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <%else if $value['info']['show_type']==2 && array_key_exists('value',$value)%>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <%assign var=key value=$value['info']['attribute_id']%>
+                        <label class="control-label"><%$value['info']['attribute_name']%>：</label>
+                        <%foreach from=$value['value'] key=n_key item=tmp%>
+                        <label class="radio-inline">
+                            <input type="radio" name="2-<%$key%>"  value="<%$n_key%>" <%if $tmp['checked']==$n_key%>checked<%/if%>/><%$tmp['att_value_name']%>
+                        </label>                                
+                        <%/foreach%>
+                    </div>
+                </div>
+                <%else if $value['info']['show_type']==3 && array_key_exists('value',$value)%>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <%assign var=key value=$value['info']['attribute_id']%>
+                        <input type="checkbox" onclick="all_select(this)" /><label class="control-label"><%$value['info']['attribute_name']%>：</label>
+                        <%foreach from=$value['value'] key=x_key item=xmp%>
+                        <label class="radio-inline">
+                            <input type="checkbox" name="3-<%$key%>_<%$x_key%>"  value="<%$x_key%>" <%if $xmp['checked']==$x_key%>checked<%/if%>/><%$xmp['att_value_name']%>
+                        </label>                                
+                        <%/foreach%>
+                    </div>
+                </div>
+				<%/if%>
+            <%/foreach%>
+            </div>
+        </div>
+        <!-- 搜索按钮 -->
+        <div class="form-actions fluid">
+            <div class="col-md-offset-3 col-md-9">
+
+                <input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+                <input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+                <input type="hidden" name="style_id" id="style_id" value="<%$style_id%>" />
+                <input type="hidden" name="cat_type_id" id="cat_type_id" value="<%$cat_type_id%>" />
+                <input type="hidden" name="style_sn" id="style_sn" value="<%$style_sn%>" />
+                <input type="hidden" name="product_type_id" id="product_type_id" value="<%$product_type_id%>" />
+
+                <button type="reset" class="btn default">重置</button>
+                <button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+            </div>
+        </div>
+    </form>
+    <!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/rel_style_attribute_info.js" %>
+//-->
+</script>

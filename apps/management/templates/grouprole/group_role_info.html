@@ -1,0 +1,34 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="group_role_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">角色：</label>
+						<select class="select2_category form-control" name="role_id[]" tabindex="1" multiple>
+							<option value=""></option>
+							<%foreach from=$view->getRoleTree() item=value%>
+								<option value="<%$value.id%>"><%$value.label%>(<%$value.code%>)</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="group_id" value="<%$view->get_group_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/group_role_info.js"%>
+//-->
+</script>

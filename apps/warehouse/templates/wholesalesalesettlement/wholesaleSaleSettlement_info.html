@@ -1,0 +1,77 @@
+
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>批量结算
+		</div>
+		<!-- <div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div> -->
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="" method="post" class="horizontal-form" id="wholesaleSaleSettlement_info">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">批发销售单号：（下面批量货号必须在同一个批发销售单里）</label>
+                            <input type="text" name="bill_no_p" class="form-control" placeholder="请输入"/>
+                        </div>
+                    </div>
+					<div class="col-sm-12">
+						<div>
+							<label class="control-label" style="vertical-align:top">货号：(不同货号请按<b style="color:red;">回车或者逗号</b>间隔)</label>
+						</div>
+						<div class="form-group" id='gs'>
+							<!--<input type="text" id="tags_11" name="orderids" class="form-control tags" placeholder="请输入" value=""/>-->
+							<textarea  id="tags_11" name="goods_ids" rows="5" cols="50" style="margin: 0px; width: 403px; height: 136px;"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default ">重置</button>
+					<button type="submit" class="btn red"><i class="fa fa-check"></i> 结算</button>
+                    <%if $smarty.const.SYS_SCOPE eq 'boss'%><button type="button" id="tuihuo" class="btn blue"><i class="fa fa-check"></i> 退货</button><%/if%>
+				</div>
+			</div>
+		</form>
+	<!-- END FORM-->
+	</div>
+</div>
+<script type="text/javascript">
+
+	<%include file="js/wholesaleSaleSettlement_info.js"%>
+
+    $('#tuihuo').click(function(event) {
+        var bill_no_p = $('#wholesaleSaleSettlement_info [name="bill_no_p"]').val();
+        var goods_ids = $('#wholesaleSaleSettlement_info [name="goods_ids"]').val();
+        var url = "index.php?mod=warehouse&con=WholesaleSaleSettlement&act=refund";
+        $.post(url, {bill_no_p:bill_no_p,goods_ids:goods_ids}, function(data) {
+            util.xalert(data);
+            /*optional stuff to do after success */
+        });
+        /* Act on the event */
+    });
+
+</script>
+
+<style type="text/css">
+	<%include file="js/jquery.tagsinput.css"%>
+	.tagreds{
+			 background: #FBD8DB !important;
+			 color: #90111A !important;
+		 }
+	.tagreens{
+		background: #A5D24A !important;
+		color: #ffffff !important;
+	}
+	.tagblues{
+		background: #1570A6 !important;
+		color: #ffffff !important;
+	}
+</style>

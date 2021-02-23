@@ -1,0 +1,54 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>单号</th>
+			<th>抽检仓</th>
+			<th>应盘数量</th>
+			<th>应盘金额</th>
+			<th>实盘数量</th>
+			<th>实盘金额</th>
+			<th>正常数量</th>
+			<th>正常金额</th>
+			<th>盘盈数量</th>
+			<th>盘盈金额</th>
+			<th>盘亏数量</th>
+			<th>盘亏金额</th>
+			<th>错误率</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="pandian_plan_bill_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%if $d.type == 1%>线上<%else%>线下<%/if%></td>
+			<td><%$d.all_num%></td>
+			<td><%$d.all_price%></td>
+			<td><%$d.real_num%></td>
+			<td><%$d.real_price%></td>
+			<td><%$d.nomal_num%></td>
+			<td><%$d.nomal_price%></td>
+			<td><%$d.overage_num%></td>
+			<td><%$d.overage_price%></td>
+			<td><%$d.loss_num%></td>
+			<td><%$d.loss_price%></td>
+			<td><%$d.error_rate%></td>
+			<td><%$d.opt_admin%></td>
+			<td><%$d.opt_date%></td>
+			<td><%$d.verify_admin%></td>
+			<td><%$d.verify_date%></td>
+			<td><%$dd->getEnum('warehouse.pandian_plan' , $d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

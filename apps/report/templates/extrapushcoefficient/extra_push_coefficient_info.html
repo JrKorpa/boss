@@ -1,0 +1,78 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="extra_push_coefficient_info">
+		<div class="form-body">
+			<div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">公司：</label>
+                        <select class="select2_category form-control" name="dep_id" tabindex="1">
+                            <option value=""></option>
+                            <%foreach from=$companys item=v%>
+                            <option value="<%$v.id%>|<%$v.company_name%>" <%if $v.id==$view->get_dep_id()%>selected="selected"<%/if%>><%$v.company_name%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">岗位：</label>
+                        <select class="select2_category form-control" tabindex="1" name="station">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("extra.station") key=k item=value%>
+                            <option <%if $value.name==$view->get_station()%>selected="selected"<%/if%> value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">奖金差额挡位：</label>
+                        <select class="select2_category form-control" tabindex="1" name="bonus_gears">
+                            <option value=""></option>
+                            <%foreach from=$dd->getEnumArray("extra.bonus_gears") key=k item=value%>
+                            <option <%if $value.name==$view->get_bonus_gears()%>selected="selected"<%/if%> value="<%$value.name%>"><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">新增业绩标准（万）：</label>
+						<input type="text" name="add_performance_standard" class="form-control" placeholder="请输入" value="<%$view->get_add_performance_standard()%>" />
+					</div>
+				</div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">超额奖金（元）：</label>
+                        <input type="text" name="excess_price" class="form-control" placeholder="请输入" value="<%$view->get_excess_price()%>" />
+                    </div>
+                </div>
+			     <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">挡位提成系数：</label>
+                        <input type="text" name="push_money_coefficient" class="form-control" placeholder="请输入" value="<%$view->get_push_money_coefficient()%>" />
+                    </div>
+                </div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/extra_push_coefficient_info.js"%>
+//-->
+</script>

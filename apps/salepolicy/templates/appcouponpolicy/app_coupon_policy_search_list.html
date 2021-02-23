@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>名称</th>
+			<th>优惠金额</th>
+			<th>有效开始时间</th>
+			<th>有效结束时间</th>
+			<th>状态</th>
+			<th>描述</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_coupon_policy_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.policy_name%></td>
+			<td align="center"><%$d.policy_price%></td>
+			<td align="center"><%$d.valid_time_start%></td>
+			<td align="center"><%$d.valid_time_end%></td>
+			<td align="center"><%$d.policy_status%></td>
+			<td align="center"><%$d.policy_desc%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

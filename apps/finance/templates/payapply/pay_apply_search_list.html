@@ -1,0 +1,78 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<!-- <th style="text-align:center;"><input type="checkbox" onClick="select_checkbox(this.checked)" /></th> -->
+			<th style="text-align:center;"><input type="checkbox" class="group-checkable" data-set="#app_apply_bills_search_list .checkboxes"  /></th>
+			<th>应付申请单号</th>
+			<th>发票号</th>
+			<th>应付类型</th>
+			<th>应付金额</th>
+			<th>结算商</th>
+			<th>制单时间</th>
+			<th>制单人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>申请状态</th>
+			<th>应付单号</th>
+			<th>款式分类</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_bills_list_<%$d.apply_id%>" data-title="<%$d.pay_apply_number%>">
+			<td align="center">
+				<%if $d.status == 5%><!---待生成应付单状态的才显示复选框-->
+				<input class="checkboxes" type="checkbox" name="checkboxs[]" value="<%$d.apply_id%>"/>
+				<%/if%>
+			</td>
+			<td align="center"><%$d.pay_apply_number%></td>
+			<td align="center"><%$d.fapiao%></td>
+			<td align="center"><%$dd->getEnum('app_pay_should.pay_type',$d.pay_type)%></td>
+			<td align="center"><%$d.total_cope%></td>
+			<td align="center"><%$d.prc_name%></td>
+			<td align="center"><%$d.make_time%></td>
+			<td align="center"><%$d.make_name%></td>
+			<td align="center"><%$d.check_time%></td>
+			<td align="center"><%$d.check_name%></td>
+			<td align="center"><%$dd->getEnum('app_pay_apply.status',$d.status)%></td>
+			<td align="center"><%$d.pay_number%></td>
+			<td align="center"><%$catLists[$d.style_type]%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//初始化复选框
+var test = $("#app_apply_bills_search_list input[type='checkbox']");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#app_apply_bills_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#app_apply_bills_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

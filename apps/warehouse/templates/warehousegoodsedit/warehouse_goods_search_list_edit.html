@@ -1,0 +1,346 @@
+<style type="text/css">
+.picture_show{width:320px;margin:0 auto;}
+.picture_zoompic{width: 100%; border:solid 1px #dfdfdf;background:url(public/img/loading.gif) no-repeat 50% 50%;}
+.picture_zoompic img{width: 100%;height: auto}
+.pic_sliderbox{width:100%;overflow:hidden;margin-top: 6px;}
+.pic_sliderbox .arrow-btn{width:20px;height:53px;background:url(public/img/arrow-btn.png) no-repeat;cursor:pointer;}
+.pic_sliderbox #pic_btn-leftb{float:left;background-position:0 0;}
+.pic_sliderbox #pic_btn-leftb.dasabled{background-position:0 -53px;}
+.pic_sliderbox #pic_btn-rightb{float:right;background-position:-20px 0;}
+.pic_sliderbox #pic_btn-rightb.dasabled{background-position:-20px -53px;}
+.pic_sliderbox .pic_slider{float:left;height:53px;width:277px;position:relative;overflow:hidden;display:inline;}
+.pic_sliderbox .pic_slider ul{position:absolute;left:0;padding:0;margin-left:3px;margin-bottom: 0; width:2000px;list-style:none; }
+.pic_sliderbox .pic_slider li{float:left;width:55px;text-align:center;list-style:none}
+.pic_sliderbox .pic_slider li img{width: 53px; border:solid 2px #f9f9f9;}
+.pic_sliderbox .pic_slider li.current img{border:solid 2px #3366cc;}
+</style>
+<div class="portlet box blue" id='goods_info'>
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>货品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<!-- 商品明细 start -->
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="warehouse_goods_search_list_edit">
+
+		<!-- 货品详情页 -->
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+			<form action="#" method="post" class="horizontal-form" id="warehouse_goods_info_edit">
+			<div class="row">
+				<div class="form-body col-sm-6">
+					<table class="table table-bordered table-striped table-hover flip-content">
+						<tr>
+							<td><b>货品货号：</b></td>
+							<td><%$result.goods_id%></td>
+
+						</tr>
+						<tr>
+							<td><b>商品名字：</b></td>
+							<td><input name="goods_name" type="text" class="form-control" value="<%$result.goods_name%>" /></td>
+						</tr>
+						<tr>
+							<td><b>货品状态：</b></td>
+							<td <%if $result.is_on_sale==5%>style="color:red;"<%/if%> ><%$dd->getEnum("warehouse.goods_status",$result.is_on_sale)%></td>
+						</tr>
+						<tr>
+							<td><b>所在公司：</b></td>
+							<td><%$result.company%></td>
+
+						</tr>
+						<tr>
+							<td><b>所在仓库：</b></td>
+							<td><%$result.warehouse%></td>
+						</tr>
+						</tr>
+						<tr>
+							<td><b>入库方式：</b></td>
+							<td><%$dd->getEnum("warehouse.put_in_type",$result.put_in_type)%></td>
+
+						</tr>
+						<tr>
+							<td><b>产品线：</b></td>
+							<td><%$result.product_type%></td>
+						</tr>
+						<tr>
+							<td><b>新产品线：</b></td>
+							<td><%$result.product_type1%></td>
+						</tr>
+						<tr>
+							<td><b>款式分类：</b></td>
+							<td><%$result.cat_type%></td>
+
+						</tr>
+						<tr>
+							<td><b>新款式分类：</b></td>
+							<td><%$result.cat_type1%></td>
+
+						</tr>
+						<tr>
+							<td><b>指圈：</b></td>
+							<td><input name="shoucun" type="text" class="form-control" value="<%$result.shoucun%>" /></td>
+						</tr>
+						<tr>
+							<td><b>长度：</b></td>
+							<td><input name="changdu" type="text" class="form-control" value="<%$result.changdu%>" /></td>
+						</tr>
+						<tr>
+							<td><b>证书类型：</b></td>
+							<td><input name="zhengshuleibie" type="text" class="form-control" value="<%$result.zhengshuleibie%>" /></td>
+						</tr>
+						<tr>
+							<td><b>证书号：</b></td>
+							<td><input name="zhengshuhao" type="text" class="form-control" value="<%$result.zhengshuhao%>" /></td>
+						</tr>
+						<tr>
+							<td><b>EGL证书号：</b></td>
+							<td><%$result.zhengshuhao2%></td>
+						</tr>						
+						<tr>
+							<td><b>GEMX证书号：</b></td>
+							<td><input name="gemx_zhengshu" type="text" class="form-control" value="<%$result.gemx_zhengshu%>" /></td>
+						</tr>
+						<tr>
+							<td><b>品牌：</b></td>
+							<td><input name="pinpai" type="text" class="form-control" value="<%$result.pinpai%>" /></td>
+						</tr>
+						<tr>
+							<td><b>主石条码：</b></td>
+							<td><%$result.zhushitiaoma%></td>
+						</tr>
+						<tr>
+							<td><b>货品款号：</b></td>
+							<td><input type="text" name="goods_sn" class="form-control" value="<%$result.goods_sn%>" <%if $result.cat_type<>"裸石" && $result.cat_type<>"裸钻" && $result.cat_type<>"彩钻" %> disabled="disabled" <%/if%> /></td>
+						</tr>
+						<tr>
+							<td><b>布产号：</b></td>
+							<td><input name="buchan_sn" type="text" class="form-control" value="<%$result.buchan_sn%>" /></td>
+						</tr>
+						<tr>
+							<td><b>主成色：</b></td>
+							<td>
+                            <select  class="form-control" tabindex="1" name='caizhi'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr.caizhi key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['caizhi']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+                            </td>
+						</tr>
+						<tr>
+							<td><b>金重：</b></td>
+							<td><input name="jinzhong" type="text" class="form-control" value="<%$result.jinzhong%>" /></td>
+						</tr>
+                        <tr>
+                            <td><b>总重：（总重＝金重+石重/配件重）</b></td>
+                            <td><input name="zongzhong" type="text" class="form-control" value="<%$result.zongzhong%>" /></td>
+                        </tr>
+						<tr>
+							<td><b>钻石大小：</b></td>
+							<td><input name="zuanshidaxiao" type="text" class="form-control" value="<%$result.zuanshidaxiao%>" /></td>
+						</tr>
+						<tr>
+							<td><b>副石重量：</b></td>
+							<td><input name="fushizhong" type="text" class="form-control" value="<%$result.fushizhong%>" /></td>
+						</tr>
+						<tr>
+							<td><b>戒托镶口：</b></td>
+							<td><input name="jietuoxiangkou" type="text" class="form-control" value="<%$result.jietuoxiangkou%>" /></td>
+						</tr>
+						<tr>
+							<td><b>主石形状：</b></td>
+							<td>
+							<select  class="form-control" tabindex="1" name='zhushixingzhuang'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["xingzhuang"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['zhushixingzhuang']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石颜色：</b></td>
+							<td>
+							<select  class="form-control" tabindex="1" name='zhushiyanse'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["yanse"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['zhushiyanse']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石净度：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='zhushijingdu'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["jingdu"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['zhushijingdu']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石切工：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='qiegong'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["qiegong"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['qiegong']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石抛光：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='paoguang'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["paoguang"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['paoguang']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石对称：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='duichen'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["duichen"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['duichen']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>主石荧光：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='yingguang'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["yingguang"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['yingguang']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>托类型：</b></td>
+							<td>
+								<select  class="form-control" tabindex="1" name='tuo_type'>
+								<option value=""></option>
+								<%foreach from = $goodsAttr["tuo_type"] key=k item=item%>
+
+								<option value='<%$k%>' <%if $k ==$result['tuo_type']%>selected<%/if%>><%$item%></option>
+								<%/foreach%>
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td><b>名义成本价：</b></td>
+							<td><%$result.mingyichengben%></td>
+						</tr>
+						<%if $smarty.const.SYS_SCOPE eq 'zhanting'%>
+						<%if $is_edit_jingxiaoshangchengbenjia==1%>
+							<tr>
+								<td><b>经销商批发价：</b></td>
+								<td><input name="jingxiaoshangchengbenjia" type="text" class="form-control" value="<%$result.jingxiaoshangchengbenjia-$result.management_fee%>" /></td>
+							</tr>
+							<tr>
+								<td><b>管理费：</b></td>
+								<td><input name="management_fee" type="text" class="form-control" value="<%$result.management_fee%>" /></td>
+							</tr>	
+						<%/if%>							
+						<%/if%>						
+					</table>
+
+
+				</div>
+
+		<div class="col-sm-6">
+			<!-- 布产图片 -->
+			<div class="picture_show">
+				<div class="picture_zoompic"><img src="<%if isset($res_pic_list[0].big_img)%><%$res_pic_list[0].big_img%><%/if%>"/></div>
+				<div class="pic_sliderbox">
+					<div id="pic_btn-leftb" class="arrow-btn dasabled"></div>
+					<div class="pic_slider" id="picture_thumbnailb">
+						<ul>
+							<%if !empty($res_pic_list)%>
+							<%foreach from=$res_pic_list item=v%>
+							<li class="current"><img src="<%if isset($v.thumb_img)%><%$v.thumb_img%><%/if%>"/></li>
+							<%/foreach%>
+							<%/if%>
+
+						</ul>
+					</div>
+					<div id="pic_btn-rightb" class="arrow-btn"></div>
+				</div>
+			</div>
+		</div>
+		</div>
+				<!-- 搜索按钮 -->
+				<div class="form-actions fluid">
+					<div class="col-md-offset-3 col-md-9">
+							<input type="hidden" value='<%$result.id%>' name='id'/>
+							<button type="reset" class="btn default">重置</button>
+							<button type="button" id="warehouse_goods_info_edit_btn" class="btn green"><i class="fa fa-check"></i> 保存</button>
+					</div>
+				</div>
+			</form>
+			<!-- END FORM-->
+		</div>
+
+
+
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- 商品明细 end -->
+</div>
+
+
+<!-- 修改明细 start -->
+<div class="tab-pane " id="tab_bill_m_1">
+	<div class="tab-pane active" id="tab_1">
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>修改明细日志
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse"></a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<p class="text-danger"></p>
+				<div class="flip-scroll" id="loglist"></div>
+				<div class="pager"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/warehouse_goods_info_edit.js"%>
+//-->
+</script>

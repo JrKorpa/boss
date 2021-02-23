@@ -1,0 +1,100 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th><input type="checkbox" class="group-checkable" data-set="#material_goods_search_list .checkboxes" /></th>
+				<th>款式编号</th>
+				<th>款式名称</th>
+				<th>货品编号</th>
+				<th>货品类型</th>
+				<th>货品名称</th>				
+				<th>货品规格</th>
+				<th>货品状态</th>
+				<th>成本价</th>
+				<th>款式加价率</th>
+				<th>货品加价率</th>
+				<th>指定销售价</th>
+				<th>单位</th>
+				<th>分类1</th>
+				<th>分类2</th>
+				<th>分类3</th>
+				<th>材质</th>
+				<th>起订量</th>
+				<th>装箱量</th>
+				<th>添加人</th>
+				<th>添加时间</th>
+				<th>修改人</th>
+				<th>修改时间</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="material_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+			    <td  align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+				<td><%$d.style_sn%></td>
+				<td><%$d.style_name%></td>
+				<td><%$d.goods_sn%></td>
+				<td><%$dd->getEnum("material.goods_type",$d.goods_type)%></td>	
+				<td><%$d.goods_name%></td>						
+				<td><%$d.goods_spec%></td>
+				<td><%if $d.goods_status==1%><font color="green">上架</font><%else%><font color="red">下架</font><%/if%></td>							
+				<td><%$d.cost%></td>
+				<td><%$d.jiajialv%></td>
+				<td><%$d.goods_jiajialv%></td>
+				<td><%$d.goods_sale_price%></td>
+				<td><%$d.unit%></td>							
+				<td><%$d.catetory1%></td>
+				<td><%$d.catetory2%></td>
+				<td><%$d.catetory3%></td>
+				<td><%$d.caizhi%></td>
+				<td><%$d.min_qty%></td>
+				<td><%$d.pack_qty%></td>	
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+				<td><%$d.update_user%></td>
+				<td><%$d.update_time%></td>
+				<td><%$d.remark%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+    util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#material_goods_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#material_goods_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#material_goods_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

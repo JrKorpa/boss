@@ -1,0 +1,105 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <%$bar%>
+        </div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>单号</b></td>
+					<td><%$view->get_check_sale_number()%></td>
+					<td><b>订单来源</b></td>
+					<td><%$view->get_from_name()%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('pay.hx_status',$view->get_status())%></td>
+					<td><b>核销类型</b></td>
+					<td><%$dd->getEnum("pay.hx_type",$view->get_cash_type())%></td>
+				</tr>
+				<tr>
+					<td><b>单据数量</b></td>
+					<td><%$view->get_order_num()%></td>
+					<td><b>（货品）总数</b></td>
+					<td><%$view->get_goods_num()%></td>
+					<td><b>成本价</b></td>
+					<td><%$view->get_chengben()%></td>
+					<td><b>销售价</b></td>
+					<td><%$view->get_shijia()%></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_makename()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_maketime()%></td>
+					<td><b>审核人</b></td>
+					<td><%$view->get_checkname()|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$view->get_checktime()|default:'--'%></td>
+				</tr>
+				<tr>
+					<td colspan="8"><a href="javascript:void(0);">下载申请明细列表</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>结果列表
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="pay_hexiao_show_list">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th>单号</th>
+                        <th>单据类型</th>
+                        <th>（货品）总数</th>
+                        <th>成本价</th>
+                        <th>销售价</th>
+                        <%if $view->get_status() == 2 || $view->get_status() == 4%>
+                        <th id="rule_th" <%if $view->get_status() == 2%>style="display:none;"<%/if%>>驳回原因</th>
+                        <%/if%>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%foreach from=$data item=item%>
+                    <tr>
+                        <td align="center" valign="middle"><%$item.jxc_order%></td>
+                        <td><%$item.type%></td>
+                        <td><%$item.goods_num%></td>
+                        <td><%$item.chengben%></td>
+                        <td><%$item.shijia%></td>
+                        <%if $view->get_status() == 2 || $view->get_status() == 4%><!--  待审核 已驳回 -->
+                        <td <%if $view->get_status() == 2%>style="display:none;"<%/if%>><%$item.overrule_reason%></td>
+                        <%/if%>
+                    </tr>
+                    <%/foreach%>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+    <%include file = "js/pay_hexiao_show.js" %>
+//-->
+</script>

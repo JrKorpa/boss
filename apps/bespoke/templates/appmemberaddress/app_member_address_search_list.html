@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>会员名</th>
+			<th>会员手机号</th>
+			<th>会员所在国家</th>
+			<th>会员所在省份</th>
+			<th>会员所在城市</th>
+			<th>会员所在地区</th>
+			<th>会员所在具体地址</th>
+			<th>是否默认地址</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=d%>
+		<tr data-id="base_member_info_list_<%$d.mem_address_id%>">
+			<td><%$d.customer%></td>
+			<td><%$d.mobile%></td>
+			<td><%$regionName[$d.mem_country_id]%></td>
+			<td><%$regionName[$d.mem_province_id]%></td>
+			<td><%$regionName[$d.mem_city_id]%></td>
+			<td><%$regionName[$d.mem_district_id]%></td>
+			<td><%$d.mem_address%></td>
+			<td><span class="glyphicon glyphicon-<%if $d.mem_is_def==1%>ok<%else%>remove<%/if%>"></span></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

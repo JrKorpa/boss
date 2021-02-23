@@ -1,0 +1,40 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>菜单名称</th>
+				<th>菜单类型</th>
+				<th>编码</th>
+				<th>菜单链接</th>
+				<th>所属项目</th>
+				<th>所属菜单组</th>
+				<th>是否启用</th>
+				<th>系统内置</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d key=k%>
+			<tr data-id="menu_list_<%$d.id%>" data-title="<%$d.label%>">
+				<td><%$d.id%></td>
+				<td><%$d.label%></td>
+				<td><%if $d.type==1%>通用<%elseif $d.type==2%>库管可见<%elseif $d.type==3%>渠道可见<%else%>--<%/if%></td>
+				<td><%$d.code%></td>
+				<td><%$d.url%></td>
+				<td><%$d.app_label%></td>
+				<td><%$d.group_name%></td>
+				<td><span class="glyphicon <%if $d.is_enabled%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				<td><span class="glyphicon <%if $d.is_system%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

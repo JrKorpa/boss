@@ -1,0 +1,33 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>属性名称</th>
+			<th>属性编码</th>			
+			<%if $show_jiajialv eq 'YES' %>
+			<th>舟山加价率</th>
+			<%/if%>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data item=d%>
+		<tr data-id="app_cat_type_info_list_<%$d.cat_type_id%>" >
+			<td align="center"><%$d.cat_type_id%></td>
+			<td><%$d.tree_name%></td>
+			<td><%$d.cat_type_code%></td>
+			<%if $show_jiajialv eq 'YES' %>
+			<td><%$d.jiajialv%></td>
+			<%/if%>
+			<td><%$dd->getEnum("is_enabled",$d.cat_type_status)%></td>
+
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

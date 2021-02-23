@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>大区名字</th>
+			<th>上级</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data item=d%>
+		<tr data-id="large_area_recycle_list_<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%$d.name%></td>
+			<td><%$d.parent_name%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

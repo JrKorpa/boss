@@ -1,0 +1,43 @@
+<!--代销借贷-->
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>流水号</th>
+			<th>货号</th>
+			<th>证书号</th>
+			<th>款式分类</th>
+			<th>入库制单时间</th>
+			<th>入库审核时间</th>
+			<th>入库方式</th>
+			<th>货品状态</th>
+			<th>结算商</th>
+			<th>采购成本</th>
+			<th>应付申请状态</th>
+			<th>应付申请单号</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+	<tr data-id="app_deal_detail_list_<%$d.serial_number%>" data-title="<%$d.serial_number%>">
+		<td align="center"><%$d.serial_number%></td>
+		<td align="center"><%$d.item_id%></td>
+		<td align="center"><%$d.zhengshuhao%></td>
+		<td align="center"><%$d.item_type%></td>
+		<td align="center"><%$d.make_time%></td>
+		<td align="center"><%$d.check_time%></td>
+		<td align="center"><%$dd->getEnum('warehouse.put_in_type',$d.storage_mode)%></td>
+		<td align="center"><!-- <%$dd->getEnum('warehouse.goods_status',$d.goods_status)%> --><%$d.goods_status_note%></td>
+		<td align="center"><%$d.prc_name%></td>
+		<td align="center"><%$d.total%></td>
+		<td align="center"><%$dd->getEnum('app_pay.detail_apply_status',$d.pay_apply_status)%></td>
+		<td align="center"><%$d.pay_apply_number%></td>
+	</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+	<!--
+	util.hover();
+	//-->
+</script>

@@ -1,0 +1,70 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style="text-align:center;">订单号</th>
+			<th style="text-align:center;">顾客</th>
+			<th style="text-align:center;">销售</th>
+			<th style="text-align:center;">跟踪</th>
+			<th style="text-align:center;">产品名称</th>
+			<th style="text-align:center;">付款布产时间</th>
+			<th style="text-align:center;">商品状态</th>
+			<th style="text-align:center;">到货状态</th>
+			<th style="text-align:center;">商品数量</th>
+			<th style="text-align:center;">已到商品</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%if isset($page_list.data) && !empty($page_list.data)%>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="not_receiving_list_<%$d.id%>" data-title="<%$d.order_sn%>">
+			<td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="<%$d.order_sn%>" data-url="index.php?
+mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.order_sn%>"><%$d.order_sn%></a></td>
+			<td align="center"><%$d.consignee|default:''%></td>
+			<td align="center"><%$d.create_user|default:''%></td>
+			<td align="center"></td>
+			<td align="center"><%$d.goods_sn%><br/><%$d.goods_name%></td>
+            <td align="center"><%if $d.is_xianhuo==1%>不需布产<%else%>[布产<%$d.fate%>天]<%/if%></td>
+			<td align="center"><%if $d.details_status==1%>未开始生产<%/if%></td>
+			<td align="center"><%if $d.send_good_status==1%>未到货<%elseif $d.send_good_status==3%>已到货为检验<%elseif $d.send_good_status==4%>到货已检验<%elseif $d.send_good_status==5%>返厂<%/if%></td>
+			<td align="center"><%$d.goods_number%></td>
+			<td align="center"><%$d.yidao%></td>
+		</tr>
+	<%/foreach%>
+	<%/if%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+	util.check(util.getItem('listDIV'));
+//复选框组美化
+var test = $("#wait_distribution_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+if (test.size() > 0) {
+ 	test.each(function () {
+   	if ($(this).parents(".checker").size() == 0) {
+     	$(this).show();
+     	$(this).uniform();
+    }
+  });
+}
+// table 复选框全选
+$('#wait_distribution_search_list .group-checkable').change(function () {
+  var set = $(this).attr("data-set");
+	var checked = $(this).is(":checked");
+	$(set).each(function () {
+		if (checked) {
+			$(this).attr("checked", true);
+			$(this).parents('tr').addClass("active");
+		} else {
+			$(this).attr("checked", false);
+			$(this).parents('tr').removeClass("active");
+		}                    
+	});
+	$.uniform.update(set);
+});
+$('#wait_distribution_search_list').on('change', 'tbody tr .checkboxes', function(){
+ 	$(this).parents('tr').toggleClass("active");
+});
+//-->
+</script>

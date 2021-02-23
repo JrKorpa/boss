@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>单号</th>
+			<th>抽检仓</th>
+			<th>正在盘点柜位</th>
+			<th>预计盘点数量</th>
+			<th>已盘点数量</th>
+			<th>未盘点数量</th>
+			<th>错误率</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="warehouse_pandian_plan_list_<%$d.id%>" id="<%$d.id%>" data-title="<%$d.id%>">
+			<td><%$d.id%></td>
+			<td><%if $d.type == 1%>线上<%else%>线下<%/if%></td>
+			<td><%$d.lock_guiwei%></td>
+			<td><%$d.yuguNum%></td>
+			<td><%$d.nomal + $d.overage%></td>
+			<td><%$d.loss%></td>
+			<td><%round((1-($d.nomal)/($d.nomal + $d.overage))*100, 2)%>%</td>
+			<td><%$d.opt_admin%></td>
+			<td><%$d.opt_date%></td>
+			<td><%$dd->getEnum('warehouse.pandian_plan' , $d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

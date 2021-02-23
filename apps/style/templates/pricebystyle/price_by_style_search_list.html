@@ -1,0 +1,91 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#price_by_style_search_list .checkboxes" /></th>
+                <th>序号</th>
+                <th>款式45°图片</th>
+                <th>款式编号</th>
+                <th>款式名称</th>
+                <th>款式售价</th>
+				<th>状态</th>
+
+				<th>款式性别</th>
+                <th>产品线</th>
+                <th>款式分类</th>
+                <th>工厂模号</th>
+                <th>是否定制</th>
+                <th>添加时间</th>
+                <th>更新时间</th>
+                <th>是否允许绑定已销账</th>
+            </tr>
+        </thead>
+        <tbody>
+        <%foreach from=$page_list.data item=d%>
+            <tr data-id="price_by_style_search_list_<%$d.style_id%>" data-title="<%$d.style_sn%>">
+                <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.style_id%>" /></td>
+                <td align="center"><%$d.style_id%></td>
+                <td>
+                    <%if $d.thumb_img != ''%>
+                    <a class="fancyboximg" href="<%$d.big_img%>" title="<%$d.style_sn%> - <%$d.style_name%>">
+                        <img src="<%$d.thumb_img%>" width="80" height="80"/>
+                    </a>
+                    <%else%>无图片<%/if%>
+                </td>
+                <td align="center">
+                    <a href="javascript:;" class="tab-con-a" data-title="<%$d.style_sn%>" data-id="pricebystyle-<%$d.style_id%>" data-url="index.php?mod=style&con=PriceByStyle&act=show&id=<%$d.style_id%>"><%$d.style_sn%></a>
+                </td>
+                <td><%$d.style_name%></td>
+                <td><%$d.price_by_style%></td>
+				<td><%$dd->getEnum('style.check_status',$d.check_status)%></td>
+
+                <td><%$dd->getEnum('style.style_sex',$d.style_sex)%></td>
+                <td><%$d.product_type%></td>
+                <td><%$d.style_type%></td>
+                <td><%$d.factory_info%></td>
+                <td><%$dd->getEnum('confirm',$d.is_made)%></td>
+                <td><%$d.create_time%></td>
+                <td><%$d.modify_time%></td>
+                <td><%if $d.bang_type == 1%>是<%else%>否<%/if%></td>
+            </tr>
+        <%/foreach%>
+        </tbody>
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#price_by_style_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#price_by_style_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#price_by_style_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

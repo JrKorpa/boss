@@ -1,0 +1,206 @@
+<div class="tabbable tabbable-custom boxless">
+	<!--入库单 start-->
+<form action="#" method="post" class="horizontal-form" id="warehouse_bill_info_ha">
+	<div class="portlet box green">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>无订单退货单
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- 表单内容 -->
+				<div class="form-body">
+					<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">退货单号：</label>
+									<input type="text" name="bill_no" class="form-control" placeholder="" value="" disabled="disabled"/>
+								</div>
+							</div>
+							<!----
+
+							<div class="col-sm-3">
+								<div class="form-group">
+								<label class="control-label">制单时间：</label>
+								<div class="date-picker input-daterange" data-date="">
+										<input type="text" class="form-control" name="create_time_start" value="<%$smarty.now|date_format:'%Y-%m-%d'%>">
+								</div>
+								</div>
+							</div>
+							--->
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">状态：</label>
+									<input type="text" name="status" class="form-control" placeholder="" value="<%$dd->getEnum("warehouse_in_status",$view->get_bill_status())%>" disabled="disabled" />
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">制单人：</label>
+									<input type="text" name="make_order" class="form-control" placeholder="" value="<%$smarty.session.userName%>" disabled="disabled" />
+								</div>
+							</div>
+
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">审核人：</label>
+									<input type="text" name="check_user" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">退货客户：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="to_customer_id" id="to_customer_id" tabindex="1">
+										<option value=""></option>
+										 <%foreach from=$JxcWholesale item=value %>
+										 <option value="<%$value.wholesale_id%>" > <%$value.wholesale_name%></option>
+		                                <%/foreach%>
+									</select>
+								</div>
+							</div>	
+
+								<div class="col-sm-3">
+		                        <div class="form-group">
+		                            <label class="control-label">入库仓：<span class="required">*</span></label>
+		                            <select class="select2_category form-control" tabindex="1" name="to_warehouse_id" id="to_warehouse_id" >
+		                                <option value=""></option>
+		                                <%foreach from=$warehouse item=value %>
+		                                <option value="<%$value.id%>|<%$value.name%>" ><%$value.code%> | <%$value.name%></option>
+		                                <%/foreach%>
+		                            </select>
+		                        </div>
+		                    </div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">批发总额：</label>
+									<input type="text" name="pifa_price" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>				
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">实价总金额：</label>
+									<input type="text" name="shiji_price" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">差异总金额：</label>
+									<input type="text" name="chajia_price" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>	
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">数量总计：</label>
+									<input type="text" name="goods_num" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>	
+
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label">退货备注：<span class="required">*</span></label>									
+									<textarea class="form-control" name="bill_note" rows="3" id="bill_note"></textarea>
+									<font style="color:red">T100的无订单出库的货号后续要退货，必须备注好T100的出库单号及退货原因！</font>
+								</div>
+							</div>		
+
+
+					</div>
+					
+							<!--
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label">入库公司：</label><span style='color:red;'>*</span>
+								<select class="select2_category form-control" tabindex="1" id="to_company_id" name="to_company_id">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">入库仓库：</label><span style='color:red;'>*</span>
+									<select class="select2_category form-control" name="to_warehouse_id" tabindex="1" disabled="disabled">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>					
+						<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">单据编号：</label>
+									<input type="text" name="bill_no" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">货品数量：</label>
+									<input type="text" name="goods_num" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">价格总计：</label>
+									<input type="text" name="chengbenjia" class="form-control" placeholder="" value="" disabled="disabled" />
+								</div>
+							</div>		
+					<div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">订单号：</label><span style='color:red;'></span>
+									<input  id="order_sn" type="text" name="order_sn" class="form-control" placeholder="请输入" value="" onblur="check_order(this)"/>
+								</div>
+							</div>
+							 <div class="col-sm-3">
+								<div class="form-group">
+									<label class="control-label">制单人：</label><span style='color:red;'>*</span>
+									<input type="text" name="ship_number" class="form-control" placeholder="请输入" value="" disabled="disabled" />
+								</div>
+							</div>
+					</div>
+					<div class="row">
+							<div class="col-sm-9">
+								<div class="form-group">
+									<label class="control-label">备注：</label>
+									<textarea class="form-control" name="bill_note" rows="4" id='bill_note'></textarea>
+								</div>
+							</div>
+				
+		</div>
+		-->
+	</div>
+	<!--入库单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>无订单退货明细列表
+			</div>
+		</div>
+		<div class="portlet-body">
+			<p class="text-danger"></p>
+			<div class="" id="from_table_data_ha"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+</div>
+
+<div class="form-actions fluid">
+	<div class="col-md-offset-3 col-md-9">
+		<button type="reset" class="btn default" form="warehouse_bill_info_ha">重置</button>
+		<button type="submit" id="from_table_data_btn_ha" class="btn green" form="warehouse_bill_info_ha"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+	<%include file="js/warehouse_bill_ha_info.js"%>
+	<%include file="js/table_data_ed.js"%>
+</script>
+
+

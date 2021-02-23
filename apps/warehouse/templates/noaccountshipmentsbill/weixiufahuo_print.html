@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>维修发货单打印</title>
+<style type="text/css">
+
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.wrap{width:700px;margin:50px auto;}
+h1{font-size:14px;text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+
+</style>
+<style media="print">
+
+	.Noprint{display:none;}
+
+</style>
+
+</head>
+<body>
+<!--startprint-->
+<div class="wrap">
+	<h1>维修发货单</h1>现在时间 <%$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'%>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="65">单号：</td>
+			<td width="110"><%$data.bill_no%></td>
+			<td width="65">日期：</td>
+			<td width="110"><%$data.create_time|date_format:'%Y-%m-%d'%></td>
+			<td width="65">发货方：</td>
+			<td width="110"><%$data.from_company_name%></td>
+			<td width="65">审核人：</td>
+			<td width="110"><%$data.check_user%></td>
+		</tr>
+		<tr>
+			<td>顾客姓名：</td>
+			<td><%$consignee%></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>件数：</td>
+			<td><%$data.goods_num%></td>
+			<td>订单号：</td>
+			<td><%$data.order_sn%></td>
+		</tr>
+		<tr>
+			<td>备注：</td>
+			<td colspan="3"><%$data.bill_note%></td>
+
+			<td></td>
+			<td></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+    </table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>货号</td>
+				<td>款号</td>
+				<td>名称</td>
+				<td>主石<br/>(ct/p)</td>
+				<td>副石<br/>(ct/p)</td>
+				<td>主成<br/>色重</td>
+				<td>证书号</td>
+				<td>数量</td>
+				<td>销售价</td>
+
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach key=key item=item from=$goods_info%>
+			<tr>
+				<td><%$item.goods_id%></td>
+				<td><%$item.goods_sn%></td>
+				<td><%$item.goods_name%></td>
+				<td><%if $item.zuanshidaxiao > 0%><%$item.zuanshidaxiao|string_format:'%.2f'%>/<%$item.zhushilishu%><%/if%></td>
+				<td><%if $item.fushizhong > 0%><%$item.fushizhong|string_format:'%.2f'%>/<%$item.fushilishu%><%/if%></td>
+				<td class="tRight"><%if $item.jinzhong > 0 %><%$item.jinzhong|string_format:'%.3f'%><%/if%></td>
+				<td><%$item.zhengshuhao%></td>
+				<td class="tRight"><%$item.num%></td>
+				<td class="tRight"><%$item.sale_price%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">合计</td>
+				<td><%if $zuanshidaxiao > 0%><%$zuanshidaxiao|string_format:'%.2f'%><%/if%></td>
+				<td><%if $fushizhong > 0%><%$fushizhong|string_format:'%.2f'%><%/if%></td>
+				<td class="tRight"><%if $jinzhong > 0%><%$jinzhong|string_format:'%.3f'%><%/if%></td>
+				<td>&nbsp;</td>
+				<td class="tRight"><%$data.goods_num%></td>
+				<td class="tRight"><%$xiaoshoujia_sum|string_format:'%.2f'%></td>
+
+			</tr>
+		</tfoot>
+	</table>
+	<!--endprint-->
+	<br/><br/>
+	<div style="text-align:center;">
+
+    <button id="print_close" onclick="close_bill();">关闭</button>
+    <button id="print_btn" onclick="print_bill();">打&nbsp;印</button>
+
+	</div>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+
+ function close_bill(){
+        window.close();
+    }
+
+    function print_bill(){
+    	bdhtml = window.document.body.innerHTML;
+		sprnstr = "<!--startprint-->";
+		eprnstr = "<!--endprint-->";
+		prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+		prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+		window.document.body.innerHTML = prnhtml;
+		window.print();
+
+
+    }
+</script>
+</html>

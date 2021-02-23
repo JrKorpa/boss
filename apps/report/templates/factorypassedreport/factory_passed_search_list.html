@@ -1,0 +1,132 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>日期</th>
+			<th>总质检数</th>
+			<th>质检通过数</th>
+			<th>质检未过数</th>
+			<th>工厂良品率</th>
+			<th>工厂不良品率</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d %>
+		<tr start_time="<%$d.opra_date%>" end_time="<%$d.opra_date%>" data-title="工厂良品率详情">
+			<td><%$d.opra_date%></td>
+			<td><%$d.count%></td>
+			<td><%$d.pass_num%></td>
+			<td><%$d.fail_num%></td>
+			<td><%$d.pass_percent%>%</td>
+			<td><%$d.fail_percent%>%</td>
+		</tr>
+	<%/foreach%>
+	<%if $datacount %>
+				<tr data-id="ClothProductionTracking_list_" data-title="">
+				<td>总计</td>
+                <td><%$datacount.count%></td>
+                <td><%$datacount.pass_num%></td>
+                <td><%$datacount.fail_num%></td>
+                <td><%$datacount.pass_percent%>%</td>
+                <td><%$datacount.fail_percent%>%</td>
+               </tr>
+	<%/if%> 
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+function show_detail_list(obj){
+	var tObj = $(obj).parent().parent().siblings().find('table>tbody>.tab_click');
+	if (!tObj.length)
+	{
+		$('.modal-scrollable').trigger('click');
+		util.xalert("很抱歉，您当前未选中任何一行！");
+		return false;
+	}
+	var url = $(obj).attr('data-url');
+	var params = util.parseUrl(url);
+	var start_time = tObj[0].getAttribute("start_time");
+	var end_time = tObj[0].getAttribute("end_time");
+	var bill_type = tObj[0].getAttribute("bill_type");
+	var department_ids = tObj[0].getAttribute("department_ids");
+	var department_name= tObj[0].getAttribute("department_name");
+	var zt_type = tObj[0].getAttribute("zt_type");
+	var prefix = params['con'].toLowerCase();
+		//不能同时打开两个详情页
+	var flag = false;
+	$('#nva-tab li').each(function(){
+		var href = $(this).children('a').attr('href');
+		href = href.split('-');
+		href.pop();
+		href = href.join('_').substr(1);
+		if (href==prefix)
+		{
+			alert(1);
+			flag=true;
+			var that = this;
+			bootbox.confirm({  
+				buttons: {  
+					confirm: {  
+						label: '确认' 
+					},  
+					cancel: {  
+						label: '查看'  
+					}  
+				},
+				closeButton:false,
+				message: "发现同类数据的查看页已经打开。\r\n点确定将关闭同类查看页。\r\n点查看将激活同类查看页。",  
+				callback: function(result) {  
+					if (result == true) {
+						setTimeout(function(){
+							$(that).children('i').trigger('click');
+							var id = prefix+"-"+_id;
+							var title=tObj[0].getAttribute("data-title");
+							if (title==null || $(obj).attr("use"))
+							{
+								title = $(obj).attr('data-title');
+							}
+							if ('undefined' == typeof title)
+							{
+								title = id;
+							}
+							url+="&id="+_id;
+
+							new_tab(id,title,url);
+						}, 0);
+					}
+					else if (result==false)
+					{
+						$(that).children('a').trigger("click");
+					} 
+				},  
+				title: "提示信息", 
+			});
+			return false;
+		}
+	});
+	
+	if (!flag)
+	{
+		var title=tObj[0].getAttribute("data-title");
+		if (title==null || $(obj).attr("use"))
+		{
+			title = $(obj).attr('data-title');
+		}
+		if ('undefined' == typeof title)
+		{
+			title = '';
+		}
+		url+="&start_time="+start_time+"&end_time="+end_time+"&bill_type="+bill_type+"&department_ids="+department_ids+"&zt_type="+zt_type+"&department_name="+department_name;
+
+		var id=1;
+		new_tab(id,title,url);
+	}
+}
+<!--
+	util.hover();
+//-->
+</script>

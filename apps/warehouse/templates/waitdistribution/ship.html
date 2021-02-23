@@ -1,0 +1,89 @@
+<style>
+    .tabel_th{width:100px;max-width:120px;}
+    .table_td{width:200px;max-width:250px;}
+</style>
+<div class="portlet-body">
+<%if $delivery_status ==2 || $delivery_status ==3 %>
+<form action="#" class="form-inline" role="form" method="post" id="ship_freight_shoporder_form">
+<table id="ship_freight_shorder_info_table2" class="table table-bordered table-striped table-hover flip-content">
+    <tbody>
+        <tr>
+            <%if $express_id ==10%>
+	            <td class="tabel_td" colspan="2">快递公司：该订单不需要选</td>
+	            <td class="tabel_td" colspan="2" style="vertical-align:middle">上门取货&nbsp;&nbsp;&nbsp;&nbsp;
+	            <span class="btn default green-stripe"><i class="fa fa-edit"></i> <a onclick="util.cust(this,updateshopship);" data-url="index.php?mod=shipping&amp;con=ShipFreight&amp;act=updateShipMethod">修改快递方式</a>
+	            </span>
+	            </td>
+            <%else%>
+	            <td class="tabel_th" style="vertical-align:middle">快递公司：</td>
+	            <td style="width:200px">
+		            <select class="form-control" tabindex="1" name="express_id" <%if $freight_no%>disabled<%/if%>>
+						<option value="">--请选择--</option>
+						<%foreach from=$expresslist item=ex%>
+							<option value="<%$ex.id%>" <%if $express_id == $ex.id%>selected<%/if%> ><%$ex.exp_name%></option>
+						<%/foreach%>
+					</select>
+	            </td>
+	            <td class="tabel_th" style="vertical-align:middle">快递单号：</td>
+	            <td class="tabel_td">
+	            <%if $freight_no%>
+	            <input type="text"  class="form-control" style="width:200px" name="freight_no" value="<%$freight_no%>" placeholder="请输入" disabled />&nbsp;&nbsp; 
+			    <span class="btn default red-stripe"><i class="fa fa-edit"></i> <a onclick="util.cust(this,updateshopship);" data-url="index.php?mod=shipping&amp;con=ShipFreight&amp;act=updateShipMethod">修改快递方式</a>
+	            </span>
+	            <%else%>
+	            <input type="text"  class="form-control" style="width:200px" name="freight_no" value="<%$freight_no%>" placeholder="请输入"/>&nbsp;&nbsp;                
+	            <button type="submit" class="btn default green-stripe"><i class="fa fa-add fa-print"></i> 保存快递方式 </button>
+	            <%/if%>
+	            </td>
+            <%/if%>
+            <td align="left" style="vertical-align:middle">
+                <input type="hidden" class="form-control" name="__order_sn" value="<%$order_sn%>" />
+                <input type="hidden" class="form-control" name="__order_id" value="<%$order_id%>" />
+                <input type="hidden" class="form-control" name="__freight_no" value="<%$freight_no%>" />
+                <input type="hidden" class="form-control" name="__send_status" value="<%$send_good_status%>" />
+                <%if $express_id != 10%>
+                <span class="btn default green-stripe"><i class="fa fa-print"></i> <a onclick="window.open('/index.php?mod=shipping&amp;con=ShipFreight&amp;act=print_express&amp;order_no=<%$order_sn%>','','fullscreen:true,menubar:false,resizable:false,titlebar:false,toolbar:false')" target="_blank">打印快递单</a>
+                </span>
+                <%/if%>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</form>
+<%else%>
+<div class='alert alert-info'>很抱歉,该订单目前处于非允许配货状态！</div>
+<%/if%>
+<table class="table table-bordered table-striped table-hover flip-content">
+    <thead class="flip-content">
+        <tr>
+       		<th style="text-align: center;">是否需要开发票</th>
+            <th style="text-align: center;">发票抬头</th>
+            <th style="text-align: center;">发票号</th>
+            <th style="text-align: center;">发票金额</th>
+            <th style="text-align: center;">创建时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%if count($order_invoice) != 0%>
+        <tr data-id="app_order_invoice_list_322" data-title="322" class="">
+            <td align="center"><%if $order_invoice.is_invoice%>是<%else%>否<%/if%></td>
+            <td align="center"><%$order_invoice.invoice_title%></td>
+            <td align="center"><%$order_invoice.invoice_num%></td>
+            <td align="center"><%$order_invoice.invoice_amount%></td>
+            <td align="center"><%$order_invoice.create_time%></td>
+        </tr>
+        <%else%>
+        <tr>
+            <td align="center" colspan="5">客户未填写发票信息</td>
+        </tr>
+        <%/if%>
+    </tbody>
+</table>
+
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/shopordership.js"%>
+//-->
+</script>
+

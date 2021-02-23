@@ -1,0 +1,68 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>信息详情
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" onclick="util.closeTab();" title="关闭当前页签">
+                    离开 <i class="fa fa-angle-double-left"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td  class="flip-content">体验店名称</td>
+                    <td><%$d.shop_name%></td>
+                    <td  class="flip-content">简称</td>
+                    <td><%$d.short_name%></td>
+                    <td  class="flip-content">体验店类别</td>
+                    <td><%$dd->getEnum('shop.type',$d.shop_type)%></td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td  class="flip-content">体验店地址</td>
+                    <td colspan="5"><%$d.shop_address%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">体验店电话</td>
+                    <td colspan="5"><%$d.shop_phone%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">营业时间</td>
+                    <td colspan="5"><%$d.shop_time%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">快捷交通路线</td>
+                    <td colspan="5"><%$d.shop_traffic%></td>
+                </tr>
+                <tr>
+                    <td  class="flip-content">体验店的二级域名</td>
+                    <td colspan="5"><%$d.second_url%></td>
+                </tr>
+                <tr align="center">
+                    <td  class="flip-content">体验店介绍</td>
+                    <td  colspan="5"><%$d.shop_dec%></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="flip-content">创建人</td>
+                    <td><%$d.real_name%></td>
+                    <td  colspan="2" class="flip-content">创建时间</td>
+                    <td><%"Y-m-d H:i:s"|date:$d.create_time%></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="portlet-body">
+	<!-- 工具栏 -->
+	<div class="table-toolbar">
+		<%$bar%>
+	</div>
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>调拨单详情
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<!-- 表格1 -->
+			<div class="table-scrollable">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<td><b>单据编号</b></td>
+						<td><%$view->get_bill_no()%></td>
+						<td><b>单据状态</b></td>
+						<td><%$dd->getEnum('warehouse.bill_status',$status)%></td>
+					</tr>
+					<tr>
+						<%if $isViewChengbenjia%><td><b>成本合计</b></td>
+						<td><%$view->get_goods_total()%></td><%/if%>
+						<td><b>货品数量</b></td>
+						<td><%$view->get_goods_num()%></td>
+					</tr>
+					<tr>
+						<td><%if $isViewChengbenjia%><b>加价成本合计</b><%/if%></td>
+						<td><%if $isViewChengbenjia%><%if $view->get_goods_total_jiajia() gt 0%><%$view->get_goods_total_jiajia()|default:'--'%><%else%>--<%/if%><%/if%></td>
+						<td><%if $smarty.const.SYS_SCOPE eq 'zhanting'%><b>展厅标签价总计</b><%/if%></td>
+						<td><%if $smarty.const.SYS_SCOPE eq 'zhanting'%><%$view->get_label_price_total()%><%/if%></td>
+					</tr>
+					<tr>
+						<td><b>入库公司</b></td>
+						<td><%$view->get_to_company_name()%></td>
+						<td><b>入库仓库</b></td>
+						<td><%$view->get_to_warehouse_name()%></td>
+					</tr>
+					<tr>
+						<td><b>出库公司</b></td>
+						<td><%$view->get_from_company_name()%></td>
+						<td><b>订单号</b></td>
+						<td><%$view->get_order_sn()|default:'--'%></td>
+					</tr>
+					<tr>
+						<td><b>制单人</b></td>
+						<td><%$view->get_create_user()%></td>
+						<td><b>制单时间</b></td>
+						<td><%$view->get_create_time()%></td>
+					</tr>
+					<tr>
+						<td><b>审核人：</b></td>
+						<td><%if $view->get_bill_status()==2 %><%$view->get_check_user()|default:'--'%><%else%>--<%/if%></td>
+						<td><b>审核时间：</b></td>
+						<td><%if $view->get_bill_status()==2 %><%$view->get_check_time()|default:'--'%><%else%>--<%/if%></td>
+				   </tr>
+					<tr>
+					 <td><b>取消人：</b></td>
+					 <td><%$billcloseArr.update_user|default:'--'%></td>
+					 <td><b>取消时间：</b></td>
+					 <td><%$billcloseArr.update_time|default:'--'%></td>
+				   </tr>	
+                                        <tr>
+						
+                                                <td><b>快递单号</b></td>
+                                                <td colspan="1"><%$express_sn%></td>
+                                                <td><b>顾客姓名</b></td>
+                                                <td colspan="2"><%$consignee%></td>
+                                                
+					</tr>
+                                        <tr>
+                                                <td ><b>备注</b></td>
+                                                <td colspan="3" width="650px" style="word-break:break-all"><%$view->get_bill_note()%></td>
+                                        </tr>
+					<input type="hidden" id="bill_id" value="<%$view->get_id()%>">
+				</table>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>调拨明细列表
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<button id="batch_copy_goodsid_m" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</button>
+				</div>
+			</div>
+			<!-- 表格2 -->
+			<div class="flip-scroll" style="overflow-x:scroll;" id="warehouse_bill_goods_list">
+
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+	<!--
+	<%include file="js/warehouse_bill_info_m_info_show.js"%>
+	//-->
+</script>

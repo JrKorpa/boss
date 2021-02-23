@@ -1,0 +1,320 @@
+<div class="table-toolbar">
+	<%$bar%>
+</div>
+<style type="text/css">
+.picture_show{width:320px;margin:0 auto;}
+.picture_zoompic{width: 100%; border:solid 1px #dfdfdf;background:url(public/img/loading.gif) no-repeat 50% 50%;}
+.picture_zoompic img{width: 100%;height: auto}
+.pic_sliderbox{width:100%;overflow:hidden;margin-top: 6px;}
+.pic_sliderbox .arrow-btn{width:20px;height:53px;background:url(public/img/arrow-btn.png) no-repeat;cursor:pointer;}
+.pic_sliderbox #pic_btn-leftc{float:left;background-position:0 0;}
+.pic_sliderbox #pic_btn-leftc.dasabled{background-position:0 -53px;}
+.pic_sliderbox #pic_btn-rightc{float:right;background-position:-20px 0;}
+.pic_sliderbox #pic_btn-rightc.dasabled{background-position:-20px -53px;}
+.pic_sliderbox .pic_slider{float:left;height:53px;width:277px;position:relative;overflow:hidden;display:inline;}
+.pic_sliderbox .pic_slider ul{position:absolute;left:0;padding:0;margin-left:3px;margin-bottom: 0; width:2000px;list-style:none; }
+.pic_sliderbox .pic_slider li{float:left;width:55px;text-align:center;list-style:none}
+.pic_sliderbox .pic_slider li img{width: 53px; border:solid 2px #f9f9f9;}
+.pic_sliderbox .pic_slider li.current img{border:solid 2px #3366cc;}
+</style>
+
+<%if ($view->get_bc_sn() && !empty($buchan)) || !empty($image_list) %>
+<div class="col-sm-12">
+	<div class="portlet box blue">
+		<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>布产单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+		</div>
+		<div class="portlet-body">
+			<!-- 表格1 -->
+			<%if $view->get_bc_sn() && !empty($buchan)%>
+			<div class="col-sm-6">
+				<div class="flip-scroll">
+					<table class="table table-bordered table-striped table-hover flip-content">
+						<tr>
+							<td><b>布产号</b></td>
+							<td><%$buchan.bc_sn%></td>
+							<td><b>采购单号</b></td>
+							<td><%$buchan.p_sn%></td>
+						</tr>
+						<tr>
+							<td><b>款号</b></td>
+							<td><%$buchan.style_sn%></td>
+							<td><b>状态</b></td>
+							<td><%$dd->getEnum('buchan_status',$buchan.status)%></td>
+						</tr>
+						<tr>
+							<td><b>数量</b></td>
+							<td><%$buchan.num%></td>
+							<td><b>生产工厂</b></td>
+							<td><%$buchan.prc_name%></td>
+						</tr>
+						<tr>
+							<td><b>跟单人</b></td>
+							<td><%$buchan.opra_uname%></td>
+							<td><b>添加时间</b></td>
+							<td><%$buchan.add_time%></td>
+						</tr>
+						<tr>
+							<td><b>客户姓名</b></td>
+							<td><%$buchan.consignee%></td>
+							<td><b>生产状态</b></td>
+							<td><%$dd->getEnum('buchan_fac_opra','$buchan.factory_opra_status')%></td>
+						</tr>
+						<tr>
+							<td><b>布产类型</b></td>
+							<td><%$buchan.bc_style%></td>
+							<td><b>镶嵌方式</b></td>
+							<td><%$buchan.xiangqian%></td>
+						</tr>
+						<tr>
+							<td><b>标准出厂时间</b></td>
+							<td><%$buchan.esmt_time%></td>
+							<td><b>工厂交货时间</b></td>
+							<td><%$buchan.rece_time%></td>
+						</tr>
+						<tr>
+							<td><b>备注</b></td>
+							<td colspan="3"><%$buchan.info%></td>
+						</tr>
+						<%foreach from=$detail key=k item=i%>
+						<%if $k%2==0 %>
+						<tr>
+						<%/if%>
+							<td><b><%$i.name%></b></td>
+							<td><%$i.value%></td>
+						<%if $k%2 == 1%>
+						</tr>
+						<%/if%>
+						<%/foreach%>
+					</table>
+				</div>
+			</div>
+			<%/if%>
+			<div class="col-sm-6">
+				<!-- 布产图片 -->
+				<div class="picture_show">
+					<div class="picture_zoompic"><img src="<%if !empty($image_list)%><%if isset($image_list[0]['big_img'])%><%$image_list[0]['big_img']%><%else%><%$image_list[0]['thumb_img']%><%/if%><%/if%>"/></div>
+					<div class="pic_sliderbox">
+						<div id="pic_btn-leftc" class="arrow-btn dasabled"></div>
+						<div class="pic_slider" id="picture_thumbnailc">
+							<ul>
+								<%foreach from=$image_list key=k item=i%>							
+								<li<%if $k=0%> class="current"<%/if%>><img src="<%if isset($i.big_img)%><%$i.big_img%><%else%><%$i.thumb_img%><%/if%>"/></li>
+								<%/foreach%>
+							</ul>
+						</div>
+						<div id="pic_btn-rightc" class="arrow-btn"></div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<%/if%>
+<div class="col-sm-6">
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>出货单货品详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+	        <table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+	                <td><b>采购单单号</b></td>
+	                <td><%$view->get_purchase_sn()%></td>
+	                <td><b>状态</b></td>
+	                <td><%$dd->getEnum('receipt.detail_status',$view->get_status())%></td>
+	            </tr>
+	            <tr>
+	                <td><b>流水号</b></td>
+	                <td><%$view->get_purchase_receipt_id()%></td>
+	                <td><b>布产号</b></td>
+	                <td><%$view->get_bc_sn()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>客户名</b></td>
+	                <td><%$view->get_customer_name()%></td>
+	                <td><b>工厂模号</b></td>
+	                <td><%$view->get_factory_sn()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>主成色</b></td>
+	                <td><%$view->get_material()%></td>
+	                <td><b>主成色重</b></td>
+	                <td><%$view->get_net_gold_weight()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>主石颜色</b></td>
+	                <td><%$view->get_zhushiyanse()%></td>
+	                <td><b>主石净度</b></td>
+	                <td><%$view->get_zhushijingdu()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>主石单价</b></td>
+	                <td><%$view->get_zhushidanjia()%></td>
+	                <td><b>副石粒数</b></td>
+	                <td><%$view->get_fushilishu()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>副石重</b></td>
+	                <td><%$view->get_fushizhong()%></td>
+	                <td><b>副石单价</b></td>
+	                <td><%$view->get_fushidanjia()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>证书号</b></td>
+	                <td><%$view->get_zhengshuhao()%></td>
+	                <td><b>成本价</b></td>
+	                <td><%$view->get_chengbenjia()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>石2</b></td>
+	                <td><%$view->get_shi2()%></td>
+	                <td><b>石2粒数</b></td>
+	                <td><%$view->get_shi2lishu()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>石2重</b></td>
+	                <td><%$view->get_shi2zhong()%></td>
+	                <td><b>石2单价</b></td>
+	                <td><%$view->get_shi2danjia()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>石3</b></td>
+	                <td><%$view->get_shi3()%></td>
+	                <td><b>石3粒数</b></td>
+	                <td><%$view->get_shi3lishu()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>石3重</b></td>
+	                <td><%$view->get_shi3()%></td>
+	                <td><b>石3单价</b></td>
+	                <td><%$view->get_shi3danjia()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>工费</b></td>
+	                <td><%$view->get_work_fee()%></td>
+	                <td><b>超石费</b></td>
+	                <td><%$view->get_extra_stone_fee()%></td>
+	            </tr>
+	            <tr>
+	                <td><b>其它工费</b></td>
+	                <td><%$view->get_other_fee()%></td>
+	                <td><b>配件成本</b></td>
+	                <td><%$view->get_fittings_cost_fee()%></td>
+	            </tr>
+				<tr>
+					<td><b>税费</b></td>
+					<td><%$view->get_tax_fee()%></td>
+					<td><b>客来石信息</b></td>
+					<td><%$view->get_customer_info_stone()%></td>
+				</tr>
+	        </table>   
+		</div>
+	</div>
+</div>
+</div>
+<%if $iqc_cnt%>
+<div class="col-sm-6">
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>IQC质检详情
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse">
+				</a>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<!-- 表格1 -->
+			<div class="flip-scroll">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<th>操作行为</th>
+						<th>操作备注</th>
+						<th>操作人</th>
+						<th>操作时间</th>
+					</tr>
+					<%foreach from=$iqc_list key=k item=value%>
+					<tr>
+						<td><%$dd->getEnum('iqc_opra',$value.opra_code)%></td>
+						<td><%$value.opra_info%></td>
+						<td><%$value.opra_uname%></td>
+						<td><%$value.opra_time%></td>
+					</tr>
+					<%/foreach%>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<%/if%>
+
+<script type="text/javascript">
+/*处理图片的滚动问题*/
+$("#picture_thumbnailc li img").click(function(){
+		$(".picture_zoompic img").attr("src",$(this).attr("src"));
+		$(this).parents("li").addClass("current").siblings('li').removeClass("current");
+		return false;
+	});
+	$(".picture_zoompic>img").load(function(){
+		$(".picture_zoompic>img:hidden").show();
+	});
+	//小图片左右滚动
+	var $slider = $('.pic_slider ul');
+	var $slider_child_l = $('.pic_slider ul li').length;
+	var $slider_width = $('.pic_slider ul li').width();
+	$slider.width($slider_child_l * $slider_width);
+	var slider_count = 0;
+	if ($slider_child_l < 5) {
+		$('#pic_btn-rightc').css({cursor: 'auto'});
+		$('#pic_btn-rightc').removeClass("dasabled");
+	}
+	$('#pic_btn-rightc').click(function() {
+		if ($slider_child_l < 5 || slider_count >= $slider_child_l - 5) {
+			return false;
+		}
+		slider_count++;
+		$slider.animate({left: '-=' + $slider_width + 'px'}, 'fast');
+		slider_pic();
+	});
+	$('#pic_btn-leftc').click(function() {
+		if (slider_count <= 0) {
+			return false;
+		}
+		slider_count--;
+		$slider.animate({left: '+=' + $slider_width + 'px'}, 'fast');
+		slider_pic();
+	});
+	function slider_pic() {
+		if (slider_count >= $slider_child_l - 5) {
+			$('#pic_btn-rightc').css({cursor: 'auto'});
+			$('#pic_btn-rightc').addClass("dasabled");
+		}
+		else if (slider_count > 0 && slider_count <= $slider_child_l - 5) {
+			$('#pic_btn-leftc').css({cursor: 'pointer'});
+			$('#pic_btn-leftc').removeClass("dasabled");
+			$('#pic_btn-rightc').css({cursor: 'pointer'});
+			$('#pic_btn-rightc').removeClass("dasabled");
+		}
+		else if (slider_count <= 0) {
+			$('#pic_btn-leftc').css({cursor: 'auto'});
+			$('#pic_btn-leftc').addClass("dasabled");
+		}
+	}
+</script>

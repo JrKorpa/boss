@@ -1,0 +1,471 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <div class="btn-group">
+                <button data-title="订单列表" list-id="72" title="订单审核" name="审核" data-url="index.php?mod=sales&con=BaseOrderInfo&act=check" onclick="util.retrieveConfirm(this);" class="btn btn-sm red">
+                    审核 <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button data-title="生成补发" list-id="72" title="生成补发" name="生成补发" data-url="index.php?mod=sales&con=BaseOrderInfo&act=CopeOrderInfo" onclick="CopeOrderInfo(this);" class="btn btn-sm yellow">
+                    生成补发单 <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <%$bar%>
+		</div>
+		<!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td align="center">订单号</td>
+                    <td align="center" order_id="<%$view->get_id()%>"><%$view->get_order_sn()%>[<%$view->get_id()%>]</td>
+                    <td align="center">销售渠道</td>
+                    <td align="center"><%if isset($allSalesChannelsData[$order['department_id']])%> <%$allSalesChannelsData[$order['department_id']]%><%/if%></td>
+                    <td align="center">客户来源</td>
+                    <td align="center"><%$order['customer_source_name']%></td>
+                </tr>
+                <tr>
+                    <td  align="center">客户名称</td>
+                    <td  align="center"><a list-id="<%$view->get_user_id()%>" data-title="<%$view->get_consignee()%>" data-url="index.php?mod=bespoke&con=BaseMemberInfo&act=show&id=<%$view->get_user_id()%>&order_id=<%$view->get_id()%>" onclick="util.addNew(this)" href="javascript:void(0);"><%$view->get_consignee()%></a></td>
+                    <td  align="center">顾客手机号码</td>
+                    <td  align="center"><%$view->get_mobile()%></td>
+                    <td align="center">订购类型</td>
+                    <td align="center"><%if isset($paylist[$view->get_order_pay_type()]) %><%$paylist[$view->get_order_pay_type()]%><%/if%></td>
+                </tr>
+                <tr>
+                    <td  align="center">制单时间</td>
+                    <td  align="center"><%$view->get_create_time()%></td>
+                    <td  align="center">制单人</td>
+                    <td  align="center"><%$view->get_create_user()%></td>
+                    <td align="center">申请状态</td>
+                    <td align="center"><span <%if $view->conczhuangtai()%>style="color: red;"<%/if%>><%$view->conczhuangtai()|default:'无'%></span></td>
+                </tr>
+                <tr>
+                    <td align="center">审核人</td>
+                    <td align="center"><%$view->get_check_user()%></td>
+                    <td align="center">审核时间</td>
+                    <td align="center"><%$view->get_check_time()%></td>
+                    <td align="center">订单类型</td>
+                    <td align="center"><span <%if $view->get_is_xianhuo()==2%> style="color:red;"<%/if%>><%$dd->getEnum('is_xianhuo',$view->get_is_xianhuo())%></span></td>
+                </tr>
+                <tr>
+                    <td align="center">订单状态</td>
+                    <td align="center"><%$dd->getEnum('order.order_status',$view->get_order_status())%></td>
+                    <td align="center">支付状态</td>
+                    <td align="center"><%$dd->getEnum('order.order_pay_status',$view->get_order_pay_status())%></td>
+                    <td align="center">配货状态</td>
+                    <td align="center"><%$dd->getEnum('sales.delivery_status',$view->get_delivery_status())%></td>
+                </tr>
+                <tr>
+                    <td align="center">发货状态</td>
+                    <td align="center"><%$dd->getEnum('order.send_good_status',$view->get_send_good_status())%></td>
+                    <td align="center">是否为赠品单</td>
+                    <td align="center"><%if $view->get_is_zp()==1%>是<%else%>否<%/if%></td>
+                    <td align="center">录单来源</td>
+                    <td align="center"><%$view->get_referer()%></td>
+                </tr>
+
+                <tr>
+                    <td align="center" >推荐人</td>
+                    <td align="center"><%$view->get_recommended()%></td>
+                    <td align="center">跟单人</td>
+                    <td align="center" ><%$view->get_genzong()%></td>
+                </tr>
+                <%if ($view->getOutSn($view->get_id()))%>
+                <tr>
+                    <td align="center">外部订单号</td>
+                    <td align="center" colspan="5">
+                        <%foreach from=$view->getOutSns($view->get_id()) item=d%>
+                        <a href="http://trade.tmall.com/detail/orderDetail.htm?spm=a1z09.1.11.30.lWXCcQ&amp;bizOrderId=<%$d|default:''%>"><%$d%></a>
+                        <%/foreach%>
+                    </td>
+                </tr>
+                <%/if%>
+                <tr>
+                    <td align="center">订单备注</td>
+                    <td  colspan="5"><span style="color: red"><%$view->get_order_remark()|default:''%></span></td>
+                </tr>
+            </table>
+        </div>
+
+		<div class="clear"></div>
+	</div>
+</div>
+<!--
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单金额数据
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+
+        <%if $view->get_department_id()==2 and $view->get_order_status()==2%>
+        <div class="table-toolbar">
+            <div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=coupon_apply" name="使用订单优惠券" title="使用订单优惠券" list-id="70" data-title="">
+                    使用订单优惠券 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <%/if%>
+
+		<div class="flip-scroll" id="app_order_price_info_list">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th>订单总金额</th>
+                        <th>商品总金额</th>
+                        <th>实际退款</th>
+                        <th>优惠总金额</th>
+                        <th>优惠券金额</th>
+                        <th>配送费</th>
+                        <th>保证金</th>
+                        <th>支付费</th>
+                        <th>包装费</th>
+                        <th>贺卡费</th>
+                        <th>已付金额</th>
+                        <th>未付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%if $view->isHaveGoods($view->get_id())%>
+                    <tr data-id="app_order_price_<%$order_price_info.order_id%>" data-title="<%$order_price_info.order_sn%>">
+                        <td align="center"><%$order_account.order_amount%></td>
+                        <td align="center"><%$order_account.goods_amount%></td>
+                        <td align="center"><%$order_account.real_return_price%></td>
+                        <td align="center"><%$order_account.favorable_price%></td>
+                        <td align="center"><%$order_account.coupon_price%></td>
+                        <td align="center"><%$order_account.shipping_fee%></td>
+                        <td align="center"><%$order_account.insure_fee%></td>
+                        <td align="center"><%$order_account.pay_fee%></td>
+                        <td align="center"><%$order_account.pack_fee%></td>
+                        <td align="center"><%$order_account.card_fee%></td>
+                        <td align="center"><%$order_account.money_paid%></td>
+                        <td align="center"><%$order_account.money_unpaid%></td>
+                    </tr>
+                    <%/if%>
+                </tbody>
+            </table>
+			<div>
+            商品总金额：￥<%$order_account.goods_amount%>元 - 商品优惠：￥<%$order_account.favorable_price%>元 - 订单优惠：￥<%$order_account.coupon_price%>元 - 实退金额￥ <%$order_account.real_return_price%> + 配送费用：￥<%$order_account.shipping_fee%>元 + 保价费用：￥<%$order_account.insure_fee%>元 + 支付费用：￥<%$order_account.pay_fee%>元 + 包装费用：￥<%$order_account.pack_fee%>元 + 贺卡费用：￥<%$order_account.card_fee%>元<br>
+            = 订单总金额：￥<%$order_account.order_amount%>元<br>-
+             已付款金额：￥<%$order_account.money_paid%>元<br> = 应付款金额：￥<%$order_account.money_unpaid%>元
+			 </div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+-->
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <%if $view->get_order_status()!=2%>
+            <div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=add" name="添加" title="添加明细" list-id="70" data-id="<%$view->get_id()%>" data-title="">
+                    添加 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=addGoods" name="添加新品" title="添加新品" list-id="70" data-id="<%$view->get_id()%>" data-title="">
+                    添加新品 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <%/if%>
+
+            <div class="btn-group">
+                <button class="btn btn-sm dark" id="detail_reload" onclick="util.relReload(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=search&order_id=<%$view->get_id()%>" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+			<%if $view->get_order_status()!=2%>
+			<div class="btn-group">
+                <button class="btn btn-sm blue" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=editOrderGoods" name="修改商品" title="修改商品" list-id="70" data-title="">
+                    修改商品 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm yellow" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=EditValenceDelete&order_id=<%$view->get_id()%>" name="删除货品并合并价格" title="删除货品并合并价格" list-id="70">
+                    删除货品并合并价格 <i class="fa fa-trash-o"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=RaiseGoodsPrice&order_id=<%$view->get_id()%>" name="增加货品价格" title="增加货品价格" list-id="70">
+                    增加货品价格 <i class="fa fa-trash-o"></i>
+                </button>
+            </div>
+            <%/if%>
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=show" name="查看明细" title="查看" list-id="70" data-title="">
+                    查看 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+<%if !$view->getOutSn($view->get_id())%>
+            <%if $view->get_order_status()!=2%>
+            <div class="btn-group">
+                <button class="btn btn-sm green" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=apply_favorable" name="申请优惠" title="申请优惠" list-id="70" data-title="">
+                    申请优惠 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <%/if%>
+<%/if%>
+
+<!--<%if !$view->getOutSn($view->get_id())%>
+            <%if $view->get_order_status()!=2%>
+            <div class="btn-group">
+                <button class="btn btn-sm red" onclick="util.relConfirm(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=off_apply_favorable" name="取消申请优惠" title="取消申请优惠" list-id="70" data-title="取消申请优惠吗">
+                    取消申请优惠 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <%/if%>
+<%/if%>-->
+<%if isset($smarty.session.userName) && !in_array($smarty.session.userName,array('张田田','刘燕','杜娟娟','蔡琴','陈妙姗','廉金姗','陈小玲','刘单雄','袁怡靖','霍彦鹏','何金慧','张磊','张松','白芳妮','王春霞'))%>
+		    <%if $view->get_order_status() > 1%>
+            <div class="btn-group">
+                <button class="btn btn-sm blue" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=buchan_edit" name="查看明细" title="布产信息修改" list-id="70" data-title="">
+                    布产信息修改 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+			<%/if%>
+<%/if%>
+		<%if $view->get_order_pay_status()==1 && $view->get_is_delete()==0%>
+			<div class="btn-group">
+                <button class="btn btn-sm red" onclick="util.deleteRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=delete" name="删除" title="删除" list-id="70" data-title="">
+                    删除 <i class="fa fa-trash-o"></i>
+                </button>
+            </div>
+		<%/if%>
+		<%if !empty($dingzhible) %>
+		<div class="btn-group">
+            <button class="btn btn-sm green" onclick="util.cust(this,toDingzhi);" data-url="index.php?mod=sales&con=AppOrderDetails&act=dingzhi" name="转为定制" title="转为定制" list-id="70" data-referer="<%$view->get_referer()%>">
+                转为定制 <i class="fa fa-trash-o"></i>
+            </button>
+        </div>
+		<%/if%>
+		<%if !empty($xianhuo) %>
+		<div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=zhuanxianhuo" name="转为现货" title="转为现货" list-id="70"  data-title="">
+                    转为现货 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+		<%/if%>
+        <%if isset($smarty.session.userName) && $smarty.session.userName == 'admin'%>
+            <div class="btn-group">
+                <button class="btn btn-sm red" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderDetails&act=editDetailsPrice" name="修改商品价格" title="修改商品价格" list-id="70" data-title="">
+                    修改商品价格 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+        <%/if%>
+		</div>
+        <span style="color: #008855">订单明细数量：<%$count|default:0%></span>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_order_goods_info_detail">
+
+		</div>
+			<div>
+            商品总金额：￥<%$order_account.goods_amount%>元 - 商品优惠：￥<%$order_account.favorable_price%>元 - 订单优惠：￥<%$order_account.coupon_price%>元 - 退货商品金额：￥ <%if $order_account.is_return == 1%> <%$order_account.t_price%> <%else%>0.00 <%/if%>元 +扣除商品优惠：￥<%if $order_account.is_return%><%$order_account.t_favorable_price%>  <%else%> 0.00 <%/if%>元+ 配送费用：￥<%$order_account.shipping_fee%>元 + 保价费用：￥<%$order_account.insure_fee%>元 + 支付费用：￥<%$order_account.pay_fee%>元 + 包装费用：￥<%$order_account.pack_fee%>元 + 贺卡费用：￥<%$order_account.card_fee%>元<br>
+            = 订单总金额：￥<%$order_account.order_amount%>元<br>-
+             已付款金额：￥<%$order_account.money_paid%>元 + 实退金额 ￥<%if $order_account.is_return%>  <%$order_account.real_return_price%><%else%>0.00 <%/if%>元<br>
+             = 应付款金额：￥<%$order_account.money_unpaid%>元
+			 </div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>赠品
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm blue" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=BaseOrderInfo&act=EditGift" name="修改赠品" title="修改赠品" list-id="70" data-title="">
+                    修改赠品 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="zp">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td align="center">赠品:</td>
+                    <td colspan="7" align="center"><%$gift.giftstr%></td>
+                </tr>
+                <tr>
+                    <td align="center">赠品备注:</td>
+                    <td colspan="7" align="center"><%$gift.remark|default:''%></td>
+                </tr>
+            </table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>发票信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+	<%if $view->get_is_delete()==0%>
+			 <div class="btn-group" >
+                <button class="btn btn-sm blue" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=AppOrderInvoice&act=edit&order_id=<%$view->get_id()%>" name="添加" title="添加明细" list-id="70" data-title="">
+                    编辑 <i class="fa fa-edit"></i>
+                </button>
+            </div>
+   <%/if%>
+			<div class="btn-group">
+				<button class="btn btn-sm dark" onclick="util.relReload(this);" data-url="index.php?mod=sales&con=AppOrderInvoice&act=search&order_id=<%$view->get_id()%>" name="刷新" title="刷新明细" list-id="70" data-title="">
+					刷新 <i class="fa fa-refresh"></i>
+				</button>
+			</div>
+
+			<div class="btn-group">
+				<button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=AppOrderInvoice&act=add" name="添加" title="添加明细" list-id="70" data-title="">
+					添加 <i class="fa fa-plus"></i>
+				</button>
+			</div>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_order_invoice_info_detail">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>送货地址信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+        <%if $view->get_is_delete()==0 and ($view->get_send_good_status()==4 or $view->get_send_good_status()==1)%>
+		<div class="table-toolbar">
+            <div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.cust(this,add_member_address);" data-url="index.php?mod=sales&con=AppOrderAddress&act=selectaddress" name="选择收货地址" title="选择收货地址" list-id="70" data-title="">
+                    选择收货地址 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <%if $address!=array()%>
+            <div class="btn-group" >
+                <button class="btn btn-sm blue" onclick="util.cust(this,changeEx);" data-url="index.php?mod=sales&con=AppOrderAddress&act=changeEx" name="更改物流方式" title="更改物流方式"  >
+                    更改物流方式 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <%/if%>
+		</div>
+	<%/if%>
+		<!-- 表格1 -->
+        <%if $address!=array()%>
+        订单收货地址：
+        <table class="table table-bordered table-striped table-hover flip-content">
+            <tr>
+                <td align="center">收货人:<%$address.consignee%></td>
+                <td align="center">电话:<%$address.tel%></td>
+                <td align="center">发货方式:<%if $address.distribution_type==1 %>门店<%else%>公司到客户<%/if%></td>
+                <%if $address.express_id!=0%>
+                <td align="center">物流:<%foreach from=$express key=key item=d%>
+                    <%if $d.id==$address.express_id %>
+                    <%$d.exp_name%>
+                    <%/if%>
+                    <%/foreach%>
+                </td>
+                <%/if%>
+                <td><%if $address.freight_no%>快递号：<%$address.freight_no|default:''%><%/if%></td>
+            </tr>
+            <tr>
+                <%if $address.distribution_type==1 %> <td align="center">体验店类型：<%if $address.shop_type==1%>直营店<%else if $address.shop_type==2%>经销商店 <%else%><%/if%></td>
+                <td colspan="6" align="center">体验店名称:<%$address.shop_name%></td>
+                <%/if%>
+            </tr>
+            <tr>
+                <td align="center">详细地址</td>
+                <td colspan="7" align="center"><%$address.addressstr%></td>
+            </tr>
+
+        </table>
+        <%else%>
+        <span style="color: red">请设置订单收货地址！</span>
+        <%/if%>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>订单日志
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group" >
+                <button class="btn btn-sm green" onclick="util.addRel(this);" data-url="index.php?mod=sales&con=BaseOrderInfo&act=addLogs&order_id=<%$view->get_id()%>" name="添加" title="添加明细" list-id="70" data-title="">
+                    添加 <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <!--<div class="btn-group" >
+                <button class="btn btn-sm blue" onclick="util.editRel(this);" data-url="index.php?mod=sales&con=BaseOrderInfo&act=editLogs" name="添加" title="添加明细" list-id="70" data-title="">
+                    编辑 <i class="fa fa-edit"></i>
+                </button>
+            </div>-->
+		</div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="base_action_info_search_list">
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/base_order_info_show.js"%>
+//-->
+</script>

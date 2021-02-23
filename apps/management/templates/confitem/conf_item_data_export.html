@@ -1,0 +1,239 @@
+<div class="table-toolbar">
+    <%$bar%>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>数据导入脚本生成
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <form action="#" method="post" class="horizontal-form" id="conf_item_conf_from">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">来源HOST：</label>
+                        <input type="text" name="old_host" class="form-control" placeholder="请输入服务器地址"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">来源DATABASE：</label>
+                        <input type="text" name="old_dbname" class="form-control" placeholder="请输入数据库名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">来源TABLE：</label>
+                        <input type="text" name="old_dbname" class="form-control" placeholder="请输入表名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">用户名USER：</label>
+                        <input type="text" name="old_host" class="form-control" placeholder="请输入服务器地址"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">密码passwored：</label>
+                        <input type="password" name="old_dbname" class="form-control" placeholder="请输入数据库名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <div class="input-group">
+                            <span class="input-group-btn "><button id="conf_item_old_test" class="btn default" type="button">测试连接</button></span>
+                            <input type="text" name="old_test" class="form-control" value="未连接。。。" disabled/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">导入HOST：</label>
+                        <input type="text" name="old_host" class="form-control" placeholder="请输入服务器地址"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">导入DATABASE：</label>
+                        <input type="text" name="old_dbname" class="form-control" placeholder="请输入数据库名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">导入TABLE：</label>
+                        <input type="text" name="old_dbname" class="form-control" placeholder="请输入表名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">用户名USER：</label>
+                        <input type="text" name="old_host" class="form-control" placeholder="请输入服务器地址"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">密码passwored：</label>
+                        <input type="password" name="old_dbname" class="form-control" placeholder="请输入数据库名称"  value=""/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <div class="input-group">
+                            <span class="input-group-btn "><button class="btn default" type="button">测试连接</button></span>
+                            <input type="text" name="old_test" class="form-control" value="未连接。。。" disabled/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </div>
+        </form>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>设置参数
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <form action="#" method="post" class="horizontal-form" id="conf_item_date_export">
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">是否保留主键：</label>
+                            <div class="radio-list">
+                                <label class="radio-inline">
+                                    <input type="radio" name="old_id"  value="1" />是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="old_id" checked  value="0" />否
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">记录导出状态(旧表增加字段)：</label>
+                            <div class="radio-list">
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_pass" checked value="1" />是
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="is_pass" value="0" />否
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">记录字段名称：</label>
+                            <input type="text" name="pass_field" class="form-control" value="pass_status"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">保留旧表主键字段：</label>
+                            <input type="text" name="oldsys_id" class="form-control"  value="oldsys_id"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">旧表查询条件：</label>
+                            <input type="text" name="where" class="form-control"  value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">连表查询：</label>
+                            <input type="text" name="join_table" class="form-control"  value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">连表条件：</label>
+                            <input type="text" name="join_table" class="form-control"  value=""/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">连表字段：</label>
+                            <input type="text" name="join_field" class="form-control"  value=""/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">需导入相同字段：</label>
+                            <select class="form-control" tabindex="1" name="same_field" multiple>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">需替换的旧表字段 <span style="color:red">[与下对应]</span>：</label>
+                            <select class="form-control" tabindex="1" name="old_change_field" multiple>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">替换的新表的字段 <span style="color:red">[与上对应]</span>：</label>
+                            <select class="form-control" tabindex="1" name="new_change_field" multiple>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label">设置默认值： 例:create=system,time=now</label>
+                            <input id="tags_conf" type="default_value" class="form-control tags" value=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/conf_item_data_export.js"%>
+    //-->
+</script>

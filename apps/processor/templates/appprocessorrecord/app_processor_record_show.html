@@ -1,0 +1,185 @@
+<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>供应商信息
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="table-toolbar">
+					<%$bar%>
+				</div>
+			<div class="flip-scroll">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<tr>
+						<td style="text-align: left;"><b>供应商名称：</b></td>
+						<td><%$view->get_name()%></td>
+						<td style="text-align: left;"><b>开通系统：</b></td>
+						<td>
+							<label class="radio-inline">
+								<input type="radio" name="is_open" disabled value="1" <%if $view->get_is_open()==1%> checked="checked"<%/if%> />是
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="is_open" disabled value="0" <%if $view->get_is_open()==0%> checked="checked"<%/if%> />否
+							</label>
+						</td>
+						<td style="text-align: left;"><b>邮箱：</b></td>
+						<td><%$view->get_pro_email()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>营业执照号码：</b></td>
+						<td><%$view->get_business_license()%></td>
+						<td style="text-align: left;"><b>税务登记证号：</b></td>
+						<td><%$view->get_tax_registry_no()%></td>
+						<td style="text-align: left;"><b>经营范围：</b></td>
+						<td><%$view->get_business_zhCN($view->get_business_scope())%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>营业执照地址：</b></td><td colspan="5">
+						<%$view->get_business_region_zhCN($view->get_business_license_region())%><%$view->get_business_license_address()%>
+					</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>开户行：</b></td>
+						<td><%$view->get_bank_name()%></td>
+						<td style="text-align: left;"><b>户名：</b></td>
+						<td><%$view->get_account_name()%></td>
+						<td style="text-align: left;"><b>账号：</b></td>
+						<td><%$view->get_account()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>取货地址：</b></td><td colspan="5"><%$view->get_business_region_zhCN($view->get_pro_region())%><%$view->get_pro_address()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>出货周期：</b></td><td><%$view->get_cycle()%></td><td style="text-align: left;"><b>结算方式：</b></td><td><%if !empty($view->get_pay_type())%><%$view->getPayTypeList($view->get_pay_type())%><%/if%></td>
+						<td style="text-align: left;"><b>付款周期：</b></td>
+						<td><%$dict->getEnum('supplier_pay.method',$view->get_balance_type())%>
+						<%if $view->get_balance_type() == 2%><%$view->get_balance_day()%><%/if%>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>增值税发票：</b></td><td><%$view->get_tax_invoice()%></td><td style="text-align: left;"><b>税点：</b></td><td><%$view->get_show_point()%></td><td style="text-align: left;"><b>采购额度：</b></td><td><%$view->get_purchase_amount()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>公司联系人：</b></td><td><%$view->get_pro_contact()%></td><td style="text-align: left;"><b>公司联系方式：</b></td><td>手机：<%$view->get_pro_phone()%></td><td style="text-align: left;"><b>公司联系电话：</b></td><td><%$view->get_pro_qq()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>BDD紧急联系人：</b></td><td><%$view->get_contact()%></td><td style="text-align: left;"><b>紧急联系方式：</b></td><td>手机：<%$view->get_kela_phone()%></td><td style="text-align: left;"><b>BDD紧急联系电话：</b></td><td><%$view->get_kela_qq()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>其他备注：</b></td><td colspan="5"><%$view->get_info()%></td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>附件：</b></td>
+						<td colspan="5">
+							<%if $view->get_pact_doc()%><span style="margin-right: 30px"><a href="<%$view->get_pact_doc()%>" target="_blank">合同附件</a></span><%/if%>
+							<%if $view->get_license_jpg()%><span style="margin-right: 30px"><a href="<%$view->get_license_jpg()%>" target="_blank">营业执照附件</a></span><%/if%>
+							<%if $view->get_tax_jpg()%><span style="margin-right: 30px"><a href="<%$view->get_tax_jpg()%>" target="_blank">税务登记证附件</a></span><%/if%>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align: left;"><b>申请人：</b></td><td><%$view->get_create_user()%></td><td style="text-align: left;"><b>申请部门：</b></td><td colspan="3"><%$department_name%></td>
+					</tr>
+
+				</table>
+			</div>
+			</div>
+		</div>
+		<div class="portlet box blue">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>审批流程
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="flip-scroll" id="app_processor_record">
+					<div class="row">
+
+						<div class="col-md-offset-5 col-sm-8">
+							<%foreach from=$user key=k item=i%>
+								<label class="control-label">
+								<%if $i.audit_status==2%>
+								<b sytle="color:red"><%$i.real_name%>[驳回]<%if $k!=(count($user)-1)%>&gt;&gt;<%/if%></b>
+								<%else if $i.audit_status==1%>
+								<b sytle="color:green"><%$i.real_name%>[审批通过]<%if $k!=(count($user)-1)%>&gt;&gt;<%/if%></b>
+								<%else%>
+								<b><%$i.real_name%>[未审批]<%if $k!=(count($user)-1)%>&gt;&gt;<%/if%></b>
+								<%/if%>
+								</label>
+							<%/foreach%>
+						</div>
+					</div>
+					<%if !empty($now) and ($view->get_check_status()==2 or $view->get_check_status()==3) and $now.user_id==$user_id%>
+					<div class="row">
+						<form action="#" method="post" class="horizontal-form" id="app_processor_process_audit">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label">拒绝原因：</label>
+									<textarea class="form-control" name="refuse_cause" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="col-md-offset-5 col-sm-3">
+								<input type="hidden" name="id" value="<%$view->get_id()%>" />
+								<input type="hidden" name="process_id" value="<%$process_id%>" />
+								<input type="hidden" name="user_sum" value="<%$user_sum%>" />
+								<input type="hidden" name="process_name" value="<%$view->get_name()%>" />
+								<div style="display:none;">
+									<button type="submit" name="submit" class="btn red"><i class="fa fa-check"></i> 提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label class="control-label"><%$now.real_name%>：</label>
+								<label class="control-label">
+										<span>
+											<a user_id="<%$now.user_id%>" status="1" class="app_processor_audit_btn btn btn-xs blue">
+												<i class="fa fa-check"></i> 通过
+											</a>
+											<a user_id="<%$now.user_id%>" status="2" class="app_processor_audit_btn btn btn-xs red">
+												<i class="fa fa-times"></i> 驳回
+											</a>
+										</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<%/if%>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-reorder"></i>操作日志
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse">
+					</a>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div class="flip-scroll" id="app_processor_record_log_list">
+				</div>
+                <div class="clear"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_processor_record_show.js"%>
+//-->
+</script>

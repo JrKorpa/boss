@@ -1,0 +1,115 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="jxs_profit_order_search_form">
+			<div class="form-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">经销商：</label>
+                            <select class="form-control" tabindex="1" name="jxs_id">
+                                <option value=""></option>
+                                <%foreach from=$jxs_list item=l %>
+                            	<option value="<%$l.id%>"><%$l.shop_name%></option>
+                            	<%/foreach%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">结算状态：</label>
+                            <select class="form-control" tabindex="1" name="calc_status">
+                                <option value="-1"></option>
+                                <option value="0">未结算</option>
+                                <option value="1">结算</option>
+                                <option value="2">取消</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">渠道来源：</label>
+                            <select class="form-control" tabindex="1" name="department_id">
+                                <option value="0"></option>
+                                <option value="1">官方网站部</option>
+                                <option value="2">淘宝销售部</option>
+                                <option value="3">银行销售部</option>
+                                <option value="13">B2C销售部</option>
+                                <option value="52">QQ网购部</option>
+                                <option value="71">京东销售部</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">结算金额：</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="start_money"  />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_money"  />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">发货时间段：</label>
+                            <div class="input-group date-picker input-daterange">
+                                <input type="text" class="form-control" name="start_time"  />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="form-control" name="end_time"  />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" name="handle" value="exportOrder" onclick="execHandler('exportOrder',0)"><i class="fa fa-check"></i> 导出订单</button>
+					<button type="button" class="btn yellow" name="handle" value="exportOrderDetail" onclick="execHandler('exportOrderDetail',0)"><i class="fa fa-check"></i> 导出订单明细</button>
+					<button type="button" class="btn red" name="handle" value="searchAndCalc" onclick="execHandler('searchAndCalc',1)"><i class="fa fa-check"></i> 一键结算</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="jxs_profit_order_search_list"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/jxs_profit_order_list.js"%>
+//-->
+</script>

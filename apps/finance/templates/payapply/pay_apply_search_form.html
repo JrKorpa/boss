@@ -1,0 +1,151 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="app_apply_bills_search_form">
+			<div class="form-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">结算商：</label>
+							<select class="form-control" tabindex="1" name="process_list">
+								<option value=""></option>
+								<%foreach from=$proList key=key item=value%>
+								<option value="<%$value.id%>"><%$value.name%></option>
+								<%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据状态：</label>
+							<select class="select2_category form-control" name="applyorderdostatus" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('app_pay_apply.status') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应付类型：</label>
+							<select class="select2_category form-control" name="totalpaytype" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$dd->getEnumArray('app_pay_should.pay_type') key=key item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应付申请单号：</label>
+							<input type="text" name="pay_apply_number" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">应付单号：</label>
+							<input type="text" name="pay_number" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">发票号：</label>
+							<input type="text" name="fapiao" class="form-control" placeholder="请输入">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">制单时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="2012/10/11" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="start_make_date">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="end_make_date">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">审核时间：</label>
+							<div class="input-group date-picker input-daterange" data-date="2012/10/11" data-date-format="yyyy/mm/dd">
+								<input type="text" class="form-control" name="start_check_date">
+								<span class="input-group-addon">to</span>
+								<input type="text" class="form-control" name="end_check_date">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">单据类型：</label>
+							<select class="select2_category form-control" name="record_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$recordTypeList key=key item=value%>
+                                <option value="<%$key%>"><%$value%></option>
+                                <%/foreach%>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">款式分类：</label><span style='color:red;'></span>
+							<select class="select2_category form-control" name="cat_type" tabindex="1">
+								<option value=""></option>
+								<%foreach from=$catList item=c%>
+									<option value="<%$c.id%>"><%$c.name%></option>
+								<%/foreach%>
+							</select><font color="red">(注：只适用于搜索应付调整单)</font>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+					<button type="button" class="btn blue" onclick="exportData()"><i class="fa fa-check"></i> 导出</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="table-scrollable" id="app_apply_bills_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_apply_bills_list.js"%>
+//-->
+</script>

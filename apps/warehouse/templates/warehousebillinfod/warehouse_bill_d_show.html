@@ -1,0 +1,96 @@
+<div class="portlet-body">
+<!-- 销售单 start -->
+<!-- 工具栏 -->
+	<div class="table-toolbar">
+		<%$bar%>
+	</div>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>销售退货单详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td><b>销售退货单号</b></td>
+					<td><%$view->get_bill_no()%></td>
+					<td><b>状态</b></td>
+					<td><%$dd->getEnum('warehouse.bill_status',$status)%></td>
+				</tr>
+				<tr>
+					<td><b>退货公司</b></td>
+					<td><%$view->get_to_company_name()%></td>
+					<td><b>退货仓</b></td>
+					<td><%$view->get_to_warehouse_name()%></td>
+				</tr>
+				<tr>
+					<%if $isViewChengbenjia%><td><b>退款总计</b></td>
+					<td><%$view->get_shijia()%></td><%else%><td></td><td></td><%/if%>
+					<td><b>订单号</b></td>
+					<td><span id="s_num"><%$view->get_order_sn()%></span></td>
+				</tr>
+				<tr>
+					<td><b>制单人</b></td>
+					<td><%$view->get_create_user()%></td>
+					<td><b>制单时间</b></td>
+					<td><%$view->get_create_time()%></td>
+				</tr>
+				<tr>
+					<td><b>审核人</b></td>
+					<td><%$view->get_check_user()|default:'--'%></td>
+					<td><b>审核时间</b></td>
+					<td><%$view->get_check_time()%></td>
+				</tr>
+				<tr>
+					<td><b>货品数量</b></td>
+					<td><%$view->get_goods_num()%></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><b>备注</b></td>
+					<td colspan="3"><%$view->get_bill_note()|default:'--'%></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+	<!-- 损益单 end -->
+
+	<!-- 明细 start -->
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-reorder"></i>销售退货单明细
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-toolbar">
+				<div class="btn-group">
+					<div id="batch_copy_goodsid_d_show" class="btn btn-sm green">
+						批量复制货号 <i class="fa fa-copy"></i>
+					</div>
+				</div>
+			</div>
+			<p class="text-danger"></p>
+			<div class="flip-scroll" id="warehouse_goods_list_d"></div>
+			<div class="pager"></div>
+		</div>
+	</div>
+	<!-- 明细 end -->
+
+
+</div>
+</form>
+<script type="text/javascript">
+<%include file="js/warehouse_bill_d_show.js"%>
+</script>

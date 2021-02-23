@@ -1,0 +1,36 @@
+
+<div class="portlet-body">
+		<div class="table-toolbar">
+		</div>
+        <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>序号</th>
+				<th>操作内容</th>
+				<th>操作人</th>				
+				<th>操作时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>
+		
+			<tr data-id="app_order_action_list_<%$d.action_id%>" data-title="<%$d.action_id%>">
+				<td><%count($page_list.data)-$key%></td>
+				<td style="width: 800px;word-break: break-all;white-space: normal;"><%$d.operation_content%></td>
+				<td><%$d.create_user%></td>
+				<td><%$d.create_time%></td>
+			</tr>
+		
+		<%/foreach%>
+		</tbody>
+	</table>
+    </div>
+    <%$pa%>
+	</div>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

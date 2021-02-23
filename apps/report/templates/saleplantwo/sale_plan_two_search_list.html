@@ -1,0 +1,263 @@
+<div class="table-scrollable">
+    <table class="table table-bordered table-striped table-hover flip-content">
+        <thead class="flip-content">
+           <tr>
+               <th>渠道</th>
+               <th <%if $ParentData[0].cate_type1=='渠道一部'%>colspan="2"<%/if%>>科目</th>
+               <th></th>
+               <th>月计</th>
+                <%if $ParentData[0].cate_type1=='渠道一部'%>
+                     <%foreach from=$weeks[100] item=k key=i%>
+                         <th><%$i+1%>周</th>
+                     <%/foreach%>
+                <%else%>
+                     <%foreach from=$weeks[1900] item=k key=i%>
+                         <th><%$i+1%>周</th>
+                     <%/foreach%>
+                <%/if%>
+                <%foreach from=$days item=k%>
+                     <th><%str_replace('_','-',$k)%></th>
+                <%/foreach%>
+            </tr>
+        </thead>
+        <tbody>
+            <%if $ParentData[0].cate_type1=='渠道一部' %>
+              <%foreach from=$ParentData item=u  key=e%>
+                <%if $u.id==100 || $u.id==500 || $u.id==600 || $u.id==700 || $u.id==800%>
+                     <tr>
+                           <td>渠道一部</td>
+                           <td>渠道一部</td>
+                           <td><%if $u.id==100%>新增<%elseif $u.id==500 %>收入<%elseif $u.id==600%>毛利率<%elseif $u.id==700%>毛利额<%elseif $u.id==800%>费用<%/if%></td>
+                           <td>计划</td>
+                           <%foreach from=$rootWeeks[$u.id][0] item=root%>
+                            <td><span><%$root%><%if $u.id==600%>%<%/if%></span></td>
+                           <%/foreach%>
+                         <%foreach from=$days item=k key=c%>
+                           <td><span><%$array['planCount'][$u.id][str_replace('_','-',$k)]%><%if $u.id==600%>%<%/if%></span></td>  
+                         <%/foreach%>
+                    </tr>
+                    <tr>
+                           <td>渠道一部</td>
+                           <td>渠道一部</td>
+                           <td><%if $u.id==100%>新增<%elseif $u.id==500 %>收入<%elseif $u.id==600%>毛利率<%elseif $u.id==700%>毛利额<%elseif $u.id==800%>费用<%/if%></td>
+                           <td>实际</td>
+                           <%foreach from=$rootWeeks[$u.id][1] item=root%>
+                            <td><span><%$root%><%if $u.id==600%>%<%/if%></span></td>
+                           <%/foreach%>
+                         <%foreach from=$days item=k key=c%>
+                         <td><span><%$array['practicalCount'][$u.id][str_replace('_','-',$k)]%><%if $u.id==600%>%<%/if%></span></td>  
+                         <%/foreach%>
+                    </tr>
+                    <tr>
+                           <td>渠道一部</td>
+                           <td>渠道一部</td>
+                           <td><%if $u.id==100%>新增<%elseif $u.id==500 %>收入<%elseif $u.id==600%>毛利率<%elseif $u.id==700%>毛利额<%elseif $u.id==800%>费用<%/if%></td>
+                           <td>完成率</td>
+                            <%foreach from=$rootWeeks[$u.id][2] item=root%>
+                             <td><span><%$root%>%</span></td>
+                           <%/foreach%>
+                         <%foreach from=$days item=k key=c%>
+                           <td><span><%$array['completeCount'][$u.id][str_replace('_','-',$k)]%>%</span></td>  
+                         <%/foreach%>
+                    </tr> 
+                <%/if%> 
+              <%/foreach%>
+            <%/if%>
+            <%foreach from=$ParentData item=u  key=e%>
+                <tr>
+                    <td><%$u.cate_type1%></td>
+                    <%if $u.cate_type1=='渠道一部'%>
+                       <td><%$u.cate_type2%></td>
+                    <%/if%>
+                    <td><%$u.quota_name%></td>
+                   <td><%if ($u.id==810||$u.id==1050||$u.id==1650||$u.id==2050||$u.id==2350 || $u.id==250)%>实际<%else%> 计划 <%/if%> </td>
+                   <td><%$month['sourceDB'][$u.id][0]%><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></td>
+                    <%foreach from=$weeks[$u.id] item=k key=i%>
+                        <td><span><%$k%><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></span></td>
+                    <%/foreach%>
+                  
+                    <%foreach from=$days item=k key=c%>
+                        <td><span><%$view[$u.id][str_replace('_','-',$k)]%><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></span></td>
+                    <%/foreach%>
+                </tr>
+               <%if $u.id==2250 || $u.id==100 || $u.id==300 || $u.id==400 || $u.id==500 || $u.id==600 || $u.id==700 || $u.id==900 || $u.id==1100 || $u.id==1200 || $u.id==1300 || $u.id==1400 || $u.id==1500 || $u.id==1700 || $u.id==1800 || $u.id==250  || $u.id==1900 || $u.id==1650 || $u.id==2050 || $u.id==2100 || $u.id==2200 ||$u.id==2350 || $u.id==2400 || $u.id==2500 || $u.id==2600 || $u.id==2700%>
+                    <%if ($u.id!=250 && $u.id!=1650 && $u.id!=810 && $u.id!=2050 && $u.id!=2350)%>
+                        <tr>
+                             <td><%$u.cate_type1%></td>
+                             <%if $u.cate_type1=='渠道一部'%>
+                               <td><%$u.cate_type2%></td>
+                             <%/if%>
+                             <td><%$u.quota_name%></td>
+                             <td>实际</td>
+                            <td><%$month['practical'][$u.id][0]%><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></td>
+                             <%if empty($week[$u.id][0])%>
+                                     <%foreach from=$day item=k key=i%>
+                                          <td>0.00<%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></td>
+                                     <%/foreach%>
+                             <%else%>
+                                  <%foreach from=$week[$u.id][0] item=t%>
+                                    <td><%$t%><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></td>
+                                  <%/foreach%>
+                             <%/if%>
+                           
+                             <%foreach from=$days item=k key=c%>
+                                  <td>
+                                        <%if empty($practical[$u.id][str_replace('_','-',$k)])%>
+                                             <span>0.00<%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></span>
+                                        <%else%>
+                                            <span><%$practical[$u.id][str_replace('_','-',$k)] %><%if $u.id==300 || $u.id==600 || $u.id==1100 || $u.id==1400 ||$u.id==1800 ||$u.id==2200 %>%<%/if%></span>
+                                        <%/if%>
+                                 </td>
+                             <%/foreach%>
+
+                        </tr>
+                    <%/if%>  
+                    <%if $u.id!=1800 && $u.id!=2350%>
+                        <tr>
+                             <td><%$u.cate_type1%></td>
+                             <%if $u.cate_type1=='渠道一部'%>
+                               <td><%$u.cate_type2%></td>
+                             <%/if%>
+                             <td><%$u.quota_name%></td>
+                             <td>完成率</td>
+                             <td><%$month['practical'][$u.id][1]%>%</td>
+                             <%if empty($week[$u.id][1])%>
+                                 <%foreach from=$day item=k key=i%>
+                                      <td>0.00</td>
+                                 <%/foreach%>
+                             <%else%>
+                                  <%foreach from=$week[$u.id][1] item=t%>
+                                    <td><%$t%>%</td>
+                                  <%/foreach%>
+                             <%/if%>
+                              <%foreach from=$days item=k key=c%>
+                                  <td>
+                                        <%if empty($complete[$u.id][str_replace('_','-',$k)])%>
+                                             <span>0.00%</span>
+                                        <%else%>
+                                            <span><%$complete[$u.id][str_replace('_','-',$k)] %>%</span>
+                                        <%/if%>
+                                 </td>
+                             <%/foreach%>
+                        </tr>
+                    <%/if%>
+                    <%if $u.cate_type1=='渠道二部'%>
+                        <tr>
+                             <td><%$u.cate_type1%></td>
+                             <td><%$u.quota_name%></td>
+                             <td>差距</td>
+                             <td><%$month['practical'][$u.id][2]%></td>
+                             <%if empty($week[$u.id][2])%>
+                                 <%foreach from=$day item=k key=i%>
+                                      <td>0.00<%if $u.id==2200%>%<%/if%></td>
+                                 <%/foreach%>
+                             <%else%>
+                                  <%foreach from=$week[$u.id][2] item=t%>
+                                    <td><%$t%><%if $u.id==2200%>%<%/if%></td>
+                                  <%/foreach%>
+                             <%/if%>
+                              <%foreach from=$days item=k key=c%>
+                              <td>
+                                  <%if empty($gap[$u.id][str_replace('_','-',$k)])%>
+                                    <span>0.00<%if $u.id==2200%>%<%/if%></span>
+                                  <%else%>
+                                    <span><%$gap[$u.id][str_replace('_','-',$k)] %><%if $u.id==2200%>%<%/if%></span>
+                                  <%/if%>
+                              </td>
+                             <%/foreach%>
+                        </tr>
+                        <tr ><td style="background:white;" colspan='<%5+count($days)+count($day)%>'></td></tr>  
+                        <%if $u.id==2700%>
+                            <tr>
+                                 <td>渠道二部</td>
+                                 <td>退货</td>
+                                 <td>单量</td>
+                                 <td><%$month['practical']['2800'][0]%></td>
+                                 <%if empty($week['2800'][0])%>
+                                     <%foreach from=$day item=k key=i%>
+                                          <td>0.00</td>
+                                     <%/foreach%>
+                                 <%else%>
+                                      <%foreach from=$week[2800][0] item=t%>
+                                        <td><%$t%></td>
+                                      <%/foreach%>
+                                 <%/if%>
+                                <%foreach from=$days item=r%>
+                                    <td>
+                                        <%if empty($refund['2800'][str_replace('_','-',$r)])%>
+                                             <span>0.00</span>
+                                        <%else%>
+                                            <span><%$refund['2800'][str_replace('_','-',$r)] %></span>
+                                        <%/if%>
+                                    </td>
+                                <%/foreach%>
+                            </tr>
+                            <tr>
+                                 <td>渠道二部</td>
+                                 <td>退货</td>
+                                 <td>金额</td>
+                                  <td><%$month['practical']['2850'][0]%></td>
+                                 <%if empty($week['2850'][0])%>
+                                     <%foreach from=$day item=k key=i%>
+                                          <td>0.00</td>
+                                     <%/foreach%>
+                                 <%else%>
+                                      <%foreach from=$week[2850][0] item=t%>
+                                        <td><%$t%></td>
+                                      <%/foreach%>
+                                 <%/if%>
+                                <%foreach from=$days item=r%>
+                                    <td>
+                                        <%if empty($refund['2850'][str_replace('_','-',$r)])%>
+                                             <span>0.00</span>
+                                        <%else%>
+                                            <span><%$refund['2850'][str_replace('_','-',$r)] %></span>
+                                        <%/if%>
+                                    </td>
+                                <%/foreach%>
+                            </tr>
+                        <%/if%>
+
+                    <%/if%>
+               <%/if%>
+           <%/foreach%>
+        </tbody> 
+    </table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	/*util.hover();
+    util.check(util.getItem('listDIV'));
+    // 美化复选框
+    var test = $("#stone_use_report_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+   $('#stone_use_report_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#stone_use_report_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });*/
+//-->
+</script>

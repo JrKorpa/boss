@@ -1,0 +1,181 @@
+<!----基础信息start---->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>基础信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">订单编号：<%$view->get_order_sn()%></td>
+					<td  class="flip-content">会员用户：<%$view->get_user_id()%></td>
+					<td  class="flip-content">订单部门：<%$view->get_order_department()%></td>
+					<td  class="flip-content">客户来源：<%$view->get_order_source()%></td>
+				</tr>
+				<tr>
+					<td  class="flip-content">制单人：<%$view->get_create_user()%></td>
+					<td  class="flip-content">制单时间：<%$view->get_create_time()%></td>		
+					<td  class="flip-content">审核人：<%$view->get_check_order()%></td>
+					<td  class="flip-content">审核时间：<%$view->get_collect_time()%></td>	
+				</tr>
+				<tr>
+					<td  class="flip-content">订单状态：<%$dd->getEnum('order.order_status',$view->get_order_status())%></td>
+					<td  class="flip-content">审核状态：<%$dd->getEnum('order.check_status',$view->get_order_check_status ())%></td>		
+					<td  class="flip-content">支付状态：<%$dd->getEnum('order.order_pay_status',$view->get_order_pay_status())%></td>
+					<td  class="flip-content">付款方式：<%$dd->getEnum('order.order_pay_type',$view->get_order_pay_type())%></td>	
+				</tr>
+				<tr>
+					<td colspan="4">
+						<textarea disabled class="form-control" name="order_remark" rows="2"><%$view->get_order_remark()%></textarea>
+					</td>
+
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!----基础信息end---->
+
+<!----其他信息start---->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>发票信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<div class="btn-group">
+				<button class="btn btn-sm green" onclick="util.retrieveEdit(this)" data-url="index.php?mod=sales&con=Order&act=add_invoice&id=<%$id%>" data-id="" list-id="17">
+					编辑 <i class="fa fa-plus"></i>
+				</button>
+			</div>	
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">是否需要发票：<%if $view->get_invoice_need() == 1%>是<%else%>否<%/if%></td>
+					<td  class="flip-content">发票号：<%$view->get_invoice_num()%></td>
+					<td  class="flip-content">发票金额：<%$view->get_invoice_amount()%></td>
+
+				</tr>
+				<tr>
+					<td  class="flip-content">发票抬头：<%$view->get_invoice_title()%></td>
+					<td colspan="2"  class="flip-content">发票邮寄地址：<%$view->get_invoice_title()%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!----其他信息end---->
+
+<!----收货地址start---->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>收货地址
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar1%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">收货人：<%$address_info.consignee %></td>
+					<td  class="flip-content">电话：<%$address_info.tel %></td>
+					<td  class="flip-content">email：<%$address_info.email %></td>
+					<td  class="flip-content">邮编：<%$address_info.zipcode %></td>
+				</tr>
+				<tr>
+					<td colspan="3"  class="flip-content">收货地址：<%$address_info.address %></td>
+					<td  class="flip-content">配送方式：<%$dd->getEnum('address.distribution',$address_info.distribution_type)%></td>
+
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!----收货地址end---->
+
+
+<!----订单金额start---->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单金额
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td  class="flip-content">订单总金额：<%$view->get_order_price()%></td>
+					<td  class="flip-content">已付款：</td>
+					<td  class="flip-content">未付款：</td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!----订单金额end---->
+
+<!----商品列表start---->
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+			<%$bar2%>	
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="order_goods_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!----商品列表end---->
+<script type="text/javascript">
+<!--
+	<%include file="js/order_show.js"%>
+//-->
+</script>

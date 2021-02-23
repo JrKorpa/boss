@@ -1,0 +1,308 @@
+<div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th colspan="4"></th>
+                <th colspan="8">新增业绩（元）</th>
+                <th colspan="8">转退业绩（元）</th>
+                <th colspan="8">新增扣除转退业绩（元）</th>
+                <th colspan="3"></th>
+                <th colspan="5">发货金额（元）</th>
+                <th colspan="5">发货计提金额（元）</th>
+                <th colspan="3">发货提成（元）</th>
+                <th colspan="3">天生一对奖惩（元）</th>
+                <th></th>
+			</tr>
+            <tr>
+                <th><input type="checkbox" class="group-checkable" data-set="#deduct_percentage_money_search_list .checkboxes" /></th>
+                <th>职员姓名</th>
+                <th>应发提成（元）(新增达标奖+提成+<br/>天生一对奖惩+特价提成）</th><!--应发提成（元）(新增达标奖+提成+<br/>天生一对奖惩+星耀奖励+特价提成）-->
+                <th>新增保底任务（万）</th>
+
+                <th>实际总新增</th>
+                <th>婚博会新增金额</th>
+                <th>低于折扣下限核算金额<br/>（非婚博会）</th>
+                <th>成品核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻星耀核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻非星耀核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>特价商品</th>
+                <th>总新增核算金额</th>
+
+                <th>实际总转退</th>
+                <th>婚博会转退金额</th>
+                <th>低于折扣下限核算金额<br/>（非婚博会）</th>
+                <th>成品核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻星耀核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻非星耀核算金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>特价商品</th>
+                <th>总转退核算金额</th>
+
+                <th>实际总新增扣除转退</th>
+                <th>婚博会新增扣除转退金额</th>
+                <th>低于折扣下限核算新增扣除转退金额<br/>（非婚博会）</th>
+                <th>成品核算新增扣除转退金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻星耀核算新增扣除转退金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>裸钻非星耀核算新增扣除转退金额<br/>（非婚博会&高于折扣下限）</th>
+                <th>特价商品</th>
+                <th>总新增扣除转退核算金额</th>
+
+                <th>是否完成新增保底任务</th>
+                <th>新增完成业绩所属档级</th>
+                <th>达标新增奖</th>
+
+                <th>成品发货总金额</th>
+                <th>裸钻星耀发货总金额</th>
+                <th>裸钻非星耀发货总金额</th>
+                <th>特价商品发货总金额</th>
+                <th>发货总金额</th>
+
+                <th>成品发货计提总金额</th>
+                <th>裸钻星耀发货计提总金额</th>
+                <th>裸钻非星耀发货计提总金额</th>
+                <th>特价商品发货计提总金额</th>
+                <th>发货计提总金额</th>
+
+                <th>档位提成系数</th>
+                <th>提成（元）</th>
+                <th>特价商品提成</th>
+
+                <th>奖励</th>
+                <th>惩罚</th>
+                <th>实际应发</th>
+
+                <th>星耀奖励（元）</th>
+            </tr>
+		</thead>
+		<tbody>
+		<%foreach from=$data key=username item=d%>
+			<tr data-id="deduct_percentage_money_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td  align="center"><input class="checkboxes" type="checkbox" name="_sale_name[]" value="<%$username%>" /></td>
+				<td><%$username%></td>
+                <td><%$d.shouldbemadeprice%></td>
+                <td><%$d.minimum_guarantee%></td>
+                <td><%$d.xz_dabiao.real_total_add%></td>
+                <td><%$d.xz_dabiao.hbh_discount_price%></td>
+                <td><%$d.xz_dabiao.un_discount_price%></td>
+                <td><%$d.xz_dabiao.cp_xz_price%></td>
+                <td><%$d.xz_dabiao.xy_xz_price%></td>
+                <td><%$d.xz_dabiao.fxy_xz_price%></td>
+                <td><%$d.xz_dabiao.tj_discount_add%></td>
+                <td><%$d.xz_dabiao.real_total_account%></td>
+
+                <td><%$d.zt_dabiao.real_total_add%></td>
+                <td><%$d.zt_dabiao.hbh_discount_price%></td>
+                <td><%$d.zt_dabiao.un_discount_price%></td>
+                <td><%$d.zt_dabiao.cp_xz_price%></td>
+                <td><%$d.zt_dabiao.xy_xz_price%></td>
+                <td><%$d.zt_dabiao.fxy_xz_price%></td>
+                <td><%$d.zt_dabiao.tj_discount_add%></td>
+                <td><%$d.zt_dabiao.real_total_account%></td>
+
+                <td><%$d.reach_the.real_total_add%></td>
+                <td><%$d.reach_the.hbh_discount_price%></td>
+                <td><%$d.reach_the.un_discount_price%></td>
+                <td><%$d.reach_the.cp_xz_price%></td>
+                <td><%$d.reach_the.xy_xz_price%></td>
+                <td><%$d.reach_the.fxy_xz_price%></td>
+                <td><%$d.reach_the.tj_discount_add%></td>
+                <td><%$d.reach_the.real_total_account%></td>
+
+                <td><%if $d.reach_the.is_dabiao == true%>是<%else%>否<%/if%></td>
+                <td><%$dd->getEnum('extra.bonus_gears',$d.reach_the.bonus_gears)%></td>
+                <td><%$d.reach_the.excess_price%></td>
+
+                <td><%$d.sendgoods.cp_price%></td>
+                <td><%$d.sendgoods.xy_price%></td>
+                <td><%$d.sendgoods.fxy_price%></td>
+                <td><%$d.sendgoods.tejia_hk_price%></td>
+                <td><%$d.sendgoods.price_total%></td>
+
+                <td><%$d.sendgoods.cp_tiji_price%></td>
+                <td><%$d.sendgoods.xy_tiji_price%></td>
+                <td><%$d.sendgoods.fxy_tiji_price%></td>
+                <td><%$d.sendgoods.particularly_price%></td>
+                <td><%$d.sendgoods.tiji_price_total%></td>
+
+                <td><%$d.sendgoods.push_money%></td>
+                <td><%$d.sendgoods.pushmoney_price%></td>
+                <td><%$d.sendgoods.particularly_pushmoney_price%></td>
+
+                <td><%$d.reach_the.tysd_price.add_price%></td>
+                <td><%$d.reach_the.tysd_price.nuprice%></td>
+                <td><%$d.reach_the.tysd_price.discrepancy_price%></td>
+
+                <td></td><!--<%$d.reach_the.xyaward%>-->
+			</tr>
+		<%/foreach%>
+            <tr>
+                <td></td>
+                <td><b>总计：</b></td>
+                <td><%$total.shouldbemadeprice%></td>
+                <td></td>
+                
+                <td><%$total.xz_dabiao_real_total_add%></td>
+                <td><%$total.xz_dabiao_hbh_discount_price%></td>
+                <td><%$total.xz_dabiao_un_discount_price%></td>
+                <td><%$total.xz_dabiao_cp_xz_price%></td>
+                <td><%$total.xz_dabiao_xy_xz_price%></td>
+                <td><%$total.xz_dabiao_fxy_xz_price%></td>
+                <td><%$total.xz_dabiao_tj_discount_add%></td>
+                <td><%$total.xz_dabiao_real_total_account%></td>
+
+                <td><%$total.zt_dabiao_real_total_add%></td>
+                <td><%$total.zt_dabiao_hbh_discount_price%></td>
+                <td><%$total.zt_dabiao_un_discount_price%></td>
+                <td><%$total.zt_dabiao_cp_xz_price%></td>
+                <td><%$total.zt_dabiao_xy_xz_price%></td>
+                <td><%$total.zt_dabiao_fxy_xz_price%></td>
+                <td><%$total.zt_dabiao_tj_discount_add%></td>
+                <td><%$total.zt_dabiao_real_total_account%></td>
+
+                <td><%$total.reach_the_real_total_add%></td>
+                <td><%$total.reach_the_hbh_discount_price%></td>
+                <td><%$total.reach_the_un_discount_price%></td>
+                <td><%$total.reach_the_cp_xz_price%></td>
+                <td><%$total.reach_the_xy_xz_price%></td>
+                <td><%$total.reach_the_fxy_xz_price%></td>
+                <td><%$total.reach_the_tj_discount_add%></td>
+                <td><%$total.reach_the_real_total_account%></td>
+
+                <td></td>
+                <td></td>
+                <td><%$total.reach_the_excess_price%></td>
+
+                <td><%$total.sendgoods_cp_price%></td>
+                <td><%$total.sendgoods_xy_price%></td>
+                <td><%$total.sendgoods_fxy_price%></td>
+                <td><%$total.sendgoods_tejia_hk_price%></td>
+                <td><%$total.sendgoods_price_total%></td>
+
+                <td><%$total.sendgoods_cp_tiji_price%></td>
+                <td><%$total.sendgoods_xy_tiji_price%></td>
+                <td><%$total.sendgoods_fxy_tiji_price%></td>
+                <td><%$total.sendgoods_particularly_tiji_price%></td>
+                <td><%$total.sendgoods_tiji_price_total%></td>
+
+                <td><%$total.sendgoods_push_money%></td>
+                <td><%$total.sendgoods_pushmoney_price%></td>
+                <td><%$total.sendgoods_particularly_pushmoney_price%></td>
+
+                <td><%$total.reach_the_tysd_price_add_price%></td>
+                <td><%$total.reach_the_tysd_price_nuprice%></td>
+                <td><%$total.reach_the_tysd_price_discrepancy_price%></td>
+
+                <td></td><!--<%$total.reach_the_xyaward%>-->
+            </tr>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    // 美化复选框
+    var test = $("#deduct_percentage_money_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+        test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+                $(this).show();
+                $(this).uniform();
+            }
+        });
+    }
+    // table 复选框全选
+    $('#deduct_percentage_money_search_list .group-checkable').change(function () {
+        var set = $(this).attr("data-set");
+        var checked = $(this).is(":checked");
+        $(set).each(function () {
+            if (checked) {
+                $(this).attr("checked", true);
+                $(this).parents('tr').addClass("active");
+            } else {
+                $(this).attr("checked", false);
+                $(this).parents('tr').removeClass("active");
+            }
+        });
+        $.uniform.update(set);
+    });
+    $('#deduct_percentage_money_search_list').on('change', 'tbody tr .checkboxes', function(){
+        $(this).parents('tr').toggleClass("active");
+    });
+
+    //批量操作处理
+    util.batchConfirm = function(obj){
+        $('body').modalmanager('loading');
+        var _sale_name = [];
+        var info_form_id = 'deduct_percentage_money_search_form';
+        var tObj = $(obj).parent().parent().siblings().find('table>tbody>tr>td input:checkbox[name="_sale_name[]"]:checked').each(function(){
+            _sale_name.push($(this).val());
+        });
+        if (!_sale_name.length)
+        {
+            $('.modal-scrollable').trigger('click');
+            util.xalert("很抱歉，您当前未选中任何一条记录！");
+            return false;
+        }
+        var shop_id = $('#'+info_form_id+' select[name="shop_id"]').val();
+        if(!shop_id){
+            $('.modal-scrollable').trigger('click');
+            util.xalert("请选择一家体验店");
+            return false;
+        }
+        var search_date = $('#'+info_form_id+' input[name="search_date"]').val();
+        if(!search_date){
+            $('.modal-scrollable').trigger('click');
+            util.xalert("请选择查询日期");
+            return false;
+        }
+        var url = $(obj).attr('data-url');
+
+        var _name = $(obj).attr('data-title');
+        if (!_name)
+        {
+            _name='';
+        }
+        bootbox.confirm({  
+            buttons: {  
+                confirm: {  
+                    label: '确认' 
+                },  
+                cancel: {  
+                    label: '放弃'  
+                }  
+            },  
+            message: "确定"+_name+"?",
+            closeButton: false,
+            callback: function(result) {  
+                if (result == true) {
+                    $('body').modalmanager('loading');
+                    setTimeout(function(){
+                        $.post(url,{_sale_name:_sale_name, shop_id:shop_id, search_date:search_date},function(data){
+                            if(data.success==1)
+                            {
+                                $('.modal-scrollable').trigger('click');
+                                util.xalert("操作成功",function(){                              
+                                    util.sync(obj);                                 
+                                });
+                            }
+                            else
+                            {
+                                util.error(data);
+                                //add by zhangruiying
+                                if(data.hasOwnProperty("is_refresh"))
+                                {
+                                    if(data.is_refresh==1)
+                                    {
+                                        util.sync(obj); 
+                                    }
+                                }
+                                //add end
+                            }
+                        });
+                    }, 0);
+                }
+            },  
+            title: "提示信息", 
+        });
+    }
+//-->
+</script>

@@ -1,0 +1,77 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td>序号</td>
+					<td><%$view->get_id()%></td>
+				</tr>
+				<tr>
+					<td>属性</td>
+					<td><%$view->get_name()%></td>
+				</tr>
+				<tr>
+					<td>标识</td>
+					<td><%$view->get_label()%></td>
+				</tr>
+				<tr>
+					<td>是否启用</td>
+				<td>
+					<span class="glyphicon <%if $view->get_is_deleted()==0%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+				<tr>
+					<td>是否系统内置</td>
+					<td>
+						<span class="glyphicon <%if $view->get_is_system()%>glyphicon-ok<%else%>glyphicon-remove<%/if%>"></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--明细1 start-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>字典明细
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+<%$bar1%>
+		</div>
+
+
+		<!--搜索开始-->
+		<!-- 表格 -->
+		<div class="flip-scroll" id="dict_item_search_list">
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/dict_show.js"%>
+//-->
+</script>

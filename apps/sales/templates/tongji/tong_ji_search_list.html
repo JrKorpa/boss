@@ -1,0 +1,23 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>订单号</th>
+			<th>订单类型</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr>
+			<td align="center"><%$d.id%></td>
+            <td align="center"><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.id%>"><%$d.order_sn%></a></td>
+            <td align="center"><%if $d.is_xianhuo==1%>现货<%else if $d.is_xianhuo==2%><span style="color:red;">未选商品</span><%else%>期货<%/if%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>

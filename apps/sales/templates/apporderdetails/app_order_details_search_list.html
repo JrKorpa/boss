@@ -1,0 +1,133 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content" id="app_order_details_search_list">
+	<thead class="flip-content">
+		<tr>
+			<th align="center"><input type="checkbox" class="group-checkable" data-set="#app_order_details_search_list .checkboxes" /></th>
+            <th align="center">款式45°图片</th>
+			<th align="center">货号</th>
+			<th align="center">原始货号</th>
+			<th align="center">款号</th>
+			<th align="center">商品类型</th>
+			<th align="center">商品名称</th>
+			<th align="center">主石单颗重</th>
+			<th align="center">主石粒数</th>
+			<th align="center">颜色</th>
+			<th align="center">净度</th>
+			<th align="center">切工</th>
+            <th align="center">证书类型</th>
+			<th align="center">证书号</th>
+			<th align="center">金料</th>
+			<th align="center">金色</th>
+			<th align="center">金重</th>
+			<th align="center">表面工艺</th>
+			<th align="center">镶口</th>
+			<th align="center" style="word-break:break-all">指圈</th> 
+			<th align="center">刻字</th>
+			<th align="center">镶嵌要求</th>
+			<th align="center">商品价格</th>
+            <th align="center">商品优惠金额</th>    
+            <th align="center">实际支付</th>
+            <th align="center">商品退款金额</th>
+			<%if $referer=="天生一对加盟商"%><th align="center">原始零售价</th><%/if%>
+			<th align="center">数量</th>
+			<th align="center">现货/期货</th>
+			<th align="center">金托类型</th>
+            <th align="center">布产状态</th>
+    		<th align="center">布产id</th>
+			<th align="center">发货状态</th>
+			<%if $referer=="天生一对加盟商"%><th align="center">配货状态</th><%/if%>
+            <th align="center">维修状态</th>
+			<th align="center">维修操作</th>
+			<th align="center">优惠审核状态</th> 
+			<th align="center">商品备注信息</th>
+            <th align="center">是否赠品</th> 
+			<th align="center">是否销账</th>
+			<th align="center">是否4C配钻</th>
+			<th align="center">是否成品定制</th>
+			<th align="center">成品定制码</th>
+			<th align="center">款式来源渠道</th>
+			<th align="center">起版类型</th>
+            <th align="center">货品来源</th>
+            <th align="center">占用采购名额</th>
+            <th align="center">占用采购单号</th>
+            <th align="center">操作</th>
+		</tr>
+	</thead>
+	<tbody id="order_details_list">
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="order_goods_list_<%$d.id%>" data-title="" del="<%$d.is_return%>">
+			<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.id%>" /></td>
+            <td align="center">
+			<%if isset($d.big_img) && $d.big_img != ''%><a title="<%$d.style_sn%>" href="<%$d.big_img%>" class="fancyboximg"> 
+			<img width="80" height="80" src="<%$d.big_img%>"></a><%else%>无图片<%/if%>
+			</td>
+			<td align="center"><%if $hidden%><%$d.goods_id%><%/if%></td>
+			<td align="center"><%if $hidden%><%$d.ext_goods_sn%><%/if%></td>
+			<td align="center"><%$d.goods_sn%></td>
+			<td align="center"><%if $d.goods_type=='lz'%>裸钻<%else%>非裸钻<%/if%></td>
+			<td align="center"><%$d.goods_name%></td>
+			<td align="center"><%$d.cart%></td>
+			<td align="center"><%$d.zhushi_num%></td>
+			<td align="center"><%$d.color%></td>
+			<td align="center"><%$d.clarity%></td>
+			<td align="center"><%$d.cut%></td>
+            <td align="center"><%$d.cert%></td>
+			<td align="center"><%$d.zhengshuhao%></td>
+			<td align="center"><%$d.caizhi%></td>
+			<td align="center"><%$d.jinse%></td>
+			<td align="center"><%$d.jinzhong%></td>
+			<td align="center"><%$d.face_work%></td>
+			<td align="center"><%$d.xiangkou%></td>
+			<td align="center" style="word-break:break-all"><%$d.zhiquan%><%if  $d.is_stock_goods && $d.shoucun && $d.zhiquan!=$d.shoucun%>(由<%$d.shoucun%>改为<%$d.zhiquan%>)<%/if%></td>
+                        <td align="center"><%$d.kezi%></td>
+			<td align="center"><%$d.xiangqian%></td>
+			<td align="center"><%sprintf("%.2f",$d.goods_price)%></td>
+            <td align="center"><%sprintf("%.2f",$d.favorable_price)%><%if !empty($d.daijinquan_price)%>(代金券<%sprintf("%.2f",$d.daijinquan_price)%>)<%/if%></td>
+            <td align="center"><%if $d.favorable_status==3%><%sprintf("%.2f",$d.goods_price-$d.favorable_price)%><%else%><%$d.goods_price%><%/if%></td>
+			<td><%if $hidden%><%$d.return_goods_price%><%/if%></td>
+			<%if $referer=="天生一对加盟商"%><td align="center"><%$d.retail_price%></td><%/if%>
+			<td align="center"><%$d.goods_count%></td>
+			<td align="center"><%if $d.is_stock_goods==1%>现货<%else%>期货<%/if%></td>
+			<td align="center"><%$d.tuo_type%></td>
+			<td align="center"><%if $hidden%><%$dd->getEnum('buchan_status',$d.buchan_status)%><%else%>初始化<%/if%></td>
+			<td align="center"><%if $hidden%><%$d.bc_id|default:'无'%><%/if%></td>
+			<td align="center"><%if $hidden%><%$dd->getEnum('order.send_good_status',$d.send_good_status)%><%else%>存档<%/if%></td>
+			<%if $referer=="天生一对加盟商"%><td align="center"><%$dd->getEnum('sales.delivery_status',$d.delivery_status)%></td><%/if%>
+            <td align="center"><%if $hidden%><%if $d.weixiu_status%><%$dd->getEnum('weixiu.status',$d.weixiu_status)%><%else%>未维修<%/if%><%else%>未维修<%/if%></td>       
+            <td align="center">
+			<%if !$d.weixiu_status||in_array($d.weixiu_status,array(5,6,7))%>
+			<a href="javascript:;" onclick="util.addNew(this)" data-title="商品维修:<%$d.goods_id%>" list-id="128" data-url="index.php?mod=repairorder&con=AppOrderWeixiu&act=add&order_detail_id=<%$d.id%>&bc_id=<%if $d.bc_id%><%$smarty.const.BCD_PREFIX%><%$d.bc_id%><%/if%>">点击维修</a>
+			<%else%>
+			点击维修
+			<%/if%>
+			</td>
+			<td align="center"><%$dd->getEnum('order.favorable_status',$d.favorable_status)%></td>			
+			<td align="center"><%$d.details_remark|default:''%></td>
+            <td align="center"><%if $d.is_zp==1%>是<%else%>否<%/if%></td> 
+			<td align="center"><%if $d.is_finance==1%>否<%else%>是<%/if%></td>
+			<td align="center"><%if $d.is_peishi>0%>是<%else%>否<%/if%></td>
+			<td align="center"><%if $d.is_cpdz==1%>是<%else%>否<%/if%></td>
+			<td align="center"><%$d.cpdzcode%></td>
+			<td align="center"><%$d.style_channel%></td>
+			<td align="center"><%$dd->getEnum('qiban_type',$d.qiban_type)%></td>
+            <td align="center"><%$dd->getEnum('order.goods_from',$d.goods_from)%></td>
+            <td align="center"><%$d.is_zhanyong%></td>
+            <td align="center"><%$d.p_sn%></td>
+            <%if $d.is_zhanyong == '是' && $delivery_status == 1%>
+            <td align="center"><input type="button" name="" onclick="countermandOccupy(<%$d.id%>)" value="取消占用"></td>
+            <%else%>
+            <td align="center"></td>
+            <%/if%>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/order_goods_detail_list_list.js"%>
+//-->
+</script>

@@ -1,0 +1,53 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_jinsun_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">款式类别：</label>
+						<div class="radio-list">					
+							<select class="select2_category form-control" tabindex="1" name="price_type">
+								<option value="1" <%if $view->get_price_type()=='1'%>selected="selected"<%/if%>>男戒</option>
+								<option value="2" <%if $view->get_price_type()=='2'%>selected="selected"<%/if%>>女戒</option>
+								<option value="3" <%if $view->get_price_type()=='3'%>selected="selected"<%/if%>>情侣男戒</option>
+								<option value="4" <%if $view->get_price_type()=='4'%>selected="selected"<%/if%>>情侣女戒</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">材质：</label>
+							<div class="radio-list">					
+								<select class="select2_category form-control" tabindex="1" name="material_id">
+									<option value="2" <%if $view->get_material_id()=='2'%>selected="selected"<%/if%>>18K</option>
+									<option value="1" <%if $view->get_material_id()=='1'%>selected="selected"<%/if%>>PT950</option>
+								</select>	
+							</div>
+						</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">金损率：</label>
+						<input type="text" name="lv" class="form-control" placeholder="请输入"  value="<%$view->get_lv()%>"  maxlength="4"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_s_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_jinsun_info.js"%>
+//-->
+</script>

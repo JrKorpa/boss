@@ -1,0 +1,27 @@
+<div class="flip-scroll" >
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>文件名</th>
+				<th>文件类型</th>
+				<th>文件大小</th>
+				<th>最后更新时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$DirArray item=d%>
+			<tr data-id="" data-title="">
+				<td align="center"><a href="/index.php?mod=report&con=WarehouseListReport&act=downfile&file=<%$path%><%$d.fname%>" target="_blank"><%$d.fname%></a></td>
+				<td><%$d.type%></td>
+				<td><%$d.size%></td>
+				<td><%$d.mtime%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

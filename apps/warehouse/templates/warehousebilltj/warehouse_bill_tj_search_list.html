@@ -1,0 +1,27 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th colspan="2"><%$admin_name%></th>
+		</tr>
+	</thead>
+	<thead class="flip-content">
+		<tr>
+			<th>单据类型</th>
+			<th>数量</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list item=d%>
+		<tr data-id="warehouse_bill_tj_list_<%$d.bill_type%>" data-title="单据统计">
+			<td><a href="javascript:;" class="tab-con-a" data-title="单据列表" data-id="tab-84" data-url="index.php?mod=warehouse&con=WarehouseBill&act=index&bill_type=<%$d.bill_type%>&create_user=<%$admin_name%>&bill_status=1&block=1"><%$view->getBillType($d.bill_type)%></a></td>
+			<td><%$d.COUNT%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

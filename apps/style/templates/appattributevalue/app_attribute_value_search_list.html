@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>属性名称</th>
+			<th>属性值名称</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_material_info_list_<%$d.att_value_id%>" >
+			<td align="center"><%$d.att_value_id%></td>
+			<td><%$d.attribute_name%></td>
+			<td><%$d.att_value_name%></td>
+			<td><%$dd->getEnum("is_enabled",$d.att_value_status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

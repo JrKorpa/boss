@@ -1,0 +1,47 @@
+<div class="form-body">
+	<form action="#" method="post" class="horizontal-form" id="tydprint_elexpress_form">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递公司：</label>
+						<font color="red">*</font>
+						<select class="form-control" tabindex="1" name="express_id" id="express_id">				
+								<%foreach from=$info_express item=c %>
+								<option value="<%$c.id%>|<%$c.exp_name%>"><%$c.exp_name%></option>
+								<%/foreach%>
+						</select>
+				</div>
+			</div>	
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">产品分类：</label>
+						<font color="red">*</font>
+						<select class="form-control" tabindex="1" name="express_type" id="express_type">				
+								<option value="1">顺丰次日</option>
+								<option value="2">顺丰隔日</option>
+						</select>
+				</div>
+			</div>				
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">打印份数：</label>
+						<font color="red">*</font>
+						<input type="text" name="print_num" id="print_num" value="1" class="form-control" placeholder="请输入" />
+				</div>
+			</div>						
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+			
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 确认</button>
+				<span id="print_t">      
+               
+            	</span>				
+				
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">			
+		<%include file="js/tydprint_elexpress_form.js"%>
+</script>

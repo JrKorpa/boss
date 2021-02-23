@@ -1,0 +1,47 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+		<th>证书类型</th>
+                <th>分数段</th>
+                <th>颜色</th>
+                <th>净度</th>
+                <th>库存</th>
+                <th>买断</th>
+                <th>存销比</th>
+                <th>周平均销售数据量</th>
+                <%foreach from=$week_tilie key=k item=v%>
+                <th>第<%$k%>周<br/><%$v%></th>
+                <%/foreach%>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list key=ks item=info%>
+			<tr>
+                <td><%$info.zhengshuleibie%></td>
+		<td><%$info.zuanshidaxiao%></td>
+                <td><%$info.yanse%></td>
+                <td><%$info.jingdu%></td>
+                <td><%$info.all_kucun%></td>
+                <td><%$info.buy_kucun%></td>
+                <td><%$info.stock_to_sales%></td>
+                <td><%$info.week_sale_num%></td>
+                <%foreach from=$week_tilie key=k item=v%>
+                <td><%$weekInfo[$ks|cat:"|"|cat:$k]|default:0%></td>
+                <%/foreach%>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

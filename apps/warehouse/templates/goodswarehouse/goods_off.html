@@ -1,0 +1,70 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="goods_off">
+		<div class="form-body">
+                    
+			<div class="row">
+                               
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">货号：</label>
+                                    <!--<input type="text" name='goods_id' id="goods_id" onblur="GetWarehouseAndBox()" placeholder="请输入货号"  class="form-control"/>-->
+                                    <textarea class="form-control" id='goods_id' name="goods_id" placeholder="多个货号按回车分隔" style='width:80%;display:inline;' rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="cos-sm-4" >&nbsp;
+                                <div id="record" style="display: none">
+                                    <table border=1 id="showrecord" style='border: solid 0px black; '>
+                                        <tr><td colspan=4>上架成功记录:</td></tr>
+                                        <tr><td>货号</td><td>款号</td><td>仓库</td><td>柜位</td></tr>
+                                        
+                                        
+                                    </table>
+                                </div>
+                                <div id="pici"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                        <label class="control-label">仓库：</label>
+                                        <select  name='warehouse_id' id='warehouse_id'  class="form-control" >
+                                            <option value=""></option>
+                                            <%foreach from=$view->getWarehouseList() item=v%>
+                                                <option value="<%$v['id']%>"><%$v['name']%></option>
+                                            <%/foreach%>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                        <label class="control-label">柜位：</label>
+                                        <select  name='box_id'  id='box_id' class="form-control" >
+                                            <option value=""></option>
+                                        </select>
+                                </div>
+                            </div>
+				
+
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="tab_id" value="<%$tab_id%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" name='shangjia' class="btn green"><i class="fa fa-check"></i>批量上架</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+        <div id='num' style="  font-size: 15px;padding: 0 15px;background: #E44;"></div>
+        <div id='error_list' style='padding: 0 15px 15px 15px;font-size: 15px;'></div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/goods_off.js"%>
+//-->
+</script>

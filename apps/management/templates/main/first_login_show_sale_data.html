@@ -1,0 +1,127 @@
+<style type="text/css">
+.first_login_show{
+	background-color:#FFC0CB !important;
+}
+</style>
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align='center' bgcolor="#FF0000"><th colspan='4' style="text-align:center;" class='first_login_show'>红榜一. 各店销冠</th></tr>
+		<tr>    
+		    <th class='first_login_show'>排名</th>       
+			<th class='first_login_show'>销售门店</th>
+			<th class='first_login_show'>销售顾问</th>
+			<th class='first_login_show'>销售业绩</th>			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$goods_amount_list key=row item=d%>
+		<tr data-id="">
+			<td><%$row+1%></td>
+            <td><%$d.channel_name%></td>
+            <td><%$d.create_user%></td>
+            <td><%$d.goods_amount%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align='center'><th colspan='4' style="text-align:center;" class='first_login_show'>红榜二. 天生一对销售件数</th></tr>
+		<tr>    
+		    <th class='first_login_show'>排名</th>           
+			<th class='first_login_show'>销售门店</th>
+			<th class='first_login_show'>销售顾问</th>
+			<th class='first_login_show'>销售业绩</th>			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$tsyd_list key=row item=d%>
+		<tr data-id="">
+			<td><%$row+1%></td>
+            <td><%$d.channel_name%></td>
+            <td><%$d.create_user%></td>
+            <td><%$d.allnum%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align='center'><th colspan='4' style="text-align:center;" class='first_login_show'>红榜三. 星耀销售件数</th></tr>
+		<tr>    
+		    <th class='first_login_show'>排名</th>           
+			<th class='first_login_show'>销售门店</th>
+			<th class='first_login_show'>销售顾问</th>
+			<th class='first_login_show'>销售业绩</th>			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$xy_list key=row item=d%>
+		<tr data-id="">
+			<td><%$row+1%></td>
+            <td><%$d.channel_name%></td>
+            <td><%$d.create_user%></td>
+            <td><%$d.allnum%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+
+</div>
+
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align='center'><th colspan='4' style="text-align:center;" class='first_login_show'>红榜四. 香邂巴黎销售件数</th></tr>
+		<tr>    
+		    <th class='first_login_show'>排名</th>           
+			<th class='first_login_show'>销售门店</th>
+			<th class='first_login_show'>销售顾问</th>
+			<th class='first_login_show'>销售业绩</th>			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$xxbl_list key=row item=d%>
+		<tr data-id="">
+			<td><%$row+1%></td>
+            <td><%$d.channel_name%></td>
+            <td><%$d.create_user%></td>
+            <td><%$d.allnum%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr align='center'><th colspan='5' style="text-align:center;">销售黑榜(销售业绩低于平均值 并且以上三项核心产品销售0件)</th></tr>
+		<tr>    
+		    <th>排名</th>           
+			<th>销售门店</th>
+			<th>销售顾问</th>
+			<th>全国平均</th>
+			<th>销售业绩</th>			
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$lower_avg_saler key=row item=d%>
+		<tr data-id="">
+			<td><%$row+1%></td>
+            <td><%$d.channel_name%></td>
+            <td><%$d.create_user%></td>
+            <td><%$d.amount_avg%></td>
+            <td><%$d.goods_amount%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>

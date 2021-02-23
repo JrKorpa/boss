@@ -1,0 +1,116 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="order_address_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">收货人：</label>
+						<input type="text" name="consignee" class="form-control" placeholder="请输入" onBlur="" value="<%$view->get_consignee()%>"  maxlength="45">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">电话：</label>
+						<input type="text" name="tel" class="form-control" placeholder="请输入" onBlur="" value="<%$view->get_tel()%>">
+					</div>
+				</div>
+				<div class="col-sm-3">
+				<div class="form-group">
+						<label class="control-label">email:</label>
+						<input type="text" name="email" class="form-control" placeholder="请输入" onBlur="" value="<%$view->get_email()%>" maxlength="50">
+					</div>
+				</div>
+				<div class="col-sm-3">
+				<div class="form-group">
+						<label class="control-label">邮编：</label>
+						<input type="text" name="zipcode" class="form-control" placeholder="请输入" onBlur="" value="<%$view->get_zipcode()%>" maxlength="20">
+					</div>
+				</div>
+
+
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">国家：</label>
+						<select class="form-control" tabindex="1" name="country_id">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_country_id() == 1%>selected<%/if%>>中国</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">省级：</label>
+						<select class="form-control" tabindex="2" name="province_id">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_province_id() == 1%>selected<%/if%>>北京</option>
+							<option value="2" <%If $view->get_province_id() == 2%>selected<%/if%>>河北</option>
+							<option value="3" <%If $view->get_province_id() == 3%>selected<%/if%>>河南</option>
+							<option value="4" <%If $view->get_province_id() == 4%>selected<%/if%>>山东</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">市级：</label>
+						<select class="form-control" tabindex="1" name="city_id">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_city_id() == 1%>selected<%/if%>>石家庄</option>
+							<option value="2" <%If $view->get_city_id() == 2%>selected<%/if%>>保定</option>
+							<option value="3" <%If $view->get_city_id() == 3%>selected<%/if%>>邯郸</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">区域：</label>
+						<select class="form-control" tabindex="1" name="regional_id">
+							<option value="">请选择</option>
+							<option value="1" <%If $view->get_regional_id() == 1%>selected<%/if%>>长安区</option>
+							<option value="2" <%If $view->get_regional_id() == 2%>selected<%/if%>>曲周县</option>
+							<option value="3" <%If $view->get_regional_id() == 3%>selected<%/if%>>广平县</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="form-group">
+						<label class="control-label">收货地址 asd：</label>
+						<input type="text" name="address" class="form-control" placeholder="请输入" onBlur="" value="<%$view->get_address()%>" maxlength="60">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">配送方式：</label>
+						<select class="form-control" tabindex="2" name="distribution_type">
+							<option value="">请选择</option>
+							<%foreach from=$dd->getEnumArray("address.distribution") item=value key=key%>
+							<option value="<%$value.name%>" <%If $value.name==$view->get_distribution_type()%>selected<%/if%>><%$value.label%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="order_id" value="<%$id%>" />
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+
+	<%include file="js/order_address_info.js"%>
+
+</script>

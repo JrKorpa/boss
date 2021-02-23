@@ -1,0 +1,400 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+ <div class="table-scrollable">
+ 	<%if $SYS_SCOPE=='boss'%>
+        <%if $way == 1%>
+            <table class="table table-bordered table-striped table-hover flip-content">
+            	<thead class="flip-content">
+            		<tr>
+            			<th>证书类型</th>
+                        <th></th>
+                        <th>年累计</th>                               
+                        <%foreach from=$type_tilie key=k item=v%>
+                        <th>第<%$k%>周<br/><%$v%></th>
+                        <%/foreach%>
+            		</tr>
+            	</thead>
+            	<tbody>
+            	<%foreach from=$page_list key=dia item=dias%>
+                    <tr>
+                        <td><%$dia%></td>
+                        <td>销售粒数</td>                            
+                        <td><%$dias['0']['lishu']%></td>
+                        <%foreach from=$dias key=week item=dva%>
+                            <%if $week<>'0' %>
+                               <td><%$dva['lishu']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+                    </tr>                
+            		<tr>
+            			<td><%$dia%></td>
+            			<td>销售额</td> 				            
+                        <td><%$dias['0']['shijia']%></td>
+                        <%foreach from=$dias key=week item=dva%>
+                            <%if $week<>'0' %>
+                               <td><%$dva['shijia']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+            		</tr>
+            		<tr>
+            			<td><%$dia%></td>
+            			<td>毛利额</td> 				            
+                        <td><%$dias['0']['shijia'] - $dias['0']['chengbenjia']%></td>
+                        <%foreach from=$dias key=week item=dva%>
+                            <%if $week<>'0' %>
+                               <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+            		</tr>	
+            		<tr>
+            			<td><%$dia%></td>
+            			<td>毛利率</td> 				            
+                        <td><%$dias['0']['lirun']%></td>
+                        <%foreach from=$dias key=week item=dva%>
+                            <%if $week<>'0' %>
+                               <td><%$dva['lirun']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+            		</tr>					
+            	<%/foreach%>	
+            	</tbody>
+            </table>
+        <%else if $way == 2%>
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th>证书类型</th>
+                        <th></th>
+                        <th>年累计</th>                               
+                        <%foreach from=$type_tilie key=k item=v%>
+                        <th>第<%$k%>月<br/><%$v%></th>
+                        <%/foreach%>
+                    </tr>
+                </thead>
+                <tbody>
+                <%foreach from=$page_list key=dia item=dias%>
+                    <tr>
+                        <td><%$dia%></td>
+                        <td>销售粒数</td>                            
+                        <td><%$dias['0']['lishu']%></td>
+                        <%foreach from=$dias key=month item=dva%>
+                            <%if $month<>'0' %>
+                               <td><%$dva['lishu']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+                    </tr>                
+                    <tr>
+                        <td><%$dia%></td>
+                        <td>销售额</td>                            
+                        <td><%$dias['0']['shijia']%></td>
+                        <%foreach from=$dias key=month item=dva%>
+                            <%if $month<>'0' %>
+                               <td><%$dva['shijia']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+                    </tr>
+                    <tr>
+                        <td><%$dia%></td>
+                        <td>毛利额</td>                            
+                        <td><%$dias['0']['shijia'] - $dias['0']['chengbenjia']%></td>
+                        <%foreach from=$dias key=month item=dva%>
+                            <%if $month<>'0' %>
+                               <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+                    </tr>   
+                    <tr>
+                        <td><%$dia%></td>
+                        <td>毛利率</td>                            
+                        <td><%$dias['0']['lirun']%></td>
+                        <%foreach from=$dias key=month item=dva%>
+                            <%if $month<>'0' %>
+                               <td><%$dva['lirun']%></td>
+                            <%/if%>   
+                        <%/foreach%>
+                    </tr>                   
+                <%/foreach%>    
+                </tbody>
+            </table>
+        <%/if%>
+	<%/if%>
+
+
+	<%if $SYS_SCOPE=='zhanting'%>
+
+        <%if $report_type==1 %>
+
+
+
+
+
+
+                <%if $way == 1%>
+                    <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                            <tr>
+                                <th>证书类型</th>
+                                <th></th>
+                                <th>年累计</th>                               
+                                <%foreach from=$type_tilie key=k item=v%>
+                                <th>第<%$k%>周<br/><%$v%></th>
+                                <%/foreach%>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%foreach from=$page_list key=dia item=dias%>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>销售粒数</td>                            
+                                <td><%$dias['0']['lishu']%></td>
+                                <%foreach from=$dias key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lishu']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>销售额</td>                            
+                                <td><%$dias['0']['shijia']%></td>
+                                <%foreach from=$dias key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>毛利额</td>                            
+                                <td><%$dias['0']['shijia'] - $dias['0']['chengbenjia']%></td>
+                                <%foreach from=$dias key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>   
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>毛利率</td>                            
+                                <td><%$dias['0']['lirun']%></td>
+                                <%foreach from=$dias key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lirun']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                   
+                        <%/foreach%>    
+                        </tbody>
+                    </table>
+                <%else if $way == 2%>
+                    <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                            <tr>
+                                <th>证书类型</th>
+                                <th></th>
+                                <th>年累计</th>                               
+                                <%foreach from=$type_tilie key=k item=v%>
+                                <th>第<%$k%>月<br/><%$v%></th>
+                                <%/foreach%>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%foreach from=$page_list key=dia item=dias%>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>销售粒数</td>                            
+                                <td><%$dias['0']['lishu']%></td>
+                                <%foreach from=$dias key=month item=dva%>
+                                    <%if $month<>'0' %>
+                                       <td><%$dva['lishu']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>销售额</td>                            
+                                <td><%$dias['0']['shijia']%></td>
+                                <%foreach from=$dias key=month item=dva%>
+                                    <%if $month<>'0' %>
+                                       <td><%$dva['shijia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>毛利额</td>                            
+                                <td><%$dias['0']['shijia'] - $dias['0']['chengbenjia']%></td>
+                                <%foreach from=$dias key=month item=dva%>
+                                    <%if $month<>'0' %>
+                                       <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>   
+                            <tr>
+                                <td><%$dia%></td>
+                                <td>毛利率</td>                            
+                                <td><%$dias['0']['lirun']%></td>
+                                <%foreach from=$dias key=month item=dva%>
+                                    <%if $month<>'0' %>
+                                       <td><%$dva['lirun']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                   
+                        <%/foreach%>    
+                        </tbody>
+                    </table>
+                <%/if%>
+
+
+
+
+
+
+
+
+
+
+
+
+        <%/if%>
+
+        <%if $report_type==2 %>
+                <%if $way == 1%>
+                	<table class="table table-bordered table-striped table-hover flip-content">
+                		<thead class="flip-content">
+                			<tr>
+                				<th>证书类型</th>
+                                <th>经销商客户</th>
+                                <th></th> 
+                                <th>年累计</th>                               
+                                <%foreach from=$type_tilie key=k item=v%>
+                                <th>第<%$k%>周<br/><%$v%></th>
+                                <%/foreach%>
+                			</tr>
+                		</thead>
+                		<tbody>
+                		<%foreach from=$page_list key=dia item=dias%>
+                		    <%foreach from=$dias key=jxs item=weeks%>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td><%$jxs%></td>
+                                <td>销售粒数</td>                            
+                                <td><%$weeks['0']['lishu']%></td>
+                                <%foreach from=$weeks key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lishu']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                    
+                			<tr>
+                				<td><%$dia%></td>
+                				<td><%$jxs%></td>
+                				<td>销售额</td> 				            
+                                <td><%$weeks['0']['shijia']%></td>
+                                <%foreach from=$weeks key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                			</tr>
+                			<tr>
+                				<td><%$dia%></td>				
+                				<td><%$jxs%></td>	
+                				<td>毛利额</td> 			            
+                                <td><%$weeks['0']['shijia'] - $weeks['0']['chengbenjia']%></td>
+                                <%foreach from=$weeks key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                			</tr>	
+                			<tr>
+                				<td><%$dia%></td>
+                				<td><%$jxs%></td>
+                				<td>毛利率</td> 				            
+                                <td><%$weeks['0']['lirun']%></td>
+                                <%foreach from=$weeks key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lirun']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                			</tr>
+                			<%/foreach%>					
+                		<%/foreach%>	
+                		</tbody>
+                	</table>
+                <%else if $way == 2%>
+                    <table class="table table-bordered table-striped table-hover flip-content">
+                        <thead class="flip-content">
+                            <tr>
+                                <th>证书类型</th>
+                                <th>经销商客户</th>
+                                <th></th> 
+                                <th>年累计</th>                               
+                                <%foreach from=$type_tilie key=k item=v%>
+                                <th>第<%$k%>月<br/><%$v%></th>
+                                <%/foreach%>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%foreach from=$page_list key=dia item=dias%>
+                            <%foreach from=$dias key=jxs item=month%>
+                            <tr>
+                                <td><%$dia%></td>
+                                <td><%$jxs%></td>
+                                <td>销售粒数</td>                            
+                                <td><%$month['0']['lishu']%></td>
+                                <%foreach from=$month key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lishu']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>                    
+                            <tr>
+                                <td><%$dia%></td>
+                                <td><%$jxs%></td>
+                                <td>销售额</td>                            
+                                <td><%$month['0']['shijia']%></td>
+                                <%foreach from=$month key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>
+                            <tr>
+                                <td><%$dia%></td>               
+                                <td><%$jxs%></td>   
+                                <td>毛利额</td>                        
+                                <td><%$month['0']['shijia'] - $month['0']['chengbenjia']%></td>
+                                <%foreach from=$month key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['shijia'] - $dva['chengbenjia']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>   
+                            <tr>
+                                <td><%$dia%></td>
+                                <td><%$jxs%></td>
+                                <td>毛利率</td>                            
+                                <td><%$month['0']['lirun']%></td>
+                                <%foreach from=$month key=week item=dva%>
+                                    <%if $week<>'0' %>
+                                       <td><%$dva['lirun']%></td>
+                                    <%/if%>   
+                                <%/foreach%>
+                            </tr>
+                            <%/foreach%>                    
+                        <%/foreach%>    
+                        </tbody>
+                    </table>
+                <%/if%>
+        <%/if%>        
+	<%/if%>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

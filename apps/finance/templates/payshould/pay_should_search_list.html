@@ -1,0 +1,42 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>应付单号</th>
+			<th>应付类型</th>
+			<th>结算商</th>
+			<th>付款周期</th>
+			<th>应付金额</th>
+			<th>制单时间</th>
+			<th>制单人</th>
+			<th>审核时间</th>
+			<th>审核人</th>
+			<th>审核状态</th>
+			<th>付款状态</th>
+			<th>财务实付金额</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_apply_balance_list_<%$d.pay_number_id%>" data-title="<%$d.pay_should_all_name%>">
+			<td align="center"><%$d.pay_should_all_name%></td>
+			<td align="center"><%$dd->getEnum('app_pay_should.pay_type',$d.pay_type)%></td>
+			<td align="center"><%$d.prc_name%></td>
+			<td align="center"><%$dd->getEnum('supplier_pay.method',$d.settle_mode)%></td>
+			<td align="center"><%$d.total_cope%></td>
+			<td align="center"><%$d.make_time%></td>
+			<td align="center"><%$d.make_name%></td>
+			<td align="center"><%$d.check_time%></td>
+			<td align="center"><%$d.check_name%></td>
+			<td align="center"><%$dd->getEnum('app_pay_should.status',$d.status)%></td>
+			<td align="center"><%$dd->getEnum('pay_status',$d.pay_status)%></td>
+			<td align="center"><%$d.total_real%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

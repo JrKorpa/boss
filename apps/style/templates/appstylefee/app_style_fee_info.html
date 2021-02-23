@@ -1,0 +1,60 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_style_fee_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">费用类型：</label>
+						<div class="radio-list">	
+                            <select class="select2_category form-control" tabindex="1" name="fee_type">
+                                <option value="">全部</option>
+                                <%foreach from=$feeTypes key=id item=name%>
+                                    <option value="<%$id%>" <%if $view->get_fee_type()==$id%>selected="selected"<%/if%>><%$name%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">费用：</label>
+                        <input type="text" name="price" class="form-control" placeholder="请输入"  value="<%$view->get_price()%>" />
+                    </div>
+                </div>
+				<div class="col-sm-4">
+				<div class="form-group">
+					<label class="control-label">状态：</label>
+					<div class="radio-list">
+						<label class="radio-inline">
+							<input type="radio" name="status" checked="checked" <%if $view->get_status()=='1' %>checked="checked"<%/if%> value="1" />启用
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="status" <%if $view->get_status()=='2' %>checked="checked"<%/if%> value="2" />停用
+						</label>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<input type="hidden" name="style_id" value="<%$style_id%>">
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_style_fee_info.js"%>
+//-->
+</script>

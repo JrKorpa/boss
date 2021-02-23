@@ -1,0 +1,39 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>货号</th>
+			<th>款号</th>
+			<th>金重(主成色重)</th>
+			<th>主石重</th>
+			<th>证书号</th>
+			<th>工费</th>
+			<th>零售价</th>
+			<th>实价</th>
+			<th>手寸</th>
+			<th>长度</th>
+			<th>主成色</th>
+			<th>主石</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$data.data item=d key=k%>
+		<tr data-id="" data-title="">
+			<td><%$k+1%></td>
+			<td><%$d.goods_id%></td>
+			<td><%$d.goods_sn%></td>
+			<td><%$d.jinzhong%></td>
+			<td><%$d.zuanshidaxiao%></td>
+			<td><%$d.zhengshuhao%></td>
+			<td><%$d.zhushimairuchengben%></td>
+			<td><%$d.sale_price%></td>
+			<td><%$d.shijia%></td>
+			<td><%$d.shoucun%></td>
+			<td><%$d.changdu%></td>
+			<td><%$d.caizhi%></td>
+			<td><%$d.zhushi%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

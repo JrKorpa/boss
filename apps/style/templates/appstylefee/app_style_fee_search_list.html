@@ -1,0 +1,34 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>款式ID</th>
+			<th>费用类型</th>
+			<th>费用</th>
+			<th>状态</th>
+			<th>用户名</th>
+			<th>创建时间</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<%if $d.style_id==$style_id%>
+		<tr data-id="app_style_fee_list_<%$d.id%>" data-title="<%$d.id%>">
+			<td align="center"><%$d.id%></td>
+			<td align="center"><%$d.style_id%></td>
+            <td><%$feeTypes[$d.fee_type]%></td>
+			<td align="center"><%$d.price%></td>
+			<td><%if $d.status=='1'%>启用<%/if%><%if $d.status=='2'%>停用<%/if%></td>
+			<td align="center"><%$d.check_user%></td>
+			<td align="center"><%$d.check_time%></td>
+		</tr>
+		<%/if%>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

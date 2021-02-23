@@ -1,0 +1,27 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                <th>体验店名称</th>
+                <th>负责区域</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="jxs_area_scope_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td align="center"><%$d.jxs_id%></td>
+                <td align="center"><%$regionName[$d.province_id]%>-<%$regionName[$d.city_id]%>-<%$regionName[$d.region_id]%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

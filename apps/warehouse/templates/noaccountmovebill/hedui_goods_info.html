@@ -1,0 +1,180 @@
+<div class="form-body">
+	<form action="#" method="post" class="horizontal-form" id="logistics_deli_uu">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">单据号：</label>
+					<font color="red">*</font>
+					<input type="text" name="bill_no" id="bill_no" class="form-control" placeholder="" value="<%$bill_no%>" readonly="true"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">货号：</label><span style="color:red;" id="check"></span>
+					<font color="red">*</font>
+					<input type="text" name="goods_id" id="goods_id" class="form-control"  value="" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">货品总数量：</label>
+					<font color="red">*</font>
+					<input type="text" name="goods_num" id="goods_num" class="form-control"  value="<%$num%>"  readonly="true"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">已核对数量：</label>
+					<font color="red">*</font>
+					<input type="text" name="hedui_num" id="hedui_num" class="form-control"  value="0" readonly="true"/>
+				</div>
+
+<!--			</div>
+<div class="row">
+			<div class="col-sm-3">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+					<tr>
+						<th>已核对货品</th>		
+					</tr>
+					</thead>
+					<tbody id="yihedui">
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-sm-3">
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+					<tr>
+						<th>订单货品</th>		
+					</tr>
+					</thead>
+					<tbody id="order_goods">
+					 <%foreach from=$goods_info item=g%>
+					<tr class="<%$g.goods_id%>">
+						<td><%$g.goods_id%></td>
+					</tr>
+					<%/foreach%>
+
+					</tbody>
+				</table>
+			</div>
+			-->
+</div>
+
+
+
+<div>		
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+	
+	<tr>
+<div class="col-sm-3">
+	<td id="imgs" style="width:300px;">		
+		<table class="table table-bordered"><tr><td>款式图片</td></tr><tr><td></td></tr></table>
+	</td>
+</div>
+	<td id="infos"></td>
+	<td>
+	
+				<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+					<tr>
+						<th>已核对货品</th>		
+					</tr>
+					</thead>
+					<tbody id="yihedui">
+					</tbody>
+				</table>
+	</td>
+	<td>
+	<table class="table table-bordered table-striped table-hover flip-content">
+					<thead class="flip-content">
+					<tr>
+						<th>订单货品</th>		
+					</tr>
+					</thead>
+					<tbody id="order_goods">
+					 <%foreach from=$goods_info item=g%>
+					<tr class="<%$g.goods_id%>">
+						<td><%$g.goods_id%></td>
+					</tr>
+					<%/foreach%>
+
+					</tbody>
+				</table>
+	</td>
+
+</tr>	
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>
+</div>
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+			<input type="hidden" name="bill_id" id="bill_id" class="form-control" placeholder="" value="<%$bill_id%>"/>
+				
+
+				
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<script type="text/javascript">
+  //回车提交
+
+			$('#logistics_deli_uu input').keypress(function (e) {
+				if (e.which == 13) {
+					var goods_id =$("#goods_id").val();
+					var bill_id =$("#bill_id").val();
+					var bill_no =$("#bill_no").val();
+					if($("#"+goods_id).text()){
+							//alert('货号已验证成功!!!');
+							 $("#check").html("货号已验证成功!").css('color','blue');
+							 $("#goods_id").val("");
+							 $("#goods_id").focus()
+							 return false;
+					}
+					
+					$.post('index.php?mod=warehouse&con=WarehouseBillInfoM&act=hedui_search', {'goods_id':goods_id,'bill_id':bill_id,'bill_no':bill_no}, function(data) {
+                      			if(data.success==1){
+                      			//	debugger;
+									$("#yihedui").append('<tr><td id='+data.temp[0]+'>'+data.temp[0]+'</td></tr>');
+									$("."+data.temp[0]).remove()
+									//debugger;
+									//data.goods_detail.cat_type;
+									//$("#goods_list").html('<tr><td>'+data.goods_detail.cat_type+'</td><td>'+data.goods_detail.goods_sn+'</td><td>'+data.goods_detail.shoucun+'</td><td>'+data.goods_detail.zhushiyanse+'</td><td>'+data.goods_detail.zuanshidaxiao+'</td><td>'+data.goods_detail.zhushilishu+'</td><td>'+data.goods_detail.fushizhong+'</td><td>'+data.goods_detail.fushilishu+'</td><td>'+data.goods_detail.zhengshuhao+'</td><td><a target="_blank" href="'+data.gallery_data.thumb_img+'"><img src="'+data.gallery_data.thumb_img+'" height=100></a></td></tr>');
+									//$("#imgss").html('<a target="_blank" href="'+data.gallery_data.big_img+'"><img src="'+data.gallery_data.big_img+'" height=200 width=100></a>');
+									$("#imgs").html('<table class="table table-bordered"><tr><td>款式图片</td></tr><tr><td><a target="_blank" href="'+data.gallery_data.big_img+'"><img src="'+data.gallery_data.middle_img+'"  width=300></a></td></tr></table>');
+									$("#infos").html('<table class="table table-bordered"><tr><td>类型</td><td>'+data.goods_detail.cat_type+'</td></tr><tr><td>款号</td><td>'+data.goods_detail.goods_sn+'</td></tr><tr><td>指圈</td><td>'+data.goods_detail.shoucun+'</td></tr><tr><td>主成色</td><td>'+data.goods_detail.zhushiyanse+'</td></tr><tr><td>主石重</td><td>'+data.goods_detail.zuanshidaxiao+'</td></tr><tr><td>主石粒数</td><td>'+data.goods_detail.zhushilishu+'</td></tr><tr><td>副石重</td><td>'+data.goods_detail.fushizhong+'</td></tr><tr><td>副石粒数</td><td>'+data.goods_detail.fushilishu+'</td></tr><tr><td>证书号</td><td>'+data.goods_detail.zhengshuhao+'</td></tr></table>');
+									var tmp_num =$("#hedui_num").val();
+									var hedui_num = parseInt(tmp_num)+1;
+									$("#hedui_num").val(hedui_num);
+									//alert('验证成功!!!');
+									$("#check").html("验证成功!").css('color','green');									
+								}else{
+									
+					               //alert('验证失败!!!');
+					               $("#check").html("验证失败!").css('color','red');
+					            }
+					            //清空input 获取焦点
+					            $("#goods_id").val("");
+								$("#goods_id").focus()
+                      });
+					return false;
+				}
+			});
+
+//默认加载
+//$("#imgs").html('<table class="table table-bordered table-striped table-hover flip-content"><thead class="flip-content"><tr><td>款式图片</td></tr></thead></table>');
+//$("#imgs").html('<table class="table table-bordered"><tr><td>类型</td></tr></table>');
+$("#infos").html('<table class="table table-bordered"><tr><td>类型</td><td></td></tr><tr><td>款号</td><td></td></tr><tr><td>指圈</td><td></td></tr><tr><td>主成色</td><td></td></tr><tr><td>主石重</td><td></td></tr><tr><td>主石粒数</td><td></td></tr><tr><td>副石重</td><td></td></tr><tr><td>副石粒数</td><td></td></tr><tr><td>证书号</td><td></td></tr></table>');
+
+
+</script>

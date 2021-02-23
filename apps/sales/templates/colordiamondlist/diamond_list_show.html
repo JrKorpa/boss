@@ -1,0 +1,136 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll">
+			
+				 <div class="form-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">编号：</label>
+										<%$data.goods_sn%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">数量：</label>
+										<%$data.quantity%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">石重：</label>
+										<%$data.carat%>
+									</div>
+								</div>
+							   
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">测量值：</label>
+										<%$data.measurements%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">对称性：</label>
+										<%$data.symmetry%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">抛光：</label>
+										<%$data.polish%>
+									</div>
+								</div>
+							   
+							</div>
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="form-group">
+											<label class="control-label">荧光：</label>
+											<%$data.fluorescence%>
+										</div>
+									</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">BDD价：</label>
+										<%$data.price%>
+									</div>
+								</div>
+								  <div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">供应商：</label>
+										<%$data.from_ad%>
+									</div>
+								</div>
+							   
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">净度：</label>
+											<%$data.clarity%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">颜色：</label>
+											<%$data.color%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">颜色分级：</label>
+											<%$data.color_grade%>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">形状：</label>
+											<%$data.shape%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">证书类型：</label>
+											<%$data.cert%>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label class="control-label">证书号：</label>
+										<%$data.cert_id%>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/app_diamond_color_show.js"%>
+//-->
+</script>

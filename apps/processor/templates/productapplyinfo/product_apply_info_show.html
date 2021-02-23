@@ -1,0 +1,66 @@
+<style>
+	.td_width{width:10%;}
+	.td_label{width:15%}
+</style>
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>布产修改详情
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+			<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div class="col-sm-12">
+			<table id="product_apply_show_info_table" class="table table-bordered table-striped table-hover flip-content">
+				<tr>
+					<td class="td_width"><b>订单号</b></td>
+					<td class="td_label"><%$view->get_order_sn()%></td>
+					<td class="td_width"><b>款号</b></td>
+					<td class="td_label"><%$view->get_style_sn()%></td>
+					<td class="td_width"><b>申请状态</b></td>
+					<td class="td_label" id="prd_apply_status"><%$view->getApplyStatus($view->get_apply_status())%></td>
+					<td class="td_width"><b>布产状态</b></td>
+					<td class="td_label"><%$dict->getEnum('buchan_status',$view->get_goods_status())%></td>
+				</tr>
+				<tr>
+					<td class="td_width"><b>申请人</b></td>
+					<td class="td_label"><%$view->get_apply_name()%></td>
+					<td class="td_width"><b>申请时间</b></td>
+					<td class="td_label"><%$view->get_apply_time()%></td>
+					<td class="td_width"><b>审核人</b></td>
+					<td class="td_label"><%$view->get_check_name()%></td>
+					<td class="td_width"> <b>审核时间</b></td>
+					<td class="td_label"><%$view->get_check_time()%></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-sm-6">
+			<table class="table table-bordered table-striped  flip-content">
+				<tr><td colspan="4" style="text-align:center"><b>当前订单信息</b></td></tr>
+				<%foreach from=$label item=name key=code%>
+				<tr><td style="width:30%"><%$name%></td><td><%$olddo[$code]%></td></tr>
+				<%/foreach%>
+			</table>
+		</div>
+		<div class="col-sm-6">
+			<table class="table table-bordered table-striped  flip-content">
+				<tr><td colspan="4" style="text-align: center"><b>申请修改信息</b></td></tr>
+				<%foreach from=$label item=name key=code%>
+				<tr><td style="width:30%"><%$name%></td><%if isset($newdo[$code])%>
+					<td style="color:red"><%$newdo[$code]%></td><%else%><td><%$olddo[$code]%></td><%/if%>
+				</tr>
+				<%/foreach%>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+	<%include file="js/product_apply_info_show.js"%>
+//-->
+</script>

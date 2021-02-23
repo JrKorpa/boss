@@ -1,0 +1,37 @@
+<div class="table-scrollable">
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th style='text-align:center;'>编号</th>
+			<th style='text-align:center;'>货号</th>
+			<th style='text-align:center;'>类型</th>
+			<th style='text-align:center;'>仓库</th>
+			<th style='text-align:center;'>柜位</th>
+			<th style='text-align:center;'>操作人</th>
+			<th onclick="util.fieldSort(this,'create_time','')" onmouseover="this.style.cursor='pointer'">操作时间 <img src="<%if isset($smarty.get.__order) and isset($smarty.get.__desc_or_asc) and $smarty.get.__order=='create_time'%><%if $smarty.get.__desc_or_asc=='ASC' and $smarty.get.__order=='create_time'%>/public/img/down.png<%elseif $smarty.get.__desc_or_asc=='DESC' and $smarty.get.__order=='create_time'%>/public/img/up.png<%/if%><%else%>/public/img/order.png<%/if%>" /></th>
+			</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="box_goods_log_<%$d.id%>" id="<%$d.id%>" data-type="<%$d.type%>" data-title="<%$d.goods_id%>" >
+			<td style='text-align:center;'><%$d.id%></td>
+			<td style='text-align:center;'><%$d.goods_id%></td>
+			<td style='text-align:center;'><%$dd->getEnum('box_goods_type',$d.type)%></td>
+			<td style='text-align:center;'><%$d.warehouse%></td>
+			<td style='text-align:center;'><%$d.box_sn%></td>
+			<td style='text-align:center;'><%$d.create_user%></td>
+			<td style='text-align:center;'><%$d.create_time%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,52 @@
+<table id="warehouse_info_s_goods_lists" class="table table-bordered table-striped flip-content">
+	<thead>
+		<th>货号</th>
+		<th>款号</th>
+		<th>主成色重</th>
+		<th>证书号</th>
+		<th>零售价</th>
+		<th>实价</th>
+		<%if $isViewChengbenjia%><th>加价成本价</th><%/if%>
+		
+		<th>手寸</th>
+		<th>长度</th>
+		<th>主成色</th>
+		<th>主石</th>
+		<th>主石重</th>
+		<th>主石粒数</th>
+		<th>主石净度</th>
+		<th>主石颜色</th>
+		<th>副石</th>
+		<th>副石粒数</th>
+		<th>副石重</th>
+		<th>总重</th>
+		<th>名称</th>
+	</thead>
+	<tbody>
+		<%foreach from=$page_list.data item=g key=k%>
+		<tr>
+			<td><%$g.goods_id%></td>
+			<td><%$g.goods_sn%></td>
+			<td><%$g.jinzhong%></td>
+			<td><%$g.zhengshuhao%></td>
+			<td><%$g.sale_price%></td>
+			<td><%$g.shijia%></td>
+			<%if $isViewChengbenjia%><td><%$g.jiajiachengben%></td><%/if%>
+			<td><%$g.shoucun%></td>
+			<td><%$g.changdu%></td>
+			<td><%$g.caizhi%></td>
+			<td><%$g.zhushi%></td>
+			<td><%$g.zuanshidaxiao%></td>
+			<td><%$g.zhushilishu%></td>
+			<td><%$g.zhushijingdu%></td>
+			<td><%$g.zhushiyanse%></td>
+			<td><%$g.fushi%></td>
+			<td><%$g.fushilishu%></td>
+			<td><%$g.fushizhong%></td>
+			<td><%$g.zongzhong%></td>
+			<td><%$g.goods_name%></td>
+		</tr>
+		<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>

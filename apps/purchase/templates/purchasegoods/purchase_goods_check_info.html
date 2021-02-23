@@ -1,0 +1,83 @@
+<style>
+    .td_width{width:25%;}
+</style>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>布产修改详情
+        </div>
+    </div>
+    <div class="portlet-body">
+        <%if $view->get_is_apply() == 0%>
+        <div class='alert alert-info'>该商品未申请修改</div>
+        <%else%>
+        <div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" title="刷新查看页签" name="刷新" data-url="" onclick="util.retrieveReload(this);">
+                    刷新
+                    <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm green" data-title="审核采购单" title="审核采购单" name="审核" onclick="util.cust(this,purchase_goods_check_123);">
+                    审核通过
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm red" data-title="审核采购单" title="审核采购单" name="审核" onclick="util.cust(this,purchase_goods_checkout_123);">
+                    审核取消
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm yellow" data-title="离开" list-id="58" title="关闭当前页签" name="离开" data-url="" onclick="util.closeTab(this);">
+                    离开
+                    <i class="fa fa-mail-reply"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 表格1 -->
+        <div class="col-sm-12">
+            <table id="product_apply_show_info_table" class="table table-bordered table-striped table-hover flip-content">
+            <tr>
+                <td><b>采购单号:</b></td><td><%$view->get_purchase_info('p_sn')%></td>
+                <td><b>布产状态</b></td><td><%if $view->get_bc_status()%>
+                <%$dd->getEnum('buchan_status',$view->get_bc_status())%><%else%>无<%/if%></td>
+            </tr>
+        </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table table-bordered table-striped  flip-content">
+                <tr><td colspan="4" style="text-align:center"><b>当前信息</b></td></tr>
+                <tr><td class="td_width"><b>款号</b></td><td><%$view->get_style_sn()%></td></tr>
+                <tr><td><b>数量</b></td><td><%$view->get_num()%></td></tr>
+                <tr><td><b>名称</b></td><td><%$view->get_g_name()%></td></tr>
+                <tr><td><b>镶嵌方式</b></td><td><%$view->get_xiangqian()%></td></tr>
+                <%foreach from=$olddo item = o%>
+                <tr><td><b><%$o.name%></b></td><td><%$o.value%></td></tr>
+                <%/foreach%>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table table-bordered table-striped  flip-content">
+                <tr><td colspan="4" style="text-align: center"><b>修改信息</b></td></tr>
+                <tr><td class="td_width"><b>款号</b></td><td><%$newdo['style_sn']%></td></tr>
+                <tr><td><b>数量</b></td><td <%if $newdo['num']!=$view->get_num()%>style="color:red"<%/if%>><%$newdo['num']%></td></tr>
+                <tr><td><b>名称</b></td><td <%if $newdo['g_name']!=$view->get_g_name()%>style="color:red"<%/if%>><%$newdo['g_name']%></td></tr>
+                <tr><td><b>镶嵌方式</b></td><td <%if $newdo['xiangqian']!=$view->get_xiangqian()%>style="color:red"<%/if%>><%$newdo['xiangqian']%></td></tr>
+                <%foreach from=$olddo item = o%>
+                <tr><td><b><%$o.name%></b></td><td <%if $newdo[$o.code]!=$o.value%>style="color:red"<%/if%>><%$newdo[$o.code]%></td></tr>
+                <%/foreach%>
+            </table>
+        </div>
+        <div class="clear"></div>
+        <%/if%>
+    </div>
+</div>
+
+<script type="text/javascript">
+    <!--
+    <%include file="js/purchase_goods_check_info.js"%>
+    //-->
+</script>

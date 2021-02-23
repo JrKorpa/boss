@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>出货明细表</title>
+<style type="text/css">
+{literal}
+*{margin:0;padding:0;}
+body{font:12px/25px "宋体";}
+.tRight{text-align:right;}
+.tLeft{text-align:left;}
+.wrap{width:1000px;margin:50px auto;}
+h1{font-size:14px; text-align:center;margin-bottom:10px;}
+table.list-ch{border-collapse:collapse;border:none;width:100%;margin-top:10px;}
+table.list-ch td{ border:1px #333 solid;padding:0 2px;}
+table.list-ch thead td{height:35px; line-height:14px; text-align:center; font-weight:bold;}
+{/literal}
+</style>
+</head>
+<body>
+<!--startprint-->
+<div class="wrap">
+	<h1>出货明细表</h1>现在时间&nbsp;<%$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"%>
+	<table cellpadding="0" cellspacing="0" border="0" width="100%">
+		<tr>
+			<td width="65">加工商：</td>
+			<td  width="100"  class="tLeft"><%$view->get_prc_name()%></td>
+			<td width="65">流水号：</td>
+			<td   width="100" class="tLeft"><%$view->get_id()%></td>
+			<td width="65">出货单号:</td>
+			<td  width="100"  class="tLeft"><%$view->get_ship_num()%></td>
+			<td width="65">日期：</td>
+			<td  width="100" class="tLeft"><%$view->get_create_time()%></td>
+			<td width="65">件数：</td>
+			<td  width="100" ><%$view->get_num()%></td>
+		</tr>
+		<tr>
+			<td>备注：</td>
+			<td colspan="8"><%$view->get_remark()%></td>
+		</tr>
+	</table>
+	<table cellpadding="0" cellspacing="0" border="0" class="list-ch">
+		<thead>
+			<tr>
+				<td>序号</td>
+				<td>客来石<br />信息</td>
+				<td>品类</td>
+				<td>模号</td>
+				<td>售卖方式</td>
+				<td>戒托镶口</td>
+				<td>手寸</td>
+				<td>材质</td>
+				<td>毛重</td>
+                                <td>主成色重(净金重)</td>
+				<td>金耗</td>
+				<td>金价</td>
+				<td>主石信息</td>
+				<td>主石单价</td>
+
+				<td>副石品类</td>
+				<td>副石单价</td>
+                <td>主副石总重量</td>
+				<td>工费</td>
+				<td>超石费</td>
+				<td>其他<br />工费</td>
+				<td>配件<br />成本</td>
+				<td>成本</td>
+				<td>税费</td>
+				<td>含税价</td>
+				<td>客户名</td>
+				<td>布产号</td>
+				<td>款号</td>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$order_goods item=value %>
+			<tr>
+				<td nowrap=true><%$value.xuhao%></td>
+				<td nowrap=true><%$value.customer_info_stone%></td>
+				<td nowrap=true><%$value.cat_type%></td>
+				<td><%$value.factory_sn%></td>
+				<td><%$dd->getEnum('processor.is_alone',$value.is_alone)%></td>
+				<td><%$value.ring_mouth%></td>
+				<td><%$value.hand_inch%></td>
+				<td><%$value.material%></td>
+				<td><%$value.gross_weight%></td>
+                                <td><%$value.net_gold_weight%></td>
+				<td><%$value.gold_loss%></td>
+				<td><%$value.gold_price%></td>
+				<td><%$value.main_stone%>&nbsp;<%$value.main_stone_weight%>/<%$value.main_stone_num%></td>
+				<td><%$value.zhushidanjia%></td>
+
+				<td  width="85">
+					<span style="border-bottom:1px #000 solid;display:block;"><%$value.fushi%>&nbsp;<%$value.fushizhong%>/<%$value.fushilishu%>
+					</span>
+					<span style="border-bottom:1px #000 solid;display:block;">
+						<%$value.shi2%>&nbsp;<%$value.shi2zhong%>/<%$value.shi2lishu%>
+					</span>
+					<span style="display:block;"><%$value.shi3%>&nbsp;<%$value.shi3zhong%><%$value.shi3lishu%></span>
+				</td>
+				<td><%if $value.fushidanjia%><span style="border-bottom:1px #000 solid;display:block;"><%$value.fushidanjia%></span><%/if%>
+					<%if $value.shi2danjia%><span style="border-bottom:1px #000 solid;display:block;"><%$value.shi2danjia%></span><%/if%>
+					<%if $value.shi3danjia%><span style="display:block;"><%$value.shi3danjia%></span><%/if%>
+				</td>
+				<td><%$value.main_stone_weight+$value.fushizhong+$value.shi2zhong+$value.shi3zhong%></td>
+				<td><%$value.work_fee%></td>
+				<td><%$value.extra_stone_fee%></td>
+				<td><%$value.other_fee%></td>
+				<td><%$value.fittings_cost_fee%></td>
+				<td><%$value.chengbenjia%></td>
+				<td><%$value.tax_fee%></td>
+				<td><%$value.chengbenjia+$value.tax_fee%></td>
+				<td nowrap=true><%$value.customer_name%></td>
+				<td><%$value.bc_sn%></td>
+				<td><%$value.style_sn%></td>
+			</tr>
+		<%/foreach%>
+			<tr>
+				<td>合计</td>
+				<td colspan="25" class="tLeft"><%$heji.hanshuijia_heji%></td>
+			</tr>
+		</tbody>
+	</table>
+	<table width="100%">
+	<tr>
+		<td width="33%" valign=top>
+		配石统计:<br />
+		<table cellpadding="0" cellspacing="0" border="0" class="list-ch" style="width:90%">
+		<thead>
+			<tr>
+				<td>名称</td>
+				<td>石单价</td>
+				<td>数量</td>
+				<td>石重</td>
+				<td>石值</td>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$heji.zuanshixinxi item=item key=key%>
+			<%foreach from=$item key=danjia_key item=danjia_item%>
+			<tr>
+				<td><%$key%></td>
+				<td><%$danjia_key%></td>
+				<td><%$danjia_item.shuliang%></td>
+				<td><%$danjia_item.shizhong%></td>
+				<td><%$danjia_key*$danjia_item.shizhong%></td>
+			</tr>
+			<%/foreach%>
+		<%/foreach%>
+		</tbody>
+	</table>
+		</td>
+		<td width="33%" valign=top>
+		金料统计:
+		<table cellpadding="0" cellspacing="0" border="0" class="list-ch" style="width:90%">
+		<thead>
+			<tr>
+				<td>成色</td>
+				<td>重量</td>
+				<td>平均金价</td>
+				<td>金值</td>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$heji.jinliaoxinxi item=item key=key%>
+			<tr>
+				<td><%$key%></td>
+				<td><%$item.zhongliang%></td>
+				<td><%$item.pingjunjinjia%></td>
+				<td><%$item.jinzhi%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+		</td>
+		<td width="33%" valign=top>
+		费用统计
+		<table cellpadding="0" cellspacing="0" border="0" class="list-ch" style="width:90%">
+		<thead>
+			<tr>
+				<td>类别</td>
+				<td>金额</td>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$heji.feiyongtongji item=item key=key%>
+			<tr>
+				<td><%$key%></td>
+				<td><%$item%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+		</td>
+	</tr>
+	</table>
+
+		<!--endprint-->
+	<br/><br/>
+	<div style="text-align:center;">
+
+    <button id="print_close" onclick="close_bill();">关闭</button>
+    <button id="print_btn" onclick="print_bill();">打&nbsp;印</button>
+
+	</div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+ function close_bill(){
+        window.close();
+    }
+
+function print_bill(){
+	bdhtml = window.document.body.innerHTML;
+	sprnstr = "<!--startprint-->";
+	eprnstr = "<!--endprint-->";
+	prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17);
+	prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr));
+	window.document.body.innerHTML = prnhtml;
+	window.print();
+
+
+}
+</script>
+</html>

@@ -1,0 +1,125 @@
+<!--搜索开始-->
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>搜索框
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body form">
+		<!-- 表单内容 -->
+		<form action="#" class="horizontal-form" method="post" id="product_apply_info_search_form">
+			<div class="form-body">
+				<div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">订单号：</label>
+                            <input type="text" name="order_sn" class="form-control" placeholder="请输入" value="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">时间：</label>
+                        <div  class="input-group date-picker input-daterange">
+                            <input type='text' name="time_start" class="form-control" placeholder="请选择"/>
+                            <span class="input-group-addon">至</span>
+                            <input type='text' name="time_end" class="form-control" placeholder="请选择"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">工厂：</label>
+                            <div class="form-group">
+                                <select class="select2_category form-control" name="processor" tabindex="1" >
+                                    <option value=""></option>
+                                    <%foreach from=$process key=k item=value%>
+                                    <option value="<%$value.id%>"><%$value.name%></option>
+                                    <%/foreach%>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+            <div class="row">
+
+                <div class='col-sm-4'>
+                    <label class="control-label">申请修改状态：</label>
+                        <div class="form-group">
+                            <select class="select2_category form-control" name="apply_status" tabindex="1" >
+                                <option value=""></option>
+                                <option value="0">未操作</option>
+                                <option value="1">同意</option>
+                                <option value="2">拒绝</option>
+                            </select>
+                        </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="control-label">布产状态：</label>
+                        <div class="form-group">
+                            <select class="select2_category form-control" name="buchan_status" tabindex="1" >
+                                <option value=""></option>
+                                <%foreach from=$dd->getEnumArray("buchan_status") key=k item=value%>
+                                <option value="<%$value.name%>"><%$value.label%></option>
+                                <%/foreach%>
+                            </select>
+                        </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="control-label">布产号：</label>
+                        <div class="form-group">
+
+                            <input type="text" name="bc_sn" class="form-control"/>
+                        </div>
+                </div>
+            </div>
+            <div class ="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                            <label class="control-label">款号：</label>
+                            <input type="text" name="style_sn" class="form-control" placeholder="请输入" value="" />
+                    </div>
+                </div>
+
+            </div>
+                            
+			</div>
+			<!-- 搜索按钮 -->
+			<div class="form-actions fluid">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="reset" class="btn default">重置</button>
+					<button type="submit" class="btn green"><i class="fa fa-check"></i> 搜索</button>
+				</div>
+			</div>
+		</form>
+		<!-- END FORM-->
+	</div>
+</div>
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>结果列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	
+	<div class="portlet-body">
+	<!-- 工具栏 -->
+		<div class="table-toolbar">
+		<%$bar%>
+		</div>
+		<!-- 表格1 -->
+		<div id="product_apply_info_search_list">
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/product_apply_info_list.js"%>
+//-->
+</script>

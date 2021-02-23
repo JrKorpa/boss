@@ -1,0 +1,47 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+                <th>石包号</th>
+                <th>每卡采购价格(元)</th>
+                <th>规格</th>
+                <th>颜色</th>
+                <th>净度</th>
+                <th>切工</th>
+                <th>对称</th>
+                <th>抛光</th>
+                <th>荧光</th>
+                <th>数量</th>
+                <th>重量</th>
+                <th>价格</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="stone_bill_details_list_<%$d.id%>" data-title="<%$d.id%>">
+                <td><%$d.dia_package%></td>
+                <td><%$d.purchase_price%></td>
+                <td><%$d.specification%></td>
+                <td><%$d.color%></td>
+                <td><%$d.neatness%></td>
+                <td><%$d.cut%></td>
+                <td><%$d.symmetry%></td>
+                <td><%$d.polishing%></td>
+                <td><%$d.fluorescence%></td>
+                <td><%$d.num%></td>
+                <td><%$d.weight%></td>
+                <td><%$d.price%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

@@ -1,0 +1,33 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="uodate_ship_method">
+		<div class="form-body">
+			<div class="row">
+                                	<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">快递方式：</label>
+						<select class="form-control" tabindex="1" name="express_id">
+								<option value="">--请选择--</option>
+								<%foreach from=$info_express item=e%>
+									<option value="<%$e.id%>" <%if $express_id == $e.id%>selected<%/if%> ><%$e.exp_name%></option>
+								<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/update_ship_method.js"%>
+//-->
+</script>

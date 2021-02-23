@@ -1,0 +1,45 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>BDD订单号</th>
+			<th>外部订单号</th>
+			<th>发货时间</th>
+			<th>BDD金额</th>
+			<th>销帐金额</th>
+			<th>来源部门</th>
+			<th>订单来源</th>
+			<th>支付方式</th>
+			<th>申请状态</th>
+			<th>应收申请单</th>
+			<th>外部金额</th>
+			<th>应收现金</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="pay_order_info_list_<%$d.order_id%>" data-title="<%$d.order_id%>">
+			<td align="center">
+				<a href="javascript:;" class="tab-con-a" data-title="<%$d.kela_sn%>" data-id="<%$d.kela_sn%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&order_sn=<%$d.kela_sn%>"><%$d.kela_sn%></a>
+			<!---<%$d.kela_sn%>--->
+			</td>
+            <td align="center"><%$d.external_sn|default:''%></td>
+			<td align="center"><%$d.shipping_time|default:''%></td>
+			<td align="center"><%$d.kela_total_all|default:''%></td>	<!--BDD金额-->
+			<td align="center"><%$d.jxc_total_all|default:''%></td>	<!--销账金额-->
+			<td align="center"><%$d.dep_name|default:''%></td>
+			<td align="center"><%$d.ad_name|default:''%></td>
+			<td align="center"><%$d.pay_name|default:''%></td>
+			<td align="center"><%$dd->getEnum('payorder.apply_status',$d.status)%></td>
+			<td align="center"><%$d.apply_number|default:''%></td>
+			<td align="center"><%$d.external_total_all|default:''%></td>
+			<td align="center"><%$d.income_total|default:''%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

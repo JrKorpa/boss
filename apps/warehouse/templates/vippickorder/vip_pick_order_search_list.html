@@ -1,0 +1,86 @@
+<!-- <div class="flip-scroll"> -->
+ <div class="table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th><input type="checkbox" class="group-checkable" data-set="#vip_pick_order_search_list .checkboxes" /></th>
+				<th>BOSS<br/>订单号</th>				
+				<th>BOSS<br/>货号</th>
+				<th>BOSS<br/>款号</th>
+				<th>BOSS<br/>商品名称</th>
+				<th>VIP<br/>拣货单编号</th>
+				<th>VIP<br/>送货仓库</th>
+				<th>VIP<br/>送货状态</th>					
+				<th>VIP<br/>出仓单号</th>	
+				<th>BOSS<br/>打印提货单</th>
+				<th>VIP<br/>PO单编号</th>
+				<th>VIP<br/>SKU码</th>
+				<th>BOSS<br/>发货状态</th>
+				<th>BOSS<br/>申请关闭</th>
+				<th>BOSS<br/>订单状态</th>
+				<th>BOSS<br/>创建时间</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="picklist_<%str_replace('-','NN',$d.pick_no)%>" data-title="拣货单详情">			
+			    <td><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.order_sn%>" /></td>
+				<td><a href="javascript:;" class="tab-con-a" data-title="<%$d.order_sn%>" data-id="baseorderinfo-<%$d.order_id%>" data-url="index.php?mod=sales&con=BaseOrderInfo&act=show&id=<%$d.order_id%>"><%$d.order_sn%></a></td>
+				<td><%$d.goods_id%></td>
+				<td><%$d.style_sn%></td>
+				<td><%$d.goods_name%></td>
+				<td>
+				<a href="javascript:;" class="tab-con-a" data-title="拣货单详情" data-id="vippicklist-<%str_replace('-','NN',$d.pick_no)%>" data-url="index.php?mod=warehouse&con=VipPickList&act=show&id=<%$d.pick_no%>"><%$d.pick_no%></a>	
+				</td>				
+				<td><%$pickDetailsView->getWarehouseName($d.warehouse)|default:"--"%></td>
+				<td><%$pickDetailsView->getDeliveryStatusName($d.out_flag)|default:'--'%></td>	
+				<td>
+				<%if $d.storage_no!=''%><a href="javascript:;" class="tab-con-a" data-title="出仓送货详情" data-id="vipdelivery-<%str_replace('-','NN',$d.storage_no)%>" data-url="index.php?mod=warehouse&con=VipDelivery&act=show&id=<%$d.storage_no%>"><%$d.storage_no%></a><%else%>--<%/if%>
+				</td>	   
+				<td><%if $d.is_print_tihuo==1%><b>已打印</b><%else%><font color="red">未打印</font><%/if%></td>
+				<td><%$d.po_no%></td>
+				<td><%$d.barcode%></td>		
+				<td><%$dd->getEnum('order.send_good_status',$d.send_good_status)|default:'--'%></td>
+				<td><%if $d.order_status==4%>已关闭<%else%><%if $d.apply_close==1%>已申请<%else%>未申请<%/if%><%/if%></td>	
+				<td><%$dd->getEnum('order.order_status',$d.order_status)|default:'--'%></td>		
+				<td><%$d.create_time%></td>			
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+    var test = $("#vip_pick_order_search_list input[type='checkbox']:not(.toggle, .make-switch)");
+    if (test.size() > 0) {
+            test.each(function () {
+            if ($(this).parents(".checker").size() == 0) {
+            $(this).show();
+            $(this).uniform();
+        }
+      });
+    }
+    // table 复选框全选
+    $('#vip_pick_order_search_list .group-checkable').change(function () {
+      var set = $(this).attr("data-set");
+            var checked = $(this).is(":checked");
+            $(set).each(function () {
+                    if (checked) {
+                            $(this).attr("checked", true);
+                            $(this).parents('tr').addClass("active");
+                    } else {
+                            $(this).attr("checked", false);
+                            $(this).parents('tr').removeClass("active");
+                    }
+            });
+            $.uniform.update(set);
+    });
+    $('#vip_pick_order_search_list').on('change', 'tbody tr .checkboxes', function(){
+            $(this).parents('tr').toggleClass("active");
+    });
+//-->
+</script>

@@ -1,0 +1,107 @@
+<div class="portlet-body form"> 
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="app_bespoke_info_info">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户手机：<span class="required">*</span></label>
+						<input type="text" name="customer_mobile" class="form-control" placeholder="请输入" value="<%$view->get_customer_mobile()%>" />
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户姓名：<span class="required">*</span></label>
+						<input type="text" name="customer" class="form-control" placeholder="请输入"  maxlength="19" value="<%$view->get_customer()%>" />
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户来源：<span class="required">*</span></label>
+						<select class="select2_category form-control" tabindex="1" name="customer_source_id" <%if $view->get_bespoke_id()%>disabled="false"<%/if%>>
+							<option value=""></option>
+							<%foreach from=$CustomerSourcesData key=key item=p %>
+							<option value="<%$key%>" <%if $view->get_customer_source_id()==$key%>selected="selected"<%/if%>>
+							<%$p%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">客户email：</label>
+						<input type="text" name="customer_email" class="form-control" placeholder="请输入"  value="<%$view->get_customer_email()%>" />
+					</div>
+				</div>
+                <div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">接待人：<span class="required">*</span></label>
+						<input type="text" name="accecipt_man" class="form-control" placeholder="请输入"  value="<%if $view->get_accecipt_man()==''%><%$smarty.session.userName%><%else%><%$view->get_accecipt_man()%><%/if%>" />
+					</div>
+				</div>
+				<!--<div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">客户地址：</label>
+                        <input type="text" name="customer_address" class="form-control" placeholder="请输入"  value="<%$view->get_customer_address()%>" />
+                    </div> 
+				</div>-->
+                	<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">预约到店时间：<span class="required">*</span></label>
+						<div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+							<input type="text" name="bespoke_inshop_time" value="<%$view->get_bespoke_inshop_time()%>" class="form-control" readonly />
+							<span class="input-group-btn">
+							<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span> </div>
+					</div>
+				</div>
+			<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label">渠道部门：<span class="required">*</span></label>
+						<select class="select2_category form-control" tabindex="1" name="department_id" <%if $view->get_bespoke_id()%>disabled="false"<%/if%>>
+							<option value="" ></option>
+							<%foreach from=$channellist key=key item=p %>
+                            <%if $view->get_bespoke_id() && $p.id == $view->get_department_id()%>
+                            <option value="<%$p.id%>" selected="selected">
+                            <%$p.channel_name%>
+							<%elseif $p.id==$bumen[0]%>
+							<option value="<%$p.id%>" selected="selected">
+							<%$p.channel_name%>
+                            <%elseif in_array($p.id,$bumen)%>
+                            <option value="<%$p.id%>">
+                                <%$p.channel_name%>
+							<%/if%>
+							</option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label">预约备注：</label>
+						<textarea class="form-control" name="remark" rows="4"><%$view->get_remark()%></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="bespoke_id" value="<%$view->get_bespoke_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM--> 
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_bespoke_info_info.js"%>
+//-->
+</script>

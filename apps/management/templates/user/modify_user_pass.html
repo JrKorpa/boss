@@ -1,0 +1,77 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="modify_user_pass">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label" style="float:left;width:80px;text-align:right;">姓名：</label>
+						<input type="text" name="real_name" class="form-control" readOnly  value="<%$view->get_real_name()%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label class="control-label" style="float:left;width:80px;text-align:right;">帐号：</label>
+						<input type="text" name="account" class="form-control" readOnly  value="<%$view->get_account()%>" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label" style="float:left;width:80px;text-align:right;">新密码：</label>
+						<input type="password" name="newPass" class="form-control" placeholder="请输入" onkeyup="util.checkIntensity(this.value)" />
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<table width="120" border="0" cellspacing="0" cellpadding="1" style="margin-left:80px;">
+						  <tr align="center">
+							<td width="33%" id="pwd_lower">弱</td>
+							<td width="33%" id="pwd_middle">中</td>
+							<td width="33%" id="pwd_high">强</td>
+						  </tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label" style="float:left;width:80px;text-align:right;">确认密码：</label>
+						<input type="password" name="confirmPass" class="form-control" placeholder="请输入" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label class="control-label" style="float:left;width:80px;text-align:right;">验证码：</label>
+						<input type="text" class="form-control" maxlength="4" placeholder="请输入" name="modify_captcha" />
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group" style="margin-left:80px;">
+						<img id="modify_pass_captcha" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/modify_user_pass.js"%>
+//-->
+</script>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>报表</title>
+        <script type="text/javascript" src="public/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="public/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+        <style>
+            body{font-size:13px;}
+            .weekend{background-color:#EFD19E;}
+            .jiraform {
+                border: 1px solid #bbbbbb;
+            }
+        </style>
+        <style type="text/css" media="print">
+            .Noprint { DISPLAY: none } 
+        </style>
+
+    </head>
+    <body>
+        <table cellspacing=0 cellpadding=10 border=0 width=100% bgcolor=ffffff class="jiraform"><tr><td>
+                    <table width=100%>
+                        <tr>
+                            <td class="jiraformheader">
+                                <h3 class="formtitle">报告:收款详情</h3></td>
+                        </tr>
+                        <tr>
+
+                            <td class="instructions" style="float:right;">
+<!--                                <form method="post" id="print_info_form" ons>
+                                    <table border="0" width=100% cellspacing="0" cellpadding="0">
+                                        <tr class="Noprint">
+                                            <td>销售部门:</td>
+                                            <td>
+                                                <select name="deparment">
+                                                    <option value="">所有部门</option>
+                                                    <%foreach from=$channellist item=p%>
+                                                    <option value="<%$p.id%>"><%$p.channel_name%></option>
+                                                    <%/foreach%>
+                                                </select>    
+                                            </td>
+                                            <td>提报状态</td>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <select  name="status" id="status">
+                                                    <option value="">提报状态</option>
+                                                    <option value="1">未提报</option>
+                                                    <option value="2">已提报</option>
+                                                    <option value="3">已审核</option>
+                                                    <option value="4">审核未通过</option>
+                                                </select>
+                                            </td>
+                                            <td>开始日期</td>
+                                            <td><input name="start_time" type="text" id="start_time" size="12" value='<%$start_date%>' readonly/></td>
+                                            <td>结束日期</td>
+                                            <td><input name="end_time" type="text" id="end_time" size="12" value='<%$end_date%>' readonly/></td>    
+                                            <td><input type="button" class="Noprint" onclick="window.print();" value="打印本页" name=""/></td>
+                                        </tr>
+                                    </table>
+                                </form>-->
+                                <input type="button" class="Noprint" onclick="window.print();" value="打印本页" name=""/>       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="jiraformbody" id="pay_action_list">
+                                【<span id="pay_time"><%$start_date%>到<%$end_date%></span>】
+                                【收款单总数:<span id="order_num"><%$result['order_num']|default:0%></span>】
+                                【订单总金额:<span id="shishou_price"><%$result['shishou_price']|default:0.00%></span>】
+                                【实收金额:<span id="shishou"><%$result['zhishou']|default:0.00%></span>】<br/>
+                                <!--
+                                【销售单收款:<span id="paid_amont"><%$result['paid_amont']|default:0.00%></span>
+                                销售单总数:<span id="paid_cnt"><%$result['paid_cnt']|default:0%></span>】
+                                <br/>
+                                -->
+                                【未提报金额:<span id="unti_money"><%$result['unti_money']|default:0.00%></span>
+                                未提报数量:<span id="unti_money_num"><%$result['unti_money_num']|default:0%></span>】		
+                                【已提报金额:<span id="ti_money"><%$result['ti_money']|default:0.00%></span>
+                                已提报数量:<span id="ti_money_num"><%$result['ti_money_num']|default:0%></span>】
+                                【已审核金额:<span id="checked_money"><%$result['checked_money']|default:0.00%></span>
+                                已审核数量:<span id="checked_money_num"><%$result['checked_money_num']|default:0%></span>】
+                                【未通过金额:<span id="unchecked_money"><%$result['unchecked_money']|default:0.00%></span>
+                                未通过数量:<span id="unchecked_money_num"><%$result['unchecked_money_num']|default:0%></span>】
+                                <br/>
+                                【刷卡POS:<span id="card_money"><%$result['card_money']|default:0.00%></span>】
+                                【现金:<span id="now_money"><%$result['now_money']|default:0.00%></span>】
+                                【银行汇款/转账:<span id="zhuanzhang_money"><%$result['zhuanzhang_money']|default:0.00%></span>】
+                                【转单金额:<span id="order_pay"><%$result['order_pay']|default:0.00%></span>】
+                                【商品转赠品金额:<span id="zhuanzengpin_pay"><%$result['zhuanzengpin_pay']|default:0.00%></span>】
+                                【丢货赔偿金额:<span id="lost_repay"><%$result['lost_repay']|default:0.00%></span>】
+                                【其他金额:<span id="other_money"><%$result['other_money']|default:0.00%></span>】
+                                <div class = "table-scrollable">
+                                    <table width=100% class="jiraform">
+                                        <thead class="flip-content">
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>订单号码</th>
+                                                <th>下单时间</th>
+                                                <th>付款时间</th>
+                                                <th>客户姓名</th>
+                                                <!-- <th>手机/电话</th>-->
+                                                <th>订单金额</th>
+                                                <th>已付金额</th>
+                                                <th>未付金额</th>
+                                                <th>支付类型</th>
+                                                <th>销售渠道</th>
+                                                <!--            <th>财务处理</th>
+                                                            <th>接待顾问</th>-->
+                                                <th>定金收据号</th>
+                                                <th>提报状态</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%foreach from=$page_list item=d%>
+                                            <tr data-id="app_receive_list_<%$d.pay_id%>" data-title="<%$d.pay_id%>">
+                                                <td align="center"><%$d.pay_id%></td>
+                                                <td align="center"><%$d.order_sn%></td>
+                                                <td align="center"><%$d.order_time%></td>
+                                                <td align="center"><%substr($d.pay_time,0,-8)%></td>
+                                                <td align="center"><%$d.order_consignee%></td>
+                                                <!--  <td align="center"></td>-->
+                                                <td align="center"><%$d.order_amount%></td>
+                                                <td align="center"><%$d.deposit%></td>
+                                                <td align="center"><%$d.balance%></td>
+                                                <td align="center"><%$payView->getPayNameById($d.pay_type)%></td>
+                                                <td align="center"><%if isset($allSalesChannelsData[$d.department])%><%$allSalesChannelsData[$d.department]%><%/if%></td>
+
+                                                <!--<td align="center"></td>
+                                                <td align="center"></td>-->
+                                                <td align="center"><%$d.proof_sn%></td>
+                                                <td align="center"><%if $d.status==1%>未提报<%/if%><%if $d.status==2%>已提报<%/if%><%if $d.status==3%>已审核<%/if%><%if $d.status==4%>审核未通过<%/if%></td>
+                                            </tr>
+                                            <%/foreach%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

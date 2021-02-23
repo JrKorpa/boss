@@ -1,0 +1,159 @@
+<style type="text/css">
+.quantity-btn{
+    float:right;
+    margin-top: 8px;
+}
+
+/*#quantity-btn input{
+    float:left;
+    height:24px;
+    width:24px;
+
+}*/
+.quantity-btn .minus{
+    font-size:15px;
+    font-weight:bold;
+    color:#b3b3b3;
+    background: #fff;
+    float:left;
+    height:24px;
+    width:24px;
+    border:solid 1px #b3b3b3;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.quantity-btn .plus{
+    font-size:15px;
+    font-weight:bold;
+    color:#b3b3b3;
+    background: #fff;
+    float:left;
+    height:24px;
+    width:24px;
+    border-left: 0;
+    border:solid 1px #b3b3b3;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.quantity-btn .quantity-display{
+    float:left;
+    height:24px;
+    width:50px;
+    text-align:center;
+    font-weight:bold;
+    color:#fff;
+    background: #32c5e3;
+}
+
+</style>
+
+<!-- <div class="table-scrollable"> -->
+ <div class="table-scroll">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+			    <th style="text-align:center">序号</th>
+			    <th>图片</th>
+				<th>货品编号</th>
+				<th>货品名称</th>
+                <th>单位</th>					
+				
+                			
+				<th>库存数量</th>				
+				<th>参考销售价</th>
+                
+                <th>已申请数量</th>
+                <th>添加</th>
+                <th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data key=key item=d%>		
+			<tr data-id="material_goods_list_<%$d.id%>" data-title="<%$d.id%>">				
+				<td style="text-align:center"><%$key+1%></td>
+				<td><%if !empty($d.style_img)%><a title="<%$d.goods_name%>" href="<%$d.style_img%>"  target="_blank"> 
+			<img width="90" height="90" src="<%$d.style_img%>"></a><%else%>无图片<%/if%>
+			
+				<td>
+				<%$d.goods_sn%></td>			
+				<td><%$d.goods_name%></td>
+				<td><%$d.unit%></td>
+				
+				<td><%$d.inventory_qty%></td>
+				<td><%$d.goods_sale_price%></td>
+                
+                <td><div id="span_material_order_goods_add_form_<%$key%>"><%$d.goods_num%></div></td>
+                <td>
+                    <form action="#" class="horizontal-form" method="post" id="material_order_goods_add_form_<%$key%>">
+                    	<input type="hidden" name="id" value='<%$billView->get_id()%>'/>
+						<input type="hidden" class="form-control" name="goods_sn[]" value="<%$d.goods_sn%>"/> 
+						<input type="hidden" class="form-control" name="goods_price[]" value="<%$d.goods_sale_price%>" />
+						<input type="hidden" class="form-control" name="min_qty[]" value="<%$d.min_qty%>"/> 
+						<input type="hidden" class="form-control" name="pack_qty[]" value="<%$d.pack_qty%>" />
+						<div class="quantity-btn right">							      
+						          <input class="minus" type="button" min_qty="<%$d.min_qty%>" pack_qty="<%$d.pack_qty%>" value="-" >
+						          <input class="quantity-display chc_height" name="goods_qty[]" type="text"  value="<%if $d.min_qty < $d.pack_qty%><%$d.pack_qty%><%else%><%$d.min_qty%><%/if%>">
+						          <input class="plus" type="button" min_qty="<%$d.min_qty%>" pack_qty="<%$d.pack_qty%>" value="+">
+						          <button type="button" class="btn green" id="btn_material_order_goods_add_form_<%$key%>" onclick="ajaxcommit(<%$key%>)" <%if !empty($d.goods_num)%>disabled<%/if%>><i class="fa fa-check"></i>添加</button>						         
+						</div>
+
+                    </form>
+                	
+            </td>
+            <td><%$d.remark%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<!--
+<div class="form-actions fluid" style="margin-left:18%">
+	<div class="col-md-offset-3 col-md-9">
+		<input type="hidden" name="id" value="<%$billView->get_id()%>" />
+		<button type="reset" class="btn default">重置</button>
+		<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+	</div>
+</div>-->
+
+<script type="text/javascript">
+<!--
+<%include file = "js/material_order_goods_add.js"%>
+ //加减效果
+$(".plus").click(function(){
+   var min_qty = parseInt($(this).attr("min_qty"));
+   var pack_qty = parseInt($(this).attr("pack_qty"));
+   var x = parseInt($(this).siblings(".quantity-display").val());
+   x = x + pack_qty;   
+   $(this).siblings(".quantity-display").val(x);
+
+})
+
+$(".minus").click(function(){
+  var min_qty = parseInt($(this).attr("min_qty"));
+  var pack_qty = parseInt($(this).attr("pack_qty"));
+  var y = parseInt($(this).siblings(".quantity-display").val());
+  if(min_qty < pack_qty){
+     min_qty = pack_qty;  
+  }
+  if(y <= min_qty || y-pack_qty <= min_qty){
+      y = min_qty;
+  }else{
+      y = y - pack_qty;
+  }
+  $(this).siblings(".quantity-display").val(y);
+})
+/*
+$(".quantity-display").blur(function(){
+  var z = $(this).val();
+  if(z < 1){
+    z = 1;
+  }
+  $(this).val(z);
+})*/   
+//-->
+</script>

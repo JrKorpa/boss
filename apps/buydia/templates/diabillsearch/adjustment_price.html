@@ -1,0 +1,96 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="adjustment_price" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">单号：</label>
+                        <input type="text" name="bill_no" class="form-control" placeholder="" value=""  readOnly="true" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">制单人：</label>
+                        <input type="text" name="create_user" class="form-control" placeholder="<%$smarty.session.userName%>" value=""  readOnly="true" />
+                    </div>
+                </div>  
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">制单时间：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="create_time" value="<%if $view->get_create_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_create_time()%><%/if%>" class="form-control" >
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核人：</label>
+                        <input type="text" name="check_user" class="form-control" placeholder="" value="<%$view->get_check_user()%>" readOnly="true" />
+                    </div>
+                </div> 
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">审核时间：</label>
+                        <div class="input-group input-medium date date-picker" data-date-format="yyyy-dd-mm" data-date-viewmode="years">
+                            <input type="text" name="check_time" value="<%if $view->get_check_time() == '' %><%$smarty.now|date_format:'%Y-%m-%d'%><%else%><%$view->get_check_time()%><%/if%>" class="form-control" >
+                            <span class="input-group-btn">
+                                <button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">状态：</label>
+                        <input type="text" name="status" class="form-control" placeholder="保存" value="<%$dd->getEnum("diabill.status",$view->get_status())%>"  readOnly="true"/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">上传文件：</label>
+                        <span style='color:red;'>*</span>
+                        <input  class="form-control" type="file" name="file" id="file" style="" />
+                        <%if $view->get_id() %>
+                        <a href="index.php?mod=buydia&con=DiaBillSearch&act=dowTemplate&type=<%$type%>&id=<%$view->get_id()%>">下载石包信息数据格式</a>
+                        <%else%>
+                        <a href="index.php?mod=buydia&con=DiaBillSearch&act=dowTemplate&type=<%$type%>">下载石包信息数据格式</a>
+                        <%/if%>
+                    </div>
+                </div>
+
+			
+			</div>
+            <div class="row">
+            <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">调整原因：</label>
+                        <input type="text" name="remark" class="form-control" placeholder="" value="<%$view->get_remark()%>" />
+                    </div>
+                </div>
+                
+            </div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="<%$view->get_id()%>" />
+				
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/adjustment_price.js"%>
+//-->
+</script>

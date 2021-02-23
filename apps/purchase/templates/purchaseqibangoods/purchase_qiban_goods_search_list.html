@@ -1,0 +1,79 @@
+<!-- <div class="table-scrollable"> -->
+ <div class="flip-scroll table-scrollable">
+	<table class="table table-bordered table-striped table-hover flip-content">
+		<thead class="flip-content">
+			<tr>
+				<th>起版号</th>
+				
+				<th>价格</th>
+				<th>镶口</th>
+				<th>手寸</th>
+				<th>主石单颗重</th>
+				<th>主石粒数</th>
+				<th>模号</th>
+				<th>起版费</th>
+				<th>工厂</th>
+				<th>款号</th>
+				<th>证书号</th>
+				<th>证书类型</th>
+                <th>款式类型</th>
+                <th>起版类型</th>
+				<th>产品需求</th>
+				<th>金料</th>
+				<th>金色</th>
+				<th>表面工艺</th>
+				<!-- <th>是否审核</th>is_shenhe
+				<th>是否付款</th>is_fukuan -->
+				<th>状态</th>
+				<th>订单</th>
+				<th>顾客姓名</th>
+				<th>录单人</th>
+                <th>添加时间</th>
+                <th>金重范围</th>
+				<th>备注</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%foreach from=$page_list.data item=d%>
+			<tr data-id="purchase_qiban_goods_list_<%$d.id%>" data-title="<%$d.id%>">
+				<td><%$d.addtime%></td>
+				<td><%$d.price%></td>
+				<td><%$d.xiangkou%></td>
+				<td><%$d.shoucun%></td>				
+				<td><%$d.specifi%></td>
+				<td><%$d.zhushi_num%></td>
+				<td><%$d.fuzhu%></td>
+				<td><%$d.qibanfei%></td>
+				<td><%$d.gongchang%></td>
+				<td><%$d.kuanhao%></td>				
+				<td><%$d.zhengshu%></td>
+				<td><%$d.cert%></td>
+                <td><%$dd->getEnum('purchase.kuan_type', $d.kuan_type)%></td>
+                <td><%$d.qiban_type%></td>
+				<td><%$dd->getEnum('purchase.qiban_xuqiu',$d.xuqiu)%></td>
+				<td><%$dd->getEnum('purchase.qiban_jinliao',$d.jinliao)%></td>
+				<td><%$dd->getEnum('purchase.qiban_jinse',$d.jinse)%></td>
+				<td><%$dd->getEnum('purchase.qiban_gongyi',$d.gongyi)%></td>
+				
+				<!-- <td>xxxxxxx</td>
+				<td>dddddd</td> -->
+				<td><%$dd->getEnum('purchase.qiban_status',$d.status)%></td>
+				<td><%$d.order_sn%></td>
+				<td><%$d.customer%></td>
+				<td><%$d.opt%></td>
+                <td><%$d.addtime|date_format:'%Y-%m-%d %H:%M:%S'%></td>
+                <td><%$d.jinzhong_min%>-<%$d.jinzhong_max%></td>
+				<td><%$d.info%></td>
+			</tr>
+		<%/foreach%>
+		</tbody>
+	</table>
+</div>
+<div class="pager">
+<%$pa%>
+</div>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

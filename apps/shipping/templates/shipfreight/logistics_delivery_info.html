@@ -1,0 +1,119 @@
+<div class="form-body">
+	<form action="#" method="post" class="horizontal-form" id="logistics_deli_uu">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递单号：</label> 
+					<font color="red">*</font><button type="button" class="btn green" id="logistics_delivery_order_express"><i class="fa fa-check"></i>电子下单</button>
+					<input type="text" name="freight_no" class="form-control" id="logistics_delivery_freight_no" placeholder="" value=""/>				    
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">寄件人：</label>
+					<font color="red">*</font>
+					<input type="text" name="sender" class="form-control"  value="覃秋平" readonly="true"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">寄件部门：</label>
+					<font color="red">*</font>
+					<input type="text" name="department" class="form-control"  value="物流部" readonly="true"/>
+				</div>
+			</div>
+			<!--<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">寄件部门：</label>
+					<font color="red">*</font>
+					<select class="form-control" tabindex="1" name="department" >
+					<option value=""></option>
+								<%foreach from=$info_dep item=v%>
+								<option value="<%$v.name1%>" ><%$v.name%></option>
+								<%/foreach%>
+
+						</select>
+				</div>
+			</div>
+			-->
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">收件人：</label>
+					<font color="red">*</font>
+					<input type="text" name="consignee" class="form-control" value="<%$consignee%>" readonly="true"/>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">收件电话：</label>
+					<font color="red">*</font>
+					<input type="text" name="tel" class="form-control"  value="<%$tel%>" readonly="true"/>
+				</div>
+			</div>			
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">收货地址：</label>
+					<font color="red">*</font>
+					<input type="text" name="cons_address" class="form-control" value="<%$address%>" readonly="true" />
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label">快递公司：</label>
+						<font color="red">*</font>
+						<select class="form-control" tabindex="1" name="express_id" id="express_id">
+								<option value=""></option>
+								<%foreach from=$info_express item=c %>
+								<option value="<%$c.id%>|<%$c.exp_name%>"><%$c.exp_name%></option>
+								<%/foreach%>
+						</select>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label class="control-label"> 发票号：<span style="color:red;">(补寄发票时为必填!) </span></label>
+					<font color="red">*</font>
+					<input type="text" name="fapiao" class="form-control" placeholder="" onBlur="" value="" />
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label class="control-label">发件缘由：</label>
+					<font color="red"></font>
+					<%if $send_status ==2%>
+					<label><input type="checkbox" name="note[]"   value="补寄发票"/> 补寄发票</label>
+					<label><input type="checkbox" name="note[]"   value="补寄赠品"/> 补寄赠品</label>
+					<label><input type="checkbox" name="note[]"   value="维修寄回"/> 维修寄回</label>
+					<%else%>
+					<input type="text" name="note_t" class="form-control"  value="" />
+					<%/if%>
+				</div>
+			</div>
+		</div>
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+			
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+				<span id="print_t">      
+               
+            	</span>
+				<input type="hidden" value="<%$send_status%>" name="send_status">
+				<input type="hidden" value="<%$order_sn%>" name="order_sn">
+				
+				<input type="hidden" value="<%$order_amount%>" name="order_amount">
+				<input type="hidden" value="<%$customer_source_id%>" name="customer_source_id">
+
+				<input type="hidden" value="<%$order_id%>" name="order_id">
+				<input type="hidden" value="<%$order_pay_status%>" name="order_pay_status">
+				<input type="hidden" value="<%$order_status%>" name="order_status">
+				<input type="hidden" id="express_order_id" name="express_order_id">
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+
+			
+			<%include file="js/logistics_delivery_info.js"%>
+</script>
+

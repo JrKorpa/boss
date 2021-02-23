@@ -1,0 +1,64 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+        <tr>
+            <th>网销名</th>
+            <th>预约数</th>
+            <th>预约到店数</th>
+            <th>未成交预约数</th>
+            <th>成交单数</th>
+            <th>相同客户算一个订单</th>
+            <th>网络付款订单数</th>
+            <th>总业绩</th>
+            <th>订单商品总金额</th>
+            <th>当期退货商品金额</th>
+            <th>当期退款不退货金额</th>
+        </tr>
+	</thead>
+	<tbody>
+    	<%if $rows<1%>
+        <tr>
+        	<td colspan="9" style="text-align:center;">暂无任何数据</td>
+        </tr>
+        <%else%>
+        <%foreach from=$data item=obj key=key%>
+        <tr>
+            <td><%$obj.username%></td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-预约数详情" data-id="netorderreport1-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=bespoke_list&a=bes_checked_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.bes_checked_count%>
+			</a>
+			</td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-预约到店数详情" data-id="netorderreport2-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=bespoke_list&a=bes_inshop_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.bes_inshop_count%>
+			</a>
+			</td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-未成交预约数详情" data-id="netorderreport3-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=bespoke_list&a=bes_undeal_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.bes_undeal_count%>
+			</a>
+			</td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-成交单数详情" data-id="netorderreport4-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=order_list&a=order_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.order_count%>
+			</a>
+			</td>
+            <td>
+            <a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-成交单数详情-同一手机号算一个订单" data-id="netorderreport4-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=order_list&a=order_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.order_only_count%>
+            </a>
+            </td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-网络付款订单数详情" data-id="netorderreport5-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=order_list&a=order_online_data_count&name=<%$obj.username%>&<%$args_where%>"><%$obj.order_online_data_count%>
+			</a>
+			</td>
+            <td><%($obj.order_amount-$obj.return_prod_amount-$obj.return_order_amount)%></td>
+            <td><%$obj.order_amount%></td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-当期退货商品金额详情" data-id="netorderreport6-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=order_list&a=return_prod_amount&name=<%$obj.username%>&<%$args_where%>"><%$obj.return_prod_amount%>
+			</a>
+			</td>
+            <td>
+			<a href="javascript:;" class="tab-con-a" data-title="<%$obj.username%>-当期退款不退货金额详情" data-id="netorderreport7-<%time()%>" data-url="index.php?mod=report&con=NetOrderReport&act=res_list&a=return_order_amount&name=<%$obj.username%>&<%$args_where%>"><%$obj.return_order_amount%>
+			</a>
+			</td>
+        </tr>
+        <%/foreach%>
+        <%/if%>
+	</tbody>
+</table>

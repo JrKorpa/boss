@@ -1,0 +1,39 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>序号</th>
+			<th>分类名称</th>
+			<th>产品线</th>
+			<th>对应属性</th>
+			<th>属性类型</th>
+			<th>是否显示</th>
+			<th>是否默认</th>
+			<th>是否必填</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="rel_cat_attribute_list_<%$d.rel_id%>" >
+			<td align="center"><%$d.rel_id%></td>
+			<%assign var=c_id value=$d.cat_type_id%>
+			<td><%$cat_data[$c_id]%></td>
+			<%assign var=p_id value=$d.product_type_id%>
+			<td><%$product_data[$p_id]%></td>
+			<%assign var=a_id value=$d.attribute_id%>
+			<td><%$attribute_data[$a_id]%></td>
+			<td><%$dd->getEnum("rel_cat_attribute.attr_type",$d.attr_type)%></td>
+			<td><%if $d.is_show==1%>是<%else%>否<%/if%></td>
+			<td><%if $d.is_default==1%>是<%else%>否<%/if%></td>
+			<td><%if $d.is_require==1%>是<%else%>否<%/if%></td>
+			<td><%$dd->getEnum("is_enabled",$d.status)%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

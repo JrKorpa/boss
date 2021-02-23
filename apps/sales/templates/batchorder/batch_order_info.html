@@ -1,0 +1,158 @@
+<div class="portlet-body form">
+	<!-- 表单内容 -->
+	<form action="#" method="post" class="horizontal-form" id="batch_order_info" enctype="multipart/form-data">
+		<div class="form-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">订单状态：<span class="required">*</span></label>
+						<select class="form-control" tabindex="1" name="order_status">
+							<option value=""></option>
+							<option value="1">待审核</option>
+							<option value="2">已审核</option>
+							<option value="5">审核未通过</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">部门：<span class="required">*</span></label>
+						<select class="form-control" tabindex="1" name="order_department">
+							<option value=""></option>
+							<%foreach from=$channellist key=key item=p %>
+								<option value="<%$p.id%>" ><%$p.channel_name%></option>
+							<%/foreach%>
+						</select>
+					</div>
+				</div>
+				<!--
+				<div class="col-sm-3">
+						<label class="control-label">支付状态是否已支付：</label>
+						<input type="checkbox" name="is_pay" class="form-control" placeholder="" value="1" />
+				</div>
+				<div class="col-sm-3">
+						<label class="control-label">是否布产：</label>
+						<input type="checkbox" name="is_buchan" class="form-control" placeholder="" value="1" />
+				</div>-->
+
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">来源：<span class="required">*</span></label>
+						<select class="form-control" tabindex="1" name="customer_source">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">支付方式：<span class="required">*</span></label>
+						<select class="form-control" tabindex="1" name="pay_type">
+                            <option value=""></option>
+							<%foreach from=$paymentList item=d%>
+							<option value="<%$d.id%>"><%$d.pay_name%></option>
+							<%/foreach%>
+                        </select>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">配送方式：</label><span style="color:red">*</span>
+                    <div class="radio-list">
+                        <select class="select2_category form-control" name="distribution_type" tabindex="1" >
+                            <option value="" ></option>
+                            <%foreach from=$dd->getEnumArray("sales.distribution_type")  item=value%>
+                            <option value="<%$value.name%>" ><%$value.label%></option>
+                            <%/foreach%>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <div id="address_mendian_info"       style="display:none" >
+   
+			<div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">体验店类别：</label>
+				<select class="select2_category form-control" tabindex="1" name="shop_type" >
+					<option value=""></option>
+					<%foreach from=$dd->getEnumArray("shop.type") key=k item=value%>
+					<option  value="<%$value.name%>" ><%$value.label%></option>
+					<%/foreach%>
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">体验店：</label></label><span style="color:red">*</span>
+				<select class="form-control" tabindex="2" id="shop_id" name="shop_id" >
+					<option value=""></option>
+					 <%foreach from=$shop  item=value%>
+				   <option name="shopid"   parentid="<%$value.shop_type%>" value="<%$value.id%>" 
+					 ><%$value.shop_name%></option>
+					
+					<%/foreach%>
+				</select>
+			</div>
+			
+		  </div>
+		
+		</div>
+		<span id="address_mendian_info1" >
+		   <div class="col-sm-3">
+					<div class="form-group">
+						<label class="control-label">快递物流：<span class="required">*</span></label>
+						<select class="select2_category form-control" tabindex="1" name="express_id">
+                                <option value=""></option>
+                                <%foreach from=$express key=k item=value%>
+                                <%if $value != '上门取货'%> <option value="<%$k%>"><%$value%></option><%/if%>
+                                <%/foreach%>
+                        </select>
+					</div>
+				</div>
+	    </span>
+  </div>
+			<div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">选择要上传的CSV文件：<span class="required">*</span></label>
+                        <div class="form-group fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <input type="file" name="file_order" multiple="" />
+                            </span>
+                            <p class="control-label"></p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						商品合并导入订单：（勾选外部订单号后，信息一致合并生成一个订单，不一致生成多个订单；不勾选，外部订单号不管是否一样都合并生成一个订单）
+						<div class="form-group fileupload-buttonbar">
+							<input type="checkbox" name="by_customer" checked disabled/>客户姓名 + 电话
+							<input type="checkbox" name="by_out_order_no" checked/> + 外部订单号
+						</div>
+					</div>
+				</div>
+            </div>
+		</div>
+		<!-- 搜索按钮 -->
+		<div class="form-actions fluid">
+			<div class="col-md-offset-3 col-md-9">
+				<input type="hidden" name="id" value="" />
+				<input type="hidden" name="_cls" value="<%$smarty.post._cls|default:0%>" />
+				<input type="hidden" name="tab_id" value="<%$tab_id|default:0%>" />
+				<button type="reset" class="btn default">重置</button>
+				<button type="submit" class="btn green"><i class="fa fa-check"></i> 保存</button>
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/batch_order_info.js"%>
+//-->
+</script>

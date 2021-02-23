@@ -1,0 +1,422 @@
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>信息详情
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" id="detail_reload" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="fa fa-refresh"></i>
+                </button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-sm yellow" onclick="util.closeTab(this);" data-url="" name="离开" title="关闭当前页签" list-id="72" data-title="">
+					离开 <i class="fa fa-mail-reply"></i>
+				</button>
+            </div>
+		</div>
+		<!-- 表格1 -->
+        <div class="flip-scroll">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <tr>
+                    <td align="center">订单号</td>
+                    <td align="center" order_id="<%$data[0]['order_id']%>"><%$data[0]['order_sn']%>[<%$data[0]['order_id']%>]</td>
+                    <td align="center">销售渠道</td>
+                    <td align="center"><%$data[0]['department_name']%></td>
+                    <td align="center">客户来源</td>
+                    <td align="center"><%$data[0]['from_ad']%></td>
+                </tr>
+                <tr>
+                    <td  align="center">客户名称</td>
+                    <td  align="center"><%$data[0]['consignee']%></td>
+                    <td  align="center">顾客手机号码</td>
+                    <td  align="center"><%$data[0]['mobile']%></td>
+                    <td align="center">订购类型</td>
+                    <td align="center"><%$data[0]['pay_name']%></td>
+                </tr>
+                <tr>
+                    <td  align="center">制单时间</td>
+                    <td  align="center"><%$data[0]['order_time']%></td>
+                    <td  align="center">制单人</td>
+                    <td  align="center"><%$data[0]['make_order']%></td>
+                    <td align="center">申请状态</td>
+                    <td align="center"><span <%if  $data[0]['apply_close']==1&&$data[0]['order_status']!=5%>style="color: red;"<%/if%>><%if $data[0]['order_status']==5%>已关闭<%else%><%if $data[0]['apply_close']==1&&$data[0]['order_status']!=5%>已申请<%else%><%/if%><%/if%></span></td>
+                </tr>
+                <tr>
+                    <td align="center">审核人</td>
+                    <td align="center"><%$data[0]['make_order']%></td>
+                    <td align="center">审核时间</td>
+                    <td align="center"><%$data[0]['confirm_time']%></td>
+                    <td align="center">订单类型</td>
+                    <td align="center"><span <%if $data[0]['buchan_status']==8%> style="color:red;"<%/if%>><%if $data[0]['buchan_status']==0%>现货<%else if $data[0]['buchan_status']==8%>未选商品<%else%>期货<%/if%></span></td>
+                </tr>
+                <tr>
+                    <td align="center">订单状态</td>
+                    <td align="center"><%$order_status[$data[0]['order_status']]%></td>
+                    <td align="center">支付状态</td>
+                    <td align="center"><%$pay_status[$data[0]['pay_status']]%></td>
+                    <td align="center">配货状态</td>
+                    <td align="center"><%$delivery_status[$data[0]['peihuo_status']]%></td>
+                </tr>
+                <tr>
+                    <td align="center">送货状态</td>
+                    <td align="center"><%$shipping_status[$data[0]['shipping_status']]%></td>
+                    <td align="center">是否为赠品单</td>
+                    <td align="center"><%if $data[0]['is_zp']==1%>是<%else%>否<%/if%></td>
+                    <td align="center">录单来源</td>
+                    <td align="center"><%$data[0]['referer']%></td>
+                </tr>
+
+                <tr>
+                    <td align="center" >推荐人</td>
+                    <td align="center"><%$data[0]['recommended']%></td>
+                    <td align="center">跟单人</td>
+                    <td align="center" ><%$data[0]['genzong']%></td>
+                </tr>
+                
+                <tr>
+                    <td align="center">外部订单号</td>
+                    <td align="center" colspan="5">
+						<%$data[0]['taobao_order_id']%>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="center">订单备注</td>
+                    <td  colspan="5"><span style="color: red"><%$data[0]['postscript']|default:''%></span></td>
+                </tr>
+            </table>
+        </div>
+
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box green">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>订单金额数据
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		 
+		<div class="flip-scroll" id="app_order_price_info_lists">
+            <table class="table table-bordered table-striped table-hover flip-content">
+                <thead class="flip-content">
+                    <tr>
+                        <th>订单总金额</th>
+                        <th>商品总金额</th>
+                        <th>实际退款</th>
+                        <th>优惠总金额</th>
+                        <th>优惠券金额</th>
+                        <th>配送费</th>
+                        <th>保证金</th>
+                        <th>支付费</th>
+                        <th>包装费</th>
+                        <th>贺卡费</th>
+                        <th>已付金额</th>
+                        <th>未付金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-id="app_old_order_<%$data[0]['order_id']%>" data-title="<%$data[0]['order_sn']%>">
+                        <td align="center"><%$data[0]['money_paid']+$data[0]['order_amount']%></td>
+                        <td align="center"><%$data[0]['goods_amount']%></td>
+                        <td align="center"><%$data[0]['real_return_price']%></td>
+                        <td align="center">0.00</td>
+                        <td align="center">0.00</td>
+                        <td align="center"><%$data[0]['shipping_fee']%></td>
+                        <td align="center"><%$data[0]['insure_fee']%></td>
+                        <td align="center"><%$data[0]['pay_fee']%></td>
+                        <td align="center"><%$data[0]['pack_fee']%></td>
+                        <td align="center"><%$data[0]['card_fee']%></td>
+                        <td align="center"><%$data[0]['money_paid']%></td>
+                        <td align="center"><%$data[0]['order_amount']%></td>
+                    </tr>
+                </tbody>
+            </table>
+			<div>
+            商品总金额：￥<%$data[0]['goods_amount']%>元 + 商品附件费用：￥<%$data[0]['order_goods_attach_price']%>元 + 订单附件费用：￥<%$data[0]['order_attach_price']%>元 - 退款￥ <%$data[0]['goods_return_price']%> + 配送费用：￥<%$data[0]['shipping_fee']%>元 + 保价费用：￥<%$data[0]['insure_fee']%>元 + 支付费用：￥<%$data[0]['pay_fee']%>元 + 包装费用：￥<%$data[0]['pack_fee']%>元 + 贺卡费用：￥<%$data[0]['card_fee']%>元<br>
+            = 订单总金额：￥<%$data[0]['total_fee']%>元 - 
+             已付款金额：￥<%$data[0]['money_paid']%>元 - 实际退款：￥<%$data[0]['real_return_price']%>元 - 使用余额：￥<%$data[0]['surplus']%>元 - 使用积分：￥<%$data[0]['integral_money']%>元 - 使用红包：￥<%$data[0]['bonus']%>元<br>  = 应付款金额：￥<%$data[0]['order_amount']%>元
+			 </div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>商品信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+            <div class="btn-group">
+                <button class="btn btn-sm dark" id="detail_reload" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新明细" list-id="70" data-title="">
+                    刷新 <i class="fa fa-refresh"></i>
+                </button>
+            </div>
+
+		</div>
+        <span style="color: #008855">订单明细数量：<%count($data)|default:0%></span>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_old_order_detailxxx">
+			<div class="table-scrollable">
+			<table class="table table-bordered table-striped table-hover flip-content" id="app_order_details_search_list">
+				<thead class="flip-content">
+					<tr>
+						<th align="center"><input type="checkbox" class="group-checkable" data-set="#app_order_details_search_list .checkboxes" /></th>
+						<th align="center">款式45°图片</th>
+						<th align="center">货号</th>
+						<th align="center">原始货号</th>
+						<th align="center">款号</th>
+						<th align="center">商品类型</th>
+						<th align="center">商品名称</th>
+						<th align="center">石重</th>
+						<th align="center">颜色</th>
+						<th align="center">净度</th>
+						<th align="center">切工</th>
+						<th align="center">证书号</th>
+						<th align="center">金料</th>
+						<th align="center">金色</th>
+						<th align="center">表面工艺</th>
+						<th align="center">镶口</th>
+						<th align="center" style="word-break:break-all">指圈</th> 
+						<th align="center">刻字</th>
+						<th align="center">镶嵌要求</th>
+						<th align="center">商品价格</th>
+						<th align="center">商品优惠金额</th>
+						<th align="center">实际支付</th>
+						<th align="center">数量</th>
+						<th align="center">现货/期货</th>
+						<th align="center">布产状态</th>
+						<th align="center">布产id</th>
+						<th align="center">发货状态</th>
+						<th align="center">维修状态</th>
+						<th align="center">维修操作</th>
+						<th align="center">优惠审核状态</th> 
+						<th align="center">商品备注信息</th>
+						<th align="center">是否赠品</th> 
+						<th align="center">是否销账</th>
+					</tr>
+				</thead>
+				<tbody id="order_details_list">
+				<%foreach from=$data item=d%>
+					<tr data-id="app_old_order_<%$d.order_id%>" data-title="" del="<%$d.is_return%>">
+						<td align="center"><input class="checkboxes" type="checkbox" name="_ids[]" value="<%$d.order_id%>" /></td>
+						<td align="center">
+						<%if isset($d.big_img) && $d.big_img != ''%><a title="<%$d.style_sn%>" href="<%$d.big_img%>" class="fancyboximg"> 
+						<img width="80" height="80" src="<%$d.big_img%>"></a><%else%>无图片<%/if%>
+						</td>
+						<td align="center"><%$d.goods_id%></td>
+						<td align="center"><%$d.ori_goods_sn%></td>
+						<td align="center"><%$d.goods_sn%></td>
+						<td align="center"><%if $d.goods_type=='lz'%>裸钻<%else%>非裸钻<%/if%></td>
+						<td align="center"><%$d.goods_name%></td>
+						<td align="center"><%$d.stone%></td>
+						<td align="center"><%$d.stone_color%></td>
+						<td align="center"><%$d.stone_clear%></td>
+						<td align="center"><%$d.cut%></td>
+						<td align="center"><%$d.certid%></td>
+						<td align="center"><%$d.gold%></td>
+						<td align="center"><%$d.gold_color%></td>
+						<td align="center"><%$d.face_work%></td>
+						<td align="center"><%$d.jietuoxiangkou%></td>
+						<td align="center" style="word-break:break-all"><%$d.finger%></td>
+									<td align="center"><%$d.word%></td>
+						<td align="center"><%$d.chengpin%></td>
+						<td align="center"><%sprintf("%.2f",$d.goods_price)%></td>
+						<td align="center">0.00</td>
+						<td align="center"><%sprintf("%.2f",$d.goods_price)%></td>
+						<td align="center"><%$d.goods_number%></td>
+						<td align="center"><%if $d.buchan_status==0%>现货<%else%>期货<%/if%></td>
+						<td align="center"><%$goods_status[$d.goods_status]%></td>
+						<td align="center"><%$d.bc_id|default:'无'%></td>
+						<td align="center"><%$shipping_status[$d.shipping_status]%></td>
+						<td align="center"></td>           
+						<td align="center">
+						<td align="center"></td>
+						<td align="center"></td>
+						<th align="center"><%if $d.goods_type=='zp'%>是<%else%>否<%/if%></th> 
+						<th align="center"></th>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+			</div>
+		</div>
+			<div>
+            <!--商品总金额：￥<%$data[0]['goods_amount']%>元 - 商品优惠：￥0.00元 - 订单优惠：￥0.00元 - 退货商品金额￥ <%$order_account.t_price%> +扣除商品优惠 ￥0.00+ 配送费用：￥<%$data[0]['shipping_fee']%>元 + 保价费用：￥<%$data[0]['insure_fee']%>元 + 支付费用：￥<%$data[0]['pay_fee']%>元 + 包装费用：￥<%$data[0]['pack_fee']%>元 + 贺卡费用：￥<%$data[0]['card_fee']%>元<br>
+            = 订单总金额：￥<%$data[0]['money_paid']+$data[0]['order_amount']%>元<br>-
+             已付款金额：￥<%$data[0]['money_paid']%>元 + 实退金额 ￥<%$data[0]['real_return_price']%>元<br> 
+             = 应付款金额：￥<%$data[0]['order_amount']%>元
+			 </div>-->
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+ 
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>发票信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<div class="table-toolbar">
+
+			<div class="btn-group">
+				<button class="btn btn-sm dark" onclick="util.retrieveReload(this);" data-url="" name="刷新" title="刷新明细" list-id="70" data-title="">
+					刷新 <i class="fa fa-refresh"></i>
+				</button>
+			</div>
+		</div>
+		<!-- 表格1 -->
+		<div class="flip-scroll" id="app_old_order_invoice_detailxxx">
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th style="text-align: center;">是否需要开发票</th>
+						<th style="text-align: center;">发票状态</th>
+						<th style="text-align: center;">发票抬头</th>
+						<th style="text-align: center;">发票号</th>
+						<th style="text-align: center;">发票金额</th>
+						<th style="text-align: center;">创建时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-id="app_old_order_<%$data[0]['order_id']%>" data-title="<%$data[0]['order_id']%>">
+						<td align="center"><%if $data[0]['need_inv']==1%>是<%else%>否<%/if%></td>
+						<td align="center"></td>
+						<td align="center"><%$data[0]['inv_payee']%></td>
+						<td align="center"><%$data[0]['second_ship']%></td>
+						<td align="center"><%$data[0]['inv_amount']%></td>
+						<td align="center"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-reorder"></i>送货地址信息
+		</div>
+		<div class="tools">
+			<a href="javascript:;" class="collapse">
+			</a>
+		</div>
+	</div>
+	<div class="portlet-body">
+
+		<div class="table-toolbar">
+
+		</div>
+
+		<!-- 表格1 -->
+        订单收货地址：
+        <table class="table table-bordered table-striped table-hover flip-content">
+            <tr>
+                <td align="center">收货人:<%$data[0]['consignee']%></td>
+                <td align="center">电话:<%if $data[0]['mobile']%><%$data[0]['mobile']%><%else%><%$data[0]['tel']%><%/if%></td>
+                <td align="center">发货方式:<%if $data[0]['distribution_type']==1 %>门店<%else if $data[0]['distribution_type']==2%>公司到客户<%else%>配送到经销商事业部<%/if%></td>
+                <td align="center">
+					物流:<%$data[0]['shipping_name']%>
+                </td>
+                <td><%if $data[0]['invoice_no']%>快递号：<%$data[0]['invoice_no']|default:''%><%/if%></td>
+            </tr>
+            <tr>
+                <%if $data[0]['distribution_type']==1 %> <td align="center">体验店类型：<%if $data[0]['is_dealer']==0%>直营店<%else if $data[0]['is_dealer']==1%>经销商店 <%else%><%/if%></td>
+                <td colspan="6" align="center">体验店名称:<%$data[0]['department_name']%></td>
+                <%/if%>
+            </tr>
+            <tr>
+                <td align="center">详细地址</td>
+                <td colspan="7" align="center"><%$data[0]['address']%></td>
+            </tr>
+            
+        </table>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-reorder"></i>订单日志
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-toolbar">
+            <div class="btn-group" >
+
+            </div>
+		</div>
+        <!-- 表格1 -->
+        <div class="flip-scroll" id="app_old_order_searchxxx">
+				<div class="table-toolbar">
+				</div>
+			<table class="table table-bordered table-striped table-hover flip-content">
+				<thead class="flip-content">
+					<tr>
+						<th>序号</th>
+						<th>操作内容</th>
+						<th>操作人</th>
+						<th>订单审核状态</th>
+						<th>支付状态</th>
+						<th>发货状态</th>
+						<th>操作时间</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%foreach from=$action_list key=key item=d%>
+					<tr data-id="app_old_order_<%$d.action_id%>" data-title="<%$d.action_id%>">
+						<td><%$d.action_id%></td>
+						<td><%$d.action_note%></td>
+						<td><%$d.action_user%></td>
+						<td><%$order_status[$d.order_status]%></td>
+						<td><%$pay_status[$d.pay_status]%></td>
+						<td><%$shipping_status[$d.shipping_status]%></td>
+						<td><%$d.action_time%></td>
+					</tr>
+				<%/foreach%>
+				</tbody>
+			</table>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+	<%include file="js/app_old_order_show.js"%>
+//-->
+</script>

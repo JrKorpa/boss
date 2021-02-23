@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover flip-content">
+	<thead class="flip-content">
+		<tr>
+			<th>应收单号</th>
+			<th>订单来源/结算商</th>
+			<th>应收金额</th>
+			<th>制单人</th>
+			<th>制单时间</th>
+			<th>审核人</th>
+			<th>审核时间</th>
+			<th>单据状态</th>
+			<th>收款状态</th>
+			<th>财务实收金额</th>
+		</tr>
+	</thead>
+	<tbody>
+	<%foreach from=$page_list.data item=d%>
+		<tr data-id="app_receive_should_list_<%$d.should_id%>" data-title="<%$d.should_number%>">
+			<td align="center"><%$d.should_number%></td>
+			<td align="center"><%$d.ad_name%></td>
+			<td align="center"><%$d.total_cope%></td>
+			<td align="center"><%$d.makename%></td>
+			<td align="center"><%$d.maketime%></td>
+			<td align="center"><%$d.checkname%></td>
+			<td align="center"><%$d.checktime%></td>
+			<td align="center"><%$dd->getEnum('pay.ys_status',$d.status)%></td>
+			<td align="center"><%$dd->getEnum('pay.pay_status',$d.total_status)%></td>
+			<td align="center"><%$d.total_real%></td>
+		</tr>
+	<%/foreach%>
+	</tbody>
+</table>
+<%$pa%>
+<script type="text/javascript">
+<!--
+	util.hover();
+//-->
+</script>

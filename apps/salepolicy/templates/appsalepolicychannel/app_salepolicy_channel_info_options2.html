@@ -1,0 +1,5 @@
+<%if $num>0%>
+    <%foreach from=$data item=value%>
+        <option value="<%$value.id%>" ><%$value.channel_name%></option>
+    <%/foreach%>
+<%/if%>

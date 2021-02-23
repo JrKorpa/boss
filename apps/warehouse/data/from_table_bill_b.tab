@@ -1,0 +1,107 @@
+id = #from_table_data_bill_b;
+
+[title]
+0 = "货号";
+1 = "货品名称";
+2 = "款号";
+3 = "入库方式";
+4 = "主成色";
+5 = "主石颗粒";
+6 = "主石重";
+7 = "副石颗数";
+8 = "副石重";
+9 = "颜色";
+10 = "净度";
+11 = "证书号";
+12 = "数量";
+13 = "是否结价";
+14 = "成本价";
+15 = "退货价";
+
+[label]
+0 = "goods_id";
+1 = "goods_name";
+2 = "goods_sn";
+3 = "put_in_type";
+4 = "zhushiyanse";
+5 = "zhushilishu";
+6 = "zuanshidaxiao";
+7 = "fushilishu";
+8 = "fushizhong";
+9 = "yanse";
+10 = "jingdu";
+11 = "zhengshuhao";
+12 = "num";
+13 = "jiejia";
+14 = "chengbenjia";
+21 = "company_id";
+22 = "is_on_sale";
+23 = "order_goods_id";
+
+[columns_0]
+type = numeric;
+
+[columns_1]
+type = text;
+readOnly = true;
+
+[columns_2]
+type = text;
+readOnly = true;
+
+[columns_3]
+editor = select;
+selectOptions = ["购买", "加工", "代销", "借入"];
+readOnly = true;
+
+[columns_4]
+type = text;
+readOnly = true;
+
+[columns_5]
+type = numeric;
+readOnly = true;
+
+[columns_6]
+type = numeric;
+format = 0,0.000;
+readOnly = true;
+
+[columns_7]
+type = numeric;
+readOnly = true;
+
+[columns_8]
+type = numeric;
+format = 0,0.000;
+readOnly = true;
+
+[columns_9]
+type = text;
+readOnly = true;
+
+[columns_10]
+type = text;
+readOnly = true;
+
+[columns_11]
+type = text;
+readOnly = true;
+
+[columns_12]
+type = numeric;
+readOnly = true;
+
+[columns_13]
+editor = select;
+selectOptions = ["是", "否"];
+readOnly = true;
+
+[columns_14]
+type = numeric;
+format = 0,0.00;
+readOnly = true;
+
+[columns_15]
+type = numeric;
+format = 0,0.00;
